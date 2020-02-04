@@ -5,6 +5,7 @@
 ## Added
 - Stale Bot GitHub config.
 - Buttons can have primary and secondary actions.
+- AndesButton dynamic configuration changes in runtime.
 
 ## Refactor
 - AndesColor created to wrap the use of primitives android color types.
