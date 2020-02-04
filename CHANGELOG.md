@@ -1,6 +1,7 @@
 # v1.2.2
 ## Fixed
 - Some Message Types were still called States.
+- Colors of the Message's buttons in quiet hierarchy.
 
 ## Added
 - Stale Bot GitHub config.
