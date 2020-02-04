@@ -8,3 +8,7 @@ import android.support.v4.content.ContextCompat
 internal fun Int.toColor(context: Context): Int {
     return ContextCompat.getColor(context, this)
 }
+
+internal fun Int.toAndesColor(): AndesColor = AndesColor(this)
+
+internal fun Int.toAndesColorWithAlpha(alpha: Float) = AndesColor(this, alpha)

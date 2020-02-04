@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfigMessage
+import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchyInterface
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
@@ -27,9 +27,9 @@ internal data class AndesMessageConfiguration(
         val dismissableIconColor: AndesColor?,
         val primaryActionText: String?,
         val secondaryActionText: String?,
-        val primaryActionBackgroundColor: BackgroundColorConfigMessage,
+        val primaryActionBackgroundColor: BackgroundColorConfig,
         val primaryActionTextColor: AndesColor,
-        val secondaryActionBackgroundColor: BackgroundColorConfigMessage,
+        val secondaryActionBackgroundColor: BackgroundColorConfig,
         val secondaryActionTextColor: AndesColor
 )
 

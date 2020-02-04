@@ -11,15 +11,15 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrs
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrsParser
-import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.AndesButtonConfiguration
 import com.mercadolibre.android.andesui.button.factory.AndesButtonConfigurationFactory
-import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
-import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfigMessage
-import com.mercadolibre.android.andesui.button.hierarchy.getConfiguredBackgroundMessage
+import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
+import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
+import com.mercadolibre.android.andesui.button.hierarchy.getConfiguredBackground
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 
 
@@ -349,8 +349,8 @@ class AndesButton : ConstraintLayout {
         textComponent.setTextColor(color)
     }
 
-    internal fun changeBackgroundColor(backgroundColorConfig: BackgroundColorConfigMessage) {
-        background = getConfiguredBackgroundMessage(context, context.resources.getDimension(R.dimen.andesui_button_border_radius_medium), backgroundColorConfig)
+    internal fun changeBackgroundColor(backgroundColorConfig: BackgroundColorConfig) {
+        background = getConfiguredBackground(context, context.resources.getDimension(R.dimen.andesui_button_border_radius_medium), backgroundColorConfig)
     }
 
     /**

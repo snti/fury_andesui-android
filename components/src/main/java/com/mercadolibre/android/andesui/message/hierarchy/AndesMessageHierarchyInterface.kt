@@ -7,8 +7,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfigMessage
+import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.color.AndesColor
+import com.mercadolibre.android.andesui.color.toAndesColor
+import com.mercadolibre.android.andesui.color.toAndesColorWithAlpha
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -88,49 +90,49 @@ internal sealed class AndesMessageHierarchyInterface {
 
     abstract fun iconBackgroundColor(type: AndesMessageTypeInterface): AndesColor?
 
-    fun primaryActionBackgroundColor(type: AndesMessageTypeInterface): BackgroundColorConfigMessage {
+    fun primaryActionBackgroundColor(type: AndesMessageTypeInterface): BackgroundColorConfig {
         val iconBackgroundColor = iconBackgroundColor(type)
                 ?: throw IllegalStateException("")
 
-        return BackgroundColorConfigMessage(
+        return BackgroundColorConfig(
                 enabledColor = iconBackgroundColor,
-                pressedColor = AndesColor(iconBackgroundColor.colorRes, 0.2f),
+                pressedColor = iconBackgroundColor.copy(alpha = 0.2f),
                 focusedColor = iconBackgroundColor,
                 hoveredColor = iconBackgroundColor,
                 disabledColor = iconBackgroundColor,
                 otherColor = iconBackgroundColor)
     }
 
-    fun primaryActionTextColor() = AndesColor(R.color.andesui_white)
+    fun primaryActionTextColor() = R.color.andesui_white.toAndesColor()
 
-    fun secondaryActionBackgroundColor(state: AndesMessageTypeInterface): BackgroundColorConfigMessage {
+    fun secondaryActionBackgroundColor(state: AndesMessageTypeInterface): BackgroundColorConfig {
         val backgroundColor = backgroundColor(state)
-        return BackgroundColorConfigMessage(
-                enabledColor = AndesColor(R.color.andesui_bu_transparent_idle),
-                pressedColor = AndesColor(R.color.andesui_bu_transparent_idle, 0.2f),
+        return BackgroundColorConfig(
+                enabledColor = R.color.andesui_bu_transparent_idle.toAndesColor(),
+                pressedColor = R.color.andesui_bu_transparent_idle.toAndesColorWithAlpha(0.2f),
                 focusedColor = backgroundColor,
                 hoveredColor = backgroundColor,
                 disabledColor = backgroundColor,
                 otherColor = backgroundColor)
     }
 
-    abstract fun secondaryActionTextColor(state: AndesMessageTypeInterface): AndesColor
+    abstract fun secondaryActionTextColor(type: AndesMessageTypeInterface): AndesColor
 }
 
 internal object AndesLoudMessageHierarchy : AndesMessageHierarchyInterface() {
     override fun backgroundColor() = throw IllegalStateException("Loud message cannot be colored without an AndesMessageType")
     override fun backgroundColor(type: AndesMessageTypeInterface) = type.primaryColor()
-    override fun textColor() = AndesColor(R.color.andesui_message_loud_text)
-    override fun dismissableIconColor() = AndesColor(R.color.andesui_message_loud_dismissable)
+    override fun textColor() = R.color.andesui_message_loud_text.toAndesColor()
+    override fun dismissableIconColor() = R.color.andesui_message_loud_dismissable.toAndesColor()
     override fun iconBackgroundColor(type: AndesMessageTypeInterface) = type.secondaryColor()
-    override fun secondaryActionTextColor(state: AndesMessageTypeInterface) = AndesColor(R.color.andesui_white)
+    override fun secondaryActionTextColor(type: AndesMessageTypeInterface) = R.color.andesui_white.toAndesColor()
 }
 
 internal object AndesQuietMessageHierarchy : AndesMessageHierarchyInterface() {
-    override fun backgroundColor() = AndesColor(R.color.andesui_message_quiet_bg) //TODO Check
-    override fun backgroundColor(state: AndesMessageTypeInterface) = backgroundColor()
-    override fun textColor() = AndesColor(R.color.andesui_message_quiet_text) //TODO Check
-    override fun dismissableIconColor() = AndesColor(R.color.andesui_message_quiet_dismissable)
+    override fun backgroundColor() = R.color.andesui_message_quiet_bg.toAndesColor() //TODO Check
+    override fun backgroundColor(type: AndesMessageTypeInterface) = backgroundColor()
+    override fun textColor() = R.color.andesui_message_quiet_text.toAndesColor() //TODO Check
+    override fun dismissableIconColor() = R.color.andesui_message_quiet_dismissable.toAndesColor()
     override fun iconBackgroundColor(type: AndesMessageTypeInterface) = type.primaryColor()
     override fun secondaryActionTextColor(type: AndesMessageTypeInterface) = iconBackgroundColor(type)
 }
