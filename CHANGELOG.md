@@ -1,4 +1,7 @@
 # v1.3.0
+## Updated
+- Using WebP images to save size.
+
 ## Fixed
 - Button now change to neutral Style.
 
