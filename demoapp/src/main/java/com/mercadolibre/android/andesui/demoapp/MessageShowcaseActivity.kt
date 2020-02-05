@@ -116,7 +116,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 }
 
                 when (typeSpinner.selectedItem.toString()) {
-                    "Highlight" -> changeMessage.type = AndesMessageType.NEUTRAL
+                    "Neutral" -> changeMessage.type = AndesMessageType.NEUTRAL
                     "Success" -> changeMessage.type = AndesMessageType.SUCCESS
                     "Warning" -> changeMessage.type = AndesMessageType.WARNING
                     "Error" -> changeMessage.type = AndesMessageType.ERROR

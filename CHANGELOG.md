@@ -1,3 +1,7 @@
+# v1.3.0
+## Fixed
+- Button now change to neutral Style.
+
 # v1.2.2
 ## Fixed
 - Some Message Types were still called States.
