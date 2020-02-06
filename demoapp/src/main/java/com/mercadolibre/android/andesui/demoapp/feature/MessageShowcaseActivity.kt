@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.testapp
+package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
@@ -8,15 +8,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ScrollView
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.demoapp.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
@@ -57,19 +54,15 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
-            val layoutMessages = inflater.inflate(R.layout.andesui_message_showcase, null, false) as ScrollView
-            val layoutMessagesChange = inflater.inflate(R.layout.andesui_message_showcase_change, null, false) as ScrollView
-            val button = layoutMessages.findViewById<AndesButton>(R.id.button)
 
-            button.setOnClickListener {
-                val message = layoutMessages.findViewById<AndesMessage>(R.id.message_loud)
-                val hour = System.currentTimeMillis().toString()
-                message.title = ("The current millis are: $hour")
-                message.hierarchy = (AndesMessageHierarchy.LOUD)
-                message.type = (AndesMessageType.SUCCESS)
-                message.isDismissable = false
-                message.body = "I insist. Current millis are: $hour"
-            }
+            val staticMessagesLayout = addStaticMessages(inflater)
+            val dynamicMessageLayout = addDynamicMessage(inflater)
+
+            return listOf(dynamicMessageLayout, staticMessagesLayout)
+        }
+
+        private fun addDynamicMessage(inflater: LayoutInflater): View {
+            val layoutMessagesChange = inflater.inflate(R.layout.andesui_message_showcase_change, null, false) as ScrollView
 
             val hierarchySpinner: Spinner = layoutMessagesChange.findViewById(R.id.hierarchy_spinner)
             ArrayAdapter.createFromResource(
@@ -151,9 +144,31 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.hideSecondaryAction()
                 }
 
-                 changeMessage.visibility = View.VISIBLE
+                changeMessage.visibility = View.VISIBLE
             }
-            return listOf<View>(layoutMessagesChange, layoutMessages)
+
+            return layoutMessagesChange
+        }
+
+        private fun addStaticMessages(inflater: LayoutInflater): View {
+            val layoutMessages = inflater.inflate(R.layout.andesui_message_showcase, null, false) as ScrollView
+            val button = layoutMessages.findViewById<AndesButton>(R.id.button)
+
+            layoutMessages.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_message).setOnClickListener {
+                launchSpecs(it.context, AndesSpecs.MESSAGE)
+            }
+
+            button.setOnClickListener {
+                val message = layoutMessages.findViewById<AndesMessage>(R.id.message_loud)
+                val hour = System.currentTimeMillis().toString()
+                message.title = ("The current millis are: $hour")
+                message.hierarchy = (AndesMessageHierarchy.LOUD)
+                message.type = (AndesMessageType.SUCCESS)
+                message.isDismissable = false
+                message.body = "I insist. Current millis are: $hour"
+            }
+
+            return layoutMessages
         }
     }
 }

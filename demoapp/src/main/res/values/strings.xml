@@ -1,5 +1,4 @@
 <resources>
-    <string name="andesui_demoapp_app_name">Andes UI</string>
     <string name="loud_large_button">Loud Large Button</string>
     <string name="loud_medium_button">Loud Medium Button</string>
     <string name="loud_small_button">Loud Small Button</string>
@@ -33,11 +32,11 @@
     <string name="quiet_large_button_disabled">Quiet Large Button Disabled</string>
     <string name="transparent_large_button_disabled">Transparent Large Button Disabled</string>
 
-    <string name="andes_button_showcase">Andes Button Showcase</string>
+    <string name="andes_button_showcase">Andes Button</string>
     <string name="transparent_large_button_programmatic_int">Transparent Large Button Icon Int</string>
-    <string name="andes_message_showcase">Andes Message Showcase</string>
+    <string name="andes_message_showcase">Andes Message</string>
     <string name="body_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
-    <string name="title_text">Atención!</string>
+    <string name="title_text">Atention!</string>
     <string name="andes_message_demoapp">Andes Message</string>
     <string name="dismissable">Dismissable</string>
     <string name="andes_message_showcase_change">Update</string>
@@ -45,6 +44,16 @@
     <string name="change_body">Body text</string>
     <string name="change_primary">Primary action text</string>
     <string name="change_secondary">Secondary action text</string>
+    <string name="andesui_demoapp_message_generate_random_message">Generate random Andes Message</string>
+    <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
+    <string name="andesui_demoapp_label_showcase">Showcase</string>
+    <string name="andesui_demoapp_label_whatsnew_title">Hey! Check the What\'s New!</string>
+    <string name="andesui_demoapp_label_whatsnew_body">There you can see what are the things we\'ve been working on 😃 \n\nJust tap 👆 this
+        Andes Message</string>
+    <string name="andesui_demoapp_label_more">More</string>
+    <string name="andesui_demoapp_label_andes_specs">Andes Specs</string>
+    <string name="andesui_demoapp_label_andes_message_specs">Andes Message Specs</string>
+    <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

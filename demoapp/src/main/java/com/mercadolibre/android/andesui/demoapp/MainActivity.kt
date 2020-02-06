@@ -17,26 +17,32 @@ class MainActivity : AppCompatActivity() {
 
         setupButtons()
         setupMessages()
+        setupWhatsNew()
+        setupAndesSpecsWeb()
     }
 
     private fun setupButtons() {
         andesui_buttons.setOnClickListener {
-            launchAndesButtonShowcase()
+            launchIntent("meli://andes/button")
         }
     }
 
     private fun setupMessages() {
         andesui_messages.setOnClickListener {
-            launchAndesMessageShowcase()
+            launchIntent("meli://andes/message")
         }
     }
 
-    private fun launchAndesButtonShowcase() {
-        launchIntent("meli://andes/button")
+    private fun setupWhatsNew() {
+        andesui_demoapp_changelog.setOnClickListener {
+            launchIntent("meli://andes/whats-new")
+        }
     }
 
-    private fun launchAndesMessageShowcase() {
-        launchIntent("meli://andes/message")
+    private fun setupAndesSpecsWeb() {
+        andesui_demoapp_andes_specs.setOnClickListener {
+            launchSpecs(this, AndesSpecs.HOME_PAGE)
+        }
     }
 
     private fun launchIntent(uri: String) {

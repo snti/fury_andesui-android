@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.demoapp
+package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIconOrientation
+import com.mercadolibre.android.andesui.button.size.AndesButtonSize
+import com.mercadolibre.android.andesui.demoapp.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.launchSpecs
 
 class ButtonShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,9 +63,11 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonSmall.layoutParams = params
 
         val linearLoud = container.findViewById<LinearLayout>(R.id.andes_loud_container)
-        linearLoud.addView(andesButtonLarge)
-        linearLoud.addView(andesButtonMedium)
-        linearLoud.addView(andesButtonSmall)
+        linearLoud.addView(andesButtonLarge, linearLoud.childCount - 1)
+        linearLoud.addView(andesButtonMedium, linearLoud.childCount - 1)
+        linearLoud.addView(andesButtonSmall, linearLoud.childCount - 1)
+
+        bindAndesSpecsButton(container)
     }
 
     private fun addQuietButtons(container: View) {
@@ -88,10 +94,12 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonMedium.layoutParams = params
         andesButtonSmall.layoutParams = params
 
-        val linearLoud = container.findViewById<LinearLayout>(R.id.andes_quiet_container)
-        linearLoud.addView(andesButtonLarge)
-        linearLoud.addView(andesButtonMedium)
-        linearLoud.addView(andesButtonSmall)
+        val linearQuiet = container.findViewById<LinearLayout>(R.id.andes_quiet_container)
+        linearQuiet.addView(andesButtonLarge, linearQuiet.childCount - 1)
+        linearQuiet.addView(andesButtonMedium, linearQuiet.childCount - 1)
+        linearQuiet.addView(andesButtonSmall, linearQuiet.childCount - 1)
+
+        bindAndesSpecsButton(container)
     }
 
     private fun addTransparentButtons(container: View) {
@@ -117,11 +125,19 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonMedium.layoutParams = params
         andesButtonSmall.layoutParams = params
 
-        val linearLoud = container.findViewById<LinearLayout>(R.id.andes_transparent_container)
-        linearLoud.addView(andesButtonLargeInt)
-        linearLoud.addView(andesButtonLarge)
-        linearLoud.addView(andesButtonMedium)
-        linearLoud.addView(andesButtonSmall)
+        val linearTransparent = container.findViewById<LinearLayout>(R.id.andes_transparent_container)
+        linearTransparent.addView(andesButtonLargeInt, linearTransparent.childCount - 1)
+        linearTransparent.addView(andesButtonLarge, linearTransparent.childCount - 1)
+        linearTransparent.addView(andesButtonMedium, linearTransparent.childCount - 1)
+        linearTransparent.addView(andesButtonSmall, linearTransparent.childCount - 1)
+
+        bindAndesSpecsButton(container)
+    }
+
+    private fun bindAndesSpecsButton(container: View) {
+        container.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_button).setOnClickListener {
+            launchSpecs(container.context, AndesSpecs.BUTTON)
+        }
     }
 
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
