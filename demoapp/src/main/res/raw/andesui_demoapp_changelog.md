@@ -1,8 +1,8 @@
 # v1.4.0
 ## Added
 - What's New in the Andes app.
-- Andes app version to the action bar to easily check which version of the Andes library you're on.
 - Shortcut to the Andes Website in the home page of the Andes app as well as for each component showcase.
+- Andes app version to the action bar to easily check which version of the Andes library you're on.
 - Basic README for the Andes app module.
 
 ## Changed
@@ -10,8 +10,9 @@
 
 ## Fixed
 - Random Andes Message generator in the Andes app now has a clear description.
-- Package for Andes Message showcase classes.
 - Translated Spanish wordings to English in the Andes app.
+- Package for Andes Message showcase classes.
+- Dependencies of Constraint layout and Card view.
 
 # v1.3.0
 ## Updated

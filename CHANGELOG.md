@@ -12,6 +12,7 @@
 - Random Andes Message generator in the Andes app now has a clear description.
 - Translated Spanish wordings to English in the Andes app.
 - Package for Andes Message showcase classes.
+- Dependencies of Constraint layout and Card view.
 
 # v1.3.0
 ## Updated
