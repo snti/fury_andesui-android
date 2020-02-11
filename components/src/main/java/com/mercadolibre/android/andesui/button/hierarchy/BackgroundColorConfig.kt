@@ -11,6 +11,8 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 
+const val FADE_OUT_TIME: Int = 200
+
 /**
  * Useful class that holds all the possible colors for the [AndesButton] background.
  *
@@ -46,6 +48,8 @@ internal fun getConfiguredBackground(context: Context, cornerRadius: Float, colo
         addState(intArrayOf(-android.R.attr.state_enabled), createShapeDrawable(context, buttonShape, colorConfig.disabledColor))
         addState(intArrayOf(android.R.attr.state_hovered), createShapeDrawable(context, buttonShape, colorConfig.hoveredColor))
         addState(intArrayOf(android.R.attr.state_focused), createShapeDrawable(context, buttonShape, colorConfig.focusedColor))
+    }.also {
+        it.setExitFadeDuration(FADE_OUT_TIME)
     }
 }
 
