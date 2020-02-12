@@ -2,12 +2,12 @@ package com.mercadolibre.android.andesui.message
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.mercadolibre.android.andesui.BuildConfig
@@ -20,7 +20,7 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 
-class AndesMessage : FrameLayout {
+class AndesMessage : CardView {
 
     /**
      * Getter and setter for [hierarchy].
@@ -142,6 +142,10 @@ class AndesMessage : FrameLayout {
      *
      */
     private fun setupComponents(config: AndesMessageConfiguration) {
+        radius = context.resources.getDimension(R.dimen.andesui_message_corner_radius)
+        cardElevation = 0f
+        preventCornerOverlap = true
+
         initComponents()
         setupViewId()
 
@@ -215,7 +219,7 @@ class AndesMessage : FrameLayout {
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {
-        messageContainer.setBackgroundColor(config.backgroundColor.colorInt(context))
+        setCardBackgroundColor(config.backgroundColor.colorInt(context))
     }
 
     private fun setupPipe(config: AndesMessageConfiguration) {
@@ -259,17 +263,17 @@ class AndesMessage : FrameLayout {
         } else {
             when {
                 BuildConfig.DEBUG -> throw IllegalStateException("Cannot initialize a secondary action without a primary one")
-                else -> Log.d("AndesMessage","Cannot initialize a secondary action without a primary one")
+                else -> Log.d("AndesMessage", "Cannot initialize a secondary action without a primary one")
             }
         }
     }
 
-    fun hidePrimaryAction(){
+    fun hidePrimaryAction() {
         primaryAction.visibility = View.GONE
         secondaryAction.visibility = View.GONE
     }
 
-    fun hideSecondaryAction(){
+    fun hideSecondaryAction() {
         secondaryAction.visibility = View.GONE
     }
 
