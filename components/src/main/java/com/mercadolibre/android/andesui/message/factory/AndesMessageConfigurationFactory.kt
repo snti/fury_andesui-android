@@ -38,7 +38,7 @@ internal object AndesMessageConfigurationFactory {
     fun create(context: Context, andesMessageAttrs: AndesMessageAttrs): AndesMessageConfiguration {
         return with(andesMessageAttrs) {
             AndesMessageConfiguration(
-                    iconBackgroundColor = resolveIconBackgroundColor(andesMessageType.type),
+                    iconBackgroundColor = resolveIconBackgroundColor(andesMessageType.type, andesMessageHierarchy.hierarchy),
                     backgroundColor = resolveBackgroundColor(andesMessageHierarchy.hierarchy, andesMessageType.type),
                     pipeColor = resolvePipeColor(andesMessageType.type),
                     textColor = resolveTextColor(andesMessageHierarchy.hierarchy),
@@ -63,7 +63,7 @@ internal object AndesMessageConfigurationFactory {
         }
     }
 
-    private fun resolveIconBackgroundColor(type: AndesMessageTypeInterface) = type.iconBackgroundColor()
+    private fun resolveIconBackgroundColor(type: AndesMessageTypeInterface, hierarchy: AndesMessageHierarchyInterface) = hierarchy.iconBackgroundColor(type)
     private fun resolveBackgroundColor(hierarchy: AndesMessageHierarchyInterface, type: AndesMessageTypeInterface) = hierarchy.backgroundColor(type)
     private fun resolvePipeColor(type: AndesMessageTypeInterface) = type.pipeColor()
     private fun resolveTextColor(hierarchy: AndesMessageHierarchyInterface) = hierarchy.textColor()

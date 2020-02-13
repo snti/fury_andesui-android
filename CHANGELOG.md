@@ -1,3 +1,7 @@
+# v1.4.2
+## Added
+- Test for Andes Message.
+
 # v1.4.1
 ## Fixed
 - Background of Andes Message now displays properly on same background app color.
