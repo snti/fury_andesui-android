@@ -21,7 +21,6 @@ internal sealed class AndesMessageTypeInterface {
 
     abstract fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface): Drawable?
 
-    fun iconBackgroundColor() = secondaryColor()
 }
 
 internal object AndesNeutralMessageType : AndesMessageTypeInterface() {

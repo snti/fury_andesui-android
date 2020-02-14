@@ -90,7 +90,7 @@ internal sealed class AndesMessageHierarchyInterface {
      * @return the background color that the icon will have.
      */
 
-    abstract fun iconBackgroundColor(type: AndesMessageTypeInterface): AndesColor?
+    abstract fun iconBackgroundColor(type: AndesMessageTypeInterface): AndesColor
 
     abstract fun primaryActionBackgroundColor(type: AndesMessageTypeInterface): BackgroundColorConfig
 

@@ -55,7 +55,7 @@ class AndesMessage : CardView {
      * Getter and setter for [title].
      */
     var title: String?
-        get() = andesMessageAttrs.body
+        get() = andesMessageAttrs.title
         set(value) {
             andesMessageAttrs = andesMessageAttrs.copy(title = value)
             setupTitleComponent(createConfig())
