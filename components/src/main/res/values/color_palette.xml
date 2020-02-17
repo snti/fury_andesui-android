@@ -5,16 +5,20 @@
 
     <color name="andesui_yellow">#FFE600</color>
 
-    <color name="andesui_blue1">#3483FA</color>
-    <color name="andesui_blue2">#2968C8</color>
-    <color name="andesui_blue3">#1F4E96</color>
-    <color name="andesui_blue4">#009EE3</color>
-    <color name="andesui_blue5">#007EB5</color>
-    <color name="andesui_blue6">#005E88</color>
-    <color name="andesui_blue7">#264189E6</color>
-    <color name="andesui_blue8">#4D4189E6</color>
-    <color name="andesui_blue9">#334189E6</color>
-    <color name="andesui_blue10">#1A4189E6</color>
+    <color name="andesui_blue_ml_100">#1A4189E6</color>
+    <color name="andesui_blue_ml_150">#264189E6</color>
+    <color name="andesui_blue_ml_200">#334189E6</color>
+    <color name="andesui_blue_ml_300">#4D4189E6</color>
+
+    <color name="andesui_blue_ml_500">#3483FA</color>
+    <color name="andesui_blue_ml_600">#2968C8</color>
+    <color name="andesui_blue_ml_700">#0F4496</color>
+
+
+    <color name="andesui_blue_mp_500">#009EE3</color>
+    <color name="andesui_blue_mp_600">#007EB5</color>
+    <color name="andesui_blue_mp_700">#005E88</color>
+
 
     <color name="andesui_white">#FFFFFF</color>
     <color name="andesui_transparent">#00000000</color>
@@ -36,9 +40,9 @@
     <color name="andesui_green">#00A650</color>
     <color name="andesui_green_dark">#008744</color>
 
-    <color name="andesui_bu_accent_primary">@color/andesui_blue1</color>
-    <color name="andesui_bu_accent_secondary">@color/andesui_blue2</color>
-    <color name="andesui_bu_accent_tertiary">@color/andesui_blue3</color>
+    <color name="andesui_bu_accent_primary">@color/andesui_blue_ml_500</color>
+    <color name="andesui_bu_accent_secondary">@color/andesui_blue_ml_600</color>
+    <color name="andesui_bu_accent_tertiary">@color/andesui_blue_ml_700</color>
     <color name="andesui_bu_accent_primary300">#4D3483FA</color>
 
 
@@ -52,18 +56,18 @@
     <color name="andesui_bu_loud_text">@color/andesui_white</color>
     <color name="andesui_bu_loud_text_disabled">@color/andesui_gray250</color>
 
-    <color name="andesui_bu_quiet_idle">@color/andesui_blue7</color>
-    <color name="andesui_bu_quiet_hovered">@color/andesui_blue9</color>
-    <color name="andesui_bu_quiet_pressed">@color/andesui_blue8</color>
-    <color name="andesui_bu_quiet_focused">@color/andesui_blue7</color>
+    <color name="andesui_bu_quiet_idle">@color/andesui_blue_ml_150</color>
+    <color name="andesui_bu_quiet_hovered">@color/andesui_blue_ml_200</color>
+    <color name="andesui_bu_quiet_pressed">@color/andesui_blue_ml_300</color>
+    <color name="andesui_bu_quiet_focused">@color/andesui_blue_ml_150</color>
     <color name="andesui_bu_quiet_disabled">@color/andesui_gray100</color>
     <color name="andesui_bu_quiet_other">@color/andesui_gray800</color>
     <color name="andesui_bu_quiet_text">@color/andesui_bu_accent_primary</color>
     <color name="andesui_bu_quiet_text_disabled">@color/andesui_gray250</color>
 
     <color name="andesui_bu_transparent_idle">@color/andesui_transparent</color>
-    <color name="andesui_bu_transparent_hovered">@color/andesui_blue10</color>
-    <color name="andesui_bu_transparent_pressed">@color/andesui_blue9</color>
+    <color name="andesui_bu_transparent_hovered">@color/andesui_blue_ml_100</color>
+    <color name="andesui_bu_transparent_pressed">@color/andesui_blue_ml_200</color>
     <color name="andesui_bu_transparent_focused">@color/andesui_transparent</color>
     <color name="andesui_bu_transparent_disabled">@color/andesui_transparent</color>
     <color name="andesui_bu_transparent_text">@color/andesui_bu_accent_primary</color>
