@@ -11,7 +11,7 @@ Andes is the design language used at Mercado Libre.
 You can include this module by adding the dependency to your build.gradle file.
 
 ```
-implementation com.mercadolibre.android.andesui:components:X.Y.Z
+implementation "com.mercadolibre.android.andesui:components:X.Y.Z"
 ```
 
 ### Latest version
