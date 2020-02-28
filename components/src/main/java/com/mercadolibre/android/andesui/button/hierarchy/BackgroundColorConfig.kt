@@ -61,12 +61,12 @@ private fun createShapeDrawable(context: Context, shape: Shape, color: AndesColo
  */
 internal fun createBackgroundColorConfigLoud() =
         BackgroundColorConfig(
-                enabledColor = R.color.andesui_button_loud_bg.toAndesColor(),
-                pressedColor = R.color.andesui_button_loud_bg_pressed.toAndesColor(),
-                focusedColor = R.color.andesui_button_loud_bg_focused.toAndesColor(),
-                hoveredColor = R.color.andesui_button_loud_bg_hovered.toAndesColor(),
-                disabledColor = R.color.andesui_button_loud_bg_disabled.toAndesColor(),
-                otherColor = R.color.andesui_button_loud_bg_other.toAndesColor())
+                enabledColor = R.color.andesui_accent_color_500.toAndesColor(),
+                pressedColor = R.color.andesui_accent_color_700.toAndesColor(),
+                focusedColor = R.color.andesui_accent_color_300.toAndesColor(),
+                hoveredColor = R.color.andesui_accent_color_600.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = R.color.andesui_green_500.toAndesColor())
 
 /**
  * Returns the proper [BackgroundColorConfig] for the Quiet Hierarchy button.
@@ -74,12 +74,12 @@ internal fun createBackgroundColorConfigLoud() =
  */
 internal fun createBackgroundColorConfigQuiet() =
         BackgroundColorConfig(
-                enabledColor = R.color.andesui_button_quiet_bg.toAndesColor(),
-                pressedColor = R.color.andesui_button_quiet_bg_pressed.toAndesColor(),
-                focusedColor = R.color.andesui_button_quiet_bg_focused.toAndesColor(),
-                hoveredColor = R.color.andesui_button_quiet_bg_hovered.toAndesColor(),
-                disabledColor = R.color.andesui_button_quiet_bg_disabled.toAndesColor(),
-                otherColor = R.color.andesui_button_quiet_bg_other.toAndesColor())
+                enabledColor = R.color.andesui_accent_color_150.toAndesColor(),
+                pressedColor = R.color.andesui_accent_color_300.toAndesColor(),
+                focusedColor = R.color.andesui_accent_color_150.toAndesColor(),
+                hoveredColor = R.color.andesui_accent_color_200.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = R.color.andesui_gray_800.toAndesColor())
 
 /**
  * Returns the proper [BackgroundColorConfig] for the Transparent Hierarchy button.
@@ -87,9 +87,9 @@ internal fun createBackgroundColorConfigQuiet() =
  */
 internal fun createBackgroundColorConfigTransparent() =
         BackgroundColorConfig(
-                enabledColor = R.color.andesui_button_transparent_bg.toAndesColor(),
-                pressedColor = R.color.andesui_button_transparent_bg_pressed.toAndesColor(),
-                focusedColor = R.color.andesui_button_transparent_bg_focused.toAndesColor(),
-                hoveredColor = R.color.andesui_button_transparent_bg_hovered.toAndesColor(),
-                disabledColor = R.color.andesui_button_transparent_bg_disabled.toAndesColor(),
+                enabledColor = R.color.andesui_transparent.toAndesColor(),
+                pressedColor = R.color.andesui_accent_color_200.toAndesColor(),
+                focusedColor = R.color.andesui_transparent.toAndesColor(),
+                hoveredColor = R.color.andesui_accent_color_100.toAndesColor(),
+                disabledColor = R.color.andesui_transparent.toAndesColor(),
                 otherColor = null)

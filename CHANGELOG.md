@@ -1,3 +1,7 @@
+# v2.0.0
+## Fixed
+- Color palette and styles change.
+
 # v1.4.2
 ## Added
 - Test for Andes Message.

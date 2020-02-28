@@ -1,6 +1,9 @@
-# v1.4.1
+# v1.4.2
 ## Added
 - Test for Andes Message.
+
+## Fixed
+- Andes Message title property return body text.
 
 # v1.4.1
 ## Fixed

@@ -32,112 +32,112 @@ class AndesMessageConfigurationLoudTest {
     fun `Loud, Neutral background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.backgroundColor, R.color.andesui_message_highlight_primary.toAndesColor())
+        assertEquals(config.backgroundColor, R.color.andesui_accent_color_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Success background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.backgroundColor, R.color.andesui_message_success_primary.toAndesColor())
+        assertEquals(config.backgroundColor, R.color.andesui_green_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Error background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.backgroundColor, R.color.andesui_message_error_primary.toAndesColor())
+        assertEquals(config.backgroundColor, R.color.andesui_red_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Warning background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.backgroundColor, R.color.andesui_message_warning_primary.toAndesColor())
+        assertEquals(config.backgroundColor, R.color.andesui_orange_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Neutral icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.iconBackgroundColor, R.color.andesui_message_highlight_primary_dark.toAndesColor())
+        assertEquals(config.iconBackgroundColor, R.color.andesui_accent_color_600.toAndesColor())
     }
 
     @Test
     fun `Loud, Success icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.iconBackgroundColor, R.color.andesui_message_success_primary_dark.toAndesColor())
+        assertEquals(config.iconBackgroundColor, R.color.andesui_green_600.toAndesColor())
     }
 
     @Test
     fun `Loud, Error icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.iconBackgroundColor, R.color.andesui_message_error_primary_dark.toAndesColor())
+        assertEquals(config.iconBackgroundColor, R.color.andesui_red_600.toAndesColor())
     }
 
     @Test
     fun `Loud, Warning icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.iconBackgroundColor, R.color.andesui_message_warning_primary_dark.toAndesColor())
+        assertEquals(config.iconBackgroundColor, R.color.andesui_orange_600.toAndesColor())
     }
 
     @Test
     fun `Loud, Neutral pipe color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.pipeColor, R.color.andesui_message_highlight_primary.toAndesColor())
+        assertEquals(config.pipeColor, R.color.andesui_accent_color_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Success pipe color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.pipeColor, R.color.andesui_message_success_primary.toAndesColor())
+        assertEquals(config.pipeColor, R.color.andesui_green_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Error pipe color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.pipeColor, R.color.andesui_message_error_primary.toAndesColor())
+        assertEquals(config.pipeColor, R.color.andesui_red_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Warning pipe color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.pipeColor, R.color.andesui_message_warning_primary.toAndesColor())
+        assertEquals(config.pipeColor, R.color.andesui_orange_500.toAndesColor())
     }
 
     @Test
     fun `Loud, Neutral text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.textColor, R.color.andesui_message_loud_text.toAndesColor())
+        assertEquals(config.textColor, R.color.andesui_white.toAndesColor())
     }
 
     @Test
     fun `Loud, Success text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.textColor, R.color.andesui_message_loud_text.toAndesColor())
+        assertEquals(config.textColor, R.color.andesui_white.toAndesColor())
     }
 
     @Test
     fun `Loud, Error text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.textColor, R.color.andesui_message_loud_text.toAndesColor())
+        assertEquals(config.textColor, R.color.andesui_white.toAndesColor())
     }
 
     @Test
     fun `Loud, Warning text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.textColor, R.color.andesui_message_loud_text.toAndesColor())
+        assertEquals(config.textColor, R.color.andesui_white.toAndesColor())
     }
 
     @Test
@@ -340,116 +340,107 @@ class AndesMessageConfigurationLoudTest {
     fun `Loud, Neutral primary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_message_highlight_primary_dark.toAndesColor()
-        assertEquals(config.primaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                andesColor,
-                andesColor,
-                andesColor))
+        val andesColor = R.color.andesui_accent_color_600.toAndesColor()
+        assertEquals(config.primaryActionBackgroundColor, BackgroundColorConfig(enabledColor = R.color.andesui_accent_color_600.toAndesColor(),
+                pressedColor = R.color.andesui_accent_color_800.toAndesColor(),
+                focusedColor = R.color.andesui_accent_color_400.toAndesColor(),
+                hoveredColor = R.color.andesui_accent_color_700.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Success primary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_message_success_primary_dark.toAndesColor()
+        val andesColor = R.color.andesui_green_600.toAndesColor()
         assertEquals(config.primaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                andesColor,
-                andesColor,
-                andesColor))
+                enabledColor = R.color.andesui_green_600.toAndesColor(),
+                pressedColor = R.color.andesui_green_800.toAndesColor(),
+                focusedColor = R.color.andesui_green_400.toAndesColor(),
+                hoveredColor = R.color.andesui_green_700.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Error primary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_message_error_primary_dark.toAndesColor()
+        val andesColor = R.color.andesui_red_600.toAndesColor()
         assertEquals(config.primaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                andesColor,
-                andesColor,
-                andesColor))
+                enabledColor = R.color.andesui_red_600.toAndesColor(),
+                pressedColor = R.color.andesui_red_800.toAndesColor(),
+                focusedColor = R.color.andesui_red_400.toAndesColor(),
+                hoveredColor = R.color.andesui_red_700.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Warning primary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_message_warning_primary_dark.toAndesColor()
+        val andesColor = R.color.andesui_orange_600.toAndesColor()
         assertEquals(config.primaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                andesColor,
-                andesColor,
-                andesColor))
+                enabledColor = R.color.andesui_orange_600.toAndesColor(),
+                pressedColor = R.color.andesui_orange_800.toAndesColor(),
+                focusedColor = R.color.andesui_orange_400.toAndesColor(),
+                hoveredColor = R.color.andesui_orange_700.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Neutral secondary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_bu_transparent_idle.toAndesColor()
-        val unusedAndesColor = R.color.andesui_message_highlight_primary.toAndesColor()
         assertEquals(config.secondaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                unusedAndesColor,
-                unusedAndesColor,
-                unusedAndesColor))
+                enabledColor = R.color.andesui_accent_color_500.toAndesColor(),
+                pressedColor = R.color.andesui_accent_color_700.toAndesColor(),
+                focusedColor = R.color.andesui_accent_color_300.toAndesColor(),
+                hoveredColor = R.color.andesui_accent_color_600.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Success secondary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_bu_transparent_idle.toAndesColor()
-        val unusedAndesColor = R.color.andesui_message_success_primary.toAndesColor()
         assertEquals(config.secondaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                unusedAndesColor,
-                unusedAndesColor,
-                unusedAndesColor))
+                enabledColor = R.color.andesui_green_500.toAndesColor(),
+                pressedColor = R.color.andesui_green_700.toAndesColor(),
+                focusedColor = R.color.andesui_green_300.toAndesColor(),
+                hoveredColor = R.color.andesui_green_600.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Error secondary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_bu_transparent_idle.toAndesColor()
-        val unusedAndesColor = R.color.andesui_message_error_primary.toAndesColor()
         assertEquals(config.secondaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                unusedAndesColor,
-                unusedAndesColor,
-                unusedAndesColor))
+                enabledColor = R.color.andesui_red_500.toAndesColor(),
+                pressedColor = R.color.andesui_red_700.toAndesColor(),
+                focusedColor = R.color.andesui_red_300.toAndesColor(),
+                hoveredColor = R.color.andesui_red_600.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
     fun `Loud, Warning secondary action color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
-        val andesColor = R.color.andesui_bu_transparent_idle.toAndesColor()
-        val unusedAndesColor = R.color.andesui_message_warning_primary.toAndesColor()
         assertEquals(config.secondaryActionBackgroundColor, BackgroundColorConfig(
-                andesColor,
-                andesColor.copy(alpha = 0.15f),
-                andesColor.copy(alpha = 0.07F),
-                unusedAndesColor,
-                unusedAndesColor,
-                unusedAndesColor))
+                enabledColor = R.color.andesui_orange_500.toAndesColor(),
+                pressedColor = R.color.andesui_orange_700.toAndesColor(),
+                focusedColor = R.color.andesui_orange_300.toAndesColor(),
+                hoveredColor = R.color.andesui_orange_600.toAndesColor(),
+                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                otherColor = null))
     }
 
     @Test
