@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.button.factory
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
 
 /**
@@ -17,8 +16,8 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
  * @param context needed for accessing dimen resources.
  */
 internal class AndesButtonMargin(private val size: AndesButtonSizeInterface,
-                                 private val leftIcon: Drawable?,
-                                 private val rightIcon: Drawable?,
+                                 private val leftIcon: String?,
+                                 private val rightIcon: String?,
                                  private val context: Context) {
 
     var textLeftMargin: Int = 0

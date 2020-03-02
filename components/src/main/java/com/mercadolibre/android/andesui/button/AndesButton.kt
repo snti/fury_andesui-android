@@ -9,8 +9,8 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
+import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrs
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrsParser
@@ -61,8 +61,8 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 class AndesButton : ConstraintLayout {
 
     private lateinit var andesButtonAttrs: AndesButtonAttrs
-    internal lateinit var leftIconComponent: ImageView
-    internal lateinit var rightIconComponent: ImageView
+    internal lateinit var leftIconComponent: SimpleDraweeView
+    internal lateinit var rightIconComponent: SimpleDraweeView
     internal lateinit var textComponent: TextView
 
     /**
@@ -236,9 +236,9 @@ class AndesButton : ConstraintLayout {
     private fun initComponents() {
         textComponent = TextView(context)
         textComponent.id = View.generateViewId()
-        leftIconComponent = ImageView(context)
+        leftIconComponent = SimpleDraweeView(context)
         leftIconComponent.id = View.generateViewId()
-        rightIconComponent = ImageView(context)
+        rightIconComponent = SimpleDraweeView(context)
         rightIconComponent.id = View.generateViewId()
     }
 
@@ -345,7 +345,7 @@ class AndesButton : ConstraintLayout {
         rightIconComponent.isEnabled = enabled
     }
 
-    internal fun changeTextColor(color : Int){
+    internal fun changeTextColor(color: Int) {
         textComponent.setTextColor(color)
     }
 

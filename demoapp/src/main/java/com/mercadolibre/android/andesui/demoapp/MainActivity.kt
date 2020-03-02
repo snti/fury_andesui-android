@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
+
 /**
  * Main activity class
  */

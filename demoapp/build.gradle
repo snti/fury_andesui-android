@@ -54,6 +54,7 @@ android {
     lintOptions {
         // TODO: Delete this once play services is updated. Now we need it because play services brings support library 26
         disable 'GradleCompatible'
+        disable 'UnusedResources'
     }
 
     packagingOptions {
@@ -74,6 +75,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "com.facebook.fresco:fresco:$frescoVersion"
 
     /**
      * It enables us to show the What's New which is in markdown format.

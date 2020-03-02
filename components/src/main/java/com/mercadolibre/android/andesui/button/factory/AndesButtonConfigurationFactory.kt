@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.factory.AndesButtonConfigurationFactory.create
@@ -14,7 +13,6 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchyInt
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
-import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 
 /**
  * Useful class that holds the data that the [AndesButton] will use to draw the button accordingly.
@@ -85,10 +83,10 @@ internal object AndesButtonConfigurationFactory {
                 text = andesButtonAttrs.andesButtonText,
                 textColor = resolveTextColor(hierarchy, context),
                 textSize = resolveTextSize(size, context),
-                margin = resolveMargin(size, andesButtonAttrs.andesButtonLeftIcon, andesButtonAttrs.andesButtonRightIcon, context),
+                margin = resolveMargin(size, andesButtonAttrs.andesButtonLeftIconPath, andesButtonAttrs.andesButtonRightIconPath, context),
                 height = resolveHeight(size, context),
                 typeface = resolveTypeface(hierarchy, context),
-                iconConfig = resolveIconConfig(size, hierarchy, andesButtonAttrs.andesButtonLeftIcon, andesButtonAttrs.andesButtonRightIcon, context),
+                iconConfig = resolveIconConfig(size, hierarchy, andesButtonAttrs.andesButtonLeftIconPath, andesButtonAttrs.andesButtonRightIconPath, context),
                 enabled = andesButtonAttrs.andesButtonEnabled,
                 lateralPadding = resolveLateralPadding(size, context)
         )
@@ -152,11 +150,11 @@ internal object AndesButtonConfigurationFactory {
      * Determines the margins of the button. Takes into account key things like the size and the presence of an icon.
      *
      * @param size determined size of the button: Needed because the margins are different for each size.
-     * @param leftIcon probable icon of the button. Needed because the margins are different if the button has icon or not.
-     * @param rightIcon probable icon of the button. Needed because the margins are different if the button has icon or not.
+     * @param leftIconPath probable icon path of the button. Needed because the margins are different if the button has icon or not.
+     * @param rightIconPath probable icon path of the button. Needed because the margins are different if the button has icon or not.
      * @param context needed for accessing dimen resources.
      */
-    private fun resolveMargin(size: AndesButtonSizeInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context) = AndesButtonMargin(size, leftIcon, rightIcon, context)
+    private fun resolveMargin(size: AndesButtonSizeInterface, leftIconPath: String?, rightIconPath: String?, context: Context) = AndesButtonMargin(size, leftIconPath, rightIconPath, context)
 
     /**
      * Determines the height of the button from certain parameters that receives.
@@ -179,11 +177,11 @@ internal object AndesButtonConfigurationFactory {
      *
      * @param size determined size of the button: Needed because having icon or not depends on this.
      * @param hierarchy determined hierarchy of the button: Needed because hierarchy provides the color of the icon.
-     * @param leftIcon determined icon of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
-     * @param rightIcon determined icon of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
+     * @param leftIconPath determined icon path of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
+     * @param rightIconPath determined icon path of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
      * @param context needed for accessing some resources.
      */
-    private fun resolveIconConfig(size: AndesButtonSizeInterface, hierarchy: AndesButtonHierarchyInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context) = size.iconConfig(hierarchy, leftIcon, rightIcon, context)
+    private fun resolveIconConfig(size: AndesButtonSizeInterface, hierarchy: AndesButtonHierarchyInterface, leftIconPath: String?, rightIconPath: String?, context: Context) = size.iconConfig(hierarchy, leftIconPath, rightIconPath, context)
 
     /**
      * Determines if the button should be enabled or not.

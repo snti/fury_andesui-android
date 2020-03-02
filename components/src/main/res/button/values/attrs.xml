@@ -13,9 +13,9 @@
             <enum name="small" value="202" />
         </attr>
 
-        <attr name="andesButtonLeftIconCustom" format="reference" />
+        <attr name="andesButtonLeftIconPath"/>
 
-        <attr name="andesButtonRightIconCustom" format="reference" />
+        <attr name="andesButtonRightIconPath" />
 
         <attr name="andesButtonText" format="reference" />
 

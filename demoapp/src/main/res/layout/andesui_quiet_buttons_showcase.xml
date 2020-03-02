@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:andesButtonRightIconCustom="@drawable/andesui_icon"
+            app:andesButtonRightIconPath="andesui_icon"
             app:andesButtonSize="large"
             app:andesButtonHierarchy="quiet"
             app:andesButtonText="@string/quiet_large_button" />

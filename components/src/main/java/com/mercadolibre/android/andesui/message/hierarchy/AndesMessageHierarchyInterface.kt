@@ -5,13 +5,14 @@ import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigLoud
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigTransparent
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
+import com.mercadolibre.android.andesui.color.toAndesColorWithAlpha
+import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -60,7 +61,7 @@ internal sealed class AndesMessageHierarchyInterface {
      */
     fun dismissableIcon(hierarchy: AndesMessageHierarchyInterface, context: Context) =
             buildColoredBitmapDrawable(
-                    ContextCompat.getDrawable(context, R.drawable.andesui_ui_close_20) as BitmapDrawable,
+                    OfflineIconProvider(context).loadIcon("andesui_ui_close_20") as BitmapDrawable,
                     context,
                     hierarchy.dismissableIconColor()
             )

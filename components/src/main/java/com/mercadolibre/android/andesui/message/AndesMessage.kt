@@ -8,8 +8,8 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
+import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
@@ -86,8 +86,8 @@ class AndesMessage : CardView {
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
     private lateinit var bodyComponent: TextView
-    private lateinit var iconComponent: ImageView
-    private lateinit var dismissableComponent: ImageView
+    private lateinit var iconComponent: SimpleDraweeView
+    private lateinit var dismissableComponent: SimpleDraweeView
     private lateinit var pipeComponent: View
     private lateinit var andesMessageAttrs: AndesMessageAttrs
     private lateinit var primaryAction: AndesButton

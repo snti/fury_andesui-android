@@ -29,7 +29,7 @@
             app:layout_constraintTop_toBottomOf="@+id/andesui_title"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/andesui_icon"
             android:layout_width="@dimen/andesui_message_icon_diameter"
             android:layout_height="@dimen/andesui_message_icon_diameter"
@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="@+id/andesui_lefticon_guideline"
             app:layout_constraintTop_toTopOf="@+id/andesui_top_guideline" />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/andesui_dismissable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

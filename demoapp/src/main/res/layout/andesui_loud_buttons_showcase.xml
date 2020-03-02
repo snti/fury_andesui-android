@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesButtonLeftIconCustom="@drawable/andesui_icon"
+            app:andesButtonLeftIconPath="andesui_icon"
             app:andesButtonSize="large"
             app:andesButtonHierarchy="loud"
             app:andesButtonText="@string/large_button_left_icon" />
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesButtonEnabled="false"
-            app:andesButtonRightIconCustom="@drawable/andesui_icon"
+            app:andesButtonRightIconPath="andesui_icon"
             app:andesButtonSize="large"
             app:andesButtonHierarchy="loud"
             app:andesButtonText="@string/large_button_right_icon" />

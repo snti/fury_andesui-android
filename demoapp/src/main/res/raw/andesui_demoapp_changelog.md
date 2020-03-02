@@ -1,3 +1,10 @@
+# v2.0.0
+## Fixed
+- Color palette and styles change.
+
+## Changed
+- Icons now are called by string path.
+
 # v1.4.2
 ## Added
 - Test for Andes Message.

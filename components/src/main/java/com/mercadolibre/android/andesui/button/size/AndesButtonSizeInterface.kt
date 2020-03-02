@@ -2,12 +2,13 @@ package com.mercadolibre.android.andesui.button.size
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.factory.IconConfig
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchyInterface
+import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.utils.buildScaledColoredBitmapDrawable
+import java.io.FileNotFoundException
 
 /**
  * Defines all size related properties that an [AndesButton] needs to be drawn properly.
@@ -99,7 +100,7 @@ internal interface AndesButtonSizeInterface {
      * @param context needed for accessing some resources.
      * @return an [IconConfig] that holds the icons to be used in the button.
      */
-    fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context): IconConfig?
+    fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: String?, rightIcon: String?, context: Context): IconConfig?
 
     /**
      * Checks if the current size can display an icon.
@@ -125,27 +126,36 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
     override fun rightIconLeftMargin(context: Context) = context.resources.getDimension(R.dimen.andesui_button_right_icon_left_margin).toInt()
     override fun lateralPadding(context: Context) = context.resources.getDimension(R.dimen.andesui_button_lateral_padding_large).toInt()
     override fun cornerRadius(context: Context) = context.resources.getDimension(R.dimen.andesui_button_border_radius_large)
-    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context): IconConfig? {
+    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: String?, rightIcon: String?, context: Context): IconConfig? {
         if (leftIcon != null) { //Ignoring if rightIcon is also non null: Left icon has higher precedence than right
-            val leftBitmapDrawable = buildScaledColoredBitmapDrawable(
-                    leftIcon as BitmapDrawable,
-                    context,
-                    context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_width),
-                    context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_height),
-                    hierarchy.iconColor(context)
-            )
-            return IconConfig(leftIcon = leftBitmapDrawable, rightIcon = null)
+            return try {
+                val leftBitmapDrawable = buildScaledColoredBitmapDrawable(
+                        OfflineIconProvider(context).loadIcon(leftIcon) as BitmapDrawable,
+                        context,
+                        context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_width),
+                        context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_height),
+                        hierarchy.iconColor(context)
+                )
+                IconConfig(leftIcon = leftBitmapDrawable, rightIcon = null)
+            } catch(e: FileNotFoundException){
+                IconConfig(leftIcon = null, rightIcon = null)
+            }
         }
 
         if (rightIcon != null) {
-            val rightBitmapDrawable = buildScaledColoredBitmapDrawable(
-                    rightIcon as BitmapDrawable,
-                    context,
-                    context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_width),
-                    context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_height),
-                    hierarchy.iconColor(context)
-            )
-            return IconConfig(leftIcon = null, rightIcon = rightBitmapDrawable)
+            return try {
+                val rightBitmapDrawable = buildScaledColoredBitmapDrawable(
+                        OfflineIconProvider(context).loadIcon(rightIcon) as BitmapDrawable,
+                        context,
+                        context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_width),
+                        context.resources.getDimensionPixelSize(R.dimen.andesui_button_icon_height),
+                        hierarchy.iconColor(context)
+                )
+                IconConfig(leftIcon = null, rightIcon = rightBitmapDrawable)
+            }
+            catch (e: FileNotFoundException){
+                IconConfig(leftIcon = null, rightIcon = null)
+            }
         }
 
         return null //No icon has been specified
@@ -166,7 +176,7 @@ internal class AndesMediumButtonSize : AndesButtonSizeInterface {
     override fun textRightMargin(context: Context) = 0
     override fun lateralPadding(context: Context) = context.resources.getDimension(R.dimen.andesui_button_lateral_padding_medium).toInt()
     override fun cornerRadius(context: Context) = context.resources.getDimension(R.dimen.andesui_button_border_radius_medium)
-    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context): Nothing? = null
+    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: String?, rightIcon: String?, context: Context): Nothing? = null
 }
 
 /**
@@ -181,5 +191,5 @@ internal class AndesSmallButtonSize : AndesButtonSizeInterface {
     override fun textRightMargin(context: Context) = 0
     override fun lateralPadding(context: Context) = context.resources.getDimension(R.dimen.andesui_button_lateral_padding_small).toInt()
     override fun cornerRadius(context: Context) = context.resources.getDimension(R.dimen.andesui_button_border_radius_small)
-    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: Drawable?, rightIcon: Drawable?, context: Context): Nothing? = null
+    override fun iconConfig(hierarchy: AndesButtonHierarchyInterface, leftIcon: String?, rightIcon: String?, context: Context): Nothing? = null
 }
