@@ -63,7 +63,7 @@ class AndesButtonTest {
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
         assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(
-                R.font.andesui_font_semibold))
+                R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -78,7 +78,7 @@ class AndesButtonTest {
         assertEquals(textParams.goneEndMargin, 0)
         assertEquals(andesButton.paddingRight, 12)
         assertEquals(andesButton.paddingLeft, 12)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andesui_font_semibold))
+        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -96,7 +96,7 @@ class AndesButtonTest {
         assertEquals(textParams.goneEndMargin, 8)
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andesui_font_semibold))
+        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertThat(andesButton.leftIconComponent.drawable).isEqualToComparingOnlyGivenFields(icon)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -114,7 +114,7 @@ class AndesButtonTest {
         assertEquals(textParams.goneStartMargin, 8)
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andesui_font_semibold))
+        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertThat(andesButton.rightIconComponent.drawable).isEqualToComparingOnlyGivenFields(icon)
     }

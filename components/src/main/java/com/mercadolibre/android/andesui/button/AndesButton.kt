@@ -43,7 +43,7 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
  *     android:layout_height="wrap_content"
  *     android:layout_marginBottom="16dp"
  *     android:text="@string/large_button_left_icon"
- *     app:andesButtonLeftIconCustom="@drawable/andesui_icon_clip"
+ *     app:andesButtonLeftIconPath="andes_icon_clip"
  *     app:andesButtonSize="large"
  *     app:andesButtonHierarchy="loud" /&gt;</pre>
  *
@@ -350,7 +350,7 @@ class AndesButton : ConstraintLayout {
     }
 
     internal fun changeBackgroundColor(backgroundColorConfig: BackgroundColorConfig) {
-        background = getConfiguredBackground(context, context.resources.getDimension(R.dimen.andesui_button_border_radius_medium), backgroundColorConfig)
+        background = getConfiguredBackground(context, context.resources.getDimension(R.dimen.andes_button_border_radius_medium), backgroundColorConfig)
     }
 
     /**

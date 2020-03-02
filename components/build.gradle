@@ -22,7 +22,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    resourcePrefix 'andesui_'
+    resourcePrefix 'andes'
 
     buildTypes {
         debug {

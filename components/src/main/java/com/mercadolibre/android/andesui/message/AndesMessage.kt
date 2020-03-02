@@ -142,7 +142,7 @@ class AndesMessage : CardView {
      *
      */
     private fun setupComponents(config: AndesMessageConfiguration) {
-        radius = context.resources.getDimension(R.dimen.andesui_message_corner_radius)
+        radius = context.resources.getDimension(R.dimen.andes_message_corner_radius)
         cardElevation = 0f
         preventCornerOverlap = true
 
@@ -168,16 +168,16 @@ class AndesMessage : CardView {
      *
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andesui_layout_message, this, true)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message, this, true)
 
-        messageContainer = container.findViewById(R.id.andesui_message_container)
-        titleComponent = container.findViewById(R.id.andesui_title)
-        bodyComponent = container.findViewById(R.id.andesui_body)
-        iconComponent = container.findViewById(R.id.andesui_icon)
-        dismissableComponent = container.findViewById(R.id.andesui_dismissable)
-        pipeComponent = container.findViewById(R.id.andesui_pipe)
-        primaryAction = container.findViewById(R.id.andesui_primary_action)
-        secondaryAction = container.findViewById(R.id.andesui_secondary_action)
+        messageContainer = container.findViewById(R.id.andes_message_container)
+        titleComponent = container.findViewById(R.id.andes_title)
+        bodyComponent = container.findViewById(R.id.andes_body)
+        iconComponent = container.findViewById(R.id.andes_icon)
+        dismissableComponent = container.findViewById(R.id.andes_dismissable)
+        pipeComponent = container.findViewById(R.id.andes_pipe)
+        primaryAction = container.findViewById(R.id.andes_primary_action)
+        secondaryAction = container.findViewById(R.id.andes_secondary_action)
     }
 
     /**

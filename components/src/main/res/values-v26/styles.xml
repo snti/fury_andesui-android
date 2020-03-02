@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AndesUI" />
+    <style name="Andes" />
 
-    <style name="AndesUI.Title" />
+    <style name="Andes.Title" />
 
-    <style name="AndesUI.Body" />
+    <style name="Andes.Body" />
 
-    <style name="AndesUI.Title.XL">
-        <item name="android:textSize">@dimen/andesui_title_font_size_xl</item>
-        <item name="android:fontWeight">@dimen/andesui_title_font_weight</item>
+    <style name="Andes.Title.XL">
+        <item name="android:textSize">@dimen/andes_title_font_size_xl</item>
+        <item name="android:fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
-    <style name="AndesUI.Title.L">
-        <item name="android:textSize">@dimen/andesui_title_font_size_l</item>
-        <item name="android:fontWeight">@dimen/andesui_title_font_weight</item>
+    <style name="Andes.Title.L">
+        <item name="android:textSize">@dimen/andes_title_font_size_l</item>
+        <item name="android:fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
-    <style name="AndesUI.Title.M">
-        <item name="android:textSize">@dimen/andesui_title_font_size_m</item>
-        <item name="android:fontWeight">@dimen/andesui_title_font_weight</item>
+    <style name="Andes.Title.M">
+        <item name="android:textSize">@dimen/andes_title_font_size_m</item>
+        <item name="android:fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
-    <style name="AndesUI.Title.S">
-        <item name="android:textSize">@dimen/andesui_title_font_size_s</item>
-        <item name="android:fontWeight">@dimen/andesui_title_font_weight</item>
+    <style name="Andes.Title.S">
+        <item name="android:textSize">@dimen/andes_title_font_size_s</item>
+        <item name="android:fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
-    <style name="AndesUI.Title.XS">
-        <item name="android:textSize">@dimen/andesui_title_font_size_xs</item>
-        <item name="android:fontWeight">@dimen/andesui_title_font_weight</item>
+    <style name="Andes.Title.XS">
+        <item name="android:textSize">@dimen/andes_title_font_size_xs</item>
+        <item name="android:fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
-    <style name="AndesUI.Body.L">
-        <item name="android:textSize">@dimen/andesui_body_font_size_l</item>
-        <item name="android:fontWeight">@dimen/andesui_body_font_weight</item>
+    <style name="Andes.Body.L">
+        <item name="android:textSize">@dimen/andes_body_font_size_l</item>
+        <item name="android:fontWeight">@dimen/andes_body_font_weight</item>
     </style>
 
-    <style name="AndesUI.Body.M">
-        <item name="android:textSize">@dimen/andesui_body_font_size_m</item>
-        <item name="android:fontWeight">@dimen/andesui_body_font_weight</item>
+    <style name="Andes.Body.M">
+        <item name="android:textSize">@dimen/andes_body_font_size_m</item>
+        <item name="android:fontWeight">@dimen/andes_body_font_weight</item>
     </style>
 
-    <style name="AndesUI.Body.S">
-        <item name="android:textSize">@dimen/andesui_body_font_size_s</item>
-        <item name="android:fontWeight">@dimen/andesui_body_font_weight</item>
+    <style name="Andes.Body.S">
+        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="android:fontWeight">@dimen/andes_body_font_weight</item>
     </style>
 
-    <style name="AndesUI.Body.XS">
-        <item name="android:textSize">@dimen/andesui_body_font_size_xs</item>
-        <item name="android:fontWeight">@dimen/andesui_body_font_weight</item>
+    <style name="Andes.Body.XS">
+        <item name="android:textSize">@dimen/andes_body_font_size_xs</item>
+        <item name="android:fontWeight">@dimen/andes_body_font_weight</item>
     </style>
 
-    <style name="AndesUI.Link">
-        <item name="android:textColor">@color/andesui_text_color_link</item>
+    <style name="Andes.Link">
+        <item name="android:textColor">@color/andes_text_color_link</item>
     </style>
 
-    <style name="AndesUI.LinkInverted">
+    <style name="Andes.LinkInverted">
 
     </style>
 </resources>

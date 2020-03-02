@@ -29,129 +29,129 @@ internal sealed class AndesMessageTypeInterface {
 }
 
 internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
-    override fun primaryColor() = R.color.andesui_accent_color_500.toAndesColor()
-    override fun secondaryColor() = R.color.andesui_accent_color_600.toAndesColor()
+    override fun primaryColor() = R.color.andes_accent_color_500.toAndesColor()
+    override fun secondaryColor() = R.color.andes_accent_color_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
             OfflineIconProvider(context).loadIcon("andesui_ui_feedback_info_16") as BitmapDrawable,
             context,
-            R.color.andesui_white.toAndesColor(),
+            R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
-            context.resources.getDimension(R.dimen.andesui_message_icon_diameter).toInt()
+            context.resources.getDimension(R.dimen.andes_message_icon_diameter).toInt()
     )
 
     override fun primaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_accent_color_600.toAndesColor(),
-                pressedColor = R.color.andesui_accent_color_800.toAndesColor(),
-                focusedColor = R.color.andesui_accent_color_400.toAndesColor(),
-                hoveredColor = R.color.andesui_accent_color_700.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_accent_color_600.toAndesColor(),
+                pressedColor = R.color.andes_accent_color_800.toAndesColor(),
+                focusedColor = R.color.andes_accent_color_400.toAndesColor(),
+                hoveredColor = R.color.andes_accent_color_700.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 
     override fun secondaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_accent_color_500.toAndesColor(),
-                pressedColor = R.color.andesui_accent_color_700.toAndesColor(),
-                focusedColor = R.color.andesui_accent_color_300.toAndesColor(),
-                hoveredColor = R.color.andesui_accent_color_600.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_accent_color_500.toAndesColor(),
+                pressedColor = R.color.andes_accent_color_700.toAndesColor(),
+                focusedColor = R.color.andes_accent_color_300.toAndesColor(),
+                hoveredColor = R.color.andes_accent_color_600.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 }
 
 internal object AndesSuccessMessageType : AndesMessageTypeInterface() {
-    override fun primaryColor() = R.color.andesui_green_500.toAndesColor()
-    override fun secondaryColor() = R.color.andesui_green_600.toAndesColor()
+    override fun primaryColor() = R.color.andes_green_500.toAndesColor()
+    override fun secondaryColor() = R.color.andes_green_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
             OfflineIconProvider(context).loadIcon("andesui_ui_feedback_success_16") as BitmapDrawable,
             context,
-            R.color.andesui_white.toAndesColor(),
+            R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
-            context.resources.getDimension(R.dimen.andesui_message_icon_diameter).toInt()
+            context.resources.getDimension(R.dimen.andes_message_icon_diameter).toInt()
     )
 
     override fun primaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_green_600.toAndesColor(),
-                pressedColor = R.color.andesui_green_800.toAndesColor(),
-                focusedColor = R.color.andesui_green_400.toAndesColor(),
-                hoveredColor = R.color.andesui_green_700.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_green_600.toAndesColor(),
+                pressedColor = R.color.andes_green_800.toAndesColor(),
+                focusedColor = R.color.andes_green_400.toAndesColor(),
+                hoveredColor = R.color.andes_green_700.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 
     override fun secondaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_green_500.toAndesColor(),
-                pressedColor = R.color.andesui_green_700.toAndesColor(),
-                focusedColor = R.color.andesui_green_300.toAndesColor(),
-                hoveredColor = R.color.andesui_green_600.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_green_500.toAndesColor(),
+                pressedColor = R.color.andes_green_700.toAndesColor(),
+                focusedColor = R.color.andes_green_300.toAndesColor(),
+                hoveredColor = R.color.andes_green_600.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 }
 
 internal object AndesWarningMessageType : AndesMessageTypeInterface() {
-    override fun primaryColor() = R.color.andesui_orange_500.toAndesColor()
-    override fun secondaryColor() = R.color.andesui_orange_600.toAndesColor()
+    override fun primaryColor() = R.color.andes_orange_500.toAndesColor()
+    override fun secondaryColor() = R.color.andes_orange_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
             OfflineIconProvider(context).loadIcon("andesui_ui_feedback_warning_16") as BitmapDrawable,
             context,
-            R.color.andesui_white.toAndesColor(),
+            R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
-            context.resources.getDimension(R.dimen.andesui_message_icon_diameter).toInt()
+            context.resources.getDimension(R.dimen.andes_message_icon_diameter).toInt()
     )
 
     override fun primaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_orange_600.toAndesColor(),
-                pressedColor = R.color.andesui_orange_800.toAndesColor(),
-                focusedColor = R.color.andesui_orange_400.toAndesColor(),
-                hoveredColor = R.color.andesui_orange_700.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_orange_600.toAndesColor(),
+                pressedColor = R.color.andes_orange_800.toAndesColor(),
+                focusedColor = R.color.andes_orange_400.toAndesColor(),
+                hoveredColor = R.color.andes_orange_700.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 
     override fun secondaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_orange_500.toAndesColor(),
-                pressedColor = R.color.andesui_orange_700.toAndesColor(),
-                focusedColor = R.color.andesui_orange_300.toAndesColor(),
-                hoveredColor = R.color.andesui_orange_600.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_orange_500.toAndesColor(),
+                pressedColor = R.color.andes_orange_700.toAndesColor(),
+                focusedColor = R.color.andes_orange_300.toAndesColor(),
+                hoveredColor = R.color.andes_orange_600.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 }
 
 internal object AndesErrorMessageType : AndesMessageTypeInterface() {
-    override fun primaryColor() = R.color.andesui_red_500.toAndesColor()
-    override fun secondaryColor() = R.color.andesui_red_600.toAndesColor()
+    override fun primaryColor() = R.color.andes_red_500.toAndesColor()
+    override fun secondaryColor() = R.color.andes_red_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
             OfflineIconProvider(context).loadIcon("andesui_ui_feedback_warning_16") as BitmapDrawable,
             context,
-            R.color.andesui_white.toAndesColor(),
+            R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
-            context.resources.getDimension(R.dimen.andesui_message_icon_diameter).toInt()
+            context.resources.getDimension(R.dimen.andes_message_icon_diameter).toInt()
     )
 
     override fun primaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_red_600.toAndesColor(),
-                pressedColor = R.color.andesui_red_800.toAndesColor(),
-                focusedColor = R.color.andesui_red_400.toAndesColor(),
-                hoveredColor = R.color.andesui_red_700.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_red_600.toAndesColor(),
+                pressedColor = R.color.andes_red_800.toAndesColor(),
+                focusedColor = R.color.andes_red_400.toAndesColor(),
+                hoveredColor = R.color.andes_red_700.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 
     override fun secondaryActionColorConfig(): BackgroundColorConfig {
         return BackgroundColorConfig(
-                enabledColor = R.color.andesui_red_500.toAndesColor(),
-                pressedColor = R.color.andesui_red_700.toAndesColor(),
-                focusedColor = R.color.andesui_red_300.toAndesColor(),
-                hoveredColor = R.color.andesui_red_600.toAndesColor(),
-                disabledColor = R.color.andesui_gray_100.toAndesColor(),
+                enabledColor = R.color.andes_red_500.toAndesColor(),
+                pressedColor = R.color.andes_red_700.toAndesColor(),
+                focusedColor = R.color.andes_red_300.toAndesColor(),
+                hoveredColor = R.color.andes_red_600.toAndesColor(),
+                disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
 }
