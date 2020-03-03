@@ -19,14 +19,14 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-const val ANDES_ICON="andesui_icon"
+const val ANDES_ICON="andes_navegacion_ajustes"
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesLargeButtonSizeTest {
     private var andesLargeButtonSize = Mockito.spy(AndesLargeButtonSize())
     private var context = RuntimeEnvironment.application
-    private var icon = ContextCompat.getDrawable(context, R.drawable.andesui_icon)
+    private var icon = ContextCompat.getDrawable(context, R.drawable.andes_navegacion_ajustes)
     private var hierarchy = Mockito.mock(AndesButtonHierarchyInterface::class.java)
 
     @Test
