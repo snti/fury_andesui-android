@@ -42,7 +42,6 @@
             android:id="@+id/andes_dismissable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/andesui_icon"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableright_guideline"
             app:layout_constraintTop_toTopOf="@+id/andes_top_guideline" />
 

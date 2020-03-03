@@ -32,7 +32,7 @@ internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
     override fun primaryColor() = R.color.andes_accent_color_500.toAndesColor()
     override fun secondaryColor() = R.color.andes_accent_color_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
-            OfflineIconProvider(context).loadIcon("andesui_ui_feedback_info_16") as BitmapDrawable,
+            OfflineIconProvider(context).loadIcon("andes_ui_feedback_info_16") as BitmapDrawable,
             context,
             R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
@@ -64,7 +64,7 @@ internal object AndesSuccessMessageType : AndesMessageTypeInterface() {
     override fun primaryColor() = R.color.andes_green_500.toAndesColor()
     override fun secondaryColor() = R.color.andes_green_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
-            OfflineIconProvider(context).loadIcon("andesui_ui_feedback_success_16") as BitmapDrawable,
+            OfflineIconProvider(context).loadIcon("andes_ui_feedback_success_16") as BitmapDrawable,
             context,
             R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
@@ -96,7 +96,7 @@ internal object AndesWarningMessageType : AndesMessageTypeInterface() {
     override fun primaryColor() = R.color.andes_orange_500.toAndesColor()
     override fun secondaryColor() = R.color.andes_orange_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
-            OfflineIconProvider(context).loadIcon("andesui_ui_feedback_warning_16") as BitmapDrawable,
+            OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
             context,
             R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),
@@ -128,7 +128,7 @@ internal object AndesErrorMessageType : AndesMessageTypeInterface() {
     override fun primaryColor() = R.color.andes_red_500.toAndesColor()
     override fun secondaryColor() = R.color.andes_red_600.toAndesColor()
     override fun icon(context: Context, hierarchy: AndesMessageHierarchyInterface) = buildColoredCircularShapeWithIconDrawable(
-            OfflineIconProvider(context).loadIcon("andesui_ui_feedback_warning_16") as BitmapDrawable,
+            OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
             context,
             R.color.andes_white.toAndesColor(),
             hierarchy.iconBackgroundColor(this)?.colorInt(context),

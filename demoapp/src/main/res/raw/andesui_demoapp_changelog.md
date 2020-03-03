@@ -6,6 +6,12 @@
 - Icons now are called by string path.
 - The prefix was changed to "andes" instead of "andesui_"
 
+## Added
+- Offline needed icons.
+
+## Removed
+- Old unused icons.
+
 # v1.4.2
 ## Added
 - Test for Andes Message.
