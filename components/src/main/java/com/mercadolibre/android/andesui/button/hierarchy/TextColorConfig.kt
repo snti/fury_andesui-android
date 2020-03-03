@@ -39,18 +39,18 @@ internal fun getConfiguredTextColor(context: Context, textColorConfig: TextColor
  *
  */
 internal fun createTextColorConfigLoud() =
-        TextColorConfig(R.color.andesui_white.toAndesColor(), R.color.andesui_text_color_disabled.toAndesColor())
+        TextColorConfig(R.color.andes_white.toAndesColor(), R.color.andes_text_color_disabled.toAndesColor())
 
 /**
  * Returns the proper [TextColorConfig] for the Quiet Hierarchy button.
  *
  */
 internal fun createTextColorConfigQuiet() =
-        TextColorConfig(R.color.andesui_accent_color_500.toAndesColor(), R.color.andesui_text_color_disabled.toAndesColor())
+        TextColorConfig(R.color.andes_accent_color_500.toAndesColor(), R.color.andes_text_color_disabled.toAndesColor())
 
 /**
  * Returns the proper [TextColorConfig] for the Transparent Hierarchy button.
  *
  */
 internal fun createTextColorConfigTransparent() =
-        TextColorConfig(R.color.andesui_accent_color_500.toAndesColor(), R.color.andesui_text_color_disabled.toAndesColor())
+        TextColorConfig(R.color.andes_accent_color_500.toAndesColor(), R.color.andes_text_color_disabled.toAndesColor())

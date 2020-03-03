@@ -4,6 +4,7 @@
 
 ## Changed
 - Icons now are called by string path.
+- The prefix was changed to "andes" instead of "andesui_"
 
 # v1.4.2
 ## Added
