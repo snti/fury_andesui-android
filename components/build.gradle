@@ -32,6 +32,10 @@ android {
         }
     }
 
+    lintOptions {
+        disable 'IconDuplicates'
+    }
+
     testOptions {
         unitTests {
             includeAndroidResources = true
