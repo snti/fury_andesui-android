@@ -19,7 +19,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-const val ANDESUI_ICON="andesui_icon"
+const val ANDES_ICON="andesui_icon"
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
@@ -70,12 +70,12 @@ class AndesLargeButtonSizeTest {
 
     @Test
     fun `Large button left icon`() {
-        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, ANDESUI_ICON, null, context), IconConfig(icon, null))
+        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context), IconConfig(icon, null))
     }
 
     @Test
     fun `Large button right icon`() {
-        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, ANDESUI_ICON, context), IconConfig(null, icon))
+        assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context), IconConfig(null, icon))
     }
 
 }
@@ -128,12 +128,12 @@ class AndesMediumButtonSizeTest {
 
     @Test
     fun `Medium button left icon`() {
-        assertNull(andesMediumButtonSize.iconConfig(hierarchy, ANDESUI_ICON, null, context))
+        assertNull(andesMediumButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context))
     }
 
     @Test
     fun `Medium button right icon`() {
-        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, ANDESUI_ICON, context))
+        assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
     }
 
 }
@@ -187,12 +187,12 @@ class AndesSmallButtonSizeTest {
 
     @Test
     fun `Small button left icon`() {
-        assertNull(andesSmallButtonSize.iconConfig(hierarchy, ANDESUI_ICON, null, context))
+        assertNull(andesSmallButtonSize.iconConfig(hierarchy, ANDES_ICON, null, context))
     }
 
     @Test
     fun `Small button right icon`() {
-        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, ANDESUI_ICON, context))
+        assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
     }
 
 }

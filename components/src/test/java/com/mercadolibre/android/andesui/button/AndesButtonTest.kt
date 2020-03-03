@@ -85,7 +85,7 @@ class AndesButtonTest {
 
     @Test
     fun `Hierarchy, size and icon constructor`() {
-        val icon = AndesButtonIcon(ANDESUI_ICON, AndesButtonIconOrientation.LEFT)
+        val icon = AndesButtonIcon(ANDES_ICON, AndesButtonIconOrientation.LEFT)
         andesButton = AndesButton(context, AndesButtonSize.LARGE, AndesButtonHierarchy.TRANSPARENT, icon)
         val textParams = andesButton.textComponent.layoutParams as ConstraintLayout.LayoutParams
         val leftIconParams = andesButton.leftIconComponent.layoutParams as ConstraintLayout.LayoutParams
@@ -103,7 +103,7 @@ class AndesButtonTest {
 
     @Test
     fun `Hierarchy, size and right icon constructor`() {
-        val icon = AndesButtonIcon(ANDESUI_ICON, AndesButtonIconOrientation.RIGHT)
+        val icon = AndesButtonIcon(ANDES_ICON, AndesButtonIconOrientation.RIGHT)
         andesButton = AndesButton(context, AndesButtonSize.LARGE, AndesButtonHierarchy.TRANSPARENT, icon)
         val textParams = andesButton.textComponent.layoutParams as ConstraintLayout.LayoutParams
         val rightIconParams = andesButton.rightIconComponent.layoutParams as ConstraintLayout.LayoutParams
