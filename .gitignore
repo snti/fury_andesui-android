@@ -110,3 +110,5 @@ ajcore*.txt
 
 
 *.hprof
+/demoapp/src/main/res/font/andesui_font_regular.otf
+/demoapp/src/main/res/font/andesui_font_semibold.otf
