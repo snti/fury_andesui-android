@@ -1,3 +1,7 @@
+# v2.0.1
+## Removed
+- Local font tests.
+
 # v2.0.0
 ## Fixed
 - Color palette and styles change.

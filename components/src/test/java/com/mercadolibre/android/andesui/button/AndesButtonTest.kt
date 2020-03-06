@@ -9,12 +9,10 @@ import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 import com.facebook.soloader.SoLoader
 import com.mercadolibre.android.andesui.BuildConfig
-import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIconOrientation
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
-import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -62,8 +60,6 @@ class AndesButtonTest {
         assertEquals(textParams.goneEndMargin, 8)
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(
-                R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -78,7 +74,6 @@ class AndesButtonTest {
         assertEquals(textParams.goneEndMargin, 0)
         assertEquals(andesButton.paddingRight, 12)
         assertEquals(andesButton.paddingLeft, 12)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -96,7 +91,6 @@ class AndesButtonTest {
         assertEquals(textParams.goneEndMargin, 8)
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertThat(andesButton.leftIconComponent.drawable).isEqualToComparingOnlyGivenFields(icon)
         assertNull(andesButton.rightIconComponent.drawable)
     }
@@ -114,7 +108,6 @@ class AndesButtonTest {
         assertEquals(textParams.goneStartMargin, 8)
         assertEquals(andesButton.paddingRight, 16)
         assertEquals(andesButton.paddingLeft, 16)
-        assertEquals(andesButton.textComponent.typeface, context.getFontOrDefault(R.font.andes_font_semibold))
         assertNull(andesButton.leftIconComponent.drawable)
         assertThat(andesButton.rightIconComponent.drawable).isEqualToComparingOnlyGivenFields(icon)
     }
