@@ -9,7 +9,6 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -278,62 +277,6 @@ class AndesMessageConfigurationLoudTest {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
         val config = configFactory.create(context, attrs)
         assertEquals(config.bodySize, context.resources.getDimension(R.dimen.andes_message_body))
-    }
-
-    @Test
-    fun `Loud, Neutral title typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.titleTypeface, context.getFontOrDefault(R.font.andes_font_semibold))
-    }
-
-    @Test
-    fun `Loud, Success title typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.titleTypeface, context.getFontOrDefault(R.font.andes_font_semibold))
-    }
-
-    @Test
-    fun `Loud, Error title typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.titleTypeface, context.getFontOrDefault(R.font.andes_font_semibold))
-    }
-
-    @Test
-    fun `Loud, Warning title typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.titleTypeface, context.getFontOrDefault(R.font.andes_font_semibold))
-    }
-
-    @Test
-    fun `Loud, Neutral body typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.NEUTRAL, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.bodyTypeface, context.getFontOrDefault(R.font.andes_font_regular))
-    }
-
-    @Test
-    fun `Loud, Success body typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.bodyTypeface, context.getFontOrDefault(R.font.andes_font_regular))
-    }
-
-    @Test
-    fun `Loud, Error body typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.bodyTypeface, context.getFontOrDefault(R.font.andes_font_regular))
-    }
-
-    @Test
-    fun `Loud, Warning body typeface`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body", "Title", true)
-        val config = configFactory.create(context, attrs)
-        assertEquals(config.bodyTypeface, context.getFontOrDefault(R.font.andes_font_regular))
     }
 
     @Test
