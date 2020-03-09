@@ -49,6 +49,20 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.TextfieldShowcaseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="andes"
+                    android:path="/textfield"
+                    android:scheme="meli" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.WhatsNewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
