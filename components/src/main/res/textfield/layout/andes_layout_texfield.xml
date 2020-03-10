@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/textfield_container"
+    android:id="@+id/andes_textfield_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,13 +14,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/text_container"
+        android:id="@+id/andes_textfield_text_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="48dp"
         app:layout_constraintTop_toBottomOf="@+id/andes_texfield_label">
 
         <EditText
+            android:id="@+id/andes_textfield_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Helper"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_container" />
+        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
 
     <TextView
         android:id="@+id/andes_texfield_counter"
@@ -50,6 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/andes_texfield_helper"
-        app:layout_constraintTop_toBottomOf="@+id/text_container" />
+        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
 
 </android.support.constraint.ConstraintLayout>
