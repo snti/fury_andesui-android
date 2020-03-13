@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesTextfield" tools:ignore="ResourceName">
+
+        <attr name="andesTextfieldLabel" format="reference" />
+
+        <attr name="andesTextfieldHelper" format="reference" />
+
+        <attr name="andesTextfieldHint" format="reference" />
+
+        <attr name="andesTexfieldCounterMinValue" format="integer" />
+
+        <attr name="andesTexfieldCounterMaxValue" format="integer" />
+
+
+        <attr name="andesTextfieldState">
+            <enum name="enabled" value="20" />
+            <enum name="error" value="21" />
+            <enum name="disabled" value="22" />
+        </attr>
+
+
+
+    </declare-styleable>
+
+</resources>
