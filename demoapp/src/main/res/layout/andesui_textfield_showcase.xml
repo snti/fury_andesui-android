@@ -22,7 +22,7 @@
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:andesTextfieldState="error"
+            app:andesTextfieldState="disabled"
             />
 
     </LinearLayout>

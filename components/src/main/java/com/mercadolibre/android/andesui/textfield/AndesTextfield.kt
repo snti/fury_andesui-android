@@ -87,7 +87,7 @@ class AndesTextfield : ConstraintLayout {
         initComponents()
         setupViewId()
         setupViewAsClickable()
-        setupEnabledView(config)
+        setupEnabledView()
         setupBackground(config)
     }
 
@@ -120,7 +120,7 @@ class AndesTextfield : ConstraintLayout {
         textContainer.isFocusable = true
     }
 
-    private fun setupEnabledView(config: AndesTextfieldConfiguration) {
+    private fun setupEnabledView() {
         if(state == AndesTextfieldState.DISABLED){
             isEnabled= false
             textComponent.isEnabled = isEnabled
