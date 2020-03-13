@@ -4,5 +4,6 @@
     <dimen name="andes_textfield_simple_stroke">1dp</dimen>
     <dimen name="andes_textfield_focused_stroke">2dp</dimen>
     <dimen name="andes_textfield_dash">1dp</dimen>
+    <dimen name="andes_textfield_icon_diameter">12dp</dimen>
 
 </resources>

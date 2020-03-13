@@ -42,6 +42,19 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/andes_texfield_icon"
+        android:layout_width="@dimen/andes_textfield_icon_diameter"
+        android:layout_height="@dimen/andes_textfield_icon_diameter"
+        android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
+        android:maxHeight="@dimen/andes_textfield_icon_diameter"
+        android:minHeight="@dimen/andes_textfield_icon_diameter"
+        android:paddingLeft="@dimen/andes_textfield_helper_paddingLeft"
+        android:paddingRight="@dimen/andes_textfield_helper_paddingLeft"
+        app:layout_constraintEnd_toStartOf="@id/andes_texfield_helper"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/andes_textfield_text_container" />
+
     <TextView
         android:id="@+id/andes_texfield_helper"
         android:layout_width="wrap_content"
@@ -50,7 +63,7 @@
         android:textSize="@dimen/andes_textfield_helper_textSize"
         android:paddingLeft="@dimen/andes_textfield_helper_paddingLeft"
         android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/andes_texfield_icon"
         app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
 
     <TextView
