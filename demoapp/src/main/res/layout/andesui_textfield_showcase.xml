@@ -22,7 +22,22 @@
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:andesTextfieldState="error"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+
+            />
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:andesTextfieldState="disabled"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+
             />
 
     </LinearLayout>

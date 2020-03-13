@@ -25,8 +25,8 @@ internal sealed class AndesTextfieldStateInterface {
 internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_accent_color_500)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_accent_color_500), null))
+            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), null))
             addState(intArrayOf(-android.R.attr.state_enabled), createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), context.resources.getDimension(R.dimen.andes_textfield_dash)))
 
         }
@@ -41,17 +41,17 @@ internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
 internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500), ContextCompat.getColor(context, R.color.andes_red_50)))
+            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500), ContextCompat.getColor(context, R.color.andes_red_50)))
         }
     }
 
     override fun icon(context: Context): Drawable? {
         return buildColoredCircularShapeWithIconDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_24") as BitmapDrawable,
+                OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
                 context,
                 R.color.andes_white.toAndesColor(),
-                R.color.andes_red_500,
+                ContextCompat.getColor(context, R.color.andes_red_500),
                 context.resources.getDimension(R.dimen.andes_textfield_icon_diameter).toInt())
     }
 
@@ -68,10 +68,13 @@ internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
 }
 
 
-private fun createGradientDrawable(context: Context, stroke: Int, color: Int): Drawable {
+private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor : Int?): Drawable {
     val drawable = GradientDrawable()
     drawable.cornerRadius = context.resources.getDimension(R.dimen.andes_button_border_radius_large)
-    drawable.setStroke(stroke, color)
+    drawable.setStroke(stroke, strokeColor)
+    if (backgrondColor != null){
+        drawable.setColor(backgrondColor)
+    }
     return drawable
 }
 
