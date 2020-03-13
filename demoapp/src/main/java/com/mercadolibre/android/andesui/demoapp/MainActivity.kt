@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         setupButtons()
         setupMessages()
+        setupTextfield()
         setupWhatsNew()
         setupAndesSpecsWeb()
     }
@@ -31,6 +32,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupMessages() {
         andesui_messages.setOnClickListener {
             launchIntent("meli://andes/message")
+        }
+    }
+
+    private fun setupTextfield() {
+        andesui_textfield.setOnClickListener {
+            launchIntent("meli://andes/textfield")
         }
     }
 

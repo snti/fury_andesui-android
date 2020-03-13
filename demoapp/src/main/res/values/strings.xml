@@ -38,6 +38,7 @@
     <string name="body_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
     <string name="title_text">Atention!</string>
     <string name="andes_message_demoapp">Andes Message</string>
+    <string name="andes_textfield_demoapp">Andes Textfield</string>
     <string name="dismissable">Dismissable</string>
     <string name="andes_message_showcase_change">Update</string>
     <string name="change_text">Title text</string>
@@ -54,6 +55,8 @@
     <string name="andesui_demoapp_label_andes_specs">Andes Specs</string>
     <string name="andesui_demoapp_label_andes_message_specs">Andes Message Specs</string>
     <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs</string>
+    <string name="andesui_textfiled">Andes Textfield</string>
+
 
     <string-array name="state_spinner">
         <item>Neutral</item>

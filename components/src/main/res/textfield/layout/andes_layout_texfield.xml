@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/andes_textfield_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/andes_texfield_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/andes_textfield_label_text"
+        android:paddingLeft="@dimen/andes_textfield_label_paddingLeft"
+        android:textSize="@dimen/andes_textfield_label_textSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/andes_textfield_text_container"
+        app:layout_constraintTop_toBottomOf="@+id/andes_texfield_label"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/andes_textfield_container_marginTop"
+        android:minHeight="@dimen/andes_textfield_container_minHeight">
+
+        <EditText
+            android:id="@+id/andes_textfield_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/andes_textfield_edittext_textSize"
+            android:paddingLeft="@dimen/andes_textfield_edittext_paddingLeft"
+            android:paddingRight="@dimen/andes_textfield_edittext_paddingRight"
+            android:background="@drawable/andes_border"
+            android:textCursorDrawable="@drawable/andes_color_cursor" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/andes_texfield_helper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/andes_textfield_helper_text"
+        android:textSize="@dimen/andes_textfield_helper_textSize"
+        android:paddingLeft="@dimen/andes_textfield_helper_paddingLeft"
+        android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
+
+    <TextView
+        android:id="@+id/andes_texfield_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/andes_textfield_counter_text"
+        android:textSize="@dimen/andes_textfield_counter_textSize"
+        android:layout_marginTop="@dimen/andes_textfield_counter_marginTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/andes_texfield_helper"
+        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
+
+</android.support.constraint.ConstraintLayout>
