@@ -137,7 +137,7 @@ class AndesMessage : CardView {
     }
 
     /**
-     * Responsible for setting up all properties of each component that is part of this button.
+     * Responsible for setting up all properties of each component that is part of this message.
      * Is like a choreographer ;)
      *
      */
