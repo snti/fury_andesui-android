@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="andes_textfield_label_text">Label</string>
+    <string name="andes_textfield_helper_text">Helper text</string>
+    <string name="andes_textfield_counter_text">0/100</string>
+</resources>
