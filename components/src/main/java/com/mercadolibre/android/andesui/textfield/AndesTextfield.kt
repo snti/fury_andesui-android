@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.factory.*
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
@@ -56,6 +57,8 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var helperComponent: TextView
     private lateinit var counterComponent: TextView
     private lateinit var textComponent: EditText
+    private lateinit var iconComponent: SimpleDraweeView
+
 
 
     @Suppress("unused")
@@ -89,6 +92,7 @@ class AndesTextfield : ConstraintLayout {
         setupViewAsClickable()
         setupEnabledView()
         setupBackground(config)
+        setupErrorIcon(config)
     }
 
     /**
@@ -105,6 +109,7 @@ class AndesTextfield : ConstraintLayout {
         helperComponent = container.findViewById(R.id.andes_texfield_helper)
         counterComponent = container.findViewById(R.id.andes_texfield_counter)
         textComponent = container.findViewById(R.id.andes_textfield_edittext)
+        iconComponent = container.findViewById(R.id.andes_texfield_icon)
     }
 
     private fun setupViewId() {
@@ -132,6 +137,16 @@ class AndesTextfield : ConstraintLayout {
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
             textfieldContainer.isEnabled = isEnabled
+        }
+    }
+
+    private fun setupErrorIcon(config : AndesTextfieldConfiguration){
+        iconComponent.setImageDrawable(config.icon)
+        if (config.icon != null) {
+            iconComponent.visibility = View.VISIBLE
+
+        } else {
+            iconComponent.visibility = View.GONE
         }
     }
 
