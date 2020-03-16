@@ -14,13 +14,20 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
 class AndesTextfield : ConstraintLayout {
 
+    /**
+     * Getter and setter for [label].
+     */
     var label: String?
         get() = andesTextfieldAttrs.label
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(label = value)
             //TODO set up the component
+            setupLabelComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for [helper].
+     */
     var helper: String?
         get() = andesTextfieldAttrs.helper
         set(value) {
@@ -28,6 +35,9 @@ class AndesTextfield : ConstraintLayout {
             //TODO set up the component
         }
 
+    /**
+     * Getter and setter for [placeholder].
+     */
     var placeholder: String?
         get() = andesTextfieldAttrs.placeholder
         set(value) {
@@ -35,6 +45,9 @@ class AndesTextfield : ConstraintLayout {
             //TODO set up the component
         }
 
+    /**
+     * Getter and setter for [counter].
+     */
     var counter: AndesTextfieldCounter?
         get() = andesTextfieldAttrs.counter
         set(value) {
@@ -42,6 +55,9 @@ class AndesTextfield : ConstraintLayout {
             //TODO set up the component
         }
 
+    /**
+     * Getter and setter for the state of [EditText].
+     */
     var state : AndesTextfieldState
         get() = andesTextfieldAttrs.state
         set(value) {
@@ -140,4 +156,21 @@ class AndesTextfield : ConstraintLayout {
         textContainer.background = config.background
     }
 
+    /**
+     * Gets data from the config and sets to the text component of this button.
+     *
+     */
+    private fun setupLabelComponent(config: AndesTextfieldConfiguration) {
+        if (config.titleText == null || config.titleText.isEmpty()) {
+            titleComponent.visibility = View.GONE
+        } else {
+            titleComponent.visibility = View.VISIBLE
+            titleComponent.text = config.titleText
+            titleComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.titleSize)
+            titleComponent.setTextColor(config.textColor.colorInt(context))
+            titleComponent.typeface = config.titleTypeface
+        }
+    }
+
+    private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
 }
