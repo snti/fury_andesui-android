@@ -14,8 +14,10 @@ internal data class AndesTextfieldConfiguration(
         val helperText: String?,
         //val labelTextColor : ColorStateList,
         //val counterTextColor : ColorStateList,
-        val typeface: Typeface
-)
+        val typeface: Typeface,
+        val icon: Drawable?
+
+        )
 
 internal object AndesTextfieldConfigurationFactory {
 
@@ -29,7 +31,8 @@ internal object AndesTextfieldConfigurationFactory {
                     helperTextColor = resolveHelperTextColor(context),
                     //labelTextColor = resolveLabelTextColor(context),
                     //counterTextColor = resolveCounterTextColor(context),
-                    typeface = resolveTypeface(context)
+                    typeface = resolveTypeface(context),
+                    icon = resolveIcon(context, state)
 
             )
         }
@@ -40,6 +43,7 @@ internal object AndesTextfieldConfigurationFactory {
     //private fun resolveLabelTextColor(context: Context) : ColorStateList
     //private fun resolveCounterTextColor(context: Context) : ColorStateList
     private fun resolveTypeface(context: Context) =  context.getFontOrDefault(R.font.andes_font_regular)
+    private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.icon(context)
 
 
 }
