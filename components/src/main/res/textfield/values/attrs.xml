@@ -19,8 +19,6 @@
             <enum name="disabled" value="22" />
         </attr>
 
-
-
     </declare-styleable>
 
 </resources>
