@@ -20,9 +20,12 @@
             android:textSize="24sp" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/textfield_enabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesTextfieldLeftContent="prefix"
+            app:andesTextfieldRightContent="clear"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -31,7 +34,9 @@
             app:andesTextfieldState="error"
             android:layout_marginBottom="@dimen/button_margin_vertical"
 
+
             />
+
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

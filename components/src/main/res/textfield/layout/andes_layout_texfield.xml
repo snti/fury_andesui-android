@@ -25,20 +25,40 @@
         android:addStatesFromChildren="true"
         >
 
+        <FrameLayout
+            android:id="@+id/andes_textfield_left_component"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/andes_textfield_text_container"
+            app:layout_constraintEnd_toStartOf="@id/andes_textfield_edittext"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/andes_textfield_text_container"
+            app:layout_constraintTop_toTopOf="@id/andes_textfield_text_container" />
+
         <EditText
             android:id="@+id/andes_textfield_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="@dimen/andes_textfield_edittext_textSize"
-            android:paddingLeft="@dimen/andes_textfield_edittext_paddingLeft"
-            android:paddingRight="@dimen/andes_textfield_edittext_paddingRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/andes_border"
-            android:textCursorDrawable="@drawable/andes_color_cursor" />
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/andes_color_cursor"
+            android:textSize="@dimen/andes_textfield_edittext_textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/andes_textfield_right_component"
+            app:layout_constraintStart_toEndOf="@+id/andes_textfield_left_component"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="12dp"
+            app:layout_goneMarginStart="12dp" />
+
+        <FrameLayout
+            android:id="@+id/andes_textfield_right_component"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/andes_textfield_text_container"
+            app:layout_constraintStart_toEndOf="@id/andes_textfield_edittext"
+            app:layout_constraintEnd_toEndOf="@id/andes_textfield_text_container"
+            app:layout_constraintTop_toTopOf="@id/andes_textfield_text_container" />
 
     </android.support.constraint.ConstraintLayout>
 
