@@ -218,7 +218,7 @@ class AndesTextfield : ConstraintLayout {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.setTextColor(config.counterColor.colorInt(context))
-            counterComponent.text = "${config.counterMinLength}/${config.counterMaxLength}"
+            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
 
             textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
         }
@@ -231,7 +231,7 @@ class AndesTextfield : ConstraintLayout {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                counterComponent.text = "${count}/${config.counterMaxLength}"
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, count, config.counterMaxLength)
             }
         })
     }
