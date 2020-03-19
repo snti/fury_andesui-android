@@ -33,8 +33,6 @@
             android:layout_height="wrap_content"
             app:andesTextfieldState="error"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-
-
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
