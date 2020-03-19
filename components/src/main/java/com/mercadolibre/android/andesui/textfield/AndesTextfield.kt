@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.textfield
 
 import android.content.Context
+import android.graphics.Typeface
 import android.support.constraint.ConstraintLayout
 import android.text.Editable
 import android.text.InputFilter
@@ -189,6 +190,7 @@ class AndesTextfield : ConstraintLayout {
             labelComponent.text = config.labelText
             labelComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.labelSize)
             labelComponent.setTextColor(config.labelColor.colorInt(context))
+            labelComponent.typeface = config.typeface
         }
     }
 
@@ -204,6 +206,7 @@ class AndesTextfield : ConstraintLayout {
             helperComponent.text = config.helperText
             helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
             helperComponent.setTextColor(config.helperColor.colorInt(context))
+            helperComponent.typeface = config.helperTypeface
         }
     }
 
@@ -219,7 +222,7 @@ class AndesTextfield : ConstraintLayout {
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.setTextColor(config.counterColor.colorInt(context))
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
-
+            counterComponent.typeface = config.typeface
             textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
         }
 
@@ -244,6 +247,7 @@ class AndesTextfield : ConstraintLayout {
         if (config.placeHolderText != null) {
             textComponent.hint = config.placeHolderText
             textComponent.setHintTextColor(config.placeHolderColor)
+            textComponent.typeface = config.typeface
         }
     }
 

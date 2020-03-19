@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.textfield.state
 
 import android.content.Context
+import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -10,6 +11,7 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 
 /**
@@ -22,6 +24,7 @@ internal sealed class AndesTextfieldStateInterface {
     abstract fun backgroundColor(context: Context): Drawable
     abstract fun icon(context: Context): Drawable?
     abstract fun hintColor() : Int
+    abstract fun typeFace(context: Context) : Typeface
     fun helperColor() : AndesColor = primaryColor()
     fun labelColor() : AndesColor = primaryColor()
     fun counterColor() : AndesColor = primaryColor()
@@ -30,6 +33,7 @@ internal sealed class AndesTextfieldStateInterface {
 internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
     override fun primaryColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun hintColor(): Int = R.color.andes_gray_450
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -46,6 +50,7 @@ internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
 internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
     override fun primaryColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun hintColor(): Int = R.color.andes_gray_450
+    override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -68,6 +73,7 @@ internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
 internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
     override fun primaryColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun hintColor(): Int = R.color.andes_gray_200
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
 
     override fun backgroundColor(context: Context): Drawable {
         return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), context.resources.getDimension(R.dimen.andes_textfield_dash))

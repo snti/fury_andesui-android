@@ -14,6 +14,7 @@ internal data class AndesTextfieldConfiguration(
         val helperColor : AndesColor,
         val helperText: String? = null,
         val helperSize: Float,
+        val helperTypeface: Typeface,
         val labelColor : AndesColor,
         val labelText: String? = null,
         val labelSize: Float,
@@ -40,6 +41,7 @@ internal object AndesTextfieldConfigurationFactory {
                     helperColor = resolveHelperTextColor(state),
                     helperText = helper,
                     helperSize = resolveHelperSize(context),
+                    helperTypeface = resolveHelperTypeface(state, context),
                     labelColor = resolveLabelTextColor(state),
                     labelText = label,
                     labelSize = resolveLabelSize(context),
@@ -59,6 +61,7 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveBackground(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.backgroundColor(context)
     private fun resolveHelperTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helperColor()
     private fun resolveHelperSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_helper_textSize)
+    private fun resolveHelperTypeface(state: AndesTextfieldStateInterface, context: Context) = state.typeFace(context)
     private fun resolveLabelTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.labelColor()
     private fun resolveLabelSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
     private fun resolveCounterTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.counterColor()
