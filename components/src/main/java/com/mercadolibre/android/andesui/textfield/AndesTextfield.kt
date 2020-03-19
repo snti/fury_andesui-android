@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.textfield
 
 import android.content.Context
-import android.graphics.Typeface
 import android.support.constraint.ConstraintLayout
 import android.text.Editable
 import android.text.InputFilter
