@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ScrollView
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.textfield.AndesTextfield
 
 class TextfieldShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +59,18 @@ class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
 
     private fun addTextfield(inflater: LayoutInflater): View {
         val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase, null, false) as ScrollView
+
+        val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.textfield_enabled)
+
+
+        /*
+        textfield.setupAction("Action", View.OnClickListener {
+            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+        })
+
+        textfield.setupClear()*/
+
+        textfield.setupPrefix("+546666")
 
         return layoutTextfield
     }

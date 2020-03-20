@@ -6,7 +6,7 @@ package com.mercadolibre.android.andesui.textfield.state
  *
  * You ask me with, let's say 'ENABLED', and then I'll give you a proper implementation of that state.
  *
- * @property state Possible hierarchies that an [AndesTextfield] may take.
+ * @property state Possible states that an [AndesTextfield] may take.
  */
 enum class AndesTextfieldState {
         ENABLED,
