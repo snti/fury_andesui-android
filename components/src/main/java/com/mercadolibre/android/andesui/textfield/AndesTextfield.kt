@@ -4,18 +4,15 @@ import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
@@ -65,12 +62,14 @@ class AndesTextfield : ConstraintLayout {
         get() = andesTextfieldAttrs.leftContent
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(leftContent = value)
+            setupLeftComponent(createConfig())
         }
 
     var rightContent: AndesTextfieldRightContent?
         get() = andesTextfieldAttrs.rightContent
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(rightContent = value)
+            setupRightComponent(createConfig())
         }
 
     private lateinit var andesTextfieldAttrs: AndesTextfieldAttrs
@@ -119,7 +118,6 @@ class AndesTextfield : ConstraintLayout {
         setupErrorIcon(config)
         setupLeftComponent(config)
         setupRightComponent(config)
-        setupClear()
     }
 
     /**
@@ -203,6 +201,7 @@ class AndesTextfield : ConstraintLayout {
         if (config.rightComponent != null) {
             rightComponent.removeAllViews()
             rightComponent.addView(config.rightComponent)
+            setupClear()
 
             val params = rightComponent.layoutParams as ConstraintLayout.LayoutParams
             params.marginStart = config.rightComponentLeftMargin!!
@@ -224,74 +223,46 @@ class AndesTextfield : ConstraintLayout {
     }
 
     fun setupAction(text: String, onClickListener: OnClickListener) {
-        if (rightContent == AndesTextfieldRightContent.ACTION) {
-            val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
-            action.text = text
-            action.setOnClickListener(onClickListener)
-        } else
-            when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot setup an action without choosing the correct content")
-                else -> Log.d("AndesTextfield", "Cannot setup an action without choosing the correct content")
-            }
+        rightContent = AndesTextfieldRightContent.ACTION
+        val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
+        action.text = text
+        action.setOnClickListener(onClickListener)
+
     }
 
     fun setupRightIcon(iconPath: String) {
-        if (rightContent == AndesTextfieldRightContent.ICON) {
-            val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-            clear.setImageDrawable(buildColoredBitmapDrawable(
-                    OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                    context,
-                    R.color.andes_gray_800.toAndesColor())
-            )
-        } else
-            when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot setup a right icon without choosing the correct content")
-                else -> Log.d("AndesTextfield", "Cannot setup a right icon without choosing the correct content")
-            }
+        rightContent = AndesTextfieldRightContent.ICON
+        val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
+        rightIcon.setImageDrawable(buildColoredBitmapDrawable(
+                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+                context,
+                R.color.andes_gray_800.toAndesColor())
+        )
     }
 
     fun setupLeftIcon(iconPath: String) {
-        if (leftContent == AndesTextfieldLeftContent.ICON) {
-            val clear: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
-            clear.setImageDrawable(buildColoredBitmapDrawable(
-                    OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                    context,
-                    R.color.andes_gray_450.toAndesColor())
-            )
-        } else
-            when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot setup a left icon without choosing the correct content")
-                else -> Log.d("AndesTextfield", "Cannot setup a left icon without choosing the correct content")
-            }
+        leftContent = AndesTextfieldLeftContent.ICON
+        val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
+        leftIcon.setImageDrawable(buildColoredBitmapDrawable(
+                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+                context,
+                R.color.andes_gray_450.toAndesColor())
+        )
+
+    }
+
+    fun setupPrefix(text: String) {
+        leftContent = AndesTextfieldLeftContent.PREFIX
+        val prefix: TextView = leftComponent.getChildAt(0) as TextView
+        prefix.text = text
     }
 
 
-
-    fun setupPrefix(text: String){
-        if (leftContent == AndesTextfieldLeftContent.PREFIX){
-            val prefix : TextView = leftComponent.getChildAt(0) as TextView
-            prefix.setTextColor(R.color.andes_gray_450.toColor(context))
-            prefix.text = text
-
-        }
-        else
-            when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot setup a prefix without choosing the correct content")
-                else -> Log.d("AndesTextfield", "Cannot setup a prefix without choosing the correct content")
-            }
-    }
-
-
-    fun setupSuffix(text: String){
-        if (rightContent == AndesTextfieldRightContent.SUFFIX){
-            val suffix : TextView = leftComponent.getChildAt(0) as TextView
-            suffix.setTextColor(R.color.andes_gray_450.toColor(context))
+    fun setupSuffix(text: String) {
+        rightContent = AndesTextfieldRightContent.SUFFIX
+            val suffix: TextView = leftComponent.getChildAt(0) as TextView
             suffix.text = text
-        }
-        else
-            when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot setup a prefix without choosing the correct content")
-                else -> Log.d("AndesTextfield", "Cannot setup a prefix without choosing the correct content")
-            }
     }
+
+    private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
 }

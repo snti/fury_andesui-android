@@ -10,6 +10,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
+import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
@@ -30,7 +31,10 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_right_margin).toInt()
 
     override fun component(context: Context): TextView {
-        return TextView(context)
+        val suffix  = TextView(context)
+        suffix.setTextColor(R.color.andes_gray_450.toColor(context))
+        suffix.text = "Suffix"
+        return suffix
     }
 }
 
@@ -41,7 +45,10 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_prefix_right_margin).toInt()
 
     override fun component(context: Context): TextView {
-        return TextView(context)
+        val prefix  = TextView(context)
+        prefix.setTextColor(R.color.andes_gray_450.toColor(context))
+        prefix.text = "Prefix"
+        return prefix
     }
 }
 
@@ -51,7 +58,12 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_icon_right_margin).toInt()
 
     override fun component(context: Context): SimpleDraweeView {
-        return SimpleDraweeView(context)
+        val icon = SimpleDraweeView(context)
+        icon.setImageDrawable(buildColoredBitmapDrawable(
+                OfflineIconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
+                context,
+                R.color.andes_gray_800.toAndesColor()))
+        return icon
     }
 }
 
