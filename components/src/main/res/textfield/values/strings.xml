@@ -2,5 +2,6 @@
 <resources>
     <string name="andes_textfield_label_text">Label</string>
     <string name="andes_textfield_helper_text">Helper text</string>
-    <string name="andes_textfield_counter_text">0/100</string>
+    <string name="andes_textfield_counter_text">%1$d/%2$d</string>
+    <string name="andes_textfield_hint_text">Input text</string>
 </resources>

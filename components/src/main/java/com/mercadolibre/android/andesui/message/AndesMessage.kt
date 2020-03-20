@@ -129,7 +129,6 @@ class AndesMessage : CardView {
         setupComponents(config)
     }
 
-
     private fun initAttrs(hierarchy: AndesMessageHierarchy, type: AndesMessageType, body: String, title: String?, isDismissable: Boolean) {
         andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
