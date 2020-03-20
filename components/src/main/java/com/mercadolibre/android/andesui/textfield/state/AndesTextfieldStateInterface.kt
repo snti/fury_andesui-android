@@ -27,7 +27,7 @@ internal sealed class AndesTextfieldStateInterface {
     abstract fun typeFace(context: Context) : Typeface
 }
 
-internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -43,7 +43,7 @@ internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
     override fun icon(context: Context): Drawable? = null
 }
 
-internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
@@ -65,7 +65,7 @@ internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
     }
 }
 
-internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -75,6 +75,14 @@ internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
     }
 
     override fun icon(context: Context): Drawable? = null
+}
+
+internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
+    override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0,  R.color.andes_transparent.toColor(context))
+    override fun icon(context: Context): Drawable? = null
+    override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
 }
 
 private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor : Int?): Drawable {

@@ -17,6 +17,7 @@
             <enum name="enabled" value="20" />
             <enum name="error" value="21" />
             <enum name="disabled" value="22" />
+            <enum name="readonly" value="23" />
         </attr>
 
     </declare-styleable>

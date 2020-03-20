@@ -145,7 +145,7 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if(state == AndesTextfieldState.DISABLED){
+        if(state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY){
             isEnabled= false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
