@@ -12,6 +12,7 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 /**
@@ -34,6 +35,7 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
         val suffix  = TextView(context)
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
         suffix.text = "Suffix"
+        suffix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         return suffix
     }
 }
@@ -48,6 +50,7 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
         val prefix  = TextView(context)
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
         prefix.text = "Prefix"
+        prefix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         return prefix
     }
 }
