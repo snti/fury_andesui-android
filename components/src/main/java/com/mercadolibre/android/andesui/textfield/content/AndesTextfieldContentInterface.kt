@@ -34,7 +34,7 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
     override fun component(context: Context): TextView {
         val suffix  = TextView(context)
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
-        suffix.text = "Suffix"
+        suffix.text = context.getString(R.string.andes_suffix_hint)
         suffix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         return suffix
     }
@@ -49,7 +49,7 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
     override fun component(context: Context): TextView {
         val prefix  = TextView(context)
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
-        prefix.text = "Prefix"
+        prefix.text = context.getString(R.string.andes_prefix_hint)
         prefix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         return prefix
     }
