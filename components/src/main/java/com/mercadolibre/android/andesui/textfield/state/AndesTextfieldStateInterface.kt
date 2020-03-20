@@ -6,10 +6,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
-import android.support.v4.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
+import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
@@ -20,42 +20,38 @@ import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconD
  *
  */
 internal sealed class AndesTextfieldStateInterface {
-    abstract fun primaryColor() : AndesColor
     abstract fun backgroundColor(context: Context): Drawable
     abstract fun icon(context: Context): Drawable?
-    abstract fun hintColor() : Int
+    abstract fun hintColor() : AndesColor
+    abstract fun textColor() : AndesColor
     abstract fun typeFace(context: Context) : Typeface
-    fun helperColor() : AndesColor = primaryColor()
-    fun labelColor() : AndesColor = primaryColor()
-    fun counterColor() : AndesColor = primaryColor()
 }
 
 internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
-    override fun primaryColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
-    override fun hintColor(): Int = R.color.andes_gray_450
+    override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_accent_color_500), null))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), null))
-            addState(intArrayOf(-android.R.attr.state_enabled), createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), context.resources.getDimension(R.dimen.andes_textfield_dash)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(),R.color.andes_accent_color_500.toColor(context), null))
+            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), null))
+            addState(intArrayOf(-android.R.attr.state_enabled), createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash)))
         }
     }
 
     override fun icon(context: Context): Drawable? = null
 }
 
-
 internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
-    override fun primaryColor(): AndesColor = R.color.andes_red_500.toAndesColor()
-    override fun hintColor(): Int = R.color.andes_gray_450
+    override fun textColor(): AndesColor = R.color.andes_red_500.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500), ContextCompat.getColor(context, R.color.andes_red_50)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_red_500), ContextCompat.getColor(context, R.color.andes_red_50)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_red_50.toColor(context)))
+            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_red_50.toColor(context)))
         }
     }
 
@@ -64,24 +60,22 @@ internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
                 OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
                 context,
                 R.color.andes_white.toAndesColor(),
-                ContextCompat.getColor(context, R.color.andes_red_500),
+                R.color.andes_red_500.toColor(context),
                 context.resources.getDimension(R.dimen.andes_textfield_icon_diameter).toInt())
     }
 }
 
-
 internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
-    override fun primaryColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
-    override fun hintColor(): Int = R.color.andes_gray_200
+    override fun textColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
 
     override fun backgroundColor(context: Context): Drawable {
-        return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), ContextCompat.getColor(context, R.color.andes_gray_200), context.resources.getDimension(R.dimen.andes_textfield_dash))
+        return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash))
     }
 
     override fun icon(context: Context): Drawable? = null
 }
-
 
 private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor : Int?): Drawable {
     val drawable = GradientDrawable()
@@ -96,7 +90,7 @@ private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: I
 private fun createGradientDrawableWithDash(context: Context, stroke: Int, color: Int, dash: Float): Drawable {
     val drawable = GradientDrawable()
     drawable.cornerRadius = context.resources.getDimension(R.dimen.andes_button_border_radius_large)
-    drawable.setStroke(stroke, ContextCompat.getColor(context, R.color.andes_gray_250), dash, dash)
-    drawable.setColor(ContextCompat.getColor(context, R.color.andes_gray_040))
+    drawable.setStroke(stroke, R.color.andes_gray_250.toColor(context), dash, dash)
+    drawable.setColor(R.color.andes_gray_040.toColor(context))
     return drawable
 }

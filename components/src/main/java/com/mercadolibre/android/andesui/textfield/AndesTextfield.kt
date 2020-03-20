@@ -77,8 +77,6 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var textComponent: EditText
     private lateinit var iconComponent: SimpleDraweeView
 
-
-
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
         initAttrs(null)
@@ -109,12 +107,11 @@ class AndesTextfield : ConstraintLayout {
         setupViewId()
         setupViewAsClickable()
         setupEnabledView()
-        setupBackground(config)
         setupLabelComponent(config)
         setupHelperComponent(config)
         setupCounterComponent(config)
-        setupErrorIcon(config)
         setupPlaceHolderComponent(config)
+        setupColorComponents(config)
     }
 
     /**
@@ -162,7 +159,13 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
-    private fun setupErrorIcon(config : AndesTextfieldConfiguration){
+    /**
+     * Gets data from the config to sets the color of the components regarding to the state.
+     *
+     */
+    private fun setupColorComponents(config: AndesTextfieldConfiguration) {
+        textContainer.background = config.background
+
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
             iconComponent.visibility = View.VISIBLE
@@ -170,11 +173,17 @@ class AndesTextfield : ConstraintLayout {
         } else {
             iconComponent.visibility = View.GONE
         }
-    }
 
+        helperComponent.setTextColor(config.helperColor.colorInt(context))
+        helperComponent.typeface = config.helperTypeface
 
-    private fun setupBackground(config: AndesTextfieldConfiguration){
-        textContainer.background = config.background
+        labelComponent.setTextColor(config.labelColor.colorInt(context))
+        labelComponent.typeface = config.typeface
+
+        counterComponent.setTextColor(config.counterColor.colorInt(context))
+        counterComponent.typeface = config.typeface
+
+        textComponent.setHintTextColor(config.placeHolderColor.colorInt(context))
     }
 
     /**
@@ -188,8 +197,6 @@ class AndesTextfield : ConstraintLayout {
             labelComponent.visibility = View.VISIBLE
             labelComponent.text = config.labelText
             labelComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.labelSize)
-            labelComponent.setTextColor(config.labelColor.colorInt(context))
-            labelComponent.typeface = config.typeface
         }
     }
 
@@ -204,8 +211,6 @@ class AndesTextfield : ConstraintLayout {
             helperComponent.visibility = View.VISIBLE
             helperComponent.text = config.helperText
             helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
-            helperComponent.setTextColor(config.helperColor.colorInt(context))
-            helperComponent.typeface = config.helperTypeface
         }
     }
 
@@ -219,9 +224,7 @@ class AndesTextfield : ConstraintLayout {
         } else {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
-            counterComponent.setTextColor(config.counterColor.colorInt(context))
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
-            counterComponent.typeface = config.typeface
             textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
         }
 
@@ -245,7 +248,6 @@ class AndesTextfield : ConstraintLayout {
     private fun setupPlaceHolderComponent(config: AndesTextfieldConfiguration) {
         if (config.placeHolderText != null) {
             textComponent.hint = config.placeHolderText
-            textComponent.setHintTextColor(config.placeHolderColor)
             textComponent.typeface = config.typeface
         }
     }

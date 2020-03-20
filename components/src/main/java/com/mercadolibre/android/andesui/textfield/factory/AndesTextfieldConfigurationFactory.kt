@@ -5,7 +5,6 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
-import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
@@ -22,7 +21,7 @@ internal data class AndesTextfieldConfiguration(
         val counterSize: Float,
         val counterMinLength: Int?,
         val counterMaxLength: Int?,
-        val placeHolderColor : Int,
+        val placeHolderColor : AndesColor,
         val placeHolderText : String? = null,
         val placeHolderSize : Float,
         val typeface: Typeface,
@@ -59,16 +58,16 @@ internal object AndesTextfieldConfigurationFactory {
     }
 
     private fun resolveBackground(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.backgroundColor(context)
-    private fun resolveHelperTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helperColor()
+    private fun resolveHelperTextColor(state: AndesTextfieldStateInterface): AndesColor = state.textColor()
     private fun resolveHelperSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_helper_textSize)
     private fun resolveHelperTypeface(state: AndesTextfieldStateInterface, context: Context) = state.typeFace(context)
-    private fun resolveLabelTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.labelColor()
+    private fun resolveLabelTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.textColor()
     private fun resolveLabelSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
-    private fun resolveCounterTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.counterColor()
+    private fun resolveCounterTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.textColor()
     private fun resolveCounterSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)
     private fun resolveTypeface(context: Context) =  context.getFontOrDefault(R.font.andes_font_regular)
     private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.icon(context)
-    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface, context: Context) : Int = state.hintColor().toColor(context)
+    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface, context: Context) : AndesColor = state.hintColor()
     private fun resolvePlaceHolderSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_placeholder_textSize)
 }
 
