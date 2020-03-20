@@ -74,6 +74,7 @@ class AndesTextfield : ConstraintLayout {
         get() = andesTextfieldAttrs.state
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(state = value)
+            setupColorComponents(createConfig())
         }
 
     var leftContent: AndesTextfieldLeftContent?
