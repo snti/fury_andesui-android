@@ -22,8 +22,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/andes_textfield_container_marginTop"
         android:minHeight="@dimen/andes_textfield_container_minHeight"
-        android:addStatesFromChildren="true"
-        >
+        android:addStatesFromChildren="true">
 
         <FrameLayout
             android:id="@+id/andes_textfield_left_component"

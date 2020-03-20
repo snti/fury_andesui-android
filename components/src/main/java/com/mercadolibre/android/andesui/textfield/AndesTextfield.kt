@@ -3,7 +3,11 @@ package com.mercadolibre.android.andesui.textfield
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.support.constraint.ConstraintLayout
+import android.text.Editable
+import android.text.InputFilter
+import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -23,39 +27,53 @@ import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 class AndesTextfield : ConstraintLayout {
 
+    /**
+     * Getter and setter for [label].
+     */
     var label: String?
         get() = andesTextfieldAttrs.label
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(label = value)
-            //TODO set up the component
+            setupLabelComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for [helper].
+     */
     var helper: String?
         get() = andesTextfieldAttrs.helper
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(helper = value)
-            //TODO set up the component
+            setupHelperComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for [placeholder].
+     */
     var placeholder: String?
         get() = andesTextfieldAttrs.placeholder
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(placeholder = value)
-            //TODO set up the component
+            setupPlaceHolderComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for [counter].
+     */
     var counter: AndesTextfieldCounter?
         get() = andesTextfieldAttrs.counter
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(counter = value)
-            //TODO set up the component
+            setupCounterComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for the state of [EditText].
+     */
     var state: AndesTextfieldState
         get() = andesTextfieldAttrs.state
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(state = value)
-            //TODO set up the component
         }
 
     var leftContent: AndesTextfieldLeftContent?
@@ -82,7 +100,6 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var leftComponent: FrameLayout
     private lateinit var rightComponent: FrameLayout
-
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -114,8 +131,11 @@ class AndesTextfield : ConstraintLayout {
         setupViewId()
         setupViewAsClickable()
         setupEnabledView()
-        setupBackground(config)
-        setupErrorIcon(config)
+        setupLabelComponent(config)
+        setupHelperComponent(config)
+        setupCounterComponent(config)
+        setupPlaceHolderComponent(config)
+        setupColorComponents(config)
         setupLeftComponent(config)
         setupRightComponent(config)
     }
@@ -133,8 +153,8 @@ class AndesTextfield : ConstraintLayout {
         labelComponent = container.findViewById(R.id.andes_texfield_label)
         helperComponent = container.findViewById(R.id.andes_texfield_helper)
         counterComponent = container.findViewById(R.id.andes_texfield_counter)
-        textComponent = container.findViewById(R.id.andes_textfield_edittext)
         iconComponent = container.findViewById(R.id.andes_texfield_icon)
+        textComponent = container.findViewById(R.id.andes_textfield_edittext)
         leftComponent = container.findViewById(R.id.andes_textfield_left_component)
         rightComponent = container.findViewById(R.id.andes_textfield_right_component)
 
@@ -166,7 +186,12 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
-    private fun setupErrorIcon(config: AndesTextfieldConfiguration) {
+    /**
+     * Gets data from the config to sets the color of the components regarding to the state.
+     *
+     */
+    private fun setupColorComponents(config: AndesTextfieldConfiguration) {
+        textContainer.background = config.background
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
             iconComponent.visibility = View.VISIBLE
@@ -174,11 +199,83 @@ class AndesTextfield : ConstraintLayout {
         } else {
             iconComponent.visibility = View.GONE
         }
+
+        helperComponent.setTextColor(config.helperColor.colorInt(context))
+        helperComponent.typeface = config.helperTypeface
+
+        labelComponent.setTextColor(config.labelColor.colorInt(context))
+        labelComponent.typeface = config.typeface
+
+        counterComponent.setTextColor(config.counterColor.colorInt(context))
+        counterComponent.typeface = config.typeface
+
+        textComponent.setHintTextColor(config.placeHolderColor.colorInt(context))
     }
 
+    /**
+     * Gets data from the config and sets to the Label component.
+     *
+     */
+    private fun setupLabelComponent(config: AndesTextfieldConfiguration) {
+        if (config.labelText == null || config.labelText.isEmpty()) {
+            labelComponent.visibility = View.GONE
+        } else {
+            labelComponent.visibility = View.VISIBLE
+            labelComponent.text = config.labelText
+            labelComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.labelSize)
+        }
+    }
 
-    private fun setupBackground(config: AndesTextfieldConfiguration) {
-        textContainer.background = config.background
+    /**
+     * Gets data from the config and sets to the Helper component.
+     *
+     */
+    private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
+        if (config.helperText == null || config.helperText.isEmpty()) {
+            helperComponent.visibility = View.GONE
+        } else {
+            helperComponent.visibility = View.VISIBLE
+            helperComponent.text = config.helperText
+            helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
+        }
+    }
+
+    /**
+     * Gets data from the config and sets to the Counter component.
+     *
+     */
+    private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
+        if (config.counterMaxLength!! <= config.counterMinLength!!) {
+            counterComponent.visibility = View.GONE
+        } else {
+            counterComponent.visibility = View.VISIBLE
+            counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
+            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
+            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
+        }
+
+        textComponent.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, count, config.counterMaxLength)
+            }
+        })
+    }
+
+    /**
+     * Gets data from the config and sets to the Place Holder component.
+     *
+     */
+    private fun setupPlaceHolderComponent(config: AndesTextfieldConfiguration) {
+        if (config.placeHolderText != null) {
+            textComponent.hint = config.placeHolderText
+            textComponent.typeface = config.typeface
+        }
     }
 
     private fun setupLeftComponent(config: AndesTextfieldConfiguration) {
