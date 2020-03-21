@@ -1,3 +1,7 @@
+# v2.2.0
+## Updated
+- Migrated build system to Gradle v5.6.4
+
 # v2.1.0
 ## Added
 - Initial Texfield component
