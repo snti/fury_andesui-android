@@ -23,6 +23,7 @@ internal data class AndesTextfieldConfiguration(
         val counterSize: Float,
         val counterMinLength: Int?,
         val counterMaxLength: Int?,
+        val counterText: AndesTextfieldCounter?,
         val placeHolderColor : AndesColor,
         val placeHolderText : String? = null,
         val placeHolderSize : Float,
@@ -48,12 +49,13 @@ internal object AndesTextfieldConfigurationFactory {
                     background = resolveBackground(context, state.state),
                     helperColor = resolveHelperTextColor(state.state),
                     helperSize = resolveHelperSize(context),
-                    helperText = helper,
+                    helperText = resolveHelper(state.state, helper),
                     helperTypeface = resolveHelperTypeface(state.state, context),
                     counterColor = resolveCounterTextColor(state.state),
                     counterMinLength = counter!!.minLength,
                     counterMaxLength = counter!!.maxLength,
                     counterSize = resolveCounterSize(context),
+                    counterText = resolveCounter(state.state, counter),
                     placeHolderColor = resolvePlaceHolderColor(state.state, context),
                     placeHolderSize = resolvePlaceHolderSize(context),
                     placeHolderText = placeholder,
@@ -87,5 +89,7 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveLeftComponentRightMargin(context: Context, leftContent: AndesTextfieldContentInterface?) : Int? = leftContent?.rightMargin(context)
     private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.leftMargin(context)
     private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.rightMargin(context)
+    private fun resolveHelper(state: AndesTextfieldStateInterface, helper: String?): String? = state.helper(helper)
+    private fun resolveCounter(state: AndesTextfieldStateInterface, counter: AndesTextfieldCounter): AndesTextfieldCounter? = state.counter(counter)
 }
 

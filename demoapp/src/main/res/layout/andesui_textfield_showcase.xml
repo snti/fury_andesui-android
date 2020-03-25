@@ -87,7 +87,7 @@
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTexfieldCounterMinValue="0"
-            app:andesTexfieldCounterMaxValue="10"
+            app:andesTexfieldCounterMaxValue="0"
             />
 
     </LinearLayout>

@@ -22,6 +22,7 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftCont
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.*
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 
@@ -136,9 +137,9 @@ class AndesTextfield : ConstraintLayout {
         setupHelperComponent(config)
         setupCounterComponent(config)
         setupPlaceHolderComponent(config)
-        setupColorComponents(config)
         setupLeftComponent(config)
         setupRightComponent(config)
+        setupColorComponents(config)
     }
 
     /**
@@ -173,7 +174,7 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if(state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY){
+        if(state == DISABLED || state == READONLY){
             isEnabled = false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
@@ -232,12 +233,12 @@ class AndesTextfield : ConstraintLayout {
      *
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText == null || config.helperText.isEmpty()) {
-            helperComponent.visibility = View.GONE
-        } else {
+        if (config.helperText != null) {
             helperComponent.visibility = View.VISIBLE
             helperComponent.text = config.helperText
             helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
+        } else {
+            helperComponent.visibility = View.GONE
         }
     }
 
@@ -246,13 +247,13 @@ class AndesTextfield : ConstraintLayout {
      *
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterMaxLength!! <= config.counterMinLength!!) {
-            counterComponent.visibility = View.GONE
-        } else {
+        if (config.counterText != null) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
             textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
+        } else {
+            counterComponent.visibility = View.GONE
         }
 
         textComponent.addTextChangedListener(object: TextWatcher {
@@ -354,7 +355,6 @@ class AndesTextfield : ConstraintLayout {
         val prefix: TextView = leftComponent.getChildAt(0) as TextView
         prefix.text = text
     }
-
 
     fun setupSuffix(text: String) {
         rightContent = AndesTextfieldRightContent.SUFFIX
