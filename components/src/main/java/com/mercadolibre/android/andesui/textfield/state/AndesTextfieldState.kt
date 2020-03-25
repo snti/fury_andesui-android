@@ -11,15 +11,17 @@ package com.mercadolibre.android.andesui.textfield.state
 enum class AndesTextfieldState {
         ENABLED,
         ERROR,
-        DISABLED;
+        DISABLED,
+        READONLY;
 
         internal val state get() = getAndesTextfieldState()
 
         private fun getAndesTextfieldState(): AndesTextfieldStateInterface {
             return when (this) {
-                ENABLED -> AndesEnabledTexfieldState
-                ERROR -> AndesErrorTexfieldState
-                DISABLED -> AndesDisabledTexfieldState
+                ENABLED -> AndesEnabledTextfieldState
+                ERROR -> AndesErrorTextfieldState
+                DISABLED -> AndesDisabledTextfieldState
+                READONLY -> AndesReadonlyTextfieldState
             }
         }
     }

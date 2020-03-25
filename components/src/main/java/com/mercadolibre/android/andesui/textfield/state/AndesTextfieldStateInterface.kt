@@ -11,6 +11,7 @@ import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldCounter
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 
@@ -25,12 +26,16 @@ internal sealed class AndesTextfieldStateInterface {
     abstract fun hintColor() : AndesColor
     abstract fun textColor() : AndesColor
     abstract fun typeFace(context: Context) : Typeface
+    abstract fun helper(helper: String?) : String?
+    abstract fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter?
 }
 
-internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun helper(helper: String?): String? = helper
+    override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = if (counter.maxLength <= counter.minLength) null else counter
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -43,10 +48,12 @@ internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
     override fun icon(context: Context): Drawable? = null
 }
 
-internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    override fun helper(helper: String?): String? = helper
+    override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = if (counter.maxLength <= counter.minLength) null else counter
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -65,16 +72,28 @@ internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
     }
 }
 
-internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
+internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun helper(helper: String?): String? = helper
+    override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = if (counter.maxLength <= counter.minLength) null else counter
 
     override fun backgroundColor(context: Context): Drawable {
         return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash))
     }
 
     override fun icon(context: Context): Drawable? = null
+}
+
+internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
+    override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0,  R.color.andes_transparent.toColor(context))
+    override fun icon(context: Context): Drawable? = null
+    override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun helper(helper: String?): String? = null
+    override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = null
 }
 
 private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor : Int?): Drawable {

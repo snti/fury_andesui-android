@@ -16,6 +16,7 @@
             <enum name="enabled" value="20" />
             <enum name="error" value="21" />
             <enum name="disabled" value="22" />
+            <enum name="readonly" value="23" />
         </attr>
 
         <attr name="andesTextfieldLeftContent">
@@ -35,8 +36,6 @@
             <enum name="indeterminate" value="17" />
             <enum name="checkbox" value="18" />
         </attr>
-
-
 
     </declare-styleable>
 

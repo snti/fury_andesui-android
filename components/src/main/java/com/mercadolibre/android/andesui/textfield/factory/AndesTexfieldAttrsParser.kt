@@ -38,6 +38,7 @@ internal object AndesTextfieldAttrsParser {
     private const val ANDES_TEXTFIELD_STATE_ENABLED = "20"
     private const val ANDES_TEXTFIELD_STATE_ERROR = "21"
     private const val ANDES_TEXTFIELD_STATE_DISABLED = "22"
+    private const val ANDES_TEXTFIELD_STATE_READONLY = "23"
 
 
     fun parse(context: Context, attr: AttributeSet?): AndesTextfieldAttrs {
@@ -47,6 +48,7 @@ internal object AndesTextfieldAttrsParser {
             ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.ENABLED
             ANDES_TEXTFIELD_STATE_ERROR -> AndesTextfieldState.ERROR
             ANDES_TEXTFIELD_STATE_DISABLED -> AndesTextfieldState.DISABLED
+            ANDES_TEXTFIELD_STATE_READONLY -> AndesTextfieldState.READONLY
             else -> AndesTextfieldState.ENABLED
         }
 

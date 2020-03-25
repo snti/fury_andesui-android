@@ -23,6 +23,7 @@ internal data class AndesTextfieldConfiguration(
         val counterSize: Float,
         val counterMinLength: Int?,
         val counterMaxLength: Int?,
+        val counterText: AndesTextfieldCounter?,
         val placeHolderColor : AndesColor,
         val placeHolderText : String? = null,
         val placeHolderSize : Float,
@@ -42,21 +43,22 @@ internal object AndesTextfieldConfigurationFactory {
         return with(andesTextfieldAttrs) {
 
             AndesTextfieldConfiguration(
+                    labelColor = resolveLabelTextColor(state.state),
+                    labelSize = resolveLabelSize(context),
+                    labelText = label,
                     background = resolveBackground(context, state.state),
                     helperColor = resolveHelperTextColor(state.state),
-                    helperText = helper,
                     helperSize = resolveHelperSize(context),
+                    helperText = resolveHelper(state.state, helper),
                     helperTypeface = resolveHelperTypeface(state.state, context),
-                    labelColor = resolveLabelTextColor(state.state),
-                    labelText = label,
-                    labelSize = resolveLabelSize(context),
                     counterColor = resolveCounterTextColor(state.state),
-                    counterSize = resolveCounterSize(context),
                     counterMinLength = counter!!.minLength,
                     counterMaxLength = counter!!.maxLength,
-                    placeHolderText = placeholder,
+                    counterSize = resolveCounterSize(context),
+                    counterText = resolveCounter(state.state, counter),
                     placeHolderColor = resolvePlaceHolderColor(state.state, context),
                     placeHolderSize = resolvePlaceHolderSize(context),
+                    placeHolderText = placeholder,
                     typeface = resolveTypeface(context),
                     icon = resolveIcon(context, state.state),
                     leftComponent = resolveLeftComponent(context, leftContent?.leftContent),
@@ -87,5 +89,7 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveLeftComponentRightMargin(context: Context, leftContent: AndesTextfieldContentInterface?) : Int? = leftContent?.rightMargin(context)
     private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.leftMargin(context)
     private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.rightMargin(context)
+    private fun resolveHelper(state: AndesTextfieldStateInterface, helper: String?): String? = state.helper(helper)
+    private fun resolveCounter(state: AndesTextfieldStateInterface, counter: AndesTextfieldCounter): AndesTextfieldCounter? = state.counter(counter)
 }
 
