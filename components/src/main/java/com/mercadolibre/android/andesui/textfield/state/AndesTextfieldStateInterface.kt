@@ -90,7 +90,7 @@ internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
     override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0,  R.color.andes_transparent.toColor(context))
     override fun icon(context: Context): Drawable? = null
     override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
-    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = null
     override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = null
