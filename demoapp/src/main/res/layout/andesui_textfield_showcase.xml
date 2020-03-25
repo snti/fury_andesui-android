@@ -20,9 +20,12 @@
             android:textSize="24sp" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/textfield_enabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesTextfieldLeftContent="icon"
+            app:andesTextfieldRightContent="clear"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -67,12 +70,11 @@
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:andesTextfieldState="disabled"
-            app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTextfieldLabel="@string/andes_textfield_label_text"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTexfieldCounterMinValue="1"
-            app:andesTexfieldCounterMaxValue="99"
+            app:andesTextfieldLabel="@string/andes_textfield_label_text"
+            app:andesTextfieldHelper="@string/andes_textfield_helper_text"
+            app:andesTexfieldCounterMinValue="0"
+            app:andesTexfieldCounterMaxValue="10"
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
             />
 
@@ -81,8 +83,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldState="readonly"
-            app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldLabel="@string/andes_textfield_label_text"
+            app:andesTextfieldHelper="@string/andes_textfield_helper_text"
+            app:andesTexfieldCounterMinValue="0"
+            app:andesTexfieldCounterMaxValue="10"
             />
 
     </LinearLayout>

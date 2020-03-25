@@ -27,7 +27,7 @@ internal sealed class AndesTextfieldStateInterface {
     abstract fun typeFace(context: Context) : Typeface
 }
 
-internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
+internal object AndesEnabledTexfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -43,7 +43,7 @@ internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
     override fun icon(context: Context): Drawable? = null
 }
 
-internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
+internal object AndesErrorTexfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
@@ -65,7 +65,7 @@ internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     }
 }
 
-internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
+internal object AndesDisabledTexfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun hintColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
