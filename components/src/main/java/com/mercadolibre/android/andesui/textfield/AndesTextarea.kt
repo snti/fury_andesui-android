@@ -90,7 +90,18 @@ class AndesTextarea : ConstraintLayout {
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
-        initAttrs(null)
+        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, MAXLINES_DEFAULT)
+    }
+
+    constructor(context: Context,
+                label: String? = LABEL_DEFAULT,
+                helper: String? = HELPER_DEFAULT,
+                placeholder: String? = PLACEHOLDER_DEFAULT,
+                counter: AndesTextfieldCounter? = COUNTER_DEFAULT,
+                state: AndesTextfieldState = STATE_DEFAULT,
+                maxLines: Int? = MAXLINES_DEFAULT)
+            : super(context) {
+        initAttrs(label, helper, placeholder, counter, state, maxLines)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -276,4 +287,16 @@ class AndesTextarea : ConstraintLayout {
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
+
+    /**
+     * Default values for AndesTextfield basic properties
+     */
+    companion object {
+        private val LABEL_DEFAULT = null
+        private val HELPER_DEFAULT = null
+        private val PLACEHOLDER_DEFAULT = null
+        private val COUNTER_DEFAULT = AndesTextfieldCounter()
+        private val STATE_DEFAULT = AndesTextfieldState.ENABLED
+        private val MAXLINES_DEFAULT = null
+    }
 }
