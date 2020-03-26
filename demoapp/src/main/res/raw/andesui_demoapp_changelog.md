@@ -1,6 +1,6 @@
 # v2.1.0
 ## Added
-- Initial Texfield component
+- Initial Textfield component
 
 # v2.0.1
 ## Removed

@@ -13,9 +13,9 @@ enum class AndesTextfieldLeftContent {
     PREFIX,
     ICON;
 
-    internal val leftContent get() = getAndesTexfieldLeftContent()
+    internal val leftContent get() = getAndesTextfieldLeftContent()
 
-    private fun getAndesTexfieldLeftContent(): AndesTextfieldContentInterface {
+    private fun getAndesTextfieldLeftContent(): AndesTextfieldContentInterface {
         return when (this) {
             PREFIX -> AndesPrefixTextfieldContent
             ICON -> AndesIconTextfieldContent
@@ -33,9 +33,9 @@ enum class AndesTextfieldRightContent {
     INDETERMINATE,
     CHECKBOX;
 
-    internal val rightContent get() = getAndesTexfieldRightContent()
+    internal val rightContent get() = getAndesTextfieldRightContent()
 
-    private fun getAndesTexfieldRightContent(): AndesTextfieldContentInterface {
+    private fun getAndesTextfieldRightContent(): AndesTextfieldContentInterface {
         return when (this) {
             SUFFIX -> AndesSuffixTextfieldContent
             ICON -> AndesIconTextfieldContent

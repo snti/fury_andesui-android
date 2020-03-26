@@ -16,7 +16,7 @@ import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 
 /**
- * Defines all style related properties that an [AndesTexfield] needs to be drawn properly.
+ * Defines all style related properties that an [AndesTextfield] needs to be drawn properly.
  * Those properties change depending on the style of the message.
  *
  */

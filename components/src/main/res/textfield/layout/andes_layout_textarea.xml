@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/andes_textfield_container"
+    android:id="@+id/andes_textarea_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/andes_texfield_label"
+        android:id="@+id/andes_textarea_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/andes_textfield_label_text"
@@ -16,53 +16,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/andes_textfield_text_container"
-        app:layout_constraintTop_toBottomOf="@+id/andes_texfield_label"
+        android:id="@+id/andes_textarea_text_container"
+        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_label"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/andes_textfield_container_marginTop"
         android:minHeight="@dimen/andes_textfield_container_minHeight"
         android:addStatesFromChildren="true">
 
-        <FrameLayout
-            android:id="@+id/andes_textfield_left_component"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            app:layout_constraintBottom_toBottomOf="@id/andes_textfield_text_container"
-            app:layout_constraintEnd_toStartOf="@id/andes_textfield_edittext"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/andes_textfield_text_container"
-            app:layout_constraintTop_toTopOf="@id/andes_textfield_text_container" />
 
         <EditText
-            android:id="@+id/andes_textfield_edittext"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:id="@+id/andes_textarea_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/andes_border"
-            android:inputType="text"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:minLines="3"
             android:textCursorDrawable="@drawable/andes_color_cursor"
             android:textSize="@dimen/andes_textfield_edittext_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/andes_textfield_right_component"
-            app:layout_constraintStart_toEndOf="@+id/andes_textfield_left_component"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginEnd="12dp"
-            app:layout_goneMarginStart="12dp" />
-
-        <FrameLayout
-            android:id="@+id/andes_textfield_right_component"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/andes_textfield_text_container"
-            app:layout_constraintStart_toEndOf="@id/andes_textfield_edittext"
-            app:layout_constraintEnd_toEndOf="@id/andes_textfield_text_container"
-            app:layout_constraintTop_toTopOf="@id/andes_textfield_text_container" />
+            app:layout_constraintEnd_toEndOf="@+id/andes_textarea_text_container"
+            app:layout_constraintStart_toStartOf="@+id/andes_textarea_text_container"
+            app:layout_constraintTop_toTopOf="@id/andes_textarea_text_container" />
 
     </android.support.constraint.ConstraintLayout>
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/andes_texfield_icon"
+        android:id="@+id/andes_textarea_icon"
         android:layout_width="@dimen/andes_textfield_icon_diameter"
         android:layout_height="@dimen/andes_textfield_icon_diameter"
         android:layout_marginStart="6dp"
@@ -71,10 +56,10 @@
         android:minHeight="@dimen/andes_textfield_icon_diameter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
+        app:layout_constraintTop_toBottomOf="@+id/andes_textarea_text_container" />
 
     <TextView
-        android:id="@+id/andes_texfield_helper"
+        android:id="@+id/andes_textarea_helper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -84,20 +69,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/andes_texfield_icon"
-        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
+        app:layout_constraintStart_toEndOf="@+id/andes_textarea_icon"
+        app:layout_constraintTop_toBottomOf="@+id/andes_textarea_text_container" />
 
     <TextView
-        android:id="@+id/andes_texfield_counter"
+        android:id="@+id/andes_textarea_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/andes_textfield_counter_text"
         android:textSize="@dimen/andes_textfield_counter_textSize"
         android:layout_marginTop="@dimen/andes_textfield_counter_marginTop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/andes_textfield_container"
+        app:layout_constraintEnd_toEndOf="@id/andes_textarea_container"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/andes_texfield_helper"
-        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_text_container" />
+        app:layout_constraintStart_toEndOf="@id/andes_textarea_helper"
+        app:layout_constraintTop_toBottomOf="@+id/andes_textarea_text_container" />
 
 </android.support.constraint.ConstraintLayout>

@@ -50,8 +50,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTexfieldCounterMinValue="0"
-            app:andesTexfieldCounterMaxValue="10"
+            app:andesTextfieldCounterMinValue="0"
+            app:andesTextfieldCounterMaxValue="10"
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
             />
 
@@ -63,8 +63,8 @@
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTexfieldCounterMinValue="0"
-            app:andesTexfieldCounterMaxValue="10"
+            app:andesTextfieldCounterMinValue="0"
+            app:andesTextfieldCounterMaxValue="10"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -73,8 +73,8 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTexfieldCounterMinValue="0"
-            app:andesTexfieldCounterMaxValue="10"
+            app:andesTextfieldCounterMinValue="0"
+            app:andesTextfieldCounterMaxValue="10"
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
             />
 
@@ -86,8 +86,14 @@
             app:andesTextfieldHint="@string/andes_textfield_hint_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTexfieldCounterMinValue="0"
-            app:andesTexfieldCounterMaxValue="0"
+            app:andesTextfieldCounterMinValue="0"
+            app:andesTextfieldCounterMaxValue="0"
+            />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextarea
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
             />
 
     </LinearLayout>

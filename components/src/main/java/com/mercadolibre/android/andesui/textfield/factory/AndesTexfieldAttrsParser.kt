@@ -71,9 +71,9 @@ internal object AndesTextfieldAttrsParser {
         }
 
 
-        val counterMinValue = typedArray.getInt(R.styleable.AndesTextfield_andesTexfieldCounterMinValue, 0)
+        val counterMinValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMinValue, 0)
 
-        val counterMaxValue = typedArray.getInt(R.styleable.AndesTextfield_andesTexfieldCounterMaxValue, 0)
+        val counterMaxValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMaxValue, 0)
 
         return AndesTextfieldAttrs(
                 label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),

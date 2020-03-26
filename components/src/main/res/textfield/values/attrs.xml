@@ -8,9 +8,9 @@
 
         <attr name="andesTextfieldHint" format="reference" />
 
-        <attr name="andesTexfieldCounterMinValue" format="integer" />
+        <attr name="andesTextfieldCounterMinValue" format="integer" />
 
-        <attr name="andesTexfieldCounterMaxValue" format="integer" />
+        <attr name="andesTextfieldCounterMaxValue" format="integer" />
 
         <attr name="andesTextfieldState">
             <enum name="enabled" value="20" />
@@ -36,7 +36,28 @@
             <enum name="indeterminate" value="17" />
             <enum name="checkbox" value="18" />
         </attr>
-
     </declare-styleable>
 
+
+    <declare-styleable name="AndesTextarea" tools:ignore="ResourceName">
+
+        <attr name="andesTextareaLabel" format="reference" />
+
+        <attr name="andesTextareaHelper" format="reference" />
+
+        <attr name="andesTextareaHint" format="reference" />
+
+        <attr name="andesTextareaCounterMinValue" format="integer" />
+
+        <attr name="andesTextareaCounterMaxValue" format="integer" />
+
+        <attr name="andesTextareaMaxLines" format="integer" />
+
+        <attr name="andesTextareaState">
+            <enum name="enabled" value="20" />
+            <enum name="error" value="21" />
+            <enum name="disabled" value="22" />
+            <enum name="readonly" value="23" />
+        </attr>
+    </declare-styleable>
 </resources>

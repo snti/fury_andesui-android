@@ -23,18 +23,19 @@ internal data class AndesTextfieldConfiguration(
         val counterSize: Float,
         val counterMinLength: Int?,
         val counterMaxLength: Int?,
-        val counterText: AndesTextfieldCounter?,
+        val counterText: AndesTextfieldCounter? = null,
         val placeHolderColor : AndesColor,
         val placeHolderText : String? = null,
         val placeHolderSize : Float,
         val typeface: Typeface,
         val icon: Drawable?,
-        val leftComponent : View?,
-        val rightComponent : View?,
-        val leftComponentLeftMargin: Int?,
-        val leftComponentRightMargin: Int?,
-        val rightComponentLeftMargin : Int?,
-        val rightComponentRightMargin: Int?
+        val leftComponent : View? = null,
+        val rightComponent : View? = null,
+        val leftComponentLeftMargin: Int? = null,
+        val leftComponentRightMargin: Int? = null,
+        val rightComponentLeftMargin : Int? = null,
+        val rightComponentRightMargin: Int? = null,
+        val maxLines : Int ? = null
         )
 
 internal object AndesTextfieldConfigurationFactory {
@@ -67,6 +68,32 @@ internal object AndesTextfieldConfigurationFactory {
                     leftComponentRightMargin = resolveLeftComponentRightMargin(context, leftContent?.leftContent),
                     rightComponentLeftMargin = resolveRightComponentLeftMargin(context, rightContent?.rightContent),
                     rightComponentRightMargin = resolveRightComponentRightMargin(context, rightContent?.rightContent)
+            )
+        }
+    }
+
+    fun create(context: Context, andesTextareaAttrs: AndesTextareaAttrs): AndesTextfieldConfiguration {
+        return with(andesTextareaAttrs) {
+
+            AndesTextfieldConfiguration(
+                    background = resolveBackground(context, state.state),
+                    helperColor = resolveHelperTextColor(state.state),
+                    helperText = helper,
+                    helperSize = resolveHelperSize(context),
+                    helperTypeface = resolveHelperTypeface(state.state, context),
+                    labelColor = resolveLabelTextColor(state.state),
+                    labelText = label,
+                    labelSize = resolveLabelSize(context),
+                    counterColor = resolveCounterTextColor(state.state),
+                    counterSize = resolveCounterSize(context),
+                    counterMinLength = counter!!.minLength,
+                    counterMaxLength = counter!!.maxLength,
+                    placeHolderText = placeholder,
+                    placeHolderColor = resolvePlaceHolderColor(state.state, context),
+                    placeHolderSize = resolvePlaceHolderSize(context),
+                    typeface = resolveTypeface(context),
+                    icon = resolveIcon(context, state.state),
+                    maxLines = maxLines
             )
         }
     }

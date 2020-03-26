@@ -1,41 +1,33 @@
 package com.mercadolibre.android.andesui.textfield
 
 import android.content.Context
-import android.graphics.drawable.BitmapDrawable
 import android.support.constraint.ConstraintLayout
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
-import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
-import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.*
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.DISABLED
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.READONLY
-import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 
-class AndesTextfield : ConstraintLayout {
+class AndesTextarea : ConstraintLayout {
 
     /**
      * Getter and setter for [label].
      */
     var label: String?
-        get() = andesTextfieldAttrs.label
+        get() = andesTextareaAttrs.label
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(label = value)
+            andesTextareaAttrs = andesTextareaAttrs.copy(label = value)
             setupLabelComponent(createConfig())
         }
 
@@ -43,9 +35,9 @@ class AndesTextfield : ConstraintLayout {
      * Getter and setter for [helper].
      */
     var helper: String?
-        get() = andesTextfieldAttrs.helper
+        get() = andesTextareaAttrs.helper
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(helper = value)
+            andesTextareaAttrs = andesTextareaAttrs.copy(helper = value)
             setupHelperComponent(createConfig())
         }
 
@@ -53,9 +45,9 @@ class AndesTextfield : ConstraintLayout {
      * Getter and setter for [placeholder].
      */
     var placeholder: String?
-        get() = andesTextfieldAttrs.placeholder
+        get() = andesTextareaAttrs.placeholder
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(placeholder = value)
+            andesTextareaAttrs = andesTextareaAttrs.copy(placeholder = value)
             setupPlaceHolderComponent(createConfig())
         }
 
@@ -63,9 +55,9 @@ class AndesTextfield : ConstraintLayout {
      * Getter and setter for [counter].
      */
     var counter: AndesTextfieldCounter?
-        get() = andesTextfieldAttrs.counter
+        get() = andesTextareaAttrs.counter
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(counter = value)
+            andesTextareaAttrs = andesTextareaAttrs.copy(counter = value)
             setupCounterComponent(createConfig())
         }
 
@@ -73,36 +65,28 @@ class AndesTextfield : ConstraintLayout {
      * Getter and setter for the state of [EditText].
      */
     var state: AndesTextfieldState
-        get() = andesTextfieldAttrs.state
+        get() = andesTextareaAttrs.state
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(state = value)
+            andesTextareaAttrs = andesTextareaAttrs.copy(state = value)
             setupColorComponents(createConfig())
         }
 
-    var leftContent: AndesTextfieldLeftContent?
-        get() = andesTextfieldAttrs.leftContent
+    var maxLines: Int?
+        get() = andesTextareaAttrs.maxLines
         set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(leftContent = value)
-            setupLeftComponent(createConfig())
+            andesTextareaAttrs = andesTextareaAttrs.copy(maxLines = value)
+            setupMaxlines(createConfig())
         }
 
-    var rightContent: AndesTextfieldRightContent?
-        get() = andesTextfieldAttrs.rightContent
-        set(value) {
-            andesTextfieldAttrs = andesTextfieldAttrs.copy(rightContent = value)
-            setupRightComponent(createConfig())
-        }
-
-    private lateinit var andesTextfieldAttrs: AndesTextfieldAttrs
-    private lateinit var textfieldContainer: ConstraintLayout
+    private lateinit var andesTextareaAttrs: AndesTextareaAttrs
+    private lateinit var textareaContainer: ConstraintLayout
     private lateinit var textContainer: ConstraintLayout
     private lateinit var labelComponent: TextView
     private lateinit var helperComponent: TextView
     private lateinit var counterComponent: TextView
     private lateinit var textComponent: EditText
     private lateinit var iconComponent: SimpleDraweeView
-    private lateinit var leftComponent: FrameLayout
-    private lateinit var rightComponent: FrameLayout
+
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -118,14 +102,14 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun initAttrs(attrs: AttributeSet?) {
-        andesTextfieldAttrs = AndesTextfieldAttrsParser.parse(context, attrs)
-        val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
+        andesTextareaAttrs = AndesTextareaAttrsParser.parse(context, attrs)
+        val config = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?) {
-        andesTextfieldAttrs = AndesTextfieldAttrs(label, helper, placeholder, counter, state, leftContent, rightContent)
-        val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
+    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, maxLines: Int?) {
+        andesTextareaAttrs = AndesTextareaAttrs(label, helper, placeholder, counter, state, maxLines)
+        val config = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
         setupComponents(config)
     }
 
@@ -138,9 +122,8 @@ class AndesTextfield : ConstraintLayout {
         setupHelperComponent(config)
         setupCounterComponent(config)
         setupPlaceHolderComponent(config)
-        setupLeftComponent(config)
-        setupRightComponent(config)
         setupColorComponents(config)
+        setupMaxlines(config)
     }
 
     /**
@@ -149,17 +132,16 @@ class AndesTextfield : ConstraintLayout {
      *
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_textfield, this, true)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_textarea, this, true)
 
-        textfieldContainer = container.findViewById(R.id.andes_textfield_container)
-        textContainer = container.findViewById(R.id.andes_textfield_text_container)
-        labelComponent = container.findViewById(R.id.andes_textfield_label)
-        helperComponent = container.findViewById(R.id.andes_textfield_helper)
-        counterComponent = container.findViewById(R.id.andes_textfield_counter)
-        iconComponent = container.findViewById(R.id.andes_textfield_icon)
-        textComponent = container.findViewById(R.id.andes_textfield_edittext)
-        leftComponent = container.findViewById(R.id.andes_textfield_left_component)
-        rightComponent = container.findViewById(R.id.andes_textfield_right_component)
+        textareaContainer = container.findViewById(R.id.andes_textarea_container)
+        textContainer = container.findViewById(R.id.andes_textarea_text_container)
+        labelComponent = container.findViewById(R.id.andes_textarea_label)
+        helperComponent = container.findViewById(R.id.andes_textarea_helper)
+        counterComponent = container.findViewById(R.id.andes_textarea_counter)
+        iconComponent = container.findViewById(R.id.andes_textarea_icon)
+        textComponent = container.findViewById(R.id.andes_textarea_edittext)
+
     }
 
     private fun setupViewId() {
@@ -175,16 +157,16 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if(state == DISABLED || state == READONLY){
+        if(state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY){
             isEnabled = false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
-            textfieldContainer.isEnabled = isEnabled
+            textareaContainer.isEnabled = isEnabled
         } else {
             isEnabled = true
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
-            textfieldContainer.isEnabled = isEnabled
+            textareaContainer.isEnabled = isEnabled
         }
     }
 
@@ -194,7 +176,6 @@ class AndesTextfield : ConstraintLayout {
      */
     private fun setupColorComponents(config: AndesTextfieldConfiguration) {
         textContainer.background = config.background
-
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
             iconComponent.visibility = View.VISIBLE
@@ -281,87 +262,18 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
-    private fun setupLeftComponent(config: AndesTextfieldConfiguration) {
-        if (config.leftComponent != null) {
-            leftComponent.removeAllViews()
-            leftComponent.addView(config.leftComponent)
-
-            val params = leftComponent.layoutParams as ConstraintLayout.LayoutParams
-            params.marginStart = config.leftComponentLeftMargin!!
-            params.marginEnd = config.leftComponentRightMargin!!
-            leftComponent.layoutParams = params
-
-            leftComponent.visibility = View.VISIBLE
-        } else {
-            leftComponent.visibility = View.GONE
+    private fun setupMaxlines(config: AndesTextfieldConfiguration) {
+        if (config.maxLines != null) {
+            if (config.maxLines >= textComponent.minLines) {
+                textComponent.maxLines = config.maxLines
+            } else {
+                when {
+                    BuildConfig.DEBUG -> throw IllegalStateException("Max Lines cant be minor than min lines")
+                    else -> Log.d("AndesTextarea", "Max Lines cant be minor than min lines")
+                }
+            }
         }
     }
 
-    private fun setupRightComponent(config: AndesTextfieldConfiguration) {
-        if (config.rightComponent != null) {
-            rightComponent.removeAllViews()
-            rightComponent.addView(config.rightComponent)
-            setupClear()
-
-            val params = rightComponent.layoutParams as ConstraintLayout.LayoutParams
-            params.marginStart = config.rightComponentLeftMargin!!
-            params.marginEnd = config.rightComponentRightMargin!!
-            rightComponent.layoutParams = params
-
-            rightComponent.visibility = View.VISIBLE
-
-        } else {
-            rightComponent.visibility = View.GONE
-        }
-    }
-
-    private fun setupClear() {
-        if (rightContent == AndesTextfieldRightContent.CLEAR) {
-            val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-            clear.setOnClickListener { textComponent.text.clear() }
-        }
-    }
-
-    fun setupAction(text: String, onClickListener: OnClickListener) {
-        rightContent = AndesTextfieldRightContent.ACTION
-        val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
-        action.text = text
-        action.setOnClickListener(onClickListener)
-
-    }
-
-    fun setupRightIcon(iconPath: String) {
-        rightContent = AndesTextfieldRightContent.ICON
-        val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-        rightIcon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                context,
-                R.color.andes_gray_800.toAndesColor())
-        )
-    }
-
-    fun setupLeftIcon(iconPath: String) {
-        leftContent = AndesTextfieldLeftContent.ICON
-        val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
-        leftIcon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                context,
-                R.color.andes_gray_450.toAndesColor())
-        )
-
-    }
-
-    fun setupPrefix(text: String) {
-        leftContent = AndesTextfieldLeftContent.PREFIX
-        val prefix: TextView = leftComponent.getChildAt(0) as TextView
-        prefix.text = text
-    }
-
-    fun setupSuffix(text: String) {
-        rightContent = AndesTextfieldRightContent.SUFFIX
-            val suffix: TextView = leftComponent.getChildAt(0) as TextView
-            suffix.text = text
-    }
-
-    private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
+    private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
 }
