@@ -22,8 +22,7 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftCont
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.*
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.DISABLED
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.READONLY
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 
@@ -105,8 +104,20 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var rightComponent: FrameLayout
 
     @Suppress("unused")
-    private constructor(context: Context) : super(context) {
-        initAttrs(null)
+    constructor(context: Context) : super(context) {
+        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT)
+    }
+
+    constructor(context: Context,
+                label: String? = LABEL_DEFAULT,
+                helper: String? = HELPER_DEFAULT,
+                placeholder: String? = PLACEHOLDER_DEFAULT,
+                counter: AndesTextfieldCounter? = COUNTER_DEFAULT,
+                state: AndesTextfieldState = STATE_DEFAULT,
+                leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
+                rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT)
+            : super(context) {
+        initAttrs(label, helper, placeholder, counter, state, leftContent, rightContent)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -364,4 +375,19 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
+
+    /**
+     * Default values for AndesTextfield basic properties
+     */
+    companion object {
+        private val LABEL_DEFAULT = null
+        private val HELPER_DEFAULT = null
+        private val PLACEHOLDER_DEFAULT = null
+        private val COUNTER_DEFAULT = AndesTextfieldCounter()
+        private val STATE_DEFAULT = ENABLED
+        private val LEFT_COMPONENT_DEFAULT = null
+        private val RIGHT_COMPONENT_DEFAULT = null
+
+
+    }
 }
