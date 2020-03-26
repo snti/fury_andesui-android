@@ -48,7 +48,7 @@ internal object AndesTextareaAttrsParser {
         return AndesTextareaAttrs(
                 label = typedArray.getString(R.styleable.AndesTextarea_andesTextareaLabel),
                 helper = typedArray.getString(R.styleable.AndesTextarea_andesTextareaHelper),
-                placeholder = typedArray.getString(R.styleable.AndesTextarea_andesTextareaHint),
+                placeholder = typedArray.getString(R.styleable.AndesTextarea_andesTextareaPlaceholder),
                 counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
                 state = state,
                 maxLines = typedArray.getInt(R.styleable.AndesTextarea_andesTextareaMaxLines, Int.MAX_VALUE)

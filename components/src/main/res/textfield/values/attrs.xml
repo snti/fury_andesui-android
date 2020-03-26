@@ -6,7 +6,7 @@
 
         <attr name="andesTextfieldHelper" format="reference" />
 
-        <attr name="andesTextfieldHint" format="reference" />
+        <attr name="andesTextfieldPlaceholder" format="reference" />
 
         <attr name="andesTextfieldCounterMinValue" format="integer" />
 
@@ -45,7 +45,7 @@
 
         <attr name="andesTextareaHelper" format="reference" />
 
-        <attr name="andesTextareaHint" format="reference" />
+        <attr name="andesTextareaPlaceholder" format="reference" />
 
         <attr name="andesTextareaCounterMinValue" format="integer" />
 

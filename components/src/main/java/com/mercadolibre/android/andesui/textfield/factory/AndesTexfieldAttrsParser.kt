@@ -78,7 +78,7 @@ internal object AndesTextfieldAttrsParser {
         return AndesTextfieldAttrs(
                 label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),
                 helper = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldHelper),
-                placeholder = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldHint),
+                placeholder = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldPlaceholder),
                 counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
                 state = state,
                 leftContent = leftContent,
