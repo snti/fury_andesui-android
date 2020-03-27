@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
-            app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_hint_text"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -52,7 +52,7 @@
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTextfieldCounterMinValue="0"
             app:andesTextfieldCounterMaxValue="10"
-            app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_hint_text"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             app:andesTextfieldState="error"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_hint_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTextfieldCounterMinValue="0"
@@ -75,7 +75,7 @@
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTextfieldCounterMinValue="0"
             app:andesTextfieldCounterMaxValue="10"
-            app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_hint_text"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldState="readonly"
-            app:andesTextfieldHint="@string/andes_textfield_hint_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_hint_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTextfieldCounterMinValue="0"
