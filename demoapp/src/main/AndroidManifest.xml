@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mercadolibre.android.andesui.demoapp">
@@ -7,21 +8,21 @@
 
     <application
         android:name=".MainApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/andesui_demoapp_ic_launcher"
         android:label="@string/andesui_demoapp_app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:allowBackup="false">
+        tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.mercadolibre.android.andesui.demoapp.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.ButtonShowcaseActivity">
+        <activity android:name=".feature.ButtonShowcaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -34,8 +35,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.MessageShowcaseActivity">
+        <activity android:name=".feature.MessageShowcaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -48,8 +48,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.TextfieldShowcaseActivity">
+        <activity android:name=".feature.TextfieldShowcaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -62,8 +61,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.mercadolibre.android.andesui.demoapp.feature.WhatsNewActivity">
+        <activity android:name=".feature.WhatsNewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
