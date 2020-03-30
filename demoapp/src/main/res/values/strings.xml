@@ -55,7 +55,13 @@
     <string name="andesui_demoapp_label_andes_specs">Andes Specs</string>
     <string name="andesui_demoapp_label_andes_message_specs">Andes Message Specs</string>
     <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs</string>
-    <string name="andesui_textfiled">Andes Textfield</string>
+    <string name="andesui_demoapp_clear_button">Clear</string>
+    <string name="andesui_demoapp_textfiled">Andes Textfield</string>
+    <string name="andesui_demoapp_textfield_state_text">State:</string>
+    <string name="andesui_demoapp_textfield_preffix_text">Preffix:</string>
+    <string name="andesui_demoapp_textfield_suffix_text">Suffix:</string>
+    <string name="andesui_demoapp_counter_text">Counter:</string>
+    <string name="andesui_demoapp_counter_separator">/</string>
 
 
     <string-array name="state_spinner">
@@ -69,4 +75,25 @@
         <item>Loud</item>
         <item>Quiet</item>
     </string-array>
+
+    <string-array name="textfield_state_spinner">
+        <item>Enabled</item>
+        <item>Disabled</item>
+        <item>Error</item>
+        <item>Readonly</item>
+    </string-array>
+
+    <string-array name="suffix_spinner">
+        <item>Suffix</item>
+        <item>Icon</item>
+        <item>Validated</item>
+        <item>Clear</item>
+        <item>Action</item>
+    </string-array>
+
+    <string-array name="preffix_spinner">
+        <item>Preffix</item>
+        <item>Icon</item>
+    </string-array>
+
 </resources>

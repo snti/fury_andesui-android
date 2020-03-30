@@ -38,7 +38,6 @@
         </attr>
     </declare-styleable>
 
-
     <declare-styleable name="AndesTextarea" tools:ignore="ResourceName">
 
         <attr name="andesTextareaLabel" format="reference" />
