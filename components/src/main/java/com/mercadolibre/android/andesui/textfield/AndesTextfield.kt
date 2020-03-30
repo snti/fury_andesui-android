@@ -94,7 +94,7 @@ class AndesTextfield : ConstraintLayout {
             setupRightComponent(createConfig())
         }
 
-    var textType: AndesTextfieldType
+    var textType: AndesTextfieldType?
         get() = andesTextfieldAttrs.textType
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(textType = value)

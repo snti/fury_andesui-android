@@ -19,7 +19,7 @@ internal data class AndesTextfieldAttrs(val label: String?,
                                         val state: AndesTextfieldState,
                                         val leftContent: AndesTextfieldLeftContent?,
                                         val rightContent: AndesTextfieldRightContent?,
-                                        val textType: AndesTextfieldType)
+                                        val textType: AndesTextfieldType?)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
