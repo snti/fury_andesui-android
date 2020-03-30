@@ -7,6 +7,7 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
+import com.mercadolibre.android.andesui.textfield.type.AndesTextfieldType
 
 /**
  * The data class that contains the public components of the textfield.
@@ -17,7 +18,8 @@ internal data class AndesTextfieldAttrs(val label: String?,
                                         val counter: AndesTextfieldCounter?,
                                         val state: AndesTextfieldState,
                                         val leftContent: AndesTextfieldLeftContent?,
-                                        val rightContent: AndesTextfieldRightContent?)
+                                        val rightContent: AndesTextfieldRightContent?,
+                                        val textType: AndesTextfieldType)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
@@ -39,6 +41,11 @@ internal object AndesTextfieldAttrsParser {
     private const val ANDES_TEXTFIELD_STATE_ERROR = "21"
     private const val ANDES_TEXTFIELD_STATE_DISABLED = "22"
     private const val ANDES_TEXTFIELD_STATE_READONLY = "23"
+
+    private const val ANDES_TEXTFIELD_TYPE_TEXT = "30"
+    private const val ANDES_TEXTFIELD_TYPE_NUMBERS = "31"
+    private const val ANDES_TEXTFIELD_TYPE_PASSWORD = "32"
+    private const val ANDES_TEXTFIELD_TYPE_EMAIL = "33"
 
 
     fun parse(context: Context, attr: AttributeSet?): AndesTextfieldAttrs {
@@ -70,6 +77,13 @@ internal object AndesTextfieldAttrsParser {
             else -> null
         }
 
+        val textType = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldType)) {
+            ANDES_TEXTFIELD_TYPE_TEXT -> AndesTextfieldType.TEXT
+            ANDES_TEXTFIELD_TYPE_NUMBERS -> AndesTextfieldType.NUMBER
+            ANDES_TEXTFIELD_TYPE_PASSWORD -> AndesTextfieldType.PASSWORD
+            ANDES_TEXTFIELD_TYPE_EMAIL -> AndesTextfieldType.EMAIL
+            else -> AndesTextfieldType.TEXT
+        }
 
         val counterMinValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMinValue, 0)
 
@@ -82,7 +96,8 @@ internal object AndesTextfieldAttrsParser {
                 counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
                 state = state,
                 leftContent = leftContent,
-                rightContent = rightContent
+                rightContent = rightContent,
+                textType = textType
         ).also { typedArray.recycle() }
     }
 }

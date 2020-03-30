@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.support.constraint.ConstraintLayout
 import android.text.Editable
 import android.text.InputFilter
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -23,6 +24,7 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightCon
 import com.mercadolibre.android.andesui.textfield.factory.*
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
+import com.mercadolibre.android.andesui.textfield.type.AndesTextfieldType
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 
@@ -92,6 +94,13 @@ class AndesTextfield : ConstraintLayout {
             setupRightComponent(createConfig())
         }
 
+    var textType: AndesTextfieldType
+        get() = andesTextfieldAttrs.textType
+        set(value) {
+            andesTextfieldAttrs = andesTextfieldAttrs.copy(textType = value)
+            setupTextType()
+        }
+
     private lateinit var andesTextfieldAttrs: AndesTextfieldAttrs
     private lateinit var textfieldContainer: ConstraintLayout
     private lateinit var textContainer: ConstraintLayout
@@ -105,7 +114,7 @@ class AndesTextfield : ConstraintLayout {
 
     @Suppress("unused")
     constructor(context: Context) : super(context) {
-        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT)
+        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, TEXTFIELD_TEXT_TYPE)
     }
 
     constructor(context: Context,
@@ -115,9 +124,10 @@ class AndesTextfield : ConstraintLayout {
                 counter: AndesTextfieldCounter? = COUNTER_DEFAULT,
                 state: AndesTextfieldState = STATE_DEFAULT,
                 leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
-                rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT)
+                rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT,
+                textType: AndesTextfieldType = TEXTFIELD_TEXT_TYPE)
             : super(context) {
-        initAttrs(label, helper, placeholder, counter, state, leftContent, rightContent)
+        initAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, textType)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -134,8 +144,8 @@ class AndesTextfield : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?) {
-        andesTextfieldAttrs = AndesTextfieldAttrs(label, helper, placeholder, counter, state, leftContent, rightContent)
+    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?, textType: AndesTextfieldType) {
+        andesTextfieldAttrs = AndesTextfieldAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, textType)
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
         setupComponents(config)
     }
@@ -152,6 +162,7 @@ class AndesTextfield : ConstraintLayout {
         setupLeftComponent(config)
         setupRightComponent(config)
         setupColorComponents(config)
+        setupTextType()
     }
 
     /**
@@ -196,6 +207,15 @@ class AndesTextfield : ConstraintLayout {
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
             textfieldContainer.isEnabled = isEnabled
+        }
+    }
+
+    private fun setupTextType() {
+        when (textType) {
+            AndesTextfieldType.TEXT -> textComponent.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
+            AndesTextfieldType.NUMBER -> textComponent.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL
+            AndesTextfieldType.PASSWORD -> textComponent.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            AndesTextfieldType.EMAIL -> textComponent.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         }
     }
 
@@ -387,7 +407,6 @@ class AndesTextfield : ConstraintLayout {
         private val STATE_DEFAULT = ENABLED
         private val LEFT_COMPONENT_DEFAULT = null
         private val RIGHT_COMPONENT_DEFAULT = null
-
-
+        private val TEXTFIELD_TEXT_TYPE = AndesTextfieldType.TEXT
     }
 }

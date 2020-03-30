@@ -40,7 +40,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/andes_border"
-            android:inputType="text"
             android:textCursorDrawable="@drawable/andes_color_cursor"
             android:textSize="@dimen/andes_textfield_edittext_textSize"
             app:layout_constraintBottom_toBottomOf="parent"

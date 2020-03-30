@@ -26,6 +26,7 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLeftContent="icon"
             app:andesTextfieldRightContent="clear"
+            app:andesTextfieldType="text"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -34,6 +35,7 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldType="number"
             />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield

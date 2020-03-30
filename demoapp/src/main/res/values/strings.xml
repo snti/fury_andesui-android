@@ -62,6 +62,7 @@
     <string name="andesui_demoapp_textfield_suffix_text">Suffix:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_counter_separator">/</string>
+    <string name="andesui_demoapp_textfield_text_type">Text Type</string>
 
 
     <string-array name="state_spinner">
@@ -74,6 +75,13 @@
     <string-array name="hierarchy_spinner">
         <item>Loud</item>
         <item>Quiet</item>
+    </string-array>
+
+    <string-array name="textfield_type_spinner">
+        <item>Text</item>
+        <item>Number</item>
+        <item>Password</item>
+        <item>Email</item>
     </string-array>
 
     <string-array name="textfield_state_spinner">

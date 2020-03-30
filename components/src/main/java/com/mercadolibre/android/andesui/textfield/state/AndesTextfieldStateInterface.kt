@@ -32,7 +32,7 @@ internal sealed class AndesTextfieldStateInterface {
 
 internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
-    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = helper
     override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = if (counter.maxLength <= counter.minLength) null else counter
@@ -50,15 +50,15 @@ internal object AndesEnabledTextfieldState : AndesTextfieldStateInterface() {
 
 internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     override fun textColor(): AndesColor = R.color.andes_red_500.toAndesColor()
-    override fun hintColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
+    override fun hintColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
     override fun helper(helper: String?): String? = helper
     override fun counter(counter: AndesTextfieldCounter): AndesTextfieldCounter? = if (counter.maxLength <= counter.minLength) null else counter
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_red_50.toColor(context)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_red_50.toColor(context)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_bg_color_white.toColor(context)))
+            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_bg_color_white.toColor(context)))
         }
     }
 

@@ -20,6 +20,7 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftCont
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldCounter
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
+import com.mercadolibre.android.andesui.textfield.type.AndesTextfieldType
 
 class TextfieldShowcaseActivity : AppCompatActivity() {
 
@@ -76,6 +77,16 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val counterMin = layoutTextfield.findViewById<EditText>(R.id.counter_min)
             val counterMax = layoutTextfield.findViewById<EditText>(R.id.counter_max)
 
+            val textTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.textfield_type_spinner,
+                    android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                textTypeSpinner.adapter = adapter
+            }
+
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             ArrayAdapter.createFromResource(
                     context,
@@ -116,6 +127,13 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 val max = counterMax.text.toString().toIntOrNull() ?: 0
                 textfield.counter = AndesTextfieldCounter(min,max)
 
+                when (textTypeSpinner.selectedItem.toString()) {
+                    "Text" -> textfield.textType = AndesTextfieldType.TEXT
+                    "Number" -> textfield.textType = AndesTextfieldType.NUMBER
+                    "Password" -> textfield.textType = AndesTextfieldType.PASSWORD
+                    "Email" -> textfield.textType = AndesTextfieldType.EMAIL
+                }
+
                 when (stateSpinner.selectedItem.toString()) {
                     "Enabled" -> textfield.state = AndesTextfieldState.ENABLED
                     "Disabled" -> textfield.state = AndesTextfieldState.DISABLED
@@ -155,6 +173,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.state = AndesTextfieldState.ENABLED
                 textfield.leftContent = null
                 textfield.rightContent = null
+                textfield.textType = AndesTextfieldType.TEXT
             }
 
             return layoutTextfield

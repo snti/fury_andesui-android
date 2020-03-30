@@ -12,6 +12,13 @@
 
         <attr name="andesTextfieldCounterMaxValue" format="integer" />
 
+        <attr name="andesTextfieldType">
+            <enum name="text" value="30" />
+            <enum name="number" value="31" />
+            <enum name="password" value="32" />
+            <enum name="email" value="33" />
+        </attr>
+
         <attr name="andesTextfieldState">
             <enum name="enabled" value="20" />
             <enum name="error" value="21" />

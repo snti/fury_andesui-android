@@ -28,6 +28,18 @@
             />
 
         <TextView
+            android:text="@string/andesui_demoapp_textfield_text_type"
+            android:textColor="@color/andes_gray_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/textType_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
             android:text="@string/andesui_demoapp_textfield_state_text"
             android:textColor="@color/andes_gray_800"
             android:layout_width="match_parent"
