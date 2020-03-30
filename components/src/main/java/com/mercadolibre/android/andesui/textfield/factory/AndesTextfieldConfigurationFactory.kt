@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
+import com.mercadolibre.android.andesui.dropdown.AndesDropdownAttrs
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldContentInterface
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -94,6 +95,31 @@ internal object AndesTextfieldConfigurationFactory {
                     typeface = resolveTypeface(context),
                     icon = resolveIcon(context, state.state),
                     maxLines = maxLines
+            )
+        }
+    }
+
+    fun create(context: Context, andesDropdownAttrs: AndesDropdownAttrs): AndesTextfieldConfiguration {
+        return with(andesDropdownAttrs) {
+
+            AndesTextfieldConfiguration(
+                    background = resolveBackground(context, state.state),
+                    helperColor = resolveHelperTextColor(state.state),
+                    helperText = helper,
+                    helperSize = resolveHelperSize(context),
+                    helperTypeface = resolveHelperTypeface(state.state, context),
+                    labelColor = resolveLabelTextColor(state.state),
+                    labelText = label,
+                    labelSize = resolveLabelSize(context),
+                    counterColor = resolveCounterTextColor(state.state),
+                    counterSize = resolveCounterSize(context),
+                    placeHolderText = placeholder,
+                    placeHolderColor = resolvePlaceHolderColor(state.state, context),
+                    placeHolderSize = resolvePlaceHolderSize(context),
+                    typeface = resolveTypeface(context),
+                    icon = resolveIcon(context, state.state),
+                    counterMinLength = 0,
+                    counterMaxLength = 0
             )
         }
     }
