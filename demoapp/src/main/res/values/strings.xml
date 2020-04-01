@@ -62,7 +62,7 @@
     <string name="andesui_demoapp_textfield_suffix_text">Suffix:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_counter_separator">/</string>
-
+    <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,6 +77,11 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val counterMin = layoutTextfield.findViewById<EditText>(R.id.counter_min)
             val counterMax = layoutTextfield.findViewById<EditText>(R.id.counter_max)
 
+            val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
+            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            inputTypeSpinner.adapter = adapter
+
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             ArrayAdapter.createFromResource(
                     context,
@@ -135,6 +141,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     "Clear" -> textfield.rightContent = AndesTextfieldRightContent.CLEAR
                     "Action" -> textfield.rightContent = AndesTextfieldRightContent.ACTION
                 }
+
+                val selectedInputType = getInputTypesArray().filter { it.name == inputTypeSpinner.selectedItem.toString() }.single().value
+                textfield.inputType = selectedInputType
             }
 
             clearButton.setOnClickListener {
@@ -146,6 +155,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 helper.setText(null)
                 counterMin.setText(null)
                 counterMax.setText(null)
+                inputTypeSpinner.setSelection(getInputTypesArray().filter { it.name == "text" }.single().value)
 
                 //reset AndesTextfield's properties.
                 textfield.label = null
@@ -155,6 +165,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.state = AndesTextfieldState.ENABLED
                 textfield.leftContent = null
                 textfield.rightContent = null
+                textfield.inputType = InputType.TYPE_CLASS_TEXT
             }
 
             return layoutTextfield
@@ -169,6 +180,51 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             return layoutTextfield
         }
+
+        private fun getInputTypesArray(): ArrayList<InputTypeItem> {
+            val inputTypes = ArrayList<InputTypeItem>()
+
+            inputTypes.add(InputTypeItem("date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE))
+            inputTypes.add(InputTypeItem("datetime", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_NORMAL))
+            inputTypes.add(InputTypeItem("none", InputType.TYPE_NULL))
+            inputTypes.add(InputTypeItem("number", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL))
+            inputTypes.add(InputTypeItem("numberDecimal", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL))
+            inputTypes.add(InputTypeItem("numberPassword", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD))
+            inputTypes.add(InputTypeItem("numberSigned", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED))
+            inputTypes.add(InputTypeItem("phone", InputType.TYPE_CLASS_PHONE))
+            inputTypes.add(InputTypeItem("text", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL))
+            inputTypes.add(InputTypeItem("textAutoComplete", InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE))
+            inputTypes.add(InputTypeItem("textAutoCorrect", InputType.TYPE_TEXT_FLAG_AUTO_CORRECT))
+            inputTypes.add(InputTypeItem("textCapCharacters", InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS))
+            inputTypes.add(InputTypeItem("textCapSentences", InputType.TYPE_TEXT_FLAG_CAP_SENTENCES))
+            inputTypes.add(InputTypeItem("textCapWords", InputType.TYPE_TEXT_FLAG_CAP_WORDS))
+            inputTypes.add(InputTypeItem("textEmailAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS))
+            inputTypes.add(InputTypeItem("textEmailSubject", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_SUBJECT))
+            inputTypes.add(InputTypeItem("textFilter", InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE))
+            inputTypes.add(InputTypeItem("textLongMessage", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE))
+            inputTypes.add(InputTypeItem("textMultiLine", InputType.TYPE_TEXT_FLAG_MULTI_LINE))
+            inputTypes.add(InputTypeItem("textNoSuggestions", InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS))
+            inputTypes.add(InputTypeItem("textPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD))
+            inputTypes.add(InputTypeItem("textPersonName", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME))
+            inputTypes.add(InputTypeItem("textPhonetic", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PHONETIC))
+            inputTypes.add(InputTypeItem("textPostalAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS))
+            inputTypes.add(InputTypeItem("textShortMessage", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE))
+            inputTypes.add(InputTypeItem("textUri", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI))
+            inputTypes.add(InputTypeItem("textVisiblePassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD))
+            inputTypes.add(InputTypeItem("textWebEditText", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT))
+            inputTypes.add(InputTypeItem("textWebEmailAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS))
+            inputTypes.add(InputTypeItem("textWebPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD))
+            inputTypes.add(InputTypeItem("time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME))
+
+            return inputTypes
+        }
+
+        internal class InputTypeItem(val name: String, val value: Int) {
+            override fun toString(): String {
+                return this.name
+            }
+        }
+
     }
 }
 

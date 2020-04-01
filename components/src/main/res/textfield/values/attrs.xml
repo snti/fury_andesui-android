@@ -2,6 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <declare-styleable name="AndesTextfield" tools:ignore="ResourceName">
 
+        <attr name="android:inputType" />
+
         <attr name="andesTextfieldLabel" format="reference" />
 
         <attr name="andesTextfieldHelper" format="reference" />

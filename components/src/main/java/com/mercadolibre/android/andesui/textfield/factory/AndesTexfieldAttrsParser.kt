@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.textfield.factory
 
 
 import android.content.Context
+import android.text.InputType
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
@@ -17,7 +18,8 @@ internal data class AndesTextfieldAttrs(val label: String?,
                                         val counter: AndesTextfieldCounter?,
                                         val state: AndesTextfieldState,
                                         val leftContent: AndesTextfieldLeftContent?,
-                                        val rightContent: AndesTextfieldRightContent?)
+                                        val rightContent: AndesTextfieldRightContent?,
+                                        val inputType: Int)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
@@ -70,6 +72,7 @@ internal object AndesTextfieldAttrsParser {
             else -> null
         }
 
+        val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, 0)
 
         val counterMinValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMinValue, 0)
 
@@ -82,7 +85,8 @@ internal object AndesTextfieldAttrsParser {
                 counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
                 state = state,
                 leftContent = leftContent,
-                rightContent = rightContent
+                rightContent = rightContent,
+                inputType = inputType
         ).also { typedArray.recycle() }
     }
 }
