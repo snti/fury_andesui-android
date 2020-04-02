@@ -53,14 +53,14 @@
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:text="@string/andesui_demoapp_textfield_preffix_text"
+            android:text="@string/andesui_demoapp_textfield_prefix_text"
             android:textColor="@color/andes_gray_800"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
 
         <Spinner
-            android:id="@+id/preffix_spinner"
+            android:id="@+id/prefix_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />

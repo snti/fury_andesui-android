@@ -92,10 +92,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 stateSpinner.adapter = adapter
             }
 
-            val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.preffix_spinner)
+            val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.prefix_spinner)
             ArrayAdapter.createFromResource(
                     context,
-                    R.array.preffix_spinner,
+                    R.array.prefix_spinner,
                     android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -122,25 +122,11 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 val max = counterMax.text.toString().toIntOrNull() ?: 0
                 textfield.counter = AndesTextfieldCounter(min,max)
 
-                when (stateSpinner.selectedItem.toString()) {
-                    "Enabled" -> textfield.state = AndesTextfieldState.ENABLED
-                    "Disabled" -> textfield.state = AndesTextfieldState.DISABLED
-                    "Error" -> textfield.state = AndesTextfieldState.ERROR
-                    "Readonly" -> textfield.state = AndesTextfieldState.READONLY
-                }
+                textfield.state = AndesTextfieldState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
 
-                when (preffixSpinner.selectedItem.toString()) {
-                    "Preffix" -> textfield.leftContent = AndesTextfieldLeftContent.PREFIX
-                    "Icon" -> textfield.leftContent = AndesTextfieldLeftContent.ICON
-                }
+                textfield.leftContent = AndesTextfieldLeftContent.valueOf(preffixSpinner.selectedItem.toString().toUpperCase())
 
-                when (suffixSpinner.selectedItem.toString()) {
-                    "Suffix" -> textfield.rightContent = AndesTextfieldRightContent.SUFFIX
-                    "Icon" -> textfield.rightContent = AndesTextfieldRightContent.ICON
-                    "Validated" -> textfield.rightContent = AndesTextfieldRightContent.VALIDATED
-                    "Clear" -> textfield.rightContent = AndesTextfieldRightContent.CLEAR
-                    "Action" -> textfield.rightContent = AndesTextfieldRightContent.ACTION
-                }
+                textfield.rightContent = AndesTextfieldRightContent.valueOf(suffixSpinner.selectedItem.toString().toUpperCase())
 
                 val selectedInputType = getInputTypesArray().filter { it.name == inputTypeSpinner.selectedItem.toString() }.single().value
                 textfield.inputType = selectedInputType

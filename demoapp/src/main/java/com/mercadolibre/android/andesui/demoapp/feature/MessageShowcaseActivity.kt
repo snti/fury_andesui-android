@@ -108,18 +108,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.body = bodyText.text.toString()
                 }
 
-                when (typeSpinner.selectedItem.toString()) {
-                    "Neutral" -> changeMessage.type = AndesMessageType.NEUTRAL
-                    "Success" -> changeMessage.type = AndesMessageType.SUCCESS
-                    "Warning" -> changeMessage.type = AndesMessageType.WARNING
-                    "Error" -> changeMessage.type = AndesMessageType.ERROR
-                }
+                changeMessage.type = AndesMessageType.valueOf(typeSpinner.selectedItem.toString().toUpperCase())
 
-                when (hierarchySpinner.selectedItem.toString()) {
-                    "Loud" -> changeMessage.hierarchy = AndesMessageHierarchy.LOUD
-                    "Quiet" -> changeMessage.hierarchy = AndesMessageHierarchy.QUIET
-                }
-
+                changeMessage.hierarchy = AndesMessageHierarchy.valueOf(hierarchySpinner.selectedItem.toString().toUpperCase())
 
                 if (primaryActionText.text.toString() != "") {
                     changeMessage.setupPrimaryAction(primaryActionText.text.toString(), View.OnClickListener {
