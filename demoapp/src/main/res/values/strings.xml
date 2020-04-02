@@ -58,7 +58,7 @@
     <string name="andesui_demoapp_clear_button">Clear</string>
     <string name="andesui_demoapp_textfiled">Andes Textfield</string>
     <string name="andesui_demoapp_textfield_state_text">State:</string>
-    <string name="andesui_demoapp_textfield_preffix_text">Preffix:</string>
+    <string name="andesui_demoapp_textfield_prefix_text">Prefix:</string>
     <string name="andesui_demoapp_textfield_suffix_text">Suffix:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_counter_separator">/</string>
@@ -91,8 +91,8 @@
         <item>Action</item>
     </string-array>
 
-    <string-array name="preffix_spinner">
-        <item>Preffix</item>
+    <string-array name="prefix_spinner">
+        <item>Prefix</item>
         <item>Icon</item>
     </string-array>
 
