@@ -326,7 +326,6 @@ class AndesTextfield : ConstraintLayout {
         if (config.rightComponent != null) {
             rightComponent.removeAllViews()
             rightComponent.addView(config.rightComponent)
-            setupClear()
 
             val params = rightComponent.layoutParams as ConstraintLayout.LayoutParams
             params.marginStart = config.rightComponentLeftMargin!!
@@ -334,6 +333,8 @@ class AndesTextfield : ConstraintLayout {
             rightComponent.layoutParams = params
 
             rightComponent.visibility = View.VISIBLE
+            setupClear()
+
 
         } else {
             rightComponent.visibility = View.GONE
@@ -342,6 +343,28 @@ class AndesTextfield : ConstraintLayout {
 
     private fun setupClear() {
         if (rightContent == AndesTextfieldRightContent.CLEAR) {
+            rightComponent.visibility = View.GONE
+
+
+            textComponent.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                    if(!p0.isNullOrEmpty()){
+                        rightComponent.visibility = View.VISIBLE
+
+                    }
+                    else{
+                        rightComponent.visibility = View.GONE
+
+                    }
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
             clear.setOnClickListener { textComponent.text.clear() }
         }
