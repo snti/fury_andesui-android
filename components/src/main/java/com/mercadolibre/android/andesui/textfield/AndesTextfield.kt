@@ -345,24 +345,19 @@ class AndesTextfield : ConstraintLayout {
         if (rightContent == AndesTextfieldRightContent.CLEAR) {
             rightComponent.visibility = View.GONE
 
-
             textComponent.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {
-                    if(!p0.isNullOrEmpty()){
+                override fun afterTextChanged(text: Editable?) {
+                    if(!text.isNullOrEmpty()){
                         rightComponent.visibility = View.VISIBLE
-
                     }
                     else{
                         rightComponent.visibility = View.GONE
-
                     }
                 }
 
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
+                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {  }
 
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
+                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {  }
             })
 
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
@@ -396,7 +391,6 @@ class AndesTextfield : ConstraintLayout {
                 context,
                 R.color.andes_gray_450.toAndesColor())
         )
-
     }
 
     fun setupPrefix(text: String) {
