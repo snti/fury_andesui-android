@@ -69,6 +69,7 @@ class AndesTextarea : ConstraintLayout {
         set(value) {
             andesTextareaAttrs = andesTextareaAttrs.copy(state = value)
             setupColorComponents(createConfig())
+            setupEnabledView()
         }
 
     var maxLines: Int?
@@ -226,12 +227,12 @@ class AndesTextarea : ConstraintLayout {
      *
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText != null) {
+        if (config.helperText == null || config.helperText.isEmpty()) {
+            helperComponent.visibility = View.GONE
+        } else {
             helperComponent.visibility = View.VISIBLE
             helperComponent.text = config.helperText
             helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
-        } else {
-            helperComponent.visibility = View.GONE
         }
     }
 

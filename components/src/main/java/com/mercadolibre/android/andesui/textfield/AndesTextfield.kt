@@ -77,6 +77,7 @@ class AndesTextfield : ConstraintLayout {
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(state = value)
             setupColorComponents(createConfig())
+            setupEnabledView()
         }
 
     var leftContent: AndesTextfieldLeftContent?
@@ -259,12 +260,12 @@ class AndesTextfield : ConstraintLayout {
      *
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText != null) {
+        if (config.helperText == null || config.helperText.isEmpty()) {
+            helperComponent.visibility = View.GONE
+        } else {
             helperComponent.visibility = View.VISIBLE
             helperComponent.text = config.helperText
             helperComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.helperSize)
-        } else {
-            helperComponent.visibility = View.GONE
         }
     }
 
@@ -365,7 +366,7 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
-    fun setupAction(text: String, onClickListener: OnClickListener) {
+    fun setAction(text: String, onClickListener: OnClickListener) {
         rightContent = AndesTextfieldRightContent.ACTION
         val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
         action.text = text
@@ -373,7 +374,7 @@ class AndesTextfield : ConstraintLayout {
 
     }
 
-    fun setupRightIcon(iconPath: String) {
+    fun setRightIcon(iconPath: String) {
         rightContent = AndesTextfieldRightContent.ICON
         val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
         rightIcon.setImageDrawable(buildColoredBitmapDrawable(
@@ -383,7 +384,7 @@ class AndesTextfield : ConstraintLayout {
         )
     }
 
-    fun setupLeftIcon(iconPath: String) {
+    fun setLeftIcon(iconPath: String) {
         leftContent = AndesTextfieldLeftContent.ICON
         val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
         leftIcon.setImageDrawable(buildColoredBitmapDrawable(
@@ -393,13 +394,13 @@ class AndesTextfield : ConstraintLayout {
         )
     }
 
-    fun setupPrefix(text: String) {
+    fun setPrefix(text: String) {
         leftContent = AndesTextfieldLeftContent.PREFIX
         val prefix: TextView = leftComponent.getChildAt(0) as TextView
         prefix.text = text
     }
 
-    fun setupSuffix(text: String) {
+    fun setSuffix(text: String) {
         rightContent = AndesTextfieldRightContent.SUFFIX
             val suffix: TextView = leftComponent.getChildAt(0) as TextView
             suffix.text = text
