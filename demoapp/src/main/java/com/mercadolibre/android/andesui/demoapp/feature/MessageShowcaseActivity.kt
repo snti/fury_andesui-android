@@ -23,6 +23,10 @@ class MessageShowcaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
 
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_message)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         viewPager.adapter = AndesShowcasePagerAdapter(this)
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)

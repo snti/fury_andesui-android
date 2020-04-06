@@ -12,7 +12,7 @@
         android:icon="@mipmap/andesui_demoapp_ic_launcher"
         android:label="@string/andesui_demoapp_app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".MainActivity">
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.ButtonShowcaseActivity">
+        <activity android:name=".feature.ButtonShowcaseActivity" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -35,7 +35,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.MessageShowcaseActivity">
+        <activity android:name=".feature.MessageShowcaseActivity" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -48,7 +48,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.TextfieldShowcaseActivity">
+        <activity android:name=".feature.TextfieldShowcaseActivity" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -61,7 +61,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.WhatsNewActivity">
+        <activity android:name=".feature.WhatsNewActivity" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

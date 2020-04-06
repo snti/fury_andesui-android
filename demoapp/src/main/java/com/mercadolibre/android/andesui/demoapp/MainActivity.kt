@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
-
 /**
  * Main activity class
  */
@@ -15,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_demoapp_main)
+
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
         setupButtons()
         setupMessages()

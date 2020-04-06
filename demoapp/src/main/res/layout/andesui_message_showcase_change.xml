@@ -11,14 +11,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/button_margin_vertical"
-            android:gravity="center"
-            android:text="@string/andes_message_demoapp"
-            android:textSize="24sp" />
-
         <com.mercadolibre.android.andesui.message.AndesMessage
             android:id="@+id/message"
             android:layout_width="match_parent"

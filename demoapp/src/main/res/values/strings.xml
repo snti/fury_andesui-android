@@ -45,6 +45,11 @@
     <string name="change_body">Body text</string>
     <string name="change_primary">Primary action text</string>
     <string name="change_secondary">Secondary action text</string>
+
+    <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
+    <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
+    <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
+    <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
     <string name="andesui_demoapp_message_generate_random_message">Generate random Andes Message</string>
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
     <string name="andesui_demoapp_label_showcase">Showcase</string>
