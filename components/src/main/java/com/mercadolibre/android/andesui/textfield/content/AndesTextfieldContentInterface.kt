@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.textfield.content
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
+import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
@@ -36,6 +37,7 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
         suffix.text = context.getString(R.string.andes_suffix_hint)
         suffix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
+        suffix.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         return suffix
     }
 }
@@ -51,6 +53,7 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
         prefix.text = context.getString(R.string.andes_prefix_hint)
         prefix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
+        prefix.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         return prefix
     }
 }

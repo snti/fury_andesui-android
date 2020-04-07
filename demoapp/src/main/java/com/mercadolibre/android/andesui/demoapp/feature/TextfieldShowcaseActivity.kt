@@ -19,7 +19,6 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
-import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldCounter
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
 class TextfieldShowcaseActivity : AppCompatActivity() {
@@ -78,8 +77,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val label = layoutTextfield.findViewById<EditText>(R.id.label_text)
             val helper = layoutTextfield.findViewById<EditText>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<EditText>(R.id.placeholder_text)
-            val counterMin = layoutTextfield.findViewById<EditText>(R.id.counter_min)
-            val counterMax = layoutTextfield.findViewById<EditText>(R.id.counter_max)
+            val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
 
             val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
             val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
@@ -118,13 +116,12 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             button.setOnClickListener {
 
+                textfield.text = ""
                 textfield.label = label.text.toString()
                 textfield.helper = helper.text.toString()
                 textfield.placeholder = placeholder.text.toString()
 
-                val min = counterMin.text.toString().toIntOrNull() ?: 0
-                val max = counterMax.text.toString().toIntOrNull() ?: 0
-                textfield.counter = AndesTextfieldCounter(min,max)
+                textfield.counter = counter.text.toString().toIntOrNull() ?: 0
 
                 textfield.state = AndesTextfieldState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
 
@@ -143,16 +140,16 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.setText(null)
                 stateSpinner.setSelection(0)
                 helper.setText(null)
-                counterMin.setText(null)
-                counterMax.setText(null)
+                counter.setText(null)
                 inputTypeSpinner.setSelection(getInputTypesArray().filter { it.name == "text" }.single().value)
 
                 //reset AndesTextfield's properties.
+                textfield.text = ""
                 textfield.label = null
                 textfield.helper = null
                 textfield.placeholder = null
-                textfield.counter = AndesTextfieldCounter(0,0)
-                textfield.state = AndesTextfieldState.ENABLED
+                textfield.counter = 0
+                textfield.state = AndesTextfieldState.IDLE
                 textfield.leftContent = null
                 textfield.rightContent = null
                 textfield.inputType = InputType.TYPE_CLASS_TEXT

@@ -10,11 +10,11 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
  * The data class that contains the public components of the textfield.
  */
 internal data class AndesTextareaAttrs(val label: String?,
-                                        val helper: String?,
-                                        val placeholder: String?,
-                                        val counter: AndesTextfieldCounter?,
-                                        val state: AndesTextfieldState,
-                                        val maxLines : Int?)
+                                       val helper: String?,
+                                       val placeholder: String?,
+                                       val counter: Int,
+                                       val state: AndesTextfieldState,
+                                       val maxLines : Int?)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
@@ -32,24 +32,21 @@ internal object AndesTextareaAttrsParser {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTextarea)
 
         val state = when (typedArray.getString(R.styleable.AndesTextarea_andesTextareaState)) {
-            ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.ENABLED
+            ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.IDLE
             ANDES_TEXTFIELD_STATE_ERROR -> AndesTextfieldState.ERROR
             ANDES_TEXTFIELD_STATE_DISABLED -> AndesTextfieldState.DISABLED
             ANDES_TEXTFIELD_STATE_READONLY -> AndesTextfieldState.READONLY
 
-            else -> AndesTextfieldState.ENABLED
+            else -> AndesTextfieldState.IDLE
         }
 
 
-        val counterMinValue = typedArray.getInt(R.styleable.AndesTextarea_andesTextareaCounterMinValue, 0)
-
-        val counterMaxValue = typedArray.getInt(R.styleable.AndesTextarea_andesTextareaCounterMaxValue, 0)
 
         return AndesTextareaAttrs(
                 label = typedArray.getString(R.styleable.AndesTextarea_andesTextareaLabel),
                 helper = typedArray.getString(R.styleable.AndesTextarea_andesTextareaHelper),
                 placeholder = typedArray.getString(R.styleable.AndesTextarea_andesTextareaPlaceholder),
-                counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
+                counter = typedArray.getInt(R.styleable.AndesTextarea_andesTextareaCounter, 0),
                 state = state,
                 maxLines = typedArray.getInt(R.styleable.AndesTextarea_andesTextareaMaxLines, Int.MAX_VALUE)
         ).also { typedArray.recycle() }

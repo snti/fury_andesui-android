@@ -82,7 +82,7 @@
     </string-array>
 
     <string-array name="textfield_state_spinner">
-        <item>Enabled</item>
+        <item>Idle</item>
         <item>Disabled</item>
         <item>Error</item>
         <item>Readonly</item>

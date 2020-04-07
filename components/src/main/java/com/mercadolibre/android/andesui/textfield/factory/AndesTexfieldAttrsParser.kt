@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.textfield.factory
 
 
 import android.content.Context
-import android.text.InputType
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
@@ -15,7 +14,7 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 internal data class AndesTextfieldAttrs(val label: String?,
                                         val helper: String?,
                                         val placeholder: String?,
-                                        val counter: AndesTextfieldCounter?,
+                                        val counter: Int,
                                         val state: AndesTextfieldState,
                                         val leftContent: AndesTextfieldLeftContent?,
                                         val rightContent: AndesTextfieldRightContent?,
@@ -47,11 +46,11 @@ internal object AndesTextfieldAttrsParser {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTextfield)
 
         val state = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldState)) {
-            ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.ENABLED
+            ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.IDLE
             ANDES_TEXTFIELD_STATE_ERROR -> AndesTextfieldState.ERROR
             ANDES_TEXTFIELD_STATE_DISABLED -> AndesTextfieldState.DISABLED
             ANDES_TEXTFIELD_STATE_READONLY -> AndesTextfieldState.READONLY
-            else -> AndesTextfieldState.ENABLED
+            else -> AndesTextfieldState.IDLE
         }
 
         val leftContent = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLeftContent)) {
@@ -74,15 +73,11 @@ internal object AndesTextfieldAttrsParser {
 
         val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, 0)
 
-        val counterMinValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMinValue, 0)
-
-        val counterMaxValue = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounterMaxValue, 0)
-
         return AndesTextfieldAttrs(
                 label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),
                 helper = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldHelper),
                 placeholder = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldPlaceholder),
-                counter = AndesTextfieldCounter(counterMinValue, counterMaxValue),
+                counter = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounter, 0),
                 state = state,
                 leftContent = leftContent,
                 rightContent = rightContent,

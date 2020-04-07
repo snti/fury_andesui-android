@@ -15,7 +15,7 @@
             android:id="@+id/andesui_textfield"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:andesTextfieldState="enabled"
+            app:andesTextfieldState="idle"
             android:layout_marginBottom="@dimen/button_margin_vertical"
             android:inputType="text"
             />
@@ -104,19 +104,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/counter_min"
-                android:inputType="number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="@string/andesui_demoapp_counter_separator"
-                android:textColor="@color/andes_gray_800"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/counter_max"
+                android:id="@+id/counter"
                 android:inputType="number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

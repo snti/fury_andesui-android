@@ -15,11 +15,23 @@ import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.textfield.factory.*
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextareaAttrs
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextareaAttrsParser
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfiguration
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
 
 class AndesTextarea : ConstraintLayout {
+
+    /**
+     * Getter and setter for [text].
+     */
+    var text: String?
+        get() = textComponent.text.toString()
+        set(value) {
+            textComponent.setText(value)
+        }
 
     /**
      * Getter and setter for [label].
@@ -54,7 +66,7 @@ class AndesTextarea : ConstraintLayout {
     /**
      * Getter and setter for [counter].
      */
-    var counter: AndesTextfieldCounter?
+    var counter: Int
         get() = andesTextareaAttrs.counter
         set(value) {
             andesTextareaAttrs = andesTextareaAttrs.copy(counter = value)
@@ -98,7 +110,7 @@ class AndesTextarea : ConstraintLayout {
                 label: String? = LABEL_DEFAULT,
                 helper: String? = HELPER_DEFAULT,
                 placeholder: String? = PLACEHOLDER_DEFAULT,
-                counter: AndesTextfieldCounter? = COUNTER_DEFAULT,
+                counter: Int = COUNTER_DEFAULT,
                 state: AndesTextfieldState = STATE_DEFAULT,
                 maxLines: Int? = MAXLINES_DEFAULT)
             : super(context) {
@@ -119,7 +131,7 @@ class AndesTextarea : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, maxLines: Int?) {
+    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: Int, state: AndesTextfieldState, maxLines: Int?) {
         andesTextareaAttrs = AndesTextareaAttrs(label, helper, placeholder, counter, state, maxLines)
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
         setupComponents(config)
@@ -136,6 +148,7 @@ class AndesTextarea : ConstraintLayout {
         setupPlaceHolderComponent(config)
         setupColorComponents(config)
         setupMaxlines(config)
+        setupTextComponent(config)
     }
 
     /**
@@ -180,6 +193,13 @@ class AndesTextarea : ConstraintLayout {
             textContainer.isEnabled = isEnabled
             textareaContainer.isEnabled = isEnabled
         }
+    }
+
+    /**
+     * Set up the text component.
+     */
+    private fun setupTextComponent(config: AndesTextfieldConfiguration) {
+        textComponent.typeface = config.typeface
     }
 
     /**
@@ -241,24 +261,24 @@ class AndesTextarea : ConstraintLayout {
      *
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterText != null) {
+        if (config.counterLength != 0) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
-            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
-            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
+            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, 0, config.counterLength)
+            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength!!))
         } else {
             counterComponent.visibility = View.GONE
         }
 
         textComponent.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(charSequence: Editable?) {
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, count, config.counterMaxLength)
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, charSequence!!.length, config.counterLength)
             }
         })
     }
@@ -296,8 +316,8 @@ class AndesTextarea : ConstraintLayout {
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null
-        private val COUNTER_DEFAULT = AndesTextfieldCounter()
-        private val STATE_DEFAULT = AndesTextfieldState.ENABLED
+        private val COUNTER_DEFAULT = 0
+        private val STATE_DEFAULT = AndesTextfieldState.IDLE
         private val MAXLINES_DEFAULT = null
     }
 }

@@ -10,12 +10,10 @@
 
         <attr name="andesTextfieldPlaceholder" format="reference" />
 
-        <attr name="andesTextfieldCounterMinValue" format="integer" />
-
-        <attr name="andesTextfieldCounterMaxValue" format="integer" />
+        <attr name="andesTextfieldCounter" format="integer" />
 
         <attr name="andesTextfieldState">
-            <enum name="enabled" value="20" />
+            <enum name="idle" value="20" />
             <enum name="error" value="21" />
             <enum name="disabled" value="22" />
             <enum name="readonly" value="23" />
@@ -48,14 +46,12 @@
 
         <attr name="andesTextareaPlaceholder" format="reference" />
 
-        <attr name="andesTextareaCounterMinValue" format="integer" />
-
-        <attr name="andesTextareaCounterMaxValue" format="integer" />
+        <attr name="andesTextareaCounter" format="integer" />
 
         <attr name="andesTextareaMaxLines" format="integer" />
 
         <attr name="andesTextareaState">
-            <enum name="enabled" value="20" />
+            <enum name="idle" value="20" />
             <enum name="error" value="21" />
             <enum name="disabled" value="22" />
             <enum name="readonly" value="23" />

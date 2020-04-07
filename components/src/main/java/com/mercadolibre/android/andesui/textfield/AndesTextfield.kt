@@ -21,13 +21,25 @@ import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.icons.OfflineIconProvider
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
-import com.mercadolibre.android.andesui.textfield.factory.*
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrsParser
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfiguration
+import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
 
 class AndesTextfield : ConstraintLayout {
+
+    /**
+     * Getter and setter for [text].
+     */
+    var text: String?
+        get() = textComponent.text.toString()
+        set(value) {
+            textComponent.setText(value)
+        }
 
     /**
      * Getter and setter for [label].
@@ -62,7 +74,7 @@ class AndesTextfield : ConstraintLayout {
     /**
      * Getter and setter for [counter].
      */
-    var counter: AndesTextfieldCounter?
+    var counter: Int
         get() = andesTextfieldAttrs.counter
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(counter = value)
@@ -70,7 +82,7 @@ class AndesTextfield : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for the state of [EditText].
+     * Getter and setter for the [state].
      */
     var state: AndesTextfieldState
         get() = andesTextfieldAttrs.state
@@ -80,6 +92,9 @@ class AndesTextfield : ConstraintLayout {
             setupEnabledView()
         }
 
+    /**
+     * Getter and setter for the [leftContent].
+     */
     var leftContent: AndesTextfieldLeftContent?
         get() = andesTextfieldAttrs.leftContent
         set(value) {
@@ -87,6 +102,9 @@ class AndesTextfield : ConstraintLayout {
             setupLeftComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for the [rightContent].
+     */
     var rightContent: AndesTextfieldRightContent?
         get() = andesTextfieldAttrs.rightContent
         set(value) {
@@ -94,6 +112,9 @@ class AndesTextfield : ConstraintLayout {
             setupRightComponent(createConfig())
         }
 
+    /**
+     * Getter and setter for the [rightContent].
+     */
     var inputType: Int
         get() = andesTextfieldAttrs.inputType
         set(value) {
@@ -121,7 +142,7 @@ class AndesTextfield : ConstraintLayout {
                 label: String? = LABEL_DEFAULT,
                 helper: String? = HELPER_DEFAULT,
                 placeholder: String? = PLACEHOLDER_DEFAULT,
-                counter: AndesTextfieldCounter? = COUNTER_DEFAULT,
+                counter: Int = COUNTER_DEFAULT,
                 state: AndesTextfieldState = STATE_DEFAULT,
                 leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
                 rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT,
@@ -144,7 +165,7 @@ class AndesTextfield : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: AndesTextfieldCounter?, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?, inputType: Int) {
+    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: Int, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?, inputType: Int) {
         andesTextfieldAttrs = AndesTextfieldAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, inputType)
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
         setupComponents(config)
@@ -163,6 +184,7 @@ class AndesTextfield : ConstraintLayout {
         setupRightComponent(config)
         setupColorComponents(config)
         setupInputType()
+        setupTextComponent(config)
     }
 
     /**
@@ -210,6 +232,16 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+    /**
+     * Set up the text component.
+     */
+    private fun setupTextComponent(config: AndesTextfieldConfiguration) {
+        textComponent.typeface = config.typeface
+    }
+
+    /**
+     * Set the input type of the edit text.
+     */
     private fun setupInputType() {
         textComponent.inputType = inputType
     }
@@ -274,24 +306,24 @@ class AndesTextfield : ConstraintLayout {
      *
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterText != null) {
+        if (config.counterLength != 0) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
-            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, config.counterMinLength,config.counterMaxLength)
-            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterMaxLength!!))
+            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, 0, config.counterLength)
+            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength))
         } else {
             counterComponent.visibility = View.GONE
         }
 
         textComponent.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(charSequence: Editable?) {
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(charSeqeuence: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, count, config.counterMaxLength)
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, charSequence!!.length, config.counterLength)
             }
         })
     }
@@ -307,6 +339,9 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+    /**
+     * Gets data from the config and sets to the Left component.
+     */
     private fun setupLeftComponent(config: AndesTextfieldConfiguration) {
         if (config.leftComponent != null) {
             leftComponent.removeAllViews()
@@ -323,6 +358,9 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+    /**
+     * Gets data from the config and sets to the right component.
+     */
     private fun setupRightComponent(config: AndesTextfieldConfiguration) {
         if (config.rightComponent != null) {
             rightComponent.removeAllViews()
@@ -342,6 +380,10 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+
+    /**
+     * Set the clear action to erase the text.
+     */
     private fun setupClear() {
         if (rightContent == AndesTextfieldRightContent.CLEAR) {
             rightComponent.visibility = View.GONE
@@ -350,8 +392,7 @@ class AndesTextfield : ConstraintLayout {
                 override fun afterTextChanged(text: Editable?) {
                     if(!text.isNullOrEmpty()){
                         rightComponent.visibility = View.VISIBLE
-                    }
-                    else{
+                    } else{
                         rightComponent.visibility = View.GONE
                     }
                 }
@@ -366,6 +407,9 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+    /**
+     * Set the right content to action and provides an interface to set button text and callback.
+     */
     fun setAction(text: String, onClickListener: OnClickListener) {
         rightContent = AndesTextfieldRightContent.ACTION
         val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
@@ -374,6 +418,9 @@ class AndesTextfield : ConstraintLayout {
 
     }
 
+    /**
+     * Set the right content to icon and provides an interface to give the icon path.
+     */
     fun setRightIcon(iconPath: String) {
         rightContent = AndesTextfieldRightContent.ICON
         val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
@@ -384,6 +431,9 @@ class AndesTextfield : ConstraintLayout {
         )
     }
 
+    /**
+     * Set the left content to icon and provides an interface to give the icon path.
+     */
     fun setLeftIcon(iconPath: String) {
         leftContent = AndesTextfieldLeftContent.ICON
         val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
@@ -394,16 +444,22 @@ class AndesTextfield : ConstraintLayout {
         )
     }
 
+    /**
+     * Set the left content to prefix and provides an interface to give the prefix text.
+     */
     fun setPrefix(text: String) {
         leftContent = AndesTextfieldLeftContent.PREFIX
         val prefix: TextView = leftComponent.getChildAt(0) as TextView
         prefix.text = text
     }
 
+    /**
+     * Set the right content to suffix and provides an interface to give the suffix text.
+     */
     fun setSuffix(text: String) {
         rightContent = AndesTextfieldRightContent.SUFFIX
-            val suffix: TextView = leftComponent.getChildAt(0) as TextView
-            suffix.text = text
+        val suffix: TextView = leftComponent.getChildAt(0) as TextView
+        suffix.text = text
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
@@ -415,8 +471,8 @@ class AndesTextfield : ConstraintLayout {
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null
-        private val COUNTER_DEFAULT = AndesTextfieldCounter()
-        private val STATE_DEFAULT = ENABLED
+        private val COUNTER_DEFAULT = 0
+        private val STATE_DEFAULT = IDLE
         private val LEFT_COMPONENT_DEFAULT = null
         private val RIGHT_COMPONENT_DEFAULT = null
         private val INPUT_TYPE = InputType.TYPE_CLASS_TEXT

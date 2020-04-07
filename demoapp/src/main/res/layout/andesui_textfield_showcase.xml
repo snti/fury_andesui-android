@@ -46,8 +46,7 @@
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
-            app:andesTextfieldCounterMinValue="0"
-            app:andesTextfieldCounterMaxValue="10"
+            app:andesTextfieldCounter="10"
             android:inputType="textPassword"
             />
 
@@ -59,8 +58,7 @@
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTextfieldCounterMinValue="0"
-            app:andesTextfieldCounterMaxValue="10"
+            app:andesTextfieldCounter="10"
             android:inputType="text"
             />
 
@@ -70,8 +68,7 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTextfieldCounterMinValue="0"
-            app:andesTextfieldCounterMaxValue="10"
+            app:andesTextfieldCounter="10"
             android:inputType="text"
             />
 
@@ -82,8 +79,7 @@
             app:andesTextfieldState="readonly"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            app:andesTextfieldCounterMinValue="0"
-            app:andesTextfieldCounterMaxValue="10"
+            app:andesTextfieldCounter="10"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
             android:inputType="text"
             />
@@ -92,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesTextareaCounter="100"
             />
 
     </LinearLayout>

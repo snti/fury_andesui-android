@@ -21,9 +21,7 @@ internal data class AndesTextfieldConfiguration(
         val labelSize: Float,
         val counterColor : AndesColor,
         val counterSize: Float,
-        val counterMinLength: Int?,
-        val counterMaxLength: Int?,
-        val counterText: AndesTextfieldCounter? = null,
+        val counterLength: Int,
         val placeHolderColor : AndesColor,
         val placeHolderText : String? = null,
         val placeHolderSize : Float,
@@ -53,10 +51,8 @@ internal object AndesTextfieldConfigurationFactory {
                     helperText = resolveHelper(state.state, helper),
                     helperTypeface = resolveHelperTypeface(state.state, context),
                     counterColor = resolveCounterTextColor(state.state),
-                    counterMinLength = counter!!.minLength,
-                    counterMaxLength = counter!!.maxLength,
                     counterSize = resolveCounterSize(context),
-                    counterText = resolveCounter(state.state, counter),
+                    counterLength = counter,
                     placeHolderColor = resolvePlaceHolderColor(state.state, context),
                     placeHolderSize = resolvePlaceHolderSize(context),
                     placeHolderText = placeholder,
@@ -86,8 +82,7 @@ internal object AndesTextfieldConfigurationFactory {
                     labelSize = resolveLabelSize(context),
                     counterColor = resolveCounterTextColor(state.state),
                     counterSize = resolveCounterSize(context),
-                    counterMinLength = counter!!.minLength,
-                    counterMaxLength = counter!!.maxLength,
+                    counterLength = counter,
                     placeHolderText = placeholder,
                     placeHolderColor = resolvePlaceHolderColor(state.state, context),
                     placeHolderSize = resolvePlaceHolderSize(context),
@@ -117,6 +112,5 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.leftMargin(context)
     private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.rightMargin(context)
     private fun resolveHelper(state: AndesTextfieldStateInterface, helper: String?): String? = state.helper(helper)
-    private fun resolveCounter(state: AndesTextfieldStateInterface, counter: AndesTextfieldCounter): AndesTextfieldCounter? = state.counter(counter)
 }
 
