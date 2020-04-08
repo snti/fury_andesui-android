@@ -97,7 +97,7 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveHelperTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helpersColor()
     private fun resolveHelperSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_helper_textSize)
     private fun resolveHelperTypeface(state: AndesTextfieldStateInterface, context: Context) = state.typeFace(context)
-    private fun resolveLabelTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.textColor()
+    private fun resolveLabelTextColor(state: AndesTextfieldStateInterface): AndesColor = state.labelColor()
     private fun resolveLabelSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
     private fun resolveCounterTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.helpersColor()
     private fun resolveCounterSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)

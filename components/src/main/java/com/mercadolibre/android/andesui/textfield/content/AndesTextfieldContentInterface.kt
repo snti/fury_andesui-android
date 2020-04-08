@@ -59,6 +59,8 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
+    private const val ICON_CONTENT_DESCRIPTION = "icon"
+
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_icon_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_icon_right_margin).toInt()
@@ -69,6 +71,7 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
                 OfflineIconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_800.toAndesColor()))
+        icon.contentDescription = ICON_CONTENT_DESCRIPTION
         return icon
     }
 }
@@ -84,6 +87,8 @@ internal object AndesTooltipTextfieldContent : AndesTextfieldContentInterface() 
 }
 
 internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface() {
+    private const val VALIDATED_CONTENT_DESCRIPTION = "validated"
+
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_validated_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_validated_right_margin).toInt()
@@ -95,23 +100,28 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
                 context,
                 R.color.andes_green_500.toAndesColor())
         )
+        validated.contentDescription = VALIDATED_CONTENT_DESCRIPTION
         return validated
     }
 }
 
 internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
+    private const val CLEAR_CONTENT_DESCRIPTION = "clear"
+
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_right_margin).toInt()
 
     override fun component(context: Context): SimpleDraweeView {
-        val validated =  SimpleDraweeView(context)
-        validated.setImageDrawable(buildColoredBitmapDrawable(
+        val clear = SimpleDraweeView(context)
+        clear.setImageDrawable(buildColoredBitmapDrawable(
                 OfflineIconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_450.toAndesColor())
         )
-        return validated    }
+        clear.contentDescription = CLEAR_CONTENT_DESCRIPTION
+        return clear
+    }
 }
 
 internal object AndesActionTextfieldContent : AndesTextfieldContentInterface() {

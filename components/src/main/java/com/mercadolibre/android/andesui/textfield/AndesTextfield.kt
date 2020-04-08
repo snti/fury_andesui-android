@@ -458,7 +458,7 @@ class AndesTextfield : ConstraintLayout {
      */
     fun setSuffix(text: String) {
         rightContent = AndesTextfieldRightContent.SUFFIX
-        val suffix: TextView = leftComponent.getChildAt(0) as TextView
+        val suffix: TextView = rightComponent.getChildAt(0) as TextView
         suffix.text = text
     }
 
