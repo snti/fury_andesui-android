@@ -6,5 +6,9 @@ package com.mercadolibre.android.andesui.button.hierarchy
  */
 enum class AndesButtonIconOrientation {
     LEFT,
-    RIGHT
+    RIGHT;
+
+    companion object {
+        fun fromString(value: String) : AndesButtonIconOrientation = valueOf(value.toUpperCase())
+    }
 }

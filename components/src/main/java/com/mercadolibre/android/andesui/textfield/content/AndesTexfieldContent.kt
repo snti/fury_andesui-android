@@ -13,6 +13,10 @@ enum class AndesTextfieldLeftContent {
     PREFIX,
     ICON;
 
+    companion object {
+        fun fromString(value: String) : AndesTextfieldLeftContent = valueOf(value.toUpperCase())
+    }
+
     internal val leftContent get() = getAndesTextfieldLeftContent()
 
     private fun getAndesTextfieldLeftContent(): AndesTextfieldContentInterface {
@@ -32,6 +36,10 @@ enum class AndesTextfieldRightContent {
     ACTION,
     INDETERMINATE,
     CHECKBOX;
+
+    companion object {
+        fun fromString(value: String) : AndesTextfieldRightContent = valueOf(value.toUpperCase())
+    }
 
     internal val rightContent get() = getAndesTextfieldRightContent()
 

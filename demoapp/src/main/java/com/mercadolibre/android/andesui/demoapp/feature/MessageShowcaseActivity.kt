@@ -112,9 +112,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.body = bodyText.text.toString()
                 }
 
-                changeMessage.type = AndesMessageType.valueOf(typeSpinner.selectedItem.toString().toUpperCase())
+                changeMessage.type = AndesMessageType.fromString(typeSpinner.selectedItem.toString())
 
-                changeMessage.hierarchy = AndesMessageHierarchy.valueOf(hierarchySpinner.selectedItem.toString().toUpperCase())
+                changeMessage.hierarchy = AndesMessageHierarchy.fromString(hierarchySpinner.selectedItem.toString())
 
                 if (primaryActionText.text.toString() != "") {
                     changeMessage.setupPrimaryAction(primaryActionText.text.toString(), View.OnClickListener {

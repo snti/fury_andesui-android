@@ -14,7 +14,11 @@ enum class AndesTextfieldState {
         DISABLED,
         READONLY;
 
-        internal val state get() = getAndesTextfieldState()
+    companion object {
+        fun fromString(value: String) : AndesTextfieldState = valueOf(value.toUpperCase())
+    }
+
+    internal val state get() = getAndesTextfieldState()
 
         private fun getAndesTextfieldState(): AndesTextfieldStateInterface {
             return when (this) {

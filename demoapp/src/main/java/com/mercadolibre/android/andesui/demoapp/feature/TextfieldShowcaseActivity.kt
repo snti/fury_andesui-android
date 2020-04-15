@@ -125,9 +125,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
                 textfield.state = AndesTextfieldState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
 
-                textfield.leftContent = AndesTextfieldLeftContent.valueOf(preffixSpinner.selectedItem.toString().toUpperCase())
+                textfield.leftContent = AndesTextfieldLeftContent.fromString(preffixSpinner.selectedItem.toString())
 
-                textfield.rightContent = AndesTextfieldRightContent.valueOf(suffixSpinner.selectedItem.toString().toUpperCase())
+                textfield.rightContent = AndesTextfieldRightContent.fromString(suffixSpinner.selectedItem.toString())
 
                 val selectedInputType = getInputTypesArray().filter { it.name == inputTypeSpinner.selectedItem.toString() }.single().value
                 textfield.inputType = selectedInputType
