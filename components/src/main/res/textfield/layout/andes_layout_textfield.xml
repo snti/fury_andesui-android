@@ -9,9 +9,10 @@
         android:id="@+id/andes_textfield_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/andes_textfield_label_text"
         android:paddingLeft="@dimen/andes_textfield_label_paddingLeft"
+        android:text="@string/andes_textfield_label_text"
         android:textSize="@dimen/andes_textfield_label_textSize"
+        app:layout_constraintBottom_toTopOf="@+id/andes_textfield_text_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
