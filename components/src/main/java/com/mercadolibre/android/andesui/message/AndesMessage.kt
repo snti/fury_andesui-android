@@ -267,6 +267,13 @@ class AndesMessage : CardView {
         }
     }
 
+    fun setupDismissableCallback(onClickListener: OnClickListener) {
+        dismissableComponent.setOnClickListener{
+            visibility = View.GONE
+            onClickListener.onClick(it)
+        }
+    }
+
     fun hidePrimaryAction() {
         primaryAction.visibility = View.GONE
         secondaryAction.visibility = View.GONE

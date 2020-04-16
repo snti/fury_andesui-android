@@ -124,6 +124,12 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.hidePrimaryAction()
                 }
 
+                if (dismissableCheckbox.isChecked) {
+                    changeMessage.setupDismissableCallback(View.OnClickListener {
+                        Toast.makeText(context, "Dismiss onClick", Toast.LENGTH_LONG).show()
+                    })
+                }
+
                 if (secondaryActionText.text.toString() != "") {
                     when {
                         primaryActionText.text.toString() != "" -> {
