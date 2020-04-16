@@ -17,7 +17,7 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.textfield.content.*
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 import junit.framework.Assert.assertEquals
@@ -84,7 +84,7 @@ class AndesTextfieldContentInterfaceTest {
         contentInterface = AndesIconTextfieldContent
         val icon = SimpleDraweeView(context)
         icon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_800.toAndesColor()))
 
@@ -98,7 +98,7 @@ class AndesTextfieldContentInterfaceTest {
         contentInterface = AndesValidatedTextfieldContent
         val validated = SimpleDraweeView(context)
         validated.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
                 R.color.andes_green_500.toAndesColor())
         )
@@ -113,7 +113,7 @@ class AndesTextfieldContentInterfaceTest {
         contentInterface = AndesClearTextfieldContent
         val clear = SimpleDraweeView(context)
         clear.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_450.toAndesColor())
         )

@@ -18,7 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
@@ -425,7 +425,7 @@ class AndesTextfield : ConstraintLayout {
         rightContent = AndesTextfieldRightContent.ICON
         val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
         rightIcon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+                IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
                 R.color.andes_gray_800.toAndesColor())
         )
@@ -438,7 +438,7 @@ class AndesTextfield : ConstraintLayout {
         leftContent = AndesTextfieldLeftContent.ICON
         val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
         leftIcon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+                IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
                 R.color.andes_gray_450.toAndesColor())
         )

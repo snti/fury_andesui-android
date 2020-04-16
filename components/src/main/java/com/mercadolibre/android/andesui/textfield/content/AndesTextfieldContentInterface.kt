@@ -12,7 +12,7 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
@@ -68,7 +68,7 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
     override fun component(context: Context): SimpleDraweeView {
         val icon = SimpleDraweeView(context)
         icon.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_800.toAndesColor()))
         icon.contentDescription = ICON_CONTENT_DESCRIPTION
@@ -96,7 +96,7 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
     override fun component(context: Context): SimpleDraweeView {
         val validated =  SimpleDraweeView(context)
         validated.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
                 R.color.andes_green_500.toAndesColor())
         )
@@ -115,7 +115,7 @@ internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
     override fun component(context: Context): SimpleDraweeView {
         val clear = SimpleDraweeView(context)
         clear.setImageDrawable(buildColoredBitmapDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
                 R.color.andes_gray_450.toAndesColor())
         )

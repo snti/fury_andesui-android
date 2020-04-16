@@ -10,7 +10,7 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 
@@ -63,7 +63,7 @@ internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
 
     override fun icon(context: Context): Drawable? {
         return buildColoredCircularShapeWithIconDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
                 context,
                 R.color.andes_white.toAndesColor(),
                 R.color.andes_red_500.toColor(context),

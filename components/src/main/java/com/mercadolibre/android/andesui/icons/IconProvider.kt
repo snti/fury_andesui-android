@@ -1,31 +1,18 @@
 package com.mercadolibre.android.andesui.icons
 
-
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.util.Log
-import java.io.FileNotFoundException
 
 /**
- * This interface defindes the way to load an icon with a string name.
+ * This class has the responsibility of providing the icons.
  */
-internal interface IconProvider {
-    fun loadIcon(name: String): Drawable?
-}
+class IconProvider(private val context: Context) {
+    var iconProviderStrategy = OfflineIconProviderStrategy(context)
 
-/**
- * This class has the responsibility of providing the icon which is inside of the library.
- */
-internal class OfflineIconProvider(private val context: Context) : IconProvider {
-
-    override fun loadIcon(name: String): Drawable? {
-        val resId = context.resources.getIdentifier(name, "drawable", context.packageName)
-        return try {
-            ContextCompat.getDrawable(context, resId)
-        } catch (e: FileNotFoundException) {
-            Log.e("Andes UI", "File $name was not found.", e)
-            null
-        }
-    }
+    /**
+     * This method load the desired icon.
+     *
+     * @param name the name of the icon.
+     */
+    fun loadIcon(name: String): Drawable? = iconProviderStrategy.loadIcon(name)
 }

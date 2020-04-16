@@ -12,7 +12,7 @@ import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
-import com.mercadolibre.android.andesui.icons.OfflineIconProvider
+import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.textfield.state.*
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
 import junit.framework.Assert.assertEquals
@@ -67,7 +67,7 @@ class AndesTextfieldStateInterfaceTest {
         assertEquals(R.color.andes_gray_200.toAndesColor(), stateInterface.placeholderColor())
         assertEquals(R.color.andes_red_500.toAndesColor(), stateInterface.helpersColor())
         assertEquals(buildColoredCircularShapeWithIconDrawable(
-                OfflineIconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
+                IconProvider(context).loadIcon("andes_ui_feedback_warning_16") as BitmapDrawable,
                 context,
                 R.color.andes_white.toAndesColor(),
                 R.color.andes_red_500.toColor(context),
