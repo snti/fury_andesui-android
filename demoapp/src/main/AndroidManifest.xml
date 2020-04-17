@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.ButtonShowcaseActivity" android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".feature.ButtonShowcaseActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -35,7 +36,9 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.MessageShowcaseActivity" android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".feature.MessageShowcaseActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -48,7 +51,9 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.TextfieldShowcaseActivity" android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".feature.TextfieldShowcaseActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -61,7 +66,9 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.WhatsNewActivity" android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".feature.WhatsNewActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
