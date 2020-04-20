@@ -56,8 +56,13 @@
     <string name="andesui_demoapp_label_whatsnew_title">Hey! Check the What\'s New!</string>
     <string name="andesui_demoapp_label_whatsnew_body">There you can see what are the things we\'ve been working on 😃 \n\nJust tap 👆 this
         Andes Message</string>
+    <string name="andesui_demoapp_label_corner">Corner</string>
+    <string name="andesui_demoapp_label_rounded">Rounded</string>
+    <string name="andesui_demoapp_label_standard">Standard</string>
     <string name="andesui_demoapp_label_more">More</string>
+    <string name="andesui_demoapp_label_number">22</string>
     <string name="andesui_demoapp_label_andes_specs">Andes Specs</string>
+    <string name="andesui_demoapp_label_andes_badge_specs">Andes Badge Specs</string>
     <string name="andesui_demoapp_label_andes_message_specs">Andes Message Specs</string>
     <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs</string>
     <string name="andesui_demoapp_clear_button">Clear</string>
@@ -68,6 +73,12 @@
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
+
+    <string name="andes_badge_showcase">Andes Badge</string>
+    <string name="andes_loud_badges_text">Andes Loud Badges</string>
+    <string name="andes_quiet_badges_text">Andes Quiet Badges</string>
+    <string name="andes_badge_from_xml">From XML</string>
+    <string name="andes_badge_programmatically">Programmatically</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

@@ -18,11 +18,18 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
+        setupBadges()
         setupButtons()
         setupMessages()
         setupTextfield()
         setupWhatsNew()
         setupAndesSpecsWeb()
+    }
+
+    private fun setupBadges() {
+        andesui_badges.setOnClickListener {
+            launchIntent("meli://andes/badge")
+        }
     }
 
     private fun setupButtons() {

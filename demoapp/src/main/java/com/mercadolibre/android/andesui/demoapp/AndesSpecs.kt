@@ -6,11 +6,12 @@ import android.net.Uri
 import android.support.v4.content.ContextCompat.startActivity
 
 private const val HOME = "https://company-161429.frontify.com/d/kxHCRixezmfK"
-private const val COMPONENT_PREFIX = "$HOME/n-a#/componentes/"
+private const val COMPONENT_PREFIX = "$HOME/n-a#/componentes"
 
 internal enum class AndesSpecs(val link: String) {
 
     HOME_PAGE(HOME),
+    BADGE("$COMPONENT_PREFIX/badge"),
     BUTTON("$COMPONENT_PREFIX/button"),
     MESSAGE("$COMPONENT_PREFIX/message");
 
