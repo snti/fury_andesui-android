@@ -77,14 +77,9 @@ fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth
             }
 }
 
-/*
-fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, color: AndesColor? = null): BitmapDrawable {
-    return BitmapDrawable(context.resources, image.bitmap)
-            .apply {
-                color?.let { setColorFilter(it.colorInt(context), PorterDuff.Mode.SRC_IN) }
-            }
-}
-*/
+/**
+ * This method is the same as badge icon. When component were made, this should have been removed.
+ */
 fun buildColoredCircularShapeWithIconDrawable(image: BitmapDrawable, context: Context, iconColor: AndesColor? = null, shapeColor: Int? = null, diameter: Int): Drawable {
     val icon = buildColoredBitmapDrawable(image, context, null, null, iconColor)
 
