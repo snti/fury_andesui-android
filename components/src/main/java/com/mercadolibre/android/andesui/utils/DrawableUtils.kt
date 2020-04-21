@@ -25,12 +25,15 @@ import com.mercadolibre.android.andesui.color.AndesColor
  * @param colors we said we will be tinting the icon and this is the color. Note that the color for state_enabled will be used. If it does not exist, 0 will be used.
  * @return a complete look overhauled [BitmapDrawable].
  */
-fun buildScaledColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int, dstHeight: Int, colors: ColorStateList?): BitmapDrawable {
-    val scaledBitmap = Bitmap.createScaledBitmap(
-            image.bitmap,
-            dstWidth,
-            dstHeight,
-            true)
+fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int? = null, dstHeight: Int? = null, colors: ColorStateList?): BitmapDrawable {
+    var scaledBitmap: Bitmap = when {
+        dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
+                image.bitmap,
+                dstWidth,
+                dstHeight,
+                true)
+        else -> image.bitmap
+    }
     return BitmapDrawable(context.resources, scaledBitmap)
             .apply {
                 colors?.let {
@@ -44,40 +47,46 @@ fun buildScaledColoredBitmapDrawable(image: BitmapDrawable, context: Context, ds
             }
 }
 
-fun buildScaledColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int, dstHeight: Int, color: Int): BitmapDrawable {
-    val scaledBitmap = Bitmap.createScaledBitmap(
-            image.bitmap,
-            dstWidth,
-            dstHeight,
-            true)
+fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int?, dstHeight: Int?, color: Int?): BitmapDrawable {
+    var scaledBitmap: Bitmap = when {
+        dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
+                image.bitmap,
+                dstWidth,
+                dstHeight,
+                true)
+        else -> image.bitmap
+    }
     return BitmapDrawable(context.resources, scaledBitmap)
             .apply {
                 color?.let { setColorFilter(color, PorterDuff.Mode.SRC_IN) }
             }
 }
 
-fun buildScaledColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int, dstHeight: Int, color: AndesColor? = null): BitmapDrawable {
-    val scaledBitmap = Bitmap.createScaledBitmap(
-            image.bitmap,
-            dstWidth,
-            dstHeight,
-            true)
+fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int? = null, dstHeight: Int? = null, color: AndesColor? = null): BitmapDrawable {
+    var scaledBitmap: Bitmap = when {
+        dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
+                image.bitmap,
+                dstWidth,
+                dstHeight,
+                true)
+        else -> image.bitmap
+    }
     return BitmapDrawable(context.resources, scaledBitmap)
             .apply {
                 color?.let { setColorFilter(it.colorInt(context), PorterDuff.Mode.SRC_IN) }
             }
 }
 
-
+/*
 fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, color: AndesColor? = null): BitmapDrawable {
     return BitmapDrawable(context.resources, image.bitmap)
             .apply {
                 color?.let { setColorFilter(it.colorInt(context), PorterDuff.Mode.SRC_IN) }
             }
 }
-
+*/
 fun buildColoredCircularShapeWithIconDrawable(image: BitmapDrawable, context: Context, iconColor: AndesColor? = null, shapeColor: Int? = null, diameter: Int): Drawable {
-    val icon = buildColoredBitmapDrawable(image, context, iconColor)
+    val icon = buildColoredBitmapDrawable(image, context, null, null, iconColor)
 
     val biggerCircle = ShapeDrawable(OvalShape())
     biggerCircle.intrinsicHeight = diameter

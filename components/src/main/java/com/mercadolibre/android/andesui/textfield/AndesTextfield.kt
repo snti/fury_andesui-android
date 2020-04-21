@@ -427,6 +427,8 @@ class AndesTextfield : ConstraintLayout {
         rightIcon.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
+                null,
+                null,
                 R.color.andes_gray_800.toAndesColor())
         )
     }
@@ -440,6 +442,8 @@ class AndesTextfield : ConstraintLayout {
         leftIcon.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
+                null,
+                null,
                 R.color.andes_gray_450.toAndesColor())
         )
     }
