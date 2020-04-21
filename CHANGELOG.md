@@ -1,6 +1,8 @@
 # v2.1.0
 ## Added
-- Initial Texfield component
+- Initial Textfield component
+## Changed
+- Open icon provider.
 
 # v2.0.1
 ## Removed

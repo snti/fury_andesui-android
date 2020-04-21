@@ -15,6 +15,10 @@ enum class AndesButtonHierarchy {
     QUIET,
     LOUD;
 
+    companion object {
+        fun fromString(value: String) : AndesButtonHierarchy = valueOf(value.toUpperCase())
+    }
+
     internal val hierarchy get() = getAndesButtonHierarchy()
 
     private fun getAndesButtonHierarchy(): AndesButtonHierarchyInterface {

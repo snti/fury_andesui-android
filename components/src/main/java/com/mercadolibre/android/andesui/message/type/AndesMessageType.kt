@@ -14,6 +14,10 @@ enum class AndesMessageType {
     WARNING,
     ERROR;
 
+    companion object {
+        fun fromString(value : String) : AndesMessageType = valueOf(value.toUpperCase())
+    }
+
     internal val type get() = getAndesMessageHierarchy()
 
     private fun getAndesMessageHierarchy(): AndesMessageTypeInterface {

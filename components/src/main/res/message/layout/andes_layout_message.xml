@@ -15,6 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/andes_message_distance_title_body"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"
             app:layout_constraintStart_toStartOf="@+id/andes_righticon_guideline"
             app:layout_constraintTop_toTopOf="@+id/andes_top_guideline" />
@@ -23,6 +24,7 @@
             android:id="@+id/andes_body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             app:layout_constraintBottom_toTopOf="@+id/andes_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"
             app:layout_constraintStart_toStartOf="@+id/andes_righticon_guideline"

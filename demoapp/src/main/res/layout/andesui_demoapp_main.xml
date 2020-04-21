@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/andesui_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <com.mercadolibre.android.andesui.message.AndesMessage
         android:id="@+id/andesui_demoapp_changelog"
@@ -15,7 +25,7 @@
         app:andesMessageHierarchy="quiet"
         app:andesMessageTitleText="@string/andesui_demoapp_label_whatsnew_title"
         app:andesMessageType="neutral"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/andesui_nav_bar" />
 
     <TextView
         android:id="@+id/andesui_demoapp_label_showcase"
@@ -29,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_changelog" />
 
     <com.mercadolibre.android.andesui.button.AndesButton
-        android:id="@+id/andesui_buttons"
+        android:id="@+id/andesui_badges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/button_margin_vertical"
@@ -37,8 +47,20 @@
         android:layout_marginTop="@dimen/button_margin_vertical"
         app:andesButtonHierarchy="loud"
         app:andesButtonSize="large"
-        app:andesButtonText="@string/andes_button_showcase"
+        app:andesButtonText="@string/andes_badge_showcase"
         app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_showcase" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andesui_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/button_margin_vertical"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:layout_marginRight="@dimen/button_margin_vertical"
+        app:andesButtonHierarchy="loud"
+        app:andesButtonSize="large"
+        app:andesButtonText="@string/andes_button_showcase"
+        app:layout_constraintTop_toBottomOf="@id/andesui_badges" />
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andesui_messages"
@@ -61,7 +83,7 @@
         android:layout_marginRight="@dimen/button_margin_vertical"
         app:andesButtonHierarchy="loud"
         app:andesButtonSize="large"
-        app:andesButtonText="@string/andesui_textfiled"
+        app:andesButtonText="@string/andesui_demoapp_textfiled"
         app:layout_constraintTop_toBottomOf="@id/andesui_messages" />
 
     <TextView

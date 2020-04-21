@@ -9,7 +9,6 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.facebook.imagepipeline.listener.RequestListener
 import com.facebook.imagepipeline.listener.RequestLoggingListener
 
-
 /**
  * Main Application class that extends from Application to execute the start method only once.
  */

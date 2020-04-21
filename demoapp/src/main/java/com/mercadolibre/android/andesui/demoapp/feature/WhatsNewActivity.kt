@@ -8,11 +8,14 @@ import io.noties.markwon.Markwon
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-
 class WhatsNewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_demoapp_whatsnew)
+
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_whatsnew)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val whatsNew = findViewById<TextView>(R.id.andesui_demoapp_whats_new)
 

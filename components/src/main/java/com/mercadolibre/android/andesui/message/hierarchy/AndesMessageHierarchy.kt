@@ -14,6 +14,10 @@ enum class AndesMessageHierarchy {
     QUIET,
     LOUD;
 
+    companion object {
+        fun fromString(value : String) : AndesMessageHierarchy = valueOf(value.toUpperCase())
+    }
+
     internal val hierarchy get() = getAndesMessageHierarchy()
 
     private fun getAndesMessageHierarchy(): AndesMessageHierarchyInterface {

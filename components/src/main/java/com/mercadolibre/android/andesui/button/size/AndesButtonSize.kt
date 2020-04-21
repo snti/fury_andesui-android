@@ -15,6 +15,10 @@ enum class AndesButtonSize {
     MEDIUM,
     LARGE;
 
+    companion object {
+        fun fromString(value: String) : AndesButtonSize = valueOf(value.toUpperCase())
+    }
+
     internal val size get() = getAndesButtonSize()
 
     private fun getAndesButtonSize(): AndesButtonSizeInterface {

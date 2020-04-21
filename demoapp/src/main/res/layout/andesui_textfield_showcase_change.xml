@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:padding="@dimen/button_margin_vertical">
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/andesui_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:andesTextfieldState="idle"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:text="@string/andesui_demoapp_textfield_input_type"
+            android:textColor="@color/andes_gray_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/textType_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="@string/andesui_demoapp_textfield_state_text"
+            android:textColor="@color/andes_gray_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/state_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="@string/andesui_demoapp_textfield_prefix_text"
+            android:textColor="@color/andes_gray_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
+
+        <Spinner
+            android:id="@+id/prefix_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="@string/andesui_demoapp_textfield_suffix_text"
+            android:textColor="@color/andes_gray_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
+
+        <Spinner
+            android:id="@+id/suffix_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:id="@+id/label_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/andes_textfield_label_text"
+            android:inputType="text"
+            android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
+
+        <EditText
+            android:id="@+id/placeholder_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/andes_textfield_placeholder_text"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/helper_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/andes_textfield_helper_text"
+            android:inputType="text" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="@string/andesui_demoapp_counter_text"
+                android:textColor="@color/andes_gray_800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/counter"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.mercadolibre.android.andesui.button.AndesButton
+                android:id="@+id/change_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesButtonHierarchy="loud"
+                app:andesButtonSize="large"
+                app:andesButtonText="@string/andes_message_showcase_change"
+                android:layout_marginRight="@dimen/andes_textfield_edittext_paddingRight"
+                android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
+
+            <com.mercadolibre.android.andesui.button.AndesButton
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesButtonHierarchy="loud"
+                app:andesButtonSize="large"
+                app:andesButtonText="@string/andesui_demoapp_clear_button"
+                android:layout_marginTop="@dimen/andes_textfield_container_marginTop"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -3,4 +3,5 @@
     <dimen name="indicator_size">8dp</dimen>
     <dimen name="button_margin_vertical">16dp</dimen>
     <dimen name="button_margin_vertical_2x">32dp</dimen>
+    <dimen name="badge_margin_vertical">4dp</dimen>
 </resources>

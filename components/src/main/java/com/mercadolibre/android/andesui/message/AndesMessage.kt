@@ -129,7 +129,6 @@ class AndesMessage : CardView {
         setupComponents(config)
     }
 
-
     private fun initAttrs(hierarchy: AndesMessageHierarchy, type: AndesMessageType, body: String, title: String?, isDismissable: Boolean) {
         andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
@@ -265,6 +264,13 @@ class AndesMessage : CardView {
                 BuildConfig.DEBUG -> throw IllegalStateException("Cannot initialize a secondary action without a primary one")
                 else -> Log.d("AndesMessage", "Cannot initialize a secondary action without a primary one")
             }
+        }
+    }
+
+    fun setupDismissableCallback(onClickListener: OnClickListener) {
+        dismissableComponent.setOnClickListener{
+            visibility = View.GONE
+            onClickListener.onClick(it)
         }
     }
 
