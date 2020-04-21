@@ -70,9 +70,7 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
         icon.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
-                null,
-                null,
-                R.color.andes_gray_800.toAndesColor()))
+                color = R.color.andes_gray_800.toAndesColor()))
         icon.contentDescription = ICON_CONTENT_DESCRIPTION
         return icon
     }
@@ -100,9 +98,7 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
         validated.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
-                null,
-                null,
-                R.color.andes_green_500.toAndesColor())
+                color = R.color.andes_green_500.toAndesColor())
         )
         validated.contentDescription = VALIDATED_CONTENT_DESCRIPTION
         return validated
@@ -121,9 +117,7 @@ internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
         clear.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
-                null,
-                null,
-                R.color.andes_gray_450.toAndesColor())
+                color = R.color.andes_gray_450.toAndesColor())
         )
         clear.contentDescription = CLEAR_CONTENT_DESCRIPTION
         return clear

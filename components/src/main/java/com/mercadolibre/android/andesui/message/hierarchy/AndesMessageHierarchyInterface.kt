@@ -62,9 +62,7 @@ internal sealed class AndesMessageHierarchyInterface {
             buildColoredBitmapDrawable(
                     IconProvider(context).loadIcon("andes_ui_close_20") as BitmapDrawable,
                     context,
-                    null,
-                    null,
-                    hierarchy.dismissableIconColor()
+                    color = hierarchy.dismissableIconColor()
             )
 
     /**
