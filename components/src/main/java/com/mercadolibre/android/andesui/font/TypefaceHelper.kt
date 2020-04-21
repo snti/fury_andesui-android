@@ -11,7 +11,6 @@ import android.widget.TextView
  * This class is used as a wrapper for our custom font.
  * If you code create a View that supports typeface you should call one of this methods.
  */
-
 class TypefaceHelper {
 
     companion object {

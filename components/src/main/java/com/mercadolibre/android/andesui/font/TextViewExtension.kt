@@ -4,11 +4,9 @@ import android.graphics.Paint
 import android.widget.TextView
 
 fun TextView.setTypeface(font: Font) {
-    val typefaceSetter = CalligraphyTypefaceSetter()
-    typefaceSetter.setTypeface(this, font)
+    TypefaceHelper.setTypeface(this, font)
 }
 
 fun TextView.setTypeface(paint: Paint, font: Font) {
-    val typefaceSetter = CalligraphyTypefaceSetter()
-    typefaceSetter.setTypeface(context, paint, font)
+    TypefaceHelper.setTypeface(context, paint, font)
 }
