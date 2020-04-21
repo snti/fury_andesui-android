@@ -1,7 +1,5 @@
 package com.mercadolibre.android.andesui.badge.hierarchy
 
-import com.mercadolibre.android.andesui.button.AndesButton
-
 /**
  * Utility class that does two things: Defines the possible hierarchies an [AndesBadge] can take because it's an enum, as you can see.
  * But as a bonus it gives you the proper implementation so you don't have to make any mapping.
@@ -13,6 +11,10 @@ import com.mercadolibre.android.andesui.button.AndesButton
 enum class AndesBadgeHierarchy {
     QUIET,
     LOUD;
+
+    companion object {
+        fun fromString(value: String): AndesBadgeHierarchy = valueOf(value.toUpperCase())
+    }
 
     internal val hierarchy get() = getAndesButtonHierarchy()
 

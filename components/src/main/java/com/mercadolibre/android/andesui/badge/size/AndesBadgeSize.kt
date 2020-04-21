@@ -14,6 +14,10 @@ enum class AndesBadgeSize {
     SMALL,
     LARGE;
 
+    companion object {
+        fun fromString(value: String): AndesBadgeSize = valueOf(value.toUpperCase())
+    }
+
     internal val size get() = getAndesBadgeSize()
 
     private fun getAndesBadgeSize(): AndesBadgeSizeInterface {

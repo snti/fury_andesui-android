@@ -13,6 +13,10 @@ import com.mercadolibre.android.andesui.badge.AndesBadge
 enum class AndesBadgeModifier {
     PILL;
 
+    companion object {
+        fun fromString(value: String): AndesBadgeModifier = valueOf(value.toUpperCase())
+    }
+
     internal val modifier get() = getAndesBadgeModifier()
 
     private fun getAndesBadgeModifier(): AndesBadgeModifierInterface {

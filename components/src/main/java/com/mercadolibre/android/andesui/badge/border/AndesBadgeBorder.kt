@@ -15,6 +15,10 @@ enum class AndesBadgeBorder {
     ROUNDED,
     STANDARD;
 
+    companion object {
+        fun fromString(value: String): AndesBadgeBorder = valueOf(value.toUpperCase())
+    }
+
     internal val border get() = getAndesBadgeBorder()
 
     private fun getAndesBadgeBorder(): AndesBadgeBorderInterface {

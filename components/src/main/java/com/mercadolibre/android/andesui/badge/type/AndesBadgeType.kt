@@ -17,6 +17,10 @@ enum class AndesBadgeType {
     WARNING,
     ERROR;
 
+    companion object {
+        fun fromString(value: String): AndesBadgeType = valueOf(value.toUpperCase())
+    }
+
     internal val type get() = getAndesBadgeHierarchy()
 
     private fun getAndesBadgeHierarchy(): AndesBadgeTypeInterface {
