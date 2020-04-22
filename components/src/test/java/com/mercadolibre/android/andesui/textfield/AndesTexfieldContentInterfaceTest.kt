@@ -86,7 +86,7 @@ class AndesTextfieldContentInterfaceTest {
         icon.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
-                R.color.andes_gray_800.toAndesColor()))
+                color = R.color.andes_gray_800.toAndesColor()))
 
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_icon_left_margin).toInt(), contentInterface.rightMargin(context))
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_icon_right_margin).toInt(), contentInterface.leftMargin(context))
@@ -100,7 +100,7 @@ class AndesTextfieldContentInterfaceTest {
         validated.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
-                R.color.andes_green_500.toAndesColor())
+                color = R.color.andes_green_500.toAndesColor())
         )
 
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_validated_left_margin).toInt(), contentInterface.rightMargin(context))
@@ -115,7 +115,7 @@ class AndesTextfieldContentInterfaceTest {
         clear.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
-                R.color.andes_gray_450.toAndesColor())
+                color = R.color.andes_gray_450.toAndesColor())
         )
 
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt(), contentInterface.rightMargin(context))

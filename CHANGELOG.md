@@ -3,6 +3,7 @@
 - Initial Textfield component
 ## Changed
 - Open icon provider.
+- Open drawable utils for painting and scaling icons.
 
 # v2.0.1
 ## Removed
