@@ -11,71 +11,84 @@ import android.widget.TextView
  * This class is used as a wrapper for our custom font.
  * If you code create a View that supports typeface you should call one of this methods.
  */
-class TypefaceHelper {
+object TypefaceHelper {
 
-    companion object {
+    lateinit var typefaceSetter: TypefaceSetter
 
-        var typefaceSetter: TypefaceSetter = CalligraphyTypefaceSetter()
+    /**
+     * Attach a typeface setter to this helper class
+     * @param typefaceSetter field
+     */
+    @JvmStatic
+    fun attachTypefaceSetter(typefaceSetter: TypefaceSetter) {
+        TypefaceHelper.typefaceSetter = typefaceSetter
+    }
 
-        /**
-         * Attach a typeface setter to this helper class
-         * @param typefaceSetter field
-         */
-        fun attachTypefaceSetter(typefaceSetter: TypefaceSetter) {
-            TypefaceHelper.typefaceSetter = typefaceSetter
-        }
-
-        /**
-         * Sets the typeface to the given [T]
-         * @param <T>   A generic for the textview
-         * @param view  The view to which apply the font
-         * @param font  The [Font] the text should have
-        </T> */
-        fun <T : TextView?> setTypeface(view: T, font: Font) {
+    /**
+     * Sets the typeface to the given [T]
+     * @param <T>   A generic for the textview
+     * @param view  The view to which apply the font
+     * @param font  The [Font] the text should have
+    </T> */
+    @JvmStatic
+    fun <T : TextView?> setTypeface(view: T, font: Font) {
+        if (this::typefaceSetter.isInitialized) {
             typefaceSetter.setTypeface(view, font)
+        } else {
+            // Do log
         }
+    }
 
-        /**
-         * Sets the typeface to the given [Paint]
-         *
-         * @param context A context to obtain the font
-         * @param paint   The paint to which apply the font
-         * @param font    The [Font] the text should have
-         */
-        fun setTypeface(context: Context, paint: Paint, font: Font) {
+    /**
+     * Sets the typeface to the given [Paint]
+     *
+     * @param context A context to obtain the font
+     * @param paint   The paint to which apply the font
+     * @param font    The [Font] the text should have
+     */
+    @JvmStatic
+    fun setTypeface(context: Context, paint: Paint, font: Font) {
+        if (this::typefaceSetter.isInitialized) {
             typefaceSetter.setTypeface(context, paint, font)
+        } else {
+            // Do log
         }
+    }
 
-        /**
-         * Get a typeface associated to the font passed. The typeface will be sent through the
-         * font callback passed as param
-         *
-         * @param context to use
-         * @param font to retrieve its typeface
-         * @param fontCallback to call when the typeface is retrieved
-         *
-         */
-        @Deprecated("use TypefaceHelper{@link #getFontTypeface(Context, Font)} instead")
-        fun getTypeface(context: Context, font: Font, fontCallback: FontCallback) {
-            val typeface = getFontTypeface(context, font)
-            if (typeface == null) {
-                fontCallback.onFontRetrievalFailed(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
-            } else {
-                fontCallback.onFontRetrieved(typeface)
-            }
+    /**
+     * Get a typeface associated to the font passed. The typeface will be sent through the
+     * font callback passed as param
+     *
+     * @param context to use
+     * @param font to retrieve its typeface
+     * @param fontCallback to call when the typeface is retrieved
+     *
+     */
+    @JvmStatic
+    @Deprecated("use TypefaceHelper{@link #getFontTypeface(Context, Font)} instead")
+    fun getTypeface(context: Context, font: Font, fontCallback: FontCallback) {
+        val typeface = getFontTypeface(context, font)
+        if (typeface == null) {
+            fontCallback.onFontRetrievalFailed(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
+        } else {
+            fontCallback.onFontRetrieved(typeface)
         }
+    }
 
-        /**
-         * Get a typeface associated to the font passed.
-         *
-         * @param context to use
-         * @param font to use
-         * @return associated typeface
-         */
-        fun getFontTypeface(context: Context, font: Font): Typeface? {
-            return typefaceSetter.getTypeface(context, font)
+    /**
+     * Get a typeface associated to the font passed.
+     *
+     * @param context to use
+     * @param font to use
+     * @return associated typeface
+     */
+    @JvmStatic
+    fun getFontTypeface(context: Context, font: Font): Typeface? {
+        return if (this::typefaceSetter.isInitialized) {
+            typefaceSetter.getTypeface(context, font)
+        } else {
+            null
         }
-
     }
 
     /**
