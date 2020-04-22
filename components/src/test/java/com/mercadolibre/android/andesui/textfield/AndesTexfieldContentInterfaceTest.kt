@@ -86,9 +86,7 @@ class AndesTextfieldContentInterfaceTest {
         icon.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
-                null,
-                null,
-                R.color.andes_gray_800.toAndesColor()))
+                color = R.color.andes_gray_800.toAndesColor()))
 
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_icon_left_margin).toInt(), contentInterface.rightMargin(context))
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_icon_right_margin).toInt(), contentInterface.leftMargin(context))
