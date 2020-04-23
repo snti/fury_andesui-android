@@ -2,6 +2,7 @@
 ## Added
 - Initial Textfield component
 - Adding Detekt + Ktlint
+- Added more Andes icons needed.
 ## Changed
 - Open icon provider.
 - Open drawable utils for painting and scaling icons.
