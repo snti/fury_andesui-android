@@ -3,8 +3,6 @@ package com.mercadolibre.android.andesui.font
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.support.v4.content.res.ResourcesCompat.FontCallback
-import android.support.v4.provider.FontsContractCompat
 import android.widget.TextView
 
 /**
@@ -13,7 +11,7 @@ import android.widget.TextView
  */
 object TypefaceHelper {
 
-    lateinit var typefaceSetter: TypefaceSetter
+    private lateinit var typefaceSetter: TypefaceSetter
 
     /**
      * Attach a typeface setter to this helper class
@@ -52,26 +50,6 @@ object TypefaceHelper {
             typefaceSetter.setTypeface(context, paint, font)
         } else {
             // Do log
-        }
-    }
-
-    /**
-     * Get a typeface associated to the font passed. The typeface will be sent through the
-     * font callback passed as param
-     *
-     * @param context to use
-     * @param font to retrieve its typeface
-     * @param fontCallback to call when the typeface is retrieved
-     *
-     */
-    @JvmStatic
-    @Deprecated("use TypefaceHelper{@link #getFontTypeface(Context, Font)} instead")
-    fun getTypeface(context: Context, font: Font, fontCallback: FontCallback) {
-        val typeface = getFontTypeface(context, font)
-        if (typeface == null) {
-            fontCallback.onFontRetrievalFailed(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
-        } else {
-            fontCallback.onFontRetrieved(typeface)
         }
     }
 
