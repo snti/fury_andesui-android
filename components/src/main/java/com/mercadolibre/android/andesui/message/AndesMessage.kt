@@ -44,7 +44,7 @@ class AndesMessage : CardView {
     /**
      * Getter and setter for [body].
      */
-    var body: String
+    var body: String?
         get() = andesMessageAttrs.body
         set(value) {
             andesMessageAttrs = andesMessageAttrs.copy(body = value)
@@ -216,11 +216,17 @@ class AndesMessage : CardView {
      *
      */
     private fun setupBodyComponent(config: AndesMessageConfiguration) {
-        bodyComponent.text = config.bodyText
-        bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
-        bodyComponent.setTextColor(config.textColor.colorInt(context))
-        bodyComponent.typeface = config.bodyTypeface
-//        bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
+        if (config.bodyText.isNullOrEmpty()) {
+            messageContainer.visibility = View.GONE
+            Log.e("Body", "Message cannot be visualized with null or empty body")
+        } else {
+            messageContainer.visibility = View.VISIBLE
+            bodyComponent.text = config.bodyText
+            bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
+            bodyComponent.setTextColor(config.textColor.colorInt(context))
+            bodyComponent.typeface = config.bodyTypeface
+//          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
+        }
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {

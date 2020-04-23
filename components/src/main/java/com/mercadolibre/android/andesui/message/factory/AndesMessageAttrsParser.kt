@@ -12,7 +12,7 @@ import com.mercadolibre.android.andesui.message.type.AndesMessageType
 internal data class AndesMessageAttrs(
     val andesMessageHierarchy: AndesMessageHierarchy,
     val andesMessageType: AndesMessageType,
-    val body: String,
+    val body: String?,
     val title: String?,
     val isDismissable: Boolean
 )
@@ -50,7 +50,7 @@ internal object AndesMessageAttrsParser {
         return AndesMessageAttrs(
                 andesMessageHierarchy = hierarchy,
                 andesMessageType = type,
-                body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText) ?: throw IllegalArgumentException("Body is a mandatory parameter"),
+                body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
                 title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
                 isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false)
         ).also { typedArray.recycle() }

@@ -106,7 +106,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 changeMessage.isDismissable = dismissableCheckbox.isChecked
                 changeMessage.title = titleText.text.toString()
                 if (bodyText.text.toString() == "") {
-                    Toast.makeText(context, "Body cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Message cannot be visualized with null body", Toast.LENGTH_SHORT).show()
                 } else {
                     changeMessage.body = bodyText.text.toString()
                 }

@@ -1,10 +1,15 @@
 # v2.1.0
 ## Added
-- Initial Textfield component
-- Adding Detekt + Ktlint
-- Added more Andes icons needed.
+- Badge Component. (Credits)
+- Textfield component.
+- Adding Detekt + Ktlint.
+- Added more Andes icons needed. (Credits)
+- Message dismiss callback.
+- Message text can be selected.
+
 ## Changed
 - Open icon provider.
+- Message supports null body and gets invisible instead of throw error.
 - Open drawable utils for painting and scaling icons.
 - Migrated to Gradle 5.6.4
 - Migrated to AGP 3.4.2
