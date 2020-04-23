@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.message;
+package com.mercadolibre.android.andesui.message
 
 import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig

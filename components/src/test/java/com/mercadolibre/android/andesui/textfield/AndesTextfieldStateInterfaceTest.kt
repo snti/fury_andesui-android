@@ -31,7 +31,6 @@ class AndesTextfieldStateInterfaceTest {
     private var context = RuntimeEnvironment.application
     private lateinit var stateInterface: AndesTextfieldStateInterface
 
-
     companion object {
         @JvmStatic
         @BeforeClass

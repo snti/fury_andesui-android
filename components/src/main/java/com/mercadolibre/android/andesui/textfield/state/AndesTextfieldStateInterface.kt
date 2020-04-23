@@ -22,11 +22,11 @@ import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconD
 internal sealed class AndesTextfieldStateInterface {
     abstract fun backgroundColor(context: Context): Drawable
     abstract fun icon(context: Context): Drawable?
-    abstract fun placeholderColor() : AndesColor
+    abstract fun placeholderColor(): AndesColor
     abstract fun labelColor(): AndesColor
-    abstract fun helpersColor() : AndesColor
-    abstract fun typeFace(context: Context) : Typeface
-    abstract fun helper(helper: String?) : String?
+    abstract fun helpersColor(): AndesColor
+    abstract fun typeFace(context: Context): Typeface
+    abstract fun helper(helper: String?): String?
 }
 
 internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
@@ -92,16 +92,16 @@ internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = null
 
-    override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0,  R.color.andes_transparent.toColor(context))
+    override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0, R.color.andes_transparent.toColor(context))
 
     override fun icon(context: Context): Drawable? = null
 }
 
-private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor : Int?): Drawable {
+private fun createGradientDrawable(context: Context, stroke: Int, strokeColor: Int, backgrondColor: Int?): Drawable {
     val drawable = GradientDrawable()
     drawable.cornerRadius = context.resources.getDimension(R.dimen.andes_button_border_radius_large)
     drawable.setStroke(stroke, strokeColor)
-    if (backgrondColor != null){
+    if (backgrondColor != null) {
         drawable.setColor(backgrondColor)
     }
     return drawable

@@ -93,7 +93,6 @@ class AndesMessage : CardView {
     private lateinit var primaryAction: AndesButton
     private lateinit var secondaryAction: AndesButton
 
-
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
         throw IllegalStateException("Constructor without parameters in Andes Message is not allowed. You must provide some attributes.")
@@ -108,12 +107,13 @@ class AndesMessage : CardView {
     }
 
     @Suppress("unused")
-    constructor(context: Context,
-                hierarchy: AndesMessageHierarchy = HIERARCHY_DEFAULT,
-                type: AndesMessageType = STATE_DEFAULT,
-                body: String,
-                title: String? = TITLE_DEFAULT,
-                isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT
+    constructor(
+        context: Context,
+        hierarchy: AndesMessageHierarchy = HIERARCHY_DEFAULT,
+        type: AndesMessageType = STATE_DEFAULT,
+        body: String,
+        title: String? = TITLE_DEFAULT,
+        isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT
     ) : super(context) {
         initAttrs(hierarchy, type, body, title, isDismissable)
     }
@@ -129,7 +129,13 @@ class AndesMessage : CardView {
         setupComponents(config)
     }
 
-    private fun initAttrs(hierarchy: AndesMessageHierarchy, type: AndesMessageType, body: String, title: String?, isDismissable: Boolean) {
+    private fun initAttrs(
+        hierarchy: AndesMessageHierarchy,
+        type: AndesMessageType,
+        body: String,
+        title: String?,
+        isDismissable: Boolean
+    ) {
         andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
         setupComponents(config)
@@ -184,7 +190,7 @@ class AndesMessage : CardView {
      *
      */
     private fun setupViewId() {
-        if (id == NO_ID) { //If this view has no id
+        if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
     }
@@ -268,7 +274,7 @@ class AndesMessage : CardView {
     }
 
     fun setupDismissableCallback(onClickListener: OnClickListener) {
-        dismissableComponent.setOnClickListener{
+        dismissableComponent.setOnClickListener {
             visibility = View.GONE
             onClickListener.onClick(it)
         }

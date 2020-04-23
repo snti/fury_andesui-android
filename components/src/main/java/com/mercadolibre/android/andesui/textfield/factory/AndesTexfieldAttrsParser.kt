@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.textfield.factory
 
-
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
@@ -11,14 +10,16 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 /**
  * The data class that contains the public components of the textfield.
  */
-internal data class AndesTextfieldAttrs(val label: String?,
-                                        val helper: String?,
-                                        val placeholder: String?,
-                                        val counter: Int,
-                                        val state: AndesTextfieldState,
-                                        val leftContent: AndesTextfieldLeftContent?,
-                                        val rightContent: AndesTextfieldRightContent?,
-                                        val inputType: Int)
+internal data class AndesTextfieldAttrs(
+    val label: String?,
+    val helper: String?,
+    val placeholder: String?,
+    val counter: Int,
+    val state: AndesTextfieldState,
+    val leftContent: AndesTextfieldLeftContent?,
+    val rightContent: AndesTextfieldRightContent?,
+    val inputType: Int
+)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
@@ -35,12 +36,10 @@ internal object AndesTextfieldAttrsParser {
     private const val ANDES_TEXTFIELD_CONTENT_INDETERMINATE = "17"
     private const val ANDES_TEXTFIELD_CONTENT_CHECKBOX = "18"
 
-
     private const val ANDES_TEXTFIELD_STATE_ENABLED = "20"
     private const val ANDES_TEXTFIELD_STATE_ERROR = "21"
     private const val ANDES_TEXTFIELD_STATE_DISABLED = "22"
     private const val ANDES_TEXTFIELD_STATE_READONLY = "23"
-
 
     fun parse(context: Context, attr: AttributeSet?): AndesTextfieldAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTextfield)

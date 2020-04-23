@@ -15,7 +15,7 @@ enum class AndesMessageHierarchy {
     LOUD;
 
     companion object {
-        fun fromString(value : String) : AndesMessageHierarchy = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesMessageHierarchy = valueOf(value.toUpperCase())
     }
 
     internal val hierarchy get() = getAndesMessageHierarchy()

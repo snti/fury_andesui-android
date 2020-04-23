@@ -9,11 +9,13 @@ import com.mercadolibre.android.andesui.message.type.AndesMessageType
 /**
  * The data class that contains the public components of the message.
  */
-internal data class AndesMessageAttrs(val andesMessageHierarchy: AndesMessageHierarchy,
-                                      val andesMessageType: AndesMessageType,
-                                      val body: String,
-                                      val title: String?,
-                                      val isDismissable: Boolean)
+internal data class AndesMessageAttrs(
+    val andesMessageHierarchy: AndesMessageHierarchy,
+    val andesMessageType: AndesMessageType,
+    val body: String,
+    val title: String?,
+    val isDismissable: Boolean
+)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage

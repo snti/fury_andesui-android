@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.button.hierarchy
 
-
 /**
  * Holds data about the icon a button can carry: Icon and Orientation.
  *

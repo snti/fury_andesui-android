@@ -108,7 +108,6 @@ internal object AndesLoudMessageHierarchy : AndesMessageHierarchyInterface() {
     override fun iconBackgroundColor(type: AndesMessageTypeInterface) = type.secondaryColor()
     override fun primaryActionBackgroundColor(type: AndesMessageTypeInterface) = type.primaryActionColorConfig()
 
-
     override fun secondaryActionBackgroundColor(type: AndesMessageTypeInterface) = type.secondaryActionColorConfig()
 
     override fun secondaryActionTextColor(type: AndesMessageTypeInterface) = R.color.andes_white.toAndesColor()

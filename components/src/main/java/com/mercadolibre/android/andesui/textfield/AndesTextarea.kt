@@ -21,7 +21,6 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-
 class AndesTextarea : ConstraintLayout {
 
     /**
@@ -100,20 +99,21 @@ class AndesTextarea : ConstraintLayout {
     private lateinit var textComponent: EditText
     private lateinit var iconComponent: SimpleDraweeView
 
-
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
         initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, MAXLINES_DEFAULT)
     }
 
-    constructor(context: Context,
-                label: String? = LABEL_DEFAULT,
-                helper: String? = HELPER_DEFAULT,
-                placeholder: String? = PLACEHOLDER_DEFAULT,
-                counter: Int = COUNTER_DEFAULT,
-                state: AndesTextfieldState = STATE_DEFAULT,
-                maxLines: Int? = MAXLINES_DEFAULT)
-            : super(context) {
+    constructor(
+        context: Context,
+        label: String? = LABEL_DEFAULT,
+        helper: String? = HELPER_DEFAULT,
+        placeholder: String? = PLACEHOLDER_DEFAULT,
+        counter: Int = COUNTER_DEFAULT,
+        state: AndesTextfieldState = STATE_DEFAULT,
+        maxLines: Int? = MAXLINES_DEFAULT
+    ) :
+            super(context) {
         initAttrs(label, helper, placeholder, counter, state, maxLines)
     }
 
@@ -131,7 +131,14 @@ class AndesTextarea : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: Int, state: AndesTextfieldState, maxLines: Int?) {
+    private fun initAttrs(
+        label: String?,
+        helper: String?,
+        placeholder: String?,
+        counter: Int,
+        state: AndesTextfieldState,
+        maxLines: Int?
+    ) {
         andesTextareaAttrs = AndesTextareaAttrs(label, helper, placeholder, counter, state, maxLines)
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)
         setupComponents(config)
@@ -166,11 +173,10 @@ class AndesTextarea : ConstraintLayout {
         counterComponent = container.findViewById(R.id.andes_textarea_counter)
         iconComponent = container.findViewById(R.id.andes_textarea_icon)
         textComponent = container.findViewById(R.id.andes_textarea_edittext)
-
     }
 
     private fun setupViewId() {
-        if (id == NO_ID) { //If this view has no id
+        if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
     }
@@ -182,7 +188,7 @@ class AndesTextarea : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if(state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY){
+        if (state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY) {
             isEnabled = false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
@@ -211,7 +217,6 @@ class AndesTextarea : ConstraintLayout {
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
             iconComponent.visibility = View.VISIBLE
-
         } else {
             iconComponent.visibility = View.GONE
         }
@@ -270,7 +275,7 @@ class AndesTextarea : ConstraintLayout {
             counterComponent.visibility = View.GONE
         }
 
-        textComponent.addTextChangedListener(object: TextWatcher {
+        textComponent.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(charSequence: Editable?) {
             }
 

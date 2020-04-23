@@ -15,10 +15,12 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
  * @param rightIcon probable icon of the button. Needed because the margins are different if the button has icon or not.
  * @param context needed for accessing dimen resources.
  */
-internal class AndesButtonMargin(private val size: AndesButtonSizeInterface,
-                                 private val leftIcon: String?,
-                                 private val rightIcon: String?,
-                                 private val context: Context) {
+internal class AndesButtonMargin(
+    private val size: AndesButtonSizeInterface,
+    private val leftIcon: String?,
+    private val rightIcon: String?,
+    private val context: Context
+) {
 
     var textLeftMargin: Int = 0
         private set

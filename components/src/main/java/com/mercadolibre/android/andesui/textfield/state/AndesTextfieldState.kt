@@ -15,7 +15,7 @@ enum class AndesTextfieldState {
         READONLY;
 
     companion object {
-        fun fromString(value: String) : AndesTextfieldState = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesTextfieldState = valueOf(value.toUpperCase())
     }
 
     internal val state get() = getAndesTextfieldState()

@@ -5,13 +5,11 @@ package com.mercadolibre.android.andesui.badge.modifier
  * Those properties change depending on the style of the badge.
  *
  */
-internal interface AndesBadgeModifierInterface {
-}
+internal interface AndesBadgeModifierInterface
 
 /**
  * Implementation of [AndesBadgeModifierInterface] that returns the required data but personalized for the Large Size,
  * according to Andes specifications.
  *
  */
-internal class AndesPillBadgeModifier : AndesBadgeModifierInterface {
-}
+internal class AndesPillBadgeModifier : AndesBadgeModifierInterface

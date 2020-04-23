@@ -30,7 +30,6 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_badge)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         viewPager.adapter = AndesShowcasePagerAdapter(this)
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)

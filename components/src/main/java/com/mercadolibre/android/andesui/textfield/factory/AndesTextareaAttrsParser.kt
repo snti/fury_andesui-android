@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.textfield.factory
 
-
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
@@ -9,24 +8,24 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 /**
  * The data class that contains the public components of the textfield.
  */
-internal data class AndesTextareaAttrs(val label: String?,
-                                       val helper: String?,
-                                       val placeholder: String?,
-                                       val counter: Int,
-                                       val state: AndesTextfieldState,
-                                       val maxLines : Int?)
+internal data class AndesTextareaAttrs(
+    val label: String?,
+    val helper: String?,
+    val placeholder: String?,
+    val counter: Int,
+    val state: AndesTextfieldState,
+    val maxLines: Int?
+)
 
 /**
  * This object parse the attribute set and return an instance of AndesMessageAttrs to be used by AndesMessage
  */
 internal object AndesTextareaAttrsParser {
 
-
     private const val ANDES_TEXTFIELD_STATE_ENABLED = "20"
     private const val ANDES_TEXTFIELD_STATE_ERROR = "21"
     private const val ANDES_TEXTFIELD_STATE_DISABLED = "22"
     private const val ANDES_TEXTFIELD_STATE_READONLY = "23"
-
 
     fun parse(context: Context, attr: AttributeSet?): AndesTextareaAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTextarea)
@@ -39,8 +38,6 @@ internal object AndesTextareaAttrsParser {
 
             else -> AndesTextfieldState.IDLE
         }
-
-
 
         return AndesTextareaAttrs(
                 label = typedArray.getString(R.styleable.AndesTextarea_andesTextareaLabel),

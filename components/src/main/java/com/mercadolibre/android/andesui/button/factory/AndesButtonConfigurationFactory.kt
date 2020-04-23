@@ -28,16 +28,16 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSizeInterface
  * @property lateralPadding holds the lateral padding of the button.
  */
 internal data class AndesButtonConfiguration(
-        val background: Drawable,
-        val text: String? = null,
-        val textColor: ColorStateList,
-        val textSize: Float,
-        val margin: AndesButtonMargin,
-        val height: Float,
-        val typeface: Typeface,
-        val iconConfig: IconConfig? = null,
-        val enabled: Boolean = true,
-        val lateralPadding: Int
+    val background: Drawable,
+    val text: String? = null,
+    val textColor: ColorStateList,
+    val textSize: Float,
+    val margin: AndesButtonMargin,
+    val height: Float,
+    val typeface: Typeface,
+    val iconConfig: IconConfig? = null,
+    val enabled: Boolean = true,
+    val lateralPadding: Int
 ) {
     /**
      * Constant representing the max of lines a button can have
@@ -105,7 +105,12 @@ internal object AndesButtonConfigurationFactory {
      * @return an [AndesButtonConfiguration] that contains all the data that [AndesButton] needs to draw itself properly.
      */
     @Override
-    fun create(context: Context, andesButtonSize: AndesButtonSize, andesButtonHierarchy: AndesButtonHierarchy, andesButtonIcon: AndesButtonIcon?): AndesButtonConfiguration {
+    fun create(
+        context: Context,
+        andesButtonSize: AndesButtonSize,
+        andesButtonHierarchy: AndesButtonHierarchy,
+        andesButtonIcon: AndesButtonIcon?
+    ): AndesButtonConfiguration {
         val size = andesButtonSize.size
         val hierarchy = andesButtonHierarchy.hierarchy
 
@@ -128,7 +133,11 @@ internal object AndesButtonConfigurationFactory {
      * @param size determined size of the button: Needed because the size depends on this.
      * @param context needed for accessing some resources.
      */
-    private fun resolveBackground(hierarchy: AndesButtonHierarchyInterface, size: AndesButtonSizeInterface, context: Context) = hierarchy.background(context, size.cornerRadius(context))
+    private fun resolveBackground(
+        hierarchy: AndesButtonHierarchyInterface,
+        size: AndesButtonSizeInterface,
+        context: Context
+    ) = hierarchy.background(context, size.cornerRadius(context))
 
     /**
      * Determines the text color from certain parameters that receives.
@@ -154,7 +163,12 @@ internal object AndesButtonConfigurationFactory {
      * @param rightIconPath probable icon path of the button. Needed because the margins are different if the button has icon or not.
      * @param context needed for accessing dimen resources.
      */
-    private fun resolveMargin(size: AndesButtonSizeInterface, leftIconPath: String?, rightIconPath: String?, context: Context) = AndesButtonMargin(size, leftIconPath, rightIconPath, context)
+    private fun resolveMargin(
+        size: AndesButtonSizeInterface,
+        leftIconPath: String?,
+        rightIconPath: String?,
+        context: Context
+    ) = AndesButtonMargin(size, leftIconPath, rightIconPath, context)
 
     /**
      * Determines the height of the button from certain parameters that receives.
@@ -181,7 +195,13 @@ internal object AndesButtonConfigurationFactory {
      * @param rightIconPath determined icon path of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
      * @param context needed for accessing some resources.
      */
-    private fun resolveIconConfig(size: AndesButtonSizeInterface, hierarchy: AndesButtonHierarchyInterface, leftIconPath: String?, rightIconPath: String?, context: Context) = size.iconConfig(hierarchy, leftIconPath, rightIconPath, context)
+    private fun resolveIconConfig(
+        size: AndesButtonSizeInterface,
+        hierarchy: AndesButtonHierarchyInterface,
+        leftIconPath: String?,
+        rightIconPath: String?,
+        context: Context
+    ) = size.iconConfig(hierarchy, leftIconPath, rightIconPath, context)
 
     /**
      * Determines if the button should be enabled or not.
@@ -189,7 +209,6 @@ internal object AndesButtonConfigurationFactory {
      * @param typedArray needed for accessing boolean value.
      */
     private fun resolveEnabled(typedArray: TypedArray) = typedArray.getBoolean(R.styleable.AndesButton_andesButtonEnabled, true)
-
 
     /**
      * Determines the padding of the button.

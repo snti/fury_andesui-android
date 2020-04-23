@@ -25,7 +25,13 @@ import com.mercadolibre.android.andesui.color.AndesColor
  * @param colors we said we will be tinting the icon and this is the color. Note that the color for state_enabled will be used. If it does not exist, 0 will be used.
  * @return a complete look overhauled [BitmapDrawable].
  */
-fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int? = null, dstHeight: Int? = null, colors: ColorStateList?): BitmapDrawable {
+fun buildColoredBitmapDrawable(
+    image: BitmapDrawable,
+    context: Context,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null,
+    colors: ColorStateList?
+): BitmapDrawable {
     var scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
                 image.bitmap,
@@ -62,7 +68,13 @@ fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth
             }
 }
 
-fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int? = null, dstHeight: Int? = null, color: AndesColor? = null): BitmapDrawable {
+fun buildColoredBitmapDrawable(
+    image: BitmapDrawable,
+    context: Context,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null,
+    color: AndesColor? = null
+): BitmapDrawable {
     var scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
                 image.bitmap,
@@ -80,7 +92,13 @@ fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth
 /**
  * This method is the same as badge icon. When component were made, this should have been removed.
  */
-fun buildColoredCircularShapeWithIconDrawable(image: BitmapDrawable, context: Context, iconColor: AndesColor? = null, shapeColor: Int? = null, diameter: Int): Drawable {
+fun buildColoredCircularShapeWithIconDrawable(
+    image: BitmapDrawable,
+    context: Context,
+    iconColor: AndesColor? = null,
+    shapeColor: Int? = null,
+    diameter: Int
+): Drawable {
     val icon = buildColoredBitmapDrawable(image, context, null, null, iconColor)
 
     val biggerCircle = ShapeDrawable(OvalShape())

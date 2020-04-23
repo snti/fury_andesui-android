@@ -22,7 +22,6 @@ import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import java.util.*
 
-
 class AndesBadge : CardView {
 
     /**
@@ -98,13 +97,14 @@ class AndesBadge : CardView {
     }
 
     @Suppress("unused")
-    constructor(context: Context,
-                modifier: AndesBadgeModifier = MODIFIER_DEFAULT,
-                hierarchy: AndesBadgeHierarchy = HIERARCHY_DEFAULT,
-                type: AndesBadgeType = STATE_DEFAULT,
-                border: AndesBadgeBorder = BORDER_DEFAULT,
-                size: AndesBadgeSize = SIZE_DEFAULT,
-                text: String? = TEXT_DEFAULT
+    constructor(
+        context: Context,
+        modifier: AndesBadgeModifier = MODIFIER_DEFAULT,
+        hierarchy: AndesBadgeHierarchy = HIERARCHY_DEFAULT,
+        type: AndesBadgeType = STATE_DEFAULT,
+        border: AndesBadgeBorder = BORDER_DEFAULT,
+        size: AndesBadgeSize = SIZE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(modifier, hierarchy, type, border, size, text)
     }
@@ -120,8 +120,14 @@ class AndesBadge : CardView {
         setupComponents(config)
     }
 
-    private fun initAttrs(modifier: AndesBadgeModifier, hierarchy: AndesBadgeHierarchy, type: AndesBadgeType,
-                          border: AndesBadgeBorder, size: AndesBadgeSize, title: String?) {
+    private fun initAttrs(
+        modifier: AndesBadgeModifier,
+        hierarchy: AndesBadgeHierarchy,
+        type: AndesBadgeType,
+        border: AndesBadgeBorder,
+        size: AndesBadgeSize,
+        title: String?
+    ) {
         andesBadgeAttrs = AndesBadgeAttrs(modifier, hierarchy, type, border, size, title)
         val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
@@ -161,7 +167,7 @@ class AndesBadge : CardView {
      *
      */
     private fun setupViewId() {
-        if (id == NO_ID) { //If this view has no id
+        if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
     }

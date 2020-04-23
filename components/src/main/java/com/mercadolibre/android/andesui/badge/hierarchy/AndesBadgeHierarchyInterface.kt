@@ -1,15 +1,9 @@
 package com.mercadolibre.android.andesui.badge.hierarchy
 
-import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeTypeInterface
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.message.AndesMessage
-import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 /**
  * Defines all style related properties that an [AndesBadge] needs to be drawn properly.

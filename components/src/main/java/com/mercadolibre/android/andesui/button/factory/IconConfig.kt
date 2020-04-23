@@ -14,7 +14,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
  * @property rightIcon right icon of the button.
  */
 data class IconConfig(
-        val leftIcon: Drawable?,
-        val rightIcon: Drawable?,
-        val iconPadding: Int = 0
+    val leftIcon: Drawable?,
+    val rightIcon: Drawable?,
+    val iconPadding: Int = 0
 )

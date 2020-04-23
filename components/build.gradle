@@ -5,6 +5,7 @@ apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'com.novoda.bintray-release'
 apply from: rootProject.file('jacoco.gradle')
 apply from: rootProject.file('publish.gradle')
+apply from: rootProject.file('detekt.gradle')
 
 android {
     compileSdkVersion maxApiLevel.toInteger()
@@ -66,6 +67,7 @@ dependencies {
     // Unit testing dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+    testImplementation "com.facebook.soloader:soloader:$soloaderVersion"
     testImplementation test.junit4
     testImplementation test.mockitoKotlin
     testImplementation test.assertj

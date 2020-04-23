@@ -63,30 +63,30 @@ class AndesMessageConfigurationQuiet {
     }
 
     @Test
-    fun `Quiet, Neutral icon background color`(){
+    fun `Quiet, Neutral icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.NEUTRAL, "Body", "Title", true)
-        val config =  configFactory.create(context, attrs)
+        val config = configFactory.create(context, attrs)
         assertEquals(config.iconBackgroundColor, R.color.andes_accent_color_500.toAndesColor())
     }
 
     @Test
-    fun `Quiet, Success icon background color`(){
+    fun `Quiet, Success icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.SUCCESS, "Body", "Title", true)
-        val config =  configFactory.create(context, attrs)
+        val config = configFactory.create(context, attrs)
         assertEquals(config.iconBackgroundColor, R.color.andes_green_500.toAndesColor())
     }
 
     @Test
-    fun `Quiet, Error icon background color`(){
+    fun `Quiet, Error icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.ERROR, "Body", "Title", true)
-        val config =  configFactory.create(context, attrs)
+        val config = configFactory.create(context, attrs)
         assertEquals(config.iconBackgroundColor, R.color.andes_red_500.toAndesColor())
     }
 
     @Test
-    fun `Quiet, Warning icon background color`(){
+    fun `Quiet, Warning icon background color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.WARNING, "Body", "Title", true)
-        val config =  configFactory.create(context, attrs)
+        val config = configFactory.create(context, attrs)
         assertEquals(config.iconBackgroundColor, R.color.andes_orange_500.toAndesColor())
     }
 

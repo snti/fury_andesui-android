@@ -23,8 +23,8 @@ import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
  */
 internal sealed class AndesTextfieldContentInterface {
     abstract fun component(context: Context): View
-    abstract fun leftMargin(context: Context) : Int
-    abstract fun rightMargin(context: Context) : Int
+    abstract fun leftMargin(context: Context): Int
+    abstract fun rightMargin(context: Context): Int
 }
 
 internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
@@ -33,7 +33,7 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_right_margin).toInt()
 
     override fun component(context: Context): TextView {
-        val suffix  = TextView(context)
+        val suffix = TextView(context)
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
         suffix.text = context.getString(R.string.andes_suffix_hint)
         suffix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -42,14 +42,13 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
     }
 }
 
-
 internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_prefix_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_prefix_right_margin).toInt()
 
     override fun component(context: Context): TextView {
-        val prefix  = TextView(context)
+        val prefix = TextView(context)
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
         prefix.text = context.getString(R.string.andes_prefix_hint)
         prefix.typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -82,7 +81,7 @@ internal object AndesTooltipTextfieldContent : AndesTextfieldContentInterface() 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_tooltip_right_margin).toInt()
 
     override fun component(context: Context): View {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -94,7 +93,7 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_validated_right_margin).toInt()
 
     override fun component(context: Context): SimpleDraweeView {
-        val validated =  SimpleDraweeView(context)
+        val validated = SimpleDraweeView(context)
         validated.setImageDrawable(buildColoredBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
@@ -140,7 +139,7 @@ internal object AndesIndeterminateTextfieldContent : AndesTextfieldContentInterf
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_right_margin).toInt()
 
     override fun component(context: Context): View {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -150,8 +149,6 @@ internal object AndesCheckboxTextfieldContent : AndesTextfieldContentInterface()
     override fun rightMargin(context: Context): Int = 0
 
     override fun component(context: Context): View {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
-
-

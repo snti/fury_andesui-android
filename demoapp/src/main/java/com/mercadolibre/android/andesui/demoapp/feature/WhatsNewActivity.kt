@@ -42,5 +42,4 @@ class WhatsNewActivity : AppCompatActivity() {
 
         return byteArrayOutputStream.toString()
     }
-
 }

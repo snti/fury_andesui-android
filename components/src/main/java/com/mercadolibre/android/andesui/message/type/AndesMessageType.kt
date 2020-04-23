@@ -15,7 +15,7 @@ enum class AndesMessageType {
     ERROR;
 
     companion object {
-        fun fromString(value : String) : AndesMessageType = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesMessageType = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesMessageHierarchy()

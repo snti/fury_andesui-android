@@ -75,5 +75,4 @@ class AndesTextfieldTest {
         textfield.setAction("action", View.OnClickListener { })
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ACTION)
     }
-
 }

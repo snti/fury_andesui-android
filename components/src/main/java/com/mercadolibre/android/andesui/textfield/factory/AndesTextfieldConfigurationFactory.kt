@@ -11,30 +11,30 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInter
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 internal data class AndesTextfieldConfiguration(
-        val background: Drawable?,
-        val helperColor : AndesColor,
-        val helperText: String? = null,
-        val helperSize: Float,
-        val helperTypeface: Typeface,
-        val labelColor : AndesColor,
-        val labelText: String? = null,
-        val labelSize: Float,
-        val counterColor : AndesColor,
-        val counterSize: Float,
-        val counterLength: Int,
-        val placeHolderColor : AndesColor,
-        val placeHolderText : String? = null,
-        val placeHolderSize : Float,
-        val typeface: Typeface,
-        val icon: Drawable?,
-        val leftComponent : View? = null,
-        val rightComponent : View? = null,
-        val leftComponentLeftMargin: Int? = null,
-        val leftComponentRightMargin: Int? = null,
-        val rightComponentLeftMargin : Int? = null,
-        val rightComponentRightMargin: Int? = null,
-        val maxLines : Int ? = null
-        )
+    val background: Drawable?,
+    val helperColor: AndesColor,
+    val helperText: String? = null,
+    val helperSize: Float,
+    val helperTypeface: Typeface,
+    val labelColor: AndesColor,
+    val labelText: String? = null,
+    val labelSize: Float,
+    val counterColor: AndesColor,
+    val counterSize: Float,
+    val counterLength: Int,
+    val placeHolderColor: AndesColor,
+    val placeHolderText: String? = null,
+    val placeHolderSize: Float,
+    val typeface: Typeface,
+    val icon: Drawable?,
+    val leftComponent: View? = null,
+    val rightComponent: View? = null,
+    val leftComponentLeftMargin: Int? = null,
+    val leftComponentRightMargin: Int? = null,
+    val rightComponentLeftMargin: Int? = null,
+    val rightComponentRightMargin: Int? = null,
+    val maxLines: Int? = null
+)
 
 internal object AndesTextfieldConfigurationFactory {
 
@@ -59,7 +59,7 @@ internal object AndesTextfieldConfigurationFactory {
                     typeface = resolveTypeface(context),
                     icon = resolveIcon(context, state.state),
                     leftComponent = resolveLeftComponent(context, leftContent?.leftContent),
-                    rightComponent = resolveRightComponent(context,rightContent?.rightContent),
+                    rightComponent = resolveRightComponent(context, rightContent?.rightContent),
                     leftComponentLeftMargin = resolveLeftComponentLeftMargin(context, leftContent?.leftContent),
                     leftComponentRightMargin = resolveLeftComponentRightMargin(context, leftContent?.leftContent),
                     rightComponentLeftMargin = resolveRightComponentLeftMargin(context, rightContent?.rightContent),
@@ -93,24 +93,23 @@ internal object AndesTextfieldConfigurationFactory {
         }
     }
 
-    private fun resolveBackground(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.backgroundColor(context)
+    private fun resolveBackground(context: Context, state: AndesTextfieldStateInterface): Drawable? = state.backgroundColor(context)
     private fun resolveHelperTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helpersColor()
-    private fun resolveHelperSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_helper_textSize)
+    private fun resolveHelperSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_helper_textSize)
     private fun resolveHelperTypeface(state: AndesTextfieldStateInterface, context: Context) = state.typeFace(context)
     private fun resolveLabelTextColor(state: AndesTextfieldStateInterface): AndesColor = state.labelColor()
-    private fun resolveLabelSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
-    private fun resolveCounterTextColor(state: AndesTextfieldStateInterface) : AndesColor = state.helpersColor()
-    private fun resolveCounterSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)
-    private fun resolveTypeface(context: Context) =  context.getFontOrDefault(R.font.andes_font_regular)
-    private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface) : Drawable? = state.icon(context)
-    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface, context: Context) : AndesColor = state.placeholderColor()
-    private fun resolvePlaceHolderSize(context: Context) : Float = context.resources.getDimension(R.dimen.andes_textfield_placeholder_textSize)
-    private fun resolveLeftComponent(context: Context, leftContent: AndesTextfieldContentInterface?) : View? = leftContent?.component(context)
-    private fun resolveRightComponent(context: Context, rightContent: AndesTextfieldContentInterface?) : View? = rightContent?.component(context)
-    private fun resolveLeftComponentLeftMargin(context: Context, leftContent: AndesTextfieldContentInterface?) : Int? = leftContent?.leftMargin(context)
-    private fun resolveLeftComponentRightMargin(context: Context, leftContent: AndesTextfieldContentInterface?) : Int? = leftContent?.rightMargin(context)
-    private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.leftMargin(context)
-    private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?) : Int? = rightContent?.rightMargin(context)
+    private fun resolveLabelSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
+    private fun resolveCounterTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helpersColor()
+    private fun resolveCounterSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)
+    private fun resolveTypeface(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
+    private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface): Drawable? = state.icon(context)
+    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface, context: Context): AndesColor = state.placeholderColor()
+    private fun resolvePlaceHolderSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_placeholder_textSize)
+    private fun resolveLeftComponent(context: Context, leftContent: AndesTextfieldContentInterface?): View? = leftContent?.component(context)
+    private fun resolveRightComponent(context: Context, rightContent: AndesTextfieldContentInterface?): View? = rightContent?.component(context)
+    private fun resolveLeftComponentLeftMargin(context: Context, leftContent: AndesTextfieldContentInterface?): Int? = leftContent?.leftMargin(context)
+    private fun resolveLeftComponentRightMargin(context: Context, leftContent: AndesTextfieldContentInterface?): Int? = leftContent?.rightMargin(context)
+    private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?): Int? = rightContent?.leftMargin(context)
+    private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?): Int? = rightContent?.rightMargin(context)
     private fun resolveHelper(state: AndesTextfieldStateInterface, helper: String?): String? = state.helper(helper)
 }
-

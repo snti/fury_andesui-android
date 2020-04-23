@@ -9,6 +9,6 @@ enum class AndesButtonIconOrientation {
     RIGHT;
 
     companion object {
-        fun fromString(value: String) : AndesButtonIconOrientation = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesButtonIconOrientation = valueOf(value.toUpperCase())
     }
 }

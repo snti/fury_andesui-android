@@ -19,7 +19,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-const val ANDES_ICON="andes_navegacion_ajustes"
+const val ANDES_ICON = "andes_navegacion_ajustes"
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
@@ -77,7 +77,6 @@ class AndesLargeButtonSizeTest {
     fun `Large button right icon`() {
         assertEquals(andesLargeButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context), IconConfig(null, icon))
     }
-
 }
 
 @RunWith(RobolectricTestRunner::class)
@@ -135,9 +134,7 @@ class AndesMediumButtonSizeTest {
     fun `Medium button right icon`() {
         assertNull(andesMediumButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
     }
-
 }
-
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
@@ -194,5 +191,4 @@ class AndesSmallButtonSizeTest {
     fun `Small button right icon`() {
         assertNull(andesSmallButtonSize.iconConfig(hierarchy, null, ANDES_ICON, context))
     }
-
 }

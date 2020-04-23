@@ -134,7 +134,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             }
 
             clearButton.setOnClickListener {
-                //reset UI
+                // reset UI
                 label.setText(null)
                 placeholder.setHint(context.resources.getString(R.string.andes_textfield_placeholder_text))
                 placeholder.setText(null)
@@ -143,7 +143,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 counter.setText(null)
                 inputTypeSpinner.setSelection(getInputTypesArray().filter { it.name == "text" }.single().value)
 
-                //reset AndesTextfield's properties.
+                // reset AndesTextfield's properties.
                 textfield.text = ""
                 textfield.label = null
                 textfield.helper = null
@@ -211,7 +211,5 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 return this.name
             }
         }
-
     }
 }
-

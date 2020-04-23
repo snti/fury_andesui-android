@@ -22,12 +22,12 @@ import com.mercadolibre.android.andesui.color.toAndesColor
  * @property otherColor
  */
 internal data class BackgroundColorConfig(
-        val enabledColor: AndesColor,
-        val pressedColor: AndesColor,
-        val focusedColor: AndesColor,
-        val hoveredColor: AndesColor,
-        val disabledColor: AndesColor,
-        val otherColor: AndesColor?
+    val enabledColor: AndesColor,
+    val pressedColor: AndesColor,
+    val focusedColor: AndesColor,
+    val hoveredColor: AndesColor,
+    val disabledColor: AndesColor,
+    val otherColor: AndesColor?
 )
 
 /**

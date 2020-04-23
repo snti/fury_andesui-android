@@ -14,7 +14,7 @@ enum class AndesTextfieldLeftContent {
     ICON;
 
     companion object {
-        fun fromString(value: String) : AndesTextfieldLeftContent = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesTextfieldLeftContent = valueOf(value.toUpperCase())
     }
 
     internal val leftContent get() = getAndesTextfieldLeftContent()
@@ -38,7 +38,7 @@ enum class AndesTextfieldRightContent {
     CHECKBOX;
 
     companion object {
-        fun fromString(value: String) : AndesTextfieldRightContent = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesTextfieldRightContent = valueOf(value.toUpperCase())
     }
 
     internal val rightContent get() = getAndesTextfieldRightContent()
@@ -56,4 +56,3 @@ enum class AndesTextfieldRightContent {
         }
     }
 }
-

@@ -1,8 +1,13 @@
 # v2.1.0
 ## Added
 - Initial Textfield component
+- - Adding Detekt + Ktlint
 ## Changed
 - Open icon provider.
+- Open drawable utils for painting and scaling icons.
+- Migrated to Gradle 5.6.4
+- Migrated to AGP 3.4.2
+- R8 enabled.
 
 # v2.0.1
 ## Removed

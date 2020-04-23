@@ -22,7 +22,6 @@ import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.button.hierarchy.getConfiguredBackground
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 
-
 /**
  * User interface element the user can tap or click to perform an action.
  * Has all the same features as an [AppCompatButton] but reinforces the Andes style.
@@ -114,12 +113,14 @@ class AndesButton : ConstraintLayout {
      * Constructor for creating an AndesButton programmatically with the specified [buttonSize],
      * and optionally [buttonIcon] and [buttonText].
      */
-    constructor(context: Context,
-                buttonSize: AndesButtonSize = SIZE_DEFAULT,
-                buttonHierarchy: AndesButtonHierarchy = HIERARCHY_DEFAULT,
-                buttonIcon: AndesButtonIcon? = ICON_DEFAULT,
-                buttonText: String? = TEXT_DEFAULT)
-            : super(context) {
+    constructor(
+        context: Context,
+        buttonSize: AndesButtonSize = SIZE_DEFAULT,
+        buttonHierarchy: AndesButtonHierarchy = HIERARCHY_DEFAULT,
+        buttonIcon: AndesButtonIcon? = ICON_DEFAULT,
+        buttonText: String? = TEXT_DEFAULT
+    ) :
+            super(context) {
         initAttrs(buttonSize, buttonHierarchy, buttonIcon, buttonText)
     }
 
@@ -158,7 +159,12 @@ class AndesButton : ConstraintLayout {
      * @param buttonHierarchy one of the hierarchies available in [AndesButtonHierarchy]
      * @param buttonIcon contains the data needed to draw an icon on the button.
      */
-    private fun initAttrs(buttonSize: AndesButtonSize, buttonHierarchy: AndesButtonHierarchy, buttonIcon: AndesButtonIcon?, text: String?) {
+    private fun initAttrs(
+        buttonSize: AndesButtonSize,
+        buttonHierarchy: AndesButtonHierarchy,
+        buttonIcon: AndesButtonIcon?,
+        text: String?
+    ) {
         andesButtonAttrs = AndesButtonAttrs(buttonHierarchy, buttonSize, buttonIcon?.leftIcon, buttonIcon?.rightIcon, text)
         setupComponents(createConfig())
     }
@@ -247,7 +253,7 @@ class AndesButton : ConstraintLayout {
      *
      */
     private fun setupViewId() {
-        if (id == NO_ID) { //If this view has no id
+        if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
     }

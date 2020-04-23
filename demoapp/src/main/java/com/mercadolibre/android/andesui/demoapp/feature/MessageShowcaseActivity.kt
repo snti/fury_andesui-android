@@ -98,7 +98,6 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val secondaryActionText = layoutMessagesChange.findViewById<EditText>(R.id.secondary_action_text)
 
-
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 

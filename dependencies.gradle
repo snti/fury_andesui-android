@@ -1,6 +1,4 @@
 ext {
-
-
     kt = [
             stblib: "org.jetbrains.kotlin:kotlin-stdlib.jdk7:$kotlinVersion"
     ]

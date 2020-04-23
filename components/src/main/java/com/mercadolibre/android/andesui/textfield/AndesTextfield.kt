@@ -29,7 +29,6 @@ import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
-
 class AndesTextfield : ConstraintLayout {
 
     /**
@@ -138,16 +137,18 @@ class AndesTextfield : ConstraintLayout {
         initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE)
     }
 
-    constructor(context: Context,
-                label: String? = LABEL_DEFAULT,
-                helper: String? = HELPER_DEFAULT,
-                placeholder: String? = PLACEHOLDER_DEFAULT,
-                counter: Int = COUNTER_DEFAULT,
-                state: AndesTextfieldState = STATE_DEFAULT,
-                leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
-                rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT,
-                inputType: Int = INPUT_TYPE)
-            : super(context) {
+    constructor(
+        context: Context,
+        label: String? = LABEL_DEFAULT,
+        helper: String? = HELPER_DEFAULT,
+        placeholder: String? = PLACEHOLDER_DEFAULT,
+        counter: Int = COUNTER_DEFAULT,
+        state: AndesTextfieldState = STATE_DEFAULT,
+        leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
+        rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT,
+        inputType: Int = INPUT_TYPE
+    ) :
+            super(context) {
         initAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, inputType)
     }
 
@@ -165,7 +166,16 @@ class AndesTextfield : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(label: String?, helper: String?, placeholder: String?, counter: Int, state: AndesTextfieldState, leftContent: AndesTextfieldLeftContent?, rightContent: AndesTextfieldRightContent?, inputType: Int) {
+    private fun initAttrs(
+        label: String?,
+        helper: String?,
+        placeholder: String?,
+        counter: Int,
+        state: AndesTextfieldState,
+        leftContent: AndesTextfieldLeftContent?,
+        rightContent: AndesTextfieldRightContent?,
+        inputType: Int
+    ) {
         andesTextfieldAttrs = AndesTextfieldAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, inputType)
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
         setupComponents(config)
@@ -207,7 +217,7 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupViewId() {
-        if (id == NO_ID) { //If this view has no id
+        if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
     }
@@ -219,7 +229,7 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if(state == DISABLED || state == READONLY){
+        if (state == DISABLED || state == READONLY) {
             isEnabled = false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
@@ -256,7 +266,6 @@ class AndesTextfield : ConstraintLayout {
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
             iconComponent.visibility = View.VISIBLE
-
         } else {
             iconComponent.visibility = View.GONE
         }
@@ -315,7 +324,7 @@ class AndesTextfield : ConstraintLayout {
             counterComponent.visibility = View.GONE
         }
 
-        textComponent.addTextChangedListener(object: TextWatcher {
+        textComponent.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(charSequence: Editable?) {
             }
 
@@ -373,13 +382,10 @@ class AndesTextfield : ConstraintLayout {
 
             rightComponent.visibility = View.VISIBLE
             setupClear()
-
-
         } else {
             rightComponent.visibility = View.GONE
         }
     }
-
 
     /**
      * Set the clear action to erase the text.
@@ -390,16 +396,16 @@ class AndesTextfield : ConstraintLayout {
 
             textComponent.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(text: Editable?) {
-                    if(!text.isNullOrEmpty()){
+                    if (!text.isNullOrEmpty()) {
                         rightComponent.visibility = View.VISIBLE
-                    } else{
+                    } else {
                         rightComponent.visibility = View.GONE
                     }
                 }
 
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {  }
+                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {}
 
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {  }
+                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {}
             })
 
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
@@ -415,7 +421,6 @@ class AndesTextfield : ConstraintLayout {
         val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
         action.text = text
         action.setOnClickListener(onClickListener)
-
     }
 
     /**

@@ -85,15 +85,12 @@ dependencies {
 }
 
 /**
- * Based on https://discuss.gradle.org/t/how-to-copy-and-rename-a-single-file/5956
+ * Based on https://stackoverflow.com/a/44218054/2823516
  */
-task copyChangelog(type: Copy) {
-    logger.info("Copying CHANGELOG.md file to the Andes app...")
-    from '../CHANGELOG.md'
+copy {
+    from file ('../CHANGELOG.md')
     into 'src/main/res/raw'
     rename { String fileName ->
         fileName.replace("CHANGELOG.md", "andesui_demoapp_changelog.md")
     }
 }
-
-tasks.copyChangelog.execute()
