@@ -67,7 +67,7 @@
         android:layout_width="@dimen/andes_textfield_icon_diameter"
         android:layout_height="@dimen/andes_textfield_icon_diameter"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/andes_textfield_container_marginTop"
         android:maxHeight="@dimen/andes_textfield_icon_diameter"
         android:minHeight="@dimen/andes_textfield_icon_diameter"
         app:layout_constraintBottom_toBottomOf="parent"
