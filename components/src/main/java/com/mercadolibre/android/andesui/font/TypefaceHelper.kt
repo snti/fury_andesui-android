@@ -65,6 +65,7 @@ object TypefaceHelper {
         return if (this::typefaceSetter.isInitialized) {
             typefaceSetter.getTypeface(context, font)
         } else {
+            // Do log
             null
         }
     }
