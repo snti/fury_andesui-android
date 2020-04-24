@@ -55,8 +55,7 @@
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
     <string name="andesui_demoapp_label_showcase">Showcase</string>
     <string name="andesui_demoapp_label_whatsnew_title">Hey! Check the What\'s New!</string>
-    <string name="andesui_demoapp_label_whatsnew_body">There you can see what are the things we\'ve been working on 😃 \n\nJust tap 👆 this
-        Andes Message</string>
+    <string name="andesui_demoapp_label_whatsnew_body">There you can see what are the things we\'ve been working on 😃</string>
     <string name="andesui_demoapp_label_corner">Corner</string>
     <string name="andesui_demoapp_label_rounded">Rounded</string>
     <string name="andesui_demoapp_label_standard">Standard</string>
@@ -80,6 +79,7 @@
     <string name="andes_quiet_badges_text">Andes Quiet Badges</string>
     <string name="andes_badge_from_xml">From XML</string>
     <string name="andes_badge_programmatically">Programmatically</string>
+    <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

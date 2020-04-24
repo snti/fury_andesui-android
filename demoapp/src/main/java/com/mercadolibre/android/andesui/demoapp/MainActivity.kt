@@ -5,6 +5,7 @@ import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
@@ -51,9 +52,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupWhatsNew() {
-        andesui_demoapp_changelog.setOnClickListener {
-            launchIntent("meli://andes/whats-new")
-        }
+        andesui_demoapp_changelog.setupPrimaryAction(
+            getString(R.string.andesui_demoapp_whatsnew_main_action),
+            View.OnClickListener { launchIntent("meli://andes/whats-new") }
+        )
     }
 
     private fun setupAndesSpecsWeb() {

@@ -1,3 +1,7 @@
+# v2.2.0
+## Changed
+- Minor UX improvements in the Andes App.
+
 # v2.1.0
 ## Added
 - Badge Component. (Credits)
