@@ -102,6 +102,18 @@
             app:layout_constraintTop_toBottomOf="@id/andesui_textfield" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/andesui_demoapp_contribution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/button_margin_vertical"
+            android:layout_marginTop="@dimen/button_margin_vertical"
+            android:layout_marginRight="@dimen/button_margin_vertical"
+            app:andesButtonHierarchy="quiet"
+            app:andesButtonSize="large"
+            app:andesButtonText="@string/andesui_demoapp_label_andes_contribution"
+            app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+
+        <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/andesui_demoapp_andes_specs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +123,7 @@
             app:andesButtonHierarchy="quiet"
             app:andesButtonSize="large"
             app:andesButtonText="@string/andesui_demoapp_label_andes_specs"
-            app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+            app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_contribution" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

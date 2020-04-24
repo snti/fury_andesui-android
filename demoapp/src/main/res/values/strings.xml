@@ -80,6 +80,7 @@
     <string name="andes_badge_from_xml">From XML</string>
     <string name="andes_badge_programmatically">Programmatically</string>
     <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
+    <string name="andesui_demoapp_label_andes_contribution">I want to contribute 🤝</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

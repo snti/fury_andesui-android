@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupMessages()
         setupTextfield()
         setupWhatsNew()
+        setupContributionTrigger()
         setupAndesSpecsWeb()
     }
 
@@ -61,6 +62,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupAndesSpecsWeb() {
         andesui_demoapp_andes_specs.setOnClickListener {
             launchSpecs(this, AndesSpecs.HOME_PAGE)
+        }
+    }
+
+    private fun setupContributionTrigger() {
+        andesui_demoapp_contribution.setOnClickListener{
+            launchIntent("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")
         }
     }
 
