@@ -99,6 +99,7 @@ class AndesTextfield : ConstraintLayout {
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(leftContent = value)
             setupLeftComponent(createConfig())
+            setupEnabledView()
         }
 
     /**
@@ -109,6 +110,7 @@ class AndesTextfield : ConstraintLayout {
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(rightContent = value)
             setupRightComponent(createConfig())
+            setupEnabledView()
         }
 
     /**
@@ -265,7 +267,9 @@ class AndesTextfield : ConstraintLayout {
 
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
-            iconComponent.visibility = View.VISIBLE
+            if (!config.helperText.isNullOrEmpty()) {
+                iconComponent.visibility = View.VISIBLE
+            }
         } else {
             iconComponent.visibility = View.GONE
         }
