@@ -26,8 +26,8 @@ object TypefaceHelper {
     /**
      * Sets the typeface to the given [T]
      * @param <T>   A generic for the textview
-     * @param view  The view to which apply the font
-     * @param font  The [Font] the text should have
+     * @param view The view to which apply the font
+     * @param font The [Font] the text should have
      */
     @JvmStatic
     fun <T : TextView?> setTypeface(view: T, font: Font) {

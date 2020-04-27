@@ -1,3 +1,9 @@
+# v2.1.1
+## Fixed
+- Label error textfield color.
+- Helper and counter superpose.
+- Error icon only showed with a helper text.
+
 # v2.1.0
 ## Added
 - Badge Component. (Credits)
