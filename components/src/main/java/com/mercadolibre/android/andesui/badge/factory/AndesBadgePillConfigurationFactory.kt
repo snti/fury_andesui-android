@@ -19,26 +19,22 @@ internal data class AndesBadgeConfiguration(
 
 internal object AndesBadgeConfigurationFactory {
 
-    fun create(context: Context, andesMessageAttrs: AndesBadgeAttrs): AndesBadgeConfiguration {
+    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgeConfiguration {
         return with(andesMessageAttrs) {
             AndesBadgeConfiguration(
-                    backgroundColor = resolveBackgroundColor(andesBadgeHierarchy.hierarchy, andesBadgeType.type),
-                    backgroundRadius = resolveBackgroundRadius(andesBadgeSize.size, andesBadgeBorder.border, context),
-                    textColor = resolveTextColor(andesBadgeHierarchy.hierarchy, andesBadgeType.type),
+                    backgroundColor = resolveBackgroundColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
+                    backgroundRadius = resolveBackgroundRadius(andesBadgePillSize.size, andesBadgePillBorder.border, context),
+                    textColor = resolveTextColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
                     text = andesBadgeText,
-                    textSize = resolveTextSize(andesBadgeSize.size, context),
-                    textMargin = resolveTextMargin(andesBadgeSize.size, context),
-                    height = resolveHeight(andesBadgeSize.size, context)
+                    textSize = resolveTextSize(andesBadgePillSize.size, context),
+                    textMargin = resolveTextMargin(andesBadgePillSize.size, context),
+                    height = resolveHeight(andesBadgePillSize.size, context)
             )
         }
     }
 
     private fun resolveBackgroundColor(hierarchy: AndesBadgeHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.backgroundColor(type)
-    private fun resolveBackgroundRadius(
-        size: AndesBadgeSizeInterface,
-        border: AndesBadgeBorderInterface,
-        context: Context
-    ) =
+    private fun resolveBackgroundRadius(size: AndesBadgeSizeInterface, border: AndesBadgeBorderInterface, context: Context) =
              floatArrayOf(border.upStartCornerRadius(size, context), border.upEndCornerRadius(size, context),
                      border.bottomEndCornerRadius(size, context), border.bottomStartCornerRadius(size, context))
     private fun resolveTextColor(hierarchy: AndesBadgeHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.textColor(type)

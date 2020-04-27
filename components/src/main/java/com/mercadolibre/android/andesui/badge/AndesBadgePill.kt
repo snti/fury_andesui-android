@@ -11,36 +11,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.badge.border.AndesBadgeBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeAttrs
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeAttrsParser
+import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrsParser
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfiguration
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
-import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgeHierarchy
-import com.mercadolibre.android.andesui.badge.modifier.AndesBadgeModifier
-import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
+import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
+import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import java.util.*
 
-class AndesBadge : CardView {
+class AndesBadgePill : CardView {
 
     /**
-     * Getter and setter for [modifier].
+     * Getter and setter for [pillHierarchy].
      */
-    var modifier: AndesBadgeModifier
-        get() = andesBadgeAttrs.andesBadgeModifier
+    var pillHierarchy: AndesBadgePillHierarchy
+        get() = andesBadgeAttrs.andesBadgePillHierarchy
         set(value) {
-            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeModifier = value)
-            setupColorComponents(createConfig())
-        }
-
-    /**
-     * Getter and setter for [hierarchy].
-     */
-    var hierarchy: AndesBadgeHierarchy
-        get() = andesBadgeAttrs.andesBadgeHierarchy
-        set(value) {
-            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeHierarchy = value)
+            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgePillHierarchy = value)
             setupColorComponents(createConfig())
         }
 
@@ -55,22 +44,22 @@ class AndesBadge : CardView {
         }
 
     /**
-     * Getter and setter for [border].
+     * Getter and setter for [pillBorder].
      */
-    var border: AndesBadgeBorder
-        get() = andesBadgeAttrs.andesBadgeBorder
+    var pillBorder: AndesBadgePillBorder
+        get() = andesBadgeAttrs.andesBadgePillBorder
         set(value) {
-            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeBorder = value)
+            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgePillBorder = value)
             setupColorComponents(createConfig())
         }
 
     /**
-     * Getter and setter for [size].
+     * Getter and setter for [pillSize].
      */
-    var size: AndesBadgeSize
-        get() = andesBadgeAttrs.andesBadgeSize
+    var pillSize: AndesBadgePillSize
+        get() = andesBadgeAttrs.andesBadgePillSize
         set(value) {
-            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeSize = value)
+            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgePillSize = value)
             setupColorComponents(createConfig())
         }
 
@@ -85,7 +74,7 @@ class AndesBadge : CardView {
         }
 
     private lateinit var badgeTitle: TextView
-    private lateinit var andesBadgeAttrs: AndesBadgeAttrs
+    private lateinit var andesBadgeAttrs: AndesBadgePillAttrs
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -98,15 +87,14 @@ class AndesBadge : CardView {
 
     @Suppress("unused")
     constructor(
-        context: Context,
-        modifier: AndesBadgeModifier = MODIFIER_DEFAULT,
-        hierarchy: AndesBadgeHierarchy = HIERARCHY_DEFAULT,
-        type: AndesBadgeType = STATE_DEFAULT,
-        border: AndesBadgeBorder = BORDER_DEFAULT,
-        size: AndesBadgeSize = SIZE_DEFAULT,
-        text: String? = TEXT_DEFAULT
+            context: Context,
+            pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
+            type: AndesBadgeType = STATE_DEFAULT,
+            pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
+            pillSize: AndesBadgePillSize = SIZE_DEFAULT,
+            text: String? = TEXT_DEFAULT
     ) : super(context) {
-        initAttrs(modifier, hierarchy, type, border, size, text)
+        initAttrs(pillHierarchy, type, pillBorder, pillSize, text)
     }
 
     /**
@@ -115,20 +103,19 @@ class AndesBadge : CardView {
      * @param attrs attributes from the XML.
      */
     private fun initAttrs(attrs: AttributeSet?) {
-        andesBadgeAttrs = AndesBadgeAttrsParser.parse(context, attrs)
+        andesBadgeAttrs = AndesBadgePillAttrsParser.parse(context, attrs)
         val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
 
     private fun initAttrs(
-        modifier: AndesBadgeModifier,
-        hierarchy: AndesBadgeHierarchy,
-        type: AndesBadgeType,
-        border: AndesBadgeBorder,
-        size: AndesBadgeSize,
-        title: String?
+            pillHierarchy: AndesBadgePillHierarchy,
+            type: AndesBadgeType,
+            pillBorder: AndesBadgePillBorder,
+            pillSize: AndesBadgePillSize,
+            title: String?
     ) {
-        andesBadgeAttrs = AndesBadgeAttrs(modifier, hierarchy, type, border, size, title)
+        andesBadgeAttrs = AndesBadgePillAttrs(pillHierarchy, type, pillBorder, pillSize, title)
         val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
@@ -136,7 +123,6 @@ class AndesBadge : CardView {
     /**
      * Responsible for setting up all properties of each component that is part of this badge.
      * Is like a choreographer ;)
-     *
      */
     private fun setupComponents(config: AndesBadgeConfiguration) {
         cardElevation = CARD_ELEVATION
@@ -155,16 +141,14 @@ class AndesBadge : CardView {
     /**
      * Creates all the views that are part of this badge.
      * After a view is created then a view id is added to it.
-     *
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_badge, this)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_badge_pill, this)
         badgeTitle = container.findViewById(R.id.andes_badge_text)
     }
 
     /**
      * Sets a view id to this badge.
-     *
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
@@ -174,7 +158,6 @@ class AndesBadge : CardView {
 
     /**
      * Gets data from the config and sets to the title component of this badge.
-     *
      */
     private fun setupTitleComponent(config: AndesBadgeConfiguration) {
         if (config.text == null || config.text.isEmpty()) {
@@ -212,10 +195,9 @@ class AndesBadge : CardView {
 
     companion object {
         private const val CARD_ELEVATION = 0F
-        private val BORDER_DEFAULT = AndesBadgeBorder.ROUNDED
-        private val HIERARCHY_DEFAULT = AndesBadgeHierarchy.LOUD
-        private val MODIFIER_DEFAULT = AndesBadgeModifier.PILL
-        private val SIZE_DEFAULT = AndesBadgeSize.SMALL
+        private val BORDER_DEFAULT = AndesBadgePillBorder.ROUNDED
+        private val HIERARCHY_DEFAULT = AndesBadgePillHierarchy.LOUD
+        private val SIZE_DEFAULT = AndesBadgePillSize.SMALL
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
         private val TEXT_DEFAULT = null
     }

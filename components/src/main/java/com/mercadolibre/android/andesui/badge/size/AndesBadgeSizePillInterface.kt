@@ -2,12 +2,10 @@ package com.mercadolibre.android.andesui.badge.size
 
 import android.content.Context
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.badge.AndesBadge
 
 /**
  * Defines all size related properties that an [AndesBadge] needs to be drawn properly.
  * Those properties change depending on the size of the badge.
- *
  */
 internal interface AndesBadgeSizeInterface {
     /**
@@ -49,7 +47,6 @@ internal interface AndesBadgeSizeInterface {
  *
  */
 internal class AndesLargeBadgeSize : AndesBadgeSizeInterface {
-
     override fun textSize(context: Context) = context.resources.getDimension(R.dimen.andes_badge_large_text_size)
     override fun height(context: Context) = context.resources.getDimension(R.dimen.andes_badge_large_height)
     override fun textMargin(context: Context) = context.resources.getDimension(R.dimen.andes_badge_large_text_margin).toInt()
@@ -59,7 +56,6 @@ internal class AndesLargeBadgeSize : AndesBadgeSizeInterface {
 /**
  * Implementation of [AndesBadgeSizeInterface] that returns the required data but personalized for the Small Size,
  * according to Andes specifications.
- *
  */
 internal class AndesSmallBadgeSize : AndesBadgeSizeInterface {
     override fun textSize(context: Context) = context.resources.getDimension(R.dimen.andes_badge_small_text_size)

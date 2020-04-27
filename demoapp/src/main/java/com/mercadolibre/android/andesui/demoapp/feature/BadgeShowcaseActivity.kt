@@ -9,11 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.mercadolibre.android.andesui.badge.AndesBadge
-import com.mercadolibre.android.andesui.badge.border.AndesBadgeBorder
-import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgeHierarchy
-import com.mercadolibre.android.andesui.badge.modifier.AndesBadgeModifier
-import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
+import com.mercadolibre.android.andesui.badge.AndesBadgePill
+import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
+import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
+import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.AndesSpecs
@@ -41,34 +40,34 @@ class BadgeShowcaseActivity : AppCompatActivity() {
     }
 
     private fun addQuietBadges(container: View) {
-        val andesBadgeSmallNeutral = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallNeutral.text = "small neutral quiet"
 
-        val andesBadgeSmallHigh = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallHigh = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallHigh.text = "small highlight quiet"
 
-        val andesBadgeSmallWarning = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallWarning = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallWarning.text = "small warning quiet"
 
-        val andesBadgeSmallError = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallError = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallError.text = "small error quiet"
 
-        val andesBadgeSmallSuccess = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallSuccess.text = "small success quiet"
 
-        val andesBadgeLargeNeutral = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeNeutral.text = "large neutral quiet"
 
-        val andesBadgeLargeHighlight = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeHighlight = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeHighlight.text = "large highlight quiet"
 
-        val andesBadgeLargeWarning = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeWarning = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeWarning.text = "large warning quiet"
 
-        val andesBadgeLargeError = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeError = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeError.text = "large error quiet"
 
-        val andesBadgeLargeSuccess = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeSuccess.text = "large success quiet"
 
         val params = LinearLayout.LayoutParams(
@@ -104,31 +103,31 @@ class BadgeShowcaseActivity : AppCompatActivity() {
     }
 
     private fun addLoudBadges(container: View) {
-        val andesBadgeSmallNeutral = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallNeutral.text = "small neutral loud"
 
-        val andesBadgeSmallHigh = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallHigh = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallHigh.text = "small highlight loud"
 
-        val andesBadgeSmallWarning = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallWarning = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallWarning.text = "small warning loud"
 
-        val andesBadgeSmallError = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallError = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallError.text = "small error loud"
 
-        val andesBadgeSmallSuccess = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL)
+        val andesBadgeSmallSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallSuccess.text = "small success loud"
 
-        val andesBadgeLargeNeutral = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeNeutral.text = "large neutral loud"
 
-        val andesBadgeLargeHighlight = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeHighlight = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeHighlight.text = "large highlight loud"
 
-        val andesBadgeLargeWarning = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeWarning = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeWarning.text = "large warning loud"
 
-        val andesBadgeLargeError = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
+        val andesBadgeLargeError = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeError.text = "large error loud"
 
         val params = LinearLayout.LayoutParams(

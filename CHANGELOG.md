@@ -1,3 +1,7 @@
+# v2.2.0
+## Changed
+- Remove modifier from AndesBadge
+
 # v2.1.0
 ## Added
 - Badge Component. (Credits)
