@@ -1,7 +1,5 @@
 package com.mercadolibre.android.andesui.badge.size
 
-import com.mercadolibre.android.andesui.badge.AndesBadge
-
 /**
  * Utility class that does two things: Defines the possible sizes an [AndesBadge] can take because it's an enum, as you can see.
  * But as a bonus it gives you the proper implementation so you don't have to make any mapping.
@@ -10,12 +8,12 @@ import com.mercadolibre.android.andesui.badge.AndesBadge
  *
  * @property size Possible sizes that an [AndesBadge] may take.
  */
-enum class AndesBadgeSize {
+enum class AndesBadgePillSize {
     SMALL,
     LARGE;
 
     companion object {
-        fun fromString(value: String): AndesBadgeSize = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesBadgePillSize = valueOf(value.toUpperCase())
     }
 
     internal val size get() = getAndesBadgeSize()

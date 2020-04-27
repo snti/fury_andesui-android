@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.badge.border
 
 import android.content.Context
-import com.mercadolibre.android.andesui.badge.AndesBadge
 import com.mercadolibre.android.andesui.badge.size.AndesBadgeSizeInterface
 
 /**

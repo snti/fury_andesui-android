@@ -1,4 +1,7 @@
-# v2.1.1
+# v2.2.0
+## Changed
+- Remove modifier from AndesBadge
+
 ## Fixed
 - Label error textfield color.
 - Helper and counter superpose.
