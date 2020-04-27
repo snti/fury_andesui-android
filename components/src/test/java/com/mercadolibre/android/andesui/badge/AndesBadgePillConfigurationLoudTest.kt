@@ -4,7 +4,7 @@ import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfigurationFactory
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
@@ -20,11 +20,11 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
-class AndesBadgeConfigurationLoudTest {
+class AndesBadgePillConfigurationLoudTest {
 
     private var context = RuntimeEnvironment.application
 
-    private val configFactory = spy(AndesBadgeConfigurationFactory)
+    private val configFactory = spy(AndesBadgePillConfigurationFactory)
     private lateinit var attrs: AndesBadgePillAttrs
 
     @Test

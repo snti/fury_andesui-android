@@ -7,7 +7,7 @@ import com.mercadolibre.android.andesui.badge.size.AndesBadgeSizeInterface
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeTypeInterface
 import com.mercadolibre.android.andesui.color.AndesColor
 
-internal data class AndesBadgeConfiguration(
+internal data class AndesBadgePillConfiguration(
     val backgroundColor: AndesColor,
     val backgroundRadius: FloatArray,
     val textColor: AndesColor,
@@ -17,11 +17,11 @@ internal data class AndesBadgeConfiguration(
     val height: Float
 )
 
-internal object AndesBadgeConfigurationFactory {
+internal object AndesBadgePillConfigurationFactory {
 
-    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgeConfiguration {
+    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgePillConfiguration {
         return with(andesMessageAttrs) {
-            AndesBadgeConfiguration(
+            AndesBadgePillConfiguration(
                     backgroundColor = resolveBackgroundColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
                     backgroundRadius = resolveBackgroundRadius(andesBadgePillSize.size, andesBadgePillBorder.border, context),
                     textColor = resolveTextColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
