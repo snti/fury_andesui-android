@@ -12,7 +12,7 @@ object TypefaceSpanFactory {
 
     /**
      * Create TypefaceSpan with the given [Typeface]
-     * @param typeface  The [Typeface] the typefaceSpan should have
+     * @param typeface The [Typeface] the typefaceSpan should have
      */
     @JvmStatic
     fun create(typeface: Typeface): TypefaceSpan {
@@ -24,7 +24,7 @@ object TypefaceSpanFactory {
     /**
      * Create TypefaceSpan with the given [font]
      * @param context A context to obtain the font
-     * @param font  The [Font] the text should have
+     * @param font The [Font] the text should have
      */
     @JvmStatic
     fun create(context: Context, font: Font): TypefaceSpan? {
