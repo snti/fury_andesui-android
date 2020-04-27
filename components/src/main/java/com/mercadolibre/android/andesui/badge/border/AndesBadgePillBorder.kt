@@ -8,13 +8,13 @@ package com.mercadolibre.android.andesui.badge.border
  *
  * @property border Possible borders that an [AndesBadge] may take.
  */
-enum class AndesBadgeBorder {
+enum class AndesBadgePillBorder {
     CORNER,
     ROUNDED,
     STANDARD;
 
     companion object {
-        fun fromString(value: String): AndesBadgeBorder = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesBadgePillBorder = valueOf(value.toUpperCase())
     }
 
     internal val border get() = getAndesBadgeBorder()

@@ -3,11 +3,11 @@ package com.mercadolibre.android.andesui.badge
 import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.badge.border.AndesBadgeBorder
+import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
-import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgeHierarchy
-import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
+import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
+import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import com.mercadolibre.android.andesui.color.toAndesColor
 import org.junit.Assert.assertEquals
@@ -28,7 +28,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Neutral, Small background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_070_solid.toAndesColor(), config.backgroundColor)
         assertEquals(SMALL_HEIGHT, config.height)
@@ -36,7 +36,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Highlight, Small background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_accent_color_100.toAndesColor(), config.backgroundColor)
         assertEquals(SMALL_HEIGHT, config.height)
@@ -44,7 +44,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Success, Small background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_green_100.toAndesColor(), config.backgroundColor)
         assertEquals(SMALL_HEIGHT, config.height)
@@ -52,7 +52,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Error, Small background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_red_100.toAndesColor(), config.backgroundColor)
         assertEquals(SMALL_HEIGHT, config.height)
@@ -60,7 +60,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Warning, Small background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_100.toAndesColor(), config.backgroundColor)
         assertEquals(SMALL_HEIGHT, config.height)
@@ -68,7 +68,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Neutral, Large background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_070_solid.toAndesColor(), config.backgroundColor)
         assertEquals(LARGE_HEIGHT, config.height)
@@ -76,7 +76,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Highlight, Large background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_accent_color_100.toAndesColor(), config.backgroundColor)
         assertEquals(LARGE_HEIGHT, config.height)
@@ -84,7 +84,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Success, Large background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_green_100.toAndesColor(), config.backgroundColor)
         assertEquals(LARGE_HEIGHT, config.height)
@@ -92,7 +92,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Error, Large background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_red_100.toAndesColor(), config.backgroundColor)
         assertEquals(LARGE_HEIGHT, config.height)
@@ -100,7 +100,7 @@ class AndesbadgeConfigurationQuietTest {
 
     @Test
     fun `Pill, Quiet, Warning, Large background color`() {
-        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
+        attrs = AndesBadgePillAttrs(AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_100.toAndesColor(), config.backgroundColor)
         assertEquals(LARGE_HEIGHT, config.height)
