@@ -216,7 +216,9 @@ class AndesTextarea : ConstraintLayout {
         textContainer.background = config.background
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null) {
-            iconComponent.visibility = View.VISIBLE
+            if (!config.helperText.isNullOrEmpty()) {
+                iconComponent.visibility = View.VISIBLE
+            }
         } else {
             iconComponent.visibility = View.GONE
         }

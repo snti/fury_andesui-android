@@ -62,7 +62,7 @@ class AndesTextfieldStateInterfaceTest {
     @Test
     fun `error state`() {
         stateInterface = AndesErrorTextfieldState
-        assertEquals(R.color.andes_red_400.toAndesColor(), stateInterface.labelColor())
+        assertEquals(R.color.andes_red_500.toAndesColor(), stateInterface.labelColor())
         assertEquals(R.color.andes_gray_200.toAndesColor(), stateInterface.placeholderColor())
         assertEquals(R.color.andes_red_500.toAndesColor(), stateInterface.helpersColor())
         assertEquals(buildColoredCircularShapeWithIconDrawable(
