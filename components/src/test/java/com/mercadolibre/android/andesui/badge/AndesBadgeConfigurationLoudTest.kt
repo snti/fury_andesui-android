@@ -4,10 +4,9 @@ import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgeBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgeHierarchy
-import com.mercadolibre.android.andesui.badge.modifier.AndesBadgeModifier
 import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import com.mercadolibre.android.andesui.color.toAndesColor
@@ -26,11 +25,11 @@ class AndesBadgeConfigurationLoudTest {
     private var context = RuntimeEnvironment.application
 
     private val configFactory = spy(AndesBadgeConfigurationFactory)
-    private lateinit var attrs: AndesBadgeAttrs
+    private lateinit var attrs: AndesBadgePillAttrs
 
     @Test
     fun `Pill, Loud, Neutral, Standard, Small background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_450_solid.toAndesColor(), config.backgroundColor)
@@ -39,7 +38,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Highlight, Standard, Small background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_accent_color_500.toAndesColor(), config.backgroundColor)
@@ -48,7 +47,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Success, Standard, Small background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.SUCCESS,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.SUCCESS,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_green_500.toAndesColor(), config.backgroundColor)
@@ -57,7 +56,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Error, Standard, Small background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_red_500.toAndesColor(), config.backgroundColor)
@@ -66,7 +65,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Warning, Standard, Small background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.SMALL, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_500.toAndesColor(), config.backgroundColor)
@@ -75,7 +74,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Neutral, Standard, Large background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.NEUTRAL,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_gray_450_solid.toAndesColor(), config.backgroundColor)
@@ -84,7 +83,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Highlight, Standard, Large background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.HIGHLIGHT,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_accent_color_500.toAndesColor(), config.backgroundColor)
@@ -93,7 +92,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Success, Standard, Large background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.SUCCESS,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.SUCCESS,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_green_500.toAndesColor(), config.backgroundColor)
@@ -102,7 +101,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Error, Standard, Large background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.ERROR,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_red_500.toAndesColor(), config.backgroundColor)
@@ -111,7 +110,7 @@ class AndesBadgeConfigurationLoudTest {
 
     @Test
     fun `Pill, Loud, Warning, Standard, Large background color`() {
-        attrs = AndesBadgeAttrs(AndesBadgeModifier.PILL, AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING,
+        attrs = AndesBadgePillAttrs(AndesBadgeHierarchy.LOUD, AndesBadgeType.WARNING,
                 AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE, "Title")
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_500.toAndesColor(), config.backgroundColor)

@@ -42,7 +42,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -51,7 +51,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="neutral" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -60,7 +60,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="highlight" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -69,7 +69,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="warning" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -78,7 +78,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="error" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -95,7 +95,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -104,7 +104,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="neutral" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -113,7 +113,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="highlight" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -122,7 +122,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="warning" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -131,7 +131,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_more"
                 app:andesBadgeType="error" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -148,7 +148,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -157,7 +157,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_number"
                 app:andesBadgeType="neutral" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -166,7 +166,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_number"
                 app:andesBadgeType="highlight" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -175,7 +175,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_number"
                 app:andesBadgeType="warning" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -184,7 +184,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_number"
                 app:andesBadgeType="error" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -201,7 +201,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -211,7 +211,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_corner"
                 app:andesBadgeType="neutral" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"
@@ -221,7 +221,7 @@
                 app:andesBadgeText="@string/andesui_demoapp_label_rounded"
                 app:andesBadgeType="highlight" />
 
-            <com.mercadolibre.android.andesui.badge.AndesBadge
+            <com.mercadolibre.android.andesui.badge.AndesBadgePill
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/badge_margin_vertical"

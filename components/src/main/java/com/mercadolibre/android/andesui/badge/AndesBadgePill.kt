@@ -12,27 +12,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgeBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeAttrsParser
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfiguration
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgeHierarchy
-import com.mercadolibre.android.andesui.badge.modifier.AndesBadgeModifier
 import com.mercadolibre.android.andesui.badge.size.AndesBadgeSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import java.util.*
 
-class AndesBadge : CardView {
-
-    /**
-     * Getter and setter for [modifier].
-     */
-    var modifier: AndesBadgeModifier
-        get() = andesBadgeAttrs.andesBadgeModifier
-        set(value) {
-            andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeModifier = value)
-            setupColorComponents(createConfig())
-        }
+class AndesBadgePill : CardView {
 
     /**
      * Getter and setter for [hierarchy].
@@ -85,7 +74,7 @@ class AndesBadge : CardView {
         }
 
     private lateinit var badgeTitle: TextView
-    private lateinit var andesBadgeAttrs: AndesBadgeAttrs
+    private lateinit var andesBadgeAttrs: AndesBadgePillAttrs
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -96,38 +85,16 @@ class AndesBadge : CardView {
         initAttrs(attrs)
     }
 
-    /**
-     * Constructor for Andes Badge PILL
-     */
     @Suppress("unused")
     constructor(
         context: Context,
-        modifier: AndesBadgeModifier = MODIFIER_DEFAULT,
         hierarchy: AndesBadgeHierarchy = HIERARCHY_DEFAULT,
         type: AndesBadgeType = STATE_DEFAULT,
         border: AndesBadgeBorder = BORDER_DEFAULT,
         size: AndesBadgeSize = SIZE_DEFAULT,
         text: String? = TEXT_DEFAULT
     ) : super(context) {
-        if (modifier != AndesBadgeModifier.PILL) {
-            throw IllegalStateException("The constructor is for Andes Badge PILL.")
-        }
-        initAttrs(modifier, hierarchy, type, border, size, text)
-    }
-
-    /**
-     * Constructor for Andes Badge DOT
-     */
-    @Suppress("unused")
-    constructor(
-        context: Context,
-        modifier: AndesBadgeModifier = AndesBadgeModifier.DOT,
-        type: AndesBadgeType = STATE_DEFAULT
-    ) : super(context) {
-        if (modifier != AndesBadgeModifier.DOT) {
-            throw IllegalStateException("The constructor is for Andes Badge DOT.")
-        }
-        initAttrs(modifier, HIERARCHY_DEFAULT, type, BORDER_DEFAULT, SIZE_DEFAULT, TEXT_DEFAULT)
+        initAttrs(hierarchy, type, border, size, text)
     }
 
     /**
@@ -136,20 +103,19 @@ class AndesBadge : CardView {
      * @param attrs attributes from the XML.
      */
     private fun initAttrs(attrs: AttributeSet?) {
-        andesBadgeAttrs = AndesBadgeAttrsParser.parse(context, attrs)
+        andesBadgeAttrs = AndesBadgeAttrsParser.parsePill(context, attrs)
         val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
 
     private fun initAttrs(
-        modifier: AndesBadgeModifier,
         hierarchy: AndesBadgeHierarchy,
         type: AndesBadgeType,
         border: AndesBadgeBorder,
         size: AndesBadgeSize,
         title: String?
     ) {
-        andesBadgeAttrs = AndesBadgeAttrs(modifier, hierarchy, type, border, size, title)
+        andesBadgeAttrs = AndesBadgePillAttrs(hierarchy, type, border, size, title)
         val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
@@ -231,7 +197,6 @@ class AndesBadge : CardView {
         private const val CARD_ELEVATION = 0F
         private val BORDER_DEFAULT = AndesBadgeBorder.ROUNDED
         private val HIERARCHY_DEFAULT = AndesBadgeHierarchy.LOUD
-        private val MODIFIER_DEFAULT = AndesBadgeModifier.PILL
         private val SIZE_DEFAULT = AndesBadgeSize.SMALL
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
         private val TEXT_DEFAULT = null

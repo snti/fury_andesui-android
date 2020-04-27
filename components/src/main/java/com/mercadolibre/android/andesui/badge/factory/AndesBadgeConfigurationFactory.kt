@@ -19,7 +19,7 @@ internal data class AndesBadgeConfiguration(
 
 internal object AndesBadgeConfigurationFactory {
 
-    fun create(context: Context, andesMessageAttrs: AndesBadgeAttrs): AndesBadgeConfiguration {
+    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgeConfiguration {
         return with(andesMessageAttrs) {
             AndesBadgeConfiguration(
                     backgroundColor = resolveBackgroundColor(andesBadgeHierarchy.hierarchy, andesBadgeType.type),

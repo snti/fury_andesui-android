@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.badge.size
 
 import android.content.Context
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.badge.AndesBadge
 
 /**
  * Defines all size related properties that an [AndesBadge] needs to be drawn properly.

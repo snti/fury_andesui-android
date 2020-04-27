@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <declare-styleable name="AndesBadge" tools:ignore="ResourceName">
+    <declare-styleable name="AndesBadgePill" tools:ignore="ResourceName">
         <attr name="andesBadgeHierarchy">
             <enum name="loud" value="1000" />
             <enum name="quiet" value="1001" />
@@ -19,18 +19,12 @@
             <enum name="small" value="3001" />
         </attr>
 
-        <attr name="andesBadgeModifier">
-            <enum name="pill" value="4000" />
-            <enum name="dot" value="4001" />
-        </attr>
-
         <attr name="andesBadgeBorder">
-            <enum name="corner" value="5000" />
-            <enum name="rounded" value="5001" />
-            <enum name="standard" value="5002" />
+            <enum name="corner" value="4000" />
+            <enum name="rounded" value="4001" />
+            <enum name="standard" value="4002" />
         </attr>
 
         <attr name="andesBadgeText" format="reference" />
     </declare-styleable>
-
 </resources>
