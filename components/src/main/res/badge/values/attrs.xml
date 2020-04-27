@@ -21,6 +21,7 @@
 
         <attr name="andesBadgeModifier">
             <enum name="pill" value="4000" />
+            <enum name="dot" value="4001" />
         </attr>
 
         <attr name="andesBadgeBorder">

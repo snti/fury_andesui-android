@@ -96,6 +96,9 @@ class AndesBadge : CardView {
         initAttrs(attrs)
     }
 
+    /**
+     * Constructor for Andes Badge PILL
+     */
     @Suppress("unused")
     constructor(
         context: Context,
@@ -106,7 +109,25 @@ class AndesBadge : CardView {
         size: AndesBadgeSize = SIZE_DEFAULT,
         text: String? = TEXT_DEFAULT
     ) : super(context) {
+        if (modifier != AndesBadgeModifier.PILL) {
+            throw IllegalStateException("The constructor is for Andes Badge PILL.")
+        }
         initAttrs(modifier, hierarchy, type, border, size, text)
+    }
+
+    /**
+     * Constructor for Andes Badge DOT
+     */
+    @Suppress("unused")
+    constructor(
+        context: Context,
+        modifier: AndesBadgeModifier = AndesBadgeModifier.DOT,
+        type: AndesBadgeType = STATE_DEFAULT
+    ) : super(context) {
+        if (modifier != AndesBadgeModifier.DOT) {
+            throw IllegalStateException("The constructor is for Andes Badge DOT.")
+        }
+        initAttrs(modifier, HIERARCHY_DEFAULT, type, BORDER_DEFAULT, SIZE_DEFAULT, TEXT_DEFAULT)
     }
 
     /**
@@ -136,7 +157,6 @@ class AndesBadge : CardView {
     /**
      * Responsible for setting up all properties of each component that is part of this badge.
      * Is like a choreographer ;)
-     *
      */
     private fun setupComponents(config: AndesBadgeConfiguration) {
         cardElevation = CARD_ELEVATION
@@ -155,7 +175,6 @@ class AndesBadge : CardView {
     /**
      * Creates all the views that are part of this badge.
      * After a view is created then a view id is added to it.
-     *
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_badge, this)
@@ -164,7 +183,6 @@ class AndesBadge : CardView {
 
     /**
      * Sets a view id to this badge.
-     *
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
@@ -174,7 +192,6 @@ class AndesBadge : CardView {
 
     /**
      * Gets data from the config and sets to the title component of this badge.
-     *
      */
     private fun setupTitleComponent(config: AndesBadgeConfiguration) {
         if (config.text == null || config.text.isEmpty()) {

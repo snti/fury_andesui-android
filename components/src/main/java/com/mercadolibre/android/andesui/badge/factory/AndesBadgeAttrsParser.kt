@@ -39,6 +39,7 @@ internal object AndesBadgeAttrsParser {
     private const val ANDES_BADGE_SIZE_SMALL = "3001"
 
     private const val ANDES_BADGE_MODIFIER_PILL = "4000"
+    private const val ANDES_BADGE_MODIFIER_DOT = "4001"
 
     private const val ANDES_BADGE_BORDER_CORNER = "5000"
     private const val ANDES_BADGE_BORDER_ROUNDED = "5001"
@@ -49,6 +50,7 @@ internal object AndesBadgeAttrsParser {
 
         val modifier = when (typedArray.getString(R.styleable.AndesBadge_andesBadgeModifier)) {
             ANDES_BADGE_MODIFIER_PILL -> AndesBadgeModifier.PILL
+            ANDES_BADGE_MODIFIER_DOT -> AndesBadgeModifier.DOT
             else -> AndesBadgeModifier.PILL
         }
 

@@ -71,6 +71,19 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         val andesBadgeLargeSuccess = AndesBadge(this, AndesBadgeModifier.PILL, AndesBadgeHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgeBorder.STANDARD, AndesBadgeSize.LARGE)
         andesBadgeLargeSuccess.text = "large success quiet"
 
+
+
+
+
+        //TODO: Armar esto
+        val andesBadgeDot = AndesBadge(this, AndesBadgeModifier.DOT, AndesBadgeType.SUCCESS)
+
+
+
+
+
+
+
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT

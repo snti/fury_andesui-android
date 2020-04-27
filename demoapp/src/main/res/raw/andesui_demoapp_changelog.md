@@ -6,6 +6,7 @@
 - Added more Andes icons needed. (Credits)
 - Message dismiss callback.
 - Message text can be selected.
+- Added Font support.
 
 ## Changed
 - Open icon provider.

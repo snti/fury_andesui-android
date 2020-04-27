@@ -11,7 +11,8 @@ import com.mercadolibre.android.andesui.badge.AndesBadge
  * @property modifier Possible styles that an [AndesBadge] may take.
  */
 enum class AndesBadgeModifier {
-    PILL;
+    PILL,
+    DOT;
 
     companion object {
         fun fromString(value: String): AndesBadgeModifier = valueOf(value.toUpperCase())
@@ -22,6 +23,7 @@ enum class AndesBadgeModifier {
     private fun getAndesBadgeModifier(): AndesBadgeModifierInterface {
         return when (this) {
             PILL -> AndesPillBadgeModifier()
+            DOT -> AndesDotBadgeModifier()
         }
     }
 }
