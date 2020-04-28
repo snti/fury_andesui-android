@@ -187,7 +187,7 @@ class AndesBadgePill : CardView {
 
                 background = shape
                 if (layoutParams == null) {
-                        layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                    layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
                 }
                 minimumWidth = config.height.toInt()
                 minimumHeight = config.height.toInt()
