@@ -5,6 +5,7 @@ import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupMessages()
         setupTextfield()
         setupWhatsNew()
+        setupContributionTrigger()
         setupAndesSpecsWeb()
     }
 
@@ -51,14 +53,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupWhatsNew() {
-        andesui_demoapp_changelog.setOnClickListener {
-            launchIntent("meli://andes/whats-new")
-        }
+        andesui_demoapp_changelog.setupPrimaryAction(
+            getString(R.string.andesui_demoapp_whatsnew_main_action),
+            View.OnClickListener { launchIntent("meli://andes/whats-new") }
+        )
     }
 
     private fun setupAndesSpecsWeb() {
         andesui_demoapp_andes_specs.setOnClickListener {
             launchSpecs(this, AndesSpecs.HOME_PAGE)
+        }
+    }
+
+    private fun setupContributionTrigger() {
+        andesui_demoapp_contribution.setOnClickListener{
+            launchIntent("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")
         }
     }
 
