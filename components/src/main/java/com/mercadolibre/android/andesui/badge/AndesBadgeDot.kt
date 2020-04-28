@@ -107,5 +107,4 @@ class AndesBadgeDot : CardView {
         private const val CARD_ELEVATION = 0F
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
     }
-
 }

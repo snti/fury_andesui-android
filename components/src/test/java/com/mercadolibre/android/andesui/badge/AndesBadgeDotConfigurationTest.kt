@@ -58,5 +58,4 @@ class AndesBadgeDotConfigurationTest {
         val config = configFactory.create(context, attrs)
         assertEquals(R.color.andes_orange_500.toAndesColor(), config.backgroundColor)
     }
-
 }
