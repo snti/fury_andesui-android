@@ -1,3 +1,7 @@
+# v2.3.0
+## Changed
+- Minor UX improvements in the Andes App.
+
 # v2.2.0
 ## Changed
 - Remove modifier from AndesBadge
