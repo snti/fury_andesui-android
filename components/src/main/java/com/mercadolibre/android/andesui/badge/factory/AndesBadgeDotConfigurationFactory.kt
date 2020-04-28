@@ -16,7 +16,7 @@ internal object AndesBadgeDotConfigurationFactory {
         return with(andesMessageAttrs) {
             AndesBadgeDotConfiguration(
                 backgroundColor = resolveBackgroundColor(andesBadgeType.type),
-                size = context.resources.getDimension(R.dimen.andes_badge_dot)
+                size = context.resources.getDimension(R.dimen.andes_badge_dot_size)
             )
         }
     }
