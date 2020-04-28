@@ -13,7 +13,7 @@ import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 /**
  * The data class that contains the public components of the badge.
  */
-internal data class AndesBadgeDotAttrs (
+internal data class AndesBadgeDotAttrs(
     val andesBadgeType: AndesBadgeType
 )
 
@@ -38,5 +38,4 @@ internal object AndesBadgeDotAttrsParser {
             typedArray.recycle()
         }
     }
-
 }

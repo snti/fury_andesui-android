@@ -34,7 +34,11 @@ internal object AndesBadgePillConfigurationFactory {
     }
 
     private fun resolveBackgroundColor(hierarchy: AndesBadgeHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.backgroundColor(type)
-    private fun resolveBackgroundRadius(size: AndesBadgeSizeInterface, border: AndesBadgeBorderInterface, context: Context) =
+    private fun resolveBackgroundRadius(
+        size: AndesBadgeSizeInterface,
+        border: AndesBadgeBorderInterface,
+        context: Context
+    ) =
              floatArrayOf(border.upStartCornerRadius(size, context), border.upEndCornerRadius(size, context),
                      border.bottomEndCornerRadius(size, context), border.bottomStartCornerRadius(size, context))
     private fun resolveTextColor(hierarchy: AndesBadgeHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.textColor(type)

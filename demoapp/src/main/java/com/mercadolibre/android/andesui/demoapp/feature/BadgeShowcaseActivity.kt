@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.mercadolibre.android.andesui.badge.AndesBadgeDot
 import com.mercadolibre.android.andesui.badge.AndesBadgePill
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
@@ -103,6 +104,7 @@ class BadgeShowcaseActivity : AppCompatActivity() {
     }
 
     private fun addLoudBadges(container: View) {
+        // Badge PILL
         val andesBadgeSmallNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
         andesBadgeSmallNeutral.text = "small neutral loud"
 
@@ -130,6 +132,17 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         val andesBadgeLargeError = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
         andesBadgeLargeError.text = "large error loud"
 
+        // Badge DOT
+        val andesBadgeDotNeutral = AndesBadgeDot(this, AndesBadgeType.NEUTRAL)
+
+        val andesBadgeDotHighlight = AndesBadgeDot(this, AndesBadgeType.HIGHLIGHT)
+
+        val andesBadgeDotWarning = AndesBadgeDot(this, AndesBadgeType.WARNING)
+
+        val andesBadgeDotError = AndesBadgeDot(this, AndesBadgeType.ERROR)
+
+        val andesBadgeDotSuccess = AndesBadgeDot(this, AndesBadgeType.SUCCESS)
+
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -146,6 +159,12 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         andesBadgeLargeWarning.layoutParams = params
         andesBadgeLargeError.layoutParams = params
 
+        andesBadgeDotNeutral.layoutParams = params
+        andesBadgeDotHighlight.layoutParams = params
+        andesBadgeDotWarning.layoutParams = params
+        andesBadgeDotError.layoutParams = params
+        andesBadgeDotSuccess.layoutParams = params
+
         val linearLoud = container.findViewById<LinearLayout>(R.id.andes_badges_loud_container)
         linearLoud.addView(andesBadgeSmallNeutral, linearLoud.childCount - 1)
         linearLoud.addView(andesBadgeSmallHigh, linearLoud.childCount - 1)
@@ -156,6 +175,12 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         linearLoud.addView(andesBadgeLargeHighlight, linearLoud.childCount - 1)
         linearLoud.addView(andesBadgeLargeWarning, linearLoud.childCount - 1)
         linearLoud.addView(andesBadgeLargeError, linearLoud.childCount - 1)
+
+        linearLoud.addView(andesBadgeDotNeutral, linearLoud.childCount - 1)
+        linearLoud.addView(andesBadgeDotHighlight, linearLoud.childCount - 1)
+        linearLoud.addView(andesBadgeDotWarning, linearLoud.childCount - 1)
+        linearLoud.addView(andesBadgeDotError, linearLoud.childCount - 1)
+        linearLoud.addView(andesBadgeDotSuccess, linearLoud.childCount - 1)
 
         bindAndesSpecsButton(container)
     }

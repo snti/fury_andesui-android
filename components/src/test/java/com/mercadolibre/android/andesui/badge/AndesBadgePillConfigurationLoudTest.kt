@@ -4,8 +4,8 @@ import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfigurationFactory
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfigurationFactory
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType

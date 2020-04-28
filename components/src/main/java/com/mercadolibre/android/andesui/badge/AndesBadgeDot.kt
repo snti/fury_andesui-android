@@ -1,8 +1,13 @@
 package com.mercadolibre.android.andesui.badge
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrsParser
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotConfiguration
@@ -18,7 +23,7 @@ class AndesBadgeDot : CardView {
         get() = andesBadgeAttrs.andesBadgeType
         set(value) {
             andesBadgeAttrs = andesBadgeAttrs.copy(andesBadgeType = value)
-//            setupColorComponents(createConfig())
+            setupColorComponents(createConfig())
         }
 
     private lateinit var andesBadgeAttrs: AndesBadgeDotAttrs
@@ -59,73 +64,47 @@ class AndesBadgeDot : CardView {
      * Is like a choreographer ;)
      */
     private fun setupComponents(config: AndesBadgeDotConfiguration) {
-//        initComponents()
-//        setupViewId()
-//
-//        setupColorComponents(config)
+        cardElevation = CARD_ELEVATION
+
+        initComponents()
+        setupViewId()
+
+        setupColorComponents(config)
     }
-//
-//    private fun setupColorComponents(config: AndesBadgePillConfiguration) {
-//        setupTitleComponent(config)
-//        setupBackground(config)
-//    }
-//
-//    /**
-//     * Creates all the views that are part of this badge.
-//     * After a view is created then a view id is added to it.
-//     */
-//    private fun initComponents() {
-//        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_badge_pill, this)
-//        badgeTitle = container.findViewById(R.id.andes_badge_text)
-//    }
-//
-//    /**
-//     * Sets a view id to this badge.
-//     */
-//    private fun setupViewId() {
-//        if (id == NO_ID) { // If this view has no id
-//            id = View.generateViewId()
-//        }
-//    }
-//
-//    /**
-//     * Gets data from the config and sets to the title component of this badge.
-//     */
-//    private fun setupTitleComponent(config: AndesBadgePillConfiguration) {
-//        if (config.text == null || config.text.isEmpty()) {
-//            badgeTitle.visibility = View.GONE
-//        } else {
-//            badgeTitle.visibility = View.VISIBLE
-//            badgeTitle.text = config.text.toUpperCase(Locale.getDefault())
-//            badgeTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.textSize)
-//            badgeTitle.setTextColor(config.textColor.colorInt(context))
-//            val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-//            params.setMargins(config.textMargin, 0, config.textMargin, 0)
-//            params.gravity = Gravity.CENTER
-//            badgeTitle.layoutParams = params
-//        }
-//    }
-//
-//    private fun setupBackground(config: AndesBadgePillConfiguration) {
-//        val shape = GradientDrawable()
-//
-//        (shape.mutate() as GradientDrawable).cornerRadii =
-//                floatArrayOf(config.backgroundRadius[0], config.backgroundRadius[0],
-//                        config.backgroundRadius[1], config.backgroundRadius[1],
-//                        config.backgroundRadius[2], config.backgroundRadius[2],
-//                        config.backgroundRadius[3], config.backgroundRadius[3])
-//
-//                shape.setColor(config.backgroundColor.colorInt(context))
-//
-//                background = shape
-//                layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
-//                minimumWidth = config.height.toInt()
-//                minimumHeight = config.height.toInt()
-//    }
+
+    /**
+     * Creates all the views that are part of this badge.
+     * After a view is created then a view id is added to it.
+     */
+    private fun initComponents() {
+        LayoutInflater.from(context).inflate(R.layout.andes_layout_badge_dot, this)
+    }
+
+    /**
+     * Sets a view id to this badge.
+     */
+    private fun setupViewId() {
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
+    }
+
+    private fun setupColorComponents(config: AndesBadgeDotConfiguration) {
+        val shape = GradientDrawable()
+        (shape.mutate() as GradientDrawable).cornerRadius = config.size
+        shape.setColor(config.backgroundColor.colorInt(context))
+
+        background = shape
+
+        if (layoutParams == null) {
+            layoutParams = ViewGroup.LayoutParams(config.size.toInt(), config.size.toInt())
+        }
+    }
 
     private fun createConfig() = AndesBadgeDotConfigurationFactory.create(context, andesBadgeAttrs)
 
     companion object {
+        private const val CARD_ELEVATION = 0F
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
     }
 

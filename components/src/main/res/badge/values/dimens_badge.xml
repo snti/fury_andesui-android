@@ -11,4 +11,6 @@
 
     <dimen name="andes_badge_small_text_margin">6dp</dimen>
     <dimen name="andes_badge_large_text_margin">8dp</dimen>
+
+    <dimen name="andes_badge_dot">8dp</dimen>
 </resources>

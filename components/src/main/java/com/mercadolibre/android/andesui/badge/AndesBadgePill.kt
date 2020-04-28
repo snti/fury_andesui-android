@@ -12,10 +12,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrsParser
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfiguration
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfigurationFactory
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
@@ -87,12 +87,12 @@ class AndesBadgePill : CardView {
 
     @Suppress("unused")
     constructor(
-            context: Context,
-            pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
-            type: AndesBadgeType = STATE_DEFAULT,
-            pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
-            pillSize: AndesBadgePillSize = SIZE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
+        type: AndesBadgeType = STATE_DEFAULT,
+        pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
+        pillSize: AndesBadgePillSize = SIZE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(pillHierarchy, type, pillBorder, pillSize, text)
     }
@@ -109,11 +109,11 @@ class AndesBadgePill : CardView {
     }
 
     private fun initAttrs(
-            pillHierarchy: AndesBadgePillHierarchy,
-            type: AndesBadgeType,
-            pillBorder: AndesBadgePillBorder,
-            pillSize: AndesBadgePillSize,
-            title: String?
+        pillHierarchy: AndesBadgePillHierarchy,
+        type: AndesBadgeType,
+        pillBorder: AndesBadgePillBorder,
+        pillSize: AndesBadgePillSize,
+        title: String?
     ) {
         andesBadgeAttrs = AndesBadgePillAttrs(pillHierarchy, type, pillBorder, pillSize, title)
         val config = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
@@ -186,7 +186,9 @@ class AndesBadgePill : CardView {
                 shape.setColor(config.backgroundColor.colorInt(context))
 
                 background = shape
-                layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                if (layoutParams == null) {
+                        layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                }
                 minimumWidth = config.height.toInt()
                 minimumHeight = config.height.toInt()
     }
