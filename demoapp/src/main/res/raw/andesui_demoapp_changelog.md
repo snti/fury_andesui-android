@@ -1,6 +1,15 @@
-# v2.2.0
+# v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
+
+# v2.2.0
+## Changed
+- Remove modifier from AndesBadge
+
+## Fixed
+- Label error textfield color.
+- Helper and counter superpose.
+- Error icon only showed with a helper text.
 
 # v2.1.0
 ## Added

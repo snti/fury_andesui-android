@@ -60,15 +60,15 @@
 
     <TextView
         android:id="@+id/andes_textarea_helper"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
         android:text="@string/andes_textfield_helper_text"
         android:textSize="@dimen/andes_textfield_helper_textSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@id/andes_textarea_counter"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/andes_textarea_icon"
         app:layout_constraintTop_toBottomOf="@+id/andes_textarea_text_container" />
 
@@ -82,7 +82,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/andes_textarea_container"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/andes_textarea_helper"
         app:layout_constraintTop_toBottomOf="@+id/andes_textarea_text_container" />
 
 </android.support.constraint.ConstraintLayout>

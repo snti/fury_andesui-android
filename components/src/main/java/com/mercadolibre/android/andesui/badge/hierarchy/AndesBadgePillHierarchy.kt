@@ -8,12 +8,12 @@ package com.mercadolibre.android.andesui.badge.hierarchy
  *
  * @property hierarchy Possible hierarchies that an [AndesBadge] may take.
  */
-enum class AndesBadgeHierarchy {
+enum class AndesBadgePillHierarchy {
     QUIET,
     LOUD;
 
     companion object {
-        fun fromString(value: String): AndesBadgeHierarchy = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesBadgePillHierarchy = valueOf(value.toUpperCase())
     }
 
     internal val hierarchy get() = getAndesButtonHierarchy()

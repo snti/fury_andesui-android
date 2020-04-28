@@ -48,7 +48,7 @@ internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
 }
 
 internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
-    override fun labelColor(): AndesColor = R.color.andes_red_400.toAndesColor()
+    override fun labelColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun placeholderColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun helpersColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
