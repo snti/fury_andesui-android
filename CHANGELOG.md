@@ -1,3 +1,7 @@
+# v2.3.1
+## fixed
+- Se agrega la propiedad format a los resources del file attrs.xml, para que se pueda compilar con AGP 3.6 y gradle 5 + androidx
+
 # v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
