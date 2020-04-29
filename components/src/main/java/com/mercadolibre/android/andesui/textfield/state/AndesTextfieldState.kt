@@ -10,9 +10,9 @@ package com.mercadolibre.android.andesui.textfield.state
  */
 enum class AndesTextfieldState {
     IDLE,
-        ERROR,
-        DISABLED,
-        READONLY;
+    ERROR,
+    DISABLED,
+    READONLY;
 
     companion object {
         fun fromString(value: String): AndesTextfieldState = valueOf(value.toUpperCase())

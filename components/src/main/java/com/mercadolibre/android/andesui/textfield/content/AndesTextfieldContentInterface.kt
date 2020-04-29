@@ -13,6 +13,7 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.IconProvider
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 
@@ -23,12 +24,12 @@ import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
  */
 internal sealed class AndesTextfieldContentInterface {
     abstract fun component(context: Context): View
-    abstract fun leftMargin(context: Context): Int
+    abstract fun leftMargin(context: Context, state: AndesTextfieldState): Int
     abstract fun rightMargin(context: Context): Int
 }
 
 internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_right_margin).toInt()
 
@@ -43,7 +44,13 @@ internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_prefix_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int {
+        return if (state == AndesTextfieldState.READONLY) {
+            context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+        }
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_prefix_right_margin).toInt()
 
@@ -60,7 +67,13 @@ internal object AndesPrefixTextfieldContent : AndesTextfieldContentInterface() {
 internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
     private const val ICON_CONTENT_DESCRIPTION = "icon"
 
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_icon_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int {
+        return if (state == AndesTextfieldState.READONLY) {
+            context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+        }
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_icon_right_margin).toInt()
 
@@ -76,7 +89,13 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesTooltipTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_tooltip_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int {
+        return if (state == AndesTextfieldState.READONLY) {
+            context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+        }
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_tooltip_right_margin).toInt()
 
@@ -88,7 +107,13 @@ internal object AndesTooltipTextfieldContent : AndesTextfieldContentInterface() 
 internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface() {
     private const val VALIDATED_CONTENT_DESCRIPTION = "validated"
 
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_validated_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int {
+        return if (state == AndesTextfieldState.READONLY) {
+            context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+        }
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_validated_right_margin).toInt()
 
@@ -107,7 +132,7 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
 internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
     private const val CLEAR_CONTENT_DESCRIPTION = "clear"
 
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_right_margin).toInt()
 
@@ -124,7 +149,7 @@ internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesActionTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_action_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int = context.resources.getDimension(R.dimen.andes_textfield_action_left_margin).toInt()
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_action_right_margin).toInt()
 
@@ -134,7 +159,13 @@ internal object AndesActionTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesIndeterminateTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int {
+        return if (state == AndesTextfieldState.READONLY) {
+            context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
+        }
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_right_margin).toInt()
 
@@ -144,7 +175,7 @@ internal object AndesIndeterminateTextfieldContent : AndesTextfieldContentInterf
 }
 
 internal object AndesCheckboxTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context): Int = 0
+    override fun leftMargin(context: Context, state: AndesTextfieldState): Int = 0
 
     override fun rightMargin(context: Context): Int = 0
 

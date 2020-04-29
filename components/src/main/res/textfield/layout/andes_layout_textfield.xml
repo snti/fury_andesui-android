@@ -48,8 +48,8 @@
             app:layout_constraintEnd_toStartOf="@+id/andes_textfield_right_component"
             app:layout_constraintStart_toEndOf="@+id/andes_textfield_left_component"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginEnd="12dp"
-            app:layout_goneMarginStart="12dp" />
+            app:layout_goneMarginEnd="@dimen/andes_textfield_margin"
+            app:layout_goneMarginStart="@dimen/andes_textfield_margin" />
 
         <FrameLayout
             android:id="@+id/andes_textfield_right_component"

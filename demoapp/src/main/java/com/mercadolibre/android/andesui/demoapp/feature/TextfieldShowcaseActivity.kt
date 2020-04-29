@@ -9,10 +9,7 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ScrollView
-import android.widget.Spinner
+import android.widget.*
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
@@ -70,7 +67,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         }
 
         private fun addDynamicTextfieldLayout(inflater: LayoutInflater): View {
-            val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase_change, null, false) as ScrollView
+            val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase_change, null, false)
             val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.andesui_textfield)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
             val clearButton = layoutTextfield.findViewById<AndesButton>(R.id.clear_button)
@@ -78,44 +75,30 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<EditText>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<EditText>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
+            counter.setText(COUNTER_DEFAULT)
+            textfield.counter = 50
 
             val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
-            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            inputTypeSpinner.adapter = adapter
+            val typeAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
+            typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            inputTypeSpinner.adapter = typeAdapter
 
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
-            ArrayAdapter.createFromResource(
-                    context,
-                    R.array.textfield_state_spinner,
-                    android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                stateSpinner.adapter = adapter
-            }
+            val stateAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.textfield_state_spinner))
+            stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            stateSpinner.adapter = stateAdapter
 
             val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.prefix_spinner)
-            ArrayAdapter.createFromResource(
-                    context,
-                    R.array.prefix_spinner,
-                    android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                preffixSpinner.adapter = adapter
-            }
+            val preffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.prefix_spinner))
+            preffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            preffixSpinner.adapter = preffixAdapter
 
             val suffixSpinner: Spinner = layoutTextfield.findViewById(R.id.suffix_spinner)
-            ArrayAdapter.createFromResource(
-                    context,
-                    R.array.suffix_spinner,
-                    android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                suffixSpinner.adapter = adapter
-            }
+            val suffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.suffix_spinner))
+            suffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            suffixSpinner.adapter = suffixAdapter
 
             button.setOnClickListener {
-
                 textfield.text = ""
                 textfield.label = label.text.toString()
                 textfield.helper = helper.text.toString()
@@ -125,9 +108,23 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
                 textfield.state = AndesTextfieldState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
 
-                textfield.leftContent = AndesTextfieldLeftContent.fromString(preffixSpinner.selectedItem.toString())
+                if (preffixSpinner.selectedItem.toString().toUpperCase() == NONE) {
+                    textfield.leftContent = null
+                } else {
+                    textfield.leftContent = AndesTextfieldLeftContent.fromString(preffixSpinner.selectedItem.toString())
 
-                textfield.rightContent = AndesTextfieldRightContent.fromString(suffixSpinner.selectedItem.toString())
+                }
+
+                if (suffixSpinner.selectedItem.toString().toUpperCase() == NONE) {
+                    textfield.rightContent = null
+                } else {
+                    textfield.rightContent = AndesTextfieldRightContent.fromString(suffixSpinner.selectedItem.toString())
+                    if (textfield.rightContent == AndesTextfieldRightContent.ACTION) {
+                        textfield.setAction("Button", View.OnClickListener {
+                            Toast.makeText(context, "Right action pressed", Toast.LENGTH_LONG).show()
+                        })
+                    }
+                }
 
                 val selectedInputType = getInputTypesArray().filter { it.name == inputTypeSpinner.selectedItem.toString() }.single().value
                 textfield.inputType = selectedInputType
@@ -135,24 +132,26 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             clearButton.setOnClickListener {
                 // reset UI
-                label.setText(null)
-                placeholder.setHint(context.resources.getString(R.string.andes_textfield_placeholder_text))
-                placeholder.setText(null)
+                label.text = null
+                placeholder.hint = context.resources.getString(R.string.andes_textfield_placeholder_text)
+                placeholder.text = null
+                helper.text = null
+                counter.setText(COUNTER_DEFAULT)
                 stateSpinner.setSelection(0)
-                helper.setText(null)
-                counter.setText(null)
-                inputTypeSpinner.setSelection(getInputTypesArray().filter { it.name == "text" }.single().value)
+                inputTypeSpinner.setSelection(0)
+                preffixSpinner.setSelection(0)
+                suffixSpinner.setSelection(0)
 
                 // reset AndesTextfield's properties.
                 textfield.text = ""
                 textfield.label = null
-                textfield.helper = null
                 textfield.placeholder = null
-                textfield.counter = 0
+                textfield.helper = null
+                textfield.counter = 50
                 textfield.state = AndesTextfieldState.IDLE
+                textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
                 textfield.rightContent = null
-                textfield.inputType = InputType.TYPE_CLASS_TEXT
             }
 
             return layoutTextfield
@@ -211,5 +210,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 return this.name
             }
         }
+    }
+
+    companion object {
+        const val NONE = "NONE"
+        const val COUNTER_DEFAULT = "50"
     }
 }

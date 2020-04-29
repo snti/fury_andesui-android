@@ -7,6 +7,7 @@ import android.view.View
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldContentInterface
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
@@ -53,16 +54,16 @@ internal object AndesTextfieldConfigurationFactory {
                     counterColor = resolveCounterTextColor(state.state),
                     counterSize = resolveCounterSize(context),
                     counterLength = counter,
-                    placeHolderColor = resolvePlaceHolderColor(state.state, context),
+                    placeHolderColor = resolvePlaceHolderColor(state.state),
                     placeHolderSize = resolvePlaceHolderSize(context),
                     placeHolderText = placeholder,
                     typeface = resolveTypeface(context),
                     icon = resolveIcon(context, state.state),
                     leftComponent = resolveLeftComponent(context, leftContent?.leftContent),
                     rightComponent = resolveRightComponent(context, rightContent?.rightContent),
-                    leftComponentLeftMargin = resolveLeftComponentLeftMargin(context, leftContent?.leftContent),
+                    leftComponentLeftMargin = resolveLeftComponentLeftMargin(context, andesTextfieldAttrs.state, leftContent?.leftContent),
                     leftComponentRightMargin = resolveLeftComponentRightMargin(context, leftContent?.leftContent),
-                    rightComponentLeftMargin = resolveRightComponentLeftMargin(context, rightContent?.rightContent),
+                    rightComponentLeftMargin = resolveRightComponentLeftMargin(context, andesTextfieldAttrs.state, rightContent?.rightContent),
                     rightComponentRightMargin = resolveRightComponentRightMargin(context, rightContent?.rightContent)
             )
         }
@@ -84,7 +85,7 @@ internal object AndesTextfieldConfigurationFactory {
                     counterSize = resolveCounterSize(context),
                     counterLength = counter,
                     placeHolderText = placeholder,
-                    placeHolderColor = resolvePlaceHolderColor(state.state, context),
+                    placeHolderColor = resolvePlaceHolderColor(state.state),
                     placeHolderSize = resolvePlaceHolderSize(context),
                     typeface = resolveTypeface(context),
                     icon = resolveIcon(context, state.state),
@@ -103,13 +104,14 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveCounterSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)
     private fun resolveTypeface(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
     private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface): Drawable? = state.icon(context)
-    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface, context: Context): AndesColor = state.placeholderColor()
+    private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface): AndesColor = state.placeholderColor()
     private fun resolvePlaceHolderSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_placeholder_textSize)
     private fun resolveLeftComponent(context: Context, leftContent: AndesTextfieldContentInterface?): View? = leftContent?.component(context)
     private fun resolveRightComponent(context: Context, rightContent: AndesTextfieldContentInterface?): View? = rightContent?.component(context)
-    private fun resolveLeftComponentLeftMargin(context: Context, leftContent: AndesTextfieldContentInterface?): Int? = leftContent?.leftMargin(context)
+    private fun resolveLeftComponentLeftMargin(context: Context, state: AndesTextfieldState, leftContent: AndesTextfieldContentInterface?): Int? = leftContent?.leftMargin(context, state)
     private fun resolveLeftComponentRightMargin(context: Context, leftContent: AndesTextfieldContentInterface?): Int? = leftContent?.rightMargin(context)
-    private fun resolveRightComponentLeftMargin(context: Context, rightContent: AndesTextfieldContentInterface?): Int? = rightContent?.leftMargin(context)
+    private fun resolveRightComponentLeftMargin(context: Context, state: AndesTextfieldState, rightContent: AndesTextfieldContentInterface?): Int? = rightContent?.leftMargin(context, state)
     private fun resolveRightComponentRightMargin(context: Context, rightContent: AndesTextfieldContentInterface?): Int? = rightContent?.rightMargin(context)
     private fun resolveHelper(state: AndesTextfieldStateInterface, helper: String?): String? = state.helper(helper)
+
 }
