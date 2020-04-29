@@ -1,3 +1,7 @@
+# v2.3.0
+## Added
+- Badge Component DOT.
+
 # v2.2.0
 ## Changed
 - Remove modifier from AndesBadge
@@ -9,7 +13,7 @@
 
 # v2.1.0
 ## Added
-- Badge Component. (Credits)
+- Badge Component PILL. (Credits)
 - Textfield component.
 - Adding Detekt + Ktlint.
 - Added more Andes icons needed. (Credits)

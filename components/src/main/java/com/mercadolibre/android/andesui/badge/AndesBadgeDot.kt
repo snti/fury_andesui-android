@@ -1,12 +1,14 @@
 package com.mercadolibre.android.andesui.badge
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
-import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrs
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotAttrsParser
@@ -14,7 +16,7 @@ import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotConfiguration
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgeDotConfigurationFactory
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 
-class AndesBadgeDot : CardView {
+class AndesBadgeDot : FrameLayout {
 
     /**
      * Getter and setter for [type].
@@ -64,8 +66,6 @@ class AndesBadgeDot : CardView {
      * Is like a choreographer ;)
      */
     private fun setupComponents(config: AndesBadgeDotConfiguration) {
-        cardElevation = CARD_ELEVATION
-
         initComponents()
         setupViewId()
 
@@ -104,7 +104,7 @@ class AndesBadgeDot : CardView {
     private fun createConfig() = AndesBadgeDotConfigurationFactory.create(context, andesBadgeAttrs)
 
     companion object {
-        private const val CARD_ELEVATION = 0F
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
     }
+
 }
