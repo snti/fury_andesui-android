@@ -161,9 +161,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         private fun addStaticTextfieldLayout(inflater: LayoutInflater): View {
             val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase, null, false) as ScrollView
 
-            val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.textfield_enabled)
+            layoutTextfield.left
+//            val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.textfield_enabled)
 
-            textfield.setPrefix("+546666")
+//            textfield.setPrefix("+546666")
 
             return layoutTextfield
         }

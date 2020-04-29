@@ -12,14 +12,13 @@
         android:padding="@dimen/button_margin_vertical">
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
-            android:id="@+id/textfield_enabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTextfieldLeftContent="icon"
-            app:andesTextfieldRightContent="clear"
-            android:inputType="number"
-            />
+            app:andesTextfieldLabel="@string/andes_textfield_label_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldHelper="@string/andesui_demoapp_textfield_help"
+            android:inputType="textEmailAddress" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
@@ -27,28 +26,44 @@
             android:layout_marginBottom="@dimen/button_margin_vertical"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
-            android:inputType="textEmailAddress"
-            />
+            app:andesTextfieldState="error"
+            app:andesTextfieldHelper="@string/andesui_demoapp_textfield_error"
+            app:andesTextfieldCounter="50"
+            android:inputType="textEmailAddress" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTextfieldLabel="@string/andes_textfield_label_text"
-            app:andesTextfieldHelper="@string/andes_textfield_helper_text"
-            android:inputType="text"
-            />
+            app:andesTextfieldLabel="@string/andesui_demoapp_textfield_name"
+            app:andesTextfieldPlaceholder="@string/andesui_demoapp_textfield_name_ex"
+            app:andesTextfieldHelper="@string/andesui_demoapp_textfield_dni"
+            app:andesTextfieldCounter="100"
+            android:inputType="text" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTextfieldLabel="@string/andes_textfield_label_text"
-            app:andesTextfieldHelper="@string/andes_textfield_helper_text"
+            app:andesTextfieldPlaceholder="@string/andesui_demoapp_textfield_pass"
+            android:inputType="textPassword" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesTextfieldLabel="@string/andesui_demoapp_textfield_disabled"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
-            app:andesTextfieldCounter="10"
-            android:inputType="textPassword"
-            />
+            app:andesTextfieldHelper="@string/andesui_demoapp_textfield_helpr_message"
+            app:andesTextfieldState="disabled"
+            app:andesTextfieldCounter="250"
+            android:inputType="textEmailAddress" />
+
+
+
+
+
+
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:layout_width="match_parent"
