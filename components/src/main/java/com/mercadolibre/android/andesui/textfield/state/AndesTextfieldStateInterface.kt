@@ -27,6 +27,7 @@ internal sealed class AndesTextfieldStateInterface {
     abstract fun helpersColor(): AndesColor
     abstract fun typeFace(context: Context): Typeface
     abstract fun helper(helper: String?): String?
+    abstract fun leftMargin(context: Context): Int
 }
 
 internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
@@ -35,6 +36,7 @@ internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
     override fun helpersColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = helper
+    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -53,6 +55,7 @@ internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     override fun helpersColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
     override fun helper(helper: String?): String? = helper
+    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
@@ -77,6 +80,7 @@ internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
     override fun helpersColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = helper
+    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
     override fun backgroundColor(context: Context): Drawable {
         return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash))
@@ -91,6 +95,7 @@ internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
     override fun helpersColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
     override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun helper(helper: String?): String? = null
+    override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
 
     override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0, R.color.andes_transparent.toColor(context))
 
