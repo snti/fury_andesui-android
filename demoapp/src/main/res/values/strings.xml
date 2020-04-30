@@ -82,6 +82,22 @@
     <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
     <string name="andesui_demoapp_label_andes_contribution">I want to contribute 🤝</string>
 
+    <string name="andesui_demoapp_textfield_label">Label</string>
+    <string name="andesui_demoapp_textfield_name">Nombre</string>
+    <string name="andesui_demoapp_textfield_name_ex">Juan Pérez</string>
+    <string name="andesui_demoapp_textfield_placeholder">Input text</string>
+    <string name="andesui_demoapp_textfield_help">Helper text</string>
+    <string name="andesui_demoapp_textfield_error">Revisá este dato.</string>
+    <string name="andesui_demoapp_textfield_dni">Como figura en el DNI</string>
+    <string name="andesui_demoapp_textfield_pass">Contraseña</string>
+    <string name="andesui_demoapp_textfield_disabled">Textfield disabled</string>
+    <string name="andesui_demoapp_textfield_helpr_message">Textfield disabled</string>
+
+    <string name="andesui_demoapp_textarea_title">TextArea</string>
+    <string name="andesui_demoapp_textarea_title_read_only">TextArea read only</string>
+    <string name="andesui_demoapp_textarea_title_disabled">TextArea disabled</string>
+    <string name="andesui_demoapp_textarea_title_error">TextArea error</string>
+
     <string-array name="state_spinner">
         <item>Neutral</item>
         <item>Success</item>

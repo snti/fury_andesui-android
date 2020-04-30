@@ -17,22 +17,21 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/andes_textarea_text_container"
-        app:layout_constraintTop_toBottomOf="@+id/andes_textfield_label"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:addStatesFromChildren="true"
         android:layout_marginTop="@dimen/andes_textfield_container_marginTop"
         android:minHeight="@dimen/andes_textfield_container_minHeight"
-        android:addStatesFromChildren="true">
-
+        app:layout_constraintTop_toBottomOf="@+id/andes_textarea_label">
 
         <EditText
             android:id="@+id/andes_textarea_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="@dimen/andes_textfield_margin"
+            android:layout_marginTop="@dimen/andes_textfield_margin"
+            android:layout_marginEnd="@dimen/andes_textfield_margin"
+            android:layout_marginBottom="@dimen/andes_textfield_margin"
             android:background="@drawable/andes_border"
             android:gravity="top|start"
             android:inputType="textMultiLine"
@@ -41,8 +40,10 @@
             android:textSize="@dimen/andes_textfield_edittext_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/andes_textarea_text_container"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/andes_textarea_text_container"
-            app:layout_constraintTop_toTopOf="@id/andes_textarea_text_container" />
+            app:layout_constraintTop_toTopOf="@id/andes_textarea_text_container"
+            app:layout_constraintVertical_bias="1.0" />
 
     </android.support.constraint.ConstraintLayout>
 
