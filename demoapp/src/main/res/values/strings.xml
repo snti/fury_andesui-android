@@ -90,9 +90,13 @@
     <string name="andesui_demoapp_textfield_error">Revisá este dato.</string>
     <string name="andesui_demoapp_textfield_dni">Como figura en el DNI</string>
     <string name="andesui_demoapp_textfield_pass">Contraseña</string>
-
     <string name="andesui_demoapp_textfield_disabled">Textfield disabled</string>
     <string name="andesui_demoapp_textfield_helpr_message">Textfield disabled</string>
+
+    <string name="andesui_demoapp_textarea_title">TextArea</string>
+    <string name="andesui_demoapp_textarea_title_read_only">TextArea read only</string>
+    <string name="andesui_demoapp_textarea_title_disabled">TextArea disabled</string>
+    <string name="andesui_demoapp_textarea_title_error">TextArea error</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

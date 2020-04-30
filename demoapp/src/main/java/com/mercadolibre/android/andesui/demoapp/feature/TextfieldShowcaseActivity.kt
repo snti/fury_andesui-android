@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -9,13 +10,12 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ScrollView
-import android.widget.Spinner
+import android.widget.*
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.icons.IconProvider
+import com.mercadolibre.android.andesui.icons.IconProviderStrategy
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
@@ -115,7 +115,6 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             }
 
             button.setOnClickListener {
-
                 textfield.text = ""
                 textfield.label = label.text.toString()
                 textfield.helper = helper.text.toString()
@@ -135,12 +134,12 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             clearButton.setOnClickListener {
                 // reset UI
-                label.setText(null)
-                placeholder.setHint(context.resources.getString(R.string.andes_textfield_placeholder_text))
-                placeholder.setText(null)
+                label.text = null
+                placeholder.hint = context.resources.getString(R.string.andes_textfield_placeholder_text)
+                placeholder.text = null
                 stateSpinner.setSelection(0)
-                helper.setText(null)
-                counter.setText(null)
+                helper.text = null
+                counter.text = null
                 inputTypeSpinner.setSelection(getInputTypesArray().filter { it.name == "text" }.single().value)
 
                 // reset AndesTextfield's properties.
@@ -160,11 +159,28 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticTextfieldLayout(inflater: LayoutInflater): View {
             val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase, null, false) as ScrollView
-
             layoutTextfield.left
-//            val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.textfield_enabled)
 
-//            textfield.setPrefix("+546666")
+            // Set action clear
+            val textfield1 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield1)
+            textfield1.rightContent = AndesTextfieldRightContent.CLEAR
+
+            // Set text
+            val textfield2 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield2)
+            textfield2.text = context.resources.getString(R.string.andes_textfield_placeholder_text)
+
+            // Set action
+            val textfield3 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield3)
+            textfield3.setAction("Button", View.OnClickListener {
+                Toast.makeText(context, "Action pressed", Toast.LENGTH_LONG).show()
+            })
+
+            // Set text
+            val textfield4 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield4)
+            textfield4.text = context.resources.getString(R.string.andes_textfield_placeholder_text)
+
+
+            ContextCompat.getDrawable(context, com.mercadolibre.android.andesui.R.drawable.andes_navegacion_ajustes)
 
             return layoutTextfield
         }
