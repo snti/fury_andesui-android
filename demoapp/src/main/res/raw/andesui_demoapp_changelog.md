@@ -1,10 +1,11 @@
 # v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
+- Minor errors in textfield.
 
 # v2.2.0
 ## Changed
-- Remove modifier from AndesBadge
+- Remove modifier from AndesBadge.
 
 ## Fixed
 - Label error textfield color.
