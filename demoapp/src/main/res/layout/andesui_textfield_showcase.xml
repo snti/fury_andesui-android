@@ -12,6 +12,16 @@
         android:padding="@dimen/button_margin_vertical">
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesTextfieldLabel="@string/andes_textfield_label_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldHelper="@string/andesui_demoapp_textfield_help"
+            app:andesTextfieldRightContent="validated"
+            android:inputType="textEmailAddress" />
+
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/andesTextfield1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +29,7 @@
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
             app:andesTextfieldHelper="@string/andesui_demoapp_textfield_help"
-            app:andesTextfieldRightContent="icon"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textEmailAddress" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -63,6 +73,7 @@
             android:inputType="textEmailAddress" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
+            android:id="@+id/textViewLeftIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
@@ -70,16 +81,6 @@
             app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
             app:andesTextfieldLabel="@string/andes_textfield_label_text"
             app:andesTextfieldLeftContent="icon"
-            android:inputType="text" />
-
-        <com.mercadolibre.android.andesui.textfield.AndesTextfield
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesTextfieldState="idle"
-            app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
-            app:andesTextfieldLabel="@string/andes_textfield_label_text"
-            app:andesTextfieldRightContent="icon"
             android:inputType="text" />
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield

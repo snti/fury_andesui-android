@@ -79,8 +79,12 @@ class AndesTextarea : ConstraintLayout {
         get() = andesTextareaAttrs.state
         set(value) {
             andesTextareaAttrs = andesTextareaAttrs.copy(state = value)
-            setupColorComponents(createConfig())
+            val config = createConfig()
             setupEnabledView()
+            setupTextComponent(config)
+            setupColorComponents(config)
+            setupHelperComponent(config)
+            setupCounterComponent(config)
         }
 
     var maxLines: Int?
@@ -112,8 +116,7 @@ class AndesTextarea : ConstraintLayout {
         counter: Int = COUNTER_DEFAULT,
         state: AndesTextfieldState = STATE_DEFAULT,
         maxLines: Int? = MAXLINES_DEFAULT
-    ) :
-            super(context) {
+    ) : super(context) {
         initAttrs(label, helper, placeholder, counter, state, maxLines)
     }
 
@@ -205,6 +208,7 @@ class AndesTextarea : ConstraintLayout {
      * Set up the text component.
      */
     private fun setupTextComponent(config: AndesTextfieldConfiguration) {
+        setupMarginStartTextComponent()
         textComponent.typeface = config.typeface
     }
 
@@ -215,7 +219,7 @@ class AndesTextarea : ConstraintLayout {
     private fun setupColorComponents(config: AndesTextfieldConfiguration) {
         textContainer.background = config.background
         iconComponent.setImageDrawable(config.icon)
-        if (config.icon != null) {
+        if (config.icon != null && state != AndesTextfieldState.READONLY) {
             if (!config.helperText.isNullOrEmpty()) {
                 iconComponent.visibility = View.VISIBLE
             }
@@ -254,7 +258,7 @@ class AndesTextarea : ConstraintLayout {
      *
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText == null || config.helperText.isEmpty()) {
+        if (config.helperText == null || config.helperText.isEmpty() || state == AndesTextfieldState.READONLY) {
             helperComponent.visibility = View.GONE
         } else {
             helperComponent.visibility = View.VISIBLE
@@ -268,7 +272,7 @@ class AndesTextarea : ConstraintLayout {
      *
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterLength != 0) {
+        if (config.counterLength != 0 && state != AndesTextfieldState.READONLY) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, 0, config.counterLength)
@@ -295,10 +299,8 @@ class AndesTextarea : ConstraintLayout {
      *
      */
     private fun setupPlaceHolderComponent(config: AndesTextfieldConfiguration) {
-        if (config.placeHolderText != null) {
-            textComponent.hint = config.placeHolderText
-            textComponent.typeface = config.typeface
-        }
+        textComponent.hint = config.placeHolderText
+        textComponent.typeface = config.typeface
     }
 
     private fun setupMaxlines(config: AndesTextfieldConfiguration) {
@@ -312,6 +314,16 @@ class AndesTextarea : ConstraintLayout {
                 }
             }
         }
+    }
+
+    private fun setupMarginStartTextComponent() {
+        val params = textComponent.layoutParams as LayoutParams
+        if (state == AndesTextfieldState.READONLY) {
+            params.marginStart = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            params.marginStart = context.resources.getDimension(R.dimen.andes_textfield_margin).toInt()
+        }
+        textComponent.layoutParams = params
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextareaAttrs)

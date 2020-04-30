@@ -87,8 +87,11 @@ class AndesTextfield : ConstraintLayout {
         get() = andesTextfieldAttrs.state
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(state = value)
-            setupColorComponents(createConfig())
+            val config = createConfig()
             setupEnabledView()
+            setupColorComponents(config)
+            setupHelperComponent(config)
+            setupCounterComponent(config)
         }
 
     /**
@@ -202,7 +205,6 @@ class AndesTextfield : ConstraintLayout {
     /**
      * Creates all the views that are part of this textfield.
      * After a view is created then a view id is added to it.
-     *
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_textfield, this, true)
@@ -260,13 +262,12 @@ class AndesTextfield : ConstraintLayout {
 
     /**
      * Gets data from the config to sets the color of the components regarding to the state.
-     *
      */
     private fun setupColorComponents(config: AndesTextfieldConfiguration) {
         textContainer.background = config.background
 
         iconComponent.setImageDrawable(config.icon)
-        if (config.icon != null) {
+        if (config.icon != null && state != READONLY) {
             if (!config.helperText.isNullOrEmpty()) {
                 iconComponent.visibility = View.VISIBLE
             }
@@ -288,7 +289,6 @@ class AndesTextfield : ConstraintLayout {
 
     /**
      * Gets data from the config and sets to the Label component.
-     *
      */
     private fun setupLabelComponent(config: AndesTextfieldConfiguration) {
         if (config.labelText == null || config.labelText.isEmpty()) {
@@ -302,10 +302,9 @@ class AndesTextfield : ConstraintLayout {
 
     /**
      * Gets data from the config and sets to the Helper component.
-     *
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText == null || config.helperText.isEmpty()) {
+        if (config.helperText == null || config.helperText.isEmpty() || state == READONLY) {
             helperComponent.visibility = View.GONE
         } else {
             helperComponent.visibility = View.VISIBLE
@@ -316,10 +315,9 @@ class AndesTextfield : ConstraintLayout {
 
     /**
      * Gets data from the config and sets to the Counter component.
-     *
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterLength != 0) {
+        if (config.counterLength != 0 && state != READONLY) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, 0, config.counterLength)
@@ -343,24 +341,22 @@ class AndesTextfield : ConstraintLayout {
 
     /**
      * Gets data from the config and sets to the Place Holder component.
-     *
      */
     private fun setupPlaceHolderComponent(config: AndesTextfieldConfiguration) {
-        if (config.placeHolderText != null) {
-            textComponent.hint = config.placeHolderText
-            textComponent.typeface = config.typeface
-        }
+        textComponent.hint = config.placeHolderText
+        textComponent.typeface = config.typeface
     }
 
     /**
      * Gets data from the config and sets to the Left component.
      */
     private fun setupLeftComponent(config: AndesTextfieldConfiguration) {
+        setupMarginStartTextComponent()
+
         if (config.leftComponent != null) {
             leftComponent.removeAllViews()
             leftComponent.addView(config.leftComponent)
-
-            val params = leftComponent.layoutParams as ConstraintLayout.LayoutParams
+            val params = leftComponent.layoutParams as LayoutParams
             params.marginStart = config.leftComponentLeftMargin!!
             params.marginEnd = config.leftComponentRightMargin!!
             leftComponent.layoutParams = params
@@ -371,6 +367,16 @@ class AndesTextfield : ConstraintLayout {
         }
     }
 
+    private fun setupMarginStartTextComponent() {
+        val params = textComponent.layoutParams as LayoutParams
+        if (state == READONLY) {
+            params.goneStartMargin = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
+        } else {
+            params.goneStartMargin = context.resources.getDimension(R.dimen.andes_textfield_margin).toInt()
+        }
+        textComponent.layoutParams = params
+    }
+
     /**
      * Gets data from the config and sets to the right component.
      */
@@ -379,7 +385,7 @@ class AndesTextfield : ConstraintLayout {
             rightComponent.removeAllViews()
             rightComponent.addView(config.rightComponent)
 
-            val params = rightComponent.layoutParams as ConstraintLayout.LayoutParams
+            val params = rightComponent.layoutParams as LayoutParams
             params.marginStart = config.rightComponentLeftMargin!!
             params.marginEnd = config.rightComponentRightMargin!!
             rightComponent.layoutParams = params
@@ -424,6 +430,7 @@ class AndesTextfield : ConstraintLayout {
         rightContent = AndesTextfieldRightContent.ACTION
         val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
         action.text = text
+        action.isEnabled = state != READONLY && state != DISABLED
         action.setOnClickListener(onClickListener)
     }
 
