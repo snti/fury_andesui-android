@@ -8,7 +8,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
@@ -186,7 +186,7 @@ class AndesBadgePill : CardView {
                 shape.setColor(config.backgroundColor.colorInt(context))
 
                 background = shape
-                layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                layoutParams = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
                 minimumWidth = config.height.toInt()
                 minimumHeight = config.height.toInt()
     }
