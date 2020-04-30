@@ -1,12 +1,12 @@
-# v2.3.1
-## fixed
-- Se agrega la propiedad format a los resources del file attrs.xml, para que se pueda compilar con AGP 3.6 y gradle 5 + androidx
-
 # v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
 - Minor errors in textfield.
 - Minor errors in textarea.
+
+## Fixed
+- The format property is added to the resources of the attrs.xml file, so that it can be compiled with AGP 3.6 and gradle 5 + androidx.
+- Fix in AndesBadgePill. When Type, Hierarchy, or Size are changed programmatically, the application crashes
 
 # v2.2.0
 ## Changed
