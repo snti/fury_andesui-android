@@ -112,7 +112,6 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     textfield.leftContent = null
                 } else {
                     textfield.leftContent = AndesTextfieldLeftContent.fromString(preffixSpinner.selectedItem.toString())
-
                 }
 
                 if (suffixSpinner.selectedItem.toString().toUpperCase() == NONE) {
