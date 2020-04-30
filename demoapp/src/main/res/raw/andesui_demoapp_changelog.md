@@ -2,6 +2,7 @@
 ## Changed
 - Minor UX improvements in the Andes App.
 - Minor errors in textfield.
+- Minor errors in textarea.
 
 # v2.2.0
 ## Changed
