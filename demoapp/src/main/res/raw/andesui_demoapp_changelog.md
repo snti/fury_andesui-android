@@ -4,6 +4,10 @@
 - Minor errors in textfield.
 - Minor errors in textarea.
 
+## Fixed
+- The format property is added to the resources of the attrs.xml file, so that it can be compiled with AGP 3.6 and gradle 5 + androidx.
+- Fix in AndesBadgePill. When Type, Hierarchy, or Size are changed programmatically, the application crashes
+
 # v2.2.0
 ## Changed
 - Remove modifier from AndesBadge.
