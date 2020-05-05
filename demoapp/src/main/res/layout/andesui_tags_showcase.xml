@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/andes_white">
+
+    <LinearLayout
+        android:id="@+id/andes_badges_quiet_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/andes_tag_showcase"
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/andes_badge_from_xml"
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                app:andesSimpleTagIsDismissable="True"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="success"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="success"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="warning"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagIsDismissable="True"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="warning"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="warning"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="error"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="error"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="highlight"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="highlight"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="neutral"
+                app:andesSimpleTagSize="large"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+            <com.mercadolibre.android.andesui.tag.AndesSimpleTag
+                android:id="@+id/tag11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:andesSimpleTagType="neutral"
+                app:andesSimpleTagSize="small"
+                app:andesSimpleTagText="@string/andesui_demoapp_tag_example"
+                android:layout_marginBottom="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/andes_badge_programmatically"
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/andesui_demoapp_label_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical_2x"
+                android:text="@string/andesui_demoapp_label_more" />
+
+            <com.mercadolibre.android.andesui.button.AndesButton
+                android:id="@+id/andesui_demoapp_andes_tag_specs_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_margin_vertical"
+                app:andesButtonHierarchy="quiet"
+                app:andesButtonSize="medium"
+                app:andesButtonText="@string/andesui_demoapp_label_andes_tag_specs"
+                app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

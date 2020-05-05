@@ -16,9 +16,9 @@ enum class AndesBadgePillHierarchy {
         fun fromString(value: String): AndesBadgePillHierarchy = valueOf(value.toUpperCase())
     }
 
-    internal val hierarchy get() = getAndesButtonHierarchy()
+    internal val hierarchy get() = getAndesBadgePillHierarchy()
 
-    private fun getAndesButtonHierarchy(): AndesBadgeHierarchyInterface {
+    private fun getAndesBadgePillHierarchy(): AndesBadgePillHierarchyInterface {
         return when (this) {
             QUIET -> AndesQuietBadgeHierarchy()
             LOUD -> AndesLoudBadgeHierarchy()

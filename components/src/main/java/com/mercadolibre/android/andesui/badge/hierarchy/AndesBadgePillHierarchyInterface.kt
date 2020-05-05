@@ -10,7 +10,7 @@ import com.mercadolibre.android.andesui.color.toAndesColor
  * Those properties change depending on the style of the badge.
  *
  */
-internal interface AndesBadgeHierarchyInterface {
+internal interface AndesBadgePillHierarchyInterface {
     /**
      * Returns a [AndesColor] that contains the color data for the message background.
      *
@@ -29,12 +29,12 @@ internal interface AndesBadgeHierarchyInterface {
     fun textColor(type: AndesBadgeTypeInterface): AndesColor
 }
 
-internal class AndesLoudBadgeHierarchy : AndesBadgeHierarchyInterface {
+internal class AndesLoudBadgeHierarchy : AndesBadgePillHierarchyInterface {
     override fun backgroundColor(type: AndesBadgeTypeInterface) = type.primaryColor()
     override fun textColor(type: AndesBadgeTypeInterface) = R.color.andes_white.toAndesColor()
 }
 
-internal class AndesQuietBadgeHierarchy : AndesBadgeHierarchyInterface {
+internal class AndesQuietBadgeHierarchy : AndesBadgePillHierarchyInterface {
     override fun backgroundColor(type: AndesBadgeTypeInterface) = type.secondaryColor()
     override fun textColor(type: AndesBadgeTypeInterface) = type.primaryColor()
 }

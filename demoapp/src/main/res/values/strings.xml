@@ -50,6 +50,7 @@
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
+    <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
     <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
     <string name="andesui_demoapp_message_generate_random_message">Generate random Andes Message</string>
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
@@ -62,6 +63,7 @@
     <string name="andesui_demoapp_label_more">More</string>
     <string name="andesui_demoapp_label_number">22</string>
     <string name="andesui_demoapp_label_andes_specs">Andes Specs 📘</string>
+    <string name="andesui_demoapp_label_andes_tag_specs">Andes Tag Specs 📘</string>
     <string name="andesui_demoapp_label_andes_badge_specs">Andes Badge Specs 📘</string>
     <string name="andesui_demoapp_label_andes_message_specs">Andes Message Specs 📘</string>
     <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs 📘</string>
@@ -74,6 +76,7 @@
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
 
+    <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_badge_showcase">Andes Badge</string>
     <string name="andes_loud_badges_text">Andes Loud Badges</string>
     <string name="andes_quiet_badges_text">Andes Quiet Badges</string>
@@ -97,6 +100,8 @@
     <string name="andesui_demoapp_textarea_title_read_only">TextArea read only</string>
     <string name="andesui_demoapp_textarea_title_disabled">TextArea disabled</string>
     <string name="andesui_demoapp_textarea_title_error">TextArea error</string>
+
+    <string name="andesui_demoapp_tag_example">Lorem Ipsum</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>
