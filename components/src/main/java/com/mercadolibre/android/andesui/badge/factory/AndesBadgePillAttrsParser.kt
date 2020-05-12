@@ -16,12 +16,12 @@ import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 /**
  * The data class that contains the public components of the badge.
  */
-internal data class AndesBadgePillAttrs (
-        val andesBadgePillHierarchy: AndesBadgePillHierarchy,
-        val andesBadgeType: AndesBadgeType,
-        val andesBadgePillBorder: AndesBadgePillBorder,
-        val andesBadgePillSize: AndesBadgePillSize,
-        val andesBadgeText: String?
+internal data class AndesBadgePillAttrs(
+    val andesBadgePillHierarchy: AndesBadgePillHierarchy,
+    val andesBadgeType: AndesBadgeType,
+    val andesBadgePillBorder: AndesBadgePillBorder,
+    val andesBadgePillSize: AndesBadgePillSize,
+    val andesBadgeText: String?
 )
 
 /**
@@ -78,5 +78,4 @@ internal object AndesBadgePillAttrsParser {
                 andesBadgeText = typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillText)
         ).also { typedArray.recycle() }
     }
-
 }

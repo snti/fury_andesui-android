@@ -1,8 +1,11 @@
 # v2.3.0
+## Added
+- Badge Component DOT.
+
 ## Changed
 - Minor UX improvements in the Andes App.
-- Minor errors in textfield.
-- Minor errors in textarea.
+- Minor improvements in textfield.
+- Minor improvements in textarea.
 
 ## Fixed
 - The format property is added to the resources of the attrs.xml file, so that it can be compiled with AGP 3.6 and gradle 5 + androidx.
@@ -19,7 +22,7 @@
 
 # v2.1.0
 ## Added
-- Badge Component. (Credits)
+- Badge Component PILL. (Credits)
 - Textfield component.
 - Adding Detekt + Ktlint.
 - Added more Andes icons needed. (Credits)
