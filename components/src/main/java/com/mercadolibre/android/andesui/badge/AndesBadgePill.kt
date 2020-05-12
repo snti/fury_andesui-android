@@ -205,4 +205,5 @@ class AndesBadgePill : CardView {
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
         private val TEXT_DEFAULT = null
     }
+
 }
