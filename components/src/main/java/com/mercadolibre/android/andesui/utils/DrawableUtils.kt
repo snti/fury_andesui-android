@@ -11,7 +11,6 @@ import android.graphics.drawable.shapes.OvalShape
 import android.os.Build
 import com.mercadolibre.android.andesui.color.AndesColor
 
-
 /**
  * Receives a [BitmapDrawable] which will suffer some look overhauling that includes scaling and tinting based on received params such as size, color, etc.
  * When the polishing ends, it will return a new [BitmapDrawable].
@@ -53,11 +52,11 @@ fun buildColoredAndesBitmapDrawable(
 }
 
 fun buildColoredBitmapDrawable(
-        image: BitmapDrawable,
-        context: Context,
-        dstWidth: Int? = null,
-        dstHeight: Int? = null,
-        color: Int?
+    image: BitmapDrawable,
+    context: Context,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null,
+    color: Int?
 ): BitmapDrawable {
     val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
@@ -95,9 +94,9 @@ fun buildColoredAndesBitmapDrawable(
 }
 
 fun buildCircleBitmap(
-        image: Bitmap,
-        dstWidth: Int? = null,
-        dstHeight: Int? = null
+    image: Bitmap,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null
 ): Bitmap? {
     val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(

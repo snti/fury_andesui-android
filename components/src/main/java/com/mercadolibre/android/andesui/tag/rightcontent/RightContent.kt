@@ -7,7 +7,7 @@ import com.mercadolibre.android.andesui.color.AndesColor
 
 open class RightContent(var context: Context) {
 
-    open fun getType(): AndesTagRightContent  {
+    open fun getType(): AndesTagRightContent {
         return AndesTagRightContent.NONE
     }
 
@@ -22,5 +22,4 @@ open class RightContent(var context: Context) {
     open fun getView(context: Context, color: AndesColor, callback: View.OnClickListener): View {
         return View(context)
     }
-
 }

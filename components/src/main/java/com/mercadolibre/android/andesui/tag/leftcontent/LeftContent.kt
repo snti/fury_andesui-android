@@ -3,13 +3,13 @@ package com.mercadolibre.android.andesui.tag.leftcontent
 import android.content.Context
 import android.view.View
 
-open class LeftContent (
-        var context: Context,
-        var size: Int = 0,
-        var border: Float = 0f
+open class LeftContent(
+    var context: Context,
+    var size: Int = 0,
+    var border: Float = 0f
 ) {
 
-     open fun getType(): AndesTagLeftContent  {
+     open fun getType(): AndesTagLeftContent {
           return AndesTagLeftContent.NONE
      }
 
@@ -24,5 +24,4 @@ open class LeftContent (
      open fun getView(context: Context): View {
           return View(context)
      }
-
 }

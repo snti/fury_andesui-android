@@ -9,13 +9,9 @@ import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
-class RightContentDismiss(context: Context, private val onClickListener: View.OnClickListener? = null): RightContent(context) {
+class RightContentDismiss(context: Context, private val onClickListener: View.OnClickListener? = null) : RightContent(context) {
 
-    init {
-
-    }
-
-    override fun getType(): AndesTagRightContent  {
+    override fun getType(): AndesTagRightContent {
         return AndesTagRightContent.DISMISS
     }
 
@@ -29,7 +25,7 @@ class RightContentDismiss(context: Context, private val onClickListener: View.On
 
     override fun getView(context: Context, color: AndesColor, callback: View.OnClickListener): View {
         val bitmapDrawable = buildColoredAndesBitmapDrawable(
-                image= IconProvider(context).loadIcon("andes_ui_close_16") as BitmapDrawable,
+                image = IconProvider(context).loadIcon("andes_ui_close_16") as BitmapDrawable,
                 context = context,
                 color = color
         )
@@ -41,5 +37,4 @@ class RightContentDismiss(context: Context, private val onClickListener: View.On
         }
         return imageView
     }
-
 }

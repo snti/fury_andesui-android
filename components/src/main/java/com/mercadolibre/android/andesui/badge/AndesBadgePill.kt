@@ -8,14 +8,14 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
+import android.view.ViewGroup
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrsParser
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfiguration
-import com.mercadolibre.android.andesui.badge.factory.AndesBadgeConfigurationFactory
 import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrs
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillAttrsParser
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfiguration
+import com.mercadolibre.android.andesui.badge.factory.AndesBadgePillConfigurationFactory
 import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
@@ -87,12 +87,12 @@ class AndesBadgePill : CardView {
 
     @Suppress("unused")
     constructor(
-            context: Context,
-            pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
-            type: AndesBadgeType = STATE_DEFAULT,
-            pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
-            pillSize: AndesBadgePillSize = SIZE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,
+        type: AndesBadgeType = STATE_DEFAULT,
+        pillBorder: AndesBadgePillBorder = BORDER_DEFAULT,
+        pillSize: AndesBadgePillSize = SIZE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(pillHierarchy, type, pillBorder, pillSize, text)
     }
@@ -104,19 +104,19 @@ class AndesBadgePill : CardView {
      */
     private fun initAttrs(attrs: AttributeSet?) {
         andesBadgeAttrs = AndesBadgePillAttrsParser.parse(context, attrs)
-        val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
+        val config = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
 
     private fun initAttrs(
-            pillHierarchy: AndesBadgePillHierarchy,
-            type: AndesBadgeType,
-            pillBorder: AndesBadgePillBorder,
-            pillSize: AndesBadgePillSize,
-            title: String?
+        pillHierarchy: AndesBadgePillHierarchy,
+        type: AndesBadgeType,
+        pillBorder: AndesBadgePillBorder,
+        pillSize: AndesBadgePillSize,
+        title: String?
     ) {
         andesBadgeAttrs = AndesBadgePillAttrs(pillHierarchy, type, pillBorder, pillSize, title)
-        val config = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
+        val config = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
         setupComponents(config)
     }
 
@@ -124,7 +124,7 @@ class AndesBadgePill : CardView {
      * Responsible for setting up all properties of each component that is part of this badge.
      * Is like a choreographer ;)
      */
-    private fun setupComponents(config: AndesBadgeConfiguration) {
+    private fun setupComponents(config: AndesBadgePillConfiguration) {
         cardElevation = CARD_ELEVATION
 
         initComponents()
@@ -133,7 +133,7 @@ class AndesBadgePill : CardView {
         setupColorComponents(config)
     }
 
-    private fun setupColorComponents(config: AndesBadgeConfiguration) {
+    private fun setupColorComponents(config: AndesBadgePillConfiguration) {
         setupTitleComponent(config)
         setupBackground(config)
     }
@@ -159,7 +159,7 @@ class AndesBadgePill : CardView {
     /**
      * Gets data from the config and sets to the title component of this badge.
      */
-    private fun setupTitleComponent(config: AndesBadgeConfiguration) {
+    private fun setupTitleComponent(config: AndesBadgePillConfiguration) {
         if (config.text == null || config.text.isEmpty()) {
             badgeTitle.visibility = View.GONE
         } else {
@@ -174,7 +174,7 @@ class AndesBadgePill : CardView {
         }
     }
 
-    private fun setupBackground(config: AndesBadgeConfiguration) {
+    private fun setupBackground(config: AndesBadgePillConfiguration) {
         val shape = GradientDrawable()
 
         (shape.mutate() as GradientDrawable).cornerRadii =
@@ -186,12 +186,15 @@ class AndesBadgePill : CardView {
                 shape.setColor(config.backgroundColor.colorInt(context))
 
                 background = shape
-                layoutParams = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                if (layoutParams == null) {
+                    layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, config.height.toInt())
+                }
+
                 minimumWidth = config.height.toInt()
                 minimumHeight = config.height.toInt()
     }
 
-    private fun createConfig() = AndesBadgeConfigurationFactory.create(context, andesBadgeAttrs)
+    private fun createConfig() = AndesBadgePillConfigurationFactory.create(context, andesBadgeAttrs)
 
     companion object {
         private const val CARD_ELEVATION = 0F

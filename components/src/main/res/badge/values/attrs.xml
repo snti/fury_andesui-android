@@ -27,4 +27,14 @@
 
         <attr name="andesBadgePillText" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="AndesBadgeDot" tools:ignore="ResourceName">
+        <attr name="andesBadgeDotType">
+            <enum name="neutral" value="2000" />
+            <enum name="highlight" value="2001" />
+            <enum name="success" value="2002" />
+            <enum name="warning" value="2003" />
+            <enum name="error" value="2004" />
+        </attr>
+    </declare-styleable>
 </resources>

@@ -11,11 +11,11 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.utils.validateColor
 
 class LeftContentDot(
-        context: Context,
-        val backgroundColor: String,
-        var text: String? = null,
-        val textColor: String? = null
-): LeftContent(context) {
+    context: Context,
+    val backgroundColor: String,
+    var text: String? = null,
+    val textColor: String? = null
+) : LeftContent(context) {
 
      init {
           // Valid colors
@@ -35,7 +35,7 @@ class LeftContentDot(
           border = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
      }
 
-     override fun getType(): AndesTagLeftContent  {
+     override fun getType(): AndesTagLeftContent {
           return AndesTagLeftContent.DOT
      }
 
@@ -70,5 +70,4 @@ class LeftContentDot(
                return textView
           }
      }
-
 }

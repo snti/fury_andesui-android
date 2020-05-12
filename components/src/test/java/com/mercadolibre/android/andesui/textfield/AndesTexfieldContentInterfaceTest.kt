@@ -63,7 +63,10 @@ class AndesTextfieldContentInterfaceTest {
         suffix.setTextColor(R.color.andes_gray_450.toColor(context))
         suffix.text = context.getString(R.string.andes_suffix_hint)
 
-        assertEquals(context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt(), contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state))
+        assertEquals(
+                context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt(),
+                contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state)
+        )
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_suffix_right_margin).toInt(), contentInterface.rightMargin(context))
         assertThat(contentInterface.component(context)).isEqualToComparingOnlyGivenFields(suffix)
     }
@@ -75,7 +78,9 @@ class AndesTextfieldContentInterfaceTest {
         prefix.setTextColor(R.color.andes_gray_450.toColor(context))
         prefix.text = context.getString(R.string.andes_prefix_hint)
 
-        assertEquals(context.resources.getDimension(R.dimen.andes_textfield_prefix_left_margin).toInt(), contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state))
+        assertEquals(context.resources.getDimension(
+                R.dimen.andes_textfield_prefix_left_margin).toInt(), contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state)
+        )
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_prefix_right_margin).toInt(), contentInterface.rightMargin(context))
         assertThat(contentInterface.component(context)).isEqualToComparingOnlyGivenFields(prefix)
     }

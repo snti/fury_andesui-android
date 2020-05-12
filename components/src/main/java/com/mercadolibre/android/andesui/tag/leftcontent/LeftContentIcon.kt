@@ -13,12 +13,12 @@ import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 import com.mercadolibre.android.andesui.utils.validateColor
 
 class LeftContentIcon(
-        context: Context,
-        val backgroundColor: String,
-        val path: String? = null,
-        val icon: Drawable? = null,
-        var iconColor: String? = null
-): LeftContent(context) {
+    context: Context,
+    val backgroundColor: String,
+    val path: String? = null,
+    val icon: Drawable? = null,
+    var iconColor: String? = null
+) : LeftContent(context) {
 
      init {
           // Valid color
@@ -34,7 +34,7 @@ class LeftContentIcon(
           border = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
      }
 
-     override fun getType(): AndesTagLeftContent  {
+     override fun getType(): AndesTagLeftContent {
           return AndesTagLeftContent.ICON
      }
 
@@ -75,5 +75,4 @@ class LeftContentIcon(
           imageView.setImageDrawable(icon)
           return imageView
      }
-
 }

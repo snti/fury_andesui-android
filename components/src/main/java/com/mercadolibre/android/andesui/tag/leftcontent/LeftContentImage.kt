@@ -8,9 +8,9 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.utils.buildCircleBitmap
 
 class LeftContentImage(
-        context: Context,
-        var avatar: Bitmap
-): LeftContent(context) {
+    context: Context,
+    var avatar: Bitmap
+) : LeftContent(context) {
 
      init {
           // Define size
@@ -23,7 +23,7 @@ class LeftContentImage(
           }
      }
 
-     override fun getType(): AndesTagLeftContent  {
+     override fun getType(): AndesTagLeftContent {
           return AndesTagLeftContent.IMAGE
      }
 
@@ -40,5 +40,4 @@ class LeftContentImage(
           imageView.setImageBitmap(avatar)
           return imageView
      }
-
 }

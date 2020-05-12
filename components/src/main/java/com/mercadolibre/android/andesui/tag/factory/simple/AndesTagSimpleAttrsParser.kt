@@ -12,12 +12,12 @@ import com.mercadolibre.android.andesui.tag.type.AndesTagType
 /**
  * The data class that contains the public components of the tag.
  */
-internal data class AndesTagSimpleAttrs (
-        val andesTagType: AndesTagType,
-        val andesTagSize: AndesTagSize,
-        val andesSimpleTagText: String?,
-        val leftContent: LeftContent? = null,
-        val rightContent: RightContent? = null
+internal data class AndesTagSimpleAttrs(
+    val andesTagType: AndesTagType,
+    val andesTagSize: AndesTagSize,
+    val andesSimpleTagText: String?,
+    val leftContent: LeftContent? = null,
+    val rightContent: RightContent? = null
 )
 
 /**
@@ -68,5 +68,4 @@ internal object AndesTagSimpleAttrsParser {
                 rightContent = isDismissable
         ).also { typedArray.recycle() }
     }
-
 }

@@ -16,5 +16,4 @@ enum class AndesTagLeftContent {
     companion object {
         fun fromString(value: String): AndesTagLeftContent = valueOf(value.toUpperCase())
     }
-
 }

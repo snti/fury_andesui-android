@@ -7,7 +7,7 @@ import com.mercadolibre.android.andesui.badge.size.AndesBadgeSizeInterface
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeTypeInterface
 import com.mercadolibre.android.andesui.color.AndesColor
 
-internal data class AndesBadgeConfiguration(
+internal data class AndesBadgePillConfiguration(
     val backgroundColor: AndesColor,
     val backgroundRadius: FloatArray,
     val textColor: AndesColor,
@@ -17,11 +17,11 @@ internal data class AndesBadgeConfiguration(
     val height: Float
 )
 
-internal object AndesBadgeConfigurationFactory {
+internal object AndesBadgePillConfigurationFactory {
 
-    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgeConfiguration {
+    fun create(context: Context, andesMessageAttrs: AndesBadgePillAttrs): AndesBadgePillConfiguration {
         return with(andesMessageAttrs) {
-            AndesBadgeConfiguration(
+            AndesBadgePillConfiguration(
                     backgroundColor = resolveBackgroundColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
                     backgroundRadius = resolveBackgroundRadius(andesBadgePillSize.size, andesBadgePillBorder.border, context),
                     textColor = resolveTextColor(andesBadgePillHierarchy.hierarchy, andesBadgeType.type),
@@ -34,7 +34,11 @@ internal object AndesBadgeConfigurationFactory {
     }
 
     private fun resolveBackgroundColor(hierarchy: AndesBadgePillHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.backgroundColor(type)
-    private fun resolveBackgroundRadius(size: AndesBadgeSizeInterface, border: AndesBadgeBorderInterface, context: Context) =
+    private fun resolveBackgroundRadius(
+        size: AndesBadgeSizeInterface,
+        border: AndesBadgeBorderInterface,
+        context: Context
+    ) =
              floatArrayOf(border.upStartCornerRadius(size, context), border.upEndCornerRadius(size, context),
                      border.bottomEndCornerRadius(size, context), border.bottomStartCornerRadius(size, context))
     private fun resolveTextColor(hierarchy: AndesBadgePillHierarchyInterface, type: AndesBadgeTypeInterface) = hierarchy.textColor(type)

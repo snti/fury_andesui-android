@@ -3,6 +3,9 @@
 - Tag component.
 
 # v2.3.0
+## Added
+- Badge Component DOT.
+
 ## Changed
 - Minor UX improvements in the Andes App.
 - Minor improvements in textfield.
@@ -23,7 +26,7 @@
 
 # v2.1.0
 ## Added
-- Badge Component. (Credits)
+- Badge Component PILL. (Credits)
 - Textfield component.
 - Adding Detekt + Ktlint.
 - Added more Andes icons needed. (Credits)

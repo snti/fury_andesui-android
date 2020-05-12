@@ -97,10 +97,10 @@ class AndesTagSimple : ConstraintLayout {
 
     @Suppress("unused")
     constructor(
-            context: Context,
-            type: AndesTagType = TYPE_DEFAULT,
-            size: AndesTagSize = SIZE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        type: AndesTagType = TYPE_DEFAULT,
+        size: AndesTagSize = SIZE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(type, size, text)
     }
@@ -233,5 +233,4 @@ class AndesTagSimple : ConstraintLayout {
         private val SIZE_DEFAULT = AndesTagSize.LARGE
         private val TEXT_DEFAULT = null
     }
-
 }

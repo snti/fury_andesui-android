@@ -149,13 +149,13 @@ class TagShowcaseActivity : AppCompatActivity() {
             val tagSimpleIconDismissable = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Icono")
             tagSimpleIconDismissable.rightContent = RightContentDismiss(context)
             val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
-            tagSimpleIconDismissable.leftContent = LeftContentIcon(context,"#E7E7E7", icon = drawable, iconColor = "#8C8C8C")
+            tagSimpleIconDismissable.leftContent = LeftContentIcon(context, "#E7E7E7", icon = drawable, iconColor = "#8C8C8C")
             secondColumn.addView(tagSimpleIconDismissable, params)
 
             Glide.with(context)
                     .load("https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg")
                     .asBitmap()
-                    .into(object : SimpleTarget<Bitmap>(){
+                    .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
                             if (resource != null) {
                                 val tagSimpleImage = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Tatiana")
@@ -168,7 +168,7 @@ class TagShowcaseActivity : AppCompatActivity() {
             Glide.with(context)
                     .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUjE4Vno7piEReTnCrwR3oSxBxkfhIYAnXzcs7zC0ekNPPwnc&s")
                     .asBitmap()
-                    .into(object : SimpleTarget<Bitmap>(){
+                    .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
                             if (resource != null) {
                                 val tagSimpleImage = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Lorenzo")
@@ -246,7 +246,12 @@ class TagShowcaseActivity : AppCompatActivity() {
             val dismissable: Switch = layoutTag.findViewById(R.id.dismissable)
 
             leftContentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-                override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
+                override fun onItemSelected(
+                    parentView: AdapterView<*>?,
+                    selectedItemView: View,
+                    position: Int,
+                    id: Long
+                ) {
                     when (leftContentSpinner.getItemAtPosition(position)) {
                         "Dot" -> {
                             groupDot.visibility = View.VISIBLE
@@ -321,13 +326,11 @@ class TagShowcaseActivity : AppCompatActivity() {
                             backgroundColor.state = AndesTextfieldState.ERROR
                             backgroundColor.helper = "Este capo es requerido"
                             return@setOnClickListener
-                        }
-                        else if (!validateColor("#${backgroundColor.text!!}")) {
+                        } else if (!validateColor("#${backgroundColor.text!!}")) {
                             backgroundColor.state = AndesTextfieldState.ERROR
                             backgroundColor.helper = "Color inválido"
                             return@setOnClickListener
-                        }
-                        else {
+                        } else {
                             backgroundColor.state = AndesTextfieldState.IDLE
                             backgroundColor.helper = ""
                         }
@@ -337,7 +340,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                                 color.state = AndesTextfieldState.ERROR
                                 color.helper = "Color inválido"
                                 return@setOnClickListener
-                            } else{
+                            } else {
                                 color.state = AndesTextfieldState.IDLE
                                 color.helper = ""
                                 textColor = "#${color.text}"
@@ -353,13 +356,11 @@ class TagShowcaseActivity : AppCompatActivity() {
                             iconBackgroundColor.state = AndesTextfieldState.ERROR
                             iconBackgroundColor.helper = "Este capo es requerido"
                             return@setOnClickListener
-                        }
-                        else if (!validateColor("#${iconBackgroundColor.text!!}")) {
+                        } else if (!validateColor("#${iconBackgroundColor.text!!}")) {
                             iconBackgroundColor.state = AndesTextfieldState.ERROR
                             iconBackgroundColor.helper = "Color inválido"
                             return@setOnClickListener
-                        }
-                        else {
+                        } else {
                             iconBackgroundColor.state = AndesTextfieldState.IDLE
                             iconBackgroundColor.helper = ""
                         }
@@ -369,7 +370,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                                 iconColor.state = AndesTextfieldState.ERROR
                                 iconColor.helper = "Color inválido"
                                 return@setOnClickListener
-                            } else{
+                            } else {
                                 iconColor.state = AndesTextfieldState.IDLE
                                 iconColor.helper = ""
                                 icon = "#${iconColor.text}"
@@ -396,8 +397,11 @@ class TagShowcaseActivity : AppCompatActivity() {
                         Glide.with(context)
                                 .load(pictureUrl)
                                 .asBitmap()
-                                .into(object : SimpleTarget<Bitmap>(){
-                                    override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
+                                .into(object : SimpleTarget<Bitmap>() {
+                                    override fun onResourceReady(
+                                        resource: Bitmap?,
+                                        glideAnimation: GlideAnimation<in Bitmap?>?
+                                    ) {
                                         if (resource != null) {
                                             leftContent = LeftContentImage(context, resource)
                                             andesTagSimple.leftContent = leftContent
