@@ -1,3 +1,7 @@
+# v2.4.0
+## Added
+- Tag component.
+
 # v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
