@@ -77,6 +77,7 @@
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
 
     <string name="andes_tag_showcase">Andes Tag</string>
+    <string name="andes_simple_tag_showcase">Simple tag</string>
     <string name="andes_badge_showcase">Andes Badge</string>
     <string name="andes_loud_badges_text">Andes Loud Badges</string>
     <string name="andes_quiet_badges_text">Andes Quiet Badges</string>
@@ -100,8 +101,6 @@
     <string name="andesui_demoapp_textarea_title_read_only">TextArea read only</string>
     <string name="andesui_demoapp_textarea_title_disabled">TextArea disabled</string>
     <string name="andesui_demoapp_textarea_title_error">TextArea error</string>
-
-    <string name="andesui_demoapp_tag_example">Lorem Ipsum</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>
@@ -135,6 +134,27 @@
         <item>None</item>
         <item>Icon</item>
         <item>Prefix</item>
+    </string-array>
+
+    <string-array name="type_spinner">
+        <item>Default</item>
+        <item>Error</item>
+        <item>Neutral</item>
+        <item>Success</item>
+        <item>Warning</item>
+        <item>Highlight</item>
+    </string-array>
+
+    <string-array name="size_spinner">
+        <item>Large</item>
+        <item>Small</item>
+    </string-array>
+
+    <string-array name="left_content_spinner">
+        <item>None</item>
+        <item>Dot</item>
+        <item>Icon</item>
+        <item>Image</item>
     </string-array>
 
 </resources>

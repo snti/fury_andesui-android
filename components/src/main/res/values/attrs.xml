@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <declare-styleable name="AndesSimpleTag" tools:ignore="ResourceName">
-        <attr name="andesSimpleTagType">
+    <declare-styleable name="AndesTagSimple" tools:ignore="ResourceName">
+        <attr name="tagSimpleType">
             <enum name="neutral" value="2000" />
             <enum name="highlight" value="2001" />
             <enum name="success" value="2002" />
@@ -9,16 +9,16 @@
             <enum name="error" value="2004" />
         </attr>
 
-        <attr name="andesSimpleTagSize">
+        <attr name="tagSimpleSize">
             <enum name="large" value="3000" />
             <enum name="small" value="3001" />
         </attr>
 
-        <attr name="andesSimpleTagIsDismissable">
-            <enum name="False" value="4000" />
-            <enum name="True" value="4001" />
+        <attr name="tagSimpleIsDismissable">
+            <enum name="True" value="4000" />
+            <enum name="False" value="4001" />
         </attr>
 
-        <attr name="andesSimpleTagText" format="reference" />
+        <attr name="tagSimpleText" format="reference" />
     </declare-styleable>
 </resources>

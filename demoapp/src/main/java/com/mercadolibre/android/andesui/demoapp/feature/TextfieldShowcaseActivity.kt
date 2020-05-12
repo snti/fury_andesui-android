@@ -161,7 +161,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
         private fun addDynamicTextareaLayout(inflater: LayoutInflater): View {
             val layoutTextfield = inflater.inflate(R.layout.andesui_textarea_showcase_change, null, false)
-            val textarea = layoutTextfield.findViewById<AndesTextarea>(R.id.andesui_textarea)
+            val textarea = layoutTextfield.findViewById<AndesTextarea>(R.id.andesui_tag)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
             val clearButton = layoutTextfield.findViewById<AndesButton>(R.id.clear_button)
             val label = layoutTextfield.findViewById<EditText>(R.id.label_text)

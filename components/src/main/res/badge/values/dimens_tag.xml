@@ -8,9 +8,12 @@
     <dimen name="andes_tag_large_text_size">14sp</dimen>
     <dimen name="andes_tag_large_height">32dp</dimen>
 
-    <dimen name="andes_tag_large_text_margin">12dp</dimen>
-    <dimen name="andes_tag_small_text_margin">8dp</dimen>
-    <dimen name="andes_tag_thumbnail_margin">4dp</dimen>
+    <dimen name="andes_tag_large_margin">12dp</dimen>
+    <dimen name="andes_tag_medium_margin">8dp</dimen>
+    <dimen name="andes_tag_small_margin">4dp</dimen>
+
+    <dimen name="andes_tag_icon_size">24dp</dimen>
+    <dimen name="andes_tag_icon_radius">12dp</dimen>
 
     <dimen name="andes_tag_border">1.2dp</dimen>
 </resources>

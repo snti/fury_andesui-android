@@ -13,10 +13,9 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
 import com.mercadolibre.android.andesui.icons.IconProvider
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
-import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
+import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 /**
  * Defines all style related properties that an [AndesTextfield] needs to be drawn properly.
@@ -68,7 +67,7 @@ internal object AndesIconTextfieldContent : AndesTextfieldContentInterface() {
 
     override fun component(context: Context): SimpleDraweeView {
         val icon = SimpleDraweeView(context)
-        icon.setImageDrawable(buildColoredBitmapDrawable(
+        icon.setImageDrawable(buildColoredAndesBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_placeholder_imagen_24") as BitmapDrawable,
                 context,
                 color = R.color.andes_gray_800.toAndesColor()))
@@ -96,7 +95,7 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
 
     override fun component(context: Context): SimpleDraweeView {
         val validated = SimpleDraweeView(context)
-        validated.setImageDrawable(buildColoredBitmapDrawable(
+        validated.setImageDrawable(buildColoredAndesBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_feedback_success_24") as BitmapDrawable,
                 context,
                 color = R.color.andes_green_500.toAndesColor())
@@ -115,7 +114,7 @@ internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
 
     override fun component(context: Context): SimpleDraweeView {
         val clear = SimpleDraweeView(context)
-        clear.setImageDrawable(buildColoredBitmapDrawable(
+        clear.setImageDrawable(buildColoredAndesBitmapDrawable(
                 IconProvider(context).loadIcon("andes_ui_close_24") as BitmapDrawable,
                 context,
                 color = R.color.andes_gray_450.toAndesColor())

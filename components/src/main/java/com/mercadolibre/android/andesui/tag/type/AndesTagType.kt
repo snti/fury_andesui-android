@@ -8,7 +8,7 @@ package com.mercadolibre.android.andesui.tag.type
  *
  * @property type Possible styles that an [AndesTag] may take.
  */
-enum class AndesSimpleTagType {
+enum class AndesTagType {
     NEUTRAL,
     HIGHLIGHT,
     SUCCESS,
@@ -17,7 +17,7 @@ enum class AndesSimpleTagType {
     DEFAULT;
 
     companion object {
-        fun fromString(value: String): AndesSimpleTagType = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesTagType = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesTagHierarchy()

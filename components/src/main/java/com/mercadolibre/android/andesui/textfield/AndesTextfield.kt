@@ -27,7 +27,7 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
-import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
+import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 class AndesTextfield : ConstraintLayout {
 
@@ -58,6 +58,7 @@ class AndesTextfield : ConstraintLayout {
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(helper = value)
             setupHelperComponent(createConfig())
+            setupColorComponents(createConfig())
         }
 
     /**
@@ -440,7 +441,7 @@ class AndesTextfield : ConstraintLayout {
     fun setRightIcon(iconPath: String) {
         rightContent = AndesTextfieldRightContent.ICON
         val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-        rightIcon.setImageDrawable(buildColoredBitmapDrawable(
+        rightIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
                 IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
                 color = R.color.andes_gray_800.toAndesColor())
@@ -453,7 +454,7 @@ class AndesTextfield : ConstraintLayout {
     fun setLeftIcon(iconPath: String) {
         leftContent = AndesTextfieldLeftContent.ICON
         val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
-        leftIcon.setImageDrawable(buildColoredBitmapDrawable(
+        leftIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
                 IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
                 context,
                 color = R.color.andes_gray_450.toAndesColor())
