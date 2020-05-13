@@ -125,31 +125,31 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             // Left content DOT
             val tagSimpleDot = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Amarillo")
-            tagSimpleDot.leftContent = LeftContentDot(context, "#FFEC2B")
+            tagSimpleDot.leftContent = LeftContent(dot = LeftContentDot("#FFEC2B"))
             firstColumn.addView(tagSimpleDot, params)
 
             val tagSimpleDotDismissable = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Azul")
             tagSimpleDotDismissable.rightContent = RightContentDismiss(context)
-            tagSimpleDotDismissable.leftContent = LeftContentDot(context, "#2B5BFF")
+            tagSimpleDotDismissable.leftContent = LeftContent(dot = LeftContentDot("#2B5BFF"))
             firstColumn.addView(tagSimpleDotDismissable, params)
 
             val tagSimpleDotText = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Camila Farías")
-            tagSimpleDotText.leftContent = LeftContentDot(context, "#2E97FF", "CF", "#FFFFFF")
+            tagSimpleDotText.leftContent = LeftContent(dot = LeftContentDot("#2E97FF", "CF", "#FFFFFF"))
             secondColumn.addView(tagSimpleDotText, params)
 
             val tagSimpleDotTextDismissable = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Camila Farías")
             tagSimpleDotTextDismissable.rightContent = RightContentDismiss(context)
-            tagSimpleDotTextDismissable.leftContent = LeftContentDot(context, "#E3E3E3", "CF", "#8C8C8C")
+            tagSimpleDotTextDismissable.leftContent = LeftContent(LeftContentDot("#E3E3E3", "CF", "#8C8C8C"))
             secondColumn.addView(tagSimpleDotTextDismissable, params)
 
             val tagSimpleIcon = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Tag con icono")
-            tagSimpleIcon.leftContent = LeftContentIcon(context, "#10B906", path = "andes_ui_feedback_success_24", iconColor = "#FFFFFF")
+            tagSimpleIcon.leftContent = LeftContent(icon = LeftContentIcon("#10B906", path = "andes_ui_feedback_success_24", iconColor = "#FFFFFF"))
             secondColumn.addView(tagSimpleIcon, params)
 
             val tagSimpleIconDismissable = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Icono")
             tagSimpleIconDismissable.rightContent = RightContentDismiss(context)
             val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
-            tagSimpleIconDismissable.leftContent = LeftContentIcon(context, "#E7E7E7", icon = drawable, iconColor = "#8C8C8C")
+            tagSimpleIconDismissable.leftContent = LeftContent(icon = LeftContentIcon("#E7E7E7", icon = drawable, iconColor = "#8C8C8C"))
             secondColumn.addView(tagSimpleIconDismissable, params)
 
             Glide.with(context)
@@ -159,7 +159,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
                             if (resource != null) {
                                 val tagSimpleImage = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Tatiana")
-                                tagSimpleImage.leftContent = LeftContentImage(context, resource)
+                                tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
                                 secondColumn.addView(tagSimpleImage, params)
                             }
                         }
@@ -173,7 +173,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                             if (resource != null) {
                                 val tagSimpleImage = AndesTagSimple(context, AndesTagType.DEFAULT, AndesTagSize.LARGE, "Lorenzo")
                                 tagSimpleImage.rightContent = RightContentDismiss(context)
-                                tagSimpleImage.leftContent = LeftContentImage(context, resource)
+                                tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
                                 secondColumn.addView(tagSimpleImage, params)
                             }
                         }
@@ -201,13 +201,21 @@ class TagShowcaseActivity : AppCompatActivity() {
             groupImage.visibility = View.GONE
 
             val sizeSpinner: Spinner = layoutTag.findViewById(R.id.size_spinner)
-            ArrayAdapter.createFromResource(context, R.array.size_spinner, android.R.layout.simple_spinner_item).also { adapter ->
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.size_spinner,
+                    android.R.layout.simple_spinner_item
+            ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sizeSpinner.adapter = adapter
             }
 
             val leftContentSpinner: Spinner = layoutTag.findViewById(R.id.left_content_spinner)
-            ArrayAdapter.createFromResource(context, R.array.left_content_spinner, android.R.layout.simple_spinner_item).also { adapter ->
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.left_content_spinner,
+                    android.R.layout.simple_spinner_item
+            ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 leftContentSpinner.adapter = adapter
             }
@@ -230,13 +238,17 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val array = arrayOf("Warning", "Success", "Close", "Info")
             val iconsSpinner: Spinner = layoutTag.findViewById(R.id.icon_spinner)
-            val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, array)
+            val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                    context, android.R.layout.simple_spinner_item, array
+            )
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             iconsSpinner.adapter = spinnerArrayAdapter
 
             val arrayUrl = arrayOf("Image 1", "Image 2", "Image 3")
             val urlSpinner: Spinner = layoutTag.findViewById(R.id.spinner_url)
-            val urlArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, arrayUrl)
+            val urlArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                    context, android.R.layout.simple_spinner_item, arrayUrl
+            )
             urlArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             urlSpinner.adapter = urlArrayAdapter
 
@@ -349,7 +361,10 @@ class TagShowcaseActivity : AppCompatActivity() {
                             color.state = AndesTextfieldState.IDLE
                             color.helper = ""
                         }
-                        leftContent = LeftContentDot(context, "#${backgroundColor.text!!}", textDot.text, textColor)
+                        leftContent = LeftContent(dot = LeftContentDot(
+                                "#${backgroundColor.text!!}",
+                                textDot.text, textColor)
+                        )
                     }
                     "Icon" -> {
                         if (iconBackgroundColor.text.isNullOrEmpty()) {
@@ -386,7 +401,11 @@ class TagShowcaseActivity : AppCompatActivity() {
                             "Info" -> "andes_ui_feedback_info_24"
                             else -> "andes_ui_close_24"
                         }
-                        leftContent = LeftContentIcon(context, backgroundColor = "#${iconBackgroundColor.text!!}", path = path, iconColor = icon)
+                        leftContent = LeftContent(icon = LeftContentIcon(
+                                backgroundColor = "#${iconBackgroundColor.text!!}",
+                                path = path,
+                                iconColor = icon)
+                        )
                     }
                     "Image" -> {
                         val pictureUrl = when (urlSpinner.selectedItemPosition) {
@@ -403,7 +422,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                                         glideAnimation: GlideAnimation<in Bitmap?>?
                                     ) {
                                         if (resource != null) {
-                                            leftContent = LeftContentImage(context, resource)
+                                            leftContent = LeftContent(image = LeftContentImage(resource))
                                             andesTagSimple.leftContent = leftContent
                                         }
                                     }

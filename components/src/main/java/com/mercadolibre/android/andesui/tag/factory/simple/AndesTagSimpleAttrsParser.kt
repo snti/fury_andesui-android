@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.tag.factory.simple
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
@@ -16,7 +17,8 @@ internal data class AndesTagSimpleAttrs(
     val andesTagType: AndesTagType,
     val andesTagSize: AndesTagSize,
     val andesSimpleTagText: String?,
-    val leftContent: LeftContent? = null,
+    val leftContentData: LeftContent? = null,
+    val leftContent: AndesTagLeftContent? = null,
     val rightContent: RightContent? = null
 )
 

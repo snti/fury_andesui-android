@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.tag.factory.simple
 
 import com.mercadolibre.android.andesui.color.AndesColor
+import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.type.AndesSimpleTagTypeInterface
@@ -10,7 +11,8 @@ internal data class AndesTagSimpleConfiguration(
     val borderColor: AndesColor,
     val textColor: AndesColor,
     val backgroundColor: AndesColor? = null,
-    val leftContent: LeftContent? = null,
+    val leftContentData: LeftContent? = null,
+    val leftContent: AndesTagLeftContent? = null,
     val rightContent: RightContent? = null
 )
 
@@ -23,6 +25,7 @@ internal object AndesSimpleTagConfigurationFactory {
                     backgroundColor = resolveBackgroundColor(andesTagType.type),
                     borderColor = resolveBorderColor(andesTagType.type),
                     textColor = resolveTextColor(andesTagType.type),
+                    leftContentData = andesTagSimpleAttrs.leftContentData,
                     leftContent = andesTagSimpleAttrs.leftContent,
                     rightContent = andesTagSimpleAttrs.rightContent
             )

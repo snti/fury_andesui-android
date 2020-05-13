@@ -79,7 +79,8 @@ class AndesTextfieldContentInterfaceTest {
         prefix.text = context.getString(R.string.andes_prefix_hint)
 
         assertEquals(context.resources.getDimension(
-                R.dimen.andes_textfield_prefix_left_margin).toInt(), contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state)
+                R.dimen.andes_textfield_prefix_left_margin).toInt(),
+                contentInterface.leftMargin(context, AndesTextfieldState.IDLE.state)
         )
         assertEquals(context.resources.getDimension(R.dimen.andes_textfield_prefix_right_margin).toInt(), contentInterface.rightMargin(context))
         assertThat(contentInterface.component(context)).isEqualToComparingOnlyGivenFields(prefix)

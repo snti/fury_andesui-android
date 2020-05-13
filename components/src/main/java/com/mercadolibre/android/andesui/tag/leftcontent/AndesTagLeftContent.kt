@@ -16,4 +16,15 @@ enum class AndesTagLeftContent {
     companion object {
         fun fromString(value: String): AndesTagLeftContent = valueOf(value.toUpperCase())
     }
+
+    internal val content get() = getAndesTagLeftContent()
+
+    private fun getAndesTagLeftContent(): AndesTagLeftContentInterface {
+        return when (this) {
+            DOT -> AndesTagLeftContentDot
+            ICON -> AndesTagLeftContentIcon
+            IMAGE -> AndesTagLeftContentImage
+            NONE -> AndesTagLeftContentNone
+        }
+    }
 }

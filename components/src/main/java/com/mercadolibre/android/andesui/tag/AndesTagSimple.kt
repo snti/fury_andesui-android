@@ -58,21 +58,30 @@ class AndesTagSimple : ConstraintLayout {
      * Getter and setter for [leftContent].
      */
     var leftContent: LeftContent?
-        get() = andesTagAttrs.leftContent
+        get() = andesTagAttrs.leftContentData
         set(value) {
             if (size == AndesTagSize.SMALL) {
+                andesTagAttrs = andesTagAttrs.copy(leftContentData = null)
                 andesTagAttrs = andesTagAttrs.copy(leftContent = null)
-                Log.e("TAG", "leftContent can only be used with tag large")
+                Log.e("TAG", "LeftContent can only be used with tag large")
             } else {
-                andesTagAttrs = andesTagAttrs.copy(leftContent = value)
+                val andesTagLeftContent = when {
+                    value?.dot != null -> AndesTagLeftContent.DOT
+                    value?.icon != null -> AndesTagLeftContent.ICON
+                    value?.image != null -> AndesTagLeftContent.IMAGE
+                    else -> AndesTagLeftContent.NONE
+                }
+                andesTagAttrs = andesTagAttrs.copy(leftContentData = value)
+                andesTagAttrs = andesTagAttrs.copy(leftContent = andesTagLeftContent)
             }
+
             val config = createConfig()
             setupLeftContent(config)
             setupTitleComponent(config)
         }
 
     /**
-     * Getter and setter for [leftContent].
+     * Getter and setter for [rightContent].
      */
     var rightContent: RightContent?
         get() = andesTagAttrs.rightContent
@@ -115,8 +124,14 @@ class AndesTagSimple : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(type: AndesTagType, size: AndesTagSize, text: String?) {
-        andesTagAttrs = AndesTagSimpleAttrs(type, size, text)
+    private fun initAttrs(
+        type: AndesTagType,
+        size: AndesTagSize,
+        text: String?,
+        leftContent: AndesTagLeftContent? = null,
+        leftContentData: LeftContent? = null
+    ) {
+        andesTagAttrs = AndesTagSimpleAttrs(type, size, text, leftContentData, leftContent)
         val config = AndesSimpleTagConfigurationFactory.create(andesTagAttrs)
         setupComponents(config)
     }
@@ -189,7 +204,7 @@ class AndesTagSimple : ConstraintLayout {
             if (leftContent == null) {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, size.size.leftMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, config.leftContent!!.getRightMargin())
+                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, config.leftContent!!.content.rightMargin(context))
             }
             if (rightContent == null || rightContent!!.getType() == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, size.size.rightMargin(context))
@@ -201,8 +216,8 @@ class AndesTagSimple : ConstraintLayout {
     }
 
     private fun setupLeftContent(config: AndesTagSimpleConfiguration) {
-        if (config.leftContent != null && config.leftContent.getType() != AndesTagLeftContent.NONE) {
-            left_content.addView(config.leftContent.getView(context))
+        if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
+            left_content.addView(config.leftContent.content.view(context, config.leftContentData))
             left_content.visibility = View.VISIBLE
         } else {
             left_content.visibility = View.GONE
