@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
+import com.mercadolibre.android.andesui.font.Font
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldContentInterface
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldStateInterface
@@ -102,7 +103,7 @@ internal object AndesTextfieldConfigurationFactory {
     private fun resolveLabelSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_label_textSize)
     private fun resolveCounterTextColor(state: AndesTextfieldStateInterface): AndesColor = state.helpersColor()
     private fun resolveCounterSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_counter_textSize)
-    private fun resolveTypeface(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
+    private fun resolveTypeface(context: Context) = context.getFontOrDefault(Font.REGULAR)
     private fun resolveIcon(context: Context, state: AndesTextfieldStateInterface): Drawable? = state.icon(context)
     private fun resolvePlaceHolderColor(state: AndesTextfieldStateInterface): AndesColor = state.placeholderColor()
     private fun resolvePlaceHolderSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_textfield_placeholder_textSize)

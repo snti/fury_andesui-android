@@ -10,6 +10,7 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.color.toColor
+import com.mercadolibre.android.andesui.font.Font
 import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.buildColoredCircularShapeWithIconDrawable
@@ -34,7 +35,7 @@ internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
     override fun labelColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
     override fun placeholderColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun helpersColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
-    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(Font.REGULAR)
     override fun helper(helper: String?): String? = helper
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
@@ -53,7 +54,7 @@ internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
     override fun labelColor(): AndesColor = R.color.andes_red_500.toAndesColor()
     override fun placeholderColor(): AndesColor = R.color.andes_gray_200.toAndesColor()
     override fun helpersColor(): AndesColor = R.color.andes_red_500.toAndesColor()
-    override fun typeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    override fun typeFace(context: Context) = context.getFontOrDefault(Font.SEMI_BOLD)
     override fun helper(helper: String?): String? = helper
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
@@ -78,7 +79,7 @@ internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
     override fun labelColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
     override fun placeholderColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
     override fun helpersColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
-    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(Font.REGULAR)
     override fun helper(helper: String?): String? = helper
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
@@ -93,7 +94,7 @@ internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
     override fun labelColor(): AndesColor = R.color.andes_gray_450.toAndesColor()
     override fun placeholderColor(): AndesColor = R.color.andes_gray_800.toAndesColor()
     override fun helpersColor(): AndesColor = R.color.andes_gray_250.toAndesColor()
-    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    override fun typeFace(context: Context): Typeface = context.getFontOrDefault(Font.REGULAR)
     override fun helper(helper: String?): String? = null
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
 

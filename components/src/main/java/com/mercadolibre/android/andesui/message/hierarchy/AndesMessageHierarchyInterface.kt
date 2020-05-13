@@ -11,6 +11,7 @@ import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorCo
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigTransparent
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
+import com.mercadolibre.android.andesui.font.Font
 import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
@@ -71,7 +72,7 @@ internal sealed class AndesMessageHierarchyInterface {
      * @param context needed for accessing some resources. In this case, for accessing the kotlin extension defines for the context.
      * @return the [Typeface] that should be used for the text inside the [AndesMessage].
      */
-    fun titleTypeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_semibold)
+    fun titleTypeface(context: Context): Typeface = context.getFontOrDefault(Font.SEMI_BOLD)
 
     /**
      * Returns the [Typeface] that should be used for the text inside the [AndesMessage].
@@ -79,7 +80,7 @@ internal sealed class AndesMessageHierarchyInterface {
      * @param context needed for accessing some resources. In this case, for accessing the kotlin extension defines for the context.
      * @return the [Typeface] that should be used for the text inside the [AndesMessage].
      */
-    fun bodyTypeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
+    fun bodyTypeface(context: Context): Typeface = context.getFontOrDefault(Font.REGULAR)
 
     /**
      * Returns the background color that the icon will have. It's the color of the container in which the icon will live.
