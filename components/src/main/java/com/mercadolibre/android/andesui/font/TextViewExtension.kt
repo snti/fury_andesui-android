@@ -8,8 +8,7 @@ import android.widget.TextView
  * @param <T>   A generic for the textview
  * @param font The [Font] the text should have
  *
- * @Deprecated: instead you can use ResourceCompat
- * https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont.
+ * @deprecated: instead you can use ResourceCompat (https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont)
  */
 @Deprecated(message = "Font support will be removed, instead you can use ResourceCompat.getFont().")
 fun TextView.setTypeface(font: Font) {
@@ -21,8 +20,7 @@ fun TextView.setTypeface(font: Font) {
  * @param paint The paint to which apply the font
  * @param font The [Font] the text should have
 
- * @Deprecated: instead you can use ResourceCompat
- * https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont.
+ * @deprecated: instead you can use ResourceCompat (https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont)
  */
 @Deprecated(message = "Font support will be removed, instead you can use ResourceCompat.getFont().")
 fun TextView.setTypeface(paint: Paint, font: Font) {
