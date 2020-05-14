@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
+import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
@@ -19,7 +20,8 @@ internal data class AndesTagSimpleAttrs(
     val andesSimpleTagText: String?,
     val leftContentData: LeftContent? = null,
     val leftContent: AndesTagLeftContent? = null,
-    val rightContent: RightContent? = null
+    val rightContentData: RightContent? = null,
+    val rightContent: AndesTagRightContent? = null
 )
 
 /**
@@ -57,17 +59,24 @@ internal object AndesTagSimpleAttrsParser {
             else -> AndesTagSize.LARGE
         }
 
-        val isDismissable = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleIsDismissable)) {
-            ANDES_TAG_DISMISSABLE -> RightContentDismiss(context)
-            ANDES_TAG_NOT_DISMISSABLE -> RightContent(context)
-            else -> RightContent(context)
+        val rightContent = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleIsDismissable)) {
+            ANDES_TAG_DISMISSABLE -> AndesTagRightContent.DISMISS
+            ANDES_TAG_NOT_DISMISSABLE -> AndesTagRightContent.NONE
+            else -> AndesTagRightContent.NONE
+        }
+
+        val rightContentData = if (rightContent == AndesTagRightContent.DISMISS) {
+            RightContent(dismiss = RightContentDismiss())
+        } else {
+            RightContent(dismiss = null)
         }
 
         return AndesTagSimpleAttrs(
                 andesTagType = type,
                 andesTagSize = size,
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
-                rightContent = isDismissable
+                rightContentData = rightContentData,
+                rightContent = rightContent
         ).also { typedArray.recycle() }
     }
 }

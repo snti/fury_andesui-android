@@ -8,12 +8,20 @@ package com.mercadolibre.android.andesui.tag.rightcontent
  *
  * @property content Possible contents that an [AndesTag] may take.
  */
-
 enum class AndesTagRightContent {
     DISMISS,
     NONE;
 
     companion object {
         fun fromString(value: String): AndesTagRightContent = valueOf(value.toUpperCase())
+    }
+
+    internal val content get() = getAndesTagRightContent()
+
+    private fun getAndesTagRightContent(): AndesTagRightContentInterface {
+        return when (this) {
+            DISMISS -> AndesTagRightContentDismiss
+            NONE -> AndesTagRightContentNone
+        }
     }
 }

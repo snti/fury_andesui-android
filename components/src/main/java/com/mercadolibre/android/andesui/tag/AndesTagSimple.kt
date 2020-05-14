@@ -19,6 +19,7 @@ import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import kotlinx.android.synthetic.main.andes_layout_simple_tag.view.*
 
 class AndesTagSimple : ConstraintLayout {
@@ -84,9 +85,15 @@ class AndesTagSimple : ConstraintLayout {
      * Getter and setter for [rightContent].
      */
     var rightContent: RightContent?
-        get() = andesTagAttrs.rightContent
+        get() = andesTagAttrs.rightContentData
         set(value) {
-            andesTagAttrs = andesTagAttrs.copy(rightContent = value)
+            val andesTagRightContent = when {
+                value?.dismiss != null -> AndesTagRightContent.DISMISS
+                else -> AndesTagRightContent.NONE
+            }
+            andesTagAttrs = andesTagAttrs.copy(rightContentData = value)
+            andesTagAttrs = andesTagAttrs.copy(rightContent = andesTagRightContent)
+
             val config = createConfig()
             setupRightContent(config)
             setupTitleComponent(config)
@@ -196,6 +203,7 @@ class AndesTagSimple : ConstraintLayout {
             containerTag.visibility = View.VISIBLE
 
             simple_tag_text.text = config.text
+            simple_tag_text.typeface = context.getFontOrDefault(R.font.andes_font_regular)
             simple_tag_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, size.size.textSize(context))
             simple_tag_text.setTextColor(config.textColor.colorInt(context))
 
@@ -206,10 +214,10 @@ class AndesTagSimple : ConstraintLayout {
             } else {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, config.leftContent!!.content.rightMargin(context))
             }
-            if (rightContent == null || rightContent!!.getType() == AndesTagRightContent.NONE) {
+            if (rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, size.size.rightMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent!!.getLeftMargin())
+                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent!!.content.leftMargin(context))
             }
             constraintSet.applyTo(containerTag)
         }
@@ -225,16 +233,18 @@ class AndesTagSimple : ConstraintLayout {
     }
 
     private fun setupRightContent(config: AndesTagSimpleConfiguration) {
-        if (config.rightContent != null && config.rightContent.getType() != AndesTagRightContent.NONE) {
-            right_content.addView(
-                    config.rightContent.getView(
-                            context,
-                            config.borderColor,
-                            OnClickListener {
-                                containerTag.visibility = View.GONE
-                            }
-                    )
-            )
+        if (config.rightContent != null && config.rightContent != AndesTagRightContent.NONE) {
+            right_content.addView(config.rightContent.content.view(
+                    context,
+                    config.borderColor,
+                    config.rightContentData!!,
+                    OnClickListener {
+                        containerTag.visibility = View.GONE
+                        if (config.rightContentData.dismiss?.onClickListener != null) {
+                            config.rightContentData.dismiss?.onClickListener!!.onClick(this)
+                        }
+                    }
+            ))
             right_content.visibility = View.VISIBLE
         } else {
             right_content.visibility = View.GONE
