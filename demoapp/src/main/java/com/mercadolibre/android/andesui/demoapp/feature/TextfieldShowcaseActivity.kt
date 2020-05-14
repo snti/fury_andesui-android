@@ -81,22 +81,22 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
 
-            val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.modifier_spinner)
+            val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.type_spinner)
             val typeAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
             typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             inputTypeSpinner.adapter = typeAdapter
 
-            val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.hierarchy_spinner)
+            val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             val stateAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.textfield_state_spinner))
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             stateSpinner.adapter = stateAdapter
 
-            val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.type_spinner)
+            val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.prefix_spinner)
             val preffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.prefix_spinner))
             preffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             preffixSpinner.adapter = preffixAdapter
 
-            val suffixSpinner: Spinner = layoutTextfield.findViewById(R.id.size_spinnerasdasd)
+            val suffixSpinner: Spinner = layoutTextfield.findViewById(R.id.suffix_spinner)
             val suffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.suffix_spinner))
             suffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             suffixSpinner.adapter = suffixAdapter
