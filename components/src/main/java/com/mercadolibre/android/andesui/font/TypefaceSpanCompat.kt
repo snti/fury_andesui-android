@@ -9,6 +9,7 @@ import android.text.style.TypefaceSpan
  * This class replace the [CalligraphyTypefaceSpan](https://github.com/chrisjenx/Calligraphy/blob/master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/CalligraphyTypefaceSpan.java) from [Calligraphy](https://github.com/chrisjenx/Calligraphy)
  * The motivation is to no depend on a library implementation
  */
+@Deprecated("Font support will be removed")
 class TypefaceSpanCompat
 
     /**

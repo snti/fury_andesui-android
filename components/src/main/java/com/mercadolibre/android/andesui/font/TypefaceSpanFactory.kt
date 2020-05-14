@@ -8,6 +8,7 @@ import android.text.style.TypefaceSpan
 /**
  * This class wrap the TypefaceSpan creation to split according to the Android API version
  */
+@Deprecated("Font support will be removed")
 object TypefaceSpanFactory {
 
     /**

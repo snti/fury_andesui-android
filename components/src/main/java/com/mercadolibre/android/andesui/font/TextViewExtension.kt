@@ -8,6 +8,7 @@ import android.widget.TextView
  * @param <T>   A generic for the textview
  * @param font The [Font] the text should have
  */
+@Deprecated("Font support will be removed")
 fun TextView.setTypeface(font: Font) {
     TypefaceHelper.setTypeface(this, font)
 }
@@ -17,6 +18,7 @@ fun TextView.setTypeface(font: Font) {
  * @param paint The paint to which apply the font
  * @param font The [Font] the text should have
  */
+@Deprecated("Font support will be removed")
 fun TextView.setTypeface(paint: Paint, font: Font) {
     TypefaceHelper.setTypeface(context, paint, font)
 }

@@ -10,6 +10,7 @@ import android.widget.TextView
  * This class is used as a wrapper for our custom font.
  * If you code create a View that supports typeface you should call one of this methods.
  */
+@Deprecated("Font support will be removed")
 object TypefaceHelper {
 
     private lateinit var typefaceSetter: TypefaceSetter
