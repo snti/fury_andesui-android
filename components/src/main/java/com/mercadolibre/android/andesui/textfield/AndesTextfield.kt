@@ -57,7 +57,9 @@ class AndesTextfield : ConstraintLayout {
         get() = andesTextfieldAttrs.helper
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(helper = value)
-            setupHelperComponent(createConfig())
+            val config = createConfig()
+            setupColorComponents(config)
+            setupHelperComponent(config)
         }
 
     /**

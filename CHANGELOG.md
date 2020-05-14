@@ -1,6 +1,8 @@
-# v2.3.0
+# v2.4.0
 ## Added
 - Badge Component DOT.
+
+# v2.3.0
 
 ## Changed
 - Minor UX improvements in the Andes App.
