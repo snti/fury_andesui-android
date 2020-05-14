@@ -81,7 +81,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
 
-            val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.type_spinner)
+            val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
             val typeAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
             typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             inputTypeSpinner.adapter = typeAdapter
@@ -171,7 +171,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             counter.setText(COUNTER_DEFAULT)
             textarea.counter = 50
 
-            val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.hierarchy_spinner)
+            val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             val stateAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.textfield_state_spinner))
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             stateSpinner.adapter = stateAdapter
