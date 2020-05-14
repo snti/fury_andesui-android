@@ -7,8 +7,11 @@ import android.text.style.TypefaceSpan
 
 /**
  * This class wrap the TypefaceSpan creation to split according to the Android API version
+ *
+ * @Deprecated: instead you can use ResourceCompat
+ * https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont.
  */
-@Deprecated("Font support will be removed")
+@Deprecated(message = "Font support will be removed, instead you can use ResourceCompat.getFont().")
 object TypefaceSpanFactory {
 
     /**
