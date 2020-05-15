@@ -1,3 +1,7 @@
+# v2.3.1
+## Fixed
+- Proper set of default InputType in Textfield.
+
 # v2.3.0
 ## Added
 - Badge Component DOT.
