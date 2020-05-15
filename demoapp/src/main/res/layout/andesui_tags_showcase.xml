@@ -6,7 +6,6 @@
     android:background="@color/andes_white">
 
     <LinearLayout
-        android:id="@+id/andes_badges_quiet_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
