@@ -87,7 +87,7 @@
             android:layout_marginRight="@dimen/button_margin_vertical"
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="large"
-            app:andesButtonText="@string/andesui_demoapp_textfiled"
+            app:andesButtonText="@string/andesui_demoapp_textfield"
             app:layout_constraintTop_toBottomOf="@id/andesui_messages" />
 
         <TextView

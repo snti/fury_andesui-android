@@ -5,6 +5,13 @@
 # v2.3.0
 
 ## Changed
+- Deprecate Font support.
+
+## Fixed
+- Proper set of default InputType in Textfield.
+
+# v2.3.0
+## Changed
 - Minor UX improvements in the Andes App.
 - Minor improvements in textfield.
 - Minor improvements in textarea.
