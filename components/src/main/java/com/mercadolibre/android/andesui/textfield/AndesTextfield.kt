@@ -139,7 +139,7 @@ class AndesTextfield : ConstraintLayout {
 
     @Suppress("unused")
     constructor(context: Context) : super(context) {
-        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE)
+        initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE_DEFAULT)
     }
 
     constructor(
@@ -151,7 +151,7 @@ class AndesTextfield : ConstraintLayout {
         state: AndesTextfieldState = STATE_DEFAULT,
         leftContent: AndesTextfieldLeftContent? = LEFT_COMPONENT_DEFAULT,
         rightContent: AndesTextfieldRightContent? = RIGHT_COMPONENT_DEFAULT,
-        inputType: Int = INPUT_TYPE
+        inputType: Int = INPUT_TYPE_DEFAULT
     ) :
             super(context) {
         initAttrs(label, helper, placeholder, counter, state, leftContent, rightContent, inputType)
@@ -491,6 +491,6 @@ class AndesTextfield : ConstraintLayout {
         private val STATE_DEFAULT = IDLE
         private val LEFT_COMPONENT_DEFAULT = null
         private val RIGHT_COMPONENT_DEFAULT = null
-        private val INPUT_TYPE = InputType.TYPE_CLASS_TEXT
+        private val INPUT_TYPE_DEFAULT = InputType.TYPE_CLASS_TEXT
     }
 }
