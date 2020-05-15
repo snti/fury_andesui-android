@@ -1,8 +1,6 @@
 package com.mercadolibre.android.andesui.badge
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -106,5 +104,4 @@ class AndesBadgeDot : FrameLayout {
     companion object {
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
     }
-
 }
