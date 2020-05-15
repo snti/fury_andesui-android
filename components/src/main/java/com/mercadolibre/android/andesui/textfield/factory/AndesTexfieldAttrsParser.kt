@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.textfield.factory
 
 import android.content.Context
+import android.text.InputType
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
@@ -70,7 +71,7 @@ internal object AndesTextfieldAttrsParser {
             else -> null
         }
 
-        val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, 0)
+        val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, InputType.TYPE_CLASS_TEXT)
 
         return AndesTextfieldAttrs(
                 label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),

@@ -294,7 +294,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val typeSpinner: Spinner = layoutTag.findViewById(R.id.type_spinner)
             ArrayAdapter.createFromResource(
-                    context, R.array.type_spinner, android.R.layout.simple_spinner_item)
+                    context, R.array.type_tag_spinner, android.R.layout.simple_spinner_item)
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         typeSpinner.adapter = adapter
