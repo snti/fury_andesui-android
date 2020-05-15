@@ -1,11 +1,18 @@
-# v2.4.0
+# v2.5.0
 ## Added
-- Tag component.
+- TAG Component.
 
-# v2.3.0
+# v2.4.0
 ## Added
 - Badge Component DOT.
 
+## Changed
+- Deprecate Font support.
+
+## Fixed
+- Proper set of default InputType in Textfield.
+
+# v2.3.0
 ## Changed
 - Minor UX improvements in the Andes App.
 - Minor improvements in textfield.
