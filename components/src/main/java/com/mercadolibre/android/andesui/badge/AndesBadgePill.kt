@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
@@ -205,5 +204,4 @@ class AndesBadgePill : CardView {
         private val STATE_DEFAULT = AndesBadgeType.NEUTRAL
         private val TEXT_DEFAULT = null
     }
-
 }

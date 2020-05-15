@@ -2,6 +2,8 @@
 ## Added
 - Badge Component DOT.
 
+# v2.3.0
+
 ## Changed
 - Deprecate Font support.
 

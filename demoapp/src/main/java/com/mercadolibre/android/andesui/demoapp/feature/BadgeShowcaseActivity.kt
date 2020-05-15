@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.mercadolibre.android.andesui.badge.AndesBadgeDot
 import com.mercadolibre.android.andesui.badge.AndesBadgePill
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
@@ -20,6 +22,9 @@ import com.mercadolibre.android.andesui.demoapp.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.textfield.AndesTextfield
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
+import kotlinx.android.synthetic.main.andesui_badges_showcase_change.*
 
 class BadgeShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,152 +41,163 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         indicator.attach(viewPager)
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        addLoudBadges(adapter.views[0])
-        addQuietBadges(adapter.views[1])
+        addDynamicBadges(adapter.views[0])
+        addStaticBadges(adapter.views[1])
     }
 
-    private fun addQuietBadges(container: View) {
-        val andesBadgeSmallNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallNeutral.text = "small neutral quiet"
+    private fun addDynamicBadges(container: View) {
+        val modifierSpinner: Spinner = container.findViewById(R.id.modifier_spinner)
+        ArrayAdapter.createFromResource(
+                this, R.array.modifier_spinner, android.R.layout.simple_spinner_item)
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    modifierSpinner.adapter = adapter
+                }
 
-        val andesBadgeSmallHigh = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallHigh.text = "small highlight quiet"
+        val hierarchySpinner: Spinner = container.findViewById(R.id.hierarchy_spinner)
+        ArrayAdapter.createFromResource(
+                this, R.array.hierarchy_spinner, android.R.layout.simple_spinner_item)
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    hierarchySpinner.adapter = adapter
+                }
 
-        val andesBadgeSmallWarning = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallWarning.text = "small warning quiet"
+        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        ArrayAdapter.createFromResource(
+                this, R.array.type_spinner, android.R.layout.simple_spinner_item)
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    typeSpinner.adapter = adapter
+                }
 
-        val andesBadgeSmallError = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallError.text = "small error quiet"
+        val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
+        ArrayAdapter.createFromResource(
+                this, R.array.size_spinner, android.R.layout.simple_spinner_item)
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    sizeSpinner.adapter = adapter
+                }
 
-        val andesBadgeSmallSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallSuccess.text = "small success quiet"
+        val borderSpinner: Spinner = container.findViewById(R.id.border_spinner)
+        ArrayAdapter.createFromResource(
+                this, R.array.border_spinner, android.R.layout.simple_spinner_item)
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    borderSpinner.adapter = adapter
+                }
 
-        val andesBadgeLargeNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeNeutral.text = "large neutral quiet"
+        val textField: AndesTextfield = container.findViewById(R.id.label_text)
+        val clearButton: AndesButton = container.findViewById(R.id.clear_button)
+        val changeButton: AndesButton = container.findViewById(R.id.change_button)
 
-        val andesBadgeLargeHighlight = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeHighlight.text = "large highlight quiet"
+        val andesBadgePill: AndesBadgePill = container.findViewById(R.id.andes_badge_pill)
+        val andesBadgeDot: AndesBadgeDot = container.findViewById(R.id.andes_badge_dot)
 
-        val andesBadgeLargeWarning = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeWarning.text = "large warning quiet"
+        modifierSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                when (modifierSpinner.getItemAtPosition(position)) {
+                    "Pill" -> {
+                        group.visibility = View.VISIBLE
+                        andesBadgePill.visibility = View.VISIBLE
+                        andesBadgeDot.visibility = View.INVISIBLE
+                    }
+                    "Dot" -> {
+                        group.visibility = View.GONE
+                        andesBadgePill.visibility = View.INVISIBLE
+                        andesBadgeDot.visibility = View.VISIBLE
+                    }
+                }
+            }
 
-        val andesBadgeLargeError = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeError.text = "large error quiet"
+            override fun onNothingSelected(parentView: AdapterView<*>?) {}
+        }
 
-        val andesBadgeLargeSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.QUIET, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeSuccess.text = "large success quiet"
+        clearButton.setOnClickListener {
+            group.visibility = View.VISIBLE
+            andesBadgePill.visibility = View.VISIBLE
+            andesBadgeDot.visibility = View.INVISIBLE
 
-        val params = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        params.setMargins(0, 0, 0, resources.getDimension(R.dimen.badge_margin_vertical).toInt())
+            modifierSpinner.setSelection(0)
+            hierarchySpinner.setSelection(0)
+            typeSpinner.setSelection(0)
+            sizeSpinner.setSelection(0)
+            borderSpinner.setSelection(0)
 
-        andesBadgeSmallNeutral.layoutParams = params
-        andesBadgeSmallHigh.layoutParams = params
-        andesBadgeSmallWarning.layoutParams = params
-        andesBadgeSmallError.layoutParams = params
-        andesBadgeSmallSuccess.layoutParams = params
-        andesBadgeLargeNeutral.layoutParams = params
-        andesBadgeLargeHighlight.layoutParams = params
-        andesBadgeLargeWarning.layoutParams = params
-        andesBadgeLargeError.layoutParams = params
-        andesBadgeLargeSuccess.layoutParams = params
+            textField.text = ""
+            andesBadgePill.text = getString(R.string.andes_badges_text)
+            andesBadgePill.type = AndesBadgeType.NEUTRAL
+            andesBadgePill.pillHierarchy = AndesBadgePillHierarchy.LOUD
+            andesBadgePill.pillSize = AndesBadgePillSize.LARGE
+            andesBadgePill.pillBorder = AndesBadgePillBorder.STANDARD
+        }
 
-        val linearQuiet = container.findViewById<LinearLayout>(R.id.andes_badges_quiet_container)
-        linearQuiet.addView(andesBadgeSmallNeutral, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeSmallHigh, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeSmallWarning, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeSmallError, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeSmallSuccess, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeLargeNeutral, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeLargeHighlight, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeLargeWarning, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeLargeError, linearQuiet.childCount - 1)
-        linearQuiet.addView(andesBadgeLargeSuccess, linearQuiet.childCount - 1)
+        changeButton.setOnClickListener {
+            when (modifierSpinner.getItemAtPosition(modifierSpinner.selectedItemPosition)) {
+                "Pill" -> {
+                    if (textField.text.isNullOrEmpty()) {
+                        textField.state = AndesTextfieldState.ERROR
+                        textField.helper = "Campo obligatorio"
+                        return@setOnClickListener
+                    } else {
+                        textField.state = AndesTextfieldState.IDLE
+                        textField.helper = null
+                    }
 
-        bindAndesSpecsButton(container)
+                    val type = when (typeSpinner.getItemAtPosition(typeSpinner.selectedItemPosition)) {
+                        "Neutral" -> AndesBadgeType.NEUTRAL
+                        "Highlight" -> AndesBadgeType.HIGHLIGHT
+                        "Success" -> AndesBadgeType.SUCCESS
+                        "Warning" -> AndesBadgeType.WARNING
+                        "Error" -> AndesBadgeType.ERROR
+                        else -> AndesBadgeType.NEUTRAL
+                    }
+
+                    val hierarchy = when (hierarchySpinner.getItemAtPosition(hierarchySpinner.selectedItemPosition)) {
+                        "Loud" -> AndesBadgePillHierarchy.LOUD
+                        "Quiet" -> AndesBadgePillHierarchy.QUIET
+                        else -> AndesBadgePillHierarchy.LOUD
+                    }
+
+                    val size = when (sizeSpinner.getItemAtPosition(sizeSpinner.selectedItemPosition)) {
+                        "Small" -> AndesBadgePillSize.SMALL
+                        "Large" -> AndesBadgePillSize.LARGE
+                        else -> AndesBadgePillSize.LARGE
+                    }
+
+                    val border = when (borderSpinner.getItemAtPosition(borderSpinner.selectedItemPosition)) {
+                        "Standard" -> AndesBadgePillBorder.STANDARD
+                        "Corner" -> AndesBadgePillBorder.CORNER
+                        "Rounded" -> AndesBadgePillBorder.ROUNDED
+                        else -> AndesBadgePillBorder.STANDARD
+                    }
+
+                    andesBadgePill.type = type
+                    andesBadgePill.pillHierarchy = hierarchy
+                    andesBadgePill.pillSize = size
+                    andesBadgePill.pillBorder = border
+                    andesBadgePill.text = textField.text
+                }
+                "Dot" -> {
+                    val type = when (typeSpinner.getItemAtPosition(typeSpinner.selectedItemPosition)) {
+                        "Neutral" -> AndesBadgeType.NEUTRAL
+                        "Highlight" -> AndesBadgeType.HIGHLIGHT
+                        "Success" -> AndesBadgeType.SUCCESS
+                        "Warning" -> AndesBadgeType.WARNING
+                        "Error" -> AndesBadgeType.ERROR
+                        else -> AndesBadgeType.NEUTRAL
+                    }
+                    andesBadgeDot.type = type
+                }
+            }
+        }
     }
 
-    private fun addLoudBadges(container: View) {
-        // Badge PILL
-        val andesBadgeSmallNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallNeutral.text = "small neutral loud"
-
-        val andesBadgeSmallHigh = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallHigh.text = "small highlight loud"
-
-        val andesBadgeSmallWarning = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallWarning.text = "small warning loud"
-
-        val andesBadgeSmallError = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallError.text = "small error loud"
-
-        val andesBadgeSmallSuccess = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.SUCCESS, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.SMALL)
-        andesBadgeSmallSuccess.text = "small success loud"
-
-        val andesBadgeLargeNeutral = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.NEUTRAL, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeNeutral.text = "large neutral loud"
-
-        val andesBadgeLargeHighlight = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.HIGHLIGHT, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeHighlight.text = "large highlight loud"
-
-        val andesBadgeLargeWarning = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.WARNING, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeWarning.text = "large warning loud"
-
-        val andesBadgeLargeError = AndesBadgePill(this, AndesBadgePillHierarchy.LOUD, AndesBadgeType.ERROR, AndesBadgePillBorder.STANDARD, AndesBadgePillSize.LARGE)
-        andesBadgeLargeError.text = "large error loud"
-
-        // Badge DOT
-        val andesBadgeDotNeutral = AndesBadgeDot(this, AndesBadgeType.NEUTRAL)
-
-        val andesBadgeDotHighlight = AndesBadgeDot(this, AndesBadgeType.HIGHLIGHT)
-
-        val andesBadgeDotWarning = AndesBadgeDot(this, AndesBadgeType.WARNING)
-
-        val andesBadgeDotError = AndesBadgeDot(this, AndesBadgeType.ERROR)
-
-        val andesBadgeDotSuccess = AndesBadgeDot(this, AndesBadgeType.SUCCESS)
-
-        val params = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        params.setMargins(0, 0, 0, resources.getDimension(R.dimen.badge_margin_vertical).toInt())
-
-        andesBadgeSmallNeutral.layoutParams = params
-        andesBadgeSmallHigh.layoutParams = params
-        andesBadgeSmallWarning.layoutParams = params
-        andesBadgeSmallError.layoutParams = params
-        andesBadgeSmallSuccess.layoutParams = params
-        andesBadgeLargeNeutral.layoutParams = params
-        andesBadgeLargeHighlight.layoutParams = params
-        andesBadgeLargeWarning.layoutParams = params
-        andesBadgeLargeError.layoutParams = params
-
-        andesBadgeDotNeutral.layoutParams = params
-        andesBadgeDotHighlight.layoutParams = params
-        andesBadgeDotWarning.layoutParams = params
-        andesBadgeDotError.layoutParams = params
-        andesBadgeDotSuccess.layoutParams = params
-
-        val linearLoud = container.findViewById<LinearLayout>(R.id.andes_badges_loud_container)
-        linearLoud.addView(andesBadgeSmallNeutral, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeSmallHigh, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeSmallWarning, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeSmallError, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeSmallSuccess, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeLargeNeutral, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeLargeHighlight, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeLargeWarning, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeLargeError, linearLoud.childCount - 1)
-
-        linearLoud.addView(andesBadgeDotNeutral, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeDotHighlight, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeDotWarning, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeDotError, linearLoud.childCount - 1)
-        linearLoud.addView(andesBadgeDotSuccess, linearLoud.childCount - 1)
-
+    private fun addStaticBadges(container: View) {
         bindAndesSpecsButton(container)
     }
 
@@ -216,10 +232,9 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
-            val layoutLoudButtons = inflater.inflate(R.layout.andesui_loud_badges_showcase, null, false)
-            val layoutQuietButtons = inflater.inflate(R.layout.andesui_quiet_badges_showcase, null, false)
-
-            return listOf<View>(layoutLoudButtons, layoutQuietButtons)
+            val layoutDynamic = inflater.inflate(R.layout.andesui_badges_showcase_change, null, false)
+            val layoutStatic = inflater.inflate(R.layout.andesui_badges_showcase, null, false)
+            return listOf<View>(layoutDynamic, layoutStatic)
         }
     }
 }
