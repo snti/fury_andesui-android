@@ -2,9 +2,7 @@ package com.mercadolibre.android.andesui.utils
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.PorterDuff
-import android.graphics.Rect
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -25,7 +23,7 @@ import com.mercadolibre.android.andesui.color.AndesColor
  * @param colors we said we will be tinting the icon and this is the color. Note that the color for state_enabled will be used. If it does not exist, 0 will be used.
  * @return a complete look overhauled [BitmapDrawable].
  */
-fun buildColoredBitmapDrawable(
+fun buildColoredAndesBitmapDrawable(
     image: BitmapDrawable,
     context: Context,
     dstWidth: Int? = null,
@@ -53,8 +51,14 @@ fun buildColoredBitmapDrawable(
             }
 }
 
-fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth: Int?, dstHeight: Int?, color: Int?): BitmapDrawable {
-    var scaledBitmap: Bitmap = when {
+fun buildColoredBitmapDrawable(
+    image: BitmapDrawable,
+    context: Context,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null,
+    color: Int?
+): BitmapDrawable {
+    val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
                 image.bitmap,
                 dstWidth,
@@ -68,14 +72,14 @@ fun buildColoredBitmapDrawable(image: BitmapDrawable, context: Context, dstWidth
             }
 }
 
-fun buildColoredBitmapDrawable(
+fun buildColoredAndesBitmapDrawable(
     image: BitmapDrawable,
     context: Context,
     dstWidth: Int? = null,
     dstHeight: Int? = null,
     color: AndesColor? = null
 ): BitmapDrawable {
-    var scaledBitmap: Bitmap = when {
+    val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
                 image.bitmap,
                 dstWidth,
@@ -89,6 +93,35 @@ fun buildColoredBitmapDrawable(
             }
 }
 
+fun buildCircleBitmap(
+    image: Bitmap,
+    dstWidth: Int? = null,
+    dstHeight: Int? = null
+): Bitmap? {
+    val scaledBitmap: Bitmap = when {
+        dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
+                image,
+                dstWidth,
+                dstHeight,
+                true)
+        else -> image
+    }
+    return getCircledBitmap(scaledBitmap)
+}
+
+fun getCircledBitmap(bitmap: Bitmap): Bitmap? {
+    val output = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(output)
+    val paint = Paint()
+    val rect = Rect(0, 0, bitmap.width, bitmap.height)
+    paint.isAntiAlias = true
+    canvas.drawARGB(0, 0, 0, 0)
+    canvas.drawCircle((bitmap.width / 2).toFloat(), (bitmap.height / 2).toFloat(), (bitmap.width / 2).toFloat(), paint)
+    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    canvas.drawBitmap(bitmap, rect, rect, paint)
+    return output
+}
+
 /**
  * This method is the same as badge icon. When component were made, this should have been removed.
  */
@@ -99,7 +132,7 @@ fun buildColoredCircularShapeWithIconDrawable(
     shapeColor: Int? = null,
     diameter: Int
 ): Drawable {
-    val icon = buildColoredBitmapDrawable(image, context, null, null, iconColor)
+    val icon = buildColoredAndesBitmapDrawable(image, context, null, null, iconColor)
 
     val biggerCircle = ShapeDrawable(OvalShape())
     biggerCircle.intrinsicHeight = diameter

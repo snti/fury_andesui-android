@@ -7,7 +7,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.factory.IconConfig
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchyInterface
 import com.mercadolibre.android.andesui.icons.IconProvider
-import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
+import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 import java.io.FileNotFoundException
 
 /**
@@ -134,7 +134,7 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
     ): IconConfig? {
         if (leftIcon != null) { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
             return try {
-                val leftBitmapDrawable = buildColoredBitmapDrawable(
+                val leftBitmapDrawable = buildColoredAndesBitmapDrawable(
                         IconProvider(context).loadIcon(leftIcon) as BitmapDrawable,
                         context,
                         context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),
@@ -149,7 +149,7 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
 
         if (rightIcon != null) {
             return try {
-                val rightBitmapDrawable = buildColoredBitmapDrawable(
+                val rightBitmapDrawable = buildColoredAndesBitmapDrawable(
                         IconProvider(context).loadIcon(rightIcon) as BitmapDrawable,
                         context,
                         context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),

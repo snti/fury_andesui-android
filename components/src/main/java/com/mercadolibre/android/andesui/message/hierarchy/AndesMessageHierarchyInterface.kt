@@ -15,7 +15,7 @@ import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.type.AndesMessageTypeInterface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
-import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
+import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 /**
  * Defines all style related properties that an [AndesMessage] needs to be drawn properly.
@@ -59,7 +59,7 @@ internal sealed class AndesMessageHierarchyInterface {
      * @param context needed for accessing some resources.
      */
     fun dismissableIcon(hierarchy: AndesMessageHierarchyInterface, context: Context) =
-            buildColoredBitmapDrawable(
+            buildColoredAndesBitmapDrawable(
                     IconProvider(context).loadIcon("andes_ui_close_20") as BitmapDrawable,
                     context,
                     color = hierarchy.dismissableIconColor()

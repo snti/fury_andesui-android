@@ -1,8 +1,10 @@
+# v2.5.0
+## Added
+- TAG Component.
+
 # v2.4.0
 ## Added
-- Badge Component DOT.
-
-# v2.3.0
+- Badge component DOT.
 
 ## Changed
 - Deprecate Font support.
