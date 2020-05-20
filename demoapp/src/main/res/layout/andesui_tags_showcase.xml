@@ -20,29 +20,29 @@
             android:textColor="#000"
             android:textSize="24sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
         <LinearLayout
-            android:id="@+id/firstColumn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-        <LinearLayout
-            android:id="@+id/secondColumn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:padding="8dp" />
+            <LinearLayout
+                android:id="@+id/firstColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="8dp" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/secondColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

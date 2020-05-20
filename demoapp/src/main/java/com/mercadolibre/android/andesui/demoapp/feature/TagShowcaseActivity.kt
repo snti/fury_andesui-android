@@ -112,9 +112,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.SMALL,
                     "Dismissable"
             )
-            tagSimpleSmallDismissable.rightContent = RightContent(
-                    dismiss = RightContentDismiss()
-            )
+            tagSimpleSmallDismissable.isDismissable = true
+
             firstColumn.addView(tagSimpleSmallDismissable, params)
 
             val tagSimpleSmallDismissableWithCallback = AndesTagSimple(
@@ -123,11 +122,10 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.SMALL,
                     "Callback"
             )
-            tagSimpleSmallDismissableWithCallback.rightContent = RightContent(
-                    dismiss = RightContentDismiss(View.OnClickListener {
-                        Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
-                    })
-            )
+            tagSimpleSmallDismissableWithCallback.isDismissable = true
+            tagSimpleSmallDismissableWithCallback.setupDismsissableCallback(View.OnClickListener {
+                Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
+            })
             firstColumn.addView(tagSimpleSmallDismissableWithCallback, params)
 
             val tagSimple = AndesTagSimple(
@@ -144,9 +142,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.LARGE,
                     "Dismissable"
             )
-            tagSimpleDismissable.rightContent = RightContent(
-                    dismiss = RightContentDismiss()
-            )
+            tagSimpleDismissable.isDismissable = true
             firstColumn.addView(tagSimpleDismissable, params)
 
             val tagSimpleDismissableWithCallback = AndesTagSimple(
@@ -155,11 +151,10 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.LARGE,
                     "Callback"
             )
-            tagSimpleDismissableWithCallback.rightContent = RightContent(
-                    dismiss = RightContentDismiss(View.OnClickListener {
-                        Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
-                    })
-            )
+            tagSimpleDismissableWithCallback.isDismissable = true
+            tagSimpleDismissableWithCallback.setupDismsissableCallback(View.OnClickListener {
+                Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
+            })
             firstColumn.addView(tagSimpleDismissableWithCallback, params)
 
             // Left content DOT
@@ -180,9 +175,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.LARGE,
                     "Azul"
             )
-            tagSimpleDotDismissable.rightContent = RightContent(
-                    dismiss = RightContentDismiss()
-            )
+            tagSimpleDotDismissable.isDismissable = true
             tagSimpleDotDismissable.leftContent = LeftContent(
                     dot = LeftContentDot("#2B5BFF")
             )
@@ -205,9 +198,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.LARGE,
                     "Camila Farías"
             )
-            tagSimpleDotTextDismissable.rightContent = RightContent(
-                    dismiss = RightContentDismiss()
-            )
+            tagSimpleDotTextDismissable.isDismissable = true
             tagSimpleDotTextDismissable.leftContent = LeftContent(
                     dot = LeftContentDot("#E3E3E3", "CF", "#8C8C8C")
             )
@@ -234,9 +225,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagSize.LARGE,
                     "Icono"
             )
-            tagSimpleIconDismissable.rightContent = RightContent(
-                    dismiss = RightContentDismiss()
-            )
+            tagSimpleIconDismissable.isDismissable = true
             val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
             tagSimpleIconDismissable.leftContent = LeftContent(
                     icon = LeftContentIcon(
@@ -277,7 +266,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                                         AndesTagSize.LARGE,
                                         "Lorenzo"
                                 )
-                                tagSimpleImage.rightContent = RightContent(dismiss = RightContentDismiss())
+                                tagSimpleImage.isDismissable = true
                                 tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
                                 secondColumn.addView(tagSimpleImage, params)
                             }
@@ -416,7 +405,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 andesTagSimple.text = "Simple tag"
                 andesTagSimple.type = AndesTagType.DEFAULT
                 andesTagSimple.size = AndesTagSize.LARGE
-                andesTagSimple.rightContent = null
+                andesTagSimple.isDismissable = false
                 andesTagSimple.leftContent = null
             }
 
@@ -540,11 +529,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 andesTagSimple.text = text
                 andesTagSimple.type = type
                 andesTagSimple.size = size
-                if (isDismissable) {
-                    andesTagSimple.rightContent = RightContent(dismiss = RightContentDismiss())
-                } else {
-                    andesTagSimple.rightContent = null
-                }
+                andesTagSimple.isDismissable = isDismissable
                 andesTagSimple.leftContent = leftContent
             }
 

@@ -17,6 +17,7 @@ import com.mercadolibre.android.andesui.tag.factory.simple.AndesTagSimpleConfigu
 import com.mercadolibre.android.andesui.tag.leftcontent.*
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
+import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -82,22 +83,29 @@ class AndesTagSimple : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for [rightContent].
+     * Getter and setter for [isDismissable].
      */
-    var rightContent: RightContent?
-        get() = andesTagAttrs.rightContentData
+    var isDismissable: Boolean
+        get() = andesTagAttrs.rightContent == AndesTagRightContent.DISMISS
         set(value) {
-            val andesTagRightContent = when {
-                value?.dismiss != null -> AndesTagRightContent.DISMISS
-                else -> AndesTagRightContent.NONE
+            if (value) {
+                andesTagAttrs = andesTagAttrs.copy(rightContentData = RightContent(dismiss = RightContentDismiss()))
+                andesTagAttrs = andesTagAttrs.copy(rightContent = AndesTagRightContent.DISMISS)
+            } else {
+                andesTagAttrs = andesTagAttrs.copy(rightContentData = null)
+                andesTagAttrs = andesTagAttrs.copy(rightContent = null)
             }
-            andesTagAttrs = andesTagAttrs.copy(rightContentData = value)
-            andesTagAttrs = andesTagAttrs.copy(rightContent = andesTagRightContent)
 
             val config = createConfig()
             setupRightContent(config)
             setupTitleComponent(config)
         }
+
+    fun setupDismsissableCallback(onClickListener: OnClickListener) {
+        if (isDismissable && andesTagAttrs.rightContentData?.dismiss != null) {
+            andesTagAttrs.rightContentData?.dismiss?.onClickListener = onClickListener
+        }
+    }
 
     private lateinit var andesTagAttrs: AndesTagSimpleAttrs
     private lateinit var containerTag: ConstraintLayout
@@ -214,10 +222,10 @@ class AndesTagSimple : ConstraintLayout {
             } else {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, config.leftContent!!.content.rightMargin(context))
             }
-            if (rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
+            if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, size.size.rightMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent!!.content.leftMargin(context))
+                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent.content.leftMargin(context))
             }
             constraintSet.applyTo(containerTag)
         }
