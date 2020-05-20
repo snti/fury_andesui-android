@@ -26,8 +26,6 @@ import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentImage
-import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
-import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -255,7 +253,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                     })
 
             Glide.with(context)
-                    .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUjE4Vno7piEReTnCrwR3oSxBxkfhIYAnXzcs7zC0ekNPPwnc&s")
+                    .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:" +
+                            "ANd9GcQPUjE4Vno7piEReTnCrwR3oSxBxkfhIYAnXzcs7zC0ekNPPwnc&s")
                     .asBitmap()
                     .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
@@ -277,9 +276,11 @@ class TagShowcaseActivity : AppCompatActivity() {
         }
 
         private fun addDinamicTAG(inflater: LayoutInflater): View {
-            val layoutTag = inflater.inflate(R.layout.andesui_tag_showcase_change, null, false) as ScrollView
+            val layoutTag = inflater.inflate(
+                    R.layout.andesui_tag_showcase_change, null, false
+            ) as ScrollView
 
-            var andesTagSimple: AndesTagSimple = layoutTag.findViewById(R.id.andesui_tag)
+            val andesTagSimple: AndesTagSimple = layoutTag.findViewById(R.id.andesui_tag)
 
             val typeSpinner: Spinner = layoutTag.findViewById(R.id.type_spinner)
             ArrayAdapter.createFromResource(
@@ -506,8 +507,10 @@ class TagShowcaseActivity : AppCompatActivity() {
                     "Image" -> {
                         val pictureUrl = when (urlSpinner.selectedItemPosition) {
                             0 -> "https://conceptodefinicion.de/wp-content/uploads/2014/10/persona.jpg"
-                            1 -> "https://eststatic.com/2015/responsive-images/virtudes-de-una-persona___large_990_660.jpg"
-                            else -> "https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg"
+                            1 -> "https://eststatic.com/2015/responsive-images/" +
+                                 "virtudes-de-una-persona___large_990_660.jpg"
+                            else -> "https://imagenes.universia.net/gc/net/images/" +
+                                    "gente/f/fr/fra/frases_de_confianza.jpg"
                         }
                         Glide.with(context)
                                 .load(pictureUrl)
