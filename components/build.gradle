@@ -46,7 +46,8 @@ android {
     dexOptions.preDexLibraries = true
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message', 'src/main/res/textfield', 'src/main/res/badge']
+            res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message', 'src/main/res/textfield',
+                           'src/main/res/badge', 'src/main/res/snackbar', 'src/main/res/tag']
         }
     }
 }
@@ -59,6 +60,7 @@ staticCodeAnalysis {
 
 dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
     api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     api "com.android.support:cardview-v7:$supportLibraryVersion"
     api "com.facebook.fresco:fresco:$frescoVersion"

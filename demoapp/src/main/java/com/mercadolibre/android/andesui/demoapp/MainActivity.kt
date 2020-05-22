@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
+        setupSnackbar()
         setupTags()
         setupBadges()
         setupButtons()
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
+    }
+
+    private fun setupSnackbar() {
+        andesui_snackbar.setOnClickListener {
+            launchIntent("meli://andes/snackbar")
+        }
     }
 
     private fun setupTags() {
