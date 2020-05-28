@@ -165,14 +165,6 @@
         <item>Dot</item>
     </string-array>
 
-    <string-array name="type_tag_spinner">
-        <item>Default</item>
-        <item>Error</item>
-        <item>Success</item>
-        <item>Warning</item>
-        <item>Highlight</item>
-    </string-array>
-
     <string-array name="type_spinner">
         <item>Neutral</item>
         <item>Highlight</item>

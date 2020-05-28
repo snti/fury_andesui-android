@@ -9,7 +9,7 @@ package com.mercadolibre.android.andesui.tag.type
  * @property type Possible styles that an [AndesTag] may take.
  */
 enum class AndesTagType {
-    DEFAULT,
+    NEUTRAL,
     HIGHLIGHT,
     SUCCESS,
     WARNING,
@@ -23,7 +23,7 @@ enum class AndesTagType {
 
     private fun getAndesTagHierarchy(): AndesSimpleTagTypeInterface {
         return when (this) {
-            DEFAULT -> AndesDefaultTagType()
+            NEUTRAL -> AndesNeutralTagType()
             HIGHLIGHT -> AndesHighlightTagType()
             SUCCESS -> AndesSuccessTagType()
             WARNING -> AndesWarningTagType()

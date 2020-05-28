@@ -255,6 +255,11 @@ class AndesTagSimple : ConstraintLayout {
                         }
                     }
             ))
+
+            val params = right_content.layoutParams as MarginLayoutParams
+            params.marginEnd = config.rightContent.content.rightMargin(context, size)
+            right_content.layoutParams = params
+
             right_content.visibility = View.VISIBLE
         } else {
             right_content.visibility = View.GONE
@@ -264,7 +269,7 @@ class AndesTagSimple : ConstraintLayout {
     private fun createConfig() = AndesSimpleTagConfigurationFactory.create(andesTagAttrs)
 
     companion object {
-        private val TYPE_DEFAULT = AndesTagType.DEFAULT
+        private val TYPE_DEFAULT = AndesTagType.NEUTRAL
         private val SIZE_DEFAULT = AndesTagSize.LARGE
         private val TEXT_DEFAULT = null
     }

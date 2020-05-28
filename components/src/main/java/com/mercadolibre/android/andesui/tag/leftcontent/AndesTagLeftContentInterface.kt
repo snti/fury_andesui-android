@@ -130,21 +130,8 @@ internal object AndesTagLeftContentImage : AndesTagLeftContentInterface() {
         if (icon != null) {
             leftContent.image!!.avatar = icon
         }
-
         val imageView = ImageView(context)
         imageView.setImageBitmap(leftContent.image!!.avatar)
-        imageView.setPadding(
-                context.resources.getDimension(R.dimen.andes_tag_border).toInt(),
-                context.resources.getDimension(R.dimen.andes_tag_border).toInt(),
-                context.resources.getDimension(R.dimen.andes_tag_border).toInt(),
-                context.resources.getDimension(R.dimen.andes_tag_border).toInt()
-        )
-
-        val shape = GradientDrawable()
-        shape.shape = GradientDrawable.OVAL
-        shape.setColor(context.resources.getColor(R.color.andes_gray_070))
-        imageView.background = shape
-
         return imageView
     }
 }

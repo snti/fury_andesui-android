@@ -29,7 +29,7 @@ internal data class AndesTagSimpleAttrs(
  */
 internal object AndesTagSimpleAttrsParser {
 
-    private const val ANDES_SIMPLE_TAG_TYPE_DEFAULT = "2000"
+    private const val ANDES_SIMPLE_TAG_TYPE_NEUTRAL = "2000"
     private const val ANDES_SIMPLE_TAG_TYPE_HIGHLIGHT = "2001"
     private const val ANDES_SIMPLE_TAG_TYPE_SUCCESS = "2002"
     private const val ANDES_SIMPLE_TAG_TYPE_WARNING = "2003"
@@ -45,12 +45,12 @@ internal object AndesTagSimpleAttrsParser {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTagSimple)
 
         val type = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleType)) {
-            ANDES_SIMPLE_TAG_TYPE_DEFAULT -> AndesTagType.DEFAULT
+            ANDES_SIMPLE_TAG_TYPE_NEUTRAL -> AndesTagType.NEUTRAL
             ANDES_SIMPLE_TAG_TYPE_HIGHLIGHT -> AndesTagType.HIGHLIGHT
             ANDES_SIMPLE_TAG_TYPE_SUCCESS -> AndesTagType.SUCCESS
             ANDES_SIMPLE_TAG_TYPE_WARNING -> AndesTagType.WARNING
             ANDES_SIMPLE_TAG_TYPE_ERROR -> AndesTagType.ERROR
-            else -> AndesTagType.DEFAULT
+            else -> AndesTagType.NEUTRAL
         }
 
         val size = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleSize)) {
