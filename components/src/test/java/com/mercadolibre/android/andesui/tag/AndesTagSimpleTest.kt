@@ -4,8 +4,8 @@ import android.os.Build
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesSimpleTagConfigurationFactory
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesTagSimpleAttrs
+import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationFactory
+import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrs
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
@@ -26,13 +26,6 @@ class AndesTagSimpleTest {
     private var context = RuntimeEnvironment.application
     private val configFactory = spy(AndesSimpleTagConfigurationFactory)
     private lateinit var attrs: AndesTagSimpleAttrs
-
-    @Test
-    fun `Simple, Large, Neutral background color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.LARGE, "Body")
-        val config = configFactory.create(attrs)
-        assertEquals(config.backgroundColor, R.color.andes_gray_070_solid.toAndesColor())
-    }
 
     @Test
     fun `Simple, Large, Success background color`() {
@@ -70,13 +63,6 @@ class AndesTagSimpleTest {
     }
 
     @Test
-    fun `Simple, Small, Neutral border color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
-        val config = configFactory.create(attrs)
-        assertEquals(config.borderColor, R.color.andes_gray_450_solid.toAndesColor())
-    }
-
-    @Test
     fun `Simple, Small, Success border color`() {
         attrs = AndesTagSimpleAttrs(AndesTagType.SUCCESS, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
@@ -108,14 +94,7 @@ class AndesTagSimpleTest {
     fun `Simple, Small, Default border color`() {
         attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
-        assertEquals(config.borderColor, R.color.andes_gray_450_solid.toAndesColor())
-    }
-
-    @Test
-    fun `Simple, Small, Neutral text color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
-        val config = configFactory.create(attrs)
-        assertEquals(config.textColor, R.color.andes_gray_450_solid.toAndesColor())
+        assertEquals(config.borderColor, R.color.andes_gray_250_solid.toAndesColor())
     }
 
     @Test
@@ -150,7 +129,7 @@ class AndesTagSimpleTest {
     fun `Simple, Small, Default text color`() {
         attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
-        assertEquals(config.textColor, R.color.andes_gray_450_solid.toAndesColor())
+        assertEquals(config.textColor, R.color.andes_gray_800_solid.toAndesColor())
     }
 
     @Test
@@ -186,27 +165,6 @@ class AndesTagSimpleTest {
         attrs = AndesTagSimpleAttrs(AndesTagType.SUCCESS, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
         assertEquals(config.text, "Body")
-    }
-
-    @Test
-    fun `Simple, Neutral title text`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
-        val config = configFactory.create(attrs)
-        assertEquals(config.text, "Body")
-    }
-
-    @Test
-    fun `Simple, Neutral left content size`() {
-        val leftContent = LeftContent(dot = LeftContentDot("#BABABA", "AB", "#FFFFFF"))
-        attrs = AndesTagSimpleAttrs(
-                AndesTagType.NEUTRAL,
-                AndesTagSize.LARGE,
-                "Body",
-                leftContent,
-                AndesTagLeftContent.DOT
-        )
-        val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
     }
 
     @Test
@@ -277,20 +235,6 @@ class AndesTagSimpleTest {
         )
         val config = configFactory.create(attrs)
         assertEquals(config.leftContent?.content!!.size(context), context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt())
-    }
-
-    @Test
-    fun `Simple, Neutral border size`() {
-        val leftContent = LeftContent(dot = LeftContentDot("#BABABA", "AB", "#FFFFFF"))
-        attrs = AndesTagSimpleAttrs(
-                AndesTagType.NEUTRAL,
-                AndesTagSize.LARGE,
-                "Body",
-                leftContent,
-                AndesTagLeftContent.DOT
-        )
-        val config = configFactory.create(attrs)
-        assertEquals(config.leftContent?.content!!.border(context), context.resources.getDimension(R.dimen.andes_tag_icon_radius))
     }
 
     @Test

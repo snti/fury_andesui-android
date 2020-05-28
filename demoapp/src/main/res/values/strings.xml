@@ -168,7 +168,6 @@
     <string-array name="type_tag_spinner">
         <item>Default</item>
         <item>Error</item>
-        <item>Neutral</item>
         <item>Success</item>
         <item>Warning</item>
         <item>Highlight</item>

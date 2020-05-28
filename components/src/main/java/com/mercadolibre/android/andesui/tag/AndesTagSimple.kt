@@ -10,10 +10,10 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesSimpleTagConfigurationFactory
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesTagSimpleAttrs
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesTagSimpleAttrsParser
-import com.mercadolibre.android.andesui.tag.factory.simple.AndesTagSimpleConfiguration
+import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationFactory
+import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrs
+import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrsParser
+import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleConfiguration
 import com.mercadolibre.android.andesui.tag.leftcontent.*
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
@@ -225,7 +225,7 @@ class AndesTagSimple : ConstraintLayout {
             if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, size.size.rightMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent.content.leftMargin(context))
+                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent.content.leftMargin(context, size))
             }
             constraintSet.applyTo(containerTag)
         }
@@ -233,6 +233,7 @@ class AndesTagSimple : ConstraintLayout {
 
     private fun setupLeftContent(config: AndesTagSimpleConfiguration) {
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
+            left_content.removeAllViews()
             left_content.addView(config.leftContent.content.view(context, config.leftContentData))
             left_content.visibility = View.VISIBLE
         } else {
@@ -242,9 +243,10 @@ class AndesTagSimple : ConstraintLayout {
 
     private fun setupRightContent(config: AndesTagSimpleConfiguration) {
         if (config.rightContent != null && config.rightContent != AndesTagRightContent.NONE) {
+            right_content.removeAllViews()
             right_content.addView(config.rightContent.content.view(
                     context,
-                    config.borderColor,
+                    config.dismissColor,
                     config.rightContentData!!,
                     OnClickListener {
                         containerTag.visibility = View.GONE
