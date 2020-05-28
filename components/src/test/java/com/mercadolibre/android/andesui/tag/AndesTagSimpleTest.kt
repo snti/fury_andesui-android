@@ -57,7 +57,7 @@ class AndesTagSimpleTest {
 
     @Test
     fun `Simple, Large, Default background color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.LARGE, "Body")
+        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.LARGE, "Body")
         val config = configFactory.create(attrs)
         assertEquals(config.backgroundColor, R.color.andes_transparent.toAndesColor())
     }
@@ -92,7 +92,7 @@ class AndesTagSimpleTest {
 
     @Test
     fun `Simple, Small, Default border color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.SMALL, "Body")
+        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
         assertEquals(config.borderColor, R.color.andes_gray_250_solid.toAndesColor())
     }
@@ -127,14 +127,14 @@ class AndesTagSimpleTest {
 
     @Test
     fun `Simple, Small, Default text color`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.SMALL, "Body")
+        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
         assertEquals(config.textColor, R.color.andes_gray_800_solid.toAndesColor())
     }
 
     @Test
     fun `Simple, Default title text`() {
-        attrs = AndesTagSimpleAttrs(AndesTagType.DEFAULT, AndesTagSize.SMALL, "Body")
+        attrs = AndesTagSimpleAttrs(AndesTagType.NEUTRAL, AndesTagSize.SMALL, "Body")
         val config = configFactory.create(attrs)
         assertEquals(config.text, "Body")
     }
@@ -227,7 +227,7 @@ class AndesTagSimpleTest {
     fun `Simple, Default left content size`() {
         val leftContent = LeftContent(dot = LeftContentDot("#BABABA", "AB", "#FFFFFF"))
         attrs = AndesTagSimpleAttrs(
-                AndesTagType.DEFAULT,
+                AndesTagType.NEUTRAL,
                 AndesTagSize.LARGE,
                 "Body",
                 leftContent,
@@ -297,7 +297,7 @@ class AndesTagSimpleTest {
     fun `Simple, Default border size`() {
         val leftContent = LeftContent(dot = LeftContentDot("#BABABA", "AB", "#FFFFFF"))
         attrs = AndesTagSimpleAttrs(
-                AndesTagType.DEFAULT,
+                AndesTagType.NEUTRAL,
                 AndesTagSize.LARGE,
                 "Body",
                 leftContent,
