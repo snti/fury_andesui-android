@@ -433,7 +433,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     "Dot" -> {
                         if (backgroundColor.text.isNullOrEmpty()) {
                             backgroundColor.state = AndesTextfieldState.ERROR
-                            backgroundColor.helper = "Este capo es requerido"
+                            backgroundColor.helper = "Este campo es requerido"
                             return@setOnClickListener
                         } else if (!validateColor("#${backgroundColor.text!!}")) {
                             backgroundColor.state = AndesTextfieldState.ERROR
