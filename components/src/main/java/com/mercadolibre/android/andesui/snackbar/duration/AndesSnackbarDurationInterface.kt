@@ -10,7 +10,6 @@ internal interface AndesSnackbarDurationInterface {
      * Returns a duration for the snackbar.
      */
     fun duration(): Int
-
 }
 
 internal class AndesSnackbarShortDuration : AndesSnackbarDurationInterface {

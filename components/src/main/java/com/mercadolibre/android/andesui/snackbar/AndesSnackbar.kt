@@ -276,5 +276,4 @@ class AndesSnackbar : CardView {
     }
 
     private fun createConfig() = AndesSnackbarConfigurationFactory.create(context, view, andesSnackbarAttrs)
-
 }

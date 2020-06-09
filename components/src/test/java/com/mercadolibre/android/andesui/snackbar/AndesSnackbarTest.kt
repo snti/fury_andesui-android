@@ -100,5 +100,4 @@ class AndesSnackbarTest {
     companion object {
         const val MESSAGE = "Snackbar"
     }
-
 }

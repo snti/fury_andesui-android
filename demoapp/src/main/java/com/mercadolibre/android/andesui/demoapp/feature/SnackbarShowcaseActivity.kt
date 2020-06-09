@@ -23,7 +23,6 @@ import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-
 class SnackbarShowcaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

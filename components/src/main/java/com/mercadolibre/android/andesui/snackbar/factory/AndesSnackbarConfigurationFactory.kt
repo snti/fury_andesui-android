@@ -13,21 +13,21 @@ import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarTypeInterface
  * The data class that contains the public components of the tag.
  */
 internal data class AndesSnackbarAttrs(
-        var andesSnackbarType: AndesSnackbarType,
-        var andesSnackbarText: String?,
-        var andesSnackbarDuration: AndesSnackbarDuration,
-        var andesSnackbarAction: AndesSnackbarAction? = null
+    var andesSnackbarType: AndesSnackbarType,
+    var andesSnackbarText: String?,
+    var andesSnackbarDuration: AndesSnackbarDuration,
+    var andesSnackbarAction: AndesSnackbarAction? = null
 )
 
 internal data class AndesSnackbarConfiguration(
-        val view: View,
-        val backgroundColor: AndesColor,
-        val textColor: AndesColor,
-        val textActionColor: AndesColor? = null,
-        val radius: Int,
-        val marginLeft: Int,
-        val marginRight: Int,
-        val marginBottom: Int
+    val view: View,
+    val backgroundColor: AndesColor,
+    val textColor: AndesColor,
+    val textActionColor: AndesColor? = null,
+    val radius: Int,
+    val marginLeft: Int,
+    val marginRight: Int,
+    val marginBottom: Int
 )
 
 internal object AndesSnackbarConfigurationFactory {
@@ -47,5 +47,4 @@ internal object AndesSnackbarConfigurationFactory {
 
     private fun resolveBackgroundColor(type: AndesSnackbarTypeInterface) = type.primaryColor()
     private fun resolveTextColor(type: AndesSnackbarTypeInterface) = type.secondaryColor()
-
 }
