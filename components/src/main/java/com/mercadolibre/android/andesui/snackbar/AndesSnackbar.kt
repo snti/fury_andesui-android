@@ -139,7 +139,7 @@ class AndesSnackbar : CardView {
     }
 
     /**
-     * Responsible for setting up all properties of each component that is part of this badge.
+     * Responsible for setting up all properties of each component that is part of this snackbar.
      * Is like a choreographer ;)
      */
     private fun setupComponents(config: AndesSnackbarConfiguration) {
@@ -166,7 +166,7 @@ class AndesSnackbar : CardView {
     }
 
     /**
-     * Sets a view id to this badge.
+     * Sets a view id to this snackbar.
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
