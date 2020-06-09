@@ -1,6 +1,7 @@
 # v2.5.0
 ## Added
 - TAG Component.
+- Snackbar Component.
 
 # v2.4.0
 ## Added

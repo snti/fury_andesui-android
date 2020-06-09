@@ -1,16 +1,19 @@
 package com.mercadolibre.android.andesui.snackbar
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.CardView
+import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.snackbar.action.AndesSnackbarAction
+import com.mercadolibre.android.andesui.snackbar.duration.AndesSnackbarDuration
 import com.mercadolibre.android.andesui.snackbar.factory.AndesSnackbarAttrs
 import com.mercadolibre.android.andesui.snackbar.factory.AndesSnackbarConfiguration
 import com.mercadolibre.android.andesui.snackbar.factory.AndesSnackbarConfigurationFactory
@@ -42,16 +45,12 @@ class AndesSnackbar : CardView {
     /**
      * Getter and setter for [duration].
      */
-    var duration: Int
+    var duration: AndesSnackbarDuration
         get() = andesSnackbarAttrs.andesSnackbarDuration
         set(value) {
-            andesSnackbarAttrs.andesSnackbarDuration = validateDuration(value)
+            andesSnackbarAttrs.andesSnackbarDuration = value
             setupDurationComponent()
         }
-
-
-
-
 
     /**
      * Getter and setter for [action].
@@ -60,12 +59,8 @@ class AndesSnackbar : CardView {
         get() = andesSnackbarAttrs.andesSnackbarAction
         set(value) {
             andesSnackbarAttrs.andesSnackbarAction = value
-//            setupTitleComponent(createConfig())
+            setupActionComponent()
         }
-
-
-
-
 
     /**
      * Show the snackbar.
@@ -80,7 +75,7 @@ class AndesSnackbar : CardView {
      * Dismiss the snackbar.
      */
     fun dismiss() {
-        if (this::snackbar.isInitialized && isShown()) {
+        if (isShown) {
             snackbar.dismiss()
         }
     }
@@ -110,14 +105,23 @@ class AndesSnackbar : CardView {
 
     @Suppress("unused")
     constructor(
-        context: Context, view: View, type: AndesSnackbarType, text: String, duration: Int
+        context: Context,
+        view: View,
+        type: AndesSnackbarType,
+        text: String,
+        duration: AndesSnackbarDuration
     ) : super(context) {
-        initAttrs(view, type, text, duration, null)
+        initAttrs(view, type, text, duration)
     }
 
     @Suppress("unused")
     constructor(
-        context: Context, view: View, type: AndesSnackbarType, text: String, duration: Int, action: AndesSnackbarAction
+        context: Context,
+        view: View,
+        type: AndesSnackbarType,
+        text: String,
+        duration: AndesSnackbarDuration,
+        action: AndesSnackbarAction
     ) : super(context) {
         initAttrs(view, type, text, duration, action)
     }
@@ -126,10 +130,10 @@ class AndesSnackbar : CardView {
         view: View,
         type: AndesSnackbarType,
         text: String,
-        duration: Int,
+        duration: AndesSnackbarDuration,
         action: AndesSnackbarAction? = null
     ) {
-        andesSnackbarAttrs = AndesSnackbarAttrs(type, text, validateDuration(duration), action)
+        andesSnackbarAttrs = AndesSnackbarAttrs(type, text, duration, action)
         val config = AndesSnackbarConfigurationFactory.create(context, view, andesSnackbarAttrs)
         setupComponents(config)
     }
@@ -144,10 +148,8 @@ class AndesSnackbar : CardView {
 
         setupBackgroundComponents(config)
         setupMessageComponent(config)
-
-
-//        setupLeftContent(config)
-//        setupRightContent(config)
+        setupDurationComponent()
+        setupActionComponent()
     }
 
     /**
@@ -156,7 +158,11 @@ class AndesSnackbar : CardView {
      */
     private fun initComponents(config: AndesSnackbarConfiguration) {
         view = config.view
-        snackbar = Snackbar.make(view, andesSnackbarAttrs.andesSnackbarText!!, andesSnackbarAttrs.andesSnackbarDuration)
+        snackbar = Snackbar.make(
+                view,
+                andesSnackbarAttrs.andesSnackbarText!!,
+                andesSnackbarAttrs.andesSnackbarDuration.duration.duration()
+        )
     }
 
     /**
@@ -182,7 +188,7 @@ class AndesSnackbar : CardView {
 
         val layout = snackbar.view as Snackbar.SnackbarLayout
         layout.removeAllViews()
-        layout.addView(andesSnackbar, 0)
+        layout.addView(andesSnackbar)
 
         layout.setPadding(config.marginLeft, 0, config.marginRight, config.marginBottom)
     }
@@ -193,16 +199,56 @@ class AndesSnackbar : CardView {
     private fun setupMessageComponent(config: AndesSnackbarConfiguration) {
         val layout = snackbar.view as Snackbar.SnackbarLayout
         val title = layout.findViewById<TextView>(R.id.tv_message)
+        val snackConstraint = layout.findViewById<ConstraintLayout>(R.id.snack_constraint)
         title.text = andesSnackbarAttrs.andesSnackbarText
         title.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         title.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.andes_snackbar_text))
         title.setTextColor(config.textColor.colorInt(context))
-        title.setPadding(
+
+        snackConstraint.setPadding(
+            0,
             context.resources.getDimension(R.dimen.andes_snackbar_padding).toInt(),
-            context.resources.getDimension(R.dimen.andes_snackbar_padding).toInt(),
-            context.resources.getDimension(R.dimen.andes_snackbar_padding).toInt(),
+            0,
             context.resources.getDimension(R.dimen.andes_snackbar_padding).toInt()
         )
+    }
+
+    /**
+     * Gets data from the config and sets to the action of this snackbar.
+     */
+    private fun setupActionComponent() {
+        if (andesSnackbarAttrs.andesSnackbarAction != null) {
+            val layout = snackbar.view as Snackbar.SnackbarLayout
+            val bottomButton = layout.findViewById<TextView>(R.id.bottomButton)
+            val rightButton = layout.findViewById<TextView>(R.id.rightButton)
+            val title = layout.findViewById<TextView>(R.id.tv_message)
+
+            rightButton.text = andesSnackbarAttrs.andesSnackbarAction!!.text
+            rightButton.typeface = context.getFontOrDefault(R.font.andes_font_semibold)
+
+            bottomButton.text = andesSnackbarAttrs.andesSnackbarAction!!.text
+            bottomButton.typeface = context.getFontOrDefault(R.font.andes_font_semibold)
+
+            title.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
+            rightButton.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
+            val widthText = title.measuredWidth
+            val widthTextAction = rightButton.measuredWidth
+
+            val freeSpace = calculateFreeSpace(widthText)
+            if (freeSpace > widthTextAction) {
+                rightButton.visibility = View.VISIBLE
+                rightButton.setOnClickListener {
+                    andesSnackbarAttrs.andesSnackbarAction?.callback?.onClick(it)
+                    snackbar.dismiss()
+                }
+            } else {
+                bottomButton.visibility = View.VISIBLE
+                bottomButton.setOnClickListener {
+                    andesSnackbarAttrs.andesSnackbarAction?.callback?.onClick(it)
+                    snackbar.dismiss()
+                }
+            }
+        }
     }
 
     /**
@@ -210,23 +256,25 @@ class AndesSnackbar : CardView {
      */
     private fun setupDurationComponent() {
         if (this::snackbar.isInitialized) {
-            snackbar.duration = andesSnackbarAttrs.andesSnackbarDuration
+            snackbar.duration = andesSnackbarAttrs.andesSnackbarDuration.duration.duration()
         }
     }
 
-    private fun validateDuration(duration: Int): Int {
-        return when {
-            duration < MIN_DURATION -> MIN_DURATION
-            duration > MAX_DURATION -> MAX_DURATION
-            else -> duration
-        }
+    private fun getFullScreenWidth(): Int {
+        val displayMetrics = DisplayMetrics()
+        (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+        return displayMetrics.widthPixels
+    }
+
+    private fun calculateFreeSpace(widthText: Int): Int {
+        var freeSpace = getFullScreenWidth()
+        freeSpace -= resources.getDimensionPixelSize(R.dimen.andes_snackbar_left_margin) // Left margin
+        freeSpace -= resources.getDimensionPixelSize(R.dimen.andes_snackbar_right_margin) // Right margin
+        freeSpace -= 3 * resources.getDimensionPixelSize(R.dimen.andes_snackbar_padding) // Paddings
+        freeSpace -= widthText // Space occupied by the text
+        return freeSpace
     }
 
     private fun createConfig() = AndesSnackbarConfigurationFactory.create(context, view, andesSnackbarAttrs)
-
-    companion object {
-        const val MIN_DURATION = 3000
-        const val MAX_DURATION = 10000
-    }
 
 }

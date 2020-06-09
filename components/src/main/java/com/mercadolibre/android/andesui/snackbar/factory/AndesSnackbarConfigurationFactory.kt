@@ -5,6 +5,7 @@ import android.view.View
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.snackbar.action.AndesSnackbarAction
+import com.mercadolibre.android.andesui.snackbar.duration.AndesSnackbarDuration
 import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType
 import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarTypeInterface
 
@@ -14,7 +15,7 @@ import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarTypeInterface
 internal data class AndesSnackbarAttrs(
         var andesSnackbarType: AndesSnackbarType,
         var andesSnackbarText: String?,
-        var andesSnackbarDuration: Int,
+        var andesSnackbarDuration: AndesSnackbarDuration,
         var andesSnackbarAction: AndesSnackbarAction? = null
 )
 
