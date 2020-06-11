@@ -253,12 +253,19 @@ class AndesSnackbar : CardView {
         }
     }
 
+    /**
+     * Gets the screen resolution and returns the width.
+     */
     private fun getFullScreenWidth(): Int {
         val displayMetrics = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.widthPixels
     }
 
+    /**
+     * Gets the width of the screen and subtracts the width of
+     * the text, paddings and margins to calculate free space.
+     */
     private fun calculateFreeSpace(widthText: Int): Int {
         var freeSpace = getFullScreenWidth()
         freeSpace -= resources.getDimensionPixelSize(R.dimen.andes_snackbar_left_margin) // Left margin
