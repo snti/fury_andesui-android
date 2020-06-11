@@ -32,17 +32,15 @@ internal object AndesTagRightContentNone : AndesTagRightContentInterface() {
 
 internal object AndesTagRightContentDismiss : AndesTagRightContentInterface() {
     override fun leftMargin(context: Context, size: AndesTagSize): Int {
-        return if (size == AndesTagSize.SMALL) {
-            context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-        } else {
-            context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+        return when (size) {
+            AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
         }
     }
     override fun rightMargin(context: Context, size: AndesTagSize): Int {
-        return if (size == AndesTagSize.SMALL) {
-            context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
-        } else {
-            context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+        return when (size) {
+            AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
         }
     }
     override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()

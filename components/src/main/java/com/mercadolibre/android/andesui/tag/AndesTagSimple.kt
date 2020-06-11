@@ -9,6 +9,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationFactory
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrs
@@ -207,41 +208,43 @@ class AndesTagSimple : ConstraintLayout {
         } else {
             containerTag.visibility = View.VISIBLE
 
-            simple_tag_text.text = config.text
-            simple_tag_text.typeface = context.getFontOrDefault(R.font.andes_font_regular)
-            simple_tag_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, size.size.textSize(context))
-            simple_tag_text.setTextColor(config.textColor.colorInt(context))
+            simpleTagText.text = config.text
+            simpleTagText.typeface = context.getFontOrDefault(R.font.andes_font_regular)
+            simpleTagText.setTextSize(TypedValue.COMPLEX_UNIT_PX, size.size.textSize(context))
+            simpleTagText.setTextColor(config.textColor.colorInt(context))
 
             val constraintSet = ConstraintSet()
             constraintSet.clone(containerTag)
             if (leftContent == null) {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, size.size.leftMargin(context))
+                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.START, size.size.leftMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.START, config.leftContent!!.content.rightMargin(context))
+                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.START, config.leftContent!!.content.rightMargin(context))
             }
             if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, size.size.rightMargin(context))
+                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, size.size.rightMargin(context))
             } else {
-                constraintSet.setMargin(R.id.simple_tag_text, ConstraintSet.END, config.rightContent.content.leftMargin(context, size))
+                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, config.rightContent.content.leftMargin(context, size))
             }
             constraintSet.applyTo(containerTag)
         }
     }
 
     private fun setupLeftContent(config: AndesTagSimpleConfiguration) {
+        val leftContent = findViewById<FrameLayout>(R.id.leftContent)
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
-            left_content.removeAllViews()
-            left_content.addView(config.leftContent.content.view(context, config.leftContentData))
-            left_content.visibility = View.VISIBLE
+            leftContent.removeAllViews()
+            leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
+            leftContent.visibility = View.VISIBLE
         } else {
-            left_content.visibility = View.GONE
+            leftContent.visibility = View.GONE
         }
     }
 
     private fun setupRightContent(config: AndesTagSimpleConfiguration) {
+        val rightContent = findViewById<FrameLayout>(R.id.rightContent)
         if (config.rightContent != null && config.rightContent != AndesTagRightContent.NONE) {
-            right_content.removeAllViews()
-            right_content.addView(config.rightContent.content.view(
+            rightContent.removeAllViews()
+            rightContent.addView(config.rightContent.content.view(
                     context,
                     config.dismissColor,
                     config.rightContentData!!,
@@ -253,13 +256,13 @@ class AndesTagSimple : ConstraintLayout {
                     }
             ))
 
-            val params = right_content.layoutParams as MarginLayoutParams
+            val params = rightContent.layoutParams as MarginLayoutParams
             params.marginEnd = config.rightContent.content.rightMargin(context, size)
-            right_content.layoutParams = params
+            rightContent.layoutParams = params
 
-            right_content.visibility = View.VISIBLE
+            rightContent.visibility = View.VISIBLE
         } else {
-            right_content.visibility = View.GONE
+            rightContent.visibility = View.GONE
         }
     }
 
