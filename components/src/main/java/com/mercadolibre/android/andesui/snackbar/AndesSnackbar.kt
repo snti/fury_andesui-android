@@ -35,7 +35,7 @@ class AndesSnackbar : CardView {
     /**
      * Getter and setter for [text].
      */
-    var text: String?
+    var text: String
         get() = andesSnackbarAttrs.andesSnackbarText
         set(value) {
             andesSnackbarAttrs.andesSnackbarText = value
@@ -66,7 +66,7 @@ class AndesSnackbar : CardView {
      * Show the snackbar.
      */
     fun show() {
-        if (this::snackbar.isInitialized && !andesSnackbarAttrs.andesSnackbarText.isNullOrEmpty()) {
+        if (this::snackbar.isInitialized) {
             snackbar.show()
         }
     }
@@ -95,13 +95,6 @@ class AndesSnackbar : CardView {
     private lateinit var andesSnackbarAttrs: AndesSnackbarAttrs
     private lateinit var snackbar: Snackbar
     private lateinit var view: View
-
-    @Suppress("unused")
-    private constructor(context: Context) : super(context) {
-        throw IllegalStateException(
-            "Constructor without parameters in Andes Snackbar is not allowed. You must provide some attributes."
-        )
-    }
 
     @Suppress("unused")
     constructor(
@@ -160,7 +153,7 @@ class AndesSnackbar : CardView {
         view = config.view
         snackbar = Snackbar.make(
                 view,
-                andesSnackbarAttrs.andesSnackbarText!!,
+                andesSnackbarAttrs.andesSnackbarText,
                 andesSnackbarAttrs.andesSnackbarDuration.duration.duration()
         )
     }
@@ -270,10 +263,15 @@ class AndesSnackbar : CardView {
         var freeSpace = getFullScreenWidth()
         freeSpace -= resources.getDimensionPixelSize(R.dimen.andes_snackbar_left_margin) // Left margin
         freeSpace -= resources.getDimensionPixelSize(R.dimen.andes_snackbar_right_margin) // Right margin
-        freeSpace -= 3 * resources.getDimensionPixelSize(R.dimen.andes_snackbar_padding) // Paddings
+        freeSpace -= ANDES_SNACKBAR_PADDING * resources.getDimensionPixelSize(R.dimen.andes_snackbar_padding) // Paddings
         freeSpace -= widthText // Space occupied by the text
         return freeSpace
     }
 
     private fun createConfig() = AndesSnackbarConfigurationFactory.create(context, view, andesSnackbarAttrs)
+
+    companion object {
+        const val ANDES_SNACKBAR_PADDING = 3
+    }
+
 }

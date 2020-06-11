@@ -14,7 +14,7 @@ import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarTypeInterface
  */
 internal data class AndesSnackbarAttrs(
     var andesSnackbarType: AndesSnackbarType,
-    var andesSnackbarText: String?,
+    var andesSnackbarText: String,
     var andesSnackbarDuration: AndesSnackbarDuration,
     var andesSnackbarAction: AndesSnackbarAction? = null
 )
