@@ -97,6 +97,11 @@ class AndesSnackbar : CardView {
     private lateinit var view: View
 
     @Suppress("unused")
+    private constructor(context: Context) : super(context) {
+        throw IllegalStateException("Constructor without parameters in Andes Badge is not allowed. You must provide some attributes.")
+    }
+
+    @Suppress("unused")
     constructor(
         context: Context,
         view: View,
