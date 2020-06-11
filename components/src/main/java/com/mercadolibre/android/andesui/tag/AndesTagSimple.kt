@@ -186,10 +186,7 @@ class AndesTagSimple : ConstraintLayout {
     private fun setupBackgroundComponents(config: AndesTagSimpleConfiguration) {
         val shape = GradientDrawable()
         shape.cornerRadius = size.size.border(context)
-
-        if (config.backgroundColor != null) {
-            shape.setColor(config.backgroundColor.colorInt(context))
-        }
+        shape.setColor(config.backgroundColor.colorInt(context))
 
         val borderSize = resources.getDimension(R.dimen.andes_tag_border)
         shape.setStroke(borderSize.toInt(), config.borderColor.colorInt(context))

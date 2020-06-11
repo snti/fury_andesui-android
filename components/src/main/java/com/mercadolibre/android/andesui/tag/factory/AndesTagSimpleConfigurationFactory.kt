@@ -9,7 +9,7 @@ import com.mercadolibre.android.andesui.tag.type.AndesSimpleTagTypeInterface
 
 internal data class AndesTagSimpleConfiguration(
     val text: String? = null,
-    val backgroundColor: AndesColor? = null,
+    val backgroundColor: AndesColor,
     val borderColor: AndesColor,
     val textColor: AndesColor,
     val dismissColor: AndesColor,

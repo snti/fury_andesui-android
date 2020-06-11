@@ -11,22 +11,22 @@ import com.mercadolibre.android.andesui.color.toAndesColor
 internal interface AndesSimpleTagTypeInterface {
 
     /**
-     * @return a [AndesColor] that contains the background color data for the tag.
+     * @return an [AndesColor] that contains the background color data for the tag.
      */
     fun backgroundColor(): AndesColor
 
     /**
-     * @return a [AndesColor] that contains the border color data for the tag.
+     * @return an [AndesColor] that contains the border color data for the tag.
      */
     fun borderColor(): AndesColor
 
     /**
-     * @return a [AndesColor] that contains the text color data for the tag.
+     * @return an [AndesColor] that contains the text color data for the tag.
      */
     fun textColor(): AndesColor
 
     /**
-     * @return a [AndesColor] that contains the dismiss color data for the tag.
+     * @return an [AndesColor] that contains the dismiss color data for the tag.
      */
     fun dismissColor(): AndesColor
 }
