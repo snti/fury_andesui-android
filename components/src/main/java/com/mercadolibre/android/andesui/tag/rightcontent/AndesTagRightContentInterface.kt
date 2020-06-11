@@ -19,10 +19,14 @@ internal sealed class AndesTagRightContentInterface {
 }
 
 internal object AndesTagRightContentNone : AndesTagRightContentInterface() {
-    override fun leftMargin(context: Context, size: AndesTagSize): Int = 0
-    override fun rightMargin(context: Context, size: AndesTagSize): Int = 0
-    override fun size(context: Context): Int = 0
-    override fun border(context: Context): Float = 0f
+    private const val ANDES_TAG_MARGIN = 0
+    private const val ANDES_TAG_SIZE = 0
+    private const val ANDES_TAG_BORDER = 0f
+
+    override fun leftMargin(context: Context, size: AndesTagSize): Int = ANDES_TAG_MARGIN
+    override fun rightMargin(context: Context, size: AndesTagSize): Int = ANDES_TAG_MARGIN
+    override fun size(context: Context): Int = ANDES_TAG_SIZE
+    override fun border(context: Context): Float = ANDES_TAG_BORDER
     override fun view(context: Context, color: AndesColor, rightContent: RightContent, callback: View.OnClickListener): View = View(context)
 }
 
