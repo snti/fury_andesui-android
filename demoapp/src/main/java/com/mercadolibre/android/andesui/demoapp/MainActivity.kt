@@ -27,6 +27,13 @@ class MainActivity : AppCompatActivity() {
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
+        setupAndesCheckbox()
+    }
+
+    private fun setupAndesCheckbox() {
+        andesui_tags.setOnClickListener {
+            launchIntent("meli://andes/checkbox")
+        }
     }
 
     private fun setupTags() {
@@ -61,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupWhatsNew() {
         andesui_demoapp_changelog.setupPrimaryAction(
-            getString(R.string.andesui_demoapp_whatsnew_main_action),
-            View.OnClickListener { launchIntent("meli://andes/whats-new") }
+                getString(R.string.andesui_demoapp_whatsnew_main_action),
+                View.OnClickListener { launchIntent("meli://andes/whats-new") }
         )
     }
 

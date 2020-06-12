@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesCheckbox" tools:ignore="ResourceName">
+        <attr name="andesCheckboxAlign" format="enum">
+            <enum name="left" value="8" />
+            <enum name="right" value="9" />
+        </attr>
+
+        <attr name="andesCheckboxStatus" format="enum">
+            <enum name="CHECKED" value="1999" />
+            <enum name="UNCHECKED" value="2000" />
+            <enum name="UNKNOWN" value="2001" />
+        </attr>
+
+        <attr name="andesCheckboxType" format="enum">
+            <enum name="IDLE" value="8888" />
+            <enum name="DISABLED" value="8889" />
+            <enum name="ERROR" value="8890" />
+        </attr>
+        <attr name="andesCheckboxText" format="reference" />
+    </declare-styleable>
+</resources>
