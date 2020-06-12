@@ -95,7 +95,7 @@ class AndesTextarea : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for the [rightContent].
+     * Getter and setter for the [textWatcher].
      */
     var textWatcher: TextWatcher?
         get() = andesTextareaAttrs.textWatcher
