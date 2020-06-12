@@ -1,3 +1,7 @@
+# v2.5.1
+## Added
+- Add TextWatcher in TextField and TextArea
+
 # v2.5.0
 ## Added
 - TAG Component.
