@@ -66,7 +66,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
         }
 
         private fun addDynamicMessage(inflater: LayoutInflater): View {
-            val layoutMessagesChange = inflater.inflate(R.layout.andesui_message_showcase_change, null, false) as ScrollView
+            val layoutMessagesChange = inflater.inflate(
+                    R.layout.andesui_message_showcase_change, null, false
+            ) as ScrollView
 
             val hierarchySpinner: Spinner = layoutMessagesChange.findViewById(R.id.hierarchy_spinner)
             ArrayAdapter.createFromResource(
@@ -137,7 +139,10 @@ class MessageShowcaseActivity : AppCompatActivity() {
                             })
                         }
                         else -> {
-                            Toast.makeText(context, "Cannot set a secondary action without a primary one", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                    context,
+                                    "Cannot set a secondary action without a primary one",
+                                    Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
@@ -151,7 +156,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
         }
 
         private fun addStaticMessages(inflater: LayoutInflater): View {
-            val layoutMessages = inflater.inflate(R.layout.andesui_message_showcase, null, false) as ScrollView
+            val layoutMessages = inflater.inflate(
+                    R.layout.andesui_message_showcase, null, false
+            ) as ScrollView
             val button = layoutMessages.findViewById<AndesButton>(R.id.button)
 
             layoutMessages.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_message).setOnClickListener {

@@ -1,21 +1,21 @@
 package com.mercadolibre.android.andesui.checkbox.status
 
 enum class AndesCheckboxStatus {
-    UNKNOWN,
-    CHECKED,
-    UNCHECKED;
+    SELECTED,
+    UNSELECTED,
+    UNDEFINED;
 
     companion object {
         fun fromString(value: String): AndesCheckboxStatus = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesCheckboxHierarchy()
+    internal val status get() = getAndesCheckboxStatus()
 
-    private fun getAndesCheckboxHierarchy(): AndesCheckboxStatusInterface {
+    private fun getAndesCheckboxStatus(): AndesCheckboxStatusInterface {
         return when (this) {
-            CHECKED -> AndesCheckboxStatusChecked
-            UNCHECKED -> AndesCheckboxStatusUnchecked
-            UNKNOWN -> AndesCheckboxStatusUnknown
+            SELECTED -> AndesCheckboxStatusSelected
+            UNSELECTED -> AndesCheckboxStatusUnselected
+            UNDEFINED -> AndesCheckboxStatusUndefined
         }
     }
 }

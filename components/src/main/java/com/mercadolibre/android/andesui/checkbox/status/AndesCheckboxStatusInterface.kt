@@ -1,8 +1,11 @@
 package com.mercadolibre.android.andesui.checkbox.status
 
 import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.icons.IconProvider
+import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 internal interface AndesCheckboxStatusInterface {
     /**
@@ -10,23 +13,31 @@ internal interface AndesCheckboxStatusInterface {
      *
      * @return a [Drawable] that contains the checkbox icon.
      */
-    fun configIcon(context: Context): Drawable?
+    fun icon(context: Context, color: AndesColor): BitmapDrawable?
 }
 
-internal object AndesCheckboxStatusChecked : AndesCheckboxStatusInterface {
-    override fun configIcon(context: Context): Drawable? {
-        return IconProvider(context).loadIcon("andes_ui_feedback_success_16")
+internal object AndesCheckboxStatusSelected : AndesCheckboxStatusInterface {
+    override fun icon(context: Context, color: AndesColor): BitmapDrawable? {
+        return buildColoredAndesBitmapDrawable(
+                image = IconProvider(context).loadIcon("andes_selected") as BitmapDrawable,
+                context = context,
+                color = color
+        )
     }
 }
 
-internal object AndesCheckboxStatusUnchecked : AndesCheckboxStatusInterface {
-    override fun configIcon(context: Context): Drawable? {
+internal object AndesCheckboxStatusUnselected : AndesCheckboxStatusInterface {
+    override fun icon(context: Context, color: AndesColor): BitmapDrawable? {
         return null
     }
 }
 
-internal object AndesCheckboxStatusUnknown : AndesCheckboxStatusInterface {
-    override fun configIcon(context: Context): Drawable? {
-        return IconProvider(context).loadIcon("andes_ui_restar_16")
+internal object AndesCheckboxStatusUndefined : AndesCheckboxStatusInterface {
+    override fun icon(context: Context, color: AndesColor): BitmapDrawable? {
+        return buildColoredAndesBitmapDrawable(
+                image = IconProvider(context).loadIcon("andes_indeterminate") as BitmapDrawable,
+                context = context,
+                color = color
+        )
     }
 }

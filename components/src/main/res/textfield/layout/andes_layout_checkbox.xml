@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/andes_checkbox_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/leftCheckbox"
+        android:layout_width="@dimen/andes_checkbox_size_icon"
+        android:layout_height="@dimen/andes_checkbox_size_icon"
+        android:layout_margin="@dimen/andes_checkbox_margin"
+        app:layout_constraintBottom_toBottomOf="@id/andes_checkbox_container"
+        app:layout_constraintEnd_toStartOf="@+id/checkboxText"
+        app:layout_constraintStart_toStartOf="@id/andes_checkbox_container"
+        app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container">
+
+        <ImageView
+            android:id="@+id/leftCheckboxIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/checkboxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/andes_tag_small_text_size"
+        android:layout_marginLeft="@dimen/andes_checkbox_text_margin"
+        android:layout_marginRight="@dimen/andes_checkbox_text_margin"
+        app:layout_constraintBottom_toBottomOf="@id/andes_checkbox_container"
+        app:layout_constraintEnd_toStartOf="@+id/rightCheckbox"
+        app:layout_constraintStart_toEndOf="@+id/leftCheckbox"
+        app:layout_constraintTop_toTopOf="@id/andes_checkbox_container" />
+
+    <FrameLayout
+        android:id="@+id/rightCheckbox"
+        android:layout_width="@dimen/andes_checkbox_size_icon"
+        android:layout_height="@dimen/andes_checkbox_size_icon"
+        android:layout_margin="@dimen/andes_checkbox_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/andes_checkbox_container"
+        app:layout_constraintEnd_toEndOf="@id/andes_checkbox_container"
+        app:layout_constraintStart_toEndOf="@+id/checkboxText"
+        app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container">
+
+        <ImageView
+            android:id="@+id/rightCheckboxIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

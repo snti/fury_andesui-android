@@ -9,9 +9,9 @@ enum class AndesCheckboxType {
         fun fromString(value: String): AndesCheckboxType = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesCheckboxHierarchy()
+    internal val type get() = getAndesCheckboxType()
 
-    private fun getAndesCheckboxHierarchy(): AndesCheckboxTypeInterface {
+    private fun getAndesCheckboxType(): AndesCheckboxTypeInterface {
         return when (this) {
             IDLE -> AndesCheckboxTypeIdle
             DISABLED -> AndesCheckboxTypeDisabled

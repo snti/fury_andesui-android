@@ -1,3 +1,7 @@
+# v2.6.0
+## Added
+- Checkbox Component.
+
 # v2.5.0
 ## Added
 - TAG Component.

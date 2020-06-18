@@ -46,7 +46,8 @@ android {
     dexOptions.preDexLibraries = true
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message', 'src/main/res/textfield', 'src/main/res/badge','src/main/res/checkbox' ]
+            res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message',
+                           'src/main/res/textfield', 'src/main/res/badge', 'src/main/res/checkbox' ]
         }
     }
 }
