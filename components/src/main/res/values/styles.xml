@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
 
     <style name="Andes" />
 
@@ -47,6 +47,8 @@
         <item name="android:textColor">@color/andes_text_color_link</item>
     </style>
 
-    <style name="Andes.LinkInverted" />
+    <style name="Andes.LinkInverted">
+
+    </style>
 
 </resources>
