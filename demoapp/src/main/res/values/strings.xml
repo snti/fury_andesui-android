@@ -146,6 +146,8 @@
     <string name="andesui_demoapp_snackbar_duration">Duration</string>
     <string name="andesui_demoapp_snackbar_text_action">Text action</string>
 
+    <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
+
     <string-array name="state_spinner">
         <item>Neutral</item>
         <item>Success</item>

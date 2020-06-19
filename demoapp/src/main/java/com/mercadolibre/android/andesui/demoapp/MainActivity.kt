@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setupButtons()
         setupMessages()
         setupTextfield()
+        setupThumbnails()
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
@@ -77,6 +78,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupTextfield() {
         andesui_textfield.setOnClickListener {
             launchIntent("meli://andes/textfield")
+        }
+    }
+
+    private fun setupThumbnails() {
+        andesui_thumbnail.setOnClickListener {
+            launchIntent("meli://andes/thumbnail")
         }
     }
 
