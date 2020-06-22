@@ -221,11 +221,11 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 }
 
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                    // TODO Auto-generated method stub
+                    //no-op
                 }
 
                 override fun afterTextChanged(s: Editable) {
-                    // TODO Auto-generated method stub
+                    //no-op
                 }
             }
 
