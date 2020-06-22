@@ -22,7 +22,6 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftCont
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-
 class TextfieldShowcaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
