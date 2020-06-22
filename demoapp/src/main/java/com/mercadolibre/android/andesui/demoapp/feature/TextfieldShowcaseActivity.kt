@@ -226,7 +226,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 }
 
                 override fun afterTextChanged(s: Editable) {
-                    // TODO Auto-generated method stub
+                    //no-op
                 }
             }
 
