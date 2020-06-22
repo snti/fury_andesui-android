@@ -227,8 +227,9 @@ class AndesTextarea : ConstraintLayout {
      * Set the TextWatcher of the edit text.
      */
     private fun setupTextWatcher() {
-        andesTextareaAttrs.textWatcher? 
+        if (andesTextareaAttrs.textWatcher != null) {
             textComponent.addTextChangedListener(andesTextareaAttrs.textWatcher)
+        }
     }
 
     /**
