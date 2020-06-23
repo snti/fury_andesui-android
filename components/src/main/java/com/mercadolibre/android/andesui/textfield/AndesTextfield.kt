@@ -128,6 +128,16 @@ class AndesTextfield : ConstraintLayout {
             setupInputType()
         }
 
+    /**
+     * Getter and setter for the [textWatcher].
+     */
+    var textWatcher: TextWatcher?
+        get() = andesTextfieldAttrs.textWatcher
+        set(value) {
+            andesTextfieldAttrs = andesTextfieldAttrs.copy(textWatcher = value)
+            setupTextWatcher()
+        }
+
     private lateinit var andesTextfieldAttrs: AndesTextfieldAttrs
     private lateinit var textfieldContainer: ConstraintLayout
     private lateinit var textContainer: ConstraintLayout
@@ -201,6 +211,7 @@ class AndesTextfield : ConstraintLayout {
         setupRightComponent(config)
         setupColorComponents(config)
         setupInputType()
+        setupTextWatcher()
         setupTextComponent(config)
     }
 
@@ -260,6 +271,15 @@ class AndesTextfield : ConstraintLayout {
      */
     private fun setupInputType() {
         textComponent.inputType = inputType
+    }
+
+    /**
+     * Set the TextWatcher of the edit text.
+     */
+    private fun setupTextWatcher() {
+        if (andesTextfieldAttrs.textWatcher != null) {
+            textComponent.addTextChangedListener(andesTextfieldAttrs.textWatcher)
+        }
     }
 
     /**

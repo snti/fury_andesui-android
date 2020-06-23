@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.textfield.factory
 
 import android.content.Context
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
@@ -19,7 +20,8 @@ internal data class AndesTextfieldAttrs(
     val state: AndesTextfieldState,
     val leftContent: AndesTextfieldLeftContent?,
     val rightContent: AndesTextfieldRightContent?,
-    val inputType: Int
+    val inputType: Int,
+    val textWatcher: TextWatcher? = null
 )
 
 /**
