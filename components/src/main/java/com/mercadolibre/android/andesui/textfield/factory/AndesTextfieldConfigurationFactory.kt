@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.textfield.factory
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.text.TextWatcher
 import android.view.View
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor

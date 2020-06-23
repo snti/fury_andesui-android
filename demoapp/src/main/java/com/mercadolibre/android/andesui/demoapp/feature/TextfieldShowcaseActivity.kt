@@ -6,7 +6,9 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -213,6 +215,19 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             // Set action clear
             val textfield1 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield1)
             textfield1.text = context.resources.getString(R.string.andesui_demoapp_textfield_placeholder)
+            textfield1.textWatcher = object : TextWatcher {
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                    Toast.makeText(context, "Text changed: $s", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                    //no-op
+                }
+
+                override fun afterTextChanged(s: Editable) {
+                    //no-op
+                }
+            }
 
             // Set text
             val textfield2 = layoutTextfield.findViewById<AndesTextfield>(R.id.andesTextfield2)
