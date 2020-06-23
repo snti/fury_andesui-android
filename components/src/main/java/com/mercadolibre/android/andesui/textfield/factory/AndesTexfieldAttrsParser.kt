@@ -17,6 +17,7 @@ internal data class AndesTextfieldAttrs(
     val helper: String?,
     val placeholder: String?,
     val counter: Int,
+    val showCounter: Boolean = true,
     val state: AndesTextfieldState,
     val leftContent: AndesTextfieldLeftContent?,
     val rightContent: AndesTextfieldRightContent?,
