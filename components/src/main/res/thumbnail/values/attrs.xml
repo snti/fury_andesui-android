@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <declare-styleable name="AndesThumbnail" tools:ignore="ResourceName">
-        <attr name="andesThumbnailHierarchy">
+        <attr name="andesThumbnailHierarchy" format="enum">
             <enum name="AndesDefault" value="1000" />
             <enum name="loud" value="1001" />
             <enum name="quiet" value="1002" />
         </attr>
 
-        <attr name="andesThumbnailType">
+        <attr name="andesThumbnailType" format="enum">
             <enum name="icon" value="2000" />
-            <enum name="image_circle" value="2001" />
-            <enum name="image_square" value="2002" />
         </attr>
 
-        <attr name="andesThumbnailSize">
+        <attr name="andesThumbnailSize" format="enum">
             <enum name="size_24" value="3000" />
             <enum name="size_32" value="3001" />
             <enum name="size_40" value="3002" />
@@ -24,7 +22,7 @@
             <enum name="size_80" value="3007" />
         </attr>
 
-        <attr name="andesThumbnailState">
+        <attr name="andesThumbnailState" format="enum">
             <enum name="disabled" value="4000" />
             <enum name="enabled" value="4001" />
         </attr>
@@ -33,6 +31,6 @@
 
         <attr name="andesThumbnailAccentColor" format="reference" />
 
-        <attr name="andesThumbnailFallbackImage" format="reference" />
+        <attr name="andesThumbnailFallbackImage" format="string" />
     </declare-styleable>
 </resources>

@@ -3,13 +3,16 @@ package com.mercadolibre.android.andesui.thumbnail
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
+import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.content.res.AppCompatResources
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.thumbnail.factory.AndesThumbnailAttrs
@@ -20,7 +23,7 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
-import kotlinx.android.synthetic.main.andes_layout_thumbnail.view.*
+import java.io.FileNotFoundException
 
 class AndesThumbnail : FrameLayout {
 
@@ -59,7 +62,7 @@ class AndesThumbnail : FrameLayout {
         accentColor: AndesColor,
         fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy = AndesThumbnailHierarchy.LOUD,
-        image: Int,
+        image: String,
         type: AndesThumbnailType = AndesThumbnailType.ICON,
         size: AndesThumbnailSize = AndesThumbnailSize.SIZE_48,
         state: AndesThumbnailState = AndesThumbnailState.ENABLED
@@ -82,7 +85,7 @@ class AndesThumbnail : FrameLayout {
         accentColor: AndesColor,
         fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy,
-        image: Int,
+        image: String,
         type: AndesThumbnailType,
         size: AndesThumbnailSize,
         state: AndesThumbnailState
@@ -139,11 +142,20 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun setupImage(config: AndesThumbnailConfiguration) {
-        val unwrappedDrawable = AppCompatResources.getDrawable(context, config.image)
+        val resId = context.resources.getIdentifier(config.image, "drawable", context.packageName)
+        try {
+            ContextCompat.getDrawable(context, resId)
+        } catch (e: FileNotFoundException) {
+            Log.e("Andes UI", "File $config.image was not found.", e)
+            null
+        }
+
+        val unwrappedDrawable = AppCompatResources.getDrawable(context, resId)
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
         DrawableCompat.setTint(wrappedDrawable, config.iconColor.colorInt(context))
-        andes_thumbnail_image.setBackgroundResource(config.image)
-        andes_thumbnail_image.layoutParams = LayoutParams(config.iconSize, config.iconSize, Gravity.CENTER)
+        val imageFrame = findViewById<ImageView>(R.id.andes_thumbnail_image)
+        imageFrame.setBackgroundResource(resId)
+        imageFrame.layoutParams = LayoutParams(config.iconSize, config.iconSize, Gravity.CENTER)
     }
 
     private fun createConfig() = AndesThumbnailConfigurationFactory.create(context, andesThumbnailAttrs)

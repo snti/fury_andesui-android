@@ -15,7 +15,7 @@ internal data class AndesThumbnailConfiguration(
     val hasBorder: Boolean,
     val iconColor: AndesColor,
     val iconSize: Int,
-    val image: Int,
+    val image: String,
     val size: Float
 )
 
@@ -54,6 +54,6 @@ internal object AndesThumbnailConfigurationFactory {
     ) = state.iconColor(context, hierarchy,
         accentColor)
     private fun resolveIconSize(context: Context, size: AndesThumbnailSizeInterface) = size.iconSize(context).toInt()
-    private fun resolveImage(context: Context, image: Int, fallbackImage: String) = image
+    private fun resolveImage(context: Context, image: String, fallbackImage: String) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
 }

@@ -1,6 +1,8 @@
 package com.mercadolibre.android.andesui.thumbnail.factory
 
 import android.content.Context
+import android.graphics.Color
+import android.net.Uri
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
@@ -17,7 +19,7 @@ internal data class AndesThumbnailAttrs(
     val andesThumbnailAccentColor: AndesColor,
     val andesThumbnailFallbackImage: String,
     val andesThumbnailHierarchy: AndesThumbnailHierarchy,
-    val andesThumbnailImage: Int,
+    val andesThumbnailImage: String,
     val andesThumbnailType: AndesThumbnailType,
     val andesThumbnailSize: AndesThumbnailSize,
     val andesThumbnailState: AndesThumbnailState
@@ -33,8 +35,6 @@ internal object AndesThumbnailAttrsParser {
     private const val ANDES_THUMBNAIL_HIERARCHY_QUIET = "1002"
 
     private const val ANDES_THUMBNAIL_TYPE_ICON = "2000"
-    private const val ANDES_THUMBNAIL_TYPE_IMAGE_CIRCLE = "2001"
-    private const val ANDES_THUMBNAIL_TYPE_IMAGE_SQUARE = "2002"
 
     private const val ANDES_THUMBNAIL_SIZE_24 = "3000"
     private const val ANDES_THUMBNAIL_SIZE_32 = "3001"
@@ -86,10 +86,10 @@ internal object AndesThumbnailAttrsParser {
                 andesThumbnailType = type,
                 andesThumbnailSize = size,
                 andesThumbnailState = state,
-                andesThumbnailAccentColor = R.styleable.AndesThumbnail_andesThumbnailAccentColor.toAndesColor(),
+                andesThumbnailAccentColor = context.resources.getIdentifier(typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailAccentColor), "color", context.packageName).toAndesColor(),
                 andesThumbnailFallbackImage
                 = typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailFallbackImage),
-                andesThumbnailImage = R.styleable.AndesThumbnail_andesThumbnailImage
+                andesThumbnailImage = typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailImage)
         ).also { typedArray.recycle() }
     }
 }

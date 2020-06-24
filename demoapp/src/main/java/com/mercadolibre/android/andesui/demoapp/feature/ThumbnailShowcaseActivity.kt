@@ -45,35 +45,35 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         val linearQuiet = container.findViewById<LinearLayout>(R.id.andes_thumbnail_quiet_container)
 
         val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "andes_otros_almanaque_24",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
 
         val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
 
         val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
 
         val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
 
         val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
 
         val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
 
         val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
 
         val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.QUIET, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.QUIET, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
 
         linearQuiet.addView(andesThumbnail24Enabled, linearQuiet.childCount - 1)
@@ -92,35 +92,35 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         val linearLoud = container.findViewById<LinearLayout>(R.id.andes_loud_container)
 
         val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
 
         val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
 
         val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
 
         val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
 
         val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
 
         val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
 
         val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
 
         val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.LOUD, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
 
         linearLoud.addView(andesThumbnail24Enabled, linearLoud.childCount - 1)
@@ -139,35 +139,35 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         val linearDefault = container.findViewById<LinearLayout>(R.id.andes_thumbnail_default_container)
 
         val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
 
         val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
 
         val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
 
         val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
 
         val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
 
         val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
 
         val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
 
         val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, R.drawable.andes_otros_almanaque_24, AndesThumbnailType.ICON,
+            AndesThumbnailHierarchy.DEFAULT, "andes_otros_almanaque_24", AndesThumbnailType.ICON,
             AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
 
         linearDefault.addView(andesThumbnail24Enabled, linearDefault.childCount - 1)

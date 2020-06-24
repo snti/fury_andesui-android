@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-       <!-- <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
+      <!-- <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_margin_vertical"
@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/andesui_demoapp_label_more"
                 android:layout_width="wrap_content"
@@ -45,6 +46,5 @@
                 app:andesButtonText="@string/andesui_demoapp_label_andes_button_specs"
                 app:layout_constraintTop_toBottomOf="@id/andesui_demoapp_label_more" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
