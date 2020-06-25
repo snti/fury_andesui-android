@@ -1,6 +1,8 @@
 # v2.5.1
 ## Added
-- Add TextWatcher in TextField and TextArea
+- Add TextWatcher in TextField and TextArea.
+- ShowCounter attribute added.
+- The cursor position at the end of the text is set when changing the type.
 
 # v2.5.0
 ## Added
