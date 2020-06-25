@@ -1,3 +1,7 @@
+# v2.6.0
+## Added
+- RadioButton Component.
+
 # v2.5.1
 ## Added
 - Add TextWatcher in TextField and TextArea

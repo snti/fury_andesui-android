@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/andes_radiobutton_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/leftRadiobutton"
+        android:layout_width="@dimen/andes_radiobutton_size_icon"
+        android:layout_height="@dimen/andes_radiobutton_size_icon"
+        android:layout_margin="@dimen/andes_radiobutton_margin"
+        app:layout_constraintBottom_toBottomOf="@id/andes_radiobutton_container"
+        app:layout_constraintEnd_toStartOf="@+id/checkboxText"
+        app:layout_constraintStart_toStartOf="@id/andes_radiobutton_container"
+        app:layout_constraintTop_toTopOf="@+id/andes_radiobutton_container" >
+
+        <FrameLayout
+            android:id="@+id/leftRadiobuttonBorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/leftRadiobuttonIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/andes_radiobutton_margin_in"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/checkboxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/andes_tag_small_text_size"
+        android:layout_marginLeft="@dimen/andes_radiobutton_text_margin"
+        android:layout_marginRight="@dimen/andes_radiobutton_text_margin"
+        app:layout_constraintBottom_toBottomOf="@id/andes_radiobutton_container"
+        app:layout_constraintEnd_toStartOf="@+id/rightRadiobutton"
+        app:layout_constraintStart_toEndOf="@+id/leftRadiobutton"
+        app:layout_constraintTop_toTopOf="@id/andes_radiobutton_container" />
+
+    <FrameLayout
+        android:id="@+id/rightRadiobutton"
+        android:layout_width="@dimen/andes_radiobutton_size_icon"
+        android:layout_height="@dimen/andes_radiobutton_size_icon"
+        android:layout_margin="@dimen/andes_radiobutton_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/andes_radiobutton_container"
+        app:layout_constraintEnd_toEndOf="@id/andes_radiobutton_container"
+        app:layout_constraintStart_toEndOf="@+id/checkboxText"
+        app:layout_constraintTop_toTopOf="@+id/andes_radiobutton_container" >
+
+        <FrameLayout
+            android:id="@+id/rightRadiobuttonBorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/rightRadiobuttonIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/andes_radiobutton_margin_in"/>
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

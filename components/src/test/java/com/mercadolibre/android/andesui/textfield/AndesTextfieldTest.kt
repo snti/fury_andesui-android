@@ -95,5 +95,4 @@ class AndesTextfieldTest {
     fun `textfield without watcher`() {
         assertNull(textfield.textWatcher)
     }
-
 }
