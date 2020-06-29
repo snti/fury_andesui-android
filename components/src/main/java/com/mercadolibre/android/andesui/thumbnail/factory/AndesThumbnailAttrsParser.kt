@@ -1,8 +1,8 @@
 package com.mercadolibre.android.andesui.thumbnail.factory
 
 import android.content.Context
-import android.graphics.Color
-import android.net.Uri
+import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
@@ -13,20 +13,20 @@ import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
 
 /**
- * The data class that contains the public components of the badge.
+ * The data class that contains the public components of the thumbnail.
  */
 internal data class AndesThumbnailAttrs(
     val andesThumbnailAccentColor: AndesColor,
     val andesThumbnailFallbackImage: String,
     val andesThumbnailHierarchy: AndesThumbnailHierarchy,
-    val andesThumbnailImage: String,
+    val andesThumbnailImage: Drawable,
     val andesThumbnailType: AndesThumbnailType,
     val andesThumbnailSize: AndesThumbnailSize,
     val andesThumbnailState: AndesThumbnailState
 )
 
 /**
- * This object parse the attribute set and return an instance of AndesBadgeAttrs to be used by AndesBadge
+ * This object parse the attribute set and return an instance of AndesThumbnailAttrs to be used by AndesThumbnail
  */
 internal object AndesThumbnailAttrsParser {
 
@@ -51,19 +51,22 @@ internal object AndesThumbnailAttrsParser {
     fun parse(context: Context, attr: AttributeSet?): AndesThumbnailAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesThumbnail)
 
-        val hierarchy = when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailHierarchy)) {
-            ANDES_THUMBNAIL_HIERARCHY_DEFAULT -> AndesThumbnailHierarchy.DEFAULT
-            ANDES_THUMBNAIL_HIERARCHY_LOUD -> AndesThumbnailHierarchy.LOUD
-            ANDES_THUMBNAIL_HIERARCHY_QUIET -> AndesThumbnailHierarchy.QUIET
-            else -> AndesThumbnailHierarchy.DEFAULT
-        }
+        return AndesThumbnailAttrs(
+            andesThumbnailHierarchy = getHierarchy(typedArray),
+            andesThumbnailType = getType(typedArray),
+            andesThumbnailSize = getSize(typedArray),
+            andesThumbnailState = getState(typedArray),
+            andesThumbnailAccentColor =
+            context.resources.getIdentifier(typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailAccentColor),
+                "color", context.packageName).toAndesColor(),
+            andesThumbnailFallbackImage =
+            typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailFallbackImage),
+            andesThumbnailImage = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)
+        ).also { typedArray.recycle() }
+    }
 
-        val type = when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailType)) {
-            ANDES_THUMBNAIL_TYPE_ICON -> AndesThumbnailType.ICON
-            else -> AndesThumbnailType.ICON
-        }
-
-        val size = when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailSize)) {
+    private fun getSize(typedArray: TypedArray): AndesThumbnailSize =
+        when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailSize)) {
             ANDES_THUMBNAIL_SIZE_24 -> AndesThumbnailSize.SIZE_24
             ANDES_THUMBNAIL_SIZE_32 -> AndesThumbnailSize.SIZE_32
             ANDES_THUMBNAIL_SIZE_40 -> AndesThumbnailSize.SIZE_40
@@ -75,21 +78,24 @@ internal object AndesThumbnailAttrsParser {
             else -> AndesThumbnailSize.SIZE_48
         }
 
-        val state = when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailState)) {
+    private fun getHierarchy(typedArray: TypedArray): AndesThumbnailHierarchy =
+        when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailHierarchy)) {
+            ANDES_THUMBNAIL_HIERARCHY_DEFAULT -> AndesThumbnailHierarchy.DEFAULT
+            ANDES_THUMBNAIL_HIERARCHY_LOUD -> AndesThumbnailHierarchy.LOUD
+            ANDES_THUMBNAIL_HIERARCHY_QUIET -> AndesThumbnailHierarchy.QUIET
+            else -> AndesThumbnailHierarchy.DEFAULT
+        }
+
+    private fun getState(typedArray: TypedArray): AndesThumbnailState =
+        when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailState)) {
             ANDES_THUMBNAIL_STATE_DISABLED -> AndesThumbnailState.DISABLED
             ANDES_THUMBNAIL_STATE_ENABLED -> AndesThumbnailState.ENABLED
             else -> AndesThumbnailState.ENABLED
         }
 
-        return AndesThumbnailAttrs(
-                andesThumbnailHierarchy = hierarchy,
-                andesThumbnailType = type,
-                andesThumbnailSize = size,
-                andesThumbnailState = state,
-                andesThumbnailAccentColor = context.resources.getIdentifier(typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailAccentColor), "color", context.packageName).toAndesColor(),
-                andesThumbnailFallbackImage
-                = typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailFallbackImage),
-                andesThumbnailImage = typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailImage)
-        ).also { typedArray.recycle() }
-    }
+    private fun getType(typedArray: TypedArray): AndesThumbnailType =
+        when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailType)) {
+            ANDES_THUMBNAIL_TYPE_ICON -> AndesThumbnailType.ICON
+            else -> AndesThumbnailType.ICON
+        }
 }

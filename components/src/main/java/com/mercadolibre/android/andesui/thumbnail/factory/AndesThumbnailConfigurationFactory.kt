@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.thumbnail.factory
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
@@ -15,7 +16,7 @@ internal data class AndesThumbnailConfiguration(
     val hasBorder: Boolean,
     val iconColor: AndesColor,
     val iconSize: Int,
-    val image: String,
+    val image: Drawable,
     val size: Float
 )
 
@@ -54,6 +55,6 @@ internal object AndesThumbnailConfigurationFactory {
     ) = state.iconColor(context, hierarchy,
         accentColor)
     private fun resolveIconSize(context: Context, size: AndesThumbnailSizeInterface) = size.iconSize(context).toInt()
-    private fun resolveImage(context: Context, image: String, fallbackImage: String) = image
+    private fun resolveImage(context: Context, image: Drawable, fallbackImage: String) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
 }

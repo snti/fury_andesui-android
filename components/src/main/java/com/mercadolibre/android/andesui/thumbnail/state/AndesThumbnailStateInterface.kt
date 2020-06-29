@@ -37,7 +37,7 @@ internal class AndesEnabledThumbnailState : AndesThumbnailStateInterface {
             AndesThumbnailHierarchy.LOUD -> accentColor
             AndesThumbnailHierarchy.QUIET -> {
                 val color = accentColor.copy()
-                color.alpha = 0.1F
+                color.alpha = ALPHA_10
                 color
             }
     }
@@ -47,5 +47,9 @@ internal class AndesEnabledThumbnailState : AndesThumbnailStateInterface {
         AndesThumbnailHierarchy.DEFAULT -> R.color.andes_gray_800_solid.toAndesColor()
         AndesThumbnailHierarchy.LOUD -> R.color.andes_white.toAndesColor()
         AndesThumbnailHierarchy.QUIET -> accentColor
+    }
+
+    companion object {
+        const val ALPHA_10 = 0.1f
     }
 }

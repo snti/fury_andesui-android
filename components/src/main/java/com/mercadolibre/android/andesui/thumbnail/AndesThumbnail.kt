@@ -2,12 +2,10 @@ package com.mercadolibre.android.andesui.thumbnail
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.content.res.AppCompatResources
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -23,9 +21,32 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
-import java.io.FileNotFoundException
 
 class AndesThumbnail : FrameLayout {
+
+    /**
+     * Getter and setter for [accentColor].
+     */
+    var accentColor: AndesColor
+        get() = andesThumbnailAttrs.andesThumbnailAccentColor
+        set(value) {
+            andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailAccentColor = value)
+            val config = createConfig()
+            setupBackground(config)
+            setupImage(config)
+        }
+
+    /**
+     * Getter and setter for [hierarchy].
+     */
+    var hierarchy: AndesThumbnailHierarchy
+        get() = andesThumbnailAttrs.andesThumbnailHierarchy
+        set(value) {
+            andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailHierarchy = value)
+            val config = createConfig()
+            setupBackground(config)
+            setupImage(config)
+        }
 
     /**
      * Getter and setter for [type].
@@ -34,14 +55,21 @@ class AndesThumbnail : FrameLayout {
         get() = andesThumbnailAttrs.andesThumbnailType
         set(value) {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailType = value)
-            setupBackground(createConfig())
+            val config = createConfig()
+            setupBackground(config)
+            setupImage(config)
         }
 
+    /**
+     * Getter and setter for [size].
+     */
     var size: AndesThumbnailSize
         get() = andesThumbnailAttrs.andesThumbnailSize
         set(value) {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailSize = value)
-            setupBackground(createConfig())
+            val config = createConfig()
+            setupBackground(config)
+            setupImage(config)
         }
 
     private lateinit var andesThumbnailAttrs: AndesThumbnailAttrs
@@ -62,7 +90,7 @@ class AndesThumbnail : FrameLayout {
         accentColor: AndesColor,
         fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy = AndesThumbnailHierarchy.LOUD,
-        image: String,
+        image: Drawable,
         type: AndesThumbnailType = AndesThumbnailType.ICON,
         size: AndesThumbnailSize = AndesThumbnailSize.SIZE_48,
         state: AndesThumbnailState = AndesThumbnailState.ENABLED
@@ -85,7 +113,7 @@ class AndesThumbnail : FrameLayout {
         accentColor: AndesColor,
         fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy,
-        image: String,
+        image: Drawable,
         type: AndesThumbnailType,
         size: AndesThumbnailSize,
         state: AndesThumbnailState
@@ -127,7 +155,7 @@ class AndesThumbnail : FrameLayout {
     private fun setupBackground(config: AndesThumbnailConfiguration) {
         val shape = GradientDrawable()
         (shape.mutate() as GradientDrawable).cornerRadius = config.size
-        val dp1 = (1 * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
+        val dp1 = (1 * Resources.getSystem().displayMetrics.density + CONVERTION_CONSTANT).toInt()
         if (config.hasBorder) {
             shape.setStroke(dp1, config.borderColor.colorIntToAlpha(context))
         } else {
@@ -142,21 +170,25 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun setupImage(config: AndesThumbnailConfiguration) {
-        val resId = context.resources.getIdentifier(config.image, "drawable", context.packageName)
+      /*  val resId = context.resources.getIdentifier(config.image, "drawable", context.packageName)
         try {
             ContextCompat.getDrawable(context, resId)
         } catch (e: FileNotFoundException) {
             Log.e("Andes UI", "File $config.image was not found.", e)
             null
-        }
+        }*/
 
-        val unwrappedDrawable = AppCompatResources.getDrawable(context, resId)
-        val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
+        val unwrappedDrawable = config.image
+        val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
         DrawableCompat.setTint(wrappedDrawable, config.iconColor.colorInt(context))
         val imageFrame = findViewById<ImageView>(R.id.andes_thumbnail_image)
-        imageFrame.setBackgroundResource(resId)
+        imageFrame.setBackgroundDrawable(wrappedDrawable)
         imageFrame.layoutParams = LayoutParams(config.iconSize, config.iconSize, Gravity.CENTER)
     }
 
     private fun createConfig() = AndesThumbnailConfigurationFactory.create(context, andesThumbnailAttrs)
+
+    companion object {
+        const val CONVERTION_CONSTANT = 0.5f
+    }
 }
