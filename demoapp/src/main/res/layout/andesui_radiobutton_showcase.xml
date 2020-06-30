@@ -27,42 +27,42 @@
             android:gravity="center_horizontal"
             android:baselineAligned="false">
 
-            <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:andesRadiobuttonAlign="left"
-                app:andesRadiobuttonStatus="selected"
-                app:andesRadiobuttonText="@string/andes_radiobutton_showcase"/>
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonStatus="selected"
+                app:andesRadioButtonText="@string/andes_radiobutton_showcase"/>
 
-            <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:andesRadiobuttonAlign="right"
-                app:andesRadiobuttonStatus="unselected"
-                app:andesRadiobuttonText="@string/andes_radiobutton_showcase"/>
+                app:andesRadioButtonAlign="right"
+                app:andesRadioButtonStatus="unselected"
+                app:andesRadioButtonText="@string/andes_radiobutton_showcase"/>
 
-            <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:andesRadiobuttonAlign="left"
-                app:andesRadiobuttonStatus="unselected"
-                app:andesRadiobuttonType="disabled"
-                app:andesRadiobuttonText="@string/andes_radiobutton_showcase"/>
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonStatus="unselected"
+                app:andesRadioButtonType="disabled"
+                app:andesRadioButtonText="@string/andes_radiobutton_showcase"/>
 
-            <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:andesRadiobuttonAlign="right"
-                app:andesRadiobuttonStatus="selected"
-                app:andesRadiobuttonType="disabled"
-                app:andesRadiobuttonText="@string/andes_radiobutton_showcase"/>
+                app:andesRadioButtonAlign="right"
+                app:andesRadioButtonStatus="selected"
+                app:andesRadioButtonType="disabled"
+                app:andesRadioButtonText="@string/andes_radiobutton_showcase"/>
 
-            <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
+            <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:andesRadiobuttonAlign="left"
-                app:andesRadiobuttonType="error"
-                app:andesRadiobuttonText="@string/andes_radiobutton_showcase"/>
+                app:andesRadioButtonAlign="left"
+                app:andesRadioButtonType="error"
+                app:andesRadioButtonText="@string/andes_radiobutton_showcase"/>
 
         </LinearLayout>
 

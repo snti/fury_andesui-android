@@ -12,10 +12,10 @@ import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import android.widget.Spinner
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
-import com.mercadolibre.android.andesui.radiobutton.align.AndesRadiobuttonAlign
-import com.mercadolibre.android.andesui.radiobutton.status.AndesRadiobuttonStatus
-import com.mercadolibre.android.andesui.radiobutton.type.AndesRadiobuttonType
+import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
+import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
+import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 import com.mercadolibre.android.andesui.demoapp.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
@@ -23,7 +23,7 @@ import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
-class RadiobuttonShowcaseActivity : AppCompatActivity() {
+class RadioButtonShowcaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +74,7 @@ class RadiobuttonShowcaseActivity : AppCompatActivity() {
         private fun addDynamicRadiobutton(inflater: LayoutInflater): View {
             val layoutCheckbox = inflater.inflate(R.layout.andesui_dynamic_radiobutton_showcase, null, false) as ScrollView
 
-            val radiobutton: AndesRadiobutton = layoutCheckbox.findViewById(R.id.andesRadiobutton)
+            val radioButton: AndesRadioButton = layoutCheckbox.findViewById(R.id.andesRadioButton)
 
             val spinnerType: Spinner = layoutCheckbox.findViewById(R.id.spinnerType)
             ArrayAdapter.createFromResource(
@@ -113,10 +113,10 @@ class RadiobuttonShowcaseActivity : AppCompatActivity() {
                 andesTextfield.state = AndesTextfieldState.IDLE
                 andesTextfield.helper = null
 
-                radiobutton.align = AndesRadiobuttonAlign.LEFT
-                radiobutton.type = AndesRadiobuttonType.IDLE
-                radiobutton.status = AndesRadiobuttonStatus.UNSELECTED
-                radiobutton.text = context.resources.getString(R.string.andes_radiobutton_text)
+                radioButton.align = AndesRadioButtonAlign.LEFT
+                radioButton.type = AndesRadioButtonType.IDLE
+                radioButton.status = AndesRadioButtonStatus.UNSELECTED
+                radioButton.text = context.resources.getString(R.string.andes_radiobutton_text)
             }
 
             changeButton.setOnClickListener {
@@ -130,25 +130,25 @@ class RadiobuttonShowcaseActivity : AppCompatActivity() {
                 }
 
                 val type = when (spinnerType.selectedItem) {
-                    "Idle" -> AndesRadiobuttonType.IDLE
-                    "Error" -> AndesRadiobuttonType.ERROR
-                    "Disabled" -> AndesRadiobuttonType.DISABLED
-                    else -> AndesRadiobuttonType.IDLE
+                    "Idle" -> AndesRadioButtonType.IDLE
+                    "Error" -> AndesRadioButtonType.ERROR
+                    "Disabled" -> AndesRadioButtonType.DISABLED
+                    else -> AndesRadioButtonType.IDLE
                 }
                 val align = when (spinnerAlign.selectedItem) {
-                    "Left" -> AndesRadiobuttonAlign.LEFT
-                    "Right" -> AndesRadiobuttonAlign.RIGHT
-                    else -> AndesRadiobuttonAlign.LEFT
+                    "Left" -> AndesRadioButtonAlign.LEFT
+                    "Right" -> AndesRadioButtonAlign.RIGHT
+                    else -> AndesRadioButtonAlign.LEFT
                 }
                 val status = when (spinnerStatus.selectedItem) {
-                    "Unselected" -> AndesRadiobuttonStatus.UNSELECTED
-                    "Selected" -> AndesRadiobuttonStatus.SELECTED
-                    else -> AndesRadiobuttonStatus.UNSELECTED
+                    "Unselected" -> AndesRadioButtonStatus.UNSELECTED
+                    "Selected" -> AndesRadioButtonStatus.SELECTED
+                    else -> AndesRadioButtonStatus.UNSELECTED
                 }
-                radiobutton.align = align
-                radiobutton.type = type
-                radiobutton.status = status
-                radiobutton.text = andesTextfield.text
+                radioButton.align = align
+                radioButton.type = type
+                radioButton.status = status
+                radioButton.text = andesTextfield.text
             }
 
             return layoutCheckbox

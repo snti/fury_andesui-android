@@ -1,12 +1,12 @@
 package com.mercadolibre.android.andesui.radiobutton.type
 
-enum class AndesRadiobuttonType {
+enum class AndesRadioButtonType {
     IDLE,
     DISABLED,
     ERROR;
 
     companion object {
-        fun fromString(value: String): AndesRadiobuttonType = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesRadioButtonType = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesRadiobuttonType()

@@ -9,12 +9,12 @@
         android:layout_height="600dp"
         android:isScrollContainer="true">
 
-        <com.mercadolibre.android.andesui.radiobutton.AndesRadiobutton
-            android:id="@+id/andesRadiobutton"
+        <com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
+            android:id="@+id/andesRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:andesRadiobuttonText="@string/andes_radiobutton_text"
+            app:andesRadioButtonText="@string/andes_radiobutton_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
             android:layout_marginEnd="24dp"
             android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/andesRadiobutton" />
+            app:layout_constraintTop_toBottomOf="@+id/andesRadioButton" />
 
         <TextView
             android:id="@+id/textView15"
