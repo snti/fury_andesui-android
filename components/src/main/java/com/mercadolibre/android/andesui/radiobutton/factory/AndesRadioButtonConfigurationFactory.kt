@@ -5,11 +5,11 @@ import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatu
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 
 internal data class AndesRadiobuttonConfiguration(
-        val text: String?,
-        val textSize: Int,
-        val align: AndesRadioButtonAlign,
-        val status: AndesRadioButtonStatus,
-        val type: AndesRadioButtonType
+    val text: String?,
+    val textSize: Int,
+    val align: AndesRadioButtonAlign,
+    val status: AndesRadioButtonStatus,
+    val type: AndesRadioButtonType
 )
 
 internal object AndesRadiobuttonConfigurationFactory {

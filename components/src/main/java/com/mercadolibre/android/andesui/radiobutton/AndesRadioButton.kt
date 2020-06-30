@@ -80,11 +80,11 @@ class AndesRadioButton : ConstraintLayout {
     }
 
     constructor(
-            context: Context,
-            text: String,
-            align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
-            status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
-            type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
+        context: Context,
+        text: String,
+        align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
+        status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
+        type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
     ) : super(context) {
         initAttrs(text, align, status, type)
     }
@@ -101,10 +101,10 @@ class AndesRadioButton : ConstraintLayout {
     }
 
     private fun initAttrs(
-            text: String,
-            align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
-            status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
-            type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
+        text: String,
+        align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
+        status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
+        type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
     ) {
         andesRadiobuttonAttrs = AndesRadiobuttonAttrs(align, text, status, type)
         val config = AndesRadiobuttonConfigurationFactory.create(andesRadiobuttonAttrs)

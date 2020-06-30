@@ -8,10 +8,10 @@ import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 
 internal data class AndesRadiobuttonAttrs(
-        val andesRadioButtonAlign: AndesRadioButtonAlign,
-        val andesRadiobuttonText: String?,
-        val andesRadioButtonStatus: AndesRadioButtonStatus,
-        val andesRadioButtonType: AndesRadioButtonType
+    val andesRadioButtonAlign: AndesRadioButtonAlign,
+    val andesRadiobuttonText: String?,
+    val andesRadioButtonStatus: AndesRadioButtonStatus,
+    val andesRadioButtonType: AndesRadioButtonType
 )
 
 /**
