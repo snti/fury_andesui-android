@@ -124,7 +124,7 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.RadiobuttonShowcaseActivity"
+        <activity android:name=".feature.RadioButtonShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

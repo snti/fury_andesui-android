@@ -1,11 +1,11 @@
 package com.mercadolibre.android.andesui.radiobutton.status
 
-enum class AndesRadiobuttonStatus {
+enum class AndesRadioButtonStatus {
     SELECTED,
     UNSELECTED;
 
     companion object {
-        fun fromString(value: String): AndesRadiobuttonStatus = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesRadioButtonStatus = valueOf(value.toUpperCase())
     }
 
     internal val status get() = getAndesRadiobuttonStatus()

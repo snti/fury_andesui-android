@@ -10,17 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.radiobutton.align.AndesRadiobuttonAlign
+import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonAttrParser
 import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonAttrs
 import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonConfiguration
 import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonConfigurationFactory
-import com.mercadolibre.android.andesui.radiobutton.status.AndesRadiobuttonStatus
-import com.mercadolibre.android.andesui.radiobutton.type.AndesRadiobuttonType
+import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
+import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import kotlinx.android.synthetic.main.andes_layout_radiobutton.view.*
 
-class AndesRadiobutton : ConstraintLayout {
+class AndesRadioButton : ConstraintLayout {
 
     /**
      * Getter and setter for [text].
@@ -35,30 +35,30 @@ class AndesRadiobutton : ConstraintLayout {
     /**
      * Getter and setter for [align].
      */
-    var align: AndesRadiobuttonAlign
-        get() = andesRadiobuttonAttrs.andesRadiobuttonAlign
+    var align: AndesRadioButtonAlign
+        get() = andesRadiobuttonAttrs.andesRadioButtonAlign
         set(value) {
-            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadiobuttonAlign = value)
+            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadioButtonAlign = value)
             setupAlignComponent(createConfig())
         }
 
     /**
-     * Getter and setter for [AndesRadiobuttonStatus].
+     * Getter and setter for [AndesRadioButtonStatus].
      */
-    var status: AndesRadiobuttonStatus
-        get() = andesRadiobuttonAttrs.andesRadiobuttonStatus
+    var status: AndesRadioButtonStatus
+        get() = andesRadiobuttonAttrs.andesRadioButtonStatus
         set(value) {
-            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadiobuttonStatus = value)
+            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadioButtonStatus = value)
             setupBackgroundComponent(createConfig())
         }
 
     /**
      * Getter and setter for [type].
      */
-    var type: AndesRadiobuttonType
-        get() = andesRadiobuttonAttrs.andesRadiobuttonType
+    var type: AndesRadioButtonType
+        get() = andesRadiobuttonAttrs.andesRadioButtonType
         set(value) {
-            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadiobuttonType = value)
+            andesRadiobuttonAttrs = andesRadiobuttonAttrs.copy(andesRadioButtonType = value)
             setupBackgroundComponent(createConfig())
         }
 
@@ -82,9 +82,9 @@ class AndesRadiobutton : ConstraintLayout {
     constructor(
         context: Context,
         text: String,
-        align: AndesRadiobuttonAlign = ANDES_ALIGN_DEFAULT_VALUE,
-        status: AndesRadiobuttonStatus = ANDES_STATUS_DEFAULT_VALUE,
-        type: AndesRadiobuttonType = ANDES_TYPE_DEFAULT_VALUE
+        align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
+        status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
+        type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
     ) : super(context) {
         initAttrs(text, align, status, type)
     }
@@ -102,9 +102,9 @@ class AndesRadiobutton : ConstraintLayout {
 
     private fun initAttrs(
         text: String,
-        align: AndesRadiobuttonAlign = ANDES_ALIGN_DEFAULT_VALUE,
-        status: AndesRadiobuttonStatus = ANDES_STATUS_DEFAULT_VALUE,
-        type: AndesRadiobuttonType = ANDES_TYPE_DEFAULT_VALUE
+        align: AndesRadioButtonAlign = ANDES_ALIGN_DEFAULT_VALUE,
+        status: AndesRadioButtonStatus = ANDES_STATUS_DEFAULT_VALUE,
+        type: AndesRadioButtonType = ANDES_TYPE_DEFAULT_VALUE
     ) {
         andesRadiobuttonAttrs = AndesRadiobuttonAttrs(align, text, status, type)
         val config = AndesRadiobuttonConfigurationFactory.create(andesRadiobuttonAttrs)
@@ -134,16 +134,16 @@ class AndesRadiobutton : ConstraintLayout {
     private fun onCheckedChangeListener(checkbox: FrameLayout) {
         checkbox.setOnClickListener {
             when (type) {
-                AndesRadiobuttonType.ERROR -> {
-                    type = AndesRadiobuttonType.IDLE
-                    status = AndesRadiobuttonStatus.SELECTED
+                AndesRadioButtonType.ERROR -> {
+                    type = AndesRadioButtonType.IDLE
+                    status = AndesRadioButtonStatus.SELECTED
                     privateListener?.onClick(this)
                     setupBackgroundComponent(createConfig())
                 }
-                AndesRadiobuttonType.IDLE -> {
+                AndesRadioButtonType.IDLE -> {
                     status = when (status) {
-                        AndesRadiobuttonStatus.SELECTED -> AndesRadiobuttonStatus.UNSELECTED
-                        AndesRadiobuttonStatus.UNSELECTED -> AndesRadiobuttonStatus.SELECTED
+                        AndesRadioButtonStatus.SELECTED -> AndesRadioButtonStatus.UNSELECTED
+                        AndesRadioButtonStatus.UNSELECTED -> AndesRadioButtonStatus.SELECTED
                     }
                     privateListener?.onClick(this)
                     setupBackgroundComponent(createConfig())
@@ -176,11 +176,11 @@ class AndesRadiobutton : ConstraintLayout {
      */
     private fun setupAlignComponent(config: AndesRadiobuttonConfiguration) {
         when (config.align) {
-            AndesRadiobuttonAlign.LEFT -> {
+            AndesRadioButtonAlign.LEFT -> {
                 leftRadiobutton.visibility = View.VISIBLE
                 rightRadiobutton.visibility = View.GONE
             }
-            AndesRadiobuttonAlign.RIGHT -> {
+            AndesRadioButtonAlign.RIGHT -> {
                 leftRadiobutton.visibility = View.GONE
                 rightRadiobutton.visibility = View.VISIBLE
             }
@@ -213,8 +213,8 @@ class AndesRadiobutton : ConstraintLayout {
     private fun createConfig() = AndesRadiobuttonConfigurationFactory.create(andesRadiobuttonAttrs)
 
     companion object {
-        private val ANDES_ALIGN_DEFAULT_VALUE = AndesRadiobuttonAlign.LEFT
-        private val ANDES_STATUS_DEFAULT_VALUE = AndesRadiobuttonStatus.UNSELECTED
-        private val ANDES_TYPE_DEFAULT_VALUE = AndesRadiobuttonType.IDLE
+        private val ANDES_ALIGN_DEFAULT_VALUE = AndesRadioButtonAlign.LEFT
+        private val ANDES_STATUS_DEFAULT_VALUE = AndesRadioButtonStatus.UNSELECTED
+        private val ANDES_TYPE_DEFAULT_VALUE = AndesRadioButtonType.IDLE
     }
 }
