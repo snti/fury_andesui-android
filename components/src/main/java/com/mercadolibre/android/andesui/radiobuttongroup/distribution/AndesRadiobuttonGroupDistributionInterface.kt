@@ -1,0 +1,7 @@
+package com.mercadolibre.android.andesui.radiobuttongroup.distribution
+
+internal sealed class AndesRadiobuttonGroupDistributionInterface
+
+internal object AndesRadiobuttonGroupVertical : AndesRadiobuttonGroupDistributionInterface()
+
+internal object AndesRadiobuttonGroupHorizontal : AndesRadiobuttonGroupDistributionInterface()
