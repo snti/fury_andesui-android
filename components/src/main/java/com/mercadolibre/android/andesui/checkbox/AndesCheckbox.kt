@@ -127,8 +127,8 @@ class AndesCheckbox : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_checkbox, this)
         containerCheckbox = container.findViewById(R.id.andes_checkbox_container)
-        onCheckedChangeListener(leftCheckbox)
-        onCheckedChangeListener(rightCheckbox)
+        onCheckedChangeListener(containerLeftCheckbox)
+        onCheckedChangeListener(containerRightCheckbox)
     }
 
     private fun onCheckedChangeListener(checkbox: FrameLayout) {
@@ -178,12 +178,12 @@ class AndesCheckbox : ConstraintLayout {
     private fun setupAlignComponent(config: AndesCheckboxConfiguration) {
         when (config.align) {
             AndesCheckboxAlign.LEFT -> {
-                leftCheckbox.visibility = View.VISIBLE
-                rightCheckbox.visibility = View.GONE
+                containerLeftCheckbox.visibility = View.VISIBLE
+                containerRightCheckbox.visibility = View.GONE
             }
             AndesCheckboxAlign.RIGHT -> {
-                leftCheckbox.visibility = View.GONE
-                rightCheckbox.visibility = View.VISIBLE
+                containerLeftCheckbox.visibility = View.GONE
+                containerRightCheckbox.visibility = View.VISIBLE
             }
         }
     }
