@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.radiobutton.status
+package com.mercadolibre.android.andesui.radiobuttongroup.status
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -6,7 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
 
-internal interface AndesRadioButtonStatusInterface {
+internal interface AndesRadioButtonGroupStatusInterface {
     /**
      * Returns a [Drawable] that contains the radiobutton icon.
      *
@@ -15,7 +15,7 @@ internal interface AndesRadioButtonStatusInterface {
     fun icon(context: Context, color: AndesColor): GradientDrawable?
 }
 
-internal object AndesRadioButtonStatusSelected : AndesRadioButtonStatusInterface {
+internal object AndesRadioButtonGroupStatusSelected : AndesRadioButtonGroupStatusInterface {
     override fun icon(context: Context, color: AndesColor): GradientDrawable? {
         val shape = GradientDrawable()
         shape.cornerRadius = context.resources.getDimension(R.dimen.andes_radiobutton_radius)
@@ -24,7 +24,7 @@ internal object AndesRadioButtonStatusSelected : AndesRadioButtonStatusInterface
     }
 }
 
-internal object AndesRadioButtonStatusUnselected : AndesRadioButtonStatusInterface {
+internal object AndesRadioButtonGroupStatusUnselected : AndesRadioButtonGroupStatusInterface {
     override fun icon(context: Context, color: AndesColor): GradientDrawable? {
         return null
     }

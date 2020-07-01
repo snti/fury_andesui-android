@@ -7,7 +7,7 @@ import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatu
 import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 
-internal data class AndesRadiobuttonAttrs(
+internal data class AndesRadioButtonAttrs(
     val andesRadioButtonAlign: AndesRadioButtonAlign,
     val andesRadiobuttonText: String?,
     val andesRadioButtonStatus: AndesRadioButtonStatus,
@@ -17,7 +17,7 @@ internal data class AndesRadiobuttonAttrs(
 /**
  * This object parse the attribute set and return an instance of AndesRadiobuttonAttrs to be used by AndesRadiobutton
  */
-internal object AndesRadiobuttonAttrParser {
+internal object AndesRadioButtonAttrParser {
 
     private const val ANDES_RADIOBUTTON_ALIGN_LEFT = "1000"
     private const val ANDES_RADIOBUTTON_ALIGN_RIGHT = "1001"
@@ -29,7 +29,7 @@ internal object AndesRadiobuttonAttrParser {
     private const val ANDES_RADIOBUTTON_TYPE_DISABLED = "3001"
     private const val ANDES_RADIOBUTTON_TYPE_ERROR = "3002"
 
-    fun parse(context: Context, attr: AttributeSet?): AndesRadiobuttonAttrs {
+    fun parse(context: Context, attr: AttributeSet?): AndesRadioButtonAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesRadioButton)
 
         val align = when (typedArray.getString(R.styleable.AndesRadioButton_andesRadioButtonAlign)) {
@@ -57,7 +57,7 @@ internal object AndesRadiobuttonAttrParser {
             status
         }
 
-        return AndesRadiobuttonAttrs(
+        return AndesRadioButtonAttrs(
                 andesRadioButtonAlign = align,
                 andesRadiobuttonText = typedArray.getString(R.styleable.AndesRadioButton_andesRadioButtonText),
                 andesRadioButtonStatus = validatedStatus,

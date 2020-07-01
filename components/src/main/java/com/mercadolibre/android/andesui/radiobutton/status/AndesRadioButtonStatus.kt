@@ -8,12 +8,12 @@ enum class AndesRadioButtonStatus {
         fun fromString(value: String): AndesRadioButtonStatus = valueOf(value.toUpperCase())
     }
 
-    internal val status get() = getAndesRadiobuttonStatus()
+    internal val status get() = getAndesRadioButtonStatus()
 
-    private fun getAndesRadiobuttonStatus(): AndesRadiobuttonStatusInterface {
+    private fun getAndesRadioButtonStatus(): AndesRadioButtonStatusInterface {
         return when (this) {
-            SELECTED -> AndesRadiobuttonStatusSelected
-            UNSELECTED -> AndesRadiobuttonStatusUnselected
+            SELECTED -> AndesRadioButtonStatusSelected
+            UNSELECTED -> AndesRadioButtonStatusUnselected
         }
     }
 }

@@ -9,13 +9,13 @@ enum class AndesRadioButtonType {
         fun fromString(value: String): AndesRadioButtonType = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesRadiobuttonType()
+    internal val type get() = getAndesRadioButtonType()
 
-    private fun getAndesRadiobuttonType(): AndesRadiobuttonTypeInterface {
+    private fun getAndesRadioButtonType(): AndesRadioButtonTypeInterface {
         return when (this) {
-            IDLE -> AndesRadiobuttonTypeIdle
-            DISABLED -> AndesRadiobuttonTypeDisabled
-            ERROR -> AndesRadiobuttonTypeError
+            IDLE -> AndesRadioButtonTypeIdle
+            DISABLED -> AndesRadioButtonTypeDisabled
+            ERROR -> AndesRadioButtonTypeError
         }
     }
 }

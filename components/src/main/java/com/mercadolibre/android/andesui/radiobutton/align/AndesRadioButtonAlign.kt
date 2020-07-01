@@ -8,12 +8,12 @@ enum class AndesRadioButtonAlign {
         fun fromString(value: String): AndesRadioButtonAlign = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesRadiobuttonAlign()
+    internal val type get() = getAndesRadioButtonAlign()
 
-    private fun getAndesRadiobuttonAlign(): AndesRadiobuttonAlignInterface {
+    private fun getAndesRadioButtonAlign(): AndesRadioButtonAlignInterface {
         return when (this) {
-            LEFT -> AndesRadiobuttonLeft
-            RIGHT -> AndesRadiobuttonRight
+            LEFT -> AndesRadioButtonLeft
+            RIGHT -> AndesRadioButtonRight
         }
     }
 }

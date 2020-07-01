@@ -1,11 +1,11 @@
 package com.mercadolibre.android.andesui.radiobuttongroup.distribution
 
-enum class AndesRadiobuttonGroupDistribution {
+enum class AndesRadioButtonGroupDistribution {
     VERTICAL,
     HORIZONTAL;
 
     companion object {
-        fun fromString(value: String): AndesRadiobuttonGroupDistribution = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesRadioButtonGroupDistribution = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesRadiobuttonGroupAlign()

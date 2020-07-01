@@ -1,11 +1,11 @@
 package com.mercadolibre.android.andesui.radiobuttongroup.align
 
-enum class AndesRadiobuttonGroupAlign {
+enum class AndesRadioButtonGroupAlign {
     LEFT,
     RIGHT;
 
     companion object {
-        fun fromString(value: String): AndesRadiobuttonGroupAlign = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesRadioButtonGroupAlign = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesRadiobuttonGroupAlign()

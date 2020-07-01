@@ -96,4 +96,5 @@ class MainActivity : AppCompatActivity() {
         val launchIntent = Intent(ACTION_VIEW, Uri.parse(uri))
         startActivity(launchIntent)
     }
+
 }
