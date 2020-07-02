@@ -80,6 +80,7 @@
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_simple_tag_showcase">Simple tag</string>
+    <string name="andes_snackbar_showcase">Andes snackbar</string>
     <string name="andes_badge_showcase">Andes Badge</string>
     <string name="andes_badges_pill">Pill</string>
     <string name="andes_badges_other">Other cases</string>
@@ -133,6 +134,11 @@
     <string name="andesui_demoapp_tag_icon">Icon</string>
     <string name="andesui_demoapp_tag_bitmap">Bitmap</string>
 
+    <string name="andesui_demoapp_snackbar_error">Required</string>
+    <string name="andesui_demoapp_snackbar_action">Action</string>
+    <string name="andesui_demoapp_snackbar_duration">Duration</string>
+    <string name="andesui_demoapp_snackbar_text_action">Text action</string>
+
     <string-array name="state_spinner">
         <item>Neutral</item>
         <item>Success</item>
@@ -170,15 +176,6 @@
     <string-array name="modifier_spinner">
         <item>Pill</item>
         <item>Dot</item>
-    </string-array>
-
-    <string-array name="type_tag_spinner">
-        <item>Default</item>
-        <item>Error</item>
-        <item>Neutral</item>
-        <item>Success</item>
-        <item>Warning</item>
-        <item>Highlight</item>
     </string-array>
 
     <string-array name="type_spinner">
@@ -222,6 +219,18 @@
     <string-array name="align_checkbox_spinner">
         <item>Left</item>
         <item>Right</item>
+    </string-array>
+
+    <string-array name="snackbar_type_spinner">
+        <item>Neutral</item>
+        <item>Error</item>
+        <item>Success</item>
+    </string-array>
+
+    <string-array name="snackbar_duration_spinner">
+        <item>Short</item>
+        <item>Normal</item>
+        <item>Long</item>
     </string-array>
 
 </resources>

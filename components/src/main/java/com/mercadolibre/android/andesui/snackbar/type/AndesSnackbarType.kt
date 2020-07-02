@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.tag.type
+package com.mercadolibre.android.andesui.snackbar.type
 
 /**
  * Utility class that does two things: Defines the possible styles an [AndesTag] can take because it's an enum, as you can see.
@@ -8,26 +8,22 @@ package com.mercadolibre.android.andesui.tag.type
  *
  * @property type Possible styles that an [AndesTag] may take.
  */
-enum class AndesTagType {
+enum class AndesSnackbarType {
     NEUTRAL,
-    HIGHLIGHT,
-    SUCCESS,
-    WARNING,
-    ERROR;
+    ERROR,
+    SUCCESS;
 
     companion object {
-        fun fromString(value: String): AndesTagType = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesSnackbarType = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesTagHierarchy()
 
-    private fun getAndesTagHierarchy(): AndesSimpleTagTypeInterface {
+    private fun getAndesTagHierarchy(): AndesSnackbarTypeInterface {
         return when (this) {
-            NEUTRAL -> AndesNeutralTagType()
-            HIGHLIGHT -> AndesHighlightTagType()
-            SUCCESS -> AndesSuccessTagType()
-            WARNING -> AndesWarningTagType()
-            ERROR -> AndesErrorTagType()
+            NEUTRAL -> AndesSnackbarNeutralType()
+            SUCCESS -> AndesSnackbarSuccessType()
+            ERROR -> AndesSnackbarErrorType()
         }
     }
 }

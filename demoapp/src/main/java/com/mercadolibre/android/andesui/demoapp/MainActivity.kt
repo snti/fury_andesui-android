@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.mercadolibre.android.andesui.button.AndesButton
 import kotlinx.android.synthetic.main.andesui_demoapp_main.*
 
 /**
@@ -21,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
         setupAndesCheckbox()
+        setupSnackbar()
         setupTags()
         setupBadges()
         setupButtons()
@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupAndesCheckbox() {
         andesui_checkbox.setOnClickListener {
             launchIntent("meli://andes/checkbox")
+        }
+    }
+
+    private fun setupSnackbar() {
+        andesui_snackbar.setOnClickListener {
+            launchIntent("meli://andes/snackbar")
         }
     }
 

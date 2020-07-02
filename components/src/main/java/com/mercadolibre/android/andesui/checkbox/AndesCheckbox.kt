@@ -188,6 +188,9 @@ class AndesCheckbox : ConstraintLayout {
         }
     }
 
+    /**
+     * The checkbox is drawn with a shape (border and background) and then the icon is added
+     */
     private fun setupBackgroundComponent(config: AndesCheckboxConfiguration) {
         val shape = GradientDrawable()
         shape.cornerRadius = resources.getDimension(R.dimen.andes_checkbox_radius)
