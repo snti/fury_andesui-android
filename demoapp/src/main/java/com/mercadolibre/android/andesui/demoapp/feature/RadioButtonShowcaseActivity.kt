@@ -22,6 +22,8 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.radiobuttongroup.AndesRadioButtonGroup
 import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonGroupItem
+import com.mercadolibre.android.andesui.radiobuttongroup.align.AndesRadioButtonGroupAlign
+import com.mercadolibre.android.andesui.radiobuttongroup.distribution.AndesRadioButtonGroupDistribution
 import com.mercadolibre.android.andesui.radiobuttongroup.status.AndesRadioButtonGroupStatus
 import com.mercadolibre.android.andesui.radiobuttongroup.type.AndesRadioButtonGroupType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -180,13 +182,17 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
                     R.layout.andesui_dynamic_radiobuttongroup_showcase, null, false
             ) as ScrollView
 
+
+            val radioButtons = arrayListOf<RadioButtonGroupItem>()
+            radioButtons.add(RadioButtonGroupItem(1, "item 1", AndesRadioButtonGroupType.IDLE))
+            radioButtons.add(RadioButtonGroupItem(2, "item 2", AndesRadioButtonGroupType.IDLE))
+            radioButtons.add(RadioButtonGroupItem(3, "item 3", AndesRadioButtonGroupType.ERROR))
+            radioButtons.add(RadioButtonGroupItem(4, "item 4", AndesRadioButtonGroupType.IDLE))
+            radioButtons.add(RadioButtonGroupItem(5, "item 5", AndesRadioButtonGroupType.DISABLED))
+
             val radioButtonGroup = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
-            radioButtonGroup.radioButtonGroups.add(
-                    RadioButtonGroupItem(1, "item 1", AndesRadioButtonGroupType.IDLE)
-            )
-            radioButtonGroup.radioButtonGroups.add(
-                    RadioButtonGroupItem(2, "item 2", AndesRadioButtonGroupType.IDLE)
-            )
+            radioButtonGroup.selected = 2
+            radioButtonGroup.radioButtonGroups = radioButtons
 
             return layoutRadioButton
         }
