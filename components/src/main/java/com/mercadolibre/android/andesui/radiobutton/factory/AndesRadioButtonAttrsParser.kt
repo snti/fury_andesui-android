@@ -9,7 +9,7 @@ import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 
 internal data class AndesRadioButtonAttrs(
     val andesRadioButtonAlign: AndesRadioButtonAlign,
-    val andesRadiobuttonText: String?,
+    val andesRadioButtonText: String?,
     val andesRadioButtonStatus: AndesRadioButtonStatus,
     val andesRadioButtonType: AndesRadioButtonType
 )
@@ -59,7 +59,7 @@ internal object AndesRadioButtonAttrParser {
 
         return AndesRadioButtonAttrs(
                 andesRadioButtonAlign = align,
-                andesRadiobuttonText = typedArray.getString(R.styleable.AndesRadioButton_andesRadioButtonText),
+                andesRadioButtonText = typedArray.getString(R.styleable.AndesRadioButton_andesRadioButtonText),
                 andesRadioButtonStatus = validatedStatus,
                 andesRadioButtonType = type
         ).also { typedArray.recycle() }

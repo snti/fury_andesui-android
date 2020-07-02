@@ -14,19 +14,19 @@ internal data class AndesRadioButtonConfiguration(
 
 internal object AndesRadioButtonConfigurationFactory {
 
-    fun create(andesRadiobuttonAttrs: AndesRadioButtonAttrs): AndesRadioButtonConfiguration {
-        return with(andesRadiobuttonAttrs) {
-            val validatedStatus = if (andesRadiobuttonAttrs.andesRadioButtonType == AndesRadioButtonType.ERROR) {
+    fun create(andesRadioButtonAttrs: AndesRadioButtonAttrs): AndesRadioButtonConfiguration {
+        return with(andesRadioButtonAttrs) {
+            val validatedStatus = if (andesRadioButtonAttrs.andesRadioButtonType == AndesRadioButtonType.ERROR) {
                 AndesRadioButtonStatus.UNSELECTED
             } else {
-                andesRadiobuttonAttrs.andesRadioButtonStatus
+                andesRadioButtonAttrs.andesRadioButtonStatus
             }
             AndesRadioButtonConfiguration(
-                    text = andesRadiobuttonText,
+                    text = andesRadioButtonText,
                     textSize = resolveTextSize(),
-                    align = andesRadiobuttonAttrs.andesRadioButtonAlign,
+                    align = andesRadioButtonAttrs.andesRadioButtonAlign,
                     status = validatedStatus,
-                    type = andesRadiobuttonAttrs.andesRadioButtonType
+                    type = andesRadioButtonAttrs.andesRadioButtonType
             )
         }
     }
