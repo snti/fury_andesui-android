@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.radiobutton.align
 
-internal sealed class AndesRadiobuttonAlignInterface
+internal sealed class AndesRadioButtonAlignInterface
 
-internal object AndesRadiobuttonLeft : AndesRadiobuttonAlignInterface()
+internal object AndesRadioButtonLeft : AndesRadioButtonAlignInterface()
 
-internal object AndesRadiobuttonRight : AndesRadiobuttonAlignInterface()
+internal object AndesRadioButtonRight : AndesRadioButtonAlignInterface()

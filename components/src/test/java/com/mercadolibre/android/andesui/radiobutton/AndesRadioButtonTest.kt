@@ -5,8 +5,8 @@ import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
-import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonAttrs
-import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadiobuttonConfigurationFactory
+import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadioButtonAttrs
+import com.mercadolibre.android.andesui.radiobutton.factory.AndesRadioButtonConfigurationFactory
 import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 import org.junit.Assert.assertEquals
@@ -22,16 +22,16 @@ import org.robolectric.annotation.Config
 class AndesRadioButtonTest {
 
     private var context = RuntimeEnvironment.application
-    private val configFactory = spy(AndesRadiobuttonConfigurationFactory)
-    private lateinit var attrs: AndesRadiobuttonAttrs
+    private val configFactory = spy(AndesRadioButtonConfigurationFactory)
+    private lateinit var attrs: AndesRadioButtonAttrs
 
     @Test
-    fun `Radiobutton, Idle, Unselected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Unselected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -41,12 +41,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Idle, Unselected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Unselected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -56,12 +56,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Idle, Unselected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Unselected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -71,12 +71,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Idle, Selected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Selected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -86,12 +86,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Idle, Selected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Selected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -101,12 +101,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Idle, Selected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Idle, Selected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.IDLE,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -116,12 +116,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Unselected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Unselected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -131,12 +131,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Unselected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Unselected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -146,12 +146,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Unselected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Unselected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -161,12 +161,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Selected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Selected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -176,12 +176,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Selected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Selected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -191,12 +191,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Disabled, Selected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Disabled, Selected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.DISABLED,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -206,12 +206,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Unselected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Unselected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -221,12 +221,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Unselected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Unselected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -236,12 +236,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Unselected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Unselected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.UNSELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -251,12 +251,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Selected, Border`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Selected, Border`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -266,12 +266,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Selected, Background`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Selected, Background`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(
@@ -281,12 +281,12 @@ class AndesRadioButtonTest {
     }
 
     @Test
-    fun `Radiobutton, Error, Selected, Icon color`() {
-        attrs = AndesRadiobuttonAttrs(
+    fun `RadioButton, Error, Selected, Icon color`() {
+        attrs = AndesRadioButtonAttrs(
                 andesRadioButtonAlign = AndesRadioButtonAlign.LEFT,
                 andesRadioButtonStatus = AndesRadioButtonStatus.SELECTED,
                 andesRadioButtonType = AndesRadioButtonType.ERROR,
-                andesRadiobuttonText = "Andes checkbox"
+                andesRadioButtonText = "Andes checkbox"
         )
         val config = configFactory.create(attrs)
         assertEquals(

@@ -4,7 +4,7 @@ import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
 
-internal data class AndesRadiobuttonConfiguration(
+internal data class AndesRadioButtonConfiguration(
     val text: String?,
     val textSize: Int,
     val align: AndesRadioButtonAlign,
@@ -12,21 +12,21 @@ internal data class AndesRadiobuttonConfiguration(
     val type: AndesRadioButtonType
 )
 
-internal object AndesRadiobuttonConfigurationFactory {
+internal object AndesRadioButtonConfigurationFactory {
 
-    fun create(andesRadiobuttonAttrs: AndesRadiobuttonAttrs): AndesRadiobuttonConfiguration {
-        return with(andesRadiobuttonAttrs) {
-            val validatedStatus = if (andesRadiobuttonAttrs.andesRadioButtonType == AndesRadioButtonType.ERROR) {
+    fun create(andesRadioButtonAttrs: AndesRadioButtonAttrs): AndesRadioButtonConfiguration {
+        return with(andesRadioButtonAttrs) {
+            val validatedStatus = if (andesRadioButtonAttrs.andesRadioButtonType == AndesRadioButtonType.ERROR) {
                 AndesRadioButtonStatus.UNSELECTED
             } else {
-                andesRadiobuttonAttrs.andesRadioButtonStatus
+                andesRadioButtonAttrs.andesRadioButtonStatus
             }
-            AndesRadiobuttonConfiguration(
-                    text = andesRadiobuttonText,
+            AndesRadioButtonConfiguration(
+                    text = andesRadioButtonText,
                     textSize = resolveTextSize(),
-                    align = andesRadiobuttonAttrs.andesRadioButtonAlign,
+                    align = andesRadioButtonAttrs.andesRadioButtonAlign,
                     status = validatedStatus,
-                    type = andesRadiobuttonAttrs.andesRadioButtonType
+                    type = andesRadioButtonAttrs.andesRadioButtonType
             )
         }
     }

@@ -65,13 +65,13 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
 
-            val staticRadiobuttonLayout = addStaticRadiobutton(inflater)
-            val dynamicRadiobuttonLayout = addDynamicRadiobutton(inflater)
+            val staticRadioButtonLayout = addStaticRadioButton(inflater)
+            val dynamicRadioButtonLayout = addDynamicRadioButton(inflater)
 
-            return listOf(dynamicRadiobuttonLayout, staticRadiobuttonLayout)
+            return listOf(dynamicRadioButtonLayout, staticRadioButtonLayout)
         }
 
-        private fun addDynamicRadiobutton(inflater: LayoutInflater): View {
+        private fun addDynamicRadioButton(inflater: LayoutInflater): View {
             val layoutCheckbox = inflater.inflate(
                     R.layout.andesui_dynamic_radiobutton_showcase, null, false
             ) as ScrollView
@@ -156,7 +156,7 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             return layoutCheckbox
         }
 
-        private fun addStaticRadiobutton(inflater: LayoutInflater): View {
+        private fun addStaticRadioButton(inflater: LayoutInflater): View {
             val layoutCheckbox = inflater.inflate(
                     R.layout.andesui_radiobutton_showcase, null, false
             ) as ScrollView
