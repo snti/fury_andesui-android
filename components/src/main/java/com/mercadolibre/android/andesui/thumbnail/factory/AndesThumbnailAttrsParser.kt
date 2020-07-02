@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.color.AndesColor
-import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchy
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
@@ -29,7 +28,6 @@ internal data class AndesThumbnailAttrs(
  * This object parse the attribute set and return an instance of AndesThumbnailAttrs to be used by AndesThumbnail
  */
 internal object AndesThumbnailAttrsParser {
-
     private const val ANDES_THUMBNAIL_HIERARCHY_DEFAULT = "1000"
     private const val ANDES_THUMBNAIL_HIERARCHY_LOUD = "1001"
     private const val ANDES_THUMBNAIL_HIERARCHY_QUIET = "1002"
@@ -50,15 +48,14 @@ internal object AndesThumbnailAttrsParser {
 
     fun parse(context: Context, attr: AttributeSet?): AndesThumbnailAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesThumbnail)
+        val color = typedArray.getResourceId(R.styleable.AndesThumbnail_andesThumbnailAccentColor, 0)
 
         return AndesThumbnailAttrs(
             andesThumbnailHierarchy = getHierarchy(typedArray),
             andesThumbnailType = getType(typedArray),
             andesThumbnailSize = getSize(typedArray),
             andesThumbnailState = getState(typedArray),
-            andesThumbnailAccentColor =
-            context.resources.getIdentifier(typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailAccentColor),
-                "color", context.packageName).toAndesColor(),
+            andesThumbnailAccentColor = AndesColor(color),
             andesThumbnailFallbackImage =
             typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailFallbackImage),
             andesThumbnailImage = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)

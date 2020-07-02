@@ -84,7 +84,6 @@ class AndesThumbnail : FrameLayout {
         initAttrs(attrs)
     }
 
-    @Suppress("unused")
     constructor(
         context: Context,
         accentColor: AndesColor,
@@ -170,14 +169,6 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun setupImage(config: AndesThumbnailConfiguration) {
-      /*  val resId = context.resources.getIdentifier(config.image, "drawable", context.packageName)
-        try {
-            ContextCompat.getDrawable(context, resId)
-        } catch (e: FileNotFoundException) {
-            Log.e("Andes UI", "File $config.image was not found.", e)
-            null
-        }*/
-
         val unwrappedDrawable = config.image
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
         DrawableCompat.setTint(wrappedDrawable, config.iconColor.colorInt(context))
