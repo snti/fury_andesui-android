@@ -89,17 +89,29 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             inputTypeSpinner.adapter = typeAdapter
 
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
-            val stateAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.textfield_state_spinner))
+            val stateAdapter = ArrayAdapter(
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.textfield_state_spinner)
+            )
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             stateSpinner.adapter = stateAdapter
 
             val preffixSpinner: Spinner = layoutTextfield.findViewById(R.id.prefix_spinner)
-            val preffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.prefix_spinner))
+            val preffixAdapter = ArrayAdapter(
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.prefix_spinner)
+            )
             preffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             preffixSpinner.adapter = preffixAdapter
 
             val suffixSpinner: Spinner = layoutTextfield.findViewById(R.id.suffix_spinner)
-            val suffixAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, context.resources.getStringArray(R.array.suffix_spinner))
+            val suffixAdapter = ArrayAdapter(
+                    context,
+                    android.R.layout.simple_spinner_item,
+                    context.resources.getStringArray(R.array.suffix_spinner)
+            )
             suffixAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             suffixSpinner.adapter = suffixAdapter
 
@@ -130,7 +142,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                val selectedInputType = getInputTypesArray().filter { it.name == inputTypeSpinner.selectedItem.toString() }.single().value
+                val selectedInputType = getInputTypesArray().filter {
+                    it.name == inputTypeSpinner.selectedItem.toString()
+                }.single().value
                 textfield.inputType = selectedInputType
             }
 
@@ -209,7 +223,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         }
 
         private fun addStaticTextfieldLayout(inflater: LayoutInflater): View {
-            val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase, null, false) as ScrollView
+            val layoutTextfield = inflater.inflate(
+                    R.layout.andesui_textfield_showcase, null, false
+            ) as ScrollView
             layoutTextfield.left
 
             // Set action clear
@@ -221,11 +237,11 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 }
 
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                    //no-op
+                    // no-op
                 }
 
                 override fun afterTextChanged(s: Editable) {
-                    //no-op
+                    // no-op
                 }
             }
 

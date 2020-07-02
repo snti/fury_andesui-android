@@ -285,5 +285,4 @@ class AndesSnackbar : CardView {
     companion object {
         const val ANDES_SNACKBAR_PADDING = 3
     }
-
 }

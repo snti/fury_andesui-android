@@ -51,6 +51,8 @@
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
+    <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
+    <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
     <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
     <string name="andesui_demoapp_message_generate_random_message">Generate random Andes Message</string>
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
@@ -76,6 +78,7 @@
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
 
+    <string name="andes_radiobutton_showcase">Andes RadioButton</string>
     <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_simple_tag_showcase">Simple tag</string>
     <string name="andes_snackbar_showcase">Andes snackbar</string>
@@ -97,6 +100,11 @@
     <string name="andes_badges_size">Size</string>
     <string name="andes_badges_border">Border</string>
     <string name="andes_badges_text">Demo</string>
+
+    <string name="andes_radiobutton_text">Andes radiobutton</string>
+    <string name="andes_radiobutton_type">Type</string>
+    <string name="andes_radiobutton_status">Status</string>
+    <string name="andes_radiobutton_align">Align</string>
 
     <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
     <string name="andesui_demoapp_label_andes_contribution">I want to contribute 🤝</string>
@@ -207,6 +215,22 @@
         <item>Short</item>
         <item>Normal</item>
         <item>Long</item>
+    </string-array>
+
+    <string-array name="type_radiobutton_spinner">
+        <item>Idle</item>
+        <item>Error</item>
+        <item>Disabled</item>
+    </string-array>
+
+    <string-array name="status_radiobutton_spinner">
+        <item>Unselected</item>
+        <item>Selected</item>
+    </string-array>
+
+    <string-array name="align_radiobutton_spinner">
+        <item>Left</item>
+        <item>Right</item>
     </string-array>
 
 </resources>
