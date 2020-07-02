@@ -1,6 +1,7 @@
 # v2.6.0
 ## Added
 - Checkbox Component.
+- RadioButton Component.
 
 # v2.5.1
 ## Added
