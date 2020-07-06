@@ -1,5 +1,4 @@
 package com.mercadolibre.android.andesui.thumbnail.hierarchy
-
 /**
  * Defines all style related properties that an [AndesThumbnail] needs to be drawn properly.
  * Those properties change depending on the style of the thumbnail.

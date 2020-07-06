@@ -32,7 +32,7 @@ internal object AndesThumbnailConfigurationFactory {
                 iconColor = resolveIconColor(context, andesThumbnailState.state, andesThumbnailHierarchy,
                     andesThumbnailAccentColor),
                 iconSize = resolveIconSize(context, andesThumbnailSize.size),
-                image = resolveImage(context, andesThumbnailImage, andesThumbnailFallbackImage),
+                image = resolveImage(andesThumbnailImage),
                 size = resolveSize(context, andesThumbnailSize.size)
             )
         }
@@ -43,8 +43,7 @@ internal object AndesThumbnailConfigurationFactory {
         state: AndesThumbnailStateInterface,
         hierarchy: AndesThumbnailHierarchy,
         accentColor: AndesColor
-    ) = state.backgroundColor(context, hierarchy,
-        accentColor)
+    ) = state.backgroundColor(context, hierarchy, accentColor)
     private fun resolveBorderColor(): AndesColor = R.color.andes_gray_070_solid.toAndesColor()
     private fun resolveHasBorder(hierarchy: AndesThumbnailHierarchyInterface): Boolean = hierarchy.hasBorder()
     private fun resolveIconColor(
@@ -55,6 +54,6 @@ internal object AndesThumbnailConfigurationFactory {
     ) = state.iconColor(context, hierarchy,
         accentColor)
     private fun resolveIconSize(context: Context, size: AndesThumbnailSizeInterface) = size.iconSize(context).toInt()
-    private fun resolveImage(context: Context, image: Drawable, fallbackImage: String) = image
+    private fun resolveImage(image: Drawable) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
 }

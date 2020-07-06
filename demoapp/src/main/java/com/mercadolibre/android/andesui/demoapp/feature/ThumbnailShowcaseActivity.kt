@@ -184,7 +184,7 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
 
     private fun bindAndesSpecsButton(container: View) {
         container.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_button).setOnClickListener {
-            launchSpecs(container.context, AndesSpecs.BUTTON)
+            launchSpecs(container.context, AndesSpecs.THUMBNAIL)
         }
     }
 
