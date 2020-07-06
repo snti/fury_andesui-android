@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
+        setupCheckbox()
+        setupRadioButton()
         setupSnackbar()
         setupTags()
         setupBadges()
@@ -28,6 +30,18 @@ class MainActivity : AppCompatActivity() {
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
+    }
+
+    private fun setupCheckbox() {
+        andesui_checkbox.setOnClickListener {
+            launchIntent("meli://andes/checkbox")
+        }
+    }
+  
+    private fun setupRadioButton() {
+        andesui_radiobutton.setOnClickListener {
+            launchIntent("meli://andes/radiobutton")
+        }
     }
 
     private fun setupSnackbar() {
@@ -68,8 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupWhatsNew() {
         andesui_demoapp_changelog.setupPrimaryAction(
-            getString(R.string.andesui_demoapp_whatsnew_main_action),
-            View.OnClickListener { launchIntent("meli://andes/whats-new") }
+                getString(R.string.andesui_demoapp_whatsnew_main_action),
+                View.OnClickListener { launchIntent("meli://andes/whats-new") }
         )
     }
 
