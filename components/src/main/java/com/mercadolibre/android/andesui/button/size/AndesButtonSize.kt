@@ -13,6 +13,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 enum class AndesButtonSize {
     SMALL,
     MEDIUM,
+    LINK_MEDIUM,
     LARGE;
 
     companion object {
@@ -25,6 +26,7 @@ enum class AndesButtonSize {
         return when (this) {
             SMALL -> AndesSmallButtonSize()
             MEDIUM -> AndesMediumButtonSize()
+            LINK_MEDIUM -> AndesLinkMediumButtonSize()
             LARGE -> AndesLargeButtonSize()
         }
     }

@@ -93,3 +93,12 @@ internal fun createBackgroundColorConfigTransparent() =
                 hoveredColor = R.color.andes_accent_color_100.toAndesColor(),
                 disabledColor = R.color.andes_transparent.toAndesColor(),
                 otherColor = null)
+
+internal fun createBackgroundColorConfigLink() =
+        BackgroundColorConfig(
+                enabledColor = R.color.andes_transparent.toAndesColor(),
+                pressedColor = R.color.andes_transparent.toAndesColor(),
+                focusedColor = R.color.andes_transparent.toAndesColor(),
+                hoveredColor = R.color.andes_transparent.toAndesColor(),
+                disabledColor = R.color.andes_transparent.toAndesColor(),
+                otherColor = null)

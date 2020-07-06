@@ -24,6 +24,8 @@ internal sealed class AndesMessageTypeInterface {
     abstract fun primaryActionColorConfig(): BackgroundColorConfig
 
     abstract fun secondaryActionColorConfig(): BackgroundColorConfig
+
+    abstract fun linkActionColorConfig(): BackgroundColorConfig
 }
 
 internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
@@ -55,6 +57,10 @@ internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
                 hoveredColor = R.color.andes_accent_color_600.toAndesColor(),
                 disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
+    }
+
+    override fun linkActionColorConfig(): BackgroundColorConfig {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -88,6 +94,10 @@ internal object AndesSuccessMessageType : AndesMessageTypeInterface() {
                 disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
+
+    override fun linkActionColorConfig(): BackgroundColorConfig {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
 
 internal object AndesWarningMessageType : AndesMessageTypeInterface() {
@@ -120,6 +130,10 @@ internal object AndesWarningMessageType : AndesMessageTypeInterface() {
                 disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
     }
+
+    override fun linkActionColorConfig(): BackgroundColorConfig {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
 
 internal object AndesErrorMessageType : AndesMessageTypeInterface() {
@@ -151,5 +165,9 @@ internal object AndesErrorMessageType : AndesMessageTypeInterface() {
                 hoveredColor = R.color.andes_red_600.toAndesColor(),
                 disabledColor = R.color.andes_gray_100.toAndesColor(),
                 otherColor = null)
+    }
+
+    override fun linkActionColorConfig(): BackgroundColorConfig {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

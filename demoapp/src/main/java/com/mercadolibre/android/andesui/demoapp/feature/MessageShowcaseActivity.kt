@@ -102,6 +102,8 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val secondaryActionText = layoutMessagesChange.findViewById<EditText>(R.id.secondary_action_text)
 
+            val linkActionText = layoutMessagesChange.findViewById<EditText>(R.id.link_action_text)
+
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
@@ -155,6 +157,25 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     }
                 } else {
                     changeMessage.hideSecondaryAction()
+                }
+
+                if (linkActionText.text.toString() != "") {
+                    when {
+                        primaryActionText.text.toString() == "" -> {
+                            changeMessage.setuplinkAction(linkActionText.text.toString(), View.OnClickListener {
+                                Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
+                            } , changeMessage.hierarchy)
+                        }
+                        else -> {
+                            Toast.makeText(
+                                    context,
+                                    "Cannot set a link action with a primary one",
+                                    Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
+                    changeMessage.hidePrimaryAction()
                 }
 
                 changeMessage.visibility = View.VISIBLE

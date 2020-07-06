@@ -21,6 +21,7 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.button.hierarchy.getConfiguredBackground
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
+import android.graphics.Paint.UNDERLINE_TEXT_FLAG
 
 /**
  * User interface element the user can tap or click to perform an action.

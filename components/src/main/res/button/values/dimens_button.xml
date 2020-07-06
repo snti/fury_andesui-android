@@ -19,6 +19,7 @@
     <dimen name="andes_button_lateral_padding_large">16dp</dimen>
     <dimen name="andes_button_lateral_padding_medium">12dp</dimen>
     <dimen name="andes_button_lateral_padding_small">8dp</dimen>
+    <dimen name="andes_button_lateral_padding_link_medium">0dp</dimen>
 
     <dimen name="andes_button_icon_width">20dp</dimen>
     <dimen name="andes_button_icon_height">20dp</dimen>

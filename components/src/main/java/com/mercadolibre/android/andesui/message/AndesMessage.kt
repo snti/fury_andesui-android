@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.message
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
+import android.support.v4.text.HtmlCompat
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.util.Log
@@ -19,6 +20,8 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
+import android.graphics.Paint
+
 
 class AndesMessage : CardView {
 
@@ -77,6 +80,12 @@ class AndesMessage : CardView {
             primaryAction.textComponent.text = value
         }
 
+    private var linkActionText: String
+        get() = linkAction.textComponent.text.toString()
+        set(value) {
+            linkAction.textComponent.text = value
+        }
+
     private var secondaryActionText: String
         get() = secondaryAction.textComponent.text.toString()
         set(value) {
@@ -92,6 +101,7 @@ class AndesMessage : CardView {
     private lateinit var andesMessageAttrs: AndesMessageAttrs
     private lateinit var primaryAction: AndesButton
     private lateinit var secondaryAction: AndesButton
+    private lateinit var linkAction: AndesButton
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
@@ -183,6 +193,7 @@ class AndesMessage : CardView {
         pipeComponent = container.findViewById(R.id.andes_pipe)
         primaryAction = container.findViewById(R.id.andes_primary_action)
         secondaryAction = container.findViewById(R.id.andes_secondary_action)
+        linkAction = container.findViewById(R.id.andes_link_action)
     }
 
     /**
@@ -258,12 +269,25 @@ class AndesMessage : CardView {
         primaryAction.changeTextColor(config.primaryActionTextColor.colorInt(context))
         secondaryAction.changeBackgroundColor(config.secondaryActionBackgroundColor)
         secondaryAction.changeTextColor(config.secondaryActionTextColor.colorInt(context))
+        linkAction.changeBackgroundColor(config.linkActionBackgroundColor)
+        linkAction.changeTextColor(config.linkActionTextColor.colorInt(context))
     }
 
     fun setupPrimaryAction(text: String, onClickListener: OnClickListener) {
         primaryAction.visibility = View.VISIBLE
         primaryActionText = text
         primaryAction.setOnClickListener(onClickListener)
+    }
+
+    fun setuplinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
+        if (primaryAction.visibility == View.GONE) {
+            linkAction.visibility = View.VISIBLE
+            linkActionText = text
+            if (hierarchy == AndesMessageHierarchy.LOUD){
+              linkAction.textComponent.paintFlags =  Paint.UNDERLINE_TEXT_FLAG
+            }
+            linkAction.setOnClickListener(onClickListener)
+        }
     }
 
     fun setupSecondaryAction(text: String, onClickListener: OnClickListener) {

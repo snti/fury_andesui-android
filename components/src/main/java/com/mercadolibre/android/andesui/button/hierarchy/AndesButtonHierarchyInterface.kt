@@ -80,3 +80,8 @@ internal object AndesTransparentButtonHierarchy : AndesButtonHierarchyInterface(
     override fun background(context: Context, cornerRadius: Float) = getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigTransparent())
     override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigTransparent())
 }
+
+internal object AndesLinkButtonHierarchy : AndesButtonHierarchyInterface() {
+    override fun background(context: Context, cornerRadius: Float) = getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigLink())
+    override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigTransparent())
+}
