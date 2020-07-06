@@ -279,16 +279,6 @@ class AndesMessage : CardView {
         primaryAction.setOnClickListener(onClickListener)
     }
 
-    fun setuplinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
-        if (primaryAction.visibility == View.GONE) {
-            linkAction.visibility = View.VISIBLE
-            linkActionText = text
-            if (hierarchy == AndesMessageHierarchy.LOUD){
-              linkAction.textComponent.paintFlags =  Paint.UNDERLINE_TEXT_FLAG
-            }
-            linkAction.setOnClickListener(onClickListener)
-        }
-    }
 
     fun setupSecondaryAction(text: String, onClickListener: OnClickListener) {
         if (primaryAction.visibility == View.VISIBLE) {
@@ -299,6 +289,21 @@ class AndesMessage : CardView {
             when {
                 BuildConfig.DEBUG -> throw IllegalStateException("Cannot initialize a secondary action without a primary one")
                 else -> Log.d("AndesMessage", "Cannot initialize a secondary action without a primary one")
+            }
+        }
+    }
+
+    fun setuplinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
+        if (primaryAction.visibility == View.GONE) {
+            linkAction.visibility = View.VISIBLE
+            linkActionText = text
+            linkAction.textComponent.paintFlags = if (hierarchy == AndesMessageHierarchy.LOUD) Paint.UNDERLINE_TEXT_FLAG else 0
+            linkAction.setOnClickListener(onClickListener)
+        }
+        else {
+            when {
+                BuildConfig.DEBUG -> throw IllegalStateException("Cannot initialize a link action with a primary one")
+                else -> Log.d("AndesMessage", "Cannot initialize a link action with a primary one")
             }
         }
     }
@@ -317,6 +322,10 @@ class AndesMessage : CardView {
 
     fun hideSecondaryAction() {
         secondaryAction.visibility = View.GONE
+    }
+
+    fun hideLinkAction() {
+        linkAction.visibility = View.GONE
     }
 
     private fun createConfig() = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)

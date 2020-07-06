@@ -8,7 +8,6 @@
         android:id="@+id/andes_message_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:animateLayoutChanges="true">
 
         <TextView
@@ -121,7 +120,7 @@
             android:layout_marginTop="16dp"
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="mediumLink"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/andes_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"
             app:layout_constraintHorizontal_bias="0.0"
