@@ -9,8 +9,6 @@ import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
 import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
-import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
-import com.mercadolibre.android.andesui.radiobuttongroup.align.AndesRadioButtonGroupAlign
 import com.mercadolibre.android.andesui.radiobuttongroup.distribution.AndesRadioButtonGroupDistribution
 import com.mercadolibre.android.andesui.radiobuttongroup.factory.AndesRadioButtonGroupConfigurationFactory
 import com.mercadolibre.android.andesui.radiobuttongroup.factory.AndesRadioButtonGroupAttrs
@@ -22,7 +20,7 @@ class AndesRadioButtonGroup : LinearLayout {
     /**
      * Getter and setter for [align].
      */
-    var align: AndesRadioButtonGroupAlign
+    var align: AndesRadioButtonAlign
         get() = andesRadioButtonGroupAttrs.andesRadioButtonGroupAlign
         set(value) {
             andesRadioButtonGroupAttrs = andesRadioButtonGroupAttrs.copy(andesRadioButtonGroupAlign = value)
@@ -41,35 +39,40 @@ class AndesRadioButtonGroup : LinearLayout {
 
     /**
      * Getter and setter for [selected].
+     * Value -1 if there is no selected element yet.
      */
-    var selected: Int?
-        get() = andesRadioButtonGroupAttrs.andesRadiobuttonGroupSelected
+    var selected: Int
+        get() = andesRadioButtonGroupAttrs.andesRadioButtonGroupSelected
         set(value) {
-            andesRadioButtonGroupAttrs = andesRadioButtonGroupAttrs.copy(andesRadiobuttonGroupSelected = value)
+            andesRadioButtonGroupAttrs = andesRadioButtonGroupAttrs.copy(andesRadioButtonGroupSelected = value)
             setupSelected(createConfig())
         }
 
     /**
      * Getter and setter for [selected].
      */
-    var radioButtonGroups: ArrayList<RadioButtonGroupItem>
-        get() = andesRadioButtonGroupAttrs.andesRadioButtonGroupRadioButtonGroups
+    var radioButtons: ArrayList<RadioButtonItem>
+        get() = andesRadioButtonGroupAttrs.andesRadioButtonGroupRadioButtons
         set(value) {
-            andesRadioButtonGroupAttrs = andesRadioButtonGroupAttrs.copy(andesRadioButtonGroupRadioButtonGroups = value)
+            andesRadioButtonGroupAttrs = andesRadioButtonGroupAttrs.copy(andesRadioButtonGroupRadioButtons = value)
             setupRadioButtons()
         }
 
+    interface OnRadioButtonCheckedChanged {
+        fun onRadioButtonCheckedChanged(index: Int)
+    }
+
     /**
-     * Setter [OnClickListener].
+     * Setter [OnRadioButtonCheckedChanged].
      */
-    fun setupCallback(@Nullable listener: OnClickListener) {
+    fun setupCallback(@Nullable listener: OnRadioButtonCheckedChanged) {
         if (this.privateListener != listener) {
             this.privateListener = listener
         }
     }
 
     private var oldItemSelected: Int? = -1
-    private var privateListener: OnClickListener? = null
+    private var privateListener: OnRadioButtonCheckedChanged? = null
     private lateinit var andesRadioButtonGroupAttrs: AndesRadioButtonGroupAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -78,12 +81,13 @@ class AndesRadioButtonGroup : LinearLayout {
 
     constructor(
             context: Context,
-            align: AndesRadioButtonGroupAlign,
+            align: AndesRadioButtonAlign,
             distribution: AndesRadioButtonGroupDistribution,
-            selected: Int?,
-            radioButtonGroups: ArrayList<RadioButtonGroupItem>
+            radioButtons: ArrayList<RadioButtonItem>,
+            selected: Int?
     ) : super(context) {
-        initAttrs(align, distribution, selected, radioButtonGroups)
+        val selectedValue = selected ?: ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE
+        initAttrs(align, distribution, selectedValue, radioButtons)
     }
 
     /**
@@ -98,11 +102,12 @@ class AndesRadioButtonGroup : LinearLayout {
     }
 
     private fun initAttrs(
-        align: AndesRadioButtonGroupAlign = ANDES_ALIGN_DEFAULT_VALUE,
-        distribution: AndesRadioButtonGroupDistribution = ANDES_DISTRIBUTION_DEFAULT_VALUE,
-        selected: Int?,
-        radiobuttons: ArrayList<RadioButtonGroupItem> = arrayListOf()
+        align: AndesRadioButtonAlign = ANDES_RADIOBUTTON_ALIGN_DEFAULT_VALUE,
+        distribution: AndesRadioButtonGroupDistribution = ANDES_RADIOBUTTON_DISTRIBUTION_DEFAULT_VALUE,
+        selected: Int = ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE,
+        radiobuttons: ArrayList<RadioButtonItem> = arrayListOf()
     ) {
+
         andesRadioButtonGroupAttrs = AndesRadioButtonGroupAttrs(align, distribution, selected, radiobuttons)
         val config = AndesRadioButtonGroupConfigurationFactory.create(andesRadioButtonGroupAttrs)
         setupComponents(config)
@@ -138,8 +143,8 @@ class AndesRadioButtonGroup : LinearLayout {
 
     private fun setupRadioButtons() {
         removeAllViews()
-        this.radioButtonGroups.forEach { item ->
-            val selected = if (selected == item.id) {
+        this.radioButtons.forEachIndexed { index, item ->
+            val selectedValue = if (index == selected) {
                 AndesRadioButtonStatus.SELECTED
             } else {
                 AndesRadioButtonStatus.UNSELECTED
@@ -148,9 +153,9 @@ class AndesRadioButtonGroup : LinearLayout {
             val andesRadioButton = AndesRadioButton(
                 context,
                 item.text,
-                AndesRadioButtonAlign.fromString(align.toString()),
-                selected,
-                AndesRadioButtonType.valueOf(item.type.toString())
+                align,
+                selectedValue,
+                item.type
             )
 
             if (distribution == AndesRadioButtonGroupDistribution.VERTICAL) {
@@ -170,7 +175,7 @@ class AndesRadioButtonGroup : LinearLayout {
             }
 
             andesRadioButton.setupCallback(OnClickListener {
-                this.selected = item.id
+                this.selected = index
             })
 
             addView(andesRadioButton)
@@ -178,22 +183,24 @@ class AndesRadioButtonGroup : LinearLayout {
     }
 
     private fun setupSelected(config: AndesRadioButtonGroupConfiguration) {
-        config.radioButtonGroups.forEachIndexed { index, item ->
-            if (item.id == oldItemSelected) {
+        config.radioButtons.forEachIndexed { index, _ ->
+            if (index == oldItemSelected) {
                 (getChildAt(index) as AndesRadioButton).status = AndesRadioButtonStatus.UNSELECTED
             }
-            if (item.id == selected) {
+            if (index == selected) {
                 (getChildAt(index) as AndesRadioButton).status = AndesRadioButtonStatus.SELECTED
             }
         }
         oldItemSelected = selected
+        privateListener?.onRadioButtonCheckedChanged(selected)
     }
 
     private fun createConfig() = AndesRadioButtonGroupConfigurationFactory.create(andesRadioButtonGroupAttrs)
 
     companion object {
-        private val ANDES_ALIGN_DEFAULT_VALUE = AndesRadioButtonGroupAlign.LEFT
-        private val ANDES_DISTRIBUTION_DEFAULT_VALUE = AndesRadioButtonGroupDistribution.VERTICAL
+        private val ANDES_RADIOBUTTON_ALIGN_DEFAULT_VALUE = AndesRadioButtonAlign.LEFT
+        private val ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE = -1
+        private val ANDES_RADIOBUTTON_DISTRIBUTION_DEFAULT_VALUE = AndesRadioButtonGroupDistribution.VERTICAL
     }
 
 }

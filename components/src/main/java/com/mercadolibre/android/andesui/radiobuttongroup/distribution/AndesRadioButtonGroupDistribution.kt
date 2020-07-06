@@ -8,12 +8,12 @@ enum class AndesRadioButtonGroupDistribution {
         fun fromString(value: String): AndesRadioButtonGroupDistribution = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesRadiobuttonGroupAlign()
+    internal val type get() = getAndesRadioButtonGroupAlign()
 
-    private fun getAndesRadiobuttonGroupAlign(): AndesRadiobuttonGroupDistributionInterface {
+    private fun getAndesRadioButtonGroupAlign(): AndesRadioButtonGroupDistributionInterface {
         return when (this) {
-            VERTICAL -> AndesRadiobuttonGroupVertical
-            HORIZONTAL -> AndesRadiobuttonGroupHorizontal
+            VERTICAL -> AndesRadioButtonGroupVertical
+            HORIZONTAL -> AndesRadioButtonGroupHorizontal
         }
     }
 }

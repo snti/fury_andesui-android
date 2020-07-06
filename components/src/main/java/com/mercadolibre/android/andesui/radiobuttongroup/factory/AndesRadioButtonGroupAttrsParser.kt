@@ -3,15 +3,15 @@ package com.mercadolibre.android.andesui.radiobuttongroup.factory
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonGroupItem
-import com.mercadolibre.android.andesui.radiobuttongroup.align.AndesRadioButtonGroupAlign
+import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
+import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import com.mercadolibre.android.andesui.radiobuttongroup.distribution.AndesRadioButtonGroupDistribution
 
 internal data class AndesRadioButtonGroupAttrs(
-        val andesRadioButtonGroupAlign: AndesRadioButtonGroupAlign,
+        val andesRadioButtonGroupAlign: AndesRadioButtonAlign,
         val andesRadioButtonGroupDistribution: AndesRadioButtonGroupDistribution,
-        val andesRadiobuttonGroupSelected: Int?,
-        val andesRadioButtonGroupRadioButtonGroups: ArrayList<RadioButtonGroupItem>
+        val andesRadioButtonGroupSelected: Int,
+        val andesRadioButtonGroupRadioButtons: ArrayList<RadioButtonItem>
 )
 
 /**
@@ -30,9 +30,9 @@ internal object AndesRadioButtonGroupAttrsParser {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesRadioButtonGroup)
 
         val align = when (typedArray.getString(R.styleable.AndesRadioButtonGroup_andesRadioButtonGroupAlign)) {
-            ANDES_RADIOBUTTON_ALIGN_LEFT -> AndesRadioButtonGroupAlign.LEFT
-            ANDES_RADIOBUTTON_ALIGN_RIGHT -> AndesRadioButtonGroupAlign.RIGHT
-            else -> AndesRadioButtonGroupAlign.LEFT
+            ANDES_RADIOBUTTON_ALIGN_LEFT -> AndesRadioButtonAlign.LEFT
+            ANDES_RADIOBUTTON_ALIGN_RIGHT -> AndesRadioButtonAlign.RIGHT
+            else -> AndesRadioButtonAlign.LEFT
         }
 
         val distribution = when (typedArray.getString(R.styleable.AndesRadioButtonGroup_andesRadioButtonGroupDistribution)) {
@@ -44,8 +44,8 @@ internal object AndesRadioButtonGroupAttrsParser {
         return AndesRadioButtonGroupAttrs(
                 andesRadioButtonGroupAlign = align,
                 andesRadioButtonGroupDistribution = distribution,
-                andesRadiobuttonGroupSelected = null,
-                andesRadioButtonGroupRadioButtonGroups = arrayListOf()
+                andesRadioButtonGroupSelected = -1,
+                andesRadioButtonGroupRadioButtons = arrayListOf()
         ).also { typedArray.recycle() }
     }
 

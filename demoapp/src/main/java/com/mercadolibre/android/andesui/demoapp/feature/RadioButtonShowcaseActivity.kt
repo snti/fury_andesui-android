@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import android.widget.Spinner
+import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
 import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
@@ -21,11 +22,7 @@ import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.radiobuttongroup.AndesRadioButtonGroup
-import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonGroupItem
-import com.mercadolibre.android.andesui.radiobuttongroup.align.AndesRadioButtonGroupAlign
-import com.mercadolibre.android.andesui.radiobuttongroup.distribution.AndesRadioButtonGroupDistribution
-import com.mercadolibre.android.andesui.radiobuttongroup.status.AndesRadioButtonGroupStatus
-import com.mercadolibre.android.andesui.radiobuttongroup.type.AndesRadioButtonGroupType
+import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
@@ -183,18 +180,24 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             ) as ScrollView
 
 
-            val radioButtons = arrayListOf<RadioButtonGroupItem>()
-            radioButtons.add(RadioButtonGroupItem(1, "item 1", AndesRadioButtonGroupType.IDLE))
-            radioButtons.add(RadioButtonGroupItem(2, "item 2", AndesRadioButtonGroupType.IDLE))
-            radioButtons.add(RadioButtonGroupItem(3, "item 3", AndesRadioButtonGroupType.ERROR))
-            radioButtons.add(RadioButtonGroupItem(4, "item 4", AndesRadioButtonGroupType.IDLE))
-            radioButtons.add(RadioButtonGroupItem(5, "item 5", AndesRadioButtonGroupType.DISABLED))
+            val radioButtons = arrayListOf<RadioButtonItem>()
+            radioButtons.add(RadioButtonItem("item 1", AndesRadioButtonType.IDLE))
+            radioButtons.add(RadioButtonItem("item 2", AndesRadioButtonType.IDLE))
+            radioButtons.add(RadioButtonItem("item 3", AndesRadioButtonType.ERROR))
+            radioButtons.add(RadioButtonItem("item 4", AndesRadioButtonType.IDLE))
+            radioButtons.add(RadioButtonItem("item 5", AndesRadioButtonType.DISABLED))
 
             val radioButtonGroup = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
-            radioButtonGroup.selected = 2
-            radioButtonGroup.radioButtonGroups = radioButtons
+            radioButtonGroup.selected = 1
+            radioButtonGroup.radioButtons = radioButtons
+            radioButtonGroup.setupCallback(object: AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
+                override fun onRadioButtonCheckedChanged(index: Int) {
+                    Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
+                }
+            })
 
             return layoutRadioButton
         }
     }
+
 }
