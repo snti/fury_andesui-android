@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import android.widget.Spinner
+import android.widget.Switch
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.demoapp.AndesSpecs
@@ -20,6 +23,7 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
+import kotlinx.android.synthetic.main.andesui_thumbnail_showcase_change.*
 
 class ThumbnailShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +31,7 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         setContentView(R.layout.andesui_showcase_main)
 
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
-        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_button)
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_thumbnail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
@@ -36,45 +40,131 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         indicator.attach(viewPager)
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        addThumbnailsQuiet(adapter.views[0])
-        addThumbnailsLoud(adapter.views[1])
-        addThumbnailsDefault(adapter.views[2])
+        addDynamicThumbnails(adapter.views[0])
+        // addThumbnailsQuiet(adapter.views[1])
     }
+
+    private fun addDynamicThumbnails(container: View) {
+        val hierarchySpinner: Spinner = container.findViewById(R.id.hierarchy_spinner)
+        ArrayAdapter.createFromResource(
+            this, R.array.thumbnail_hierarchy_spinner, android.R.layout.simple_spinner_item)
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                hierarchySpinner.adapter = adapter
+            }
+
+        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        ArrayAdapter.createFromResource(
+            this, R.array.thumbnail_type_spinner, android.R.layout.simple_spinner_item)
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                typeSpinner.adapter = adapter
+            }
+
+        val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
+        ArrayAdapter.createFromResource(
+            this, R.array.thumbnail_size_spinner, android.R.layout.simple_spinner_item)
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sizeSpinner.adapter = adapter
+            }
+
+        val stateSwitch: Switch = container.findViewById(R.id.state_switch)
+
+        val clearButton: AndesButton = container.findViewById(R.id.clear_button)
+        val changeButton: AndesButton = container.findViewById(R.id.change_button)
+
+        val andesThumbnail: AndesThumbnail = container.findViewById(R.id.andes_thumbnail)
+
+        hierarchySpinner.setSelection(1)
+        typeSpinner.setSelection(0)
+        sizeSpinner.setSelection(3)
+        stateSwitch.isChecked = true
+
+        clearButton.setOnClickListener {
+            group.visibility = View.VISIBLE
+            andesThumbnail.visibility = View.VISIBLE
+
+            hierarchySpinner.setSelection(1)
+            typeSpinner.setSelection(0)
+            sizeSpinner.setSelection(3)
+            stateSwitch.isChecked = true
+
+            andesThumbnail.type = AndesThumbnailType.ICON
+            andesThumbnail.hierarchy = AndesThumbnailHierarchy.DEFAULT
+            andesThumbnail.size = AndesThumbnailSize.SIZE_80
+            andesThumbnail.accentColor = AndesColor(R.color.andes_red_700)
+            andesThumbnail.state = AndesThumbnailState.ENABLED
+        }
+
+        changeButton.setOnClickListener {
+                    val type = when (typeSpinner.getItemAtPosition(typeSpinner.selectedItemPosition)) {
+                        "Icon" -> AndesThumbnailType.ICON
+                        else -> AndesThumbnailType.ICON
+                    }
+
+                    val hierarchy = when (hierarchySpinner.getItemAtPosition(hierarchySpinner.selectedItemPosition)) {
+                        "Loud" -> AndesThumbnailHierarchy.LOUD
+                        "Quiet" -> AndesThumbnailHierarchy.QUIET
+                        "Default" -> AndesThumbnailHierarchy.DEFAULT
+                        else -> AndesThumbnailHierarchy.LOUD
+                    }
+
+                    val size = when (sizeSpinner.getItemAtPosition(sizeSpinner.selectedItemPosition)) {
+                        "Size 24" -> AndesThumbnailSize.SIZE_24
+                        "Size 32" -> AndesThumbnailSize.SIZE_32
+                        "Size 40" -> AndesThumbnailSize.SIZE_40
+                        "Size 48" -> AndesThumbnailSize.SIZE_48
+                        "Size 56" -> AndesThumbnailSize.SIZE_56
+                        "Size 64" -> AndesThumbnailSize.SIZE_64
+                        "Size 72" -> AndesThumbnailSize.SIZE_72
+                        "Size 80" -> AndesThumbnailSize.SIZE_80
+                        else -> AndesThumbnailSize.SIZE_48
+                    }
+
+                    andesThumbnail.type = type
+                    andesThumbnail.hierarchy = hierarchy
+                    andesThumbnail.size = size
+                    andesThumbnail.state = if (stateSwitch.isChecked) AndesThumbnailState.ENABLED else AndesThumbnailState.DISABLED
+            }
+        }
 
     private fun addThumbnailsQuiet(container: View) {
         val linearQuiet = container.findViewById<LinearLayout>(R.id.andes_thumbnail_quiet_container)
 
-        val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
+        val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
 
-        val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
+        val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
 
-        val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
+        val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
 
-        val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
+        val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
 
-        val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
+        val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
 
-        val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
+        val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
 
-        val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
+        val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
 
-        val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
+        val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
             AndesThumbnailHierarchy.QUIET, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
+        andesThumbnail24Enabled.size = AndesThumbnailSize.SIZE_80
+        andesThumbnail24Enabled.accentColor = AndesColor(R.color.andes_orange_800)
 
         linearQuiet.addView(andesThumbnail24Enabled, linearQuiet.childCount - 1)
         linearQuiet.addView(andesThumbnail32Enabled, linearQuiet.childCount - 1)
@@ -84,100 +174,6 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         linearQuiet.addView(andesThumbnail64Enabled, linearQuiet.childCount - 1)
         linearQuiet.addView(andesThumbnail72Disabled, linearQuiet.childCount - 1)
         linearQuiet.addView(andesThumbnail80Disabled, linearQuiet.childCount - 1)
-
-        bindAndesSpecsButton(container)
-    }
-
-    private fun addThumbnailsLoud(container: View) {
-        val linearLoud = container.findViewById<LinearLayout>(R.id.andes_loud_container)
-
-        val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800), "",
-            AndesThumbnailHierarchy.LOUD, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
-
-        linearLoud.addView(andesThumbnail24Enabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail32Enabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail40Disabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail48Disabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail56Enabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail64Enabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail72Disabled, linearLoud.childCount - 1)
-        linearLoud.addView(andesThumbnail80Disabled, linearLoud.childCount - 1)
-
-        bindAndesSpecsButton(container)
-    }
-
-    private fun addThumbnailsDefault(container: View) {
-        val linearDefault = container.findViewById<LinearLayout>(R.id.andes_thumbnail_default_container)
-
-        val andesThumbnail24Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_24, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail32Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_32, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail40Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_40, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail48Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail56Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_56, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail72Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_72, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail80Disabled = AndesThumbnail(this, AndesColor(R.color.andes_yellow_ml_500), "",
-            AndesThumbnailHierarchy.DEFAULT, applicationContext.resources.getDrawable(R.drawable.andes_ui_close_12),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_80, AndesThumbnailState.DISABLED)
-
-        linearDefault.addView(andesThumbnail24Enabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail32Enabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail40Disabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail48Disabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail56Enabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail64Enabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail72Disabled, linearDefault.childCount - 1)
-        linearDefault.addView(andesThumbnail80Disabled, linearDefault.childCount - 1)
 
         bindAndesSpecsButton(container)
     }
@@ -213,11 +209,10 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
 
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
-            val layoutLoudThumbnails = inflater.inflate(R.layout.andesui_quiet_thumbnails_showcase, null, false)
-            val layoutQuietThumbnails = inflater.inflate(R.layout.andesui_loud_thumbnails_showcase, null, false)
-            val layoutDefaultThumbnails = inflater.inflate(R.layout.andesui_default_thumbnails_showcase, null, false)
+            val layoutChangeThumbnails = inflater.inflate(R.layout.andesui_thumbnail_showcase_change, null, false)
+            // val layoutQuietThumbnails = inflater.inflate(R.layout.andesui_quiet_thumbnails_showcase, null, false)
 
-            return listOf<View>(layoutLoudThumbnails, layoutQuietThumbnails, layoutDefaultThumbnails)
+            return listOf<View>(layoutChangeThumbnails)
         }
     }
 }

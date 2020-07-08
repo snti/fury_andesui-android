@@ -30,7 +30,5 @@
         <attr name="andesThumbnailImage" format="reference" />
 
         <attr name="andesThumbnailAccentColor" format="reference" />
-
-        <attr name="andesThumbnailFallbackImage" format="string" />
     </declare-styleable>
 </resources>

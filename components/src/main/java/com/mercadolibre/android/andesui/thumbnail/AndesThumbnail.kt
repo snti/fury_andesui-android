@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.support.constraint.ConstraintLayout
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.AttributeSet
 import android.view.Gravity
@@ -33,7 +34,7 @@ class AndesThumbnail : FrameLayout {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailAccentColor = value)
             val config = createConfig()
             setupBackground(config)
-            setupImage(config)
+            setupImageColor(config.iconColor)
         }
 
     /**
@@ -45,7 +46,7 @@ class AndesThumbnail : FrameLayout {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailHierarchy = value)
             val config = createConfig()
             setupBackground(config)
-            setupImage(config)
+            setupImageColor(config.iconColor)
         }
 
     /**
@@ -68,9 +69,20 @@ class AndesThumbnail : FrameLayout {
         set(value) {
             andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailSize = value)
             val config = createConfig()
-            setupBackground(config)
-            setupImage(config)
+            setupBackgroundSize(config.size)
+            setupImageSize(config.iconSize)
         }
+
+    var state: AndesThumbnailState
+        get() = andesThumbnailAttrs.andesThumbnailState
+        set(value) {
+            andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailState = value)
+            val config = createConfig()
+            setupBackground(config)
+            setupImageColor(config.iconColor)
+        }
+
+    private val imageFrame by lazy { findViewById<ImageView>(R.id.andes_thumbnail_image) }
 
     private lateinit var andesThumbnailAttrs: AndesThumbnailAttrs
 
@@ -87,18 +99,17 @@ class AndesThumbnail : FrameLayout {
     constructor(
         context: Context,
         accentColor: AndesColor,
-        fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy = AndesThumbnailHierarchy.LOUD,
         image: Drawable,
         type: AndesThumbnailType = AndesThumbnailType.ICON,
         size: AndesThumbnailSize = AndesThumbnailSize.SIZE_48,
         state: AndesThumbnailState = AndesThumbnailState.ENABLED
     ) : super(context) {
-        initAttrs(accentColor, fallbackImage, hierarchy, image, type, size, state)
+        initAttrs(accentColor, hierarchy, image, type, size, state)
     }
 
     /**
-     * Sets the proper [config] for this message based on the [attrs] received via XML.
+     * Sets the proper [config] for this thumbnail based on the [attrs] received via XML.
      *
      * @param attrs attributes from the XML.
      */
@@ -110,20 +121,19 @@ class AndesThumbnail : FrameLayout {
 
     private fun initAttrs(
         accentColor: AndesColor,
-        fallbackImage: String,
         hierarchy: AndesThumbnailHierarchy,
         image: Drawable,
         type: AndesThumbnailType,
         size: AndesThumbnailSize,
         state: AndesThumbnailState
     ) {
-        andesThumbnailAttrs = AndesThumbnailAttrs(accentColor, fallbackImage, hierarchy, image, type, size, state)
+        andesThumbnailAttrs = AndesThumbnailAttrs(accentColor, hierarchy, image, type, size, state)
         val config = AndesThumbnailConfigurationFactory.create(context, andesThumbnailAttrs)
         setupComponents(config)
     }
 
     /**
-     * Responsible for setting up all properties of each component that is part of this badge.
+     * Responsible for setting up all properties of each component that is part of this thumbnail.
      * Is like a choreographer ;)
      */
     private fun setupComponents(config: AndesThumbnailConfiguration) {
@@ -135,7 +145,7 @@ class AndesThumbnail : FrameLayout {
     }
 
     /**
-     * Creates all the views that are part of this badge.
+     * Creates all the views that are part of this thumbnail.
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
@@ -143,7 +153,7 @@ class AndesThumbnail : FrameLayout {
     }
 
     /**
-     * Sets a view id to this badge.
+     * Sets a view id to this thumbnail.
      */
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
@@ -153,31 +163,44 @@ class AndesThumbnail : FrameLayout {
 
     private fun setupBackground(config: AndesThumbnailConfiguration) {
         val shape = GradientDrawable()
-        (shape.mutate() as GradientDrawable).cornerRadius = config.size
-        val dp1 = (1 * Resources.getSystem().displayMetrics.density + CONVERTION_CONSTANT).toInt()
         if (config.hasBorder) {
-            shape.setStroke(dp1, config.borderColor.colorIntToAlpha(context))
+            shape.setStroke(dpToPixel(1), config.borderColor.colorIntToAlpha(context))
         } else {
             shape.setColor(config.backgroundColor.colorIntToAlpha(context))
         }
 
         background = shape
 
-        if (layoutParams == null) {
-            layoutParams = LayoutParams(config.size.toInt(), config.size.toInt())
-        }
+        setupBackgroundSize(config.size)
+    }
+
+    private fun setupBackgroundSize(size: Float) {
+        if (background != null) (background as GradientDrawable).cornerRadius = size
+
+        if (layoutParams != null) layoutParams = ConstraintLayout.LayoutParams(size.toInt(), size.toInt())
     }
 
     private fun setupImage(config: AndesThumbnailConfiguration) {
         val unwrappedDrawable = config.image
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
-        DrawableCompat.setTint(wrappedDrawable, config.iconColor.colorInt(context))
-        val imageFrame = findViewById<ImageView>(R.id.andes_thumbnail_image)
-        imageFrame.setBackgroundDrawable(wrappedDrawable)
-        imageFrame.layoutParams = LayoutParams(config.iconSize, config.iconSize, Gravity.CENTER)
+
+        imageFrame.background = wrappedDrawable
+        setupImageColor(config.iconColor)
+        setupImageSize(config.iconSize)
+    }
+
+    private fun setupImageColor(iconColor: AndesColor) {
+        DrawableCompat.setTint(imageFrame.background, iconColor.colorInt(context))
+    }
+
+    private fun setupImageSize(iconSize: Int) {
+        imageFrame.layoutParams = LayoutParams(iconSize, iconSize, Gravity.CENTER)
     }
 
     private fun createConfig() = AndesThumbnailConfigurationFactory.create(context, andesThumbnailAttrs)
+
+    private fun dpToPixel(dp: Int): Int =
+        (dp * Resources.getSystem().displayMetrics.density + CONVERTION_CONSTANT).toInt()
 
     companion object {
         const val CONVERTION_CONSTANT = 0.5f

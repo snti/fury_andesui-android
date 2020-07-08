@@ -16,7 +16,6 @@ import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
  */
 internal data class AndesThumbnailAttrs(
     val andesThumbnailAccentColor: AndesColor,
-    val andesThumbnailFallbackImage: String,
     val andesThumbnailHierarchy: AndesThumbnailHierarchy,
     val andesThumbnailImage: Drawable,
     val andesThumbnailType: AndesThumbnailType,
@@ -56,8 +55,6 @@ internal object AndesThumbnailAttrsParser {
             andesThumbnailSize = getSize(typedArray),
             andesThumbnailState = getState(typedArray),
             andesThumbnailAccentColor = AndesColor(color),
-            andesThumbnailFallbackImage =
-            typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailFallbackImage),
             andesThumbnailImage = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)
         ).also { typedArray.recycle() }
     }

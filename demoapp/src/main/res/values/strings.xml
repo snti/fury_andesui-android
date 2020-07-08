@@ -54,6 +54,7 @@
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
     <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
+    <string name="andesui_demoapp_screen_thumbnail">Andes UI: Thumbnail</string>
     <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
     <string name="andesui_demoapp_message_generate_random_message">Generate random Andes Message</string>
     <string name="andesui_demoapp_changelog_error">What\'s New couldn\'t be loaded, please contact our support team.</string>
@@ -148,6 +149,7 @@
     <string name="andesui_demoapp_snackbar_text_action">Text action</string>
 
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
+    <string name="andesui_demoapp_thumbnail_state">State</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>
@@ -257,6 +259,27 @@
     <string-array name="align_radiobutton_spinner">
         <item>Left</item>
         <item>Right</item>
+    </string-array>
+
+    <string-array name="thumbnail_hierarchy_spinner">
+        <item>Default</item>
+        <item>Loud</item>
+        <item>Quiet</item>
+    </string-array>
+
+    <string-array name="thumbnail_size_spinner">
+        <item>Size 24</item>
+        <item>Size 32</item>
+        <item>Size 40</item>
+        <item>Size 48</item>
+        <item>Size 56</item>
+        <item>Size 64</item>
+        <item>Size 72</item>
+        <item>Size 80</item>
+    </string-array>
+
+    <string-array name="thumbnail_type_spinner">
+        <item>Icon</item>
     </string-array>
 
 </resources>

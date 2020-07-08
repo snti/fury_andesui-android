@@ -29,7 +29,7 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Loud, Neutral, Icon, Enabled, background color`() {
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(),
             AndesThumbnailHierarchy.LOUD, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
@@ -42,7 +42,7 @@ class AndesThumbnailConfigurationTest {
     fun `Thumbnail, Quiet, Neutral, Icon, Enabled, background color`() {
         val expectedColor = R.color.andes_orange_500.toAndesColor()
         expectedColor.alpha = 0.1f
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(),
             AndesThumbnailHierarchy.QUIET, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
@@ -53,7 +53,7 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Default, Neutral, Icon, Enabled, background color`() {
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(),
             AndesThumbnailHierarchy.DEFAULT, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
         val config = configFactory.create(context, attrs)
@@ -64,7 +64,7 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Loud, Neutral, Icon, Disabled, background color`() {
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(),
             AndesThumbnailHierarchy.LOUD, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)
@@ -75,7 +75,7 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Quiet, Neutral, Icon, Disabled, background color`() {
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_500.toAndesColor(),
             AndesThumbnailHierarchy.QUIET, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)
@@ -86,7 +86,7 @@ class AndesThumbnailConfigurationTest {
 
     @Test
     fun `Thumbnail, Default, Neutral, Icon, Disabled, background color`() {
-        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(), "",
+        attrs = AndesThumbnailAttrs(R.color.andes_orange_800.toAndesColor(),
             AndesThumbnailHierarchy.DEFAULT, context.resources.getDrawable(R.drawable.andes_pagar_y_cobrar_efectivo_24),
             AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.DISABLED)
         val config = configFactory.create(context, attrs)

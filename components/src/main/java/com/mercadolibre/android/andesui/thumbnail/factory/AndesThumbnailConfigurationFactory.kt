@@ -51,8 +51,7 @@ internal object AndesThumbnailConfigurationFactory {
         state: AndesThumbnailStateInterface,
         hierarchy: AndesThumbnailHierarchy,
         accentColor: AndesColor
-    ) = state.iconColor(context, hierarchy,
-        accentColor)
+    ) = state.iconColor(context, hierarchy, accentColor)
     private fun resolveIconSize(context: Context, size: AndesThumbnailSizeInterface) = size.iconSize(context).toInt()
     private fun resolveImage(image: Drawable) = image
     private fun resolveSize(context: Context, size: AndesThumbnailSizeInterface) = size.diameter(context)
