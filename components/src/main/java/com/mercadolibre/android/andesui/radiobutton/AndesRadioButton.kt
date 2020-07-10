@@ -217,5 +217,4 @@ class AndesRadioButton : ConstraintLayout {
         private val ANDES_STATUS_DEFAULT_VALUE = AndesRadioButtonStatus.UNSELECTED
         private val ANDES_TYPE_DEFAULT_VALUE = AndesRadioButtonType.IDLE
     }
-
 }

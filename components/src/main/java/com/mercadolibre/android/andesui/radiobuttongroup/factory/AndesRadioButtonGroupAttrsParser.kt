@@ -8,10 +8,10 @@ import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import com.mercadolibre.android.andesui.radiobuttongroup.distribution.AndesRadioButtonGroupDistribution
 
 internal data class AndesRadioButtonGroupAttrs(
-        val andesRadioButtonGroupAlign: AndesRadioButtonAlign,
-        val andesRadioButtonGroupDistribution: AndesRadioButtonGroupDistribution,
-        val andesRadioButtonGroupSelected: Int,
-        val andesRadioButtonGroupRadioButtons: ArrayList<RadioButtonItem>
+    val andesRadioButtonGroupAlign: AndesRadioButtonAlign,
+    val andesRadioButtonGroupDistribution: AndesRadioButtonGroupDistribution,
+    val andesRadioButtonGroupSelected: Int,
+    val andesRadioButtonGroupRadioButtons: ArrayList<RadioButtonItem>
 )
 
 /**
@@ -48,5 +48,4 @@ internal object AndesRadioButtonGroupAttrsParser {
                 andesRadioButtonGroupRadioButtons = arrayListOf()
         ).also { typedArray.recycle() }
     }
-
 }

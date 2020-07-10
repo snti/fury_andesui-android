@@ -111,6 +111,8 @@
     <string name="andes_radiobutton_type">Type</string>
     <string name="andes_radiobutton_status">Status</string>
     <string name="andes_radiobutton_align">Align</string>
+    <string name="andes_radiobuttongroup_horizontal">Radio button group horizontal</string>
+    <string name="andes_radiobuttongroup_vertical">Radio button group vertical</string>
 
     <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
     <string name="andesui_demoapp_label_andes_contribution">I want to contribute 🤝</string>

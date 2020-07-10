@@ -80,11 +80,11 @@ class AndesRadioButtonGroup : LinearLayout {
     }
 
     constructor(
-            context: Context,
-            align: AndesRadioButtonAlign,
-            distribution: AndesRadioButtonGroupDistribution,
-            radioButtons: ArrayList<RadioButtonItem>,
-            selected: Int?
+        context: Context,
+        align: AndesRadioButtonAlign,
+        distribution: AndesRadioButtonGroupDistribution,
+        radioButtons: ArrayList<RadioButtonItem>,
+        selected: Int?
     ) : super(context) {
         val selectedValue = selected ?: ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE
         initAttrs(align, distribution, selectedValue, radioButtons)
@@ -202,5 +202,4 @@ class AndesRadioButtonGroup : LinearLayout {
         private val ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE = -1
         private val ANDES_RADIOBUTTON_DISTRIBUTION_DEFAULT_VALUE = AndesRadioButtonGroupDistribution.VERTICAL
     }
-
 }

@@ -179,18 +179,26 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
                     R.layout.andesui_dynamic_radiobuttongroup_showcase, null, false
             ) as ScrollView
 
-
             val radioButtons = arrayListOf<RadioButtonItem>()
             radioButtons.add(RadioButtonItem("item 1", AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem("item 2", AndesRadioButtonType.IDLE))
-            radioButtons.add(RadioButtonItem("item 3", AndesRadioButtonType.ERROR))
-            radioButtons.add(RadioButtonItem("item 4", AndesRadioButtonType.IDLE))
-            radioButtons.add(RadioButtonItem("item 5", AndesRadioButtonType.DISABLED))
+            radioButtons.add(RadioButtonItem("item 3", AndesRadioButtonType.DISABLED))
+//            radioButtons.add(RadioButtonItem("item 4", AndesRadioButtonType.IDLE))
+//            radioButtons.add(RadioButtonItem("item 5", AndesRadioButtonType.DISABLED))
 
             val radioButtonGroup = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
             radioButtonGroup.selected = 1
             radioButtonGroup.radioButtons = radioButtons
-            radioButtonGroup.setupCallback(object: AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
+            radioButtonGroup.setupCallback(object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
+                override fun onRadioButtonCheckedChanged(index: Int) {
+                    Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
+                }
+            })
+
+            val radioButtonGroupHorizontal = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup2)
+            radioButtonGroupHorizontal.selected = 1
+            radioButtonGroupHorizontal.radioButtons = radioButtons
+            radioButtonGroupHorizontal.setupCallback(object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
                 override fun onRadioButtonCheckedChanged(index: Int) {
                     Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
                 }
@@ -199,5 +207,4 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             return layoutRadioButton
         }
     }
-
 }
