@@ -163,7 +163,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                         primaryActionText.text.toString() == "" -> {
                             changeMessage.setuplinkAction(linkActionText.text.toString(), View.OnClickListener {
                                 Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
-                            } , changeMessage.hierarchy)
+                            }, changeMessage.hierarchy)
                         }
                         else -> {
                             Toast.makeText(

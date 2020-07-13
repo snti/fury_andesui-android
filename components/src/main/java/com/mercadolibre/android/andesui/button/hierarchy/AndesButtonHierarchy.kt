@@ -27,7 +27,7 @@ enum class AndesButtonHierarchy {
             TRANSPARENT -> AndesTransparentButtonHierarchy
             QUIET -> AndesQuietButtonHierarchy
             LOUD -> AndesLoudButtonHierarchy
-            LINK-> AndesLinkButtonHierarchy
+            LINK -> AndesLinkButtonHierarchy
         }
     }
 }

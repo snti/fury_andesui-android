@@ -60,7 +60,7 @@ internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -96,7 +96,7 @@ internal object AndesSuccessMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -132,7 +132,7 @@ internal object AndesWarningMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
 
@@ -168,6 +168,6 @@ internal object AndesErrorMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }

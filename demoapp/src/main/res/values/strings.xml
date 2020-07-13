@@ -45,6 +45,7 @@
     <string name="change_body">Body text</string>
     <string name="change_primary">Primary action text</string>
     <string name="change_secondary">Secondary action text</string>
+    <string name="change_link_button">Link action text</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>

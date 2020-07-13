@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.message
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
-import android.support.v4.text.HtmlCompat
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.util.Log
@@ -21,7 +20,6 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import android.graphics.Paint
-
 
 class AndesMessage : CardView {
 
@@ -105,7 +103,9 @@ class AndesMessage : CardView {
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
-        throw IllegalStateException("Constructor without parameters in Andes Message is not allowed. You must provide some attributes.")
+        throw IllegalStateException(
+                "Constructor without parameters in Andes Message is not allowed. You must provide some attributes."
+        )
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -279,7 +279,6 @@ class AndesMessage : CardView {
         primaryAction.setOnClickListener(onClickListener)
     }
 
-
     fun setupSecondaryAction(text: String, onClickListener: OnClickListener) {
         if (primaryAction.visibility == View.VISIBLE) {
             secondaryAction.visibility = View.VISIBLE
@@ -299,11 +298,12 @@ class AndesMessage : CardView {
             linkActionText = text
             linkAction.textComponent.paintFlags = if (hierarchy == AndesMessageHierarchy.LOUD) Paint.UNDERLINE_TEXT_FLAG else 0
             linkAction.setOnClickListener(onClickListener)
-        }
-        else {
+        } else {
             when {
-                BuildConfig.DEBUG -> throw IllegalStateException("Cannot initialize a link action with a primary one")
-                else -> Log.d("AndesMessage", "Cannot initialize a link action with a primary one")
+                BuildConfig.DEBUG ->
+                    throw IllegalStateException("Cannot initialize a link action with a primary one")
+                else ->
+                    Log.d("AndesMessage", "Cannot initialize a link action with a primary one")
             }
         }
     }
