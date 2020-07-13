@@ -20,7 +20,6 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import android.graphics.Paint
-import android.graphics.Typeface
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 class AndesMessage : CardView {

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.v4.content.res.ResourcesCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -46,14 +45,16 @@ internal sealed class AndesButtonHierarchyInterface {
     /**
      * Returns the [Typeface] that should be used for the text inside the [AndesButton].
      *
-     * @param context needed for accessing some resources. In this case, for accessing the kotlin extension defines for the context.
+     * @param context needed for accessing some resources.
+     * In this case, for accessing the kotlin extension defines for the context.
      * @return the [Typeface] that should be used for the text inside the [AndesButton].
      */
     fun typeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_semibold)
 }
 
 /**
- * Implementation of [AndesButtonHierarchyInterface] that returns the required data but personalized for the Loud Hierarchy,
+ * Implementation of [AndesButtonHierarchyInterface]
+ * that returns the required data but personalized for the Loud Hierarchy,
  * according to Andes specifications.
  *
  */
@@ -63,7 +64,8 @@ internal object AndesLoudButtonHierarchy : AndesButtonHierarchyInterface() {
 }
 
 /**
- * Implementation of [AndesButtonHierarchyInterface] that returns the required data but personalized for the Quiet Hierarchy,
+ * Implementation of [AndesButtonHierarchyInterface]
+ * that returns the required data but personalized for the Quiet Hierarchy,
  * according to Andes specifications.
  *
  */
@@ -73,7 +75,8 @@ internal object AndesQuietButtonHierarchy : AndesButtonHierarchyInterface() {
 }
 
 /**
- * Implementation of [AndesButtonHierarchyInterface] that returns the required data but personalized for the Transparent Hierarchy,
+ * Implementation of [AndesButtonHierarchyInterface]
+ * that returns the required data but personalized for the Transparent Hierarchy,
  * according to Andes specifications.
  *
  */
@@ -83,7 +86,8 @@ internal object AndesTransparentButtonHierarchy : AndesButtonHierarchyInterface(
 }
 
 /**
- * Implementation of [AndesLinkButtonHierarchy] that returns the required data but personalized for the Link Hierarchy,
+ * Implementation of [AndesLinkButtonHierarchy]
+ * that returns the required data but personalized for the Link Hierarchy,
  * according to Andes specifications.
  *
  */
