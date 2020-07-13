@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.support.v4.content.res.ResourcesCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -48,7 +49,7 @@ internal sealed class AndesButtonHierarchyInterface {
      * @param context needed for accessing some resources. In this case, for accessing the kotlin extension defines for the context.
      * @return the [Typeface] that should be used for the text inside the [AndesButton].
      */
-    open fun typeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_semibold)
+    fun typeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_semibold)
 }
 
 /**
@@ -81,8 +82,12 @@ internal object AndesTransparentButtonHierarchy : AndesButtonHierarchyInterface(
     override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigTransparent())
 }
 
+/**
+ * Implementation of [AndesLinkButtonHierarchy] that returns the required data but personalized for the Link Hierarchy,
+ * according to Andes specifications.
+ *
+ */
 internal object AndesLinkButtonHierarchy : AndesButtonHierarchyInterface() {
-    override fun typeface(context: Context): Typeface = context.getFontOrDefault(R.font.andes_font_regular)
     override fun background(context: Context, cornerRadius: Float) = getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigLink())
     override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigTransparent())
 }

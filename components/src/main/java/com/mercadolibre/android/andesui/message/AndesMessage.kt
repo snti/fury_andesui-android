@@ -20,6 +20,8 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import android.graphics.Paint
+import android.graphics.Typeface
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 class AndesMessage : CardView {
 
@@ -296,6 +298,7 @@ class AndesMessage : CardView {
         if (primaryAction.visibility == View.GONE) {
             linkAction.visibility = View.VISIBLE
             linkActionText = text
+            linkAction.textComponent.typeface = context.getFontOrDefault(R.font.andes_font_regular)
             linkAction.textComponent.paintFlags = if (hierarchy == AndesMessageHierarchy.LOUD) Paint.UNDERLINE_TEXT_FLAG else 0
             linkAction.setOnClickListener(onClickListener)
         } else {
