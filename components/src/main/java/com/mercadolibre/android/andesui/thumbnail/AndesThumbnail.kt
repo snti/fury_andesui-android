@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.support.constraint.ConstraintLayout
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.AttributeSet
 import android.view.Gravity
@@ -175,9 +174,13 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun setupBackgroundSize(size: Float) {
-        if (background != null) (background as GradientDrawable).cornerRadius = size
-
-        if (layoutParams != null) layoutParams = ConstraintLayout.LayoutParams(size.toInt(), size.toInt())
+        if (background != null) {
+            with(background as GradientDrawable) {
+                cornerRadius = size
+                setSize(size.toInt(), size.toInt())
+                layoutParams = LayoutParams(size.toInt(), size.toInt())
+            }
+        }
     }
 
     private fun setupImage(config: AndesThumbnailConfiguration) {
