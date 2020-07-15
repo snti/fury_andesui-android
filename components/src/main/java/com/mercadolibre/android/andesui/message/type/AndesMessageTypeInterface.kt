@@ -60,7 +60,13 @@ internal object AndesNeutralMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        return BackgroundColorConfig(
+                enabledColor = R.color.andes_transparent.toAndesColor(),
+                pressedColor = R.color.andes_transparent.toAndesColor(),
+                focusedColor = R.color.andes_transparent.toAndesColor(),
+                hoveredColor = R.color.andes_transparent.toAndesColor(),
+                disabledColor = R.color.andes_transparent.toAndesColor(),
+                otherColor = null)
     }
 }
 
@@ -96,7 +102,13 @@ internal object AndesSuccessMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        return BackgroundColorConfig(
+                enabledColor = R.color.andes_transparent.toAndesColor(),
+                pressedColor = R.color.andes_transparent.toAndesColor(),
+                focusedColor = R.color.andes_transparent.toAndesColor(),
+                hoveredColor = R.color.andes_transparent.toAndesColor(),
+                disabledColor = R.color.andes_transparent.toAndesColor(),
+                otherColor = null)
     }
 }
 
@@ -132,7 +144,13 @@ internal object AndesWarningMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        return BackgroundColorConfig(
+                enabledColor = R.color.andes_transparent.toAndesColor(),
+                pressedColor = R.color.andes_transparent.toAndesColor(),
+                focusedColor = R.color.andes_transparent.toAndesColor(),
+                hoveredColor = R.color.andes_transparent.toAndesColor(),
+                disabledColor = R.color.andes_transparent.toAndesColor(),
+                otherColor = null)
     }
 }
 
@@ -168,6 +186,12 @@ internal object AndesErrorMessageType : AndesMessageTypeInterface() {
     }
 
     override fun linkActionColorConfig(): BackgroundColorConfig {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        return BackgroundColorConfig(
+                enabledColor = R.color.andes_transparent.toAndesColor(),
+                pressedColor = R.color.andes_transparent.toAndesColor(),
+                focusedColor = R.color.andes_transparent.toAndesColor(),
+                hoveredColor = R.color.andes_transparent.toAndesColor(),
+                disabledColor = R.color.andes_transparent.toAndesColor(),
+                otherColor = null)
     }
 }

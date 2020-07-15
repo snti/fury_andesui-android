@@ -188,21 +188,6 @@ internal class AndesMediumButtonSize : AndesButtonSizeInterface {
     ): Nothing? = null
 }
 
-internal class AndesLinkMediumButtonSize : AndesButtonSizeInterface {
-    override fun textSize(context: Context) = context.resources.getDimension(R.dimen.andes_text_size_button_medium)
-    override fun height(context: Context) = context.resources.getDimension(R.dimen.andes_button_height_medium)
-    override fun textLeftMargin(context: Context) = 0
-    override fun textRightMargin(context: Context) = 0
-    override fun lateralPadding(context: Context) = context.resources.getDimension(R.dimen.andes_button_lateral_padding_link_medium).toInt()
-    override fun cornerRadius(context: Context) = context.resources.getDimension(R.dimen.andes_button_border_radius_medium)
-    override fun iconConfig(
-        hierarchy: AndesButtonHierarchyInterface,
-        leftIcon: String?,
-        rightIcon: String?,
-        context: Context
-    ): Nothing? = null
-}
-
 /**
  * Implementation of [AndesButtonSizeInterface] that returns the required data but personalized for the Small Size,
  * according to Andes specifications.

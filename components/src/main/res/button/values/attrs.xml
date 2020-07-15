@@ -11,8 +11,6 @@
             <enum name="large" value="200" />
             <enum name="medium" value="201" />
             <enum name="small" value="202" />
-            <enum name="mediumLink" value="203"/>
-
         </attr>
 
         <attr name="andesButtonLeftIconPath" format="string" />

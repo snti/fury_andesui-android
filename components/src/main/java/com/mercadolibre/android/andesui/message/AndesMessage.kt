@@ -295,6 +295,12 @@ class AndesMessage : CardView {
 
     fun setuplinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
         if (primaryAction.visibility == View.GONE) {
+
+            linkAction.setPadding(LINK_BUTTON_PADDING,
+                                  LINK_BUTTON_PADDING,
+                                  LINK_BUTTON_PADDING,
+                                  LINK_BUTTON_PADDING)
+
             linkAction.visibility = View.VISIBLE
             linkActionText = text
             linkAction.textComponent.typeface = context.getFontOrDefault(R.font.andes_font_regular)
@@ -336,6 +342,7 @@ class AndesMessage : CardView {
         private val HIERARCHY_DEFAULT = AndesMessageHierarchy.LOUD
         private val STATE_DEFAULT = AndesMessageType.NEUTRAL
         private val TITLE_DEFAULT = null
+        private val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
     }
 }

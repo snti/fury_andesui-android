@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
-import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigLink
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigLoud
 import com.mercadolibre.android.andesui.button.hierarchy.createBackgroundColorConfigTransparent
 import com.mercadolibre.android.andesui.color.AndesColor
@@ -117,9 +116,8 @@ internal object AndesLoudMessageHierarchy : AndesMessageHierarchyInterface() {
 
     override fun secondaryActionTextColor(type: AndesMessageTypeInterface) = R.color.andes_white.toAndesColor()
 
-    override fun linkActionBackgroundColor(state: AndesMessageTypeInterface): BackgroundColorConfig {
-        return createBackgroundColorConfigLink()
-    }
+    override fun linkActionBackgroundColor(type: AndesMessageTypeInterface) = type.linkActionColorConfig()
+
     override fun linkActionTextColor(type: AndesMessageTypeInterface) = R.color.andes_white.toAndesColor() // TODO CHECK THIS
 }
 
@@ -139,8 +137,7 @@ internal object AndesQuietMessageHierarchy : AndesMessageHierarchyInterface() {
 
     override fun secondaryActionTextColor(type: AndesMessageTypeInterface) = R.color.andes_accent_color_500.toAndesColor()
 
-    override fun linkActionBackgroundColor(state: AndesMessageTypeInterface): BackgroundColorConfig {
-        return createBackgroundColorConfigLink()
-    }
+    override fun linkActionBackgroundColor(type: AndesMessageTypeInterface) = type.linkActionColorConfig()
+
     override fun linkActionTextColor(type: AndesMessageTypeInterface) = R.color.andes_accent_color_500.toAndesColor()
 }

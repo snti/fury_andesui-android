@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:andesButtonHierarchy="loud"
-            app:andesButtonSize="mediumLink"
+            app:andesButtonSize="medium"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/andes_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableleft_guideline"

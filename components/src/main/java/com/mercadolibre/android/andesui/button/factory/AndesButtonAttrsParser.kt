@@ -34,7 +34,6 @@ internal object AndesButtonAttrsParser {
     private const val ANDES_BUTTON_SIZE_LARGE = "200"
     private const val ANDES_BUTTON_SIZE_MEDIUM = "201"
     private const val ANDES_BUTTON_SIZE_SMALL = "202"
-    private const val ANDES_BUTTON_SIZE_LINK_MEDIUM = "203"
 
     /**
      * Reads some properties of the [attr] and returns the [AndesButtonAttrs] with their parsed data.
@@ -58,7 +57,6 @@ internal object AndesButtonAttrsParser {
             ANDES_BUTTON_SIZE_LARGE -> AndesButtonSize.LARGE
             ANDES_BUTTON_SIZE_MEDIUM -> AndesButtonSize.MEDIUM
             ANDES_BUTTON_SIZE_SMALL -> AndesButtonSize.SMALL
-            ANDES_BUTTON_SIZE_LINK_MEDIUM -> AndesButtonSize.LINK_MEDIUM
             else -> AndesButtonSize.LARGE
         }
 

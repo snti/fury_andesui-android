@@ -13,8 +13,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 enum class AndesButtonHierarchy {
     TRANSPARENT,
     QUIET,
-    LOUD,
-    LINK;
+    LOUD;
 
     companion object {
         fun fromString(value: String): AndesButtonHierarchy = valueOf(value.toUpperCase())
@@ -27,7 +26,6 @@ enum class AndesButtonHierarchy {
             TRANSPARENT -> AndesTransparentButtonHierarchy
             QUIET -> AndesQuietButtonHierarchy
             LOUD -> AndesLoudButtonHierarchy
-            LINK -> AndesLinkButtonHierarchy
         }
     }
 }
