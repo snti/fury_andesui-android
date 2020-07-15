@@ -15,7 +15,8 @@ internal enum class AndesSpecs(val link: String) {
     BADGE("$COMPONENT_PREFIX/badge"),
     BUTTON("$COMPONENT_PREFIX/button"),
     MESSAGE("$COMPONENT_PREFIX/message"),
-    RADIOBUTTON("$COMPONENT_PREFIX/radiobutton");
+    RADIOBUTTON("$COMPONENT_PREFIX/radiobutton"),
+    THUMBNAIL("$COMPONENT_PREFIX/thumbnail-1589997379");
 }
 
 internal fun launchSpecs(context: Context, specs: AndesSpecs) {

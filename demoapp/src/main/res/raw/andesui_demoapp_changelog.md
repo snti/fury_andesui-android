@@ -1,3 +1,7 @@
+# v2.7.0
+## Added
+- Thumbnail Component, Icon type.
+
 # v2.6.0
 ## Added
 - Checkbox Component.
