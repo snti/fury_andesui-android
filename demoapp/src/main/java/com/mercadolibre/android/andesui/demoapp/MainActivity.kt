@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             launchIntent("meli://andes/checkbox")
         }
     }
-  
+
     private fun setupRadioButton() {
         andesui_radiobutton.setOnClickListener {
             launchIntent("meli://andes/radiobutton")

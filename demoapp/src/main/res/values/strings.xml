@@ -150,6 +150,10 @@
 
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
     <string name="andesui_demoapp_thumbnail_state">State</string>
+    <string name="andesui_demoapp_thumbnail_description_24">Hierarchy: Quiet, Size: 24, State: Disabled, Type: Icon</string>
+    <string name="andesui_demoapp_thumbnail_description_48">Hierarchy: Loud, Size: 48, State: Enabled, Type: Icon</string>
+    <string name="andesui_demoapp_thumbnail_description_64">Hierarchy: Default, Size: 64, State: Enabled, Type: Icon</string>
+    <string name="andesui_demoapp_thumbnail_description_80">Hierarchy: Quiet, Size: 80, State: Enabled, Type: Icon</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>

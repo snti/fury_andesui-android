@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Switch
 import com.mercadolibre.android.andesui.button.AndesButton
@@ -41,7 +40,7 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
         addDynamicThumbnails(adapter.views[0])
-        addThumbnails(adapter.views[1])
+        bindAndesSpecsButton(adapter.views[1])
     }
 
     private fun addDynamicThumbnails(container: View) {
@@ -132,34 +131,6 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
                     }
             }
         }
-
-    private fun addThumbnails(container: View) {
-        val container = container.findViewById<LinearLayout>(R.id.andes_thumbnail_container)
-        val resources = applicationContext.resources
-
-        val andesThumbnail24Disabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
-            AndesThumbnailHierarchy.QUIET, resources.getDrawable(R.drawable.andes_otros_almanaque_20),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_24, AndesThumbnailState.DISABLED)
-
-        val andesThumbnail48Enabled = AndesThumbnail(this, AndesColor(R.color.andes_blue_ml_500),
-            AndesThumbnailHierarchy.LOUD, resources.getDrawable(R.drawable.andes_otros_almanaque_20),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_48, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail64Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
-            AndesThumbnailHierarchy.DEFAULT, resources.getDrawable(R.drawable.andes_otros_almanaque_20),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_64, AndesThumbnailState.ENABLED)
-
-        val andesThumbnail80Enabled = AndesThumbnail(this, AndesColor(R.color.andes_red_800),
-            AndesThumbnailHierarchy.QUIET, resources.getDrawable(R.drawable.andes_otros_almanaque_20),
-            AndesThumbnailType.ICON, AndesThumbnailSize.SIZE_80, AndesThumbnailState.ENABLED)
-
-        container.addView(andesThumbnail24Disabled, container.childCount - 1)
-        container.addView(andesThumbnail48Enabled, container.childCount - 1)
-        container.addView(andesThumbnail64Enabled, container.childCount - 1)
-        container.addView(andesThumbnail80Enabled, container.childCount - 1)
-
-        bindAndesSpecsButton(container)
-    }
 
     private fun bindAndesSpecsButton(container: View) {
         container.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_button).setOnClickListener {

@@ -21,6 +21,7 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
+import kotlinx.android.synthetic.main.andes_layout_snackbar.view.*
 
 class AndesThumbnail : FrameLayout {
 
@@ -178,7 +179,6 @@ class AndesThumbnail : FrameLayout {
             with(background as GradientDrawable) {
                 cornerRadius = size
                 setSize(size.toInt(), size.toInt())
-                layoutParams = LayoutParams(size.toInt(), size.toInt())
             }
         }
     }
