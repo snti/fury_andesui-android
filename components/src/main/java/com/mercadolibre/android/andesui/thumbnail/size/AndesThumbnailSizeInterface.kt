@@ -18,7 +18,6 @@ internal interface AndesThumbnailSizeInterface {
  * Size, according to Andes specifications.
  */
 internal class Andes24ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_24)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_16)
@@ -31,7 +30,6 @@ internal class Andes24ThumbnailSize : AndesThumbnailSizeInterface {
  * according to Andes specifications.
  */
 internal class Andes32ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_32)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_20)
@@ -44,7 +42,6 @@ internal class Andes32ThumbnailSize : AndesThumbnailSizeInterface {
  * according to Andes specifications.
  */
 internal class Andes40ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_40)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_24)
@@ -57,7 +54,6 @@ internal class Andes40ThumbnailSize : AndesThumbnailSizeInterface {
  * according to Andes specifications.
  */
 internal class Andes48ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_48)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_24)
@@ -70,7 +66,6 @@ internal class Andes48ThumbnailSize : AndesThumbnailSizeInterface {
  * Size, according to Andes specifications.
  */
 internal class Andes56ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_56)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_32)
@@ -83,7 +78,6 @@ internal class Andes56ThumbnailSize : AndesThumbnailSizeInterface {
  * Size, according to Andes specifications.
  */
 internal class Andes64ThumbnailSize : AndesThumbnailSizeInterface {
-
     override fun diameter(context: Context): Float = context.resources.getDimension(R.dimen.andes_thumbnail_size_64)
     override fun iconSize(context: Context): Float =
         context.resources.getDimension(R.dimen.andes_thumbnail_icon_size_32)

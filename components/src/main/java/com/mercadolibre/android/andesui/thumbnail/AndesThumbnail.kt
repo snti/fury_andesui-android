@@ -1,7 +1,6 @@
 package com.mercadolibre.android.andesui.thumbnail
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.support.v4.graphics.drawable.DrawableCompat
@@ -21,7 +20,6 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
-import kotlinx.android.synthetic.main.andes_layout_snackbar.view.*
 
 class AndesThumbnail : FrameLayout {
 
@@ -73,6 +71,9 @@ class AndesThumbnail : FrameLayout {
             setupImageSize(config.iconSize)
         }
 
+    /**
+     * Getter and setter for [state].
+     */
     var state: AndesThumbnailState
         get() = andesThumbnailAttrs.andesThumbnailState
         set(value) {
@@ -164,7 +165,8 @@ class AndesThumbnail : FrameLayout {
     private fun setupBackground(config: AndesThumbnailConfiguration) {
         val shape = GradientDrawable()
         if (config.hasBorder) {
-            shape.setStroke(dpToPixel(1), config.borderColor.colorIntToAlpha(context))
+            val borderSize = resources.getDimension(R.dimen.andes_thumbnail_icon_border)
+            shape.setStroke(borderSize.toInt(), config.borderColor.colorIntToAlpha(context))
         } else {
             shape.setColor(config.backgroundColor.colorIntToAlpha(context))
         }
@@ -201,11 +203,4 @@ class AndesThumbnail : FrameLayout {
     }
 
     private fun createConfig() = AndesThumbnailConfigurationFactory.create(context, andesThumbnailAttrs)
-
-    private fun dpToPixel(dp: Int): Int =
-        (dp * Resources.getSystem().displayMetrics.density + CONVERTION_CONSTANT).toInt()
-
-    companion object {
-        const val CONVERTION_CONSTANT = 0.5f
-    }
 }

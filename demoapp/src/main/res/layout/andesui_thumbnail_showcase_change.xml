@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/type_spinner"
+            app:layout_constraintEnd_toEndOf="@+id/size_spinner"
             app:layout_constraintTop_toTopOf="@+id/textView6" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
@@ -123,7 +123,7 @@
             android:layout_height="46dp"
             android:layout_marginBottom="32dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             app:andesButtonHierarchy="loud"
             app:andesButtonSize="large"
             app:andesButtonText="@string/andes_message_showcase_change"

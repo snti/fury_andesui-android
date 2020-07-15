@@ -84,11 +84,20 @@
             android:textSize="@dimen/description_text_size_thumbnail"
             android:text="@string/andesui_demoapp_thumbnail_description_80" />
 
+        <TextView
+            android:id="@+id/andesui_demoapp_label_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/andes_thumbnail_size_48"
+            android:text="@string/andesui_demoapp_label_more" />
+
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/andesui_demoapp_andes_specs_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/button_margin_vertical"
+            android:layout_gravity="start"
             app:andesButtonHierarchy="quiet"
             app:andesButtonSize="medium"
             app:andesButtonText="@string/andesui_demoapp_label_andes_thumbnail_specs"

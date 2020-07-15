@@ -16,9 +16,9 @@ enum class AndesThumbnailType {
         fun fromString(value: String): AndesThumbnailType = valueOf(value.toUpperCase())
     }
 
-    internal val type get() = getAndesThumbnailHierarchy()
+    internal val type get() = getAndesThumbnailType()
 
-    private fun getAndesThumbnailHierarchy(): AndesThumbnailTypeInterface {
+    private fun getAndesThumbnailType(): AndesThumbnailTypeInterface {
         return when (this) {
             ICON -> AndesIconThumbnailType()
         }
