@@ -126,7 +126,6 @@ class AndesRadioButton : ConstraintLayout {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_radiobutton, this)
         val radioButton = container.findViewById<ConstraintLayout>(R.id.andesRadioButton)
         onCheckedChangeListener(radioButton)
-        onCheckedChangeListener(radioButton)
     }
 
     private fun onCheckedChangeListener(checkbox: ConstraintLayout) {
