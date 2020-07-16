@@ -1,5 +1,6 @@
 # v2.7.0
 ## Added
+- LinkButton in AndesMessage Component.
 - Thumbnail Component, Icon type.
 
 # v2.6.0

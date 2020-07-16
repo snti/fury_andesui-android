@@ -293,7 +293,7 @@ class AndesMessage : CardView {
         }
     }
 
-    fun setupLinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
+    fun setupLinkAction(text: String, onClickListener: OnClickListener) {
         if (primaryAction.visibility == View.GONE) {
 
             linkAction.setPadding(LINK_BUTTON_PADDING,
@@ -345,4 +345,5 @@ class AndesMessage : CardView {
         private val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
     }
+
 }
