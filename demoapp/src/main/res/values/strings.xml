@@ -46,6 +46,9 @@
     <string name="change_primary">Primary action text</string>
     <string name="change_secondary">Secondary action text</string>
 
+    <string name="title_description">Atention! 👇</string>
+    <string name="radiobutton_description">They allow you to make a selection from a list of options. Unlike checkboxes, radio buttons only allow you to choose an option.</string>
+
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
@@ -112,8 +115,8 @@
     <string name="andes_radiobutton_type">Type</string>
     <string name="andes_radiobutton_status">Status</string>
     <string name="andes_radiobutton_align">Align</string>
-    <string name="andes_radiobuttongroup_horizontal">Radio button group horizontal</string>
-    <string name="andes_radiobuttongroup_vertical">Radio button group vertical</string>
+    <string name="andes_radiobuttongroup_horizontal">Distribution horizontal</string>
+    <string name="andes_radiobuttongroup_vertical">Distribution vertical</string>
 
     <string name="andesui_demoapp_whatsnew_main_action">View What\'s New</string>
     <string name="andesui_demoapp_label_andes_contribution">I want to contribute 🤝</string>
