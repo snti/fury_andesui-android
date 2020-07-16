@@ -304,7 +304,11 @@ class AndesMessage : CardView {
             linkAction.visibility = View.VISIBLE
             linkActionText = text
             linkAction.textComponent.typeface = context.getFontOrDefault(R.font.andes_font_regular)
-            linkAction.textComponent.paintFlags = if (hierarchy == AndesMessageHierarchy.LOUD) Paint.UNDERLINE_TEXT_FLAG else 0
+            linkAction.textComponent.paintFlags = if (hierarchy == AndesMessageHierarchy.LOUD) {
+                Paint.UNDERLINE_TEXT_FLAG
+            } else {
+                0
+            }
             linkAction.setOnClickListener(onClickListener)
         } else {
             when {
@@ -345,5 +349,4 @@ class AndesMessage : CardView {
         private val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
     }
-
 }

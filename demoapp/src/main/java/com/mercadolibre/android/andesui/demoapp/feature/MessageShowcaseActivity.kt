@@ -238,5 +238,4 @@ class MessageShowcaseActivity : AppCompatActivity() {
             return layoutMessages
         }
     }
-
 }
