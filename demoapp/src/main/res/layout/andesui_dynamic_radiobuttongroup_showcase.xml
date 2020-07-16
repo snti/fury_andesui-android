@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:text="@string/andes_radiobutton_showcase"
+            android:text="@string/andes_radiobuttongroup_showcase"
             android:textColor="#000"
             android:textSize="24sp"
             android:layout_marginTop="8dp"

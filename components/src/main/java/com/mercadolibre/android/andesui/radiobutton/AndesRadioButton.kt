@@ -73,7 +73,6 @@ class AndesRadioButton : ConstraintLayout {
 
     private var privateListener: OnClickListener? = null
     private lateinit var andesRadioButtonAttrs: AndesRadioButtonAttrs
-    private lateinit var containerRadioButton: ConstraintLayout
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
@@ -126,12 +125,12 @@ class AndesRadioButton : ConstraintLayout {
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_radiobutton, this)
-        containerRadioButton = container.findViewById(R.id.andes_radiobutton_container)
-        onCheckedChangeListener(leftRadioButton)
-        onCheckedChangeListener(rightRadioButton)
+        val radioButton = container.findViewById<ConstraintLayout>(R.id.andesRadioButton)
+        onCheckedChangeListener(radioButton)
+        onCheckedChangeListener(radioButton)
     }
 
-    private fun onCheckedChangeListener(checkbox: FrameLayout) {
+    private fun onCheckedChangeListener(checkbox: ConstraintLayout) {
         checkbox.setOnClickListener {
             when (type) {
                 AndesRadioButtonType.ERROR -> {

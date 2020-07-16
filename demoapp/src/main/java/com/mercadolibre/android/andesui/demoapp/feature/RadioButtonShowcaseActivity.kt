@@ -183,8 +183,8 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             radioButtons.add(RadioButtonItem("item 1", AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem("item 2", AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem("item 3", AndesRadioButtonType.DISABLED))
-//            radioButtons.add(RadioButtonItem("item 4", AndesRadioButtonType.IDLE))
-//            radioButtons.add(RadioButtonItem("item 5", AndesRadioButtonType.DISABLED))
+            radioButtons.add(RadioButtonItem("item 4", AndesRadioButtonType.IDLE))
+            radioButtons.add(RadioButtonItem("item 5", AndesRadioButtonType.DISABLED))
 
             val radioButtonGroup = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
             radioButtonGroup.selected = 1
