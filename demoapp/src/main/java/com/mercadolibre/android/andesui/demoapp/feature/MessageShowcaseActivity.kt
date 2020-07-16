@@ -100,13 +100,15 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val secondaryActionText = layoutMessagesChange.findViewById<EditText>(R.id.secondary_action_text)
 
+            val linkActionText = layoutMessagesChange.findViewById<EditText>(R.id.link_action_text)
+
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
             changeButton.setOnClickListener {
                 changeMessage.isDismissable = dismissableCheckbox.isChecked
                 changeMessage.title = titleText.text.toString()
-                if (bodyText.text.toString() == "") {
+                if (bodyText.text.toString().isEmpty()) {
                     Toast.makeText(
                             context,
                             "Message cannot be visualized with null body",
@@ -120,10 +122,11 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
                 changeMessage.hierarchy = AndesMessageHierarchy.fromString(hierarchySpinner.selectedItem.toString())
 
-                if (primaryActionText.text.toString() != "") {
+                if (primaryActionText.text.toString().isNotEmpty()) {
                     changeMessage.setupPrimaryAction(primaryActionText.text.toString(), View.OnClickListener {
                         Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
                     })
+                    changeMessage.hideLinkAction()
                 } else {
                     changeMessage.hidePrimaryAction()
                 }
@@ -134,7 +137,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     })
                 }
 
-                if (secondaryActionText.text.toString() != "") {
+                if (secondaryActionText.text.toString().isNotEmpty()) {
                     when {
                         primaryActionText.text.toString() != "" -> {
                             changeMessage.setupSecondaryAction(
@@ -153,6 +156,25 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     }
                 } else {
                     changeMessage.hideSecondaryAction()
+                }
+
+                if (linkActionText.text.toString().isNotEmpty()) {
+                    when {
+                        primaryActionText.text.toString() == "" -> {
+                            changeMessage.setupLinkAction(linkActionText.text.toString(), View.OnClickListener {
+                                Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
+                            }, changeMessage.hierarchy)
+                        }
+                        else -> {
+                            Toast.makeText(
+                                    context,
+                                    "Cannot set a link action with a primary one",
+                                    Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
+                    changeMessage.hideLinkAction()
                 }
 
                 changeMessage.visibility = View.VISIBLE

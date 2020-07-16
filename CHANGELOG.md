@@ -1,3 +1,7 @@
+# v2.7.0
+## Added
+- LinkButton in AndesMessage Component.
+
 # v2.6.0
 ## Added
 - Checkbox Component.
