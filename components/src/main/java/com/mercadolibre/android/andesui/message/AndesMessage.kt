@@ -293,7 +293,7 @@ class AndesMessage : CardView {
         }
     }
 
-    fun setuplinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
+    fun setupLinkAction(text: String, onClickListener: OnClickListener, hierarchy: AndesMessageHierarchy) {
         if (primaryAction.visibility == View.GONE) {
 
             linkAction.setPadding(LINK_BUTTON_PADDING,

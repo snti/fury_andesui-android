@@ -161,7 +161,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 if (linkActionText.text.toString().isNotEmpty()) {
                     when {
                         primaryActionText.text.toString() == "" -> {
-                            changeMessage.setuplinkAction(linkActionText.text.toString(), View.OnClickListener {
+                            changeMessage.setupLinkAction(linkActionText.text.toString(), View.OnClickListener {
                                 Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
                             }, changeMessage.hierarchy)
                         }
