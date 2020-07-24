@@ -1,8 +1,14 @@
 package com.mercadolibre.android.andesui.message
 
 import android.content.Context
+import android.graphics.Paint
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.UnderlineSpan
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -13,13 +19,9 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
-import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
-import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
-import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
+import com.mercadolibre.android.andesui.message.factory.*
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import android.graphics.Paint
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 class AndesMessage : CardView {
@@ -52,6 +54,8 @@ class AndesMessage : CardView {
             andesMessageAttrs = andesMessageAttrs.copy(body = value)
             setupBodyComponent(createConfig())
         }
+
+    var bodyLinks: Pair<List<AndesBodyLink>, AndesBodyListener>? = null
 
     /**
      * Getter and setter for [title].
@@ -233,12 +237,33 @@ class AndesMessage : CardView {
             Log.e("Body", "Message cannot be visualized with null or empty body")
         } else {
             messageContainer.visibility = View.VISIBLE
-            bodyComponent.text = config.bodyText
+            bodyComponent.text = getBodyText(config.bodyText)
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
+            bodyComponent.setLinkTextColor(config.textColor.colorInt(context))
             bodyComponent.typeface = config.bodyTypeface
 //          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
+    }
+
+    private fun getBodyText(text: String): SpannableString {
+        val spannableString = SpannableString(text)
+
+        bodyLinks?.let {
+            it.first.forEachIndexed { linkIndex, andesBodyLink ->
+                val clickableSpan = object : ClickableSpan() {
+                    override fun onClick(view: View) {
+                        it.second.customListener(linkIndex)
+                    }
+                }
+                spannableString.setSpan(clickableSpan, andesBodyLink.startIndex, andesBodyLink.endIndex,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableString.setSpan(UnderlineSpan(), andesBodyLink.startIndex, andesBodyLink.endIndex, 0);
+            }
+            bodyComponent.movementMethod = LinkMovementMethod.getInstance()
+        }
+
+        return spannableString
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {
@@ -345,4 +370,13 @@ class AndesMessage : CardView {
         private val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
     }
+}
+
+data class AndesBodyLink(
+   val startIndex: Int,
+   val endIndex: Int
+)
+
+interface AndesBodyListener {
+    fun customListener(linkIndex: Int)
 }
