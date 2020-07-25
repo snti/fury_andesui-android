@@ -15,6 +15,7 @@ import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.message.AndesBodyLink
+import com.mercadolibre.android.andesui.message.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.AndesBodyListener
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
@@ -126,17 +127,16 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     bodyLinkStart.text.toString().toIntOrNull()?.let { start ->
                         bodyLinkEnd.text.toString().toIntOrNull()?.let { end ->
 
-                            val links: Pair<List<AndesBodyLink>, AndesBodyListener> =
-                                    Pair(listOf(
-                                            AndesBodyLink(start, end),
-                                            AndesBodyLink(bodyText.text.toString().length - 5, bodyText.text.toString().length)
-                                    ), object : AndesBodyListener {
-                                        override fun customListener(linkIndex: Int) {
-                                            Toast.makeText(context, "Click at body link: $linkIndex", Toast.LENGTH_SHORT).show()
-                                        }
-                                    })
+                            val links = listOf(
+                                    AndesBodyLink(start, end),
+                                    AndesBodyLink(12, 17)
+                            )
 
-                            changeMessage.bodyLinks = links
+                            changeMessage.bodyLinks = AndesBodyLinks(links, object : AndesBodyListener {
+                                override fun customListener(linkIndex: Int) {
+                                    Toast.makeText(context, "Click at body link: $linkIndex", Toast.LENGTH_SHORT).show()
+                                }
+                            })
                         }
                     }
                 }

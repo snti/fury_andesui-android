@@ -55,7 +55,7 @@ class AndesMessage : CardView {
             setupBodyComponent(createConfig())
         }
 
-    var bodyLinks: Pair<List<AndesBodyLink>, AndesBodyListener>? = null
+    var bodyLinks: AndesBodyLinks? = null
 
     /**
      * Getter and setter for [title].
@@ -250,10 +250,10 @@ class AndesMessage : CardView {
         val spannableString = SpannableString(text)
 
         bodyLinks?.let {
-            it.first.forEachIndexed { linkIndex, andesBodyLink ->
+            it.links.forEachIndexed { linkIndex, andesBodyLink ->
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(view: View) {
-                        it.second.customListener(linkIndex)
+                        it.listener.customListener(linkIndex)
                     }
                 }
                 spannableString.setSpan(clickableSpan, andesBodyLink.startIndex, andesBodyLink.endIndex,
@@ -372,11 +372,8 @@ class AndesMessage : CardView {
     }
 }
 
-data class AndesBodyLink(
-   val startIndex: Int,
-   val endIndex: Int
-)
+class AndesBodyLinks(val links: List<AndesBodyLink>, val listener: AndesBodyListener)
 
-interface AndesBodyListener {
-    fun customListener(linkIndex: Int)
-}
+class AndesBodyLink(val startIndex: Int, val endIndex: Int)
+
+interface AndesBodyListener { fun customListener(linkIndex: Int) }
