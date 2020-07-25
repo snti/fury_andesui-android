@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
@@ -241,6 +242,7 @@ class AndesMessage : CardView {
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
             bodyComponent.setLinkTextColor(config.textColor.colorInt(context))
+            bodyComponent.highlightColor = resources.getColor(R.color.andes_transparent)
             bodyComponent.typeface = config.bodyTypeface
 //          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
@@ -255,10 +257,14 @@ class AndesMessage : CardView {
                     override fun onClick(view: View) {
                         it.listener.customListener(linkIndex)
                     }
+
+                    override fun updateDrawState(ds: TextPaint) {
+                        ds.isUnderlineText = true
+                    }
                 }
-                spannableString.setSpan(clickableSpan, andesBodyLink.startIndex, andesBodyLink.endIndex,
+                spannableString.setSpan(clickableSpan,
+                        andesBodyLink.startIndex, andesBodyLink.endIndex,
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannableString.setSpan(UnderlineSpan(), andesBodyLink.startIndex, andesBodyLink.endIndex, 0);
             }
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
         }
