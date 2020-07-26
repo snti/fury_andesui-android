@@ -19,7 +19,10 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.message.factory.*
+import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
+import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
+import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
+import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -252,18 +255,26 @@ class AndesMessage : CardView {
 
         bodyLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
-                val clickableSpan = object : ClickableSpan() {
-                    override fun onClick(view: View) {
-                        it.listener(linkIndex)
-                    }
 
-                    override fun updateDrawState(ds: TextPaint) {
-                        ds.isUnderlineText = true
+                if (andesBodyLink.isValidRange(spannableString)) {
+
+                    val clickableSpan = object : ClickableSpan() {
+                        override fun onClick(view: View) {
+                            it.listener(linkIndex)
+                        }
+
+                        override fun updateDrawState(ds: TextPaint) {
+                            ds.isUnderlineText = true
+                        }
                     }
+                    spannableString.setSpan(clickableSpan,
+                            andesBodyLink.startIndex, andesBodyLink.endIndex,
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                } else {
+                    Log.d("AndesMessage", "Body link range incorrect: " +
+                            "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
                 }
-                spannableString.setSpan(clickableSpan,
-                        andesBodyLink.startIndex, andesBodyLink.endIndex,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
         }
@@ -394,4 +405,11 @@ class AndesMessage : CardView {
 
 class AndesBodyLinks(val links: List<AndesBodyLink>, val listener: (index: Int) -> Unit)
 
-class AndesBodyLink(val startIndex: Int, val endIndex: Int)
+class AndesBodyLink(val startIndex: Int, val endIndex: Int) {
+    fun isValidRange(text: SpannableString): Boolean {
+        return (startIndex >= 0
+                && endIndex >= 0
+                && startIndex <= endIndex
+                && endIndex <= text.length)
+    }
+}

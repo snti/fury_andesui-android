@@ -109,7 +109,11 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val links = listOf(
                     AndesBodyLink(0, 5),
-                    AndesBodyLink(77, 123)
+                    AndesBodyLink(79, 122),
+                    AndesBodyLink(50, 40),
+                    AndesBodyLink(79, 124),
+                    AndesBodyLink(-1, 10),
+                    AndesBodyLink(-1, -10)
             )
 
             changeMessage.setupBodyLinks(AndesBodyLinks(links, listener = {
