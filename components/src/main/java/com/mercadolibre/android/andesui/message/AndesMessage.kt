@@ -9,7 +9,6 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.UnderlineSpan
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -56,8 +55,6 @@ class AndesMessage : CardView {
             setupBodyComponent(createConfig())
         }
 
-    var bodyLinks: AndesBodyLinks? = null
-
     /**
      * Getter and setter for [title].
      */
@@ -95,6 +92,8 @@ class AndesMessage : CardView {
         set(value) {
             secondaryAction.textComponent.text = value
         }
+
+    private var bodyLinks: AndesBodyLinks? = null
 
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
@@ -255,7 +254,7 @@ class AndesMessage : CardView {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(view: View) {
-                        it.listener.customListener(linkIndex)
+                        it.listener(linkIndex)
                     }
 
                     override fun updateDrawState(ds: TextPaint) {
@@ -347,6 +346,21 @@ class AndesMessage : CardView {
         }
     }
 
+    fun setupBodyLinks(bodyLinks: AndesBodyLinks) {
+        if (primaryAction.visibility == View.GONE) {
+            this.bodyLinks = bodyLinks
+            val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
+            setupBodyComponent(config)
+        } else {
+            when {
+                BuildConfig.DEBUG ->
+                    throw IllegalStateException("Cannot initialize body links with a primary one")
+                else ->
+                    Log.d("AndesMessage", "Cannot initialize body links with a primary one")
+            }
+        }
+    }
+
     fun setupDismissableCallback(onClickListener: OnClickListener) {
         dismissableComponent.setOnClickListener {
             visibility = View.GONE
@@ -378,8 +392,6 @@ class AndesMessage : CardView {
     }
 }
 
-class AndesBodyLinks(val links: List<AndesBodyLink>, val listener: AndesBodyListener)
+class AndesBodyLinks(val links: List<AndesBodyLink>, val listener: (index: Int) -> Unit)
 
 class AndesBodyLink(val startIndex: Int, val endIndex: Int)
-
-interface AndesBodyListener { fun customListener(linkIndex: Int) }

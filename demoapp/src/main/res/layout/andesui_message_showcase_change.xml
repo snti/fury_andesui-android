@@ -41,7 +41,6 @@
             android:text="@string/dismissable" />
 
         <EditText
-            android:text="Holanda!"
             android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +48,6 @@
             android:inputType="text" />
 
         <EditText
-            android:text="Hola soy un texto"
             android:id="@+id/body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,32 +74,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/change_link_button"
             android:inputType="text" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:text="0"
-                android:id="@+id/body_link_start_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/badge_margin_vertical"
-                android:layout_weight="1"
-                android:hint="@string/body_link_start"
-                android:inputType="number" />
-
-            <EditText
-                android:text="4"
-                android:id="@+id/body_link_end_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/badge_margin_vertical"
-                android:layout_weight="1"
-                android:hint="@string/body_link_end"
-                android:inputType="number" />
-        </LinearLayout>
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/change_button"

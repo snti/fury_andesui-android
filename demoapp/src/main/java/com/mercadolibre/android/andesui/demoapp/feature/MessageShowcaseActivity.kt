@@ -16,7 +16,6 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.message.AndesBodyLink
 import com.mercadolibre.android.andesui.message.AndesBodyLinks
-import com.mercadolibre.android.andesui.message.AndesBodyListener
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
@@ -105,12 +104,17 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val linkActionText = layoutMessagesChange.findViewById<EditText>(R.id.link_action_text)
 
-            val bodyLinkStart = layoutMessagesChange.findViewById<EditText>(R.id.body_link_start_text)
-
-            val bodyLinkEnd = layoutMessagesChange.findViewById<EditText>(R.id.body_link_end_text)
-
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
+
+            val links = listOf(
+                    AndesBodyLink(0, 5),
+                    AndesBodyLink(77, 123)
+            )
+
+            changeMessage.setupBodyLinks(AndesBodyLinks(links, listener = {
+                Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
+            }))
 
             changeButton.setOnClickListener {
                 changeMessage.isDismissable = dismissableCheckbox.isChecked
@@ -123,22 +127,6 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     ).show()
                 } else {
                     changeMessage.body = bodyText.text.toString()
-
-                    bodyLinkStart.text.toString().toIntOrNull()?.let { start ->
-                        bodyLinkEnd.text.toString().toIntOrNull()?.let { end ->
-
-                            val links = listOf(
-                                    AndesBodyLink(start, end),
-                                    AndesBodyLink(12, 17)
-                            )
-
-                            changeMessage.bodyLinks = AndesBodyLinks(links, object : AndesBodyListener {
-                                override fun customListener(linkIndex: Int) {
-                                    Toast.makeText(context, "Click at body link: $linkIndex", Toast.LENGTH_SHORT).show()
-                                }
-                            })
-                        }
-                    }
                 }
 
                 changeMessage.type = AndesMessageType.fromString(typeSpinner.selectedItem.toString())
