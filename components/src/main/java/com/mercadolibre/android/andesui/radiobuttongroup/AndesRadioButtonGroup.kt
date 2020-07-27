@@ -107,7 +107,6 @@ class AndesRadioButtonGroup : LinearLayout {
         selected: Int = ANDES_RADIOBUTTON_SELECTED_DEFAULT_VALUE,
         radiobuttons: ArrayList<RadioButtonItem> = arrayListOf()
     ) {
-
         andesRadioButtonGroupAttrs = AndesRadioButtonGroupAttrs(align, distribution, selected, radiobuttons)
         val config = AndesRadioButtonGroupConfigurationFactory.create(andesRadioButtonGroupAttrs)
         setupComponents(config)
