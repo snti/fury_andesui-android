@@ -67,6 +67,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicMessageLayout, staticMessagesLayout)
         }
 
+        @Suppress("MagicNumber")
         private fun addDynamicMessage(inflater: LayoutInflater): View {
             val layoutMessagesChange = inflater.inflate(
                     R.layout.andesui_message_showcase_change, null, false

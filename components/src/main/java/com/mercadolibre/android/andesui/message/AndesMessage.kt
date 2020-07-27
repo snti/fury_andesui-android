@@ -271,7 +271,6 @@ class AndesMessage : CardView {
                     spannableString.setSpan(clickableSpan,
                             andesBodyLink.startIndex, andesBodyLink.endIndex,
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
                 } else {
                     Log.d("AndesMessage", "Body link range incorrect: " +
                             "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
