@@ -14,9 +14,9 @@ import com.mercadolibre.android.andesui.demoapp.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
-import com.mercadolibre.android.andesui.message.AndesBodyLink
-import com.mercadolibre.android.andesui.message.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.AndesMessage
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 

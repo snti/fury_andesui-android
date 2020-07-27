@@ -19,6 +19,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
@@ -400,16 +401,5 @@ class AndesMessage : CardView {
         private val TITLE_DEFAULT = null
         private val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
-    }
-}
-
-class AndesBodyLinks(val links: List<AndesBodyLink>, val listener: (index: Int) -> Unit)
-
-class AndesBodyLink(val startIndex: Int, val endIndex: Int) {
-    fun isValidRange(text: SpannableString): Boolean {
-        return (startIndex >= 0
-                && endIndex >= 0
-                && startIndex <= endIndex
-                && endIndex <= text.length)
     }
 }
