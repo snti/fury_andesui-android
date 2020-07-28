@@ -117,7 +117,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     AndesBodyLink(-1, -10)
             )
 
-            changeMessage.setupBodyLinks(AndesBodyLinks(links, listener = {
+            changeMessage.bodyLinks = (AndesBodyLinks(links, listener = {
                 Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
             }))
 

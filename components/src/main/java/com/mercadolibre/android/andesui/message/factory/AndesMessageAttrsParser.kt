@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.message.factory
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 
@@ -14,7 +15,8 @@ internal data class AndesMessageAttrs(
     val andesMessageType: AndesMessageType,
     val body: String?,
     val title: String?,
-    val isDismissable: Boolean
+    val isDismissable: Boolean,
+    val bodyLinks: AndesBodyLinks?
 )
 
 /**
@@ -52,7 +54,8 @@ internal object AndesMessageAttrsParser {
                 andesMessageType = type,
                 body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
                 title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
-                isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false)
+                isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false),
+                bodyLinks = null
         ).also { typedArray.recycle() }
     }
 }

@@ -79,6 +79,16 @@ class AndesMessage : CardView {
             setupDismissable(createConfig())
         }
 
+    /**
+     * Getter and setter for [bodyLinks].
+     */
+    var bodyLinks: AndesBodyLinks?
+        get() = andesMessageAttrs.bodyLinks
+        set(value) {
+            andesMessageAttrs = andesMessageAttrs.copy(bodyLinks = value)
+            setupBodyComponent(createConfig())
+        }
+
     private var primaryActionText: String
         get() = primaryAction.textComponent.text.toString()
         set(value) {
@@ -96,8 +106,6 @@ class AndesMessage : CardView {
         set(value) {
             secondaryAction.textComponent.text = value
         }
-
-    private var bodyLinks: AndesBodyLinks? = null
 
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
@@ -132,9 +140,10 @@ class AndesMessage : CardView {
         type: AndesMessageType = STATE_DEFAULT,
         body: String,
         title: String? = TITLE_DEFAULT,
-        isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT
+        isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT,
+        bodyLinks: AndesBodyLinks? = null
     ) : super(context) {
-        initAttrs(hierarchy, type, body, title, isDismissable)
+        initAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
     }
 
     /**
@@ -153,9 +162,10 @@ class AndesMessage : CardView {
         type: AndesMessageType,
         body: String,
         title: String?,
-        isDismissable: Boolean
+        isDismissable: Boolean,
+        bodyLinks: AndesBodyLinks?
     ) {
-        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable)
+        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
         setupComponents(config)
     }
@@ -353,21 +363,6 @@ class AndesMessage : CardView {
                     throw IllegalStateException("Cannot initialize a link action with a primary one")
                 else ->
                     Log.d("AndesMessage", "Cannot initialize a link action with a primary one")
-            }
-        }
-    }
-
-    fun setupBodyLinks(bodyLinks: AndesBodyLinks) {
-        if (primaryAction.visibility == View.GONE) {
-            this.bodyLinks = bodyLinks
-            val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
-            setupBodyComponent(config)
-        } else {
-            when {
-                BuildConfig.DEBUG ->
-                    throw IllegalStateException("Cannot initialize body links with a primary one")
-                else ->
-                    Log.d("AndesMessage", "Cannot initialize body links with a primary one")
             }
         }
     }
