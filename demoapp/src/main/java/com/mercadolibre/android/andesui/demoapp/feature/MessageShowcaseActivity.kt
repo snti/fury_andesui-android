@@ -111,20 +111,20 @@ class MessageShowcaseActivity : AppCompatActivity() {
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
             changeButton.setOnClickListener {
-                changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED
-                changeMessage.title = titleText.text.toString()
                 if (bodyText.text.toString().isEmpty()) {
                     bodyText.state = AndesTextfieldState.ERROR
                     bodyText.helper = "Message cannot be visualized with null body"
                     bodyText.requestFocus()
+                    return@setOnClickListener
                 } else {
                     bodyText.state = AndesTextfieldState.IDLE
                     bodyText.helper = null
                     changeMessage.body = bodyText.text.toString()
                 }
 
+                changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED
+                changeMessage.title = titleText.text.toString()
                 changeMessage.type = AndesMessageType.fromString(typeSpinner.selectedItem.toString())
-
                 changeMessage.hierarchy = AndesMessageHierarchy.fromString(hierarchySpinner.selectedItem.toString())
 
                 if (primaryActionText.text.toString().isNotEmpty()) {
