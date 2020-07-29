@@ -24,7 +24,6 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
-import com.mercadolibre.android.andesui.message.hierarchy.AndesLoudMessageHierarchy
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -203,7 +202,8 @@ class AndesMessage : CardView {
      *
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message, this, true)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message,
+                this, true)
 
         messageContainer = container.findViewById(R.id.andes_message_container)
         titleComponent = container.findViewById(R.id.andes_title)
@@ -263,9 +263,6 @@ class AndesMessage : CardView {
     private fun getBodyText(text: String, config: AndesMessageConfiguration): SpannableString {
         val spannableString = SpannableString(text)
 
-/*        spannableString.setSpan(ForegroundColorSpan(config.textColor.colorInt(context)), 0,
-                spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)*/
-
         bodyLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
 
@@ -277,11 +274,12 @@ class AndesMessage : CardView {
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
-                            //link should be underline only it hierarchy is loud
-                            if (andesMessageAttrs.andesMessageHierarchy.hierarchy == AndesLoudMessageHierarchy) {
+                            // link should be underline only it hierarchy is loud
+                            if (hierarchy == AndesMessageHierarchy.LOUD) {
                                 ds.isUnderlineText = true
                             } else {
-                                //link should be different color if hierarchy is quiet
+                                // link should be different color if hierarchy is quiet
+                                // TODO what color should we apply here
                                 ds.color = config.pipeColor.colorInt(context)
                             }
                         }
