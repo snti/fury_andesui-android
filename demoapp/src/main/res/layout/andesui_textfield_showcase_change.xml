@@ -9,17 +9,32 @@
         android:layout_height="wrap_content"
         android:isScrollContainer="true">
 
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageBodyText="@string/textfield_description"
+            android:layout_marginStart="@dimen/margin_vertical_text_field"
+            android:layout_marginTop="@dimen/margin_vertical_thumbnail"
+            android:layout_marginEnd="@dimen/margin_vertical_text_field"
+            app:andesMessageType="neutral"
+            app:andesMessageHierarchy="quiet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/andesui_textfield"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_vertical_text_field"
-            android:layout_marginTop="@dimen/margin_vertical_text_field"
+            android:layout_marginTop="@dimen/margin_vertical_thumbnail"
             android:layout_marginEnd="@dimen/margin_vertical_text_field"
             app:andesTextfieldState="idle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/message" />
 
         <TextView
             android:id="@+id/textView"
@@ -113,34 +128,37 @@
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/label_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
-            android:hint="@string/andes_textfield_label_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_label_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/suffix_spinner"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/placeholder_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
-            android:hint="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/label_text"
             app:layout_constraintStart_toStartOf="@+id/label_text"
             app:layout_constraintTop_toBottomOf="@+id/label_text" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/helper_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
-            android:hint="@string/andes_textfield_helper_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_helper_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/placeholder_text"
             app:layout_constraintStart_toStartOf="@+id/placeholder_text"
