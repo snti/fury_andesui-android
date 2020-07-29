@@ -24,6 +24,7 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
+import com.mercadolibre.android.andesui.message.hierarchy.AndesLoudMessageHierarchy
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
@@ -251,18 +252,19 @@ class AndesMessage : CardView {
             Log.e("Body", "Message cannot be visualized with null or empty body")
         } else {
             messageContainer.visibility = View.VISIBLE
-            bodyComponent.text = getBodyText(config.bodyText)
+            bodyComponent.text = getBodyText(config.bodyText, config)
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
-            bodyComponent.setLinkTextColor(config.textColor.colorInt(context))
-            bodyComponent.highlightColor = resources.getColor(R.color.andes_transparent)
             bodyComponent.typeface = config.bodyTypeface
 //          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
     }
 
-    private fun getBodyText(text: String): SpannableString {
+    private fun getBodyText(text: String, config: AndesMessageConfiguration): SpannableString {
         val spannableString = SpannableString(text)
+
+/*        spannableString.setSpan(ForegroundColorSpan(config.textColor.colorInt(context)), 0,
+                spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)*/
 
         bodyLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
@@ -275,7 +277,13 @@ class AndesMessage : CardView {
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
-                            ds.isUnderlineText = true
+                            //link should be underline only it hierarchy is loud
+                            if (andesMessageAttrs.andesMessageHierarchy.hierarchy == AndesLoudMessageHierarchy) {
+                                ds.isUnderlineText = true
+                            } else {
+                                //link should be different color if hierarchy is quiet
+                                ds.color = config.pipeColor.colorInt(context)
+                            }
                         }
                     }
                     spannableString.setSpan(clickableSpan,
