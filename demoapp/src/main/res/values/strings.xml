@@ -96,6 +96,7 @@
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_radiobutton_showcase">Andes RadioButton</string>
+    <string name="andes_radiobuttongroup_showcase">Andes RadioButtonGroup</string>
     <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_simple_tag_showcase">Simple tag</string>
     <string name="andes_snackbar_showcase">Andes snackbar</string>
