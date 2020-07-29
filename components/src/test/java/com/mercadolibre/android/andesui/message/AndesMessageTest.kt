@@ -3,7 +3,6 @@ package com.mercadolibre.android.andesui.message
 import android.os.Build
 import android.text.SpannableString
 import android.text.style.ClickableSpan
-import android.view.View
 import com.facebook.common.logging.FLog
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.imagepipeline.core.ImagePipelineConfig
