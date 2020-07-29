@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
+        setupToolbar()
         setupCheckbox()
         setupRadioButton()
         setupSnackbar()
@@ -31,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
+    }
+
+    private fun setupToolbar() {
+        andesui_toolbar.setOnClickListener {
+            launchIntent("meli://andes/toolbar")
+        }
     }
 
     private fun setupCheckbox() {
