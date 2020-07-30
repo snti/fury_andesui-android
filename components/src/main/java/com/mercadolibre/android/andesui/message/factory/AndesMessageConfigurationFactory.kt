@@ -33,7 +33,9 @@ internal data class AndesMessageConfiguration(
     val secondaryActionBackgroundColor: BackgroundColorConfig,
     val secondaryActionTextColor: AndesColor,
     val linkActionBackgroundColor: BackgroundColorConfig,
-    val linkActionTextColor: AndesColor
+    val linkActionTextColor: AndesColor,
+    val bodyLinkIsUnderline: Boolean,
+    val bodyLinkTextColor: AndesColor
 )
 
 internal object AndesMessageConfigurationFactory {
@@ -68,6 +70,7 @@ internal object AndesMessageConfigurationFactory {
                             andesMessageType.type
                     ),
                     primaryActionTextColor = resolvePrimaryActionTextColor(andesMessageHierarchy.hierarchy),
+
                     secondaryActionBackgroundColor = resolveSecondaryActionBackgroundColor(
                             andesMessageHierarchy.hierarchy,
                             andesMessageType.type
@@ -83,7 +86,10 @@ internal object AndesMessageConfigurationFactory {
                     linkActionTextColor = resolveLinkActionTextColor(
                             andesMessageHierarchy.hierarchy,
                             andesMessageType.type
-                    )
+                    ),
+
+                    bodyLinkIsUnderline = resolveBodyLinkIsUnderline(andesMessageHierarchy.hierarchy, andesMessageType.type),
+                    bodyLinkTextColor = resolveBodyLinkTextColor(andesMessageHierarchy.hierarchy, andesMessageType.type)
             )
         }
     }
@@ -125,4 +131,12 @@ internal object AndesMessageConfigurationFactory {
         hierarchy: AndesMessageHierarchyInterface,
         type: AndesMessageTypeInterface
     ) = hierarchy.linkActionTextColor(type)
+    private fun resolveBodyLinkIsUnderline(
+            hierarchy: AndesMessageHierarchyInterface,
+            type: AndesMessageTypeInterface
+    ) = hierarchy.bodyLinkIsUnderLine(type)
+    private fun resolveBodyLinkTextColor(
+            hierarchy: AndesMessageHierarchyInterface,
+            type: AndesMessageTypeInterface
+    ) = hierarchy.bodyLinkTextColor(type)
 }
