@@ -1,6 +1,7 @@
 # v2.7.0
 ## Added
-- LinkButton in AndesMessage Component.
+- Link action in AndesMessage Component.
+- Link body in AndesMessage Component.
 - Thumbnail Component, Icon type.
 - RadioButtonGroup Component
 

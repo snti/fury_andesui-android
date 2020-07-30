@@ -39,6 +39,7 @@ class AndesMessage : CardView {
             andesMessageAttrs = andesMessageAttrs.copy(andesMessageHierarchy = value)
             setupColorComponents(createConfig())
         }
+
     /**
      * Getter and setter for [type].
      */
@@ -262,12 +263,9 @@ class AndesMessage : CardView {
 
     private fun getBodyText(text: String, config: AndesMessageConfiguration): SpannableString {
         val spannableString = SpannableString(text)
-
         bodyLinks?.let {
             it.links.forEachIndexed { linkIndex, andesBodyLink ->
-
                 if (andesBodyLink.isValidRange(spannableString)) {
-
                     val clickableSpan = object : ClickableSpan() {
                         override fun onClick(view: View) {
                             it.listener(linkIndex)
@@ -288,7 +286,6 @@ class AndesMessage : CardView {
             }
             bodyComponent.movementMethod = LinkMovementMethod.getInstance()
         }
-
         return spannableString
     }
 

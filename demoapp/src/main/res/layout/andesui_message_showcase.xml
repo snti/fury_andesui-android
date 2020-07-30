@@ -85,6 +85,17 @@
             app:andesMessageHierarchy="loud"
             app:andesMessageType="error" />
 
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:id="@+id/messageLinkBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_margin_vertical"
+            app:andesMessageBodyText="@string/body_text"
+            app:andesMessageDismissable="true"
+            app:andesMessageHierarchy="quiet"
+            app:andesMessageType="success"
+            app:andesMessageTitleText="@string/title_text" />
+
         <TextView
             android:id="@+id/andesui_demoapp_label_more"
             android:layout_width="wrap_content"
