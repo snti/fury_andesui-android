@@ -17,6 +17,8 @@ import com.mercadolibre.android.andesui.demoapp.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.launchSpecs
 import com.mercadolibre.android.andesui.message.AndesMessage
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.textfield.AndesTextarea
@@ -70,6 +72,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicMessageLayout, staticMessagesLayout)
         }
 
+        @Suppress("MagicNumber")
         private fun addDynamicMessage(inflater: LayoutInflater): View {
             val layoutMessagesChange = inflater.inflate(
                     R.layout.andesui_message_showcase_change, null, false
@@ -109,6 +112,19 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
             val changeButton = layoutMessagesChange.findViewById<AndesButton>(R.id.change_button)
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
+
+            val links = listOf(
+                    AndesBodyLink(0, 5),
+                    AndesBodyLink(79, 122),
+                    AndesBodyLink(50, 40),
+                    AndesBodyLink(79, 124),
+                    AndesBodyLink(-1, 10),
+                    AndesBodyLink(-1, -10)
+            )
+
+            changeMessage.bodyLinks = (AndesBodyLinks(links, listener = {
+                Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
+            }))
 
             changeButton.setOnClickListener {
                 changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED
