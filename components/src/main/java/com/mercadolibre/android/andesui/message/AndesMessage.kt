@@ -274,14 +274,8 @@ class AndesMessage : CardView {
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
-                            // link should be underline only it hierarchy is loud
-                            if (hierarchy == AndesMessageHierarchy.LOUD) {
-                                ds.isUnderlineText = true
-                            } else {
-                                // link should be different color if hierarchy is quiet
-                                // TODO what color should we apply here
-                                ds.color = config.pipeColor.colorInt(context)
-                            }
+                            ds.isUnderlineText = config.bodyLinkIsUnderline
+                            ds.color = config.bodyLinkTextColor.colorInt(context)
                         }
                     }
                     spannableString.setSpan(clickableSpan,
