@@ -1,8 +1,14 @@
 package com.mercadolibre.android.andesui.message
 
 import android.content.Context
+import android.graphics.Paint
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -13,13 +19,13 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrs
 import com.mercadolibre.android.andesui.message.factory.AndesMessageAttrsParser
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguration
 import com.mercadolibre.android.andesui.message.factory.AndesMessageConfigurationFactory
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
-import android.graphics.Paint
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 class AndesMessage : CardView {
@@ -73,6 +79,16 @@ class AndesMessage : CardView {
             setupDismissable(createConfig())
         }
 
+    /**
+     * Getter and setter for [bodyLinks].
+     */
+    var bodyLinks: AndesBodyLinks?
+        get() = andesMessageAttrs.bodyLinks
+        set(value) {
+            andesMessageAttrs = andesMessageAttrs.copy(bodyLinks = value)
+            setupBodyComponent(createConfig())
+        }
+
     private var primaryActionText: String
         get() = primaryAction.textComponent.text.toString()
         set(value) {
@@ -93,7 +109,7 @@ class AndesMessage : CardView {
 
     private lateinit var messageContainer: ConstraintLayout
     private lateinit var titleComponent: TextView
-    private lateinit var bodyComponent: TextView
+    lateinit var bodyComponent: TextView
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var dismissableComponent: SimpleDraweeView
     private lateinit var pipeComponent: View
@@ -124,9 +140,10 @@ class AndesMessage : CardView {
         type: AndesMessageType = STATE_DEFAULT,
         body: String,
         title: String? = TITLE_DEFAULT,
-        isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT
+        isDismissable: Boolean = IS_DISMISSIBLE_DEFAULT,
+        bodyLinks: AndesBodyLinks? = null
     ) : super(context) {
-        initAttrs(hierarchy, type, body, title, isDismissable)
+        initAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
     }
 
     /**
@@ -145,9 +162,10 @@ class AndesMessage : CardView {
         type: AndesMessageType,
         body: String,
         title: String?,
-        isDismissable: Boolean
+        isDismissable: Boolean,
+        bodyLinks: AndesBodyLinks?
     ) {
-        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable)
+        andesMessageAttrs = AndesMessageAttrs(hierarchy, type, body, title, isDismissable, bodyLinks)
         val config = AndesMessageConfigurationFactory.create(context, andesMessageAttrs)
         setupComponents(config)
     }
@@ -184,7 +202,8 @@ class AndesMessage : CardView {
      *
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message, this, true)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_message,
+                this, true)
 
         messageContainer = container.findViewById(R.id.andes_message_container)
         titleComponent = container.findViewById(R.id.andes_title)
@@ -233,12 +252,44 @@ class AndesMessage : CardView {
             Log.e("Body", "Message cannot be visualized with null or empty body")
         } else {
             messageContainer.visibility = View.VISIBLE
-            bodyComponent.text = config.bodyText
+            bodyComponent.text = getBodyText(config.bodyText, config)
             bodyComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.bodySize)
             bodyComponent.setTextColor(config.textColor.colorInt(context))
             bodyComponent.typeface = config.bodyTypeface
 //          bodyComponent.lineHeight = config.lineHeight //FIXME Use TextViewCompat
         }
+    }
+
+    private fun getBodyText(text: String, config: AndesMessageConfiguration): SpannableString {
+        val spannableString = SpannableString(text)
+
+        bodyLinks?.let {
+            it.links.forEachIndexed { linkIndex, andesBodyLink ->
+
+                if (andesBodyLink.isValidRange(spannableString)) {
+
+                    val clickableSpan = object : ClickableSpan() {
+                        override fun onClick(view: View) {
+                            it.listener(linkIndex)
+                        }
+
+                        override fun updateDrawState(ds: TextPaint) {
+                            ds.isUnderlineText = config.bodyLinkIsUnderline
+                            ds.color = config.bodyLinkTextColor.colorInt(context)
+                        }
+                    }
+                    spannableString.setSpan(clickableSpan,
+                            andesBodyLink.startIndex, andesBodyLink.endIndex,
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                } else {
+                    Log.d("AndesMessage", "Body link range incorrect: " +
+                            "${andesBodyLink.startIndex}, ${andesBodyLink.endIndex}")
+                }
+            }
+            bodyComponent.movementMethod = LinkMovementMethod.getInstance()
+        }
+
+        return spannableString
     }
 
     private fun setupBackground(config: AndesMessageConfiguration) {
