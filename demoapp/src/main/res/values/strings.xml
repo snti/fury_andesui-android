@@ -53,6 +53,12 @@
 
     <string name="title_description">Atention! 👇</string>
     <string name="radiobutton_description">They allow you to make a selection from a list of options. Unlike checkboxes, radio buttons only allow you to choose an option.</string>
+    <string name="thumbnail_description">They are containers that specify images, logos and icons for complementary content and modified meaning. When grouped together, they improve the scannability of the information.</string>
+    <string name="textfield_description">Allows the user to enter and edit text values.</string>
+    <string name="badge_description">Badges are small units of information that allow you to indicate the state of an element or differentiate several similar elements from each other.</string>
+    <string name="tag_description">Tags are compact components that represent complex information in a summarized way. Allowing users to make selections, enter information, or filter content.</string>
+    <string name="snackbar_description">They communicate quickly and concisely the status of an event. For more complex or extensive communications, consider the use of tooltip or message.</string>
+    <string name="checkbox_description">They allow multiple selections from a list of options, unlike radio buttons that only allow you to choose a single option.</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
@@ -122,6 +128,7 @@
     <string name="andes_radiobutton_type">Type</string>
     <string name="andes_radiobutton_status">Status</string>
     <string name="andes_radiobutton_align">Align</string>
+    <string name="andes_radiobutton_placeholder_text">Text</string>
     <string name="andes_radiobuttongroup_horizontal">Distribution horizontal</string>
     <string name="andes_radiobuttongroup_vertical">Distribution vertical</string>
 

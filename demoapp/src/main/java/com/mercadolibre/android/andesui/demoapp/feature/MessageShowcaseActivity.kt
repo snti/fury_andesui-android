@@ -114,12 +114,10 @@ class MessageShowcaseActivity : AppCompatActivity() {
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
             val links = listOf(
-                    AndesBodyLink(0, 5),
+                    AndesBodyLink(4, 11),
+                    AndesBodyLink(60, 66),
                     AndesBodyLink(79, 122),
-                    AndesBodyLink(50, 40),
-                    AndesBodyLink(79, 124),
-                    AndesBodyLink(-1, 10),
-                    AndesBodyLink(-1, -10)
+                    AndesBodyLink(50, 40)
             )
 
             changeMessage.bodyLinks = (AndesBodyLinks(links, listener = {
@@ -127,21 +125,22 @@ class MessageShowcaseActivity : AppCompatActivity() {
             }))
 
             changeButton.setOnClickListener {
-                changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED
-                changeMessage.title = titleText.text.toString()
                 if (bodyText.text.toString().isEmpty()) {
                     bodyText.state = AndesTextfieldState.ERROR
                     bodyText.helper = "Message cannot be visualized with null body"
                     bodyText.requestFocus()
+                    return@setOnClickListener
                 } else {
                     bodyText.state = AndesTextfieldState.IDLE
                     bodyText.helper = null
                     changeMessage.body = bodyText.text.toString()
                 }
 
+                changeMessage.isDismissable = dismissableCheckbox.status == AndesCheckboxStatus.SELECTED
+                changeMessage.title = titleText.text.toString()
                 changeMessage.type = AndesMessageType.fromString(typeSpinner.selectedItem.toString())
-
                 changeMessage.hierarchy = AndesMessageHierarchy.fromString(hierarchySpinner.selectedItem.toString())
+                changeMessage.bodyLinks = null
 
                 if (primaryActionText.text.toString().isNotEmpty()) {
                     changeMessage.setupPrimaryAction(primaryActionText.text.toString(), View.OnClickListener {
@@ -251,6 +250,15 @@ class MessageShowcaseActivity : AppCompatActivity() {
                         Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
                     }
             )
+            val links = listOf(
+                    AndesBodyLink(6, 11),
+                    AndesBodyLink(64, 71)
+            )
+            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(links,
+                listener = {
+                    Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
+                }
+            ))
             return layoutMessages
         }
     }

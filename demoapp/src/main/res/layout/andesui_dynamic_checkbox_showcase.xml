@@ -9,15 +9,30 @@
         android:layout_height="600dp"
         android:isScrollContainer="true">
 
+        <com.mercadolibre.android.andesui.message.AndesMessage
+            android:id="@+id/andesMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:andesMessageTitleText="@string/title_description"
+            app:andesMessageBodyText="@string/checkbox_description"
+            app:andesMessageHierarchy="quiet"
+            app:andesMessageType="neutral"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
             android:id="@+id/andesCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:andesCheckboxText="@string/andes_checkbox_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/andesMessage" />
 
         <Spinner
             android:id="@+id/spinnerType"
@@ -81,6 +96,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:andesTextfieldRightContent="clear"
+            app:andesTextfieldPlaceholder="@string/andes_radiobutton_placeholder_text"
             app:layout_constraintEnd_toEndOf="@+id/spinnerAlign"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/spinnerAlign" />

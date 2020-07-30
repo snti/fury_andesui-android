@@ -76,9 +76,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.andesui_textfield)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
             val clearButton = layoutTextfield.findViewById<AndesButton>(R.id.clear_button)
-            val label = layoutTextfield.findViewById<EditText>(R.id.label_text)
-            val helper = layoutTextfield.findViewById<EditText>(R.id.helper_text)
-            val placeholder = layoutTextfield.findViewById<EditText>(R.id.placeholder_text)
+            val label = layoutTextfield.findViewById<AndesTextfield>(R.id.label_text)
+            val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
+            val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
@@ -151,7 +151,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             clearButton.setOnClickListener {
                 // reset UI
                 label.text = null
-                placeholder.hint = context.resources.getString(R.string.andes_textfield_placeholder_text)
+                placeholder.placeholder = context.resources.getString(R.string.andes_textfield_placeholder_text)
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)
@@ -180,9 +180,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val textarea = layoutTextfield.findViewById<AndesTextarea>(R.id.andesui_tag)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
             val clearButton = layoutTextfield.findViewById<AndesButton>(R.id.clear_button)
-            val label = layoutTextfield.findViewById<EditText>(R.id.label_text)
-            val helper = layoutTextfield.findViewById<EditText>(R.id.helper_text)
-            val placeholder = layoutTextfield.findViewById<EditText>(R.id.placeholder_text)
+            val label = layoutTextfield.findViewById<AndesTextfield>(R.id.label_text)
+            val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
+            val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
             counter.setText(COUNTER_DEFAULT)
             textarea.counter = 50
@@ -204,7 +204,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             clearButton.setOnClickListener {
                 // reset UI
                 label.text = null
-                placeholder.hint = context.resources.getString(R.string.andes_textfield_placeholder_text)
+                placeholder.placeholder = context.resources.getString(R.string.andes_textfield_placeholder_text)
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)

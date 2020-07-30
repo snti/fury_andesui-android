@@ -96,6 +96,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:andesTextfieldRightContent="clear"
+            app:andesTextfieldPlaceholder="@string/andes_radiobutton_placeholder_text"
             app:layout_constraintEnd_toEndOf="@+id/spinnerAlign"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/spinnerAlign" />

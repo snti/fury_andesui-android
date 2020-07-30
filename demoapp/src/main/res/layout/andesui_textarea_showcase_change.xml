@@ -44,34 +44,37 @@
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/label_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/andes_textfield_label_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_label_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/state_spinner"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/placeholder_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
-            android:hint="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_placeholder_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/label_text"
             app:layout_constraintStart_toStartOf="@+id/label_text"
             app:layout_constraintTop_toBottomOf="@+id/label_text" />
 
-        <EditText
+        <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/helper_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
-            android:hint="@string/andes_textfield_helper_text"
+            app:andesTextfieldPlaceholder="@string/andes_textfield_helper_text"
+            app:andesTextfieldRightContent="clear"
             android:inputType="textCapWords|textCapSentences"
             app:layout_constraintEnd_toEndOf="@+id/placeholder_text"
             app:layout_constraintStart_toStartOf="@+id/placeholder_text"
