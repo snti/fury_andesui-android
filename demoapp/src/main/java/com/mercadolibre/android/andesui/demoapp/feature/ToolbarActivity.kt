@@ -29,7 +29,6 @@ class ToolbarActivity : AppCompatActivity() {
 
 
         val toolbar: Toolbar = findViewById(R.id.andes_toolbar)
-
         if (showActionBar) {
             renderToolbar(
                     backgroundColor = R.color.andes_blue_ml_500,
@@ -51,7 +50,7 @@ class ToolbarActivity : AppCompatActivity() {
             andes_scroll.viewTreeObserver.addOnScrollChangedListener {
                 val scrollY: Float = andes_scroll.scrollY.toFloat()
                 if (scrollY > size/2 && !toolbarIsShowing) {
-                    //Muestro toolbar
+                    // Muestro toolbar
                     toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.andes_blue_ml_500))
                     toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.andes_white))
                     setSupportActionBar(toolbar)
@@ -61,7 +60,7 @@ class ToolbarActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayShowTitleEnabled(true)
                     toolbarIsShowing = true
                 } else if (scrollY < size/2 && toolbarIsShowing) {
-                    //Oculto toolbar
+                    // Oculto toolbar
                     toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.andes_transparent))
                     setSupportActionBar(toolbar)
                     supportActionBar?.setDisplayShowTitleEnabled(false)
