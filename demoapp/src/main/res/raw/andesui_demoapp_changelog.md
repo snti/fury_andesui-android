@@ -5,6 +5,9 @@
 - Thumbnail Component, Icon type.
 - RadioButtonGroup Component
 
+## Fixed
+- Getter and setter for the AndesThumnail's image.
+
 # v2.6.0
 ## Added
 - Checkbox Component.
