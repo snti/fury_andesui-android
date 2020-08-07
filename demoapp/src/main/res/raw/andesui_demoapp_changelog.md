@@ -1,3 +1,7 @@
+# v2.7.1
+## Fixed
+- Getter and setter for the AndesThumnail's image.
+
 # v2.7.0
 ## Added
 - Link action in AndesMessage Component.

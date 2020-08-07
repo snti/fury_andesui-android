@@ -47,6 +47,18 @@ class AndesThumbnail : FrameLayout {
             setupImageColor(config.iconColor)
         }
 
+
+    /**
+     * Getter and setter for [image].
+     */
+    var image: Drawable
+        get() = andesThumbnailAttrs.andesThumbnailImage
+        set(value) {
+            andesThumbnailAttrs = andesThumbnailAttrs.copy(andesThumbnailImage = value)
+            val config = createConfig()
+            setupImage(config)
+        }
+
     /**
      * Getter and setter for [type].
      */
