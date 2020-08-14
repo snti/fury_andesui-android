@@ -553,8 +553,15 @@ class AndesTextfield : ConstraintLayout {
             maskWatcher!!.setMask(mask.mask)
         }
 
-        counter = mask.size
-        textComponent.keyListener = DigitsKeyListener.getInstance(mask.digits)
+        counter = if(mask.size != 0){
+            mask.size
+        } else {
+            mask.mask.length
+        }
+
+        if(mask.digits != null && mask.digits.isNotEmpty()){
+            textComponent.keyListener = DigitsKeyListener.getInstance(mask.digits)
+        }
     }
 
     fun requestFocusOnTextField() {

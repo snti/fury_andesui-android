@@ -92,6 +92,8 @@
     <string name="andesui_demoapp_textfield_prefix_text">Left component:</string>
     <string name="andesui_demoapp_textfield_suffix_text">Right component:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
+    <string name="andesui_demoapp_mask_text">Mascara:</string>
+    <string name="andesui_demoapp_mask_hint">ejemplo: ##-###-######-#</string>
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
