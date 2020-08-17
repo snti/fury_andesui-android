@@ -549,9 +549,9 @@ class AndesTextfield : ConstraintLayout {
         if (maskWatcher == null) {
             maskWatcher = TextFieldMaskWatcher(mask.mask, listener)
             textComponent.addTextChangedListener(maskWatcher)
-        } else {
-            maskWatcher!!.setMask(mask.mask)
         }
+
+        maskWatcher?.setMask(mask.mask)
 
         counter = if(mask.size != 0){
             mask.size
