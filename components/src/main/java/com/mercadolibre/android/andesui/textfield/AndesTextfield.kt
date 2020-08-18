@@ -27,8 +27,8 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrsParser
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfiguration
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
-import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMask
+import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
@@ -376,9 +376,21 @@ class AndesTextfield : ConstraintLayout {
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
-                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, charSequence!!.length, config.counterLength)
+
+                val textWithoutMask = cleanText(charSequence.toString())
+
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
+                    textWithoutMask?.length, config.counterLength)
             }
         })
+    }
+
+    private fun cleanText(text: String): String? {
+        return if (maskWatcher == null) {
+            text
+        } else {
+            maskWatcher?.cleanMask(text)
+        }
     }
 
     /**
@@ -552,16 +564,20 @@ class AndesTextfield : ConstraintLayout {
         }
 
         maskWatcher?.setMask(mask.mask)
+        counter = maskWatcher?.getMaxLength()!!
+        textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter((mask.mask.length)))
 
-        counter = if(mask.size != 0){
-            mask.size
-        } else {
-            mask.mask.length
-        }
-
-        if(mask.digits != null && mask.digits.isNotEmpty()){
+        if (mask.digits != null && mask.digits.isNotEmpty()) {
             textComponent.keyListener = DigitsKeyListener.getInstance(mask.digits)
         }
+    }
+
+    /**
+     * remove mask in text field.
+     */
+    fun clearMask() {
+        textComponent.removeTextChangedListener(maskWatcher)
+        maskWatcher = null
     }
 
     fun requestFocusOnTextField() {

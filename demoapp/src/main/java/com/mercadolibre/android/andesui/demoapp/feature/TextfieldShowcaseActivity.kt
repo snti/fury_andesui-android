@@ -145,14 +145,14 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                if (mask.text.isNotEmpty()){
+                if (mask.text.isNotEmpty()) {
                     val fieldMask = TextFieldMask(mask = mask.text.toString())
-                    textfield.setTextFieldMask(fieldMask,null)
+                    textfield.setTextFieldMask(fieldMask, null)
                 }
 
-                val selectedInputType = getInputTypesArray().filter {
+                val selectedInputType = getInputTypesArray().single {
                     it.name == inputTypeSpinner.selectedItem.toString()
-                }.single().value
+                }.value
                 textfield.inputType = selectedInputType
             }
 
@@ -179,6 +179,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
                 textfield.rightContent = null
+                textfield.clearMask()
             }
 
             return layoutTextfield

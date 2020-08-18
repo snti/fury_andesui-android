@@ -37,6 +37,23 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
         this.mask = mask
     }
 
+    fun cleanMask(text: String): String {
+        val maskChars = mask.replace("#", "")
+        var textWithoutMask = text
+        maskChars.forEach { char ->
+            textWithoutMask = textWithoutMask.replace(char.toString(), "")
+        }
+        return textWithoutMask
+    }
+
+    fun getMaxLength(): Int {
+        return if (mask.isNotEmpty()) {
+            mask.length - mask.replace("#", "").length
+        } else {
+            0
+        }
+    }
+
     interface OnTextChange {
         fun onChange(text: String)
     }
