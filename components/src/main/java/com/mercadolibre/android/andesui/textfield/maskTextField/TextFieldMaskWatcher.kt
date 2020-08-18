@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.textfield.maskTextField
 
 import android.text.Editable
 import android.text.TextWatcher
+import java.math.BigDecimal
 
 class TextFieldMaskWatcher(private var mask: String = "", private var textChange: OnTextChange?) : TextWatcher {
     private var isRunning = false
@@ -23,9 +24,9 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
 
         val editableLength = editable.length
         if (mask.isNotBlank() && editableLength < mask.length && editableLength > 0) {
-            if (mask[editableLength] != '#') {
+            if (mask[editableLength] != GENERIC_CHAR) {
                 editable.append(mask[editableLength])
-            } else if (mask[editableLength - 1] != '#') {
+            } else if (mask[editableLength - 1] != GENERIC_CHAR) {
                 editable.insert(editableLength - 1, mask, editableLength - 1, editableLength)
             }
         }
@@ -38,7 +39,7 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
     }
 
     fun cleanMask(text: String): String {
-        val maskChars = mask.replace("#", "")
+        val maskChars = mask.replace(GENERIC_CHAR.toString(), "")
         var textWithoutMask = text
         maskChars.forEach { char ->
             textWithoutMask = textWithoutMask.replace(char.toString(), "")
@@ -48,13 +49,17 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
 
     fun getMaxLength(): Int {
         return if (mask.isNotEmpty()) {
-            mask.length - mask.replace("#", "").length
+            mask.length - mask.replace(GENERIC_CHAR.toString(), "").length
         } else {
-            0
+            BigDecimal.ZERO.toInt()
         }
     }
 
     interface OnTextChange {
         fun onChange(text: String)
+    }
+
+    companion object {
+        const val GENERIC_CHAR = '#'
     }
 }

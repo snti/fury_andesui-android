@@ -385,6 +385,9 @@ class AndesTextfield : ConstraintLayout {
         })
     }
 
+    /**
+     * if use maskWatcher will remove masks chars
+     */
     private fun cleanText(text: String): String? {
         return if (maskWatcher == null) {
             text
@@ -563,7 +566,8 @@ class AndesTextfield : ConstraintLayout {
             textComponent.addTextChangedListener(maskWatcher)
         }
 
-        maskWatcher?.setMask(mask.mask)
+        maskWatcher!!.setMask(mask.mask)
+
         counter = maskWatcher?.getMaxLength()!!
         textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter((mask.mask.length)))
 
