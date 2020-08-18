@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
+import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMask
 import junit.framework.Assert.*
 import org.junit.Before
 import org.junit.BeforeClass
@@ -40,9 +41,9 @@ class AndesTextfieldTest {
     fun setUp() {
         val requestListeners = setOf<RequestListener>(RequestLoggingListener())
         val config = ImagePipelineConfig.newBuilder(context)
-                // other setters
-                .setRequestListeners(requestListeners)
-                .build()
+            // other setters
+            .setRequestListeners(requestListeners)
+            .build()
         Fresco.initialize(context, config)
         FLog.setMinimumLoggingLevel(FLog.VERBOSE)
         textfield = AndesTextfield(context)
@@ -76,6 +77,12 @@ class AndesTextfieldTest {
     fun `set action`() {
         textfield.setAction("action", View.OnClickListener { })
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ACTION)
+    }
+
+    @Test
+    fun `set mask`() {
+        textfield.setTextFieldMask(TextFieldMask("###--##,"), null)
+        assertEquals(textfield.counter, 5)
     }
 
     @Test
