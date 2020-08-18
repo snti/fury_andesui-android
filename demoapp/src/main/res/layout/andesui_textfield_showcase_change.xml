@@ -199,6 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/andesui_demoapp_mask_hint"
+            android:inputType="text"
             android:layout_marginStart="@dimen/margin_horizontal_text_field"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintStart_toEndOf="@+id/textView6"
