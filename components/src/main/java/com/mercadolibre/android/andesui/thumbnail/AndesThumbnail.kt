@@ -47,7 +47,6 @@ class AndesThumbnail : FrameLayout {
             setupImageColor(config.iconColor)
         }
 
-
     /**
      * Getter and setter for [image].
      */

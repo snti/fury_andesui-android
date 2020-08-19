@@ -20,6 +20,7 @@ import com.mercadolibre.android.andesui.textfield.AndesTextarea
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
+import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMask
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
 class TextfieldShowcaseActivity : AppCompatActivity() {
@@ -80,6 +81,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
+            val mask = layoutTextfield.findViewById<EditText>(R.id.mask)
+
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
 
@@ -142,9 +145,14 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                val selectedInputType = getInputTypesArray().filter {
+                if (mask.text.isNotEmpty()) {
+                    val fieldMask = TextFieldMask(mask = mask.text.toString())
+                    textfield.setTextFieldMask(fieldMask, null)
+                }
+
+                val selectedInputType = getInputTypesArray().single {
                     it.name == inputTypeSpinner.selectedItem.toString()
-                }.single().value
+                }.value
                 textfield.inputType = selectedInputType
             }
 
@@ -155,6 +163,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)
+                mask.setText("")
                 stateSpinner.setSelection(0)
                 inputTypeSpinner.setSelection(0)
                 preffixSpinner.setSelection(0)
@@ -170,6 +179,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
                 textfield.rightContent = null
+                textfield.clearMask()
             }
 
             return layoutTextfield

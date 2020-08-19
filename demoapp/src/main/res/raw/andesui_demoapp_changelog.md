@@ -1,6 +1,8 @@
 # v2.7.1
-## Fixed
-- Getter and setter for the AndesThumnail's image.
+## Added
+- Mask to textField
+- Listener click in right icon
+- Color change to right icon
 
 # v2.7.0
 ## Added
