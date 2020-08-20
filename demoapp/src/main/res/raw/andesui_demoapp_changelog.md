@@ -1,3 +1,7 @@
+# v2.8.0
+## Added
+- Card Component.
+
 # v2.7.1
 ## Added
 - Mask to textField
