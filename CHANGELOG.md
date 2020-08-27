@@ -1,3 +1,7 @@
+## v2.9.0
+### 🚀 Features
+- AndesButton: Progress indicator | Author: [@orelvismeli](https://github.com/orelvismeli)
+
 # v2.8.0
 ## Added
 - Card Component.
