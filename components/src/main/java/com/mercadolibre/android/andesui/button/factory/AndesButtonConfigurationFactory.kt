@@ -37,7 +37,8 @@ internal data class AndesButtonConfiguration(
     val typeface: Typeface,
     val iconConfig: IconConfig? = null,
     val enabled: Boolean = true,
-    val lateralPadding: Int
+    val lateralPadding: Int,
+    val isLoading: Boolean = false
 ) {
     /**
      * Constant representing the max of lines a button can have
@@ -83,12 +84,16 @@ internal object AndesButtonConfigurationFactory {
                 text = andesButtonAttrs.andesButtonText,
                 textColor = resolveTextColor(hierarchy, context),
                 textSize = resolveTextSize(size, context),
-                margin = resolveMargin(size, andesButtonAttrs.andesButtonLeftIconPath, andesButtonAttrs.andesButtonRightIconPath, context),
+                margin = resolveMargin(size, andesButtonAttrs.andesButtonLeftIconPath,
+                        andesButtonAttrs.andesButtonRightIconPath, context),
                 height = resolveHeight(size, context),
                 typeface = resolveTypeface(hierarchy, context),
-                iconConfig = resolveIconConfig(size, hierarchy, andesButtonAttrs.andesButtonLeftIconPath, andesButtonAttrs.andesButtonRightIconPath, context),
+                iconConfig = resolveIconConfig(size, hierarchy,
+                        andesButtonAttrs.andesButtonLeftIconPath,
+                        andesButtonAttrs.andesButtonRightIconPath, context),
                 enabled = andesButtonAttrs.andesButtonEnabled,
-                lateralPadding = resolveLateralPadding(size, context)
+                lateralPadding = resolveLateralPadding(size, context),
+                isLoading = andesButtonAttrs.andesButtonIsLoading
         )
     }
 
@@ -118,10 +123,12 @@ internal object AndesButtonConfigurationFactory {
                 background = resolveBackground(hierarchy, size, context),
                 textColor = resolveTextColor(hierarchy, context),
                 textSize = resolveTextSize(size, context),
-                margin = resolveMargin(size, andesButtonIcon?.leftIcon, andesButtonIcon?.rightIcon, context),
+                margin = resolveMargin(size,
+                        andesButtonIcon?.leftIcon, andesButtonIcon?.rightIcon, context),
                 height = resolveHeight(size, context),
                 typeface = resolveTypeface(hierarchy, context),
-                iconConfig = resolveIconConfig(size, hierarchy, andesButtonIcon?.leftIcon, andesButtonIcon?.rightIcon, context),
+                iconConfig = resolveIconConfig(size,
+                        hierarchy, andesButtonIcon?.leftIcon, andesButtonIcon?.rightIcon, context),
                 lateralPadding = resolveLateralPadding(size, context)
         )
     }
@@ -156,11 +163,15 @@ internal object AndesButtonConfigurationFactory {
     private fun resolveTextSize(size: AndesButtonSizeInterface, context: Context) = size.textSize(context)
 
     /**
-     * Determines the margins of the button. Takes into account key things like the size and the presence of an icon.
+     * Determines the margins of the button.
+     * Takes into account key things like the size and the presence of an icon.
      *
-     * @param size determined size of the button: Needed because the margins are different for each size.
-     * @param leftIconPath probable icon path of the button. Needed because the margins are different if the button has icon or not.
-     * @param rightIconPath probable icon path of the button. Needed because the margins are different if the button has icon or not.
+     * @param size determined size of the button:
+     * Needed because the margins are different for each size.
+     * @param leftIconPath probable icon path of the button.
+     * Needed because the margins are different if the button has icon or not.
+     * @param rightIconPath probable icon path of the button.
+     * Needed because the margins are different if the button has icon or not.
      * @param context needed for accessing dimen resources.
      */
     private fun resolveMargin(
@@ -176,23 +187,32 @@ internal object AndesButtonConfigurationFactory {
      * @param size determined size of the button: Needed because the height depends on this.
      * @param context needed for accessing some resources.
      */
-    private fun resolveHeight(size: AndesButtonSizeInterface, context: Context) = size.height(context)
+    private fun resolveHeight(size: AndesButtonSizeInterface, context: Context) =
+            size.height(context)
 
     /**
      * Determines the [Typeface] from certain parameters that receives.
      *
-     * @param hierarchy determined hierarchy of the button: Needed because hierarchy is in charge of solving this.
+     * @param hierarchy determined hierarchy of the button:
+     * Needed because hierarchy is in charge of solving this.
      * @param context needed for accessing font resources.
      */
-    private fun resolveTypeface(hierarchy: AndesButtonHierarchyInterface, context: Context) = hierarchy.typeface(context)
+    private fun resolveTypeface(hierarchy: AndesButtonHierarchyInterface, context: Context) =
+            hierarchy.typeface(context)
 
     /**
      * Determines the [IconConfig] from certain parameters that receives.
      *
-     * @param size determined size of the button: Needed because having icon or not depends on this.
-     * @param hierarchy determined hierarchy of the button: Needed because hierarchy provides the color of the icon.
-     * @param leftIconPath determined icon path of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
-     * @param rightIconPath determined icon path of the button. Needed because this is the icon to be resized and tinted to be used properly inside the button.
+     * @param size determined size of the button:
+     * Needed because having icon or not depends on this.
+     * @param hierarchy determined hierarchy of the button: Needed because
+     * hierarchy provides the color of the icon.
+     * @param leftIconPath determined icon path of the button.
+     * Needed because this is the icon to be resized and tinted
+     * to be used properly inside the button.
+     * @param rightIconPath determined icon path of the button.
+     * Needed because this is the icon to be resized and tinted
+     * to be used properly inside the button.
      * @param context needed for accessing some resources.
      */
     private fun resolveIconConfig(
@@ -208,12 +228,14 @@ internal object AndesButtonConfigurationFactory {
      *
      * @param typedArray needed for accessing boolean value.
      */
-    private fun resolveEnabled(typedArray: TypedArray) = typedArray.getBoolean(R.styleable.AndesButton_andesButtonEnabled, true)
+    private fun resolveEnabled(typedArray: TypedArray) =
+            typedArray.getBoolean(R.styleable.AndesButton_andesButtonEnabled, true)
 
     /**
      * Determines the padding of the button.
      *
-     * @param size determined size of the button: Needed because the paddings are different for each size.
+     * @param size determined size of the button: Needed because the paddings
+     * are different for each size.
      * @param context needed for accesing dimen resources.
      */
     private fun resolveLateralPadding(size: AndesButtonSizeInterface, context: Context) = size.lateralPadding(context)
