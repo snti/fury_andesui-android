@@ -1,5 +1,9 @@
 # Unpublished
 
+# v2.10.0
+## 🚀 Features
+- AndesTextField: Mask set text with mask @fdiassilva
+
 # v2.9.0
 ## 🚀 Features
 - AndesButton: Progress indicator | Author: [@orelvismeli](https://github.com/orelvismeli)
