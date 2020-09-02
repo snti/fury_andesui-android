@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.textfield.maskTextField
 
 import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import java.math.BigDecimal
 
@@ -34,6 +35,34 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
         isRunning = false
     }
 
+    /**
+     * Format text with mask
+     * @param text without mask
+     */
+    fun getTextWithMask(text: String?): String {
+
+        val editable = SpannableStringBuilder("")
+
+        text?.let {
+            if (mask.isEmpty()) {
+                return text.toString()
+            }
+
+            for (char in text) {
+                editable.append(char)
+                val editableLength = editable.length
+                if (mask.isNotBlank() && editableLength < mask.length) {
+                    if (mask[editableLength] != GENERIC_CHAR) {
+                        editable.append(mask[editableLength])
+                    } else if (mask[editableLength - 1] != GENERIC_CHAR) {
+                        editable.insert(editableLength - 1, mask, editableLength - 1, editableLength)
+                    }
+                }
+            }
+        }
+        return editable.toString()
+    }
+
     fun setMask(mask: String) {
         this.mask = mask
     }
@@ -47,12 +76,16 @@ class TextFieldMaskWatcher(private var mask: String = "", private var textChange
         return textWithoutMask
     }
 
-    fun getMaxLength(): Int {
+    fun getLengthWithoutMask(): Int {
         return if (mask.isNotEmpty()) {
             mask.length - mask.replace(GENERIC_CHAR.toString(), "").length
         } else {
             BigDecimal.ZERO.toInt()
         }
+    }
+
+    fun getMaxLength(): Int {
+        return mask.length
     }
 
     interface OnTextChange {

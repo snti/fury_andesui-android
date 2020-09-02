@@ -13,7 +13,6 @@ import com.facebook.soloader.SoLoader
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
-import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMask
 import junit.framework.Assert.*
 import org.junit.Before
 import org.junit.BeforeClass
@@ -81,8 +80,21 @@ class AndesTextfieldTest {
 
     @Test
     fun `set mask`() {
-        textfield.setTextFieldMask(TextFieldMask("###--##,"), null)
+        textfield.setTextFieldMask("###--##,")
         assertEquals(textfield.counter, 5)
+    }
+
+    @Test
+    fun `get text with mask`() {
+        textfield.setTextFieldMask("(##) ####-####")
+        textfield.text = "1149778767"
+        assertEquals(textfield.text, "(11) 4977-8767")
+    }
+
+    @Test
+    fun `get text without maskWatcher`() {
+        textfield.text = "1149778767"
+        assertEquals(textfield.text, "1149778767")
     }
 
     @Test
