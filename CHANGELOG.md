@@ -1,16 +1,19 @@
-## v2.9.0
-### 🚀 Features
+# Unpublished
+
+# v2.9.0
+## 🚀 Features
 - AndesButton: Progress indicator | Author: [@orelvismeli](https://github.com/orelvismeli)
 
 # v2.8.0
-## Added
-- Card Component.
+## 🚀 Features
+- AndesCard: Hierarchy primary/secondary | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
+- AndesCard: Actions support (link) | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
 
 # v2.7.1
-## Added
-- Mask to textField
-- Listener click in right icon
-- Color change to right icon
+## 🚀 Features
+- AndesTextField: Mask support (i.e. passwords) | Author: @fdiassilva
+- AndesTextField: Listener for onClick event in right icon | Author: @fdiassilva
+- AndesTextField: Color change to right icon | Author: @fdiassilva
 
 # v2.7.0
 ## Added
