@@ -29,7 +29,9 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.DISABLED
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.IDLE
+import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.READONLY
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 class AndesTextfield : ConstraintLayout {
@@ -84,6 +86,15 @@ class AndesTextfield : ConstraintLayout {
         set(value) {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(counter = value)
             setupCounterComponent(createConfig())
+        }
+
+    /**
+     * Internal countFilter to limit field size
+     */
+    private var countFilter: InputFilter? = null
+        set(value) {
+            field = value
+            updateFilters()
         }
 
     /**
@@ -148,8 +159,32 @@ class AndesTextfield : ConstraintLayout {
     var textWatcher: TextWatcher?
         get() = andesTextfieldAttrs.textWatcher
         set(value) {
+            removeCurrentTextWatcher()
             andesTextfieldAttrs = andesTextfieldAttrs.copy(textWatcher = value)
             setupTextWatcher()
+        }
+
+    /**
+     * This field applies the given filter to the EditText input.
+     */
+    var textFilter: InputFilter? = null
+        set(value) {
+            field = value
+            updateFilters()
+        }
+
+    /**
+     * This field applies the given digits string to the EditText
+     */
+    var textDigits: String? = null
+        set(value) {
+            if (value.isNullOrEmpty()) {
+                field = null
+                textComponent.keyListener = null
+            } else {
+                field = value
+                textComponent.keyListener = DigitsKeyListener.getInstance(value)
+            }
         }
 
     private lateinit var andesTextfieldAttrs: AndesTextfieldAttrs
@@ -296,9 +331,22 @@ class AndesTextfield : ConstraintLayout {
      * Set the TextWatcher of the edit text.
      */
     private fun setupTextWatcher() {
-        if (andesTextfieldAttrs.textWatcher != null) {
-            textComponent.addTextChangedListener(andesTextfieldAttrs.textWatcher)
+        andesTextfieldAttrs.textWatcher?.let {
+            textComponent.addTextChangedListener(it)
         }
+    }
+
+    /**
+     * Set the TextWatcher of the edit text.
+     */
+    private fun removeCurrentTextWatcher() {
+        andesTextfieldAttrs.textWatcher?.let {
+            textComponent.removeTextChangedListener(it)
+        }
+    }
+
+    private fun updateFilters() {
+        textComponent.filters = listOf(countFilter, textFilter).filterNotNull().toTypedArray()
     }
 
     /**
@@ -361,8 +409,11 @@ class AndesTextfield : ConstraintLayout {
         if (config.counterLength != 0 && state != READONLY && showCounter) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
-            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
-                getTextLength(), config.counterLength)
+            counterComponent.text = resources.getString(
+                R.string.andes_textfield_counter_text,
+                getTextLength(),
+                config.counterLength
+            )
             configTextComponentLengthFilter(config)
         } else {
             counterComponent.visibility = View.GONE
@@ -379,8 +430,11 @@ class AndesTextfield : ConstraintLayout {
 
                 val textWithoutMask = removeMaskCharsText(charSequence.toString())
 
-                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
-                    textWithoutMask.length, config.counterLength)
+                counterComponent.text = resources.getString(
+                    R.string.andes_textfield_counter_text,
+                    textWithoutMask.length,
+                    config.counterLength
+                )
             }
         })
     }
@@ -389,19 +443,18 @@ class AndesTextfield : ConstraintLayout {
      * config text length text component
      */
     private fun configTextComponentLengthFilter(config: AndesTextfieldConfiguration) {
+        val length = maskWatcher?.getMaxLength() ?: 0
 
-        val wm = maskWatcher
-
-        if (wm != null && wm.getMaxLength() != 0) {
-            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(wm.getMaxLength()))
+        countFilter = if (length > 0) {
+            InputFilter.LengthFilter(length)
         } else {
-            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength))
+            InputFilter.LengthFilter(config.counterLength)
         }
     }
-    
-    private fun getTextLength(): Int {
 
-        return if (text != null || text!!.isNotEmpty()) {
+    private fun getTextLength(): Int {
+        val text = text
+        return if (text?.isNotEmpty() == true) {
             removeMaskCharsText(text).length
         } else {
             0
@@ -412,12 +465,8 @@ class AndesTextfield : ConstraintLayout {
      * if use maskWatcher will remove masks chars
      */
     private fun removeMaskCharsText(text: String?): String {
-        val textToClean = text ?: EMPTY_STRING
-        return if (maskWatcher == null) {
-            textToClean
-        } else {
-            return maskWatcher?.cleanMask(textToClean) ?: EMPTY_STRING
-        }
+        val textToClean = text ?: return EMPTY_STRING
+        return maskWatcher?.cleanMask(textToClean) ?: textToClean
     }
 
     /**
@@ -590,23 +639,20 @@ class AndesTextfield : ConstraintLayout {
         digits: String? = null,
         listener: TextFieldMaskWatcher.OnTextChange? = null
     ) {
-
-        if (maskWatcher == null) {
-            maskWatcher = TextFieldMaskWatcher(mask, listener)
-            textComponent.addTextChangedListener(maskWatcher)
+        val watcher = maskWatcher ?: TextFieldMaskWatcher(mask, listener).also {
+            maskWatcher = it
+            textComponent.addTextChangedListener(it)
         }
 
-        maskWatcher!!.setMask(mask)
+        watcher.setMask(mask)
 
-        val length = maskWatcher?.getLengthWithoutMask() ?: 0
+        val length = watcher.getLengthWithoutMask()
         if (length > 0) {
             counter = length
             configTextComponentLengthFilter(createConfig())
         }
 
-        digits.takeIf { !it.isNullOrEmpty() }?.let {
-            textComponent.keyListener = DigitsKeyListener.getInstance(it)
-        }
+        textDigits = digits
     }
 
     /**
