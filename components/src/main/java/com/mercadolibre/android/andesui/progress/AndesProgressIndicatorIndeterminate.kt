@@ -129,6 +129,11 @@ class AndesProgressIndicatorIndeterminate: ConstraintLayout {
         progressComponent.start()
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        progressComponent.stop()
+    }
+
     companion object {
         private const val TINT = 0
         private val SIZE_DEFAULT = AndesProgressSize.SMALL

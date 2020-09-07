@@ -1,3 +1,7 @@
+# v2.10.1
+## Fixed
+- AndesProgressIndicatorIndeterminate: Leak in progress animation
+
 # v2.10.0
 ## 🚀 Features
 - AndesTextField: Mask set text with mask @fdiassilva
