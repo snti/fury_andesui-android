@@ -1,4 +1,3 @@
-# Unpublished
 # v2.10.1
 ## Fixed
 - AndesProgressIndicatorIndeterminate: Leak in progress animation
