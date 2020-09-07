@@ -94,6 +94,7 @@
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
+    <string name="andes_carousel_showcase">Andes Carousel</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_radiobutton_showcase">Andes RadioButton</string>
     <string name="andes_radiobuttongroup_showcase">Andes RadioButtonGroup</string>

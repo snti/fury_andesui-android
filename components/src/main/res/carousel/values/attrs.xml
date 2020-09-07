@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesCarousel" tools:ignore="ResourceName">
+        <attr name="andesCarouselCenter" format="boolean"/>
+        <attr name="andesCarouselItemLayout" format="integer"/>
+        <attr name="andesCarouselPadding">
+            <enum name="none" value="100" />
+            <enum name="small" value="101" />
+            <enum name="medium" value="102" />
+            <enum name="largo" value="103" />
+        </attr>
+    </declare-styleable>
+</resources>
