@@ -59,6 +59,17 @@ internal object AndesThumbnailAttrsParser {
         ).also { typedArray.recycle() }
     }
 
+    private fun getImage(typedArray: TypedArray): Drawable {
+        val image: Drawable
+        val imageParameter = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)
+        if (imageParameter == null) {
+            throw IllegalArgumentException("Wrong andesThumbnailImage passed, check your layout")
+        } else {
+            image = imageParameter
+        }
+        return image
+    }
+
     private fun getSize(typedArray: TypedArray): AndesThumbnailSize =
         when (typedArray.getString(R.styleable.AndesThumbnail_andesThumbnailSize)) {
             ANDES_THUMBNAIL_SIZE_24 -> AndesThumbnailSize.SIZE_24
