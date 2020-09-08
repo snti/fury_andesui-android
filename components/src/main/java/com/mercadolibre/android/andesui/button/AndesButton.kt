@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.button
 import android.content.Context
 import android.graphics.drawable.Animatable
 import android.os.Build
+import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.Nullable
 import android.support.constraint.ConstraintLayout
@@ -445,9 +446,8 @@ class AndesButton : ConstraintLayout {
      * Save the current button status
      */
     override fun onSaveInstanceState(): Parcelable? {
-        var superState = super.onSaveInstanceState()
-        var state = SavedState(isLoading, superState)
-        return state
+        val superState: Parcelable = super.onSaveInstanceState() ?: Bundle()
+        return SavedState(isLoading, superState)
     }
 
     /**
