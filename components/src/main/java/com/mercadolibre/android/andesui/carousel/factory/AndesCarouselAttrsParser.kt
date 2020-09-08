@@ -6,10 +6,10 @@ import android.util.AttributeSet
 import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
 
 internal data class AndesCarouselAttrs(
-        val andesCarouselCenter: Boolean,
-        val andesCarouselItemLayout: Int?,
-        val andesCarouselPadding: AndesCarouselPadding
-    )
+    val andesCarouselCenter: Boolean,
+    val andesCarouselItemLayout: Int,
+    val andesCarouselPadding: AndesCarouselPadding
+)
 
 /**
  * This object parse the attribute set and return an instance of AndesCarouselAttrs
@@ -17,22 +17,24 @@ internal data class AndesCarouselAttrs(
  */
 internal object AndesCarouselAttrParser {
 
+    private const val ANDES_CAROUSEL_PADDING_NONE = "100"
     private const val ANDES_CAROUSEL_PADDING_SMALL = "101"
-    private const val ANDES_CAROUSEL_PADDING_MEDIUM = "101"
-    private const val ANDES_CAROUSEL_PADDING_LARGE = "101"
+    private const val ANDES_CAROUSEL_PADDING_MEDIUM = "102"
+    private const val ANDES_CAROUSEL_PADDING_LARGE = "103"
 
     fun parse(context: Context, attr: AttributeSet?): AndesCarouselAttrs {
 
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesCarousel)
 
         val padding = when (typedArray.getString(R.styleable.AndesCarousel_andesCarouselPadding)) {
+            ANDES_CAROUSEL_PADDING_NONE -> AndesCarouselPadding.NONE
             ANDES_CAROUSEL_PADDING_SMALL -> AndesCarouselPadding.SMALL
             ANDES_CAROUSEL_PADDING_MEDIUM -> AndesCarouselPadding.MEDIUM
             ANDES_CAROUSEL_PADDING_LARGE -> AndesCarouselPadding.LARGE
-            else -> AndesCarouselPadding.NONE
+            else -> AndesCarouselPadding.SMALL
         }
 
-        val layout = typedArray.getInteger(R.styleable.AndesCarousel_andesCarouselItemLayout,0)
+        val layout = typedArray.getResourceId(R.styleable.AndesCarousel_andesCarouselItemLayout, 0)
 
         val center = typedArray.getBoolean(R.styleable.AndesCarousel_andesCarouselCenter, false)
 
@@ -41,5 +43,4 @@ internal object AndesCarouselAttrParser {
                 andesCarouselPadding = padding,
                 andesCarouselItemLayout = layout).also { typedArray.recycle() }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.carousel.util
+package com.mercadolibre.android.andesui.carousel.utils
 
 import android.view.View
 

@@ -27,5 +27,4 @@ enum class AndesCarouselPadding {
             LARGE -> AndesCarouselPaddingLarge
         }
     }
-
 }

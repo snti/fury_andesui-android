@@ -1,13 +1,15 @@
-package com.mercadolibre.android.andesui.carouselPrueba
+package com.mercadolibre.android.andesui.carousel.utils
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mercadolibre.android.andesui.carousel.util.ViewHolderListener
 
-class CustomAdapter(private var itemLayout: Int,
-                    private var dataSet: ArrayList<Any>) :
+class CustomAdapter(
+    private var itemLayout: Int,
+    private var dataSet: List<Any>
+) :
         RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     private var viewHolderListener: ViewHolderListener? = null
@@ -28,7 +30,7 @@ class CustomAdapter(private var itemLayout: Int,
         viewHolderListener = listener
     }
 
-    fun updateDataSet(data: ArrayList<Any>) {
+    fun updateDataSet(data: List<Any>) {
         dataSet = data
         notifyDataSetChanged()
     }
@@ -39,8 +41,12 @@ class CustomAdapter(private var itemLayout: Int,
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(model: Any, listener: ViewHolderListener?) {
-            listener?.bind(itemView, model)
+            listener?.bind(itemView, model) ?: run {
+                Log.d(
+                        "CustomAdapter:",
+                        "ViewHolder {bind}: Listener implementation not found"
+                )
+            }
         }
     }
-
 }

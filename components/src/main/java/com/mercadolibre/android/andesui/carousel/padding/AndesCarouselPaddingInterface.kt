@@ -29,4 +29,3 @@ internal object AndesCarouselPaddingMedium : AndesCarouselPaddingInterface {
 internal object AndesCarouselPaddingLarge : AndesCarouselPaddingInterface {
     override fun getPadding(context: Context) = context.resources.getDimension(R.dimen.andes_carousel_padding_large).toInt()
 }
-

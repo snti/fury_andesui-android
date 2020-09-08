@@ -3,7 +3,7 @@ package com.mercadolibre.android.andesui.carousel.factory
 import android.content.Context
 import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPaddingInterface
 
-internal data class AndesCarouselConfiguration(val padding: Int, val layout: Int?, val center: Boolean)
+internal data class AndesCarouselConfiguration(val padding: Int, val layout: Int, val center: Boolean)
 
 internal object AndesCarouselConfigurationFactory {
 
