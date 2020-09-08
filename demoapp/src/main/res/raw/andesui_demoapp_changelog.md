@@ -1,3 +1,10 @@
+# v2.11.0
+## 🚀 Features
+- Changed target API level to 29
+
+## Showcase App
+- Add `.debug` suffix to `debug` build type to be able to have parallel installs per device. | Author: [@barriosnahuel](https://github.com/barriosnahuel)
+
 # v2.10.1
 ## 🛠 Fixes
 - AndesProgressIndicatorIndeterminate: Leak in progress animation | Author: [@orelvismeli](https://github.com/orelvismeli)

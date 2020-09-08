@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.progress.size
 
-
 enum class AndesProgressSize {
     SMALL,
     MEDIUM,

@@ -132,11 +132,11 @@ internal object AndesMessageConfigurationFactory {
         type: AndesMessageTypeInterface
     ) = hierarchy.linkActionTextColor(type)
     private fun resolveBodyLinkIsUnderline(
-            hierarchy: AndesMessageHierarchyInterface,
-            type: AndesMessageTypeInterface
+        hierarchy: AndesMessageHierarchyInterface,
+        type: AndesMessageTypeInterface
     ) = hierarchy.bodyLinkIsUnderLine(type)
     private fun resolveBodyLinkTextColor(
-            hierarchy: AndesMessageHierarchyInterface,
-            type: AndesMessageTypeInterface
+        hierarchy: AndesMessageHierarchyInterface,
+        type: AndesMessageTypeInterface
     ) = hierarchy.bodyLinkTextColor(type)
 }

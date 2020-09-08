@@ -220,8 +220,8 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         }
     }
 
-    fun click(v:View){
-        if (v is AndesButton){
+    fun click(v: View) {
+        if (v is AndesButton) {
             v.isLoading = !v.isLoading
         }
     }

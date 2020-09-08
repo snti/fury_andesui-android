@@ -71,8 +71,8 @@ class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: Attribu
      * Create an animator that will interpolate the angles of the circle
      *
      * @param startAngle the start value of the angle in degrees. Eg: 0
-     * @param endAngle   the end value of the angle in degrees. Eg: 270
-     * @param duration   the duration of the animation
+     * @param endAngle the end value of the angle in degrees. Eg: 270
+     * @param duration the duration of the animation
      * @return an animator that will interpolate the angles between startAngle and endAngle
      */
     private fun createAnimator(startAngle: Int, endAngle: Int, duration: Int): ValueAnimator {
@@ -85,9 +85,9 @@ class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: Attribu
     /**
      * Create the paint that will be used to draw the view
      *
-     * @param style       the paint style
+     * @param style the paint style
      * @param strokeWidth the stroke width
-     * @param hex         the color to paint
+     * @param hex the color to paint
      * @return the paint to apply
      */
     private fun createPaint(style: Paint.Style, strokeWidth: Int, hex: Int): Paint {
