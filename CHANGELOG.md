@@ -1,3 +1,26 @@
+# v2.10.1
+## Fixed
+- AndesProgressIndicatorIndeterminate: Leak in progress animation
+
+# v2.10.0
+## 🚀 Features
+- AndesTextField: Mask set text with mask @fdiassilva
+
+# v2.9.0
+## 🚀 Features
+- AndesButton: Progress indicator | Author: [@orelvismeli](https://github.com/orelvismeli)
+
+# v2.8.0
+## 🚀 Features
+- AndesCard: Hierarchy primary/secondary | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
+- AndesCard: Actions support (link) | Author: [@ArqMobile](https://github.com/mercadolibre/fury_andesui-android)
+
+# v2.7.1
+## 🚀 Features
+- AndesTextField: Mask support (i.e. passwords) | Author: @fdiassilva
+- AndesTextField: Listener for onClick event in right icon | Author: @fdiassilva
+- AndesTextField: Color change to right icon | Author: @fdiassilva
+
 # v2.7.0
 ## Added
 - Link action in AndesMessage Component.

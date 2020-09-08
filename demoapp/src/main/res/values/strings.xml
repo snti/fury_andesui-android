@@ -2,6 +2,9 @@
     <string name="loud_large_button">Loud Large Button</string>
     <string name="loud_medium_button">Loud Medium Button</string>
     <string name="loud_small_button">Loud Small Button</string>
+    <string name="loud_large_loading_button">Loading Loud Large Button</string>
+    <string name="loud_medium_loading_button">Loading Loud Medium Button</string>
+    <string name="loud_small_loading_button">Loading Loud Small Button</string>
     <string name="loud_large_button_programmatic">Loud Large Button Programmatic</string>
     <string name="loud_medium_button_programmatic">Loud Medium Button Programmatic</string>
     <string name="loud_small_button_programmatic">Loud Small Button Programmatic disabled</string>
@@ -14,6 +17,9 @@
     <string name="quiet_large_button">Quiet Large Button</string>
     <string name="quiet_medium_button">Quiet Medium Button</string>
     <string name="quiet_small_button">Quiet Small Button</string>
+    <string name="quiet_large_loading_button">Loading Quiet Large Button</string>
+    <string name="quiet_medium_loading_button">Loading Quiet Medium Button</string>
+    <string name="quiet_small_loading_button">Loading Quiet Small Button</string>
     <string name="quiet_large_button_programmatic">Quiet Large Button Programmatic</string>
     <string name="quiet_medium_button_programmatic">Quiet Medium Button Programmatic</string>
     <string name="quiet_small_button_programmatic">Quiet Small Button Programmatic</string>
@@ -22,6 +28,9 @@
     <string name="transparent_large_button">Transparent Large Button</string>
     <string name="transparent_medium_button">Transparent Medium Button</string>
     <string name="transparent_small_button">Transparent Small Button</string>
+    <string name="transparent_large_loading_button">Loading Transparent Large Button</string>
+    <string name="transparent_medium_loading_button">Loading Transparent Medium Button</string>
+    <string name="transparent_small_loading_button">Loading Transparent Small Button</string>
     <string name="transparent_large_button_programmatic">Transparent Large Button Programmatic</string>
     <string name="transparent_medium_button_programmatic">Transparent Medium Button Programmatic</string>
     <string name="transparent_small_button_programmatic">Transparent Small Button Programmatic</string>
@@ -66,6 +75,7 @@
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
+    <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
     <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
     <string name="andesui_demoapp_screen_thumbnail">Andes UI: Thumbnail</string>
@@ -92,10 +102,13 @@
     <string name="andesui_demoapp_textfield_prefix_text">Left component:</string>
     <string name="andesui_demoapp_textfield_suffix_text">Right component:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
+    <string name="andesui_demoapp_mask_text">Mascara:</string>
+    <string name="andesui_demoapp_mask_hint">ejemplo: ##-###-######-#</string>
     <string name="andesui_demoapp_counter_separator">/</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
     <string name="andes_carousel_showcase">Andes Carousel</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
+    <string name="andes_card_showcase">Andes Card</string>
     <string name="andes_radiobutton_showcase">Andes RadioButton</string>
     <string name="andes_radiobuttongroup_showcase">Andes RadioButtonGroup</string>
     <string name="andes_tag_showcase">Andes Tag</string>
@@ -124,6 +137,15 @@
     <string name="andes_checkbox_type">Type</string>
     <string name="andes_checkbox_status">Status</string>
     <string name="andes_checkbox_align">Align</string>
+
+    <string name="andes_card_type">Type</string>
+    <string name="andes_card_style">Style</string>
+    <string name="andes_card_padding">Padding</string>
+    <string name="andes_card_hierarchy">Hierarchy</string>
+    <string name="andes_card_title">Title</string>
+    <string name="andes_card_title_example">Andes card title</string>
+    <string name="andes_card_link">Link</string>
+    <string name="andes_card_link_example">Card link</string>
 
     <string name="andes_radiobutton_text">Andes radiobutton</string>
     <string name="andes_radiobutton_type">Type</string>
@@ -173,6 +195,20 @@
     <string name="andesui_demoapp_thumbnail_description_48">Hierarchy: Loud, Size: 48, State: Enabled, Type: Icon</string>
     <string name="andesui_demoapp_thumbnail_description_64">Hierarchy: Default, Size: 64, State: Enabled, Type: Icon</string>
     <string name="andesui_demoapp_thumbnail_description_80">Hierarchy: Quiet, Size: 80, State: Enabled, Type: Icon</string>
+
+    <string name="andesui_demoapp_card_example_1">Andes card with title, style elevated, hierarchy primary, type warning, padding small and with action link.</string>
+    <string name="andesui_demoapp_card_example_2">Andes card with title, hierarchy secondary and padding small.</string>
+    <string name="andesui_demoapp_card_example_3">Andes card with title, style outline, hierarchy primary, type none, padding medium and with action link.</string>
+    <string name="andesui_demoapp_card_example_4">Andes card without title, style outline, hierarchy primary, type highlight, padding small and without action link.</string>
+    <string name="andesui_demoapp_card_example_5">Andes card with title, hierarchy secondary_dark and padding medium.</string>
+
+    <string name="andesui_demoapp_progress">Andes Progress</string>
+    <string name="andesui_demoapp_progress_xlarge">XLARGE</string>
+    <string name="andesui_demoapp_progress_large">LARGE</string>
+    <string name="andesui_demoapp_progress_medium">MEDIUM</string>
+    <string name="andesui_demoapp_progress_small">SMALL</string>
+
+    <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
     <string-array name="state_spinner">
         <item>Neutral</item>
@@ -299,6 +335,33 @@
         <item>Size 64</item>
         <item>Size 72</item>
         <item>Size 80</item>
+    </string-array>
+
+    <string-array name="card_type_spinner">
+        <item>None</item>
+        <item>Highlight</item>
+        <item>Error</item>
+        <item>Success</item>
+        <item>Warning</item>
+    </string-array>
+
+    <string-array name="card_style_spinner">
+        <item>Elevated</item>
+        <item>Outline</item>
+    </string-array>
+
+    <string-array name="card_padding_spinner">
+        <item>None</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>XLarge</item>
+    </string-array>
+
+    <string-array name="card_hierarchy_spinner">
+        <item>Primary</item>
+        <item>Secondary</item>
+        <item>Secondary dark</item>
     </string-array>
 
     <string-array name="thumbnail_type_spinner">

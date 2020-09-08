@@ -40,9 +40,9 @@ class AndesTextfieldTest {
     fun setUp() {
         val requestListeners = setOf<RequestListener>(RequestLoggingListener())
         val config = ImagePipelineConfig.newBuilder(context)
-                // other setters
-                .setRequestListeners(requestListeners)
-                .build()
+            // other setters
+            .setRequestListeners(requestListeners)
+            .build()
         Fresco.initialize(context, config)
         FLog.setMinimumLoggingLevel(FLog.VERBOSE)
         textfield = AndesTextfield(context)
@@ -76,6 +76,25 @@ class AndesTextfieldTest {
     fun `set action`() {
         textfield.setAction("action", View.OnClickListener { })
         assertEquals(textfield.rightContent, AndesTextfieldRightContent.ACTION)
+    }
+
+    @Test
+    fun `set mask`() {
+        textfield.setTextFieldMask("###--##,")
+        assertEquals(textfield.counter, 5)
+    }
+
+    @Test
+    fun `get text with mask`() {
+        textfield.setTextFieldMask("(##) ####-####")
+        textfield.text = "1149778767"
+        assertEquals(textfield.text, "(11) 4977-8767")
+    }
+
+    @Test
+    fun `get text without maskWatcher`() {
+        textfield.text = "1149778767"
+        assertEquals(textfield.text, "1149778767")
     }
 
     @Test

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_app_name)
 
         setupCarousel()
+        setupCard()
         setupCheckbox()
         setupRadioButton()
         setupSnackbar()
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setupMessages()
         setupTextfield()
         setupThumbnails()
+        setupProgress()
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
@@ -37,6 +39,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupCarousel() {
         andesui_carousel.setOnClickListener {
             launchIntent("meli://andes/carousel")
+        }
+    }
+
+    private fun setupCard() {
+        andesui_card.setOnClickListener {
+            launchIntent("meli://andes/card")
         }
     }
 
@@ -91,6 +99,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupThumbnails() {
         andesui_thumbnail.setOnClickListener {
             launchIntent("meli://andes/thumbnail")
+        }
+    }
+
+    private fun setupProgress() {
+        andesui_progress.setOnClickListener {
+            launchIntent("meli://andes/progress")
         }
     }
 

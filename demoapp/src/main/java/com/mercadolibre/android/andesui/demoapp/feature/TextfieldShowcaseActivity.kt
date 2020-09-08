@@ -80,6 +80,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
+            val mask = layoutTextfield.findViewById<EditText>(R.id.mask)
+
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
 
@@ -142,9 +144,17 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                val selectedInputType = getInputTypesArray().filter {
+                mask.text.takeIf { it.isNotEmpty() }?.apply {
+                    textfield.setTextFieldMask(it.toString())
+                }
+
+                if (mask.text.isNotEmpty()) {
+                    textfield.setTextFieldMask(mask.text.toString())
+                }
+
+                val selectedInputType = getInputTypesArray().single {
                     it.name == inputTypeSpinner.selectedItem.toString()
-                }.single().value
+                }.value
                 textfield.inputType = selectedInputType
             }
 
@@ -155,6 +165,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)
+                mask.setText("")
                 stateSpinner.setSelection(0)
                 inputTypeSpinner.setSelection(0)
                 preffixSpinner.setSelection(0)
@@ -170,6 +181,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
                 textfield.rightContent = null
+                textfield.clearMask()
             }
 
             return layoutTextfield

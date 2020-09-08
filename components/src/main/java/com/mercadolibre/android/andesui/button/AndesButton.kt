@@ -1,7 +1,10 @@
 package com.mercadolibre.android.andesui.button
 
 import android.content.Context
+import android.graphics.drawable.Animatable
 import android.os.Build
+import android.os.Parcelable
+import android.support.annotation.Nullable
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.v7.widget.AppCompatButton
@@ -10,7 +13,11 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder
+import com.facebook.drawee.controller.BaseControllerListener
+import com.facebook.drawee.controller.ControllerListener
 import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.image.ImageInfo
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrs
 import com.mercadolibre.android.andesui.button.factory.AndesButtonAttrsParser
@@ -21,6 +28,9 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.BackgroundColorConfig
 import com.mercadolibre.android.andesui.button.hierarchy.getConfiguredBackground
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
+import com.mercadolibre.android.andesui.progress.AndesProgressIndicatorIndeterminate
+import com.mercadolibre.android.andesui.progress.size.AndesProgressSize
+import kotlinx.android.parcel.Parcelize
 
 /**
  * User interface element the user can tap or click to perform an action.
@@ -60,9 +70,13 @@ import com.mercadolibre.android.andesui.button.size.AndesButtonSize
 class AndesButton : ConstraintLayout {
 
     private lateinit var andesButtonAttrs: AndesButtonAttrs
-    internal lateinit var leftIconComponent: SimpleDraweeView
-    internal lateinit var rightIconComponent: SimpleDraweeView
     internal lateinit var textComponent: TextView
+    internal lateinit var loadingView: AndesProgressIndicatorIndeterminate
+
+    lateinit var leftIconComponent: SimpleDraweeView
+    lateinit var rightIconComponent: SimpleDraweeView
+
+    private var customIcon = false
 
     /**
      * Getter and setter for [text].
@@ -102,6 +116,23 @@ class AndesButton : ConstraintLayout {
         }
 
     /**
+     * Getter and setter for [isLoading].
+     */
+    var isLoading: Boolean
+        get() = loadingView.visibility == View.VISIBLE
+    set(value) {
+        andesButtonAttrs = andesButtonAttrs.copy(andesButtonIsLoading = value)
+        createConfig().also {
+            updateComponentsAlignment(it)
+            updateDynamicComponents(it)
+        }
+    }
+
+    init {
+        isSaveEnabled = true
+    }
+
+    /**
      * Simplest constructor for creating an AndesButton programmatically.
      * Builds an AndesButton with Large Size and Hierarchy Loud by default.
      */
@@ -128,7 +159,8 @@ class AndesButton : ConstraintLayout {
      * Constructor for creating an AndesButton via XML.
      * The [attrs] are the attributes specified in the parameters of XML.
      *
-     * Hope you are using the parameters specified in attrs.xml file: andesButtonHierarchy, andesButtonSize, andesButtonLeftIconCustom, etc.
+     * Hope you are using the parameters specified in attrs.xml
+     * file: andesButtonHierarchy, andesButtonSize, andesButtonLeftIconCustom, etc.
      */
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
@@ -165,7 +197,11 @@ class AndesButton : ConstraintLayout {
         buttonIcon: AndesButtonIcon?,
         text: String?
     ) {
-        andesButtonAttrs = AndesButtonAttrs(buttonHierarchy, buttonSize, buttonIcon?.leftIcon, buttonIcon?.rightIcon, text)
+        andesButtonAttrs = AndesButtonAttrs(buttonHierarchy,
+                buttonSize,
+                buttonIcon?.leftIcon,
+                buttonIcon?.rightIcon,
+                text)
         setupComponents(createConfig())
     }
 
@@ -183,7 +219,9 @@ class AndesButton : ConstraintLayout {
         setupHeight(config)
 
         updateDynamicComponents(config)
+        setupIsLoadingView(config)
 
+        addView(loadingView)
         addView(textComponent)
         addView(leftIconComponent)
         addView(rightIconComponent)
@@ -199,6 +237,7 @@ class AndesButton : ConstraintLayout {
         setupTextComponent(config)
         setupLeftIconComponent(config)
         setupRightIconComponent(config)
+        setupLoadingComponent(config)
 
         background = config.background
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -231,6 +270,9 @@ class AndesButton : ConstraintLayout {
 
         set.centerVertically(rightIconComponent.id, ConstraintSet.PARENT_ID)
 
+        set.centerVertically(loadingView.id, ConstraintSet.PARENT_ID)
+        set.centerHorizontally(loadingView.id, ConstraintSet.PARENT_ID)
+
         set.applyTo(this)
     }
 
@@ -246,6 +288,8 @@ class AndesButton : ConstraintLayout {
         leftIconComponent.id = View.generateViewId()
         rightIconComponent = SimpleDraweeView(context)
         rightIconComponent.id = View.generateViewId()
+        loadingView = AndesProgressIndicatorIndeterminate(context)
+        loadingView.id = View.generateViewId()
     }
 
     /**
@@ -273,6 +317,14 @@ class AndesButton : ConstraintLayout {
      */
     private fun setupEnabledView(config: AndesButtonConfiguration) {
         isEnabled = config.enabled
+    }
+
+    /**
+     * Sets this button show loading or not based on the current config.
+     *
+     */
+    private fun setupIsLoadingView(config: AndesButtonConfiguration) {
+        isLoading = config.isLoading
     }
 
     /**
@@ -304,8 +356,10 @@ class AndesButton : ConstraintLayout {
      *
      */
     private fun setupLeftIconComponent(config: AndesButtonConfiguration) {
-        leftIconComponent.setImageDrawable(config.leftIcon)
-        if (config.leftIcon == null) {
+        if (!customIcon)
+            leftIconComponent.setImageDrawable(config.leftIcon)
+
+        if (config.leftIcon == null && !customIcon) {
             leftIconComponent.visibility = View.GONE
         }
     }
@@ -316,8 +370,10 @@ class AndesButton : ConstraintLayout {
      *
      */
     private fun setupRightIconComponent(config: AndesButtonConfiguration) {
-        rightIconComponent.setImageDrawable(config.rightIcon)
-        if (config.rightIcon == null) {
+        if (!customIcon)
+            rightIconComponent.setImageDrawable(config.rightIcon)
+
+        if (config.rightIcon == null  && !customIcon) {
             rightIconComponent.visibility = View.GONE
         }
     }
@@ -327,6 +383,30 @@ class AndesButton : ConstraintLayout {
      */
     private fun setupPaddings(config: AndesButtonConfiguration) {
         setPadding(config.lateralPadding, paddingTop, config.lateralPadding, paddingBottom)
+    }
+
+    /**
+     * Gets data from the config and sets to the loading component of this button.
+     *
+     */
+    private fun setupLoadingComponent(config: AndesButtonConfiguration) {
+        if (config.isLoading) {
+
+            loadingView.size = AndesProgressSize.fromString(size.name)
+            loadingView.tint = config.textColor.getColorForState(drawableState, 0)
+
+            textComponent.visibility = View.INVISIBLE
+            loadingView.visibility = View.VISIBLE
+            leftIconComponent.visibility = View.INVISIBLE
+            rightIconComponent.visibility = View.INVISIBLE
+
+            loadingView.start()
+        }else{
+            textComponent.visibility = View.VISIBLE
+            loadingView.visibility = View.GONE
+            leftIconComponent.visibility = View.VISIBLE
+            rightIconComponent.visibility = View.VISIBLE
+        }
     }
 
     /**
@@ -356,7 +436,88 @@ class AndesButton : ConstraintLayout {
     }
 
     internal fun changeBackgroundColor(backgroundColorConfig: BackgroundColorConfig) {
-        background = getConfiguredBackground(context, context.resources.getDimension(R.dimen.andes_button_border_radius_medium), backgroundColorConfig)
+        background = getConfiguredBackground(context,
+                context.resources.getDimension(R.dimen.andes_button_border_radius_medium),
+                backgroundColorConfig)
+    }
+
+    /**
+     * Save the current button status
+     */
+    override fun onSaveInstanceState(): Parcelable? {
+        var superState = super.onSaveInstanceState()
+        var state = SavedState(isLoading, superState)
+        return state
+    }
+
+    /**
+     * Restore button status
+     */
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is SavedState) {
+            isLoading = state.isLoading
+            super.onRestoreInstanceState(state.superState)
+            return
+        }
+        super.onRestoreInstanceState(state)
+    }
+
+    /**
+     * Load custom button icon using another strategy
+     */
+    fun loadCustomButtonIcon(
+        pipelineDraweeControllerBuilder: PipelineDraweeControllerBuilder,
+        leftIconPosition: Boolean = true
+    ) {
+        customIcon = true
+        var icon: SimpleDraweeView = leftIconComponent
+        andesButtonAttrs = andesButtonAttrs.copy(andesButtonLeftIconPath = CUSTOM_ICON_DEFAULT)
+
+        if (!leftIconPosition){
+            icon = rightIconComponent
+            andesButtonAttrs = andesButtonAttrs.copy(andesButtonLeftIconPath = null,
+                    andesButtonRightIconPath = CUSTOM_ICON_DEFAULT)
+        }
+
+        val listener: ControllerListener<ImageInfo> = object : BaseControllerListener<ImageInfo>() {
+            override fun onIntermediateImageSet(id: String?, imageInfo: ImageInfo?) {
+                updateIconMargin(imageInfo, icon)
+            }
+
+            override fun onFinalImageSet(id: String?, imageInfo: ImageInfo?, animatable: Animatable?) {
+                updateIconMargin(imageInfo, icon)
+            }
+        }
+
+        val controller = pipelineDraweeControllerBuilder
+                .setControllerListener(listener)
+                .build()
+
+        icon.controller = controller
+        icon.visibility = View.VISIBLE
+
+        createConfig().also {
+            updateDynamicComponents(it)
+            updateComponentsAlignment(it)
+        }
+    }
+
+    /**
+     * update margen for custom icon
+     */
+    private fun updateIconMargin(@Nullable imageInfo: ImageInfo?, simpleDraweeView: SimpleDraweeView) {
+
+        if (imageInfo != null) {
+            var iconWidth = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width)
+            var iconHeight = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height)
+            simpleDraweeView.layoutParams.width = iconWidth
+            simpleDraweeView.layoutParams.height = iconHeight
+            simpleDraweeView.aspectRatio = iconWidth.toFloat() / iconHeight
+        }
+
+        createConfig().also {
+            updateComponentsAlignment(it)
+        }
     }
 
     /**
@@ -367,5 +528,12 @@ class AndesButton : ConstraintLayout {
         private val HIERARCHY_DEFAULT = AndesButtonHierarchy.LOUD
         private val SIZE_DEFAULT = AndesButtonSize.LARGE
         private val ICON_DEFAULT = null
+        private val CUSTOM_ICON_DEFAULT = "andesui_icon"
     }
+
+    @Parcelize
+    data class SavedState(
+        var isLoading: Boolean,
+        var superState: Parcelable
+    ) : Parcelable
 }

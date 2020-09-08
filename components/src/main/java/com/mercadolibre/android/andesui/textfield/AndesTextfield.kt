@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.DigitsKeyListener
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.icons.IconProvider
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
@@ -25,6 +27,7 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrsParser
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfiguration
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
+import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
@@ -37,7 +40,7 @@ class AndesTextfield : ConstraintLayout {
     var text: String?
         get() = textComponent.text.toString()
         set(value) {
-            textComponent.setText(value)
+            textComponent.setText(maskWatcher?.getTextWithMask(value) ?: value)
             setupCounterComponent(createConfig())
         }
 
@@ -159,11 +162,12 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var leftComponent: FrameLayout
     private lateinit var rightComponent: FrameLayout
+    private var maskWatcher: TextFieldMaskWatcher? = null
 
     @Suppress("unused")
     constructor(context: Context) : super(context) {
         initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT,
-                  STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE_DEFAULT)
+            STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE_DEFAULT)
     }
 
     constructor(
@@ -206,7 +210,7 @@ class AndesTextfield : ConstraintLayout {
     ) {
         val showCounter = SHOW_COUNTER_DEFAULT
         andesTextfieldAttrs = AndesTextfieldAttrs(
-                label, helper, placeholder, counter, showCounter, state, leftContent, rightContent, inputType
+            label, helper, placeholder, counter, showCounter, state, leftContent, rightContent, inputType
         )
         val config = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)
         setupComponents(config)
@@ -357,8 +361,9 @@ class AndesTextfield : ConstraintLayout {
         if (config.counterLength != 0 && state != READONLY && showCounter) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
-            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, 0, config.counterLength)
-            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength))
+            counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
+                getTextLength(), config.counterLength)
+            configTextComponentLengthFilter(config)
         } else {
             counterComponent.visibility = View.GONE
         }
@@ -371,9 +376,48 @@ class AndesTextfield : ConstraintLayout {
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
-                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text, charSequence!!.length, config.counterLength)
+
+                val textWithoutMask = removeMaskCharsText(charSequence.toString())
+
+                counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
+                    textWithoutMask.length, config.counterLength)
             }
         })
+    }
+
+    /**
+     * config text length text component
+     */
+    private fun configTextComponentLengthFilter(config: AndesTextfieldConfiguration) {
+
+        val wm = maskWatcher
+
+        if (wm != null && wm.getMaxLength() != 0) {
+            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(wm.getMaxLength()))
+        } else {
+            textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength))
+        }
+    }
+    
+    private fun getTextLength(): Int {
+
+        return if (text != null || text!!.isNotEmpty()) {
+            removeMaskCharsText(text).length
+        } else {
+            0
+        }
+    }
+
+    /**
+     * if use maskWatcher will remove masks chars
+     */
+    private fun removeMaskCharsText(text: String?): String {
+        val textToClean = text ?: EMPTY_STRING
+        return if (maskWatcher == null) {
+            textToClean
+        } else {
+            return maskWatcher?.cleanMask(textToClean) ?: EMPTY_STRING
+        }
     }
 
     /**
@@ -484,14 +528,24 @@ class AndesTextfield : ConstraintLayout {
     /**
      * Set the right content to icon and provides an interface to give the icon path.
      */
-    fun setRightIcon(iconPath: String) {
+    fun setRightIcon(iconPath: String, listener: OnClickListener? = null, colorIcon: Int? = R.color.andes_gray_800) {
         rightContent = AndesTextfieldRightContent.ICON
         val rightIcon: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
+
+        var color: AndesColor? = null
+        if (colorIcon != null) {
+            color = colorIcon.toAndesColor()
+        }
+
         rightIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
-                IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                context,
-                color = R.color.andes_gray_800.toAndesColor())
+            IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+            context,
+            color = color)
         )
+
+        if (listener != null) {
+            rightIcon.setOnClickListener(listener)
+        }
     }
 
     /**
@@ -501,9 +555,9 @@ class AndesTextfield : ConstraintLayout {
         leftContent = AndesTextfieldLeftContent.ICON
         val leftIcon: SimpleDraweeView = leftComponent.getChildAt(0) as SimpleDraweeView
         leftIcon.setImageDrawable(buildColoredAndesBitmapDrawable(
-                IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
-                context,
-                color = R.color.andes_gray_450.toAndesColor())
+            IconProvider(context).loadIcon(iconPath) as BitmapDrawable,
+            context,
+            color = R.color.andes_gray_450.toAndesColor())
         )
     }
 
@@ -525,6 +579,44 @@ class AndesTextfield : ConstraintLayout {
         suffix.text = text
     }
 
+    /**
+     * Set mask in text field.
+     * @param mask pattern ##-###-######-# digits sample 0123456789-
+     * @param digits sample 0123456789-
+     * @param listener is listener changeText
+     */
+    fun setTextFieldMask(
+        mask: String = EMPTY_STRING,
+        digits: String? = null,
+        listener: TextFieldMaskWatcher.OnTextChange? = null
+    ) {
+
+        if (maskWatcher == null) {
+            maskWatcher = TextFieldMaskWatcher(mask, listener)
+            textComponent.addTextChangedListener(maskWatcher)
+        }
+
+        maskWatcher!!.setMask(mask)
+
+        val length = maskWatcher?.getLengthWithoutMask() ?: 0
+        if (length > 0) {
+            counter = length
+            configTextComponentLengthFilter(createConfig())
+        }
+
+        digits.takeIf { !it.isNullOrEmpty() }?.let {
+            textComponent.keyListener = DigitsKeyListener.getInstance(it)
+        }
+    }
+
+    /**
+     * remove mask in text field.
+     */
+    fun clearMask() {
+        textComponent.removeTextChangedListener(maskWatcher)
+        maskWatcher = null
+    }
+
     fun requestFocusOnTextField() {
         textComponent.requestFocus()
     }
@@ -535,6 +627,7 @@ class AndesTextfield : ConstraintLayout {
      * Default values for AndesTextfield basic properties
      */
     companion object {
+        private const val EMPTY_STRING = ""
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null
