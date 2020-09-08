@@ -373,7 +373,7 @@ class AndesButton : ConstraintLayout {
         if (!customIcon)
             rightIconComponent.setImageDrawable(config.rightIcon)
 
-        if (config.rightIcon == null  && !customIcon) {
+        if (config.rightIcon == null && !customIcon) {
             rightIconComponent.visibility = View.GONE
         }
     }
@@ -401,7 +401,7 @@ class AndesButton : ConstraintLayout {
             rightIconComponent.visibility = View.INVISIBLE
 
             loadingView.start()
-        }else{
+        } else {
             textComponent.visibility = View.VISIBLE
             loadingView.visibility = View.GONE
             leftIconComponent.visibility = View.VISIBLE
@@ -473,7 +473,7 @@ class AndesButton : ConstraintLayout {
         var icon: SimpleDraweeView = leftIconComponent
         andesButtonAttrs = andesButtonAttrs.copy(andesButtonLeftIconPath = CUSTOM_ICON_DEFAULT)
 
-        if (!leftIconPosition){
+        if (!leftIconPosition) {
             icon = rightIconComponent
             andesButtonAttrs = andesButtonAttrs.copy(andesButtonLeftIconPath = null,
                     andesButtonRightIconPath = CUSTOM_ICON_DEFAULT)

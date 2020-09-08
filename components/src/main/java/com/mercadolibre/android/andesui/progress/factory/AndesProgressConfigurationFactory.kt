@@ -35,7 +35,7 @@ internal object AndesProgressConfigurationFactory {
     }
 
     private fun resolveStroke(context: Context, andesProgressSize: AndesProgressSize): Int {
-        return when(andesProgressSize) {
+        return when (andesProgressSize) {
             AndesProgressSize.XLARGE ->
                 context.resources.getDimension(R.dimen.andes_progress_stroke_xlarge).toInt()
             AndesProgressSize.LARGE ->

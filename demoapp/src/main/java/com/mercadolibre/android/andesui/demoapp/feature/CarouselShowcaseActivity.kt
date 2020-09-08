@@ -18,12 +18,12 @@ class CarouselShowcaseActivity : AppCompatActivity() {
         setContentView(R.layout.andesui_carousel_showcase)
 
         carouselMain.data = arrayListOf(
-                Model(Color.RED, "Coti", R.drawable.andes_navegacion_ventas_24),
-                Model(Color.GREEN, "Como", R.drawable.andes_navegacion_carrito_idle_24),
-                Model(Color.CYAN, "Andas", R.drawable.andes_navegacion_inicio_24),
-                Model(Color.RED, "Coti", R.drawable.andes_navegacion_ventas_24),
-                Model(Color.GREEN, "Como", R.drawable.andes_navegacion_carrito_idle_24),
-                Model(Color.CYAN, "Andas", R.drawable.andes_navegacion_inicio_24)
+                Model(Color.RED, "Button Nº1", R.drawable.andes_navegacion_ventas_24),
+                Model(Color.GREEN, "Button Nº2", R.drawable.andes_navegacion_carrito_idle_24),
+                Model(Color.CYAN, "Button Nº3", R.drawable.andes_navegacion_inicio_24),
+                Model(Color.RED, "Button Nº4", R.drawable.andes_navegacion_ventas_24),
+                Model(Color.GREEN, "Button Nº5", R.drawable.andes_navegacion_carrito_idle_24),
+                Model(Color.CYAN, "Button Nº6", R.drawable.andes_navegacion_inicio_24)
         )
 
         carouselMain.setViewHolderListener(object : ViewHolderListener {

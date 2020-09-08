@@ -12,7 +12,7 @@ class PaddingItemDecoration(private val padding: Int) : RecyclerView.ItemDecorat
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        
+
         val lastPosition = parent.adapter?.let {
             it.itemCount - 1
         } ?: FIRST_POSITION

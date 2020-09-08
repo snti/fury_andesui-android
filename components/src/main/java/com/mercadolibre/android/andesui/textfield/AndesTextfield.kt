@@ -398,7 +398,7 @@ class AndesTextfield : ConstraintLayout {
             textComponent.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(config.counterLength))
         }
     }
-    
+
     private fun getTextLength(): Int {
 
         return if (text != null || text!!.isNotEmpty()) {
