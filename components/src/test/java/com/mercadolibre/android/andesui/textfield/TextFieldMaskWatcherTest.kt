@@ -32,6 +32,24 @@ class TextFieldMaskWatcherTest {
     @Test
     fun `max size text without mask`() {
         val maskWatcher = TextFieldMaskWatcher("##--##-,##", null)
-        Assert.assertEquals(maskWatcher.getMaxLength(), 6)
+        Assert.assertEquals(maskWatcher.getLengthWithoutMask(), 6)
+    }
+
+    @Test
+    fun `max size text with mask`() {
+        val maskWatcher = TextFieldMaskWatcher("##--##-,##", null)
+        Assert.assertEquals(maskWatcher.getMaxLength(), 10)
+    }
+
+    @Test
+    fun `get text with mask`() {
+        val maskWatcher = TextFieldMaskWatcher("(##) ####-####", null)
+        Assert.assertEquals(maskWatcher.getTextWithMask("1149778767"), "(11) 4977-8767")
+    }
+
+    @Test
+    fun `get text with mask incomplete`() {
+        val maskWatcher = TextFieldMaskWatcher("(##) ####-####", null)
+        Assert.assertEquals(maskWatcher.getTextWithMask("114977"), "(11) 4977-")
     }
 }
