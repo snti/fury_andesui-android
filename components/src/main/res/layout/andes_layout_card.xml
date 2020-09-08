@@ -77,7 +77,9 @@
             android:tint="@color/andes_accent_color_500"
             app:layout_constraintStart_toEndOf="@+id/andes_card_title_link"
             app:layout_constraintTop_toTopOf="@+id/andes_card_title_link"
-            app:srcCompat="@drawable/andes_ui_chevron_right_20" />
+            app:srcCompat="@drawable/andes_ui_chevron_right_20"
+            tools:ignore="ContentDescription" />
+        <!-- tools:ignore="ContentDescription" ignored but should be checked with UX -->
 
         <android.support.constraint.Group
             android:id="@+id/group_card"
