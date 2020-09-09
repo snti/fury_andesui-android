@@ -27,4 +27,14 @@ ext {
             robolectric  : "org.robolectric:robolectric:$robolectric",
             soloader     : "com.facebook.soloader:soloader:$soloaderVersion"
     ]
+
+    showcase = [
+            glide  : 'com.github.bumptech.glide:glide:3.8.0',
+
+            /**
+             * It let us show the What's New which is in markdown format.
+             * https://github.com/noties/Markwon
+             */
+            markwon: 'io.noties.markwon:core:4.5.1'
+    ]
 }
