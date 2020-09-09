@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.badge.factory
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.badge.border.AndesBadgePillBorder
@@ -42,13 +43,30 @@ internal object AndesBadgePillAttrsParser {
     fun parse(context: Context, attr: AttributeSet?): AndesBadgePillAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesBadgePill)
 
-        val hierarchy = when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillHierarchy)) {
+        val hierarchy = parseHierarchy(typedArray)
+        val type = parseType(typedArray)
+        val border = parseBorder(typedArray)
+        val size = parseSize(typedArray)
+
+        return AndesBadgePillAttrs(
+            andesBadgePillHierarchy = hierarchy,
+            andesBadgeType = type,
+            andesBadgePillBorder = border,
+            andesBadgePillSize = size,
+            andesBadgeText = typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillText)
+        ).also { typedArray.recycle() }
+    }
+
+    private fun parseHierarchy(typedArray: TypedArray): AndesBadgePillHierarchy {
+        return when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillHierarchy)) {
             ANDES_BADGE_PILL_HIERARCHY_LOUD -> AndesBadgePillHierarchy.LOUD
             ANDES_BADGE_PILL_HIERARCHY_QUIET -> AndesBadgePillHierarchy.QUIET
             else -> AndesBadgePillHierarchy.LOUD
         }
+    }
 
-        val type = when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillType)) {
+    private fun parseType(typedArray: TypedArray): AndesBadgeType {
+        return when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillType)) {
             ANDES_BADGE_TYPE_NEUTRAL -> AndesBadgeType.NEUTRAL
             ANDES_BADGE_TYPE_HIGHLIGHT -> AndesBadgeType.HIGHLIGHT
             ANDES_BADGE_TYPE_SUCCESS -> AndesBadgeType.SUCCESS
@@ -56,26 +74,22 @@ internal object AndesBadgePillAttrsParser {
             ANDES_BADGE_TYPE_ERROR -> AndesBadgeType.ERROR
             else -> AndesBadgeType.NEUTRAL
         }
+    }
 
-        val border = when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillBorder)) {
+    private fun parseBorder(typedArray: TypedArray): AndesBadgePillBorder {
+        return when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillBorder)) {
             ANDES_BADGE_PILL_BORDER_CORNER -> AndesBadgePillBorder.CORNER
             ANDES_BADGE_PILL_BORDER_ROUNDED -> AndesBadgePillBorder.ROUNDED
             ANDES_BADGE_PILL_BORDER_STANDARD -> AndesBadgePillBorder.STANDARD
             else -> AndesBadgePillBorder.STANDARD
         }
+    }
 
-        val size = when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillSize)) {
+    private fun parseSize(typedArray: TypedArray): AndesBadgePillSize {
+        return when (typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillSize)) {
             ANDES_BADGE_PILL_SIZE_LARGE -> AndesBadgePillSize.LARGE
             ANDES_BADGE_PILL_SIZE_SMALL -> AndesBadgePillSize.SMALL
             else -> AndesBadgePillSize.LARGE
         }
-
-        return AndesBadgePillAttrs(
-                andesBadgePillHierarchy = hierarchy,
-                andesBadgeType = type,
-                andesBadgePillBorder = border,
-                andesBadgePillSize = size,
-                andesBadgeText = typedArray.getString(R.styleable.AndesBadgePill_andesBadgePillText)
-        ).also { typedArray.recycle() }
     }
 }

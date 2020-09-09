@@ -15,7 +15,8 @@ import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationF
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrs
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrsParser
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleConfiguration
-import com.mercadolibre.android.andesui.tag.leftcontent.*
+import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
@@ -160,7 +161,10 @@ class AndesTagSimple : ConstraintLayout {
      */
     private fun setupComponents(config: AndesTagSimpleConfiguration) {
         initComponents()
-        setupViewId()
+
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
 
         setupBackgroundComponents(config)
         setupTitleComponent(config)
@@ -175,15 +179,6 @@ class AndesTagSimple : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_simple_tag, this)
         containerTag = container.findViewById(R.id.andes_tag_container)
-    }
-
-    /**
-     * Sets a view id to this badge.
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) { // If this view has no id
-            id = View.generateViewId()
-        }
     }
 
     private fun setupBackgroundComponents(config: AndesTagSimpleConfiguration) {

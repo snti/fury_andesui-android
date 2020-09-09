@@ -1,13 +1,14 @@
 package com.mercadolibre.android.andesui.card.factory
 
-import com.mercadolibre.android.andesui.R
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
-import com.mercadolibre.android.andesui.card.type.AndesCardType
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
 import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
+import com.mercadolibre.android.andesui.card.type.AndesCardType
 
 internal data class AndesCardAttrs(
     val andesCardView: View?,
@@ -48,14 +49,34 @@ internal object AndesCardAttrParser {
     fun parse(context: Context, attr: AttributeSet?): AndesCardAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesCard)
 
-        val hierarchy = when (typedArray.getString(R.styleable.AndesCard_andesCardHierarchy)) {
+        val hierarchy = parseHierarchy(typedArray)
+        val padding = parsePadding(typedArray)
+        val type = parseType(typedArray)
+        val style = parseStyle(typedArray)
+
+        return AndesCardAttrs(
+            andesCardView = null,
+            andesCardType = type,
+            andesCardPadding = padding,
+            andesCardStyle = style,
+            andesCardTitle = typedArray.getString(R.styleable.AndesCard_andesCardTitle),
+            andesCardHierarchy = hierarchy,
+            linkText = null,
+            linkAction = null
+        ).also { typedArray.recycle() }
+    }
+
+    private fun parseHierarchy(typedArray: TypedArray): AndesCardHierarchy {
+        return when (typedArray.getString(R.styleable.AndesCard_andesCardHierarchy)) {
             ANDES_CARD_HIERARCHY_PRIMARY -> AndesCardHierarchy.PRIMARY
             ANDES_CARD_HIERARCHY_SECONDARY -> AndesCardHierarchy.SECONDARY
             ANDES_CARD_HIERARCHY_SECONDARY_DARK -> AndesCardHierarchy.SECONDARY_DARK
             else -> AndesCardHierarchy.PRIMARY
         }
+    }
 
-        val padding = when (typedArray.getString(R.styleable.AndesCard_andesCardPadding)) {
+    private fun parsePadding(typedArray: TypedArray): AndesCardPadding {
+        return when (typedArray.getString(R.styleable.AndesCard_andesCardPadding)) {
             ANDES_CARD_PADDING_NONE -> AndesCardPadding.NONE
             ANDES_CARD_PADDING_SMALL -> AndesCardPadding.SMALL
             ANDES_CARD_PADDING_MEDIUM -> AndesCardPadding.MEDIUM
@@ -63,8 +84,10 @@ internal object AndesCardAttrParser {
             ANDES_CARD_PADDING_XLARGE -> AndesCardPadding.XLARGE
             else -> AndesCardPadding.NONE
         }
+    }
 
-        val type = when (typedArray.getString(R.styleable.AndesCard_andesCardType)) {
+    private fun parseType(typedArray: TypedArray): AndesCardType {
+        return when (typedArray.getString(R.styleable.AndesCard_andesCardType)) {
             ANDES_CARD_TYPE_NONE -> AndesCardType.NONE
             ANDES_CARD_TYPE_HIGHLIGHT -> AndesCardType.HIGHLIGHT
             ANDES_CARD_TYPE_ERROR -> AndesCardType.ERROR
@@ -72,22 +95,13 @@ internal object AndesCardAttrParser {
             ANDES_CARD_TYPE_WARNING -> AndesCardType.WARNING
             else -> AndesCardType.NONE
         }
+    }
 
-        val style = when (typedArray.getString(R.styleable.AndesCard_andesCardStyle)) {
+    private fun parseStyle(typedArray: TypedArray): AndesCardStyle {
+        return when (typedArray.getString(R.styleable.AndesCard_andesCardStyle)) {
             ANDES_CARD_STYLE_ELEVATED -> AndesCardStyle.ELEVATED
             ANDES_CARD_STYLE_OUTLINE -> AndesCardStyle.OUTLINE
             else -> AndesCardStyle.ELEVATED
         }
-
-        return AndesCardAttrs(
-                andesCardView = null,
-                andesCardType = type,
-                andesCardPadding = padding,
-                andesCardStyle = style,
-                andesCardTitle = typedArray.getString(R.styleable.AndesCard_andesCardTitle),
-                andesCardHierarchy = hierarchy,
-                linkText = null,
-                linkAction = null
-        ).also { typedArray.recycle() }
     }
 }

@@ -14,6 +14,8 @@ internal data class AndesRadioButtonConfiguration(
 
 internal object AndesRadioButtonConfigurationFactory {
 
+    private const val DEFAULT_TEXT_SIZE = 16
+
     fun create(andesRadioButtonAttrs: AndesRadioButtonAttrs): AndesRadioButtonConfiguration {
         return with(andesRadioButtonAttrs) {
             val validatedStatus = if (andesRadioButtonAttrs.andesRadioButtonType == AndesRadioButtonType.ERROR) {
@@ -22,14 +24,13 @@ internal object AndesRadioButtonConfigurationFactory {
                 andesRadioButtonAttrs.andesRadioButtonStatus
             }
             AndesRadioButtonConfiguration(
-                    text = andesRadioButtonText,
-                    textSize = resolveTextSize(),
-                    align = andesRadioButtonAttrs.andesRadioButtonAlign,
-                    status = validatedStatus,
-                    type = andesRadioButtonAttrs.andesRadioButtonType
+                text = andesRadioButtonText,
+                textSize = DEFAULT_TEXT_SIZE,
+                align = andesRadioButtonAttrs.andesRadioButtonAlign,
+                status = validatedStatus,
+                type = andesRadioButtonAttrs.andesRadioButtonType
             )
         }
     }
 
-    private fun resolveTextSize() = 16
 }

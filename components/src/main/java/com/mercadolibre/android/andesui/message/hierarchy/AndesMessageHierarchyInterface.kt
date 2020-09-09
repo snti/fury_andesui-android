@@ -22,12 +22,12 @@ import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
  * Those properties change depending on the style of the message.
  *
  */
+@Suppress("TooManyFunctions")
 internal sealed class AndesMessageHierarchyInterface {
     /**
      * Returns a [Drawable] that contains the color data for the message background.
      * This includes color of the bg for normal, pressed, hover and focused states.
      *
-     * @param context needed for accessing some resources.
      * @return a [Drawable] that contains the color data for the message background.
      */
     abstract fun backgroundColor(): AndesColor
@@ -39,7 +39,6 @@ internal sealed class AndesMessageHierarchyInterface {
      * We are using [ColorStateList] because text color depends on the message type. E.g. text color for enabled type is different
      * than for the disabled type.
      *
-     * @param context needed for accessing some resources.
      * @return a [ColorStateList] that contains the data for the text color.
      */
     abstract fun textColor(): AndesColor
@@ -47,7 +46,6 @@ internal sealed class AndesMessageHierarchyInterface {
     /**
      * Returns an [Int] representing a @ColorInt that will be used when tinting the icon.
      *
-     * @param context needed for accessing some resources.
      * @return an [Int] representing a @ColorInt that will be used when tinting the icon.
      */
     abstract fun dismissableIconColor(): AndesColor
@@ -84,7 +82,6 @@ internal sealed class AndesMessageHierarchyInterface {
     /**
      * Returns the background color that the icon will have. It's the color of the container in which the icon will live.
      *
-     * @param context needed for accessing some resources.
      * @param type needed because the background color is intimately related to the type of the Message.
      * @return the background color that the icon will have.
      */
@@ -108,6 +105,7 @@ internal sealed class AndesMessageHierarchyInterface {
     abstract fun bodyLinkTextColor(type: AndesMessageTypeInterface): AndesColor
 }
 
+@Suppress("TooManyFunctions")
 internal object AndesLoudMessageHierarchy : AndesMessageHierarchyInterface() {
     override fun backgroundColor() = throw IllegalStateException("Loud message cannot be colored without an AndesMessageType")
     override fun backgroundColor(type: AndesMessageTypeInterface) = type.primaryColor()
@@ -129,6 +127,7 @@ internal object AndesLoudMessageHierarchy : AndesMessageHierarchyInterface() {
     override fun bodyLinkTextColor(type: AndesMessageTypeInterface) = R.color.andes_white.toAndesColor()
 }
 
+@Suppress("TooManyFunctions")
 internal object AndesQuietMessageHierarchy : AndesMessageHierarchyInterface() {
     override fun backgroundColor() = R.color.andes_gray_040.toAndesColor()
     override fun backgroundColor(type: AndesMessageTypeInterface) = backgroundColor()
@@ -139,7 +138,7 @@ internal object AndesQuietMessageHierarchy : AndesMessageHierarchyInterface() {
         return createBackgroundColorConfigLoud()
     }
 
-    override fun secondaryActionBackgroundColor(state: AndesMessageTypeInterface): BackgroundColorConfig {
+    override fun secondaryActionBackgroundColor(type: AndesMessageTypeInterface): BackgroundColorConfig {
         return createBackgroundColorConfigTransparent()
     }
 

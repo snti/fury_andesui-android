@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.textfield.factory
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -48,21 +49,43 @@ internal object AndesTextfieldAttrsParser {
     fun parse(context: Context, attr: AttributeSet?): AndesTextfieldAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTextfield)
 
-        val state = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldState)) {
+        val state = parseState(typedArray)
+        val leftContent = parseLeftContent(typedArray)
+        val rightContent = parseRightContent(typedArray)
+        val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, InputType.TYPE_CLASS_TEXT)
+
+        return AndesTextfieldAttrs(
+            label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),
+            helper = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldHelper),
+            placeholder = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldPlaceholder),
+            counter = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounter, 0),
+            state = state,
+            leftContent = leftContent,
+            rightContent = rightContent,
+            inputType = inputType
+        ).also { typedArray.recycle() }
+    }
+
+    private fun parseState(typedArray: TypedArray): AndesTextfieldState {
+        return when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldState)) {
             ANDES_TEXTFIELD_STATE_ENABLED -> AndesTextfieldState.IDLE
             ANDES_TEXTFIELD_STATE_ERROR -> AndesTextfieldState.ERROR
             ANDES_TEXTFIELD_STATE_DISABLED -> AndesTextfieldState.DISABLED
             ANDES_TEXTFIELD_STATE_READONLY -> AndesTextfieldState.READONLY
             else -> AndesTextfieldState.IDLE
         }
+    }
 
-        val leftContent = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLeftContent)) {
+    private fun parseLeftContent(typedArray: TypedArray): AndesTextfieldLeftContent? {
+        return when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLeftContent)) {
             ANDES_TEXTFIELD_CONTENT_PREFIX -> AndesTextfieldLeftContent.PREFIX
             ANDES_TEXTFIELD_CONTENT_ICON -> AndesTextfieldLeftContent.ICON
             else -> null
         }
+    }
 
-        val rightContent = when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldRightContent)) {
+    private fun parseRightContent(typedArray: TypedArray): AndesTextfieldRightContent? {
+        return when (typedArray.getString(R.styleable.AndesTextfield_andesTextfieldRightContent)) {
             ANDES_TEXTFIELD_CONTENT_SUFFIX -> AndesTextfieldRightContent.SUFFIX
             ANDES_TEXTFIELD_CONTENT_ICON -> AndesTextfieldRightContent.ICON
             ANDES_TEXTFIELD_CONTENT_TOOLTIP -> AndesTextfieldRightContent.TOOLTIP
@@ -73,18 +96,5 @@ internal object AndesTextfieldAttrsParser {
             ANDES_TEXTFIELD_CONTENT_CHECKBOX -> AndesTextfieldRightContent.CHECKBOX
             else -> null
         }
-
-        val inputType = typedArray.getInt(R.styleable.AndesTextfield_android_inputType, InputType.TYPE_CLASS_TEXT)
-
-        return AndesTextfieldAttrs(
-                label = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldLabel),
-                helper = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldHelper),
-                placeholder = typedArray.getString(R.styleable.AndesTextfield_andesTextfieldPlaceholder),
-                counter = typedArray.getInt(R.styleable.AndesTextfield_andesTextfieldCounter, 0),
-                state = state,
-                leftContent = leftContent,
-                rightContent = rightContent,
-                inputType = inputType
-        ).also { typedArray.recycle() }
     }
 }

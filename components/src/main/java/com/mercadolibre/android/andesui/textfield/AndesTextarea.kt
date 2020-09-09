@@ -21,6 +21,7 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
+@Suppress("TooManyFunctions")
 class AndesTextarea : ConstraintLayout {
 
     /**
@@ -113,7 +114,7 @@ class AndesTextarea : ConstraintLayout {
     private lateinit var textComponent: EditText
     private lateinit var iconComponent: SimpleDraweeView
 
-    @Suppress("unused")
+    @Suppress("unused", "LongParameterList")
     private constructor(context: Context) : super(context) {
         initAttrs(LABEL_DEFAULT, HELPER_DEFAULT, PLACEHOLDER_DEFAULT, COUNTER_DEFAULT, STATE_DEFAULT, MAXLINES_DEFAULT)
     }
@@ -144,6 +145,7 @@ class AndesTextarea : ConstraintLayout {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         label: String?,
         helper: String?,
@@ -303,9 +305,11 @@ class AndesTextarea : ConstraintLayout {
 
         textComponent.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(charSequence: Editable?) {
+                // Do nothing.
             }
 
             override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+                // Do nothing.
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
@@ -355,7 +359,7 @@ class AndesTextarea : ConstraintLayout {
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null
-        private val COUNTER_DEFAULT = 0
+        private const val COUNTER_DEFAULT = 0
         private val STATE_DEFAULT = AndesTextfieldState.IDLE
         private val MAXLINES_DEFAULT = null
     }

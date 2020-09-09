@@ -67,7 +67,9 @@ internal object AndesLoudButtonHierarchy : AndesButtonHierarchyInterface() {
  *
  */
 internal object AndesQuietButtonHierarchy : AndesButtonHierarchyInterface() {
-    override fun background(context: Context, cornerRadius: Float) = getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigQuiet())
+    override fun background(context: Context, cornerRadius: Float): Drawable {
+        return getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigQuiet())
+    }
     override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigQuiet())
 }
 
@@ -77,6 +79,8 @@ internal object AndesQuietButtonHierarchy : AndesButtonHierarchyInterface() {
  *
  */
 internal object AndesTransparentButtonHierarchy : AndesButtonHierarchyInterface() {
-    override fun background(context: Context, cornerRadius: Float) = getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigTransparent())
+    override fun background(context: Context, cornerRadius: Float): Drawable {
+        return getConfiguredBackground(context, cornerRadius, createBackgroundColorConfigTransparent())
+    }
     override fun textColor(context: Context) = getConfiguredTextColor(context, createTextColorConfigTransparent())
 }

@@ -5,8 +5,9 @@
 ## Developer Experience
 - Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
 - Added custom Android Lint config in favor of performance, accessibility and usability overrides.
-- Fix Detekt setup for showcase app.
 - Let devs install both debug and mds showcase apps at the same time by adding `.debug` suffix to debug builds.
+- Fix Detekt setup for components module as well as showcase app.
+- Apply many suggestions from Detekt to both components and showcase modules. Ignore others in favor of enable linters from now on.
 
 # v2.10.1
 ## 🛠 Fixes

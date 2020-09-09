@@ -21,6 +21,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.icons.IconProvider
+import com.mercadolibre.android.andesui.progress.LoadingSpinner
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
@@ -29,9 +30,9 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.*
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
+@Suppress("TooManyFunctions")
 class AndesTextfield : ConstraintLayout {
 
     /**
@@ -170,6 +171,7 @@ class AndesTextfield : ConstraintLayout {
             STATE_DEFAULT, LEFT_COMPONENT_DEFAULT, RIGHT_COMPONENT_DEFAULT, INPUT_TYPE_DEFAULT)
     }
 
+    @Suppress("LongParameterList")
     constructor(
         context: Context,
         label: String? = LABEL_DEFAULT,
@@ -198,6 +200,7 @@ class AndesTextfield : ConstraintLayout {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         label: String?,
         helper: String?,
@@ -264,7 +267,7 @@ class AndesTextfield : ConstraintLayout {
     }
 
     private fun setupEnabledView() {
-        if (state == DISABLED || state == READONLY) {
+        if (state == AndesTextfieldState.DISABLED || state == AndesTextfieldState.READONLY) {
             isEnabled = false
             textComponent.isEnabled = isEnabled
             textContainer.isEnabled = isEnabled
@@ -308,7 +311,7 @@ class AndesTextfield : ConstraintLayout {
         textContainer.background = config.background
 
         iconComponent.setImageDrawable(config.icon)
-        if (config.icon != null && state != READONLY) {
+        if (config.icon != null && state != AndesTextfieldState.READONLY) {
             if (!config.helperText.isNullOrEmpty()) {
                 iconComponent.visibility = View.VISIBLE
             }
@@ -345,7 +348,7 @@ class AndesTextfield : ConstraintLayout {
      * Gets data from the config and sets to the Helper component.
      */
     private fun setupHelperComponent(config: AndesTextfieldConfiguration) {
-        if (config.helperText == null || config.helperText.isEmpty() || state == READONLY) {
+        if (config.helperText == null || config.helperText.isEmpty() || state == AndesTextfieldState.READONLY) {
             helperComponent.visibility = View.GONE
         } else {
             helperComponent.visibility = View.VISIBLE
@@ -358,7 +361,7 @@ class AndesTextfield : ConstraintLayout {
      * Gets data from the config and sets to the Counter component.
      */
     private fun setupCounterComponent(config: AndesTextfieldConfiguration) {
-        if (config.counterLength != 0 && state != READONLY && showCounter) {
+        if (config.counterLength != 0 && state != AndesTextfieldState.READONLY && showCounter) {
             counterComponent.visibility = View.VISIBLE
             counterComponent.setTextSize(TypedValue.COMPLEX_UNIT_PX, config.counterSize)
             counterComponent.text = resources.getString(R.string.andes_textfield_counter_text,
@@ -370,9 +373,11 @@ class AndesTextfield : ConstraintLayout {
 
         textComponent.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(charSequence: Editable?) {
+                // Do nothing.
             }
 
             override fun beforeTextChanged(charSeqeuence: CharSequence?, start: Int, count: Int, after: Int) {
+                // Do nothing.
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
@@ -450,7 +455,7 @@ class AndesTextfield : ConstraintLayout {
 
     private fun setupMarginStartTextComponent() {
         val params = textComponent.layoutParams as LayoutParams
-        if (state == READONLY) {
+        if (state == AndesTextfieldState.READONLY) {
             params.goneStartMargin = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
         } else {
             params.goneStartMargin = context.resources.getDimension(R.dimen.andes_textfield_margin).toInt()
@@ -494,9 +499,13 @@ class AndesTextfield : ConstraintLayout {
                     }
                 }
 
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {}
+                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
+                    // Do nothing.
+                }
 
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {}
+                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, after: Int) {
+                    // Do nothing.
+                }
             })
 
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
@@ -511,7 +520,7 @@ class AndesTextfield : ConstraintLayout {
         rightContent = AndesTextfieldRightContent.ACTION
         val action: AndesButton = rightComponent.getChildAt(0) as AndesButton
         action.text = text
-        action.isEnabled = state != READONLY && state != DISABLED
+        action.isEnabled = state != AndesTextfieldState.READONLY && state != AndesTextfieldState.DISABLED
         action.setOnClickListener(onClickListener)
     }
 
@@ -631,11 +640,11 @@ class AndesTextfield : ConstraintLayout {
         private val LABEL_DEFAULT = null
         private val HELPER_DEFAULT = null
         private val PLACEHOLDER_DEFAULT = null
-        private val COUNTER_DEFAULT = 0
-        private val SHOW_COUNTER_DEFAULT = true
-        private val STATE_DEFAULT = IDLE
+        private const val COUNTER_DEFAULT = 0
+        private const val SHOW_COUNTER_DEFAULT = true
+        private val STATE_DEFAULT = AndesTextfieldState.IDLE
         private val LEFT_COMPONENT_DEFAULT = null
         private val RIGHT_COMPONENT_DEFAULT = null
-        private val INPUT_TYPE_DEFAULT = InputType.TYPE_CLASS_TEXT
+        private const val INPUT_TYPE_DEFAULT = InputType.TYPE_CLASS_TEXT
     }
 }

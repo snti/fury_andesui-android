@@ -113,7 +113,10 @@ class AndesCheckbox : ConstraintLayout {
 
     private fun setupComponents(config: AndesCheckboxConfiguration) {
         initComponents()
-        setupViewId()
+
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
 
         setupTitleComponent(config)
         setupAlignComponent(config)
@@ -150,15 +153,6 @@ class AndesCheckbox : ConstraintLayout {
                     setupBackgroundComponent(createConfig())
                 }
             }
-        }
-    }
-
-    /**
-     * Sets a view id to this checkbox.
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) { // If this view has no id
-            id = View.generateViewId()
         }
     }
 
