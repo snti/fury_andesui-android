@@ -2,13 +2,13 @@ package com.mercadolibre.android.andesui.carousel
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrParser
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfiguration
@@ -92,10 +92,7 @@ class AndesCarousel : ConstraintLayout {
     private fun setupComponents(config: AndesCarouselConfiguration) {
         initComponents()
         setupViewId()
-
         updateDynamicComponents(config)
-        addView(recyclerViewComponent)
-
         updateComponentsAlignment(config)
     }
 
@@ -104,8 +101,8 @@ class AndesCarousel : ConstraintLayout {
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
-        recyclerViewComponent = RecyclerView(context)
-        recyclerViewComponent.id = View.generateViewId()
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_carousel, this)
+        recyclerViewComponent = container.findViewById(R.id.andes_carousel_recyclerview)
     }
 
     private fun updateDynamicComponents(config: AndesCarouselConfiguration) {
@@ -113,7 +110,6 @@ class AndesCarousel : ConstraintLayout {
     }
 
     private fun updateComponentsAlignment(config: AndesCarouselConfiguration) {
-        setupConstraint()
         setupPaddingRecyclerView(config)
     }
 
@@ -134,13 +130,6 @@ class AndesCarousel : ConstraintLayout {
 
     private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
         recyclerViewComponent.addItemDecoration(PaddingItemDecoration(config.padding))
-    }
-
-    private fun setupConstraint() {
-        val set = ConstraintSet()
-        set.clone(this)
-        set.constrainWidth(recyclerViewComponent.id, ViewGroup.LayoutParams.MATCH_PARENT)
-        set.applyTo(this)
     }
 
     /**
