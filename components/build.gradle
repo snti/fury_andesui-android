@@ -5,7 +5,6 @@ apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'com.novoda.bintray-release'
 apply from: rootProject.file('jacoco.gradle')
 apply from: rootProject.file('publish.gradle')
-apply from: rootProject.file('detekt.gradle')
 
 android {
     compileSdkVersion maxApiLevel.toInteger()

@@ -1,9 +1,12 @@
 # v2.11.0
 ## 🚀 Features
-- Changed target API level to 29
+- Changed target API level to 29.
 
-## Showcase App
-- Add `.debug` suffix to `debug` build type to be able to have parallel installs per device. | Author: [@barriosnahuel](https://github.com/barriosnahuel)
+## Developer Experience
+- Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
+- Added custom Android Lint config in favor of performance, accessibility and usability overrides.
+- Fix Detekt setup for showcase app.
+- Let devs install both debug and mds showcase apps at the same time by adding `.debug` suffix to debug builds.
 
 # v2.10.1
 ## 🛠 Fixes
