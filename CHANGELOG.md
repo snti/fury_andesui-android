@@ -15,6 +15,10 @@
 ## 🛠 Fixes
 - AndesProgressIndicatorIndeterminate: Leak in progress animation | Author: [@orelvismeli](https://github.com/orelvismeli)
 
+# v2.11.0
+## 🚀 Features
+- AndesTextField: Expose textFilter and textDigits @nesmarsollie
+
 # v2.10.0
 ## 🚀 Features
 - AndesTextField: Mask set text with mask | Author: [@fdiassilva](https://github.com/fdiassilva)
