@@ -1,12 +1,8 @@
 ext {
-    kt = [
-            stblib: "org.jetbrains.kotlin:kotlin-stdlib.jdk7:$kotlinVersion"
-    ]
-
     supportLibraryVersion = '28.0.0'
 
     prod = [
-            kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib.jdk7:$kotlinVersion",
+            kotlinStdlib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
             supportLibraryAppCompatV7: "com.android.support:appcompat-v7:$supportLibraryVersion",
             supportLibraryDesign     : "com.android.support:design:$supportLibraryVersion",
             supportConstraintLayout  : "com.android.support.constraint:constraint-layout:1.1.3",

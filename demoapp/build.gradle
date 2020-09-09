@@ -82,14 +82,13 @@ dependencies {
     implementation prod.supportConstraintLayout
     implementation prod.supportLibraryAppCompatV7
     implementation prod.fresco
-    implementation "com.github.bumptech.glide:glide:4.3.1"
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
 
     /**
      * It enables us to show the What's New which is in markdown format.
      * https://github.com/noties/Markwon
      */
     implementation 'io.noties.markwon:core:4.5.1'
-//    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
 
 /**
