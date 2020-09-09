@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setupTextfield()
         setupThumbnails()
         setupProgress()
+        setupButtomSheet()
         setupWhatsNew()
         setupContributionTrigger()
         setupAndesSpecsWeb()
@@ -98,6 +99,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupProgress() {
         andesui_progress.setOnClickListener {
             launchIntent("meli://andes/progress")
+        }
+    }
+
+    private fun setupButtomSheet() {
+        andesui_bottom_sheet.setOnClickListener {
+            launchIntent("meli://andes/bottom_sheet")
         }
     }
 

@@ -15,6 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".feature.BottomSheetShowcaseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="andes"
+                    android:path="/bottom_sheet"
+                    android:scheme="meli" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -187,7 +201,8 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.CardShowcaseActivity"
+        <activity
+            android:name=".feature.CardShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
