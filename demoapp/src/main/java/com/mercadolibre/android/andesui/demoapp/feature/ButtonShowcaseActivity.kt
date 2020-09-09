@@ -53,7 +53,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.MEDIUM,
             AndesButtonHierarchy.LOUD,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
         )
         andesButtonMedium.text = getString(R.string.loud_medium_button_programmatic)
 
@@ -61,7 +61,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.LARGE,
             AndesButtonHierarchy.QUIET,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
         )
         andesButtonLarge.text = getString(R.string.loud_large_button_programmatic)
         andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
@@ -109,7 +109,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.LARGE,
             AndesButtonHierarchy.QUIET,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.RIGHT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.RIGHT)
         )
         andesButtonLarge.text = getString(R.string.quiet_large_button_programmatic)
         andesButtonLarge.setOnClickListener {
@@ -163,7 +163,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.LARGE,
             AndesButtonHierarchy.TRANSPARENT,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
         )
         andesButtonLargeInt.text = getString(R.string.transparent_large_button_programmatic_int)
 

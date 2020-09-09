@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:onClick="click"
             android:layout_marginBottom="@dimen/button_margin_vertical"
-            app:andesButtonLeftIconPath="andesui_icon"
+            app:andesButtonLeftIconPath="andesui_icon_dynamic"
             app:andesButtonSize="large"
             app:andesButtonHierarchy="loud"
             app:andesButtonText="@string/large_button_left_icon" />
