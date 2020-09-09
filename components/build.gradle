@@ -58,16 +58,15 @@ staticCodeAnalysis {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
-    api "com.android.support:cardview-v7:$supportLibraryVersion"
-    api "com.facebook.fresco:fresco:$frescoVersion"
+    implementation prod.kotlinStdlib
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportLibraryDesign
+    api prod.supportConstraintLayout
+    api prod.supportCardView
+    api prod.fresco
 
-    // Unit testing dependencies
-    testImplementation "com.android.support.test:runner:$runnerVersion"
-    testImplementation "com.facebook.soloader:soloader:$soloaderVersion"
+    testImplementation test.runner
+    testImplementation test.soloader
     testImplementation test.junit4
     testImplementation test.mockitoKotlin
     testImplementation test.assertj

@@ -8,6 +8,8 @@
 - Let devs install both debug and mds showcase apps at the same time by adding `.debug` suffix to debug builds.
 - Fix Detekt setup for components module as well as showcase app.
 - Apply many suggestions from Detekt to both components and showcase modules. Ignore others in favor of enable linters from now on.
+- Libraries upgraded from unit tests and showcase module.
+- Gradle files cleanup.
 
 # v2.10.1
 ## 🛠 Fixes
