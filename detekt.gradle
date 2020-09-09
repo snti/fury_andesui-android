@@ -3,15 +3,16 @@
  */
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
-dependencies {
-    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}"
-}
+//  Keep it commented until fixing ~400 issues by autocorrecting them in another PR.
+//dependencies {
+//    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}"
+//}
 
 detekt {
     config = files("$project.rootProject.projectDir/config/detekt/detekt.yml")
 
 //    Keep it in false until finding a way to hook to the pre-push event.
-    autoCorrect = false
+//    autoCorrect = false
 
     reports {
         txt {
