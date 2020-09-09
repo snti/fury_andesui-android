@@ -34,7 +34,7 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         indicator.attach(viewPager)
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        //addProgress(adapter.views[0])
+        // addProgress(adapter.views[0])
     }
 
     private fun addProgress(container: View) {
@@ -78,7 +78,6 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         bindAndesSpecsButton(container)
     }
 
-
     private fun bindAndesSpecsButton(container: View) {
         container.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_button).setOnClickListener {
             launchSpecs(container.context, AndesSpecs.BUTTON)
@@ -117,8 +116,8 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         }
     }
 
-    fun click(v:View){
-        if (v is AndesButton){
+    fun click(v: View) {
+        if (v is AndesButton) {
             v.isLoading = !v.isLoading
         }
     }

@@ -10,6 +10,7 @@ import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierar
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 import com.mercadolibre.android.andesui.thumbnail.state.AndesThumbnailState
 import com.mercadolibre.android.andesui.thumbnail.type.AndesThumbnailType
+import java.lang.IllegalArgumentException
 
 /**
  * The data class that contains the public components of the thumbnail.
@@ -50,13 +51,24 @@ internal object AndesThumbnailAttrsParser {
         val color = typedArray.getResourceId(R.styleable.AndesThumbnail_andesThumbnailAccentColor, 0)
 
         return AndesThumbnailAttrs(
-            andesThumbnailHierarchy = getHierarchy(typedArray),
-            andesThumbnailType = getType(typedArray),
-            andesThumbnailSize = getSize(typedArray),
-            andesThumbnailState = getState(typedArray),
-            andesThumbnailAccentColor = AndesColor(color),
-            andesThumbnailImage = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)
+                andesThumbnailHierarchy = getHierarchy(typedArray),
+                andesThumbnailType = getType(typedArray),
+                andesThumbnailSize = getSize(typedArray),
+                andesThumbnailState = getState(typedArray),
+                andesThumbnailAccentColor = AndesColor(color),
+                andesThumbnailImage = getImage(typedArray)
         ).also { typedArray.recycle() }
+    }
+
+    private fun getImage(typedArray: TypedArray): Drawable {
+        val image: Drawable
+        val imageParameter = typedArray.getDrawable(R.styleable.AndesThumbnail_andesThumbnailImage)
+        if (imageParameter == null) {
+            throw IllegalArgumentException("Wrong andesThumbnailImage passed, check your layout")
+        } else {
+            image = imageParameter
+        }
+        return image
     }
 
     private fun getSize(typedArray: TypedArray): AndesThumbnailSize =

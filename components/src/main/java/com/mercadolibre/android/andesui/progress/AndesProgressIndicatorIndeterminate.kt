@@ -11,8 +11,7 @@ import com.mercadolibre.android.andesui.progress.factory.AndesProgressConfigurat
 import com.mercadolibre.android.andesui.progress.factory.AndesProgressConfigurationFactory
 import com.mercadolibre.android.andesui.progress.size.AndesProgressSize
 
-
-class AndesProgressIndicatorIndeterminate: ConstraintLayout {
+class AndesProgressIndicatorIndeterminate : ConstraintLayout {
 
     private lateinit var andesProgressAttr: AndesProgressAttrs
     internal lateinit var progressComponent: LoadingSpinner
@@ -38,7 +37,7 @@ class AndesProgressIndicatorIndeterminate: ConstraintLayout {
     /**
      * Simplest constructor for creating an AndesProgress programmatically.
      */
-    constructor(context: Context) : super(context){
+    constructor(context: Context) : super(context) {
         initAttrs(SIZE_DEFAULT, TINT)
     }
 
@@ -64,8 +63,8 @@ class AndesProgressIndicatorIndeterminate: ConstraintLayout {
     }
 
     private fun initAttrs(
-            progressSize: AndesProgressSize,
-            tint: Int
+        progressSize: AndesProgressSize,
+        tint: Int
     ) {
         andesProgressAttr = AndesProgressAttrs(progressSize, tint, false)
         setupComponents(createConfig())
@@ -125,8 +124,13 @@ class AndesProgressIndicatorIndeterminate: ConstraintLayout {
         progressComponent.layoutParams = params
     }
 
-    fun start(){
+    fun start() {
         progressComponent.start()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        progressComponent.stop()
     }
 
     companion object {

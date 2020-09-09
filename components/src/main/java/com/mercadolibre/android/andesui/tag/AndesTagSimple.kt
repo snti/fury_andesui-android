@@ -221,7 +221,7 @@ class AndesTagSimple : ConstraintLayout {
                         ConstraintSet.START,
                         size.size.leftMargin(context)
                 )
-            } else if (config.leftContent != null){
+            } else if (config.leftContent != null) {
                 constraintSet.setMargin(
                         R.id.simpleTagText,
                         ConstraintSet.START,

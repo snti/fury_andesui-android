@@ -38,6 +38,7 @@ android {
     buildTypes {
         debug {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.debug'
             minifyEnabled false
             aaptOptions {
                 cruncherEnabled false
