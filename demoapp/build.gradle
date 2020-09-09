@@ -45,7 +45,7 @@ android {
                 cruncherEnabled false
             }
 
-            resValue("string", "andesui_demoapp_app_name", "Andes DEBUG")
+            resValue("string", "andesui_demoapp_app_name", "Andes DEBUG v${libraryVersion}")
         }
         release {
             initWith(buildTypes.debug)
