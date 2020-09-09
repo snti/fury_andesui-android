@@ -69,6 +69,8 @@ android {
 staticCodeAnalysis {
     // False is REQUIRED in order to make CI server fail the build on errors.
     ignoreErrors = false
+
+    androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-demoapp.xml"
 }
 
 dependencies {

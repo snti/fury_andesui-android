@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:parentTag="FrameLayout" >
+
     <ImageView
         android:id="@+id/andes_thumbnail_image"
         android:layout_width="@dimen/andes_thumbnail_size_24"
@@ -13,5 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+    <!-- tools:ignore="ContentDescription" ignored but should be checked with UX -->
 </merge>

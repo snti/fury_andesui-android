@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/andes_textfield_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -51,7 +52,9 @@
             app:layout_constraintStart_toEndOf="@+id/andes_textfield_left_component"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_goneMarginEnd="@dimen/andes_textfield_margin"
-            app:layout_goneMarginStart="@dimen/andes_textfield_margin" />
+            app:layout_goneMarginStart="@dimen/andes_textfield_margin"
+            tools:ignore="LabelFor" />
+        <!-- tools:ignore="LabelFor" ignored but should be checked with UX -->
 
         <FrameLayout
             android:id="@+id/andes_textfield_right_component"

@@ -6,6 +6,7 @@ bintray.properties
 config/*
 ## Not ignoring detekt configuration file
 !config/detekt.yml
+!config/android/android-lint-components.xml
 
 ## Gradle
 .gradle
