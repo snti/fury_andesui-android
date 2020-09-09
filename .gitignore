@@ -3,10 +3,10 @@ Rakefile
 bintray.properties
 
 ## SCA Plugin: https://github.com/monits/static-code-analysis-plugin/
-#config/*
+config/*
 ## Not ignoring detekt configuration file
-!config/detekt/detekt.yml
 !config/android/android-lint-components.xml
+!config/detekt/detekt.yml
 
 ## Gradle
 .gradle
