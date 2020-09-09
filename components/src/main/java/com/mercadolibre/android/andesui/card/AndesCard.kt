@@ -22,6 +22,7 @@ import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
 import com.mercadolibre.android.andesui.card.type.AndesCardType
 
+@Suppress("TooManyFunctions")
 class AndesCard : CardView {
 
     /**
@@ -143,6 +144,7 @@ class AndesCard : CardView {
         initAttrs(attrs)
     }
 
+    @Suppress("LongParameterList")
     constructor(
         context: Context,
         view: View,
@@ -166,6 +168,7 @@ class AndesCard : CardView {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         cardView: View,
         type: AndesCardType,

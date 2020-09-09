@@ -111,7 +111,10 @@ class AndesRadioButton : ConstraintLayout {
 
     private fun setupComponents(config: AndesRadioButtonConfiguration) {
         initComponents()
-        setupViewId()
+
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
 
         setupTitleComponent(config)
         setupAlignComponent(config)
@@ -146,15 +149,6 @@ class AndesRadioButton : ConstraintLayout {
                     setupBackgroundComponent(createConfig())
                 }
             }
-        }
-    }
-
-    /**
-     * Sets a view id to this radiobutton.
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) { // If this view has no id
-            id = View.generateViewId()
         }
     }
 

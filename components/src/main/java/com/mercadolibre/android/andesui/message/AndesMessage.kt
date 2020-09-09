@@ -28,6 +28,7 @@ import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
+@Suppress("TooManyFunctions")
 class AndesMessage : CardView {
 
     /**
@@ -134,7 +135,7 @@ class AndesMessage : CardView {
         initAttrs(attrs)
     }
 
-    @Suppress("unused")
+    @Suppress("unused", "LongParameterList")
     constructor(
         context: Context,
         hierarchy: AndesMessageHierarchy = HIERARCHY_DEFAULT,
@@ -158,6 +159,7 @@ class AndesMessage : CardView {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         hierarchy: AndesMessageHierarchy,
         type: AndesMessageType,
@@ -394,7 +396,7 @@ class AndesMessage : CardView {
         private val HIERARCHY_DEFAULT = AndesMessageHierarchy.LOUD
         private val STATE_DEFAULT = AndesMessageType.NEUTRAL
         private val TITLE_DEFAULT = null
-        private val LINK_BUTTON_PADDING = 0
+        private const val LINK_BUTTON_PADDING = 0
         private const val IS_DISMISSIBLE_DEFAULT = false
     }
 }

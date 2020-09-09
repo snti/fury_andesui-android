@@ -33,7 +33,7 @@ android {
 
         multiDexEnabled true
 
-        resValue("string", "andesui_demoapp_app_name", "Andes UI v${libraryVersion}")
+        resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
     }
 
     buildTypes {
@@ -44,6 +44,8 @@ android {
             aaptOptions {
                 cruncherEnabled false
             }
+
+            resValue("string", "andesui_demoapp_app_name", "Andes DEBUG v${libraryVersion}")
         }
         release {
             initWith(buildTypes.debug)

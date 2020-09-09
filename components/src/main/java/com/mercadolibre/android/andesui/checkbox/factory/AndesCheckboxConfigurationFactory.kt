@@ -14,6 +14,8 @@ internal data class AndesCheckboxConfiguration(
 
 internal object AndesCheckboxConfigurationFactory {
 
+    private const val DEFAULT_TEXT_SIZE = 16
+
     fun create(andesCheckboxAttrs: AndesCheckboxAttrs): AndesCheckboxConfiguration {
         return with(andesCheckboxAttrs) {
             val validatedStatus = if (andesCheckboxAttrs.andesCheckboxType == AndesCheckboxType.ERROR) {
@@ -22,14 +24,12 @@ internal object AndesCheckboxConfigurationFactory {
                 andesCheckboxAttrs.andesCheckboxStatus
             }
             AndesCheckboxConfiguration(
-                    text = andesCheckboxText,
-                    textSize = resolveTextSize(),
-                    align = andesCheckboxAttrs.andesCheckboxAlign,
-                    status = validatedStatus,
-                    type = andesCheckboxAttrs.andesCheckboxType
+                text = andesCheckboxText,
+                textSize = DEFAULT_TEXT_SIZE,
+                align = andesCheckboxAttrs.andesCheckboxAlign,
+                status = validatedStatus,
+                type = andesCheckboxAttrs.andesCheckboxType
             )
         }
     }
-
-    private fun resolveTextSize() = 16
 }

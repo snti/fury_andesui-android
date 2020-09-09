@@ -36,6 +36,7 @@ internal data class AndesTextfieldConfiguration(
     val maxLines: Int? = null
 )
 
+@Suppress("TooManyFunctions")
 internal object AndesTextfieldConfigurationFactory {
 
     fun create(context: Context, andesTextfieldAttrs: AndesTextfieldAttrs): AndesTextfieldConfiguration {

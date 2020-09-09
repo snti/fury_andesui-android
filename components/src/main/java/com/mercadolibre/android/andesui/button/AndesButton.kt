@@ -68,6 +68,7 @@ import kotlinx.android.parcel.Parcelize
  * by accessing its related setters
  *
  */
+@Suppress("TooManyFunctions")
 class AndesButton : ConstraintLayout {
 
     private lateinit var andesButtonAttrs: AndesButtonAttrs
@@ -528,7 +529,7 @@ class AndesButton : ConstraintLayout {
         private val HIERARCHY_DEFAULT = AndesButtonHierarchy.LOUD
         private val SIZE_DEFAULT = AndesButtonSize.LARGE
         private val ICON_DEFAULT = null
-        private val CUSTOM_ICON_DEFAULT = "andesui_icon"
+        private const val CUSTOM_ICON_DEFAULT = "andesui_icon"
     }
 
     @Parcelize

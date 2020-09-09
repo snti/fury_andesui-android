@@ -108,6 +108,7 @@ class AndesThumbnail : FrameLayout {
         initAttrs(attrs)
     }
 
+    @Suppress("LongParameterList")
     constructor(
         context: Context,
         accentColor: AndesColor,
@@ -131,6 +132,7 @@ class AndesThumbnail : FrameLayout {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         accentColor: AndesColor,
         hierarchy: AndesThumbnailHierarchy,
@@ -150,7 +152,10 @@ class AndesThumbnail : FrameLayout {
      */
     private fun setupComponents(config: AndesThumbnailConfiguration) {
         initComponents()
-        setupViewId()
+
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
 
         setupBackground(config)
         setupImage(config)
@@ -162,15 +167,6 @@ class AndesThumbnail : FrameLayout {
      */
     private fun initComponents() {
         LayoutInflater.from(context).inflate(R.layout.andes_layout_thumbnail, this)
-    }
-
-    /**
-     * Sets a view id to this thumbnail.
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) { // If this view has no id
-            id = View.generateViewId()
-        }
     }
 
     private fun setupBackground(config: AndesThumbnailConfiguration) {

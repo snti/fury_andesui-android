@@ -14,7 +14,7 @@ import com.mercadolibre.android.andesui.progress.size.AndesProgressSize
 class AndesProgressIndicatorIndeterminate : ConstraintLayout {
 
     private lateinit var andesProgressAttr: AndesProgressAttrs
-    internal lateinit var progressComponent: LoadingSpinner
+    private lateinit var progressComponent: LoadingSpinner
 
     var tint: Int
         get() = andesProgressAttr.tint
@@ -78,8 +78,12 @@ class AndesProgressIndicatorIndeterminate : ConstraintLayout {
     private fun setupComponents(config: AndesProgressConfiguration) {
         initComponents(config)
 
-        setupViewId()
-        setupProgressComponent()
+        if (id == NO_ID) {
+            id = View.generateViewId()
+        }
+
+        progressComponent.id = View.generateViewId()
+
         setupColor(config)
         setupSize(config)
 
@@ -91,27 +95,13 @@ class AndesProgressIndicatorIndeterminate : ConstraintLayout {
     private fun createConfig() = AndesProgressConfigurationFactory.create(context, andesProgressAttr)
 
     private fun setupConstraints() {
-        val set = ConstraintSet()
-        set.clone(this)
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(this)
 
-        set.centerHorizontally(progressComponent.id, ConstraintSet.PARENT_ID)
-        set.centerVertically(progressComponent.id, ConstraintSet.PARENT_ID)
+        constraintSet.centerHorizontally(progressComponent.id, ConstraintSet.PARENT_ID)
+        constraintSet.centerVertically(progressComponent.id, ConstraintSet.PARENT_ID)
 
-        set.applyTo(this)
-    }
-
-    /**
-     * Sets a view id to this Progress.
-     *
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) {
-            id = View.generateViewId()
-        }
-    }
-
-    private fun setupProgressComponent() {
-        progressComponent.id = View.generateViewId()
+        constraintSet.applyTo(this)
     }
 
     private fun setupColor(config: AndesProgressConfiguration) {
