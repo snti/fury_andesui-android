@@ -1,10 +1,17 @@
+# v2.11.0
+## 🚀 Features
+- Changed target API level to 29
+
+## Showcase App
+- Add `.debug` suffix to `debug` build type to be able to have parallel installs per device. | Author: [@barriosnahuel](https://github.com/barriosnahuel)
+
 # v2.10.1
-## Fixed
-- AndesProgressIndicatorIndeterminate: Leak in progress animation
+## 🛠 Fixes
+- AndesProgressIndicatorIndeterminate: Leak in progress animation | Author: [@orelvismeli](https://github.com/orelvismeli)
 
 # v2.10.0
 ## 🚀 Features
-- AndesTextField: Mask set text with mask @fdiassilva
+- AndesTextField: Mask set text with mask | Author: [@fdiassilva](https://github.com/fdiassilva)
 
 # v2.9.0
 ## 🚀 Features

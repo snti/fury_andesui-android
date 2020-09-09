@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.button
 import android.content.Context
 import android.graphics.drawable.Animatable
 import android.os.Build
+import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.Nullable
 import android.support.constraint.ConstraintLayout
@@ -120,13 +121,13 @@ class AndesButton : ConstraintLayout {
      */
     var isLoading: Boolean
         get() = loadingView.visibility == View.VISIBLE
-    set(value) {
-        andesButtonAttrs = andesButtonAttrs.copy(andesButtonIsLoading = value)
-        createConfig().also {
-            updateComponentsAlignment(it)
-            updateDynamicComponents(it)
+        set(value) {
+            andesButtonAttrs = andesButtonAttrs.copy(andesButtonIsLoading = value)
+            createConfig().also {
+                updateComponentsAlignment(it)
+                updateDynamicComponents(it)
+            }
         }
-    }
 
     init {
         isSaveEnabled = true
@@ -445,9 +446,8 @@ class AndesButton : ConstraintLayout {
      * Save the current button status
      */
     override fun onSaveInstanceState(): Parcelable? {
-        var superState = super.onSaveInstanceState()
-        var state = SavedState(isLoading, superState)
-        return state
+        val superState: Parcelable = super.onSaveInstanceState() ?: Bundle()
+        return SavedState(isLoading, superState)
     }
 
     /**
@@ -508,8 +508,8 @@ class AndesButton : ConstraintLayout {
     private fun updateIconMargin(@Nullable imageInfo: ImageInfo?, simpleDraweeView: SimpleDraweeView) {
 
         if (imageInfo != null) {
-            var iconWidth = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width)
-            var iconHeight = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height)
+            val iconWidth = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width)
+            val iconHeight = context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height)
             simpleDraweeView.layoutParams.width = iconWidth
             simpleDraweeView.layoutParams.height = iconHeight
             simpleDraweeView.aspectRatio = iconWidth.toFloat() / iconHeight
