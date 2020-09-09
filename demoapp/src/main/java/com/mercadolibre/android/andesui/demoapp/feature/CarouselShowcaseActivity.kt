@@ -45,3 +45,4 @@ class CarouselShowcaseActivity : AppCompatActivity() {
 }
 
 data class Model(val backgroundColor: Int, val label: String, val image: Int)
+
