@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class CustomAdapter(
+class CarouselAdapter(
     private var itemLayout: Int,
     private var dataSet: List<Any>
 ) :
-        RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
 
     private var viewHolderListener: ViewHolderListener? = null
 

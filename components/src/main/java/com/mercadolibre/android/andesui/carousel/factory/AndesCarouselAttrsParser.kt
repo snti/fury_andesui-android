@@ -8,7 +8,8 @@ import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
 internal data class AndesCarouselAttrs(
     val andesCarouselCenter: Boolean,
     val andesCarouselItemLayout: Int,
-    val andesCarouselPadding: AndesCarouselPadding
+    val andesCarouselPadding: AndesCarouselPadding,
+    var andesCarouselDataSet: List<Any> = emptyList()
 )
 
 /**
