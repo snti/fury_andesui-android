@@ -16,10 +16,10 @@ import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.align.AndesCheckboxAlign
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.checkbox.type.AndesCheckboxType
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 
@@ -71,16 +71,22 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicCheckboxLayout, staticCheckboxLayout)
         }
 
+        @Suppress("ComplexMethod", "LongMethod")
         private fun addDynamicCheckbox(inflater: LayoutInflater): View {
             val layoutCheckbox = inflater.inflate(
-                    R.layout.andesui_dynamic_checkbox_showcase, null, false
+                R.layout.andesui_dynamic_checkbox_showcase,
+                null,
+                false
             ) as ScrollView
 
             val checkbox: AndesCheckbox = layoutCheckbox.findViewById(R.id.andesCheckbox)
 
             val spinnerType: Spinner = layoutCheckbox.findViewById(R.id.spinnerType)
             ArrayAdapter.createFromResource(
-                    context, R.array.type_checkbox_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.type_checkbox_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerType.adapter = adapter
@@ -88,7 +94,10 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
 
             val spinnerAlign: Spinner = layoutCheckbox.findViewById(R.id.spinnerAlign)
             ArrayAdapter.createFromResource(
-                    context, R.array.align_checkbox_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.align_checkbox_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerAlign.adapter = adapter
@@ -96,7 +105,10 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
 
             val spinnerStatus: Spinner = layoutCheckbox.findViewById(R.id.spinnerStatus)
             ArrayAdapter.createFromResource(
-                    context, R.array.status_checkbox_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.status_checkbox_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerStatus.adapter = adapter
@@ -159,7 +171,9 @@ class CheckboxShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticCheckbox(inflater: LayoutInflater): View {
             val layoutCheckbox = inflater.inflate(
-                    R.layout.andesui_checkbox_showcase, null, false
+                R.layout.andesui_checkbox_showcase,
+                null,
+                false
             ) as ScrollView
 
             layoutCheckbox.findViewById<AndesButton>(R.id.andesui_demoapp_andes_checkbox_specs_button)

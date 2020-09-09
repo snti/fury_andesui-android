@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.demoapp;
+package com.mercadolibre.android.andesui.demoapp.feature.utils;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.mercadolibre.android.andesui.demoapp.R;
 
 import static android.graphics.Color.parseColor;
 

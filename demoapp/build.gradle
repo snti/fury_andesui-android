@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply from: rootProject.file('jacoco.gradle')
+apply from: rootProject.file('detekt.gradle')
 
 buildscript {
     repositories {

@@ -14,10 +14,10 @@ import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIconOrientation
 import com.mercadolibre.android.andesui.button.size.AndesButtonSize
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 
 class ProgressShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,20 +39,28 @@ class ProgressShowcaseActivity : AppCompatActivity() {
 
     private fun addProgress(container: View) {
         val andesButtonSmall = AndesButton(
-                this, AndesButtonSize.SMALL, AndesButtonHierarchy.LOUD, null
+            this,
+            AndesButtonSize.SMALL,
+            AndesButtonHierarchy.LOUD,
+            null
         )
         andesButtonSmall.text = getString(R.string.loud_small_button_programmatic)
         andesButtonSmall.isEnabled = false
 
         val andesButtonMedium = AndesButton(
-                this,
-                AndesButtonSize.MEDIUM, AndesButtonHierarchy.LOUD,
-                AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            this,
+            AndesButtonSize.MEDIUM,
+            AndesButtonHierarchy.LOUD,
+            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
         )
         andesButtonMedium.text = getString(R.string.loud_medium_button_programmatic)
 
-        val andesButtonLarge = AndesButton(this, AndesButtonSize.LARGE, AndesButtonHierarchy.QUIET,
-                AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT))
+        val andesButtonLarge = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.QUIET,
+            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+        )
         andesButtonLarge.text = getString(R.string.loud_large_button_programmatic)
         andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
         andesButtonLarge.setOnClickListener {
@@ -61,8 +69,8 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         }
 
         val params = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
         )
         params.setMargins(0, 0, 0, resources.getDimension(R.dimen.button_margin_vertical).toInt())
 
@@ -110,7 +118,9 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
             val layoutLoudButtons = inflater.inflate(
-                    R.layout.andesui_progress_showcase, null, false
+                R.layout.andesui_progress_showcase,
+                null,
+                false
             )
             return listOf<View>(layoutLoudButtons)
         }

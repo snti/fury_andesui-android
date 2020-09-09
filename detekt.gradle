@@ -1,44 +1,27 @@
-def DETEKT_PACKAGE_NAME = 'io.gitlab.arturbosch.detekt'
-def DETEKT_MODULE_NAME = 'detekt-formatting'
-def DETEKT_LINT_TASK_NAME = 'detekt'
-def DETEKT_CONFIG_TASK_NAME = 'detektGenerateConfig'
-def DETEKT_CONFIG_FILE_NAME = 'detekt.yml'
-def DETEKT_CONFIG_FILE_PATH = 'config/detekt/'
-def DETEKT_CUSTOM_CONFIG_FILE_PATH = './config/'
-def DETEKT_REPORT_HTML_FILE_PATH = 'build/reports/detekt_report.html'
-def DETEKT_REPORT_XML_FILE_PATH = 'build/reports/detekt_report.xml'
-def KOTLIN_FILES_REGEX = '.'
+/**
+ * Configuration for `io.gitlab.arturbosch.detekt` plugin
+ */
+apply plugin: 'io.gitlab.arturbosch.detekt'
 
-apply plugin: DETEKT_PACKAGE_NAME
-
-dependencies {
-    detektPlugins DETEKT_PACKAGE_NAME + ":" + DETEKT_MODULE_NAME + ":" + detektVersion
-}
+//dependencies {
+//    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:" + detektVersion
+//}
 
 detekt {
-    input = rootProject.files(KOTLIN_FILES_REGEX)
-    config = rootProject.files(DETEKT_CUSTOM_CONFIG_FILE_PATH + DETEKT_CONFIG_FILE_NAME)
-    autoCorrect = true
+    config = files("$project.rootProject.projectDir/config/detekt/detekt.yml")
 
-    // Enabling XML and HTML reports
+//    Keep it commented till find a way to hook to the pre-push event.
+//    autoCorrect = false
+
     reports {
+        txt {
+            enabled = false
+        }
         xml {
-            enabled = true
-            destination = rootProject.file(DETEKT_REPORT_XML_FILE_PATH)
+            enabled = false
         }
         html {
             enabled = true
-            destination = rootProject.file(DETEKT_REPORT_HTML_FILE_PATH)
         }
     }
 }
-
-tasks.getByName(DETEKT_CONFIG_TASK_NAME).doLast {
-    def file = rootProject.file(DETEKT_CUSTOM_CONFIG_FILE_PATH + DETEKT_CONFIG_FILE_NAME)
-    if (!file.exists()) {
-        rootProject.ant.move file: rootProject.file(DETEKT_CONFIG_FILE_PATH + DETEKT_CONFIG_FILE_NAME).toString(),
-                todir: rootProject.file(DETEKT_CUSTOM_CONFIG_FILE_PATH).toString()
-    }
-}
-
-tasks.getByName(DETEKT_LINT_TASK_NAME).dependsOn DETEKT_CONFIG_TASK_NAME

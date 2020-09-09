@@ -10,17 +10,22 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.ScrollView
+import android.widget.Spinner
+import android.widget.Switch
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
@@ -74,13 +79,14 @@ class TagShowcaseActivity : AppCompatActivity() {
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
 
-            val dinamicMessagesLayout = addDinamicTAG(inflater)
-            val staticMessagesLayout = addStaticTAG(inflater)
+            val dinamicMessagesLayout = addDynamicTag(inflater)
+            val staticMessagesLayout = addStaticTag(inflater)
 
             return listOf(dinamicMessagesLayout, staticMessagesLayout)
         }
 
-        private fun addStaticTAG(inflater: LayoutInflater): View {
+        @Suppress("LongMethod")
+        private fun addStaticTag(inflater: LayoutInflater): View {
             val layoutTag = inflater.inflate(R.layout.andesui_tags_showcase, null, false) as ScrollView
 
             layoutTag.findViewById<AndesButton>(R.id.andesui_demoapp_andes_tag_specs_button).setOnClickListener {
@@ -91,200 +97,216 @@ class TagShowcaseActivity : AppCompatActivity() {
             val secondColumn = layoutTag.findViewById<LinearLayout>(R.id.secondColumn)
 
             val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             params.setMargins(0, 0, 0, context.resources.getDimension(R.dimen.badge_margin_vertical).toInt())
 
             val tagSimpleSmall = AndesTagSimple(
-                    context,
-                    AndesTagType.HIGHLIGHT,
-                    AndesTagSize.SMALL,
-                    "Lorem Ipsum"
+                context,
+                AndesTagType.HIGHLIGHT,
+                AndesTagSize.SMALL,
+                "Lorem Ipsum"
             )
             firstColumn.addView(tagSimpleSmall, params)
 
             val tagSimpleSmallDismissable = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.SMALL,
-                    "Dismissable"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.SMALL,
+                "Dismissable"
             )
             tagSimpleSmallDismissable.isDismissable = true
 
             firstColumn.addView(tagSimpleSmallDismissable, params)
 
             val tagSimpleSmallDismissableWithCallback = AndesTagSimple(
-                    context,
-                    AndesTagType.SUCCESS,
-                    AndesTagSize.SMALL,
-                    "Callback"
+                context,
+                AndesTagType.SUCCESS,
+                AndesTagSize.SMALL,
+                "Callback"
             )
             tagSimpleSmallDismissableWithCallback.isDismissable = true
-            tagSimpleSmallDismissableWithCallback.setupDismsissableCallback(View.OnClickListener {
-                Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
-            })
+            tagSimpleSmallDismissableWithCallback.setupDismsissableCallback(
+                View.OnClickListener {
+                    Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
+                }
+            )
             firstColumn.addView(tagSimpleSmallDismissableWithCallback, params)
 
             val tagSimple = AndesTagSimple(
-                    context,
-                    AndesTagType.ERROR,
-                    AndesTagSize.LARGE,
-                    "Lorem Ipsum"
+                context,
+                AndesTagType.ERROR,
+                AndesTagSize.LARGE,
+                "Lorem Ipsum"
             )
             firstColumn.addView(tagSimple, params)
 
             val tagSimpleDismissable = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Dismissable"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Dismissable"
             )
             tagSimpleDismissable.isDismissable = true
             firstColumn.addView(tagSimpleDismissable, params)
 
             val tagSimpleDismissableWithCallback = AndesTagSimple(
-                    context,
-                    AndesTagType.WARNING,
-                    AndesTagSize.LARGE,
-                    "Callback"
+                context,
+                AndesTagType.WARNING,
+                AndesTagSize.LARGE,
+                "Callback"
             )
             tagSimpleDismissableWithCallback.isDismissable = true
-            tagSimpleDismissableWithCallback.setupDismsissableCallback(View.OnClickListener {
-                Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
-            })
+            tagSimpleDismissableWithCallback.setupDismsissableCallback(
+                View.OnClickListener {
+                    Toast.makeText(context, "Dismiss onClicked", Toast.LENGTH_LONG).show()
+                }
+            )
             firstColumn.addView(tagSimpleDismissableWithCallback, params)
 
             // Left content DOT
             val tagSimpleDot = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Amarillo"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Amarillo"
             )
             tagSimpleDot.leftContent = LeftContent(
-                    dot = LeftContentDot("#FFEC2B")
+                dot = LeftContentDot("#FFEC2B")
             )
             firstColumn.addView(tagSimpleDot, params)
 
             val tagSimpleDotDismissable = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Azul"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Azul"
             )
             tagSimpleDotDismissable.isDismissable = true
             tagSimpleDotDismissable.leftContent = LeftContent(
-                    dot = LeftContentDot("#2B5BFF")
+                dot = LeftContentDot("#2B5BFF")
             )
             firstColumn.addView(tagSimpleDotDismissable, params)
 
             val tagSimpleDotText = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Camila Farías"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Camila Farías"
             )
             tagSimpleDotText.leftContent = LeftContent(
-                    dot = LeftContentDot("#2E97FF", "CF", "#FFFFFF")
+                dot = LeftContentDot("#2E97FF", "CF", "#FFFFFF")
             )
             secondColumn.addView(tagSimpleDotText, params)
 
             val tagSimpleDotTextDismissable = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Camila Farías"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Camila Farías"
             )
             tagSimpleDotTextDismissable.isDismissable = true
             tagSimpleDotTextDismissable.leftContent = LeftContent(
-                    dot = LeftContentDot("#E3E3E3", "CF", "#8C8C8C")
+                dot = LeftContentDot("#E3E3E3", "CF", "#8C8C8C")
             )
             secondColumn.addView(tagSimpleDotTextDismissable, params)
 
             val tagSimpleIcon = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Tag con icono"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Tag con icono"
             )
             tagSimpleIcon.leftContent = LeftContent(
-                    icon = LeftContentIcon(
-                            backgroundColor = "#10B906",
-                            path = "andes_ui_feedback_success_24",
-                            iconColor = "#FFFFFF"
-                    )
+                icon = LeftContentIcon(
+                    backgroundColor = "#10B906",
+                    path = "andes_ui_feedback_success_24",
+                    iconColor = "#FFFFFF"
+                )
             )
             secondColumn.addView(tagSimpleIcon, params)
 
             val tagSimpleIconDismissable = AndesTagSimple(
-                    context,
-                    AndesTagType.NEUTRAL,
-                    AndesTagSize.LARGE,
-                    "Icono"
+                context,
+                AndesTagType.NEUTRAL,
+                AndesTagSize.LARGE,
+                "Icono"
             )
             tagSimpleIconDismissable.isDismissable = true
             val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
             tagSimpleIconDismissable.leftContent = LeftContent(
-                    icon = LeftContentIcon(
-                            backgroundColor = "#E7E7E7",
-                            icon = drawable,
-                            iconColor = "#8C8C8C"
-                    )
+                icon = LeftContentIcon(
+                    backgroundColor = "#E7E7E7",
+                    icon = drawable,
+                    iconColor = "#8C8C8C"
+                )
             )
             secondColumn.addView(tagSimpleIconDismissable, params)
 
             Glide.with(context)
                     .load("https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg")
                     .asBitmap()
-                    .into(object : SimpleTarget<Bitmap>() {
-                        override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
-                            if (resource != null) {
-                                val tagSimpleImage = AndesTagSimple(
-                                        context,
-                                        AndesTagType.NEUTRAL,
-                                        AndesTagSize.LARGE,
-                                        "Tatiana"
-                                )
-                                tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
-                                secondColumn.addView(tagSimpleImage, params)
-                            }
-                        }
-                    })
+                    .into(
+                        object : SimpleTarget<Bitmap>() {
+                      override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
+                          if (resource != null) {
+                              val tagSimpleImage = AndesTagSimple(
+                                  context,
+                                  AndesTagType.NEUTRAL,
+                                  AndesTagSize.LARGE,
+                                  "Tatiana"
+                              )
+                              tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
+                              secondColumn.addView(tagSimpleImage, params)
+                          }
+                      }
+                  }
+                    )
 
             Glide.with(context)
-                    .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:" +
-                            "ANd9GcQPUjE4Vno7piEReTnCrwR3oSxBxkfhIYAnXzcs7zC0ekNPPwnc&s")
+                    .load(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:" +
+                          "ANd9GcQPUjE4Vno7piEReTnCrwR3oSxBxkfhIYAnXzcs7zC0ekNPPwnc&s"
+                    )
                     .asBitmap()
-                    .into(object : SimpleTarget<Bitmap>() {
-                        override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
-                            if (resource != null) {
-                                val tagSimpleImage = AndesTagSimple(
-                                        context,
-                                        AndesTagType.NEUTRAL,
-                                        AndesTagSize.LARGE,
-                                        "Lorenzo"
-                                )
-                                tagSimpleImage.isDismissable = true
-                                tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
-                                secondColumn.addView(tagSimpleImage, params)
-                            }
-                        }
-                    })
+                    .into(
+                        object : SimpleTarget<Bitmap>() {
+                      override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap?>?) {
+                          if (resource != null) {
+                              val tagSimpleImage = AndesTagSimple(
+                                  context,
+                                  AndesTagType.NEUTRAL,
+                                  AndesTagSize.LARGE,
+                                  "Lorenzo"
+                              )
+                              tagSimpleImage.isDismissable = true
+                              tagSimpleImage.leftContent = LeftContent(image = LeftContentImage(resource))
+                              secondColumn.addView(tagSimpleImage, params)
+                          }
+                      }
+                  }
+                    )
 
             return layoutTag
         }
 
-        private fun addDinamicTAG(inflater: LayoutInflater): View {
+        @Suppress("ComplexMethod", "LongMethod")
+        private fun addDynamicTag(inflater: LayoutInflater): View {
             val layoutTag = inflater.inflate(
-                    R.layout.andesui_tag_showcase_change, null, false
+                R.layout.andesui_tag_showcase_change,
+                null,
+                false
             ) as ScrollView
 
             val andesTagSimple: AndesTagSimple = layoutTag.findViewById(R.id.andesui_tag)
 
             val typeSpinner: Spinner = layoutTag.findViewById(R.id.type_spinner)
             ArrayAdapter.createFromResource(
-                    context, R.array.type_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.type_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         typeSpinner.adapter = adapter
@@ -299,9 +321,9 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val sizeSpinner: Spinner = layoutTag.findViewById(R.id.size_spinner)
             ArrayAdapter.createFromResource(
-                    context,
-                    R.array.size_spinner,
-                    android.R.layout.simple_spinner_item
+                context,
+                R.array.size_spinner,
+                android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sizeSpinner.adapter = adapter
@@ -309,9 +331,9 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val leftContentSpinner: Spinner = layoutTag.findViewById(R.id.left_content_spinner)
             ArrayAdapter.createFromResource(
-                    context,
-                    R.array.left_content_spinner,
-                    android.R.layout.simple_spinner_item
+                context,
+                R.array.left_content_spinner,
+                android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 leftContentSpinner.adapter = adapter
@@ -336,7 +358,9 @@ class TagShowcaseActivity : AppCompatActivity() {
             val array = arrayOf("Warning", "Success", "Close", "Info")
             val iconsSpinner: Spinner = layoutTag.findViewById(R.id.icon_spinner)
             val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                    context, android.R.layout.simple_spinner_item, array
+                context,
+                android.R.layout.simple_spinner_item,
+                array
             )
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             iconsSpinner.adapter = spinnerArrayAdapter
@@ -344,7 +368,9 @@ class TagShowcaseActivity : AppCompatActivity() {
             val arrayUrl = arrayOf("Image 1", "Image 2", "Image 3")
             val urlSpinner: Spinner = layoutTag.findViewById(R.id.spinner_url)
             val urlArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                    context, android.R.layout.simple_spinner_item, arrayUrl
+                context,
+                android.R.layout.simple_spinner_item,
+                arrayUrl
             )
             urlArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             urlSpinner.adapter = urlArrayAdapter
@@ -385,7 +411,9 @@ class TagShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onNothingSelected(parentView: AdapterView<*>?) {}
+                override fun onNothingSelected(parentView: AdapterView<*>?) {
+                    // Do nothing.
+                }
             }
 
             val clearButton: AndesButton = layoutTag.findViewById(R.id.clear_button)
@@ -458,9 +486,12 @@ class TagShowcaseActivity : AppCompatActivity() {
                             color.state = AndesTextfieldState.IDLE
                             color.helper = ""
                         }
-                        leftContent = LeftContent(dot = LeftContentDot(
+                        leftContent = LeftContent(
+                            dot = LeftContentDot(
                                 "#${backgroundColor.text!!}",
-                                textDot.text, textColor)
+                                textDot.text,
+                                textColor
+                            )
                         )
                     }
                     "Icon" -> {
@@ -498,10 +529,12 @@ class TagShowcaseActivity : AppCompatActivity() {
                             "Info" -> "andes_ui_feedback_info_24"
                             else -> "andes_ui_close_24"
                         }
-                        leftContent = LeftContent(icon = LeftContentIcon(
+                        leftContent = LeftContent(
+                            icon = LeftContentIcon(
                                 backgroundColor = "#${iconBackgroundColor.text!!}",
                                 path = path,
-                                iconColor = icon)
+                                iconColor = icon
+                            )
                         )
                     }
                     "Image" -> {
@@ -515,17 +548,19 @@ class TagShowcaseActivity : AppCompatActivity() {
                         Glide.with(context)
                                 .load(pictureUrl)
                                 .asBitmap()
-                                .into(object : SimpleTarget<Bitmap>() {
-                                    override fun onResourceReady(
-                                        resource: Bitmap?,
-                                        glideAnimation: GlideAnimation<in Bitmap?>?
-                                    ) {
-                                        if (resource != null) {
-                                            leftContent = LeftContent(image = LeftContentImage(resource))
-                                            andesTagSimple.leftContent = leftContent
-                                        }
-                                    }
-                                })
+                                .into(
+                                    object : SimpleTarget<Bitmap>() {
+                                  override fun onResourceReady(
+                                      resource: Bitmap?,
+                                      glideAnimation: GlideAnimation<in Bitmap?>?
+                                  ) {
+                                      if (resource != null) {
+                                          leftContent = LeftContent(image = LeftContentImage(resource))
+                                          andesTagSimple.leftContent = leftContent
+                                      }
+                                  }
+                              }
+                                )
                     }
                 }
 

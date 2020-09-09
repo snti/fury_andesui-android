@@ -14,7 +14,7 @@ import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.snackbar.AndesSnackbar
 import com.mercadolibre.android.andesui.snackbar.action.AndesSnackbarAction
@@ -42,6 +42,7 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
         addDynamicSnackbar(adapter.views[0])
     }
 
+    @Suppress("ComplexMethod", "LongMethod")
     private fun addDynamicSnackbar(container: View) {
         val type: Spinner = container.findViewById(R.id.snackbar_type)
         val duration: Spinner = container.findViewById(R.id.snackbar_duration)
@@ -62,7 +63,10 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
 
         val snackbarType: Spinner = container.findViewById(R.id.snackbar_type)
         ArrayAdapter.createFromResource(
-                this, R.array.snackbar_type_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.snackbar_type_spinner,
+            android.R.layout.simple_spinner_item
+        )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     snackbarType.adapter = adapter
@@ -70,7 +74,10 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
 
         val snackbarDuration: Spinner = container.findViewById(R.id.snackbar_duration)
         ArrayAdapter.createFromResource(
-                this, R.array.snackbar_duration_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.snackbar_duration_spinner,
+            android.R.layout.simple_spinner_item
+        )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     snackbarDuration.adapter = adapter
@@ -129,16 +136,19 @@ class SnackbarShowcaseActivity : AppCompatActivity() {
             }
 
             val snackbar = AndesSnackbar(
-                    this,
-                    container,
-                    selectedType,
-                    text.text!!,
-                    selectedDuration
+                this,
+                container,
+                selectedType,
+                text.text!!,
+                selectedDuration
             )
             if (hasAction.isChecked) {
-                snackbar.action = AndesSnackbarAction(textAction.text!!, View.OnClickListener {
-                    Toast.makeText(this, "Callback", Toast.LENGTH_SHORT).show()
-                })
+                snackbar.action = AndesSnackbarAction(
+                    textAction.text!!,
+                    View.OnClickListener {
+                        Toast.makeText(this, "Callback", Toast.LENGTH_SHORT).show()
+                    }
+                )
             }
             snackbar.show()
         }
