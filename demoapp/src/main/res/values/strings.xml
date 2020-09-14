@@ -77,6 +77,7 @@
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
+    <string name="andesui_demoapp_screen_coachmark">Andes UI: Coachmark</string>
     <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
     <string name="andesui_demoapp_screen_thumbnail">Andes UI: Thumbnail</string>
     <string name="andesui_demoapp_screen_whatsnew">Andes UI: What\'s new?</string>
@@ -206,6 +207,8 @@
     <string name="andesui_demoapp_progress_large">LARGE</string>
     <string name="andesui_demoapp_progress_medium">MEDIUM</string>
     <string name="andesui_demoapp_progress_small">SMALL</string>
+
+    <string name="andesui_demoapp_coachmark">Coachmark</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 

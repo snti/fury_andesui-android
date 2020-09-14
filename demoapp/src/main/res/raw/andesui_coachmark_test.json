@@ -1,0 +1,278 @@
+{
+  "steps": [
+    {
+      "reference_brick": "texto",
+      "highlight_bricks": [
+        {
+          "id": "texto",
+          "label_color": ""
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerBelow",
+        "description": "Resaltamos el primer texto",
+        "next_button": {
+          "text": "Siguiente"
+        }
+      }
+    },
+    {
+      "reference_brick": "circleAdd",
+      "highlight_bricks": [
+        {
+          "id": "circleAdd",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "style": "circle",
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerAbove",
+        "description": "Probando el circulo magico con flecha abajo a la izquierda Probando el circulo magico con flecha abajo a la izquierda Probando el circulo magico con flecha abajo a la izquierda",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "texto",
+      "highlight_bricks": [
+        {
+          "id": "texto",
+          "label_color": ""
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerBelow",
+        "description": "Resaltamos el primer texto",
+        "next_button": {
+          "text": "Siguiente"
+        }
+      }
+    },
+    {
+      "reference_brick": "circleRitht",
+      "highlight_bricks": [
+        {
+          "id": "circleRitht",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "leftBelow",
+        "description": "Probando el circulo magico con flecha abajo a la derecha",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "textoLargo",
+      "highlight_bricks": [
+        {
+          "id": "textoLargo",
+          "label_color": ""
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerAbove",
+        "description": "Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo Resaltamos el texto largo",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "textoAbajo",
+      "highlight_bricks": [
+        {
+          "id": "textoAbajo",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerBelow",
+        "description": "Si vemos esto es porque scrolleo al fin y estamos al final del coachmark ;)",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "circleAdd",
+      "highlight_bricks": [
+        {
+          "id": "circleAdd",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "style": "circle",
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerAbove",
+        "description": "Probando el circulo magico con flecha arriba a la izquierda",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "circleRitht",
+      "highlight_bricks": [
+        {
+          "id": "circleRitht",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "leftBelow",
+        "description": "Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "textoAbajo",
+      "highlight_bricks": [
+        {
+          "id": "textoAbajo",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "leftBelow",
+        "description": "Volvimos abajo",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "textoLargo",
+      "highlight_bricks": [
+        {
+          "id": "textoLargo",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerAbove",
+        "description": "Probando scroll hacia arriba",
+        "next_button": {
+          "text": "Siguiente"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    },
+    {
+      "reference_brick": "actionButton",
+      "highlight_bricks": [
+        {
+          "id": "actionButton",
+          "label_color": "#FFFFFF"
+        }
+      ],
+      "tooltip": {
+        "left_padding": 40,
+        "right_padding": 40,
+        "close_button": {
+          "show": true
+        },
+        "show_indicator": true,
+        "position": "centerAbove",
+        "description": "Esto sigue en prueba y esta bueno que funcione bien",
+        "next_button": {
+          "text": "Finalizar"
+        },
+        "previous_button": {
+          "text": "Anterior"
+        }
+      }
+    }
+  ],
+  "overlay_color": "#cc000000",
+  "parent_brick": "String",
+  "scroll_brick": "scrollview"
+}
