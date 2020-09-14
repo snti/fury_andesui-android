@@ -7,9 +7,7 @@ import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
 
 internal data class AndesCarouselAttrs(
     val andesCarouselCenter: Boolean,
-    val andesCarouselItemLayout: Int,
-    val andesCarouselPadding: AndesCarouselPadding,
-    var andesCarouselDataSet: List<Any> = emptyList()
+    val andesCarouselPadding: AndesCarouselPadding
 )
 
 /**
@@ -35,13 +33,11 @@ internal object AndesCarouselAttrParser {
             else -> AndesCarouselPadding.SMALL
         }
 
-        val layout = typedArray.getResourceId(R.styleable.AndesCarousel_andesCarouselItemLayout, 0)
-
         val center = typedArray.getBoolean(R.styleable.AndesCarousel_andesCarouselCenter, false)
 
         return AndesCarouselAttrs(
                 andesCarouselCenter = center,
-                andesCarouselPadding = padding,
-                andesCarouselItemLayout = layout).also { typedArray.recycle() }
+                andesCarouselPadding = padding
+        ).also { typedArray.recycle() }
     }
 }

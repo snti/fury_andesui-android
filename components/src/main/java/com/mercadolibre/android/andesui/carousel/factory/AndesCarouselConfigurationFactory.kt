@@ -5,9 +5,7 @@ import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPaddingInt
 
 internal data class AndesCarouselConfiguration(
     val padding: Int,
-    val layout: Int,
-    val center: Boolean,
-    val dataSet: List<Any>
+    val center: Boolean
 )
 
 internal object AndesCarouselConfigurationFactory {
@@ -16,9 +14,7 @@ internal object AndesCarouselConfigurationFactory {
         val padding = andesCarouselAttrs.andesCarouselPadding.padding
         return AndesCarouselConfiguration(
             padding = resolveItemPadding(padding, context),
-            layout = andesCarouselAttrs.andesCarouselItemLayout,
-            center = andesCarouselAttrs.andesCarouselCenter,
-            dataSet = andesCarouselAttrs.andesCarouselDataSet
+            center = andesCarouselAttrs.andesCarouselCenter
         )
     }
 

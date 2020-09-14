@@ -14,16 +14,16 @@ import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfiguration
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfigurationFactory
 import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.carousel.utils.CarouselAdapter
 import com.mercadolibre.android.andesui.carousel.utils.PaddingItemDecoration
-import com.mercadolibre.android.andesui.carousel.utils.ViewHolderListener
 
 class AndesCarousel : ConstraintLayout {
 
     private lateinit var andesCarouselAttrs: AndesCarouselAttrs
     private lateinit var recyclerViewComponent: RecyclerView
-    private lateinit var carouselAdapter: CarouselAdapter
     private lateinit var viewManager: LinearLayoutManager
+    private lateinit var _delegate: AndesCarouselDelegate
 
     /**
      * Getter and setter for [type].
@@ -35,23 +35,12 @@ class AndesCarousel : ConstraintLayout {
             setupPaddingRecyclerView(createConfig())
         }
 
-    var layout: Int
-        get() = andesCarouselAttrs.andesCarouselItemLayout
+    var delegate: AndesCarouselDelegate
+        get() = _delegate
         set(value) {
-            andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselItemLayout = value)
-            carouselAdapter.updateLayoutItem(createConfig().layout)
+            val carouselAdapter = CarouselAdapter(value)
+            recyclerViewComponent.adapter = carouselAdapter
         }
-
-    var data: List<Any>
-        get() = andesCarouselAttrs.andesCarouselDataSet
-        set(value) {
-            andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselDataSet = value)
-            carouselAdapter.updateDataSet(value)
-        }
-
-    fun setViewHolderListener(listener: ViewHolderListener) {
-        carouselAdapter.setViewHolderListener(listener)
-    }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
@@ -60,10 +49,9 @@ class AndesCarousel : ConstraintLayout {
     constructor(
         context: Context,
         center: Boolean = false,
-        padding: AndesCarouselPadding = AndesCarouselPadding.SMALL,
-        layout: Int
+        padding: AndesCarouselPadding = AndesCarouselPadding.SMALL
     ) : super(context) {
-        initAttrs(center, padding, layout)
+        initAttrs(center, padding)
     }
 
     /**
@@ -78,10 +66,9 @@ class AndesCarousel : ConstraintLayout {
 
     private fun initAttrs(
         center: Boolean,
-        padding: AndesCarouselPadding,
-        layout: Int
+        padding: AndesCarouselPadding
     ) {
-        andesCarouselAttrs = AndesCarouselAttrs(center, layout, padding)
+        andesCarouselAttrs = AndesCarouselAttrs(center, padding)
         setupComponents(createConfig())
     }
 
@@ -116,8 +103,6 @@ class AndesCarousel : ConstraintLayout {
     private fun setupRecyclerViewComponent(config: AndesCarouselConfiguration) {
         viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewComponent.layoutManager = viewManager
-        carouselAdapter = CarouselAdapter(config.layout, config.dataSet)
-        recyclerViewComponent.adapter = carouselAdapter
 
         if (config.center) {
             PagerSnapHelper().attachToRecyclerView(recyclerViewComponent)
