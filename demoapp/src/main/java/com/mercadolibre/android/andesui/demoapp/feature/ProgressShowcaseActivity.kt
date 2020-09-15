@@ -51,7 +51,7 @@ class ProgressShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.MEDIUM,
             AndesButtonHierarchy.LOUD,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
         )
         andesButtonMedium.text = getString(R.string.loud_medium_button_programmatic)
 
@@ -59,7 +59,7 @@ class ProgressShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.LARGE,
             AndesButtonHierarchy.QUIET,
-            AndesButtonIcon("andesui_icon", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
         )
         andesButtonLarge.text = getString(R.string.loud_large_button_programmatic)
         andesButtonLarge.hierarchy = AndesButtonHierarchy.LOUD
