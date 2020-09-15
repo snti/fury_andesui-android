@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.mercadolibre.android.andesui.carousel.AndesCarousel
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.demoapp.R
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*
@@ -19,6 +20,8 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_carousel_showcase)
         carouselMain.delegate = this
+        carouselMain2.delegate = this
+
         dataSet = listOf(Model(Color.RED, "Button Nº1", R.drawable.andes_navegacion_ventas_24),
             Model(Color.GREEN, "Button Nº2", R.drawable.andes_navegacion_carrito_idle_24),
             Model(Color.CYAN, "Button Nº3", R.drawable.andes_navegacion_inicio_24),
@@ -28,24 +31,34 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         )
     }
 
-    override fun bind(view: View, position: Int) {
+    override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {
         val model = dataSet[position]
-        view.findViewById<Button>(R.id.button).apply {
-            setBackgroundColor(model.backgroundColor)
-            text = model.label
-        }
-        view.findViewById<ImageView>(R.id.image).apply {
-            setImageResource(model.image)
+        if (andesCarouselView == carouselMain) {
+            view.findViewById<Button>(R.id.button).apply {
+                setBackgroundColor(model.backgroundColor)
+                text = model.label
+            }
+            view.findViewById<ImageView>(R.id.image).apply {
+                setImageResource(model.image)
+            }
+        } else {
+            view.findViewById<Button>(R.id.button).apply {
+                setBackgroundColor(model.backgroundColor)
+                text = "${model.label} ${model.label}"
+            }
+            view.findViewById<ImageView>(R.id.image).apply {
+                setImageResource(model.image)
+            }
         }
     }
 
-    override fun getLayoutItem() = R.layout.andesui_carousel_item
+    override fun getLayoutItem(andesCarouselView: AndesCarousel) = R.layout.andesui_carousel_item
 
-    override fun onClickItem(position: Int) {
+    override fun onClickItem(andesCarouselView: AndesCarousel, position: Int) {
         Toast.makeText(this@CarouselShowcaseActivity, dataSet[position].toString(), Toast.LENGTH_SHORT).show()
     }
 
-    override fun getDataSetSize() = dataSet.size
+    override fun getDataSetSize(andesCarouselView: AndesCarousel) = dataSet.size
 }
 
 data class Model(val backgroundColor: Int, val label: String, val image: Int)

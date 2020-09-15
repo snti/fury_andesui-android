@@ -8,12 +8,21 @@
    <com.mercadolibre.android.andesui.carousel.AndesCarousel
        android:id="@+id/carouselMain"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="200dp"
        app:andesCarouselCenter="true"
        app:andesCarouselItemLayout="@layout/andesui_carousel_item"
-       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintBottom_toTopOf="@id/carouselMain2"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
+
+   <com.mercadolibre.android.andesui.carousel.AndesCarousel
+       android:id="@+id/carouselMain2"
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+       app:andesCarouselCenter="true"
+       app:andesCarouselItemLayout="@layout/andesui_carousel_item"
+       app:layout_constraintTop_toBottomOf="@+id/carouselMain"
+       app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -14,9 +14,9 @@ import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfiguration
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfigurationFactory
 import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselAdapter
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
-import com.mercadolibre.android.andesui.carousel.utils.CarouselAdapter
-import com.mercadolibre.android.andesui.carousel.utils.PaddingItemDecoration
+import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselPaddingItemDecoration
 
 class AndesCarousel : ConstraintLayout {
 
@@ -38,7 +38,7 @@ class AndesCarousel : ConstraintLayout {
     var delegate: AndesCarouselDelegate
         get() = _delegate
         set(value) {
-            val carouselAdapter = CarouselAdapter(value)
+            val carouselAdapter = AndesCarouselAdapter(this, value)
             recyclerViewComponent.adapter = carouselAdapter
         }
 
@@ -114,7 +114,7 @@ class AndesCarousel : ConstraintLayout {
     }
 
     private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
-        recyclerViewComponent.addItemDecoration(PaddingItemDecoration(config.padding))
+        recyclerViewComponent.addItemDecoration(AndesCarouselPaddingItemDecoration(config.padding))
     }
 
     /**
