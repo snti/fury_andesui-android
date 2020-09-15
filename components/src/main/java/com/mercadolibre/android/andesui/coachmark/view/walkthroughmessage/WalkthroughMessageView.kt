@@ -81,6 +81,7 @@ class WalkthroughMessageView @JvmOverloads constructor(
         }
     }
 
+    @SuppressWarnings("ReturnCount")
     private fun isNecessaryShowArrow(centerTooltip: Int, centerTarget: Int): Boolean {
         if (centerTooltip - centerTarget >= 0 && centerTooltip - centerTarget <= MIN_WIDTH_FOR_SHOW_ARROW) {
             return false

@@ -1,7 +1,11 @@
 package com.mercadolibre.android.andesui.coachmark.view
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.RectF
+import android.graphics.Canvas
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
@@ -27,13 +31,14 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
         isDrawingCacheEnabled = true
         setLayerType(LAYER_TYPE_SOFTWARE, null)
         paintFill.isAntiAlias = true
-        paintFill.color = Color.TRANSPARENT
+        paintFill.color = ContextCompat.getColor(context, R.color.andes_transparent)
         paintFill.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
         paintStroke.strokeWidth = ViewUtils.dpToPx(PADDING_BORDER).toFloat()
         paintStroke.style = Paint.Style.STROKE
         paintStroke.color = ContextCompat.getColor(context, R.color.andes_accent_color)
     }
 
+    @Suppress("LongParameterList")
     fun addRect(x: Int, y: Int, width: Int, height: Int, isCircle: Boolean, radius: Int = ViewUtils.dpToPx(RADIUS)) {
 
         this.radius = radius

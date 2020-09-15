@@ -18,6 +18,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
      * @param tooltipHeight el alto del tooltip
      * @param tooltipPosition la posicion del tooltip
      */
+    @Suppress("LongParameterList")
     fun resolveScrollMode(
         stepReferenced: AndesWalkthroughCoachmarkStep,
         heightScreen: Int,
@@ -28,7 +29,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
         tooltipPosition: WalkthroughMessagePosition
     ) {
 
-        stepReferenced.highlightedView?.let {
+        stepReferenced.view?.let {
             val isBodyMoreBottom = bodyGlobalRect.bottom < stepReferenceGlobalRect.bottom
             if (isBodyMoreBottom || !it.getLocalVisibleRect(bodyGlobalRect) || bodyGlobalRect.height() < it.height) {
                 resolvePartialOrNotViewedReferenceView(stepReferenced, heightScreen, stepReferenceHitRect, tooltipHeight, tooltipPosition)
@@ -126,7 +127,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
         val padding = ViewUtils.dpToPx(TOOLTIP_MARGIN)
 
         val rect = Rect()
-        stepReferenced.highlightedView?.getGlobalVisibleRect(rect)
+        stepReferenced.view?.getGlobalVisibleRect(rect)
         val height = rect.height()
 
         val y = rect.top

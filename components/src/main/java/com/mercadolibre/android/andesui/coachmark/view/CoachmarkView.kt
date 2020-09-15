@@ -26,6 +26,7 @@ import com.mercadolibre.android.andesui.coachmark.presenter.CoachmarkViewInterfa
 import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils
 import com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage.WalkthroughMessageView
 
+@SuppressWarnings("TooManyFunctions")
 class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterface {
     private val activity: Activity
     private val presenter: CoachmarkPresenter
@@ -105,10 +106,10 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private fun scroll(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val stepReferenceHitRect = Rect()
-        stepReferenced.highlightedView?.getHitRect(stepReferenceHitRect)
+        stepReferenced.view?.getHitRect(stepReferenceHitRect)
 
         val stepReferenceGlobalRect = Rect()
-        stepReferenced.highlightedView?.getGlobalVisibleRect(stepReferenceGlobalRect)
+        stepReferenced.view?.getGlobalVisibleRect(stepReferenceGlobalRect)
 
         val overlayRect = Rect()
         coachmarkOverlayView.getGlobalVisibleRect(overlayRect)
@@ -231,17 +232,17 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
      */
     override fun addTarget(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
-        stepReferenced.highlightedView?.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+        stepReferenced.view?.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 coachmarkOverlayView.clear()
                 presenter.addRect(stepReferenced)
                 coachmarkOverlayView.postInvalidate()
                 setTooltipAlignment(stepReferenced)
-                stepReferenced.highlightedView.viewTreeObserver?.removeOnPreDrawListener(this)
+                stepReferenced.view.viewTreeObserver?.removeOnPreDrawListener(this)
                 return false
             }
         })
-        stepReferenced.highlightedView?.postInvalidate()
+        stepReferenced.view?.postInvalidate()
     }
 
     /**
@@ -252,7 +253,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addCircleRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.highlightedView?.getGlobalVisibleRect(rect)
+        stepReferenced.view?.getGlobalVisibleRect(rect)
         val cx = rect.centerX()
         val cy = rect.centerY()
 
@@ -275,7 +276,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addRoundRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.highlightedView?.getGlobalVisibleRect(rect)
+        stepReferenced.view?.getGlobalVisibleRect(rect)
         coachmarkOverlayView.addRect(
             rect.left,
             rect.top - ViewUtils.dpToPx(ViewUtils.TOOLBAR_STATUS_BAR_SIZE),

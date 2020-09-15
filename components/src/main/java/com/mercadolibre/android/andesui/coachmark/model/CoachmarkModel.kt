@@ -13,6 +13,6 @@ data class AndesWalkthroughCoachmarkStep(
     val title: String,
     val description: String,
     val nextText: String,
-    val highlightedView: View?,
+    val view: View?,
     val style: String
 ) : Serializable
