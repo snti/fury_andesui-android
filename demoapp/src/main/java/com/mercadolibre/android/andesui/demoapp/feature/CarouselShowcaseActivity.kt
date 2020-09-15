@@ -1,5 +1,6 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -31,6 +32,7 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {
         val model = dataSet[position]
         if (andesCarouselView == carouselMain) {
