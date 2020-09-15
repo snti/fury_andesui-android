@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'com.novoda.bintray-release'
 apply from: rootProject.file('jacoco.gradle')
 apply from: rootProject.file('publish.gradle')
@@ -42,31 +41,20 @@ android {
     dexOptions.preDexLibraries = true
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message', 'src/main/res/textfield',
-                           'src/main/res/badge', 'src/main/res/snackbar', 'src/main/res/tag', 'src/main/res/checkbox',
-                           'src/main/res/radiobutton', 'src/main/res/radiobuttongroup', 'src/main/res/thumbnail',
-                           'src/main/res/card', 'src/main/res/progress', 'src/main/res/coachmark']
+            res.srcDirs = ['src/main/res']
         }
     }
 }
 
-staticCodeAnalysis {
-    // False is REQUIRED in order to make CI server fail the build on errors and fit cross company standards.
-    ignoreErrors = false
-
-    androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-components.xml"
-}
-
 dependencies {
-    implementation prod.kotlinStdlib
-    implementation prod.supportLibraryAppCompatV7
-    implementation prod.supportLibraryDesign
-    api prod.supportConstraintLayout
-    api prod.supportCardView
-    api prod.fresco
+    implementation project(':components')
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
-    testImplementation test.runner
-    testImplementation test.soloader
+    // Unit testing dependencies
+    testImplementation "com.android.support.test:runner:$runnerVersion"
     testImplementation test.junit4
     testImplementation test.mockitoKotlin
     testImplementation test.assertj
