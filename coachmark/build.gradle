@@ -48,13 +48,13 @@ android {
 
 dependencies {
     implementation project(':components')
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    implementation prod.kotlinStdlib
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportLibraryDesign
+    api prod.supportConstraintLayout
 
     // Unit testing dependencies
-    testImplementation "com.android.support.test:runner:$runnerVersion"
+    testImplementation test.runner
     testImplementation test.junit4
     testImplementation test.mockitoKotlin
     testImplementation test.assertj
