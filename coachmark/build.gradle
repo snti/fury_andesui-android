@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+apply from: rootProject.file('jacoco.gradle')
+apply from: rootProject.file('publish.gradle')
+apply from: rootProject.file('detekt.gradle')
+
+android {
+    compileSdkVersion maxApiLevel.toInteger()
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion minApiLevel
+        targetSdkVersion maxApiLevel
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    resourcePrefix 'andes'
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    dexOptions.preDexLibraries = true
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+        }
+    }
+}
+
+dependencies {
+    implementation project(':components')
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+
+    // Unit testing dependencies
+    testImplementation "com.android.support.test:runner:$runnerVersion"
+    testImplementation test.junit4
+    testImplementation test.mockitoKotlin
+    testImplementation test.assertj
+    testImplementation test.robolectric
+    testImplementation test.mockitoInline
+}

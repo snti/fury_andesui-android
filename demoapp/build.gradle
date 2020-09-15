@@ -78,6 +78,7 @@ staticCodeAnalysis {
 
 dependencies {
     implementation project(':components')
+    implementation project(':coachmark')
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
