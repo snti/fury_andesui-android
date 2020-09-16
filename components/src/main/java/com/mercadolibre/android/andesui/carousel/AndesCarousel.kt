@@ -23,7 +23,7 @@ class AndesCarousel : ConstraintLayout {
     private lateinit var andesCarouselAttrs: AndesCarouselAttrs
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var viewManager: LinearLayoutManager
-    private lateinit var _delegate: AndesCarouselDelegate
+    private lateinit var andesCarouselDelegate: AndesCarouselDelegate
 
     /**
      * Getter and setter for [type].
@@ -36,8 +36,9 @@ class AndesCarousel : ConstraintLayout {
         }
 
     var delegate: AndesCarouselDelegate
-        get() = _delegate
+        get() = andesCarouselDelegate
         set(value) {
+            andesCarouselDelegate = value
             val carouselAdapter = AndesCarouselAdapter(this, value)
             recyclerViewComponent.adapter = carouselAdapter
         }

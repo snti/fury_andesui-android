@@ -23,7 +23,8 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         carouselMain.delegate = this
         carouselMain2.delegate = this
 
-        dataSet = listOf(Model(Color.RED, "Button Nº1", R.drawable.andes_navegacion_ventas_24),
+        dataSet = listOf(
+            Model(Color.RED, "Button Nº1", R.drawable.andes_navegacion_ventas_24),
             Model(Color.GREEN, "Button Nº2", R.drawable.andes_navegacion_carrito_idle_24),
             Model(Color.CYAN, "Button Nº3", R.drawable.andes_navegacion_inicio_24),
             Model(Color.RED, "Button Nº4", R.drawable.andes_navegacion_ventas_24),

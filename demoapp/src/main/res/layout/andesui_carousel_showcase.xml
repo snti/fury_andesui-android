@@ -10,7 +10,6 @@
        android:layout_width="match_parent"
        android:layout_height="200dp"
        app:andesCarouselCenter="true"
-       app:andesCarouselItemLayout="@layout/andesui_carousel_item"
        app:layout_constraintBottom_toTopOf="@id/carouselMain2"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +20,6 @@
        android:layout_width="match_parent"
        android:layout_height="200dp"
        app:andesCarouselCenter="true"
-       app:andesCarouselItemLayout="@layout/andesui_carousel_item"
        app:layout_constraintTop_toBottomOf="@+id/carouselMain"
        app:layout_constraintBottom_toBottomOf="parent"/>
 

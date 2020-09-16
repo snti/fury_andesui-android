@@ -4,6 +4,7 @@ import android.view.View
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
 
 interface AndesCarouselDelegate {
+
     fun bind(andesCarouselView: AndesCarousel, view: View, position: Int)
 
     fun onClickItem (andesCarouselView: AndesCarousel, position: Int)

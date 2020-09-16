@@ -2,7 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <declare-styleable name="AndesCarousel" tools:ignore="ResourceName">
         <attr name="andesCarouselCenter" format="boolean"/>
-        <attr name="andesCarouselItemLayout" format="reference"/>
         <attr name="andesCarouselPadding">
             <enum name="none" value="100" />
             <enum name="small" value="101" />
