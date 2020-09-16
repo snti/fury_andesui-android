@@ -2,13 +2,11 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmark
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStep
 import com.mercadolibre.android.andesui.coachmark.view.CoachmarkView
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import kotlinx.android.synthetic.main.andesui_coachmark_activity.*
 
 @SuppressWarnings("MaxLineLength")
