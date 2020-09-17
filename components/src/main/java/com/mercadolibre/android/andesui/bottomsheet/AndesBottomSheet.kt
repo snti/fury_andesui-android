@@ -206,6 +206,15 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     /**
+     * Removes all views from FrameLayout inside of the bottomSheet
+     */
+    fun removeViews() {
+        if (frameView.childCount > 0) {
+            frameView.removeAllViews()
+        }
+    }
+
+    /**
      * Fully expands this bottomSheet
      */
     fun expand() {
