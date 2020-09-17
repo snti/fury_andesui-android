@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="AndesBottomSheet" tools:ignore="ResourceName">
+        <attr name="andesBottomSheetPeekHeight" format="dimension"/>
+        <attr name="andesBottomSheetCornerRadius" format="dimension"/>
+        <attr name="andesBottomSheetBackgroundColor" format="color"/>
+        <attr name="andesBottomSheetState" format="enum">
+            <enum name="collapsed" value="1000"/>
+            <enum name="expanded" value="1001"/>
+        </attr>
+    </declare-styleable>
+</resources>
