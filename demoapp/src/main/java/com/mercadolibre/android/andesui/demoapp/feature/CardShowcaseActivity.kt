@@ -10,17 +10,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.ScrollView
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.card.AndesCard
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
 import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
 import com.mercadolibre.android.andesui.card.type.AndesCardType
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 
 class CardShowcaseActivity : AppCompatActivity() {
@@ -73,9 +77,12 @@ class CardShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicCardLayout, staticCardLayout)
         }
 
+        @Suppress("ComplexMethod", "LongMethod")
         private fun addDynamicCard(inflater: LayoutInflater): View {
             val layoutCard = inflater.inflate(
-                    R.layout.andesui_dynamic_card_showcase, null, false
+                R.layout.andesui_dynamic_card_showcase,
+                null,
+                false
             ) as ScrollView
 
             val title = "Andes card!  \uD83D\uDE04"
@@ -84,13 +91,18 @@ class CardShowcaseActivity : AppCompatActivity() {
             "They are used as a support for actions, text, images and other components throughout the entire UI."
 
             val andesCard: AndesCard = layoutCard.findViewById(R.id.andesCard)
-            andesCard.setCardAction(View.OnClickListener {
-                Toast.makeText(context, "OnClicked card!", Toast.LENGTH_LONG).show()
-            })
+            andesCard.setCardAction(
+                View.OnClickListener {
+                    Toast.makeText(context, "OnClicked card!", Toast.LENGTH_LONG).show()
+                }
+            )
             andesCard.title = title
-            andesCard.setLinkAction(link, View.OnClickListener {
-                launchSpecs(it.context, AndesSpecs.CARD)
-            })
+            andesCard.setLinkAction(
+                link,
+                View.OnClickListener {
+                    launchSpecs(it.context, AndesSpecs.CARD)
+                }
+            )
             andesCard.padding = AndesCardPadding.SMALL
             andesCard.type = AndesCardType.HIGHLIGHT
 
@@ -98,7 +110,8 @@ class CardShowcaseActivity : AppCompatActivity() {
             val textView = TextView(context)
             textView.text = message
             textView.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             andesCard.cardView = textView
@@ -111,7 +124,10 @@ class CardShowcaseActivity : AppCompatActivity() {
 
             val spinnerType: Spinner = layoutCard.findViewById(R.id.spinnerType)
             ArrayAdapter.createFromResource(
-                    context, R.array.card_type_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.card_type_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerType.adapter = adapter
@@ -120,7 +136,10 @@ class CardShowcaseActivity : AppCompatActivity() {
 
             val spinnerStyle: Spinner = layoutCard.findViewById(R.id.spinnerStyle)
             ArrayAdapter.createFromResource(
-                    context, R.array.card_style_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.card_style_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerStyle.adapter = adapter
@@ -128,7 +147,10 @@ class CardShowcaseActivity : AppCompatActivity() {
 
             val spinnerPadding: Spinner = layoutCard.findViewById(R.id.spinnerPadding)
             ArrayAdapter.createFromResource(
-                    context, R.array.card_padding_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.card_padding_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerPadding.adapter = adapter
@@ -137,7 +159,10 @@ class CardShowcaseActivity : AppCompatActivity() {
 
             val spinnerHierarchy: Spinner = layoutCard.findViewById(R.id.spinnerHierarchy)
             ArrayAdapter.createFromResource(
-                    context, R.array.card_hierarchy_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.card_hierarchy_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerHierarchy.adapter = adapter
@@ -178,9 +203,12 @@ class CardShowcaseActivity : AppCompatActivity() {
                 andesCard.hierarchy = hierarchy
                 andesCard.title = andesCardTitle.text
                 if (!andesCardLink.text.isNullOrEmpty()) {
-                    andesCard.setLinkAction(andesCardLink.text!!, View.OnClickListener {
-                        Toast.makeText(context, "OnClicked action!", Toast.LENGTH_LONG).show()
-                    })
+                    andesCard.setLinkAction(
+                        andesCardLink.text!!,
+                        View.OnClickListener {
+                            Toast.makeText(context, "OnClicked action!", Toast.LENGTH_LONG).show()
+                        }
+                    )
                 } else {
                     andesCard.removeLinkAction()
                 }
@@ -194,12 +222,17 @@ class CardShowcaseActivity : AppCompatActivity() {
                 andesCard.padding = AndesCardPadding.SMALL
                 andesCard.type = AndesCardType.HIGHLIGHT
                 andesCard.style = AndesCardStyle.ELEVATED
-                andesCard.setCardAction(View.OnClickListener {
-                    Toast.makeText(context, "OnClicked card!", Toast.LENGTH_LONG).show()
-                })
-                andesCard.setLinkAction(link, View.OnClickListener {
-                    Toast.makeText(context, "OnClicked action card!", Toast.LENGTH_SHORT).show()
-                })
+                andesCard.setCardAction(
+                    View.OnClickListener {
+                        Toast.makeText(context, "OnClicked card!", Toast.LENGTH_LONG).show()
+                    }
+                )
+                andesCard.setLinkAction(
+                    link,
+                    View.OnClickListener {
+                        Toast.makeText(context, "OnClicked action card!", Toast.LENGTH_SHORT).show()
+                    }
+                )
                 spinnerType.setSelection(1)
                 spinnerStyle.setSelection(0)
                 spinnerPadding.setSelection(1)
@@ -211,16 +244,22 @@ class CardShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticCard(inflater: LayoutInflater): View {
             val layoutCard = inflater.inflate(
-                    R.layout.andesui_card_showcase, null, false
+                R.layout.andesui_card_showcase,
+                null,
+                false
             ) as ScrollView
 
             val card1 = layoutCard.findViewById<AndesCard>(R.id.card_example_1)
-            card1.setLinkAction("Action", View.OnClickListener {
-                Toast.makeText(context, "Action clicked!", Toast.LENGTH_SHORT).show()
-            })
+            card1.setLinkAction(
+                "Action",
+                View.OnClickListener {
+                    Toast.makeText(context, "Action clicked!", Toast.LENGTH_SHORT).show()
+                }
+            )
             val textView1 = TextView(context)
             textView1.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView1.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             textView1.text = context.resources.getString(R.string.andesui_demoapp_card_example_1)
@@ -229,19 +268,24 @@ class CardShowcaseActivity : AppCompatActivity() {
             val card2 = layoutCard.findViewById<AndesCard>(R.id.card_example_2)
             val textView2 = TextView(context)
             textView2.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView2.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             textView2.text = context.resources.getString(R.string.andesui_demoapp_card_example_2)
             card2.cardView = textView2
 
             val card3 = layoutCard.findViewById<AndesCard>(R.id.card_example_3)
-            card3.setLinkAction("Action", View.OnClickListener {
-                Toast.makeText(context, "Action clicked!", Toast.LENGTH_SHORT).show()
-            })
+            card3.setLinkAction(
+                "Action",
+                View.OnClickListener {
+                    Toast.makeText(context, "Action clicked!", Toast.LENGTH_SHORT).show()
+                }
+            )
             val textView3 = TextView(context)
             textView3.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView3.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             textView3.text = context.resources.getString(R.string.andesui_demoapp_card_example_3)
@@ -250,7 +294,8 @@ class CardShowcaseActivity : AppCompatActivity() {
             val card4 = layoutCard.findViewById<AndesCard>(R.id.card_example_4)
             val textView4 = TextView(context)
             textView4.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView4.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             textView4.text = context.resources.getString(R.string.andesui_demoapp_card_example_4)
@@ -259,7 +304,8 @@ class CardShowcaseActivity : AppCompatActivity() {
             val card5 = layoutCard.findViewById<AndesCard>(R.id.card_example_5)
             val textView5 = TextView(context)
             textView5.setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.title_text_size_card)
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.title_text_size_card)
             )
             textView5.setTextColor(context.resources.getColor(R.color.andes_gray_800))
             textView5.text = context.resources.getString(R.string.andesui_demoapp_card_example_5)

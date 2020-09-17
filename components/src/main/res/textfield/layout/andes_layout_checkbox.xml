@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/andes_checkbox_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -22,12 +23,15 @@
             app:layout_constraintBottom_toBottomOf="@id/andes_checkbox_container"
             app:layout_constraintEnd_toStartOf="@+id/checkboxText"
             app:layout_constraintStart_toStartOf="@id/andes_checkbox_container"
-            app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container">
+            app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:id="@+id/leftCheckboxIcon"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:ignore="ContentDescription" />
+            <!-- tools:ignore="ContentDescription" ignored but should be checked with UX -->
 
         </FrameLayout>
 
@@ -60,12 +64,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/andes_checkbox_container"
             app:layout_constraintEnd_toEndOf="@id/andes_checkbox_container"
             app:layout_constraintStart_toEndOf="@+id/checkboxText"
-            app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container">
+            app:layout_constraintTop_toTopOf="@+id/andes_checkbox_container"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:id="@+id/rightCheckboxIcon"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:ignore="ContentDescription" />
+            <!-- tools:ignore="ContentDescription" ignored but should be checked with UX -->
 
         </FrameLayout>
 

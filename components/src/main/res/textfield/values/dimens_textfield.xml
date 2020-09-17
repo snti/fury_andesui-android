@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="andes_textfield_label_paddingLeft">6dp</dimen>
-    <dimen name="andes_textfield_label_textSize">14dp</dimen>
+    <dimen name="andes_textfield_label_textSize">14sp</dimen>
 
     <dimen name="andes_textfield_container_marginTop">4dp</dimen>
     <dimen name="andes_textfield_container_minHeight">50dp</dimen>

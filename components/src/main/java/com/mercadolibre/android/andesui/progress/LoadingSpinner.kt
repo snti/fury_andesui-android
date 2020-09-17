@@ -16,7 +16,13 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import com.mercadolibre.android.andesui.R
 
-class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
+@Suppress("TooManyFunctions")
+class LoadingSpinner @JvmOverloads constructor(
+    context: Context?,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
+
     private lateinit var primaryColor: Paint
     private var sweepAngle = 0
     private var startAngle = 0
@@ -71,8 +77,8 @@ class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: Attribu
      * Create an animator that will interpolate the angles of the circle
      *
      * @param startAngle the start value of the angle in degrees. Eg: 0
-     * @param endAngle   the end value of the angle in degrees. Eg: 270
-     * @param duration   the duration of the animation
+     * @param endAngle the end value of the angle in degrees. Eg: 270
+     * @param duration the duration of the animation
      * @return an animator that will interpolate the angles between startAngle and endAngle
      */
     private fun createAnimator(startAngle: Int, endAngle: Int, duration: Int): ValueAnimator {
@@ -85,9 +91,9 @@ class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: Attribu
     /**
      * Create the paint that will be used to draw the view
      *
-     * @param style       the paint style
+     * @param style the paint style
      * @param strokeWidth the stroke width
-     * @param hex         the color to paint
+     * @param hex the color to paint
      * @return the paint to apply
      */
     private fun createPaint(style: Paint.Style, strokeWidth: Int, hex: Int): Paint {
@@ -184,16 +190,16 @@ class LoadingSpinner @JvmOverloads constructor(context: Context?, attrs: Attribu
     }
 
     private fun createAnimators() {
-        val duration = 750
-        sweepAnim = createAnimator(0, FULL_CIRCLE, duration)
-        startAnim = createAnimator(0, QUARTER_CIRCLE, duration)
-        finalAnim = createAnimator(QUARTER_CIRCLE, FULL_CIRCLE, duration)
+        sweepAnim = createAnimator(0, FULL_CIRCLE, Companion.DEFAULT_DURATION)
+        startAnim = createAnimator(0, QUARTER_CIRCLE, Companion.DEFAULT_DURATION)
+        finalAnim = createAnimator(QUARTER_CIRCLE, FULL_CIRCLE, Companion.DEFAULT_DURATION)
     }
 
     companion object {
         const val FULL_CIRCLE = 360
         const val QUARTER_CIRCLE = 90
         const val DURATION = 2000L
+        private const val DEFAULT_DURATION = 750
     }
 
     init {

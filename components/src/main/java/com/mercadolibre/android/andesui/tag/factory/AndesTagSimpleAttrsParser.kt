@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.tag.factory
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
@@ -44,26 +45,9 @@ internal object AndesTagSimpleAttrsParser {
     fun parse(context: Context, attr: AttributeSet?): AndesTagSimpleAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTagSimple)
 
-        val type = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleType)) {
-            ANDES_SIMPLE_TAG_TYPE_NEUTRAL -> AndesTagType.NEUTRAL
-            ANDES_SIMPLE_TAG_TYPE_HIGHLIGHT -> AndesTagType.HIGHLIGHT
-            ANDES_SIMPLE_TAG_TYPE_SUCCESS -> AndesTagType.SUCCESS
-            ANDES_SIMPLE_TAG_TYPE_WARNING -> AndesTagType.WARNING
-            ANDES_SIMPLE_TAG_TYPE_ERROR -> AndesTagType.ERROR
-            else -> AndesTagType.NEUTRAL
-        }
-
-        val size = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleSize)) {
-            ANDES_TAG_SIZE_LARGE -> AndesTagSize.LARGE
-            ANDES_TAG_SIZE_SMALL -> AndesTagSize.SMALL
-            else -> AndesTagSize.LARGE
-        }
-
-        val rightContent = when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleIsDismissable)) {
-            ANDES_TAG_DISMISSABLE -> AndesTagRightContent.DISMISS
-            ANDES_TAG_NOT_DISMISSABLE -> AndesTagRightContent.NONE
-            else -> AndesTagRightContent.NONE
-        }
+        val type = parseType(typedArray)
+        val size = parseSize(typedArray)
+        val rightContent = parseRightContent(typedArray)
 
         val rightContentData = if (rightContent == AndesTagRightContent.DISMISS) {
             RightContent(dismiss = RightContentDismiss())
@@ -72,11 +56,38 @@ internal object AndesTagSimpleAttrsParser {
         }
 
         return AndesTagSimpleAttrs(
-                andesTagType = type,
-                andesTagSize = size,
-                andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
-                rightContentData = rightContentData,
-                rightContent = rightContent
+            andesTagType = type,
+            andesTagSize = size,
+            andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
+            rightContentData = rightContentData,
+            rightContent = rightContent
         ).also { typedArray.recycle() }
+    }
+
+    private fun parseType(typedArray: TypedArray): AndesTagType {
+        return when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleType)) {
+            ANDES_SIMPLE_TAG_TYPE_NEUTRAL -> AndesTagType.NEUTRAL
+            ANDES_SIMPLE_TAG_TYPE_HIGHLIGHT -> AndesTagType.HIGHLIGHT
+            ANDES_SIMPLE_TAG_TYPE_SUCCESS -> AndesTagType.SUCCESS
+            ANDES_SIMPLE_TAG_TYPE_WARNING -> AndesTagType.WARNING
+            ANDES_SIMPLE_TAG_TYPE_ERROR -> AndesTagType.ERROR
+            else -> AndesTagType.NEUTRAL
+        }
+    }
+
+    private fun parseSize(typedArray: TypedArray): AndesTagSize {
+        return when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleSize)) {
+            ANDES_TAG_SIZE_LARGE -> AndesTagSize.LARGE
+            ANDES_TAG_SIZE_SMALL -> AndesTagSize.SMALL
+            else -> AndesTagSize.LARGE
+        }
+    }
+
+    private fun parseRightContent(typedArray: TypedArray): AndesTagRightContent? {
+        return when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleIsDismissable)) {
+            ANDES_TAG_DISMISSABLE -> AndesTagRightContent.DISMISS
+            ANDES_TAG_NOT_DISMISSABLE -> AndesTagRightContent.NONE
+            else -> AndesTagRightContent.NONE
+        }
     }
 }

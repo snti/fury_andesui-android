@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.demoapp
+package com.mercadolibre.android.andesui.demoapp.feature.specs
 
 import android.content.Context
 import android.content.Intent

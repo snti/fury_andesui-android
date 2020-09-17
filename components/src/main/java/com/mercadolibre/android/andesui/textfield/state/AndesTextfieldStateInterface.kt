@@ -40,9 +40,30 @@ internal object AndesIdleTextfieldState : AndesTextfieldStateInterface() {
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), R.color.andes_accent_color_500.toColor(context), R.color.andes_bg_color_white.toColor(context)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), R.color.andes_bg_color_white.toColor(context)))
-            addState(intArrayOf(-android.R.attr.state_enabled), createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash)))
+            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(
+                context,
+                context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(),
+                R.color.andes_accent_color_500.toColor(context),
+                R.color.andes_bg_color_white.toColor(context)
+            ))
+            addState(
+                intArrayOf(android.R.attr.state_enabled),
+                createGradientDrawable(
+                    context,
+                    context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(),
+                    R.color.andes_gray_200.toColor(context),
+                    R.color.andes_bg_color_white.toColor(context)
+                )
+            )
+            addState(
+                intArrayOf(-android.R.attr.state_enabled),
+                createGradientDrawableWithDash(
+                    context,
+                    context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(),
+                    R.color.andes_gray_200.toColor(context),
+                    context.resources.getDimension(R.dimen.andes_textfield_dash)
+                )
+            )
         }
     }
 
@@ -59,8 +80,24 @@ internal object AndesErrorTextfieldState : AndesTextfieldStateInterface() {
 
     override fun backgroundColor(context: Context): Drawable {
         return StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_focused), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_bg_color_white.toColor(context)))
-            addState(intArrayOf(android.R.attr.state_enabled), createGradientDrawable(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_red_500.toColor(context), R.color.andes_bg_color_white.toColor(context)))
+            addState(
+                intArrayOf(android.R.attr.state_focused),
+                createGradientDrawable(
+                    context,
+                    context.resources.getDimension(R.dimen.andes_textfield_focused_stroke).toInt(),
+                    R.color.andes_red_500.toColor(context),
+                    R.color.andes_bg_color_white.toColor(context)
+                )
+            )
+            addState(
+                intArrayOf(android.R.attr.state_enabled),
+                createGradientDrawable(
+                    context,
+                    context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(),
+                    R.color.andes_red_500.toColor(context),
+                    R.color.andes_bg_color_white.toColor(context)
+                )
+            )
         }
     }
 
@@ -83,7 +120,12 @@ internal object AndesDisabledTextfieldState : AndesTextfieldStateInterface() {
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_indeterminate_left_margin).toInt()
 
     override fun backgroundColor(context: Context): Drawable {
-        return createGradientDrawableWithDash(context, context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(), R.color.andes_gray_200.toColor(context), context.resources.getDimension(R.dimen.andes_textfield_dash))
+        return createGradientDrawableWithDash(
+            context,
+            context.resources.getDimension(R.dimen.andes_textfield_simple_stroke).toInt(),
+            R.color.andes_gray_200.toColor(context),
+            context.resources.getDimension(R.dimen.andes_textfield_dash)
+        )
     }
 
     override fun icon(context: Context): Drawable? = null
@@ -97,7 +139,9 @@ internal object AndesReadonlyTextfieldState : AndesTextfieldStateInterface() {
     override fun helper(helper: String?): String? = null
     override fun leftMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_label_paddingLeft).toInt()
 
-    override fun backgroundColor(context: Context): Drawable = createGradientDrawable(context, 0, 0, R.color.andes_transparent.toColor(context))
+    override fun backgroundColor(context: Context): Drawable {
+        return createGradientDrawable(context, 0, 0, R.color.andes_transparent.toColor(context))
+    }
 
     override fun icon(context: Context): Drawable? = null
 }

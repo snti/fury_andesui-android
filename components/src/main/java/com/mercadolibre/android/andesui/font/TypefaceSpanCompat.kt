@@ -6,7 +6,8 @@ import android.text.TextPaint
 import android.text.style.TypefaceSpan
 
 /**
- * This class replace the [CalligraphyTypefaceSpan](https://github.com/chrisjenx/Calligraphy/blob/master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/CalligraphyTypefaceSpan.java) from [Calligraphy](https://github.com/chrisjenx/Calligraphy)
+ * This class replace the [CalligraphyTypefaceSpan](https://github.com/chrisjenx/Calligraphy/blob/master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/CalligraphyTypefaceSpan.java)
+ * from [Calligraphy](https://github.com/chrisjenx/Calligraphy)
  * The motivation is to no depend on a library implementation
  *
  * @deprecated: instead you can use ResourceCompat (https://developer.android.com/reference/android/support/v4/content/res/ResourcesCompat#getfont)
@@ -16,7 +17,7 @@ class TypefaceSpanCompat
 
     /**
      * Default constructor
-     * @param typeface typeface
+     * @param typeFace typeface
      */
     /* default */ internal constructor(private var typeFace: Typeface) : TypefaceSpan("") {
 

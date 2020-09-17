@@ -9,12 +9,12 @@ import com.mercadolibre.android.andesui.progress.size.AndesProgressSize
  * The data class that contains the public components of the button.
  */
 internal data class AndesProgressAttrs(
-        val andesProgressSize: AndesProgressSize,
-        val tint: Int,
-        val start: Boolean
+    val andesProgressSize: AndesProgressSize,
+    val tint: Int,
+    val start: Boolean
 )
 
-internal object AndesProgressAttrsParser{
+internal object AndesProgressAttrsParser {
 
     private const val ANDES_PROGRESS_SIZE_X_LARGE = "200"
     private const val ANDES_PROGRESS_SIZE_LARGE = "201"

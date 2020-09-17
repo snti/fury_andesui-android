@@ -1,10 +1,27 @@
+# v2.11.0
+## 🚀 Features
+- Changed target API level to 29.
+
+## Developer Experience
+- Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
+- Added custom Android Lint config in favor of performance, accessibility and usability overrides.
+- Let devs install both debug and mds showcase apps at the same time by adding `.debug` suffix to debug builds.
+- Fix Detekt setup for components module as well as showcase app.
+- Apply many suggestions from Detekt to both components and showcase modules. Ignore others in favor of enable linters from now on.
+- Libraries upgraded from unit tests and showcase module.
+- Gradle files cleanup.
+
 # v2.10.1
-## Fixed
-- AndesProgressIndicatorIndeterminate: Leak in progress animation
+## 🛠 Fixes
+- AndesProgressIndicatorIndeterminate: Leak in progress animation | Author: [@orelvismeli](https://github.com/orelvismeli)
+
+# v2.11.0
+## 🚀 Features
+- AndesTextField: Expose textFilter and textDigits @nesmarsollie
 
 # v2.10.0
 ## 🚀 Features
-- AndesTextField: Mask set text with mask @fdiassilva
+- AndesTextField: Mask set text with mask | Author: [@fdiassilva](https://github.com/fdiassilva)
 
 # v2.9.0
 ## 🚀 Features

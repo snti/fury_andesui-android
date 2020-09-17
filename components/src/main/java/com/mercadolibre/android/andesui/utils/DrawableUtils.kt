@@ -2,7 +2,12 @@ package com.mercadolibre.android.andesui.utils
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -12,7 +17,8 @@ import android.os.Build
 import com.mercadolibre.android.andesui.color.AndesColor
 
 /**
- * Receives a [BitmapDrawable] which will suffer some look overhauling that includes scaling and tinting based on received params such as size, color, etc.
+ * Receives a [BitmapDrawable] which will suffer some look overhauling that includes scaling and tinting based on received params such as size, color,
+ * etc.
  * When the polishing ends, it will return a new [BitmapDrawable].
  * Size of the icon is based on Andes Specification.
  *
@@ -20,7 +26,8 @@ import com.mercadolibre.android.andesui.color.AndesColor
  * @param context needed for accessing some resources like size, you know.
  * @param dstWidth wanted width of the icon.
  * @param dstHeight wanted height of the icon.
- * @param colors we said we will be tinting the icon and this is the color. Note that the color for state_enabled will be used. If it does not exist, 0 will be used.
+ * @param colors we said we will be tinting the icon and this is the color. Note that the color for state_enabled will be used. If it does not exist,
+ * 0 will be used.
  * @return a complete look overhauled [BitmapDrawable].
  */
 fun buildColoredAndesBitmapDrawable(
@@ -30,14 +37,16 @@ fun buildColoredAndesBitmapDrawable(
     dstHeight: Int? = null,
     colors: ColorStateList?
 ): BitmapDrawable {
-    var scaledBitmap: Bitmap = when {
-        dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
-                image.bitmap,
-                dstWidth,
-                dstHeight,
-                true)
-        else -> image.bitmap
+    val scaledBitmap: Bitmap = if (dstHeight != null && dstWidth != null) {
+        Bitmap.createScaledBitmap(
+            image.bitmap,
+            dstWidth,
+            dstHeight,
+            true)
+    } else {
+        image.bitmap
     }
+
     return BitmapDrawable(context.resources, scaledBitmap)
             .apply {
                 colors?.let {

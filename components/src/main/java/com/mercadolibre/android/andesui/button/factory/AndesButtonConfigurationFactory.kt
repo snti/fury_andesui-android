@@ -224,14 +224,6 @@ internal object AndesButtonConfigurationFactory {
     ) = size.iconConfig(hierarchy, leftIconPath, rightIconPath, context)
 
     /**
-     * Determines if the button should be enabled or not.
-     *
-     * @param typedArray needed for accessing boolean value.
-     */
-    private fun resolveEnabled(typedArray: TypedArray) =
-            typedArray.getBoolean(R.styleable.AndesButton_andesButtonEnabled, true)
-
-    /**
      * Determines the padding of the button.
      *
      * @param size determined size of the button: Needed because the paddings

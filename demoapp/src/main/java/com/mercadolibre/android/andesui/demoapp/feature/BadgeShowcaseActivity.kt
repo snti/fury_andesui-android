@@ -18,10 +18,10 @@ import com.mercadolibre.android.andesui.badge.hierarchy.AndesBadgePillHierarchy
 import com.mercadolibre.android.andesui.badge.size.AndesBadgePillSize
 import com.mercadolibre.android.andesui.badge.type.AndesBadgeType
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import kotlinx.android.synthetic.main.andesui_badges_showcase_change.*
@@ -45,26 +45,35 @@ class BadgeShowcaseActivity : AppCompatActivity() {
         addStaticBadges(adapter.views[1])
     }
 
+    @Suppress("ComplexMethod", "LongMethod")
     private fun addDynamicBadges(container: View) {
         val modifierSpinner: Spinner = container.findViewById(R.id.modifier_spinner)
         ArrayAdapter.createFromResource(
-                this, R.array.modifier_spinner, android.R.layout.simple_spinner_item)
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    modifierSpinner.adapter = adapter
-                }
+            this,
+            R.array.modifier_spinner,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            modifierSpinner.adapter = adapter
+        }
 
         val hierarchySpinner: Spinner = container.findViewById(R.id.hierarchy_spinner)
         ArrayAdapter.createFromResource(
-                this, R.array.hierarchy_spinner, android.R.layout.simple_spinner_item)
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    hierarchySpinner.adapter = adapter
-                }
+            this,
+            R.array.hierarchy_spinner,
+            android.R.layout.simple_spinner_item
+        )
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                hierarchySpinner.adapter = adapter
+            }
 
         val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
         ArrayAdapter.createFromResource(
-                this, R.array.type_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.type_spinner,
+            android.R.layout.simple_spinner_item
+        )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     typeSpinner.adapter = adapter
@@ -72,7 +81,10 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
         ArrayAdapter.createFromResource(
-                this, R.array.size_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.size_spinner,
+            android.R.layout.simple_spinner_item
+        )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     sizeSpinner.adapter = adapter
@@ -80,7 +92,10 @@ class BadgeShowcaseActivity : AppCompatActivity() {
 
         val borderSpinner: Spinner = container.findViewById(R.id.border_spinner)
         ArrayAdapter.createFromResource(
-                this, R.array.border_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.border_spinner,
+            android.R.layout.simple_spinner_item
+        )
                 .also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     borderSpinner.adapter = adapter
@@ -114,7 +129,9 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>?) {}
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // Do nothing.
+            }
         }
 
         clearButton.setOnClickListener {

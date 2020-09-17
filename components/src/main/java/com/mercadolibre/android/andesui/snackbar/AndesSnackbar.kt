@@ -20,6 +20,7 @@ import com.mercadolibre.android.andesui.snackbar.factory.AndesSnackbarConfigurat
 import com.mercadolibre.android.andesui.snackbar.type.AndesSnackbarType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
+@Suppress("TooManyFunctions")
 class AndesSnackbar : CardView {
 
     /**
@@ -96,7 +97,7 @@ class AndesSnackbar : CardView {
     private lateinit var snackbar: Snackbar
     private lateinit var view: View
 
-    @Suppress("unused")
+    @Suppress("unused", "LongParameterList")
     private constructor(context: Context) : super(context) {
         throw IllegalStateException("Constructor without parameters in Andes Badge is not allowed. You must provide some attributes.")
     }
@@ -112,7 +113,7 @@ class AndesSnackbar : CardView {
         initAttrs(view, type, text, duration)
     }
 
-    @Suppress("unused")
+    @Suppress("unused", "LongParameterList")
     constructor(
         context: Context,
         view: View,
@@ -124,6 +125,7 @@ class AndesSnackbar : CardView {
         initAttrs(view, type, text, duration, action)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
         view: View,
         type: AndesSnackbarType,

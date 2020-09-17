@@ -29,7 +29,9 @@ internal sealed class AndesTextfieldContentInterface {
 }
 
 internal object AndesSuffixTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int {
+        return context.resources.getDimension(R.dimen.andes_textfield_suffix_left_margin).toInt()
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_suffix_right_margin).toInt()
 
@@ -108,7 +110,9 @@ internal object AndesValidatedTextfieldContent : AndesTextfieldContentInterface(
 internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
     private const val CLEAR_CONTENT_DESCRIPTION = "clear"
 
-    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int {
+        return context.resources.getDimension(R.dimen.andes_textfield_clear_left_margin).toInt()
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_clear_right_margin).toInt()
 
@@ -125,7 +129,9 @@ internal object AndesClearTextfieldContent : AndesTextfieldContentInterface() {
 }
 
 internal object AndesActionTextfieldContent : AndesTextfieldContentInterface() {
-    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int = context.resources.getDimension(R.dimen.andes_textfield_action_left_margin).toInt()
+    override fun leftMargin(context: Context, state: AndesTextfieldStateInterface): Int {
+        return context.resources.getDimension(R.dimen.andes_textfield_action_left_margin).toInt()
+    }
 
     override fun rightMargin(context: Context): Int = context.resources.getDimension(R.dimen.andes_textfield_action_right_margin).toInt()
 

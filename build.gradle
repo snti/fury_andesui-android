@@ -16,16 +16,11 @@ buildscript {
         classpath "com.novoda:bintray-release:$bintrayReleasePluginVersion"
         classpath "com.monits:static-code-analysis-plugin:$scaPluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath ("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion") {
+        classpath ("gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion") {
             //TODO: we exclude Kotlin because Detekt transitively replaces project's Kotlin version with a newer one
             exclude group: 'org.jetbrains.kotlin'
         }
     }
-}
-
-wrapper {
-    gradleVersion = gradleWrapperVersion
-    distributionType = Wrapper.DistributionType.BIN
 }
 
 allprojects {
