@@ -1,6 +1,5 @@
-package com.mercadolibre.android.andesui.demoapp.feature
+package com.mercadolibre.android.andesui.demoapp.feature.andesbottomsheet
 
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,18 +11,14 @@ import com.mercadolibre.android.andesui.bottomsheet.BottomSheetListener
 import com.mercadolibre.android.andesui.demoapp.R
 
 class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
+    private lateinit var bottomSheet: AndesBottomSheet
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_sheet_showcase)
+        setContentView(R.layout.andesui_bottom_sheet_showcase)
 
-        val view = View(applicationContext)
-        val params = ViewGroup.LayoutParams(MATCH_PARENT, 1000)
-        view.layoutParams = params
-
-        val bottomSheet = findViewById<AndesBottomSheet>(R.id.andes_bottom_sheet)
+        bottomSheet = findViewById(R.id.andes_bottom_sheet)
         bottomSheet.setBottomSheetListener(this)
-        bottomSheet.setView(view)
-        bottomSheet.expand()
     }
 
     override fun onCollapsed() {
@@ -32,5 +27,21 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
     override fun onExpanded() {
         Toast.makeText(applicationContext, "Expanded!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun onAttachViewButtonClicked(view: View) {
+        bottomSheet.removeViews()
+
+        val testView = View(applicationContext)
+        val params = ViewGroup.LayoutParams(MATCH_PARENT, 1000)
+        testView.layoutParams = params
+
+        bottomSheet.setView(testView)
+    }
+
+    fun onAttachFragmentButtonClicked(view: View) {
+        bottomSheet.removeViews()
+
+        bottomSheet.setFragment(supportFragmentManager, TestFragment())
     }
 }

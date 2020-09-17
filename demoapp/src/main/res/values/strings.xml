@@ -208,6 +208,8 @@
     <string name="andesui_demoapp_progress_small">SMALL</string>
 
     <string name="andesui_demoapp_bottom_sheet">Andes Bottom Sheet</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_1">Attach View</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_2">Attach Fragment</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
