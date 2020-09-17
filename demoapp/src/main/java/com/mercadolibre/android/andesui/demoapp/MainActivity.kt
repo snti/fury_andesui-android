@@ -57,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         andesui_progress.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/progress"))
         }
+
+        andesui_bottom_sheet.setOnClickListener {
+            startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
+        }
     }
 
     private fun setupExtras() {
@@ -71,12 +75,6 @@ class MainActivity : AppCompatActivity() {
 
         andesui_demoapp_contribution.setOnClickListener {
             startActivity(SafeIntent(this, "https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933"))
-        }
-    }
-
-    private fun setupButtomSheet() {
-        andesui_bottom_sheet.setOnClickListener {
-            launchIntent("meli://andes/bottom_sheet")
         }
     }
 }
