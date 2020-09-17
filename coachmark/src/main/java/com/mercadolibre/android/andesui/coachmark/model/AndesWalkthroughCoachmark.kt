@@ -14,5 +14,10 @@ data class AndesWalkthroughCoachmarkStep(
     val description: String,
     val nextText: String,
     val view: View?,
-    val style: String
+    val style: AndesWalkthroughCoachmarkStyle
 ) : Serializable
+
+enum class AndesWalkthroughCoachmarkStyle {
+    CIRCLE,
+    RECTANGLE
+}

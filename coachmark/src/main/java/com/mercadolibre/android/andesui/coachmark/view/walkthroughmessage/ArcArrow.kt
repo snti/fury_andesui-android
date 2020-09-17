@@ -7,7 +7,7 @@ import android.graphics.RectF
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
-import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.coachmark.R
 import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils
 
 class ArcArrow @JvmOverloads constructor(
@@ -21,7 +21,7 @@ class ArcArrow @JvmOverloads constructor(
     //About arcs
     private var rectTooltipF: RectF
     private var rectTargetF: RectF
-    private var radius = ViewUtils.dpToPx(RADIUS_ARROW)
+    private val radius: Float
     private var startTooltipAngle = ANGLE_90
     private var startTargetAngle = ANGLE_270
     private var sweepAngle = ANGLE_90
@@ -36,8 +36,8 @@ class ArcArrow @JvmOverloads constructor(
     private var endLeftY: Float = START_POINT
     private var endRightX: Float = START_POINT
     private var endRightY: Float = START_POINT
-    private val lengthHeadArrow = ViewUtils.dpToPx(ARROW_LENGHT)
-    private var lengthRadioHeadArrow = ViewUtils.dpToPx(ARROW_LENGHT / NUMBER_TWO)
+    private val lengthHeadArrow: Float
+    private val lengthRadioHeadArrow: Float
 
     init {
         mPaint.style = Paint.Style.STROKE       // set to STOKE
@@ -47,6 +47,11 @@ class ArcArrow @JvmOverloads constructor(
         mPaint.color = ContextCompat.getColor(context, R.color.andes_white)
         rectTooltipF = RectF()
         rectTargetF = RectF()
+
+        lengthHeadArrow = context.resources.getDimension(R.dimen.andes_coachmark_lenght_head_arrow)
+        lengthRadioHeadArrow = lengthHeadArrow / NUMBER_TWO
+
+        radius = context.resources.getDimension(R.dimen.andes_coachmark_radius_arrow)
     }
 
     fun addRect(xTooltip: Int, yTooltip: Int, xTarget: Int, yTarget: Int) {
@@ -69,7 +74,7 @@ class ArcArrow @JvmOverloads constructor(
         }
     }
 
-    fun setBottomRightArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
+    private fun setBottomRightArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
 
         startTooltipAngle = ANGLE_90
         startTargetAngle = ANGLE_270
@@ -99,7 +104,7 @@ class ArcArrow @JvmOverloads constructor(
         endRightY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow - ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
     }
 
-    fun setBottomLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
+    private fun setBottomLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
 
         startTooltipAngle = ANGLE_0
         startTargetAngle = ANGLE_180
@@ -129,7 +134,7 @@ class ArcArrow @JvmOverloads constructor(
         endRightY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow + ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
     }
 
-    fun setTopRightArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
+    private fun setTopRightArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
 
         startTooltipAngle = ANGLE_180
         startTargetAngle = ANGLE_0
@@ -159,7 +164,7 @@ class ArcArrow @JvmOverloads constructor(
         endRightY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow + ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
     }
 
-    fun setTopLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
+    private fun setTopLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
 
         startTooltipAngle = ANGLE_270
         startTargetAngle = ANGLE_90
@@ -216,17 +221,18 @@ class ArcArrow @JvmOverloads constructor(
     }
 
     companion object {
+        const val STROKE = 1F
+
         const val NUMBER_ONE = 1
         const val NUMBER_TWO = 2
         const val NUMBER_THREE = 3
-        const val ARROW_LENGHT = 10
+
         const val START_POINT = 0F
-        const val RADIUS_ARROW = 24F
+
         const val ANGLE_0 = 0F
         const val ANGLE_90 = 90F
         const val ANGLE_180 = 180F
         const val ANGLE_270 = 270F
-        const val STROKE = 1F
 
         const val LARGE_X_NEW_POSITION = 3.26F
         const val SMALL_X_NEW_POSITION = 2.66F

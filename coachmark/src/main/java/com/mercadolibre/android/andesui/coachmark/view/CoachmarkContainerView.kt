@@ -3,7 +3,8 @@ package com.mercadolibre.android.andesui.coachmark.view
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.coachmark.R
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import kotlinx.android.synthetic.main.andes_walkthrough_container.view.*
 
 class CoachmarkContainerView @JvmOverloads constructor(
@@ -16,6 +17,7 @@ class CoachmarkContainerView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.andes_walkthrough_container, this)
+        counterText.typeface = context.getFontOrDefault(R.font.andes_font_regular)
     }
 
     fun setListener(l: CoachmarkContainerListener) {
@@ -23,7 +25,6 @@ class CoachmarkContainerView @JvmOverloads constructor(
     }
 
     fun setData(buttonText: String, position: Int, size: Int) {
-        // counterText.typeface = context.getFontOrDefault(R.font.andes_font_regular)
         nextButton.text = buttonText
         nextButton.setOnClickListener { listener?.onClickNextButton(position) }
         closeButton.setOnClickListener { listener?.onClickClose(position) }

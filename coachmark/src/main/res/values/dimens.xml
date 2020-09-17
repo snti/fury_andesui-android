@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="andes_coachmark_footer_guide_line">96dp</dimen>
+
+    <dimen name="andes_coachmark_walkthrought_margin">24dp</dimen>
+
+    <dimen name="andes_coachmark_default_padding">16dp</dimen>
+
+    <dimen name="andes_coachmark_min_with_for_show_arrow">48dp</dimen>
+    <dimen name="andes_coachmark_lenght_head_arrow">10dp</dimen>
+    <dimen name="andes_coachmark_radius_arrow">24dp</dimen>
+
+    <dimen name="andes_coachmark_padding_internal_overlay">12dp</dimen>
+    <dimen name="andes_coachmark_default_radius_overlay">8dp</dimen>
+    <dimen name="andes_coachmark_padding_border_overlay">3dp</dimen>
+
+    <dimen name="andes_coachmark_toolbar_status_bar">80dp</dimen>
+    <dimen name="andes_coachmark_toolbar">64dp</dimen>
+    <dimen name="andes_coachmark_status_bar">26dp</dimen>
+</resources>

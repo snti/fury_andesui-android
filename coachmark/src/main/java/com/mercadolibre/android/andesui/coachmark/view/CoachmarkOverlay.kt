@@ -9,8 +9,7 @@ import android.graphics.Canvas
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
-import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils
+import com.mercadolibre.android.andesui.coachmark.R
 
 internal class CoachmarkOverlay @JvmOverloads constructor(
     context: Context,
@@ -20,10 +19,10 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
 
     private val paintFill: Paint = Paint()
     private val paintStroke: Paint = Paint()
-    private var rectF = mutableListOf<RectF>()
-    private var radius: Int = ViewUtils.dpToPx(RADIUS)
-    private val padding = ViewUtils.dpToPx(PADDING)
-    private var isCircle: Boolean = false
+    var rectF = mutableListOf<RectF>()
+    var radius: Float
+    private var padding: Float
+    var isCircle: Boolean = false
     private var x: Int = 0
     private var y: Int = 0
 
@@ -33,15 +32,18 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
         paintFill.isAntiAlias = true
         paintFill.color = ContextCompat.getColor(context, R.color.andes_transparent)
         paintFill.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-        paintStroke.strokeWidth = ViewUtils.dpToPx(PADDING_BORDER).toFloat()
+        paintStroke.strokeWidth = context.resources.getDimension(R.dimen.andes_coachmark_padding_border_overlay)
         paintStroke.style = Paint.Style.STROKE
         paintStroke.color = ContextCompat.getColor(context, R.color.andes_accent_color)
+
+        padding = context.resources.getDimension(R.dimen.andes_coachmark_padding_internal_overlay)
+        radius = context.resources.getDimension(R.dimen.andes_coachmark_default_radius_overlay)
     }
 
     @Suppress("LongParameterList")
-    fun addRect(x: Int, y: Int, width: Int, height: Int, isCircle: Boolean, radius: Int = ViewUtils.dpToPx(RADIUS)) {
+    fun addRect(x: Int, y: Int, width: Int, height: Int, isCircle: Boolean, radius: Float? = null) {
 
-        this.radius = radius
+        this.radius = radius ?: context.resources.getDimension(R.dimen.andes_coachmark_default_radius_overlay)
         this.isCircle = isCircle
         this.x = x
         this.y = y
@@ -50,22 +52,22 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
         val b = y + height
 
         rectF.add(RectF(
-            (x - padding).toFloat(),
-            (y - padding).toFloat(),
-            (r + padding).toFloat(),
-            (b + padding).toFloat()
+            (x - padding),
+            (y - padding),
+            (r + padding),
+            (b + padding)
         ))
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (isCircle) {
-            canvas.drawCircle(x.toFloat(), y.toFloat(), radius.toFloat(), paintFill)
-            canvas.drawCircle(x.toFloat(), y.toFloat(), radius.toFloat(), paintStroke)
+            canvas.drawCircle(x.toFloat(), y.toFloat(), radius, paintFill)
+            canvas.drawCircle(x.toFloat(), y.toFloat(), radius, paintStroke)
         } else {
             for (rect: RectF in rectF) {
-                canvas.drawRoundRect(rect, radius.toFloat(), radius.toFloat(), paintFill)
-                canvas.drawRoundRect(rect, radius.toFloat(), radius.toFloat(), paintStroke)
+                canvas.drawRoundRect(rect, radius, radius, paintFill)
+                canvas.drawRoundRect(rect, radius, radius, paintStroke)
             }
         }
     }
@@ -73,11 +75,5 @@ internal class CoachmarkOverlay @JvmOverloads constructor(
     fun clear() {
         rectF.clear()
         isCircle = false
-    }
-
-    companion object {
-        const val PADDING = 12
-        const val PADDING_BORDER = 3
-        const val RADIUS = 8
     }
 }
