@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/andes_bg_color_primary"
+    tools:context=".feature.andesbottomsheet.BottomSheetShowcaseActivity">
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andes_attach_view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/andes_button_margin_large"
+        android:onClick="onAttachViewButtonClicked"
+        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_button_example_1"
+        app:layout_constraintEnd_toStartOf="@+id/andes_attach_fragment_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/andes_attach_fragment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/andes_button_margin_large"
+        android:onClick="onAttachFragmentButtonClicked"
+        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_button_example_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/andes_attach_view_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/andes_gray_450"
+        android:layout_margin="@dimen/andes_button_margin_large"
+        app:layout_constraintTop_toBottomOf="@+id/andes_attach_view_button"/>
+
+    <com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
+        android:id="@+id/andes_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:andesBottomSheetBackgroundColor="@color/andes_accent_color_500"
+        app:andesBottomSheetPeekHeight="100dp"
+        app:andesBottomSheetCornerRadius="6dp"/>
+
+</android.support.constraint.ConstraintLayout>
