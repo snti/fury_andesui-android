@@ -196,13 +196,13 @@ class AndesThumbnail : FrameLayout {
         val unwrappedDrawable = config.image
         val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
 
-        imageFrame.background = wrappedDrawable
+        imageFrame.setImageDrawable(wrappedDrawable)
         setupImageColor(config.iconColor)
         setupImageSize(config.iconSize)
     }
 
     private fun setupImageColor(iconColor: AndesColor) {
-        DrawableCompat.setTint(imageFrame.background, iconColor.colorInt(context))
+        DrawableCompat.setTint(imageFrame.drawable, iconColor.colorInt(context))
     }
 
     private fun setupImageSize(iconSize: Int) {
