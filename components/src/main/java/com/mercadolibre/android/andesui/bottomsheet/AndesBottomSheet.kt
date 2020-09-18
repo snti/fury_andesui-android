@@ -60,6 +60,18 @@ class AndesBottomSheet : CoordinatorLayout {
             }
         }
 
+    /**
+     * Getter and Setter for [bottomSheetBackgroundColor]
+     */
+    var bottomSheetBackgroundColor: Int
+        get() = andesBottomSheetAttrs.andesBottomSheetBackgroundColor
+        set(value) {
+            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetBackgroundColor = value)
+            createConfig().also {
+                resolveBottomSheetBackground(it)
+            }
+        }
+
     private lateinit var andesBottomSheetAttrs: AndesBottomSheetAttrs
     private lateinit var frameView: FrameLayout
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
@@ -168,16 +180,6 @@ class AndesBottomSheet : CoordinatorLayout {
 
     private fun updatePeekHeight() {
         bottomSheetBehavior.peekHeight = peekHeight
-    }
-
-    /**
-     * Sets the background color of the bottomSheet
-     */
-    override fun setBackgroundColor(color: Int) {
-        andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetBackgroundColor = color)
-        createConfig().also {
-            resolveBottomSheetBackground(it)
-        }
     }
 
     /**
