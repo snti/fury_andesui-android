@@ -19,23 +19,23 @@ class ArcArrow @JvmOverloads constructor(
     private val mPaint: Paint = Paint()
 
     //About arcs
-    private var rectTooltipF: RectF
-    private var rectTargetF: RectF
+    var rectTooltipF: RectF
+    var rectTargetF: RectF
     private val radius: Float
-    private var startTooltipAngle = ANGLE_90
-    private var startTargetAngle = ANGLE_270
+    var startTooltipAngle = ANGLE_90
+    var startTargetAngle = ANGLE_270
     private var sweepAngle = ANGLE_90
 
     // About line between arcs
-    private val linePosition = mutableListOf<Float>() // [0] xStart - yStart - xEnd - yEnd
+    val linePosition = mutableListOf<Float>() // [0] xStart - yStart - xEnd - yEnd
 
     // Vars about head of arrow
-    private var startHeadArrowX: Float = START_POINT
-    private var startY: Float = START_POINT
-    private var endLeftX: Float = START_POINT
-    private var endLeftY: Float = START_POINT
-    private var endRightX: Float = START_POINT
-    private var endRightY: Float = START_POINT
+    var startHeadArrowX: Float = START_POINT
+    var startHeadArrowY: Float = START_POINT
+    var endLeftX: Float = START_POINT
+    var endLeftY: Float = START_POINT
+    var endRightX: Float = START_POINT
+    var endRightY: Float = START_POINT
     private val lengthHeadArrow: Float
     private val lengthRadioHeadArrow: Float
 
@@ -97,7 +97,7 @@ class ArcArrow @JvmOverloads constructor(
         linePosition.add(yTooltip.toFloat() + radius)
 
         startHeadArrowX = xTarget.toFloat()
-        startY = yTooltip.toFloat() + (NUMBER_TWO * radius)
+        startHeadArrowY = yTooltip.toFloat() + (NUMBER_TWO * radius)
         endLeftX = xTarget.toFloat() - lengthRadioHeadArrow - ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
         endLeftY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow + ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
         endRightX = xTarget.toFloat() + lengthRadioHeadArrow - ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
@@ -127,7 +127,7 @@ class ArcArrow @JvmOverloads constructor(
         linePosition.add(yTooltip.toFloat() + radius)
 
         startHeadArrowX = xTarget.toFloat()
-        startY = yTooltip.toFloat() + (NUMBER_TWO * radius)
+        startHeadArrowY = yTooltip.toFloat() + (NUMBER_TWO * radius)
         endLeftX = xTarget.toFloat() - lengthRadioHeadArrow + ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
         endLeftY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow - ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
         endRightX = xTarget.toFloat() + lengthRadioHeadArrow + ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
@@ -157,7 +157,7 @@ class ArcArrow @JvmOverloads constructor(
         linePosition.add(yTooltip.toFloat() - radius)
 
         startHeadArrowX = xTarget.toFloat()
-        startY = yTooltip.toFloat() - (NUMBER_TWO * radius)
+        startHeadArrowY = yTooltip.toFloat() - (NUMBER_TWO * radius)
         endLeftX = xTarget.toFloat() - lengthRadioHeadArrow - ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
         endLeftY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow - ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
         endRightX = xTarget.toFloat() + lengthRadioHeadArrow - ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
@@ -187,7 +187,7 @@ class ArcArrow @JvmOverloads constructor(
         linePosition.add(yTooltip.toFloat() - radius)
 
         startHeadArrowX = xTarget.toFloat()
-        startY = yTooltip.toFloat() - (NUMBER_TWO * radius)
+        startHeadArrowY = yTooltip.toFloat() - (NUMBER_TWO * radius)
         endLeftX = xTarget.toFloat() - lengthRadioHeadArrow + ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
         endLeftY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow + ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
         endRightX = xTarget.toFloat() + lengthRadioHeadArrow + ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
@@ -209,8 +209,8 @@ class ArcArrow @JvmOverloads constructor(
             canvas.drawLine(linePosition[0], linePosition[NUMBER_ONE], linePosition[NUMBER_TWO], linePosition[NUMBER_THREE], mPaint)
 
             // head arrow
-            canvas.drawLine(startHeadArrowX, startY, endLeftX, endLeftY, mPaint)
-            canvas.drawLine(startHeadArrowX, startY, endRightX, endRightY, mPaint)
+            canvas.drawLine(startHeadArrowX, startHeadArrowY, endLeftX, endLeftY, mPaint)
+            canvas.drawLine(startHeadArrowX, startHeadArrowY, endRightX, endRightY, mPaint)
         }
     }
 
