@@ -42,7 +42,6 @@
         android:id="@+id/andes_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:andesBottomSheetBackgroundColor="@color/andes_white"
         app:andesBottomSheetPeekHeight="100dp"/>
 
 </android.support.constraint.ConstraintLayout>

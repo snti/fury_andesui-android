@@ -40,7 +40,7 @@ internal object AndesBottomSheetAttrsParser {
                             DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()).toInt(),
                 andesBottomSheetBackgroundColor =
                     typedArray.getColor(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundColor,
-                            Color.TRANSPARENT),
+                            context.resources.getColor(R.color.andes_white)),
                 andesBottomSheetState = state
         ).also { typedArray.recycle() }
     }
