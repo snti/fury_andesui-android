@@ -5,6 +5,10 @@ import android.graphics.Color
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
+import com.mercadolibre.android.andesui.utils.pxToDp
+
+private const val DEFAULT_CORNER_RADIUS = 6
+private const val DEFAULT_PEEK_HEIGHT = 0f
 
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
@@ -29,12 +33,14 @@ internal object AndesBottomSheetAttrsParser {
 
         return AndesBottomSheetAttrs(
                 andesBottomSheetPeekHeight =
-                    typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetPeekHeight, 0f).toInt(),
+                    typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetPeekHeight,
+                            DEFAULT_PEEK_HEIGHT).toInt(),
                 andesBottomSheetCornerRadius =
-                    typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetCornerRadius, 0f).toInt(),
+                    typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetCornerRadius,
+                            DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()).toInt(),
                 andesBottomSheetBackgroundColor =
-                    typedArray
-                        .getColor(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundColor, Color.TRANSPARENT),
+                    typedArray.getColor(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundColor,
+                            Color.TRANSPARENT),
                 andesBottomSheetState = state
         ).also { typedArray.recycle() }
     }
