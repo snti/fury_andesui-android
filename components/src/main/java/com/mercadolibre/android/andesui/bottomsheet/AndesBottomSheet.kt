@@ -11,15 +11,16 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
+import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetAttrs
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetAttrsParser
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConfiguration
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConfigurationFactory
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
+import com.mercadolibre.android.andesui.utils.pxToDp
 
 class AndesBottomSheet : CoordinatorLayout {
 
@@ -73,12 +74,13 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
     private lateinit var andesBottomSheetAttrs: AndesBottomSheetAttrs
+    private lateinit var containerView: FrameLayout
     private lateinit var frameView: FrameLayout
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
     private var listener: BottomSheetListener? = null
 
     constructor(context: Context) : super(context) {
-        initAttrs(DEFAULT_PEEK_HEIGHT, DEFAULT_CORNER_RADIUS, DEFAULT_BACKGROUND_COLOR, DEFAULT_BOTTOM_SHEET_STATE)
+        initAttrs(DEFAULT_PEEK_HEIGHT, DEFAULT_CORNER_RADIUS.pxToDp(context), DEFAULT_BACKGROUND_COLOR, DEFAULT_BOTTOM_SHEET_STATE)
     }
 
     constructor(
@@ -120,8 +122,6 @@ class AndesBottomSheet : CoordinatorLayout {
 
         setupViewId()
 
-        addView(frameView)
-
         resolveBottomSheetParams()
         resolveBottomSheetBackground(config)
         initBottomSheetBehavior()
@@ -134,8 +134,9 @@ class AndesBottomSheet : CoordinatorLayout {
      * Creates all the views which are part of this bottomSheet and sets them an Id.
      */
     private fun initComponents() {
-        frameView = FrameLayout(context)
-        frameView.id = View.generateViewId()
+        val layout = LayoutInflater.from(context).inflate(R.layout.andes_layout_bottom_sheet, this)
+        containerView = layout.findViewById(R.id.andes_bottom_sheet_container)
+        frameView = layout.findViewById(R.id.andes_bottom_sheet_frame_view)
     }
 
     /**
@@ -149,10 +150,8 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     private fun resolveBottomSheetParams() {
-        val params = frameView.layoutParams as LayoutParams
+        val params = containerView.layoutParams as LayoutParams
         params.behavior = BottomSheetBehavior<FrameLayout>()
-        params.height = WRAP_CONTENT
-        params.width = MATCH_PARENT
     }
 
     private fun resolveBottomSheetBackground(config: AndesBottomSheetConfiguration) {
@@ -162,13 +161,12 @@ class AndesBottomSheet : CoordinatorLayout {
         shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
         shape.setColor(config.backgroundColor)
 
-        frameView.background = shape
+        containerView.background = shape
     }
 
     private fun initBottomSheetBehavior() {
-        bottomSheetBehavior = BottomSheetBehavior.from(frameView)
+        bottomSheetBehavior = BottomSheetBehavior.from(containerView)
         bottomSheetBehavior.setBottomSheetCallback(bottomSheetBehaviorCallback)
-        bottomSheetBehavior.onLayoutChild(this, frameView, View.LAYOUT_DIRECTION_LTR)
     }
 
     private fun resolveBottomSheetState(config: AndesBottomSheetConfiguration) {
@@ -270,7 +268,7 @@ class AndesBottomSheet : CoordinatorLayout {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_CORNER_RADIUS = 0
+        private const val DEFAULT_CORNER_RADIUS = 6
         private const val DEFAULT_BACKGROUND_COLOR = Color.TRANSPARENT
         private val DEFAULT_BOTTOM_SHEET_STATE = AndesBottomSheetState.COLLAPSED
     }
