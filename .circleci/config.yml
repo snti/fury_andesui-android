@@ -96,7 +96,7 @@ jobs:
   coachmark:
     <<: *buildJob
     environment:
-    MODULE: coachmark
+      MODULE: coachmark
   demoapp:
     <<: *buildJob
     environment:
