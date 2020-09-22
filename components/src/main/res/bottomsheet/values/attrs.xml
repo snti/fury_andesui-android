@@ -8,5 +8,13 @@
             <enum name="collapsed" value="1000"/>
             <enum name="expanded" value="1001"/>
         </attr>
+
+        <attr name="andesBottomSheetTitleText" format="string"/>
+        <attr name="andesBottomSheetTitleAlign" format="enum">
+            <enum name="centered" value="2000"/>
+            <enum name="left_aligned" value="2001"/>
+        </attr>
+
+        <attr name="andesBottomSheetButtonText" format="string"/>
     </declare-styleable>
 </resources>
