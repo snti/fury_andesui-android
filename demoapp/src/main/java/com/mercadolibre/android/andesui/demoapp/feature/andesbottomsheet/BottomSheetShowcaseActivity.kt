@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.Toast
 import com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
+import com.mercadolibre.android.andesui.bottomsheet.button.BottomSheetButtonListener
 import com.mercadolibre.android.andesui.bottomsheet.BottomSheetListener
 import com.mercadolibre.android.andesui.demoapp.R
 
-class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
+class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener, BottomSheetButtonListener {
     private lateinit var bottomSheet: AndesBottomSheet
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,8 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
         bottomSheet = findViewById(R.id.andes_bottom_sheet)
         bottomSheet.setBottomSheetListener(this)
+        bottomSheet.bottomSheetButtonText = "Toast Mother focker"
+        bottomSheet.setBottomSheetButtonListener(this)
     }
 
     override fun onCollapsed() {
@@ -43,5 +46,9 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.removeViews()
 
         bottomSheet.setFragment(supportFragmentManager, TestFragment())
+    }
+
+    override fun onBottomSheetButtonClicked() {
+        Toast.makeText(applicationContext, "Button clicked!", Toast.LENGTH_SHORT).show()
     }
 }
