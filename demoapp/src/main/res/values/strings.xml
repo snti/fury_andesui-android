@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="loud_large_button">Loud Large Button</string>
     <string name="loud_medium_button">Loud Medium Button</string>
     <string name="loud_small_button">Loud Small Button</string>
@@ -199,6 +199,10 @@
     <string name="andesui_demoapp_bottom_sheet">Andes Bottom Sheet</string>
     <string name="andesui_demoapp_bottom_sheet_button_example_1">Attach View</string>
     <string name="andesui_demoapp_bottom_sheet_button_example_2">Attach Fragment</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_3">Toggle Button</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_4">Toggle Background Dim</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_5">Toggle Title</string>
+    <string name="andesui_demoapp_bottom_sheet_button_example_6">Toggle alignment</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
