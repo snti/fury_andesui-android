@@ -24,7 +24,7 @@ enum class AndesTagRightContent {
         return when (this) {
             DISMISS -> AndesTagRightContentDismiss
             DROPDOWN -> AndesTagRightContentDropDown
-            CHECK -> AndesTagRightContentDropDown // TODO change this with check
+            CHECK -> AndesTagRightContentCheck
             NONE -> AndesTagRightContentNone
         }
     }

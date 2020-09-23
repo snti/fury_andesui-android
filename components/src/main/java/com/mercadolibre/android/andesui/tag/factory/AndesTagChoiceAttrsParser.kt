@@ -34,14 +34,14 @@ internal object AndesTagChoiceAttrsParser {
     private const val ANDES_CHOICE_TAG_TYPE_DROPDOWN = "5001"
 
     private const val ANDES_CHOICE_TAG_STATE_IDLE = "6000"
-    private const val ANDES_CHOICE_TAG_STATE_PRESSED = "6001"
+    private const val ANDES_CHOICE_TAG_STATE_SELECTED = "6001"
 
     fun parse(context: Context, attr: AttributeSet?): AndesTagChoiceAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTagChoice)
 
-        val type = AndesTagChoiceAttrsParser.parseType(typedArray)
-        val state = AndesTagChoiceAttrsParser.parseState(typedArray)
-        val rightContent = AndesTagChoiceAttrsParser.parseRightContent(typedArray)
+        val type = parseType(typedArray)
+        val state = parseState(typedArray)
+        val rightContent = parseRightContent(typedArray)
 
         val rightContentData =
                 when (rightContent) {
@@ -54,6 +54,7 @@ internal object AndesTagChoiceAttrsParser {
         return AndesTagChoiceAttrs(
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
                 andesTagChoiceType = type,
+                andesTagChoiceState = state,
                 rightContentData = rightContentData,
                 rightContent = rightContent
         ).also { typedArray.recycle() }
@@ -61,16 +62,16 @@ internal object AndesTagChoiceAttrsParser {
 
     private fun parseState(typedArray: TypedArray): AndesTagChoiceState {
         return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceState)) {
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_STATE_IDLE -> AndesTagChoiceState.IDLE
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_STATE_PRESSED -> AndesTagChoiceState.PRESSED
+            ANDES_CHOICE_TAG_STATE_IDLE -> AndesTagChoiceState.IDLE
+            ANDES_CHOICE_TAG_STATE_SELECTED -> AndesTagChoiceState.SELECTED
             else -> AndesTagChoiceState.IDLE
         }
     }
 
     private fun parseType(typedArray: TypedArray): AndesTagChoiceType {
         return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceType)) {
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceType.SIMPLE
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceType.DROPDOWN
+            ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceType.SIMPLE
+            ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceType.DROPDOWN
             else -> AndesTagChoiceType.SIMPLE
         }
     }
@@ -78,8 +79,8 @@ internal object AndesTagChoiceAttrsParser {
     private fun parseRightContent(typedArray: TypedArray): AndesTagRightContent? {
         // TODO son 4 casos, variando type y state para el rightContent
         return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceType)) {
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagRightContent.CHECK
-            AndesTagChoiceAttrsParser.ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagRightContent.DROPDOWN
+            ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagRightContent.CHECK
+            ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagRightContent.DROPDOWN
             else -> AndesTagRightContent.NONE
         }
     }

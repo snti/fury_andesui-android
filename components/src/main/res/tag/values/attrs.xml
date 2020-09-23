@@ -30,7 +30,7 @@
 
         <attr name="tagChoiceState">
             <enum name="idle" value="6000" />
-            <enum name="pressed" value="6001" />
+            <enum name="selected" value="6001" />
         </attr>
 
         <attr name="tagChoiceText" format="reference" />

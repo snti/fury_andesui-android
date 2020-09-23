@@ -26,7 +26,10 @@ import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.tag.AndesTagChoice
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
+import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
+import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
@@ -243,6 +246,29 @@ class TagShowcaseActivity : AppCompatActivity() {
                 )
             )
             secondColumn.addView(tagSimpleIconDismissable, params)
+
+            val tagChoiceIcon = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceState.IDLE,
+                    "Choice tag"
+            )
+            tagChoiceIcon.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = "#E7E7E7",
+                            icon = drawable,
+                            iconColor = "#8C8C8C"
+                    )
+            )
+            secondColumn.addView(tagChoiceIcon, params)
+
+            val tagChoiceDropdown = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.DROPDOWN,
+                    AndesTagChoiceState.IDLE,
+                    "Choice dropdown"
+            )
+            secondColumn.addView(tagChoiceDropdown, params)
 
             Glide.with(context)
                     .load("https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg")
