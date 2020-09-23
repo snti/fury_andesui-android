@@ -8,12 +8,14 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
-import com.mercadolibre.android.andesui.tag.factory.*
+import com.mercadolibre.android.andesui.tag.factory.AndesChoiceTagConfigurationFactory
+import com.mercadolibre.android.andesui.tag.factory.AndesTagChoiceAttrs
+import com.mercadolibre.android.andesui.tag.factory.AndesTagChoiceAttrsParser
+import com.mercadolibre.android.andesui.tag.factory.AndesTagChoiceConfiguration
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
@@ -110,6 +112,8 @@ class AndesTagChoice : ConstraintLayout {
         andesTagAttrs = AndesTagChoiceAttrs(text, type, state, leftContentData, leftContent)
         if (type == AndesTagChoiceType.DROPDOWN) {
             andesTagAttrs = andesTagAttrs.copy(rightContent = AndesTagRightContent.DROPDOWN)
+        } else if (state == AndesTagChoiceState.SELECTED) {
+            andesTagAttrs = andesTagAttrs.copy(rightContent = AndesTagRightContent.CHECK)
         }
         // TODO manejar casos de check
         val config = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
@@ -199,6 +203,7 @@ class AndesTagChoice : ConstraintLayout {
     }
 
     private fun setupLeftContent(config: AndesTagChoiceConfiguration) {
+        // TODO revisar colores. Si no mandan background o iconColor
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
             leftContent.removeAllViews()

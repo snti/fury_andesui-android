@@ -262,6 +262,21 @@ class TagShowcaseActivity : AppCompatActivity() {
             )
             secondColumn.addView(tagChoiceIcon, params)
 
+            val tagChoiceIconSelected = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice selected"
+            )
+            tagChoiceIconSelected.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = "#E7E7E7",
+                            icon = drawable,
+                            iconColor = "#8C8C8C"
+                    )
+            )
+            secondColumn.addView(tagChoiceIconSelected, params)
+
             val tagChoiceDropdown = AndesTagChoice(
                     context,
                     AndesTagChoiceType.DROPDOWN,
@@ -269,6 +284,14 @@ class TagShowcaseActivity : AppCompatActivity() {
                     "Choice dropdown"
             )
             secondColumn.addView(tagChoiceDropdown, params)
+
+            val tagChoiceDropdownSelected = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.DROPDOWN,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice selected"
+            )
+            secondColumn.addView(tagChoiceDropdownSelected, params)
 
             Glide.with(context)
                     .load("https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg")
