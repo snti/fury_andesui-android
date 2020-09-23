@@ -16,5 +16,7 @@
         </attr>
 
         <attr name="andesBottomSheetButtonText" format="string"/>
+
+        <attr name="andesBottomSheetBackgroundDim" format="boolean"/>
     </declare-styleable>
 </resources>

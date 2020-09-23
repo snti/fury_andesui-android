@@ -9,6 +9,7 @@ import com.mercadolibre.android.andesui.utils.pxToDp
 
 private const val DEFAULT_CORNER_RADIUS = 6
 private const val DEFAULT_PEEK_HEIGHT = 0f
+private const val DEFAULT_BACKGROUND_DIM = false
 
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
@@ -17,7 +18,8 @@ internal data class AndesBottomSheetAttrs(
     val andesBottomSheetState: AndesBottomSheetState,
     val andesBottomSheetTitleText: String?,
     val andesBottomSheetTitleAlignment: AndesBottomSheetTitleAlignment,
-    val andesBottomSheetButtonText: String?
+    val andesBottomSheetButtonText: String?,
+    val andesBottomSheetBackgroundDim: Boolean
 )
 
 internal object AndesBottomSheetAttrsParser {
@@ -56,7 +58,10 @@ internal object AndesBottomSheetAttrsParser {
                 andesBottomSheetState = state,
                 andesBottomSheetTitleText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetTitleText),
                 andesBottomSheetTitleAlignment = titleAling,
-                andesBottomSheetButtonText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetButtonText)
+                andesBottomSheetButtonText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetButtonText),
+                andesBottomSheetBackgroundDim =
+                    typedArray.getBoolean(R.styleable.AndesBottomSheet_andesBottomSHeetBackgroundDim,
+                            DEFAULT_BACKGROUND_DIM)
         ).also { typedArray.recycle() }
     }
 }

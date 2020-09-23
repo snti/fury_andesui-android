@@ -10,7 +10,8 @@ internal data class AndesBottomSheetConfiguration(
     val state: AndesBottomSheetState,
     val titleText: String?,
     val titleAlignment: AndesBottomSheetTitleAlignment,
-    val buttonText: String?
+    val buttonText: String?,
+    val isBackgroundDimEnabled: Boolean
 )
 
 internal object AndesBottomSheetConfigurationFactory {
@@ -23,7 +24,8 @@ internal object AndesBottomSheetConfigurationFactory {
                 state = andesBottomSheetAttrs.andesBottomSheetState,
                 titleText = andesBottomSheetAttrs.andesBottomSheetTitleText,
                 titleAlignment = andesBottomSheetAttrs.andesBottomSheetTitleAlignment,
-                buttonText = andesBottomSheetAttrs.andesBottomSheetButtonText
+                buttonText = andesBottomSheetAttrs.andesBottomSheetButtonText,
+                isBackgroundDimEnabled = andesBottomSheetAttrs.andesBottomSheetBackgroundDim
         )
     }
 }
