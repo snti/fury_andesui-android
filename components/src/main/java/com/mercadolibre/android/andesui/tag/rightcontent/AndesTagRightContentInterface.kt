@@ -59,3 +59,30 @@ internal object AndesTagRightContentDismiss : AndesTagRightContentInterface() {
         return imageView
     }
 }
+
+internal object AndesTagRightContentDropDown : AndesTagRightContentInterface() {
+    override fun leftMargin(context: Context, size: AndesTagSize): Int {
+        return when (size) {
+            AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+        }
+    }
+    override fun rightMargin(context: Context, size: AndesTagSize): Int {
+        return when (size) {
+            AndesTagSize.SMALL -> context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+            else -> context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
+        }
+    }
+    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
+    override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
+    override fun view(context: Context, color: AndesColor, rightContent: RightContent, callback: View.OnClickListener): View {
+        val bitmapDrawable = buildColoredAndesBitmapDrawable(
+                image = IconProvider(context).loadIcon("andes_ui_chevron_down_16") as BitmapDrawable,
+                context = context,
+                color = color
+        )
+        val imageView = ImageView(context)
+        imageView.setImageDrawable(bitmapDrawable)
+        return imageView
+    }
+}
