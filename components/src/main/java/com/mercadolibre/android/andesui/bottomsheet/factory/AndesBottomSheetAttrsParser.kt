@@ -60,7 +60,7 @@ internal object AndesBottomSheetAttrsParser {
                 andesBottomSheetTitleAlignment = titleAling,
                 andesBottomSheetButtonText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetButtonText),
                 andesBottomSheetBackgroundDim =
-                    typedArray.getBoolean(R.styleable.AndesBottomSheet_andesBottomSHeetBackgroundDim,
+                    typedArray.getBoolean(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundDim,
                             DEFAULT_BACKGROUND_DIM)
         ).also { typedArray.recycle() }
     }
