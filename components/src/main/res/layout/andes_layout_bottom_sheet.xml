@@ -63,18 +63,9 @@
                     android:layout_marginTop="@dimen/andes_bottom_sheet_title_bottom_margin"
                     app:layout_goneMarginTop="@dimen/andes_bottom_sheet_frame_view_margin_top"
                     app:layout_constraintTop_toBottomOf="@id/andes_bottom_sheet_title"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-
-                <com.mercadolibre.android.andesui.button.AndesButton
-                    android:id="@+id/andes_bottom_sheet_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/andes_bottom_sheet_default_margin"
-                    android:layout_marginHorizontal="@dimen/andes_bottom_sheet_default_margin"
-                    app:layout_constraintTop_toBottomOf="@id/andes_bottom_sheet_frame_view"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:andesButtonText="Button" />
 
             </android.support.constraint.ConstraintLayout>
 

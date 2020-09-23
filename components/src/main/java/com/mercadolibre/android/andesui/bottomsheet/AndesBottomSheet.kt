@@ -3,7 +3,6 @@ package com.mercadolibre.android.andesui.bottomsheet
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -11,6 +10,7 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.CoordinatorLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -18,14 +18,12 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.bottomsheet.button.BottomSheetButtonListener
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetAttrs
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetAttrsParser
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConfiguration
 import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConfigurationFactory
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
-import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import com.mercadolibre.android.andesui.utils.pxToDp
 
@@ -70,21 +68,9 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
     /**
-     * Getter and Setter for [bottomSheetBackgroundColor]
-     */
-    var bottomSheetBackgroundColor: Int
-        get() = andesBottomSheetAttrs.andesBottomSheetBackgroundColor
-        set(value) {
-            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetBackgroundColor = value)
-            createConfig().also {
-                resolveBottomSheetBackground(it)
-            }
-        }
-
-    /**
      * Getter and Setter for [bottomSheetTitleText]
      */
-    var bottomSheetTitleText: String?
+    var titleText: String?
         get() = andesBottomSheetAttrs.andesBottomSheetTitleText
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleText = value)
@@ -96,7 +82,7 @@ class AndesBottomSheet : CoordinatorLayout {
     /**
      * Getter and Setter for [bottomSheetTitleAlignment]
      */
-    var bottomSheetTitleAlignment: AndesBottomSheetTitleAlignment
+    var titleAlignment: AndesBottomSheetTitleAlignment
         get() = andesBottomSheetAttrs.andesBottomSheetTitleAlignment
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleAlignment = value)
@@ -104,18 +90,6 @@ class AndesBottomSheet : CoordinatorLayout {
                 resolveTitleView(it)
             }
     }
-
-    /**
-     * Getter and Setter for the [bottomSheetButtonText]
-     */
-    var bottomSheetButtonText: String?
-        get() = andesBottomSheetAttrs.andesBottomSheetButtonText
-        set(value) {
-            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetButtonText = value)
-            createConfig().also {
-                resolveBottomSheetButton(it)
-            }
-        }
 
     var isBackgroundDimEnabled: Boolean
         get() = andesBottomSheetAttrs.andesBottomSheetBackgroundDim
@@ -131,20 +105,16 @@ class AndesBottomSheet : CoordinatorLayout {
     private lateinit var frameView: FrameLayout
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
     private lateinit var titleTextView: TextView
-    private lateinit var buttonView: AndesButton
     private lateinit var backgroundDimView: View
     private var listener: BottomSheetListener? = null
-    private var buttonListener: BottomSheetButtonListener? = null
 
     constructor(context: Context) : super(context) {
         initAttrs(
                 DEFAULT_PEEK_HEIGHT,
                 DEFAULT_CORNER_RADIUS.pxToDp(context),
-                DEFAULT_BACKGROUND_COLOR,
                 DEFAULT_BOTTOM_SHEET_STATE,
                 DEFAULT_TITLE,
                 DEFAULT_TITLE_ALIGNMENT,
-                DEFAULT_BUTTON_TEXT,
                 DEFAULT_BACKGROUND_DIM
         )
     }
@@ -154,15 +124,12 @@ class AndesBottomSheet : CoordinatorLayout {
         context: Context,
         peekHeight: Int,
         cornerRadius: Int,
-        backgroundColor: Int,
         state: AndesBottomSheetState,
         title: String,
-        titleAlignment:
-        AndesBottomSheetTitleAlignment,
-        buttonText: String?,
+        titleAlignment: AndesBottomSheetTitleAlignment,
         isBackgroundDimEnabled: Boolean
     ) : super(context) {
-        initAttrs(peekHeight, cornerRadius, backgroundColor, state, title, titleAlignment, buttonText, isBackgroundDimEnabled)
+        initAttrs(peekHeight, cornerRadius, state, title, titleAlignment, isBackgroundDimEnabled)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -179,22 +146,18 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun initAttrs(
         peekHeight: Int,
         cornerRadius: Int,
-        backgroundColor: Int,
         bottomSheetState: AndesBottomSheetState,
         titleText: String?,
         titleAlignment: AndesBottomSheetTitleAlignment,
-        buttonText: String?,
         isBackgroundDimEnabled: Boolean
     ) {
         andesBottomSheetAttrs =
                 AndesBottomSheetAttrs(
                         peekHeight,
                         cornerRadius,
-                        backgroundColor,
                         bottomSheetState,
                         titleText,
                         titleAlignment,
-                        buttonText,
                         isBackgroundDimEnabled
                 )
 
@@ -214,7 +177,6 @@ class AndesBottomSheet : CoordinatorLayout {
         initBottomSheetBehavior()
         resolveBottomSheetState(config)
         resolveTitleView(config)
-        resolveBottomSheetButton(config)
 
         updatePeekHeight()
     }
@@ -227,7 +189,6 @@ class AndesBottomSheet : CoordinatorLayout {
         containerView = layout.findViewById(R.id.andes_bottom_sheet_container)
         frameView = layout.findViewById(R.id.andes_bottom_sheet_frame_view)
         titleTextView = layout.findViewById(R.id.andes_bottom_sheet_title)
-        buttonView = layout.findViewById(R.id.andes_bottom_sheet_button)
         backgroundDimView = layout.findViewById(R.id.andes_bottom_sheet_background_dim)
     }
 
@@ -251,7 +212,7 @@ class AndesBottomSheet : CoordinatorLayout {
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
-        shape.setColor(config.backgroundColor)
+        shape.setColor(ResourcesCompat.getColor(resources, R.color.andes_white, context.theme))
 
         containerView.background = shape
     }
@@ -259,6 +220,7 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun initBottomSheetBehavior() {
         bottomSheetBehavior = BottomSheetBehavior.from(containerView)
         bottomSheetBehavior.setBottomSheetCallback(bottomSheetBehaviorCallback)
+        bottomSheetBehavior.onLayoutChild(this, containerView, View.LAYOUT_DIRECTION_LTR)
     }
 
     private fun resolveBottomSheetState(config: AndesBottomSheetConfiguration) {
@@ -281,19 +243,6 @@ class AndesBottomSheet : CoordinatorLayout {
         when (config.titleAlignment) {
             AndesBottomSheetTitleAlignment.CENTERED -> titleTextView.gravity = Gravity.CENTER
             AndesBottomSheetTitleAlignment.LEFT_ALIGN -> titleTextView.gravity = Gravity.START
-        }
-    }
-
-    private fun resolveBottomSheetButton(config: AndesBottomSheetConfiguration) {
-        if (config.buttonText.isNullOrEmpty()) {
-            buttonView.visibility = View.GONE
-            return
-        }
-
-        buttonView.text = config.buttonText
-        buttonView.visibility = View.VISIBLE
-        buttonView.setOnClickListener {
-            buttonListener?.onBottomSheetButtonClicked()
         }
     }
 
@@ -388,13 +337,6 @@ class AndesBottomSheet : CoordinatorLayout {
         this.listener = listener
     }
 
-    /**
-     * Sets listener to the button click event
-     */
-    fun setBottomSheetButtonListener(listener: BottomSheetButtonListener) {
-        this.buttonListener = listener
-    }
-
     private val bottomSheetBehaviorCallback: BottomSheetBehavior.BottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             when (newState) {
@@ -440,7 +382,6 @@ class AndesBottomSheet : CoordinatorLayout {
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
         private const val DEFAULT_CORNER_RADIUS = 6
-        private const val DEFAULT_BACKGROUND_COLOR = Color.TRANSPARENT
         private const val DEFAULT_BACKGROUND_DIM = false
         private const val DIM_MAX_ALPHA = 1f
         private const val DIM_MIN_ALPHA = 0f
@@ -448,6 +389,5 @@ class AndesBottomSheet : CoordinatorLayout {
         private val DEFAULT_BOTTOM_SHEET_STATE = AndesBottomSheetState.COLLAPSED
         private val DEFAULT_TITLE = null // no title
         private val DEFAULT_TITLE_ALIGNMENT = AndesBottomSheetTitleAlignment.CENTERED
-        private val DEFAULT_BUTTON_TEXT = null // no button
     }
 }

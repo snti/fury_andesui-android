@@ -14,11 +14,9 @@ private const val DEFAULT_BACKGROUND_DIM = false
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
     val andesBottomSheetCornerRadius: Int,
-    val andesBottomSheetBackgroundColor: Int,
     val andesBottomSheetState: AndesBottomSheetState,
     val andesBottomSheetTitleText: String?,
     val andesBottomSheetTitleAlignment: AndesBottomSheetTitleAlignment,
-    val andesBottomSheetButtonText: String?,
     val andesBottomSheetBackgroundDim: Boolean
 )
 
@@ -52,13 +50,9 @@ internal object AndesBottomSheetAttrsParser {
                 andesBottomSheetCornerRadius =
                     typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetCornerRadius,
                             DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()).toInt(),
-                andesBottomSheetBackgroundColor =
-                    typedArray.getColor(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundColor,
-                            context.resources.getColor(R.color.andes_white)),
                 andesBottomSheetState = state,
                 andesBottomSheetTitleText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetTitleText),
                 andesBottomSheetTitleAlignment = titleAling,
-                andesBottomSheetButtonText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetButtonText),
                 andesBottomSheetBackgroundDim =
                     typedArray.getBoolean(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundDim,
                             DEFAULT_BACKGROUND_DIM)
