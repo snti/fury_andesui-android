@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.Toast
 import com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
-import com.mercadolibre.android.andesui.bottomsheet.button.BottomSheetButtonListener
 import com.mercadolibre.android.andesui.bottomsheet.BottomSheetListener
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.mercadolibre.android.andesui.demoapp.R
 
-class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener, BottomSheetButtonListener {
+class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
-    private var showButton = false
     private var showBackgroundDim = false
     private var showTitle = false
     private var leftAlignTitle = false
@@ -51,21 +49,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener, Bo
         bottomSheet.setFragment(supportFragmentManager, TestFragment())
     }
 
-    override fun onBottomSheetButtonClicked() {
-        Toast.makeText(applicationContext, "Button clicked!", Toast.LENGTH_SHORT).show()
-    }
-
-    fun onToggleButtonClicked(view: View) {
-        showButton = !showButton
-
-        if (showButton) {
-            bottomSheet.bottomSheetButtonText = "Toast Please!"
-            bottomSheet.setBottomSheetButtonListener(this)
-        } else {
-            bottomSheet.bottomSheetButtonText = null
-        }
-    }
-
     fun onToggleBackgroundDimButtonClicked(view: View) {
         showBackgroundDim = !showBackgroundDim
         bottomSheet.isBackgroundDimEnabled = showBackgroundDim
@@ -74,17 +57,17 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener, Bo
     fun onToggleTitleClicked(view: View) {
         showTitle = !showTitle
         if (showTitle) {
-            bottomSheet.bottomSheetTitleText = "Hello, I'm Title"
+            bottomSheet.titleText = "Hello, I'm Title"
         } else {
-            bottomSheet.bottomSheetTitleText = null
+            bottomSheet.titleText = null
         }
     }
     fun onToggleAlignButtonClicked(view: View) {
         leftAlignTitle = !leftAlignTitle
         if (leftAlignTitle) {
-            bottomSheet.bottomSheetTitleAlignment = AndesBottomSheetTitleAlignment.LEFT_ALIGN
+            bottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.LEFT_ALIGN
         } else {
-            bottomSheet.bottomSheetTitleAlignment = AndesBottomSheetTitleAlignment.CENTERED
+            bottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.CENTERED
         }
     }
 }

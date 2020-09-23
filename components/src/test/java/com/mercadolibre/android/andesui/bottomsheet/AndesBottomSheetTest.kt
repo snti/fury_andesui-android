@@ -1,6 +1,5 @@
 package com.mercadolibre.android.andesui.bottomsheet
 
-import android.graphics.Color
 import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -9,6 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
+import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.nhaarman.mockitokotlin2.anyOrNull
 import org.junit.Assert.*
 import org.junit.Test
@@ -31,19 +31,31 @@ class AndesBottomSheetTest {
 
         assertEquals(andesBottomSheet.peekHeight, DEFAULT_PEEK_HEIGHT)
         assertEquals(andesBottomSheet.cornerRadius, DEFAULT_CORNER_RADIUS)
-        assertEquals(andesBottomSheet.bottomSheetBackgroundColor, DEFAULT_BACKGROUND_COLOR)
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
+        assertEquals(andesBottomSheet.titleText, null)
+        assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
+        assertEquals(andesBottomSheet.isBackgroundDimEnabled, false)
     }
 
     @Test
     fun `params constructor`() {
         val peekHeight = 250
         val cornerRadius = 25
-        andesBottomSheet = AndesBottomSheet(context, peekHeight, cornerRadius, Color.BLACK, AndesBottomSheetState.EXPANDED)
+        val title = "title"
+        val buttonText = "button"
+
+        andesBottomSheet = AndesBottomSheet(
+                context,
+                peekHeight,
+                cornerRadius,
+                AndesBottomSheetState.EXPANDED,
+                title,
+                AndesBottomSheetTitleAlignment.CENTERED,
+                true
+        )
 
         assertEquals(andesBottomSheet.peekHeight, peekHeight)
         assertEquals(andesBottomSheet.cornerRadius, cornerRadius)
-        assertEquals(andesBottomSheet.bottomSheetBackgroundColor, Color.BLACK)
         assertEquals(andesBottomSheet.state, AndesBottomSheetState.EXPANDED)
     }
 
@@ -194,8 +206,7 @@ class AndesBottomSheetTest {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_CORNER_RADIUS = 0
-        private const val DEFAULT_BACKGROUND_COLOR = Color.TRANSPARENT
+        private const val DEFAULT_CORNER_RADIUS = 6
         private val DEFAULT_BOTTOM_SHEET_STATE = AndesBottomSheetState.COLLAPSED
     }
 }
