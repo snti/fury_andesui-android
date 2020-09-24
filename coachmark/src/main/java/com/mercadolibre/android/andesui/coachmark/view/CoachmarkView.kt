@@ -20,10 +20,7 @@ import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmar
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStep
 import com.mercadolibre.android.andesui.coachmark.model.WalkthroughMessageModel
 import com.mercadolibre.android.andesui.coachmark.presenter.CoachmarkPresenter
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils.ANIMATION_OVERLAY_DURATION
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils.ANIMATION_TOOLTIP_DURARION
 import com.mercadolibre.android.andesui.coachmark.presenter.CoachmarkViewInterface
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils.ANIMATION_SCROLL_DURATION
 import com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage.WalkthroughMessageView
 
 @SuppressWarnings("TooManyFunctions")
@@ -150,9 +147,6 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
 
     private fun scroll(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
-        val stepReferenceHitRect = Rect()
-        stepReferenced.view?.getHitRect(stepReferenceHitRect)
-
         val stepReferenceGlobalRect = Rect()
         stepReferenced.view?.getGlobalVisibleRect(stepReferenceGlobalRect)
 
@@ -168,7 +162,6 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 presenter.resolveScrollMode(
                     stepReferenced,
                     coachmarkOverlayView.height,
-                    stepReferenceHitRect,
                     stepReferenceGlobalRect,
                     overlayRect,
                     walkthroughMessageView.getChildAt(0).height,
@@ -308,7 +301,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     }
 
     override fun getToolbarSize(): Int {
-        return activity.resources.getDimensionPixelSize(R.dimen.andes_coachmark_toolbar)
+        return activity.resources.getDimensionPixelSize(R.dimen.andes_coachmark_toolbar_status_bar)
     }
 
     override fun getTooltipMargin(): Int {
@@ -385,5 +378,11 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
         fun build(): CoachmarkView {
             return CoachmarkView(this)
         }
+    }
+
+    companion object {
+        private const val ANIMATION_TOOLTIP_DURARION = 500L
+        private const val ANIMATION_OVERLAY_DURATION = 400L
+        private const val ANIMATION_SCROLL_DURATION = 1000L
     }
 }

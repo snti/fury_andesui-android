@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import com.mercadolibre.android.andesui.coachmark.R
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils
 
 class ArcArrow @JvmOverloads constructor(
     context: Context,
@@ -42,7 +41,7 @@ class ArcArrow @JvmOverloads constructor(
     init {
         mPaint.style = Paint.Style.STROKE       // set to STOKE
         mPaint.strokeCap = Paint.Cap.ROUND      // set the paint cap to round too
-        mPaint.strokeWidth = ViewUtils.dpToPx(STROKE)
+        mPaint.strokeWidth = context.resources.getDimension(R.dimen.andes_coachmark_stroke_arrow)
         mPaint.isAntiAlias = true
         mPaint.color = ContextCompat.getColor(context, R.color.andes_white)
         rectTooltipF = RectF()
@@ -98,10 +97,20 @@ class ArcArrow @JvmOverloads constructor(
 
         startHeadArrowX = xTarget.toFloat()
         startHeadArrowY = yTooltip.toFloat() + (NUMBER_TWO * radius)
-        endLeftX = xTarget.toFloat() - lengthRadioHeadArrow - ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
-        endLeftY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow + ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
-        endRightX = xTarget.toFloat() + lengthRadioHeadArrow - ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
-        endRightY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow - ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
+        endLeftX = xTarget.toFloat() -
+            lengthRadioHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_small_x_new_position_arrow)
+        endLeftY = yTooltip.toFloat() +
+            (NUMBER_TWO * radius) -
+            lengthHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_large_y_new_position_arrow)
+        endRightX = xTarget.toFloat() +
+            lengthRadioHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_large_x_new_position_arrow)
+        endRightY = yTooltip.toFloat() +
+            (NUMBER_TWO * radius) -
+            lengthHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_small_y_new_position_arrow)
     }
 
     private fun setBottomLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
@@ -128,10 +137,20 @@ class ArcArrow @JvmOverloads constructor(
 
         startHeadArrowX = xTarget.toFloat()
         startHeadArrowY = yTooltip.toFloat() + (NUMBER_TWO * radius)
-        endLeftX = xTarget.toFloat() - lengthRadioHeadArrow + ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
-        endLeftY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow - ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
-        endRightX = xTarget.toFloat() + lengthRadioHeadArrow + ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
-        endRightY = yTooltip.toFloat() + (NUMBER_TWO * radius) - lengthHeadArrow + ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
+        endLeftX = xTarget.toFloat() -
+            lengthRadioHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_large_x_new_position_arrow)
+        endLeftY = yTooltip.toFloat() +
+            (NUMBER_TWO * radius) -
+            lengthHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_small_y_new_position_arrow)
+        endRightX = xTarget.toFloat() +
+            lengthRadioHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_small_x_new_position_arrow)
+        endRightY = yTooltip.toFloat() +
+            (NUMBER_TWO * radius) -
+            lengthHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_large_y_new_position_arrow)
     }
 
     private fun setTopRightArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
@@ -158,10 +177,20 @@ class ArcArrow @JvmOverloads constructor(
 
         startHeadArrowX = xTarget.toFloat()
         startHeadArrowY = yTooltip.toFloat() - (NUMBER_TWO * radius)
-        endLeftX = xTarget.toFloat() - lengthRadioHeadArrow - ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
-        endLeftY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow - ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
-        endRightX = xTarget.toFloat() + lengthRadioHeadArrow - ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
-        endRightY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow + ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
+        endLeftX = xTarget.toFloat() -
+            lengthRadioHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_small_x_new_position_arrow)
+        endLeftY = yTooltip.toFloat() -
+            (NUMBER_TWO * radius) +
+            lengthHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_large_y_new_position_arrow)
+        endRightX = xTarget.toFloat() +
+            lengthRadioHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_large_x_new_position_arrow)
+        endRightY = yTooltip.toFloat() -
+            (NUMBER_TWO * radius) +
+            lengthHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_small_y_new_position_arrow)
     }
 
     private fun setTopLeftArrow(xTooltip: Int, yTooltip: Int, xTarget: Int) {
@@ -188,10 +217,20 @@ class ArcArrow @JvmOverloads constructor(
 
         startHeadArrowX = xTarget.toFloat()
         startHeadArrowY = yTooltip.toFloat() - (NUMBER_TWO * radius)
-        endLeftX = xTarget.toFloat() - lengthRadioHeadArrow + ViewUtils.dpToPx(LARGE_X_NEW_POSITION)
-        endLeftY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow + ViewUtils.dpToPx(SMALL_Y_NEW_POSITION)
-        endRightX = xTarget.toFloat() + lengthRadioHeadArrow + ViewUtils.dpToPx(SMALL_X_NEW_POSITION)
-        endRightY = yTooltip.toFloat() - (NUMBER_TWO * radius) + lengthHeadArrow - ViewUtils.dpToPx(LARGE_Y_NEW_POSITION)
+        endLeftX = xTarget.toFloat() -
+                lengthRadioHeadArrow +
+                context.resources.getDimension(R.dimen.andes_coachmark_large_x_new_position_arrow)
+        endLeftY = yTooltip.toFloat() -
+            (NUMBER_TWO * radius) +
+            lengthHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_small_y_new_position_arrow)
+        endRightX = xTarget.toFloat() +
+            lengthRadioHeadArrow +
+            context.resources.getDimension(R.dimen.andes_coachmark_small_x_new_position_arrow)
+        endRightY = yTooltip.toFloat() -
+            (NUMBER_TWO * radius) +
+            lengthHeadArrow -
+            context.resources.getDimension(R.dimen.andes_coachmark_large_y_new_position_arrow)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -221,8 +260,6 @@ class ArcArrow @JvmOverloads constructor(
     }
 
     companion object {
-        const val STROKE = 1F
-
         const val NUMBER_ONE = 1
         const val NUMBER_TWO = 2
         const val NUMBER_THREE = 3
@@ -233,10 +270,5 @@ class ArcArrow @JvmOverloads constructor(
         const val ANGLE_90 = 90F
         const val ANGLE_180 = 180F
         const val ANGLE_270 = 270F
-
-        const val LARGE_X_NEW_POSITION = 3.26F
-        const val SMALL_X_NEW_POSITION = 2.66F
-        const val LARGE_Y_NEW_POSITION = 2.23F
-        const val SMALL_Y_NEW_POSITION = 1.21F
     }
 }

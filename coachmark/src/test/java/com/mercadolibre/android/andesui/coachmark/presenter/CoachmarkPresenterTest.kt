@@ -46,9 +46,8 @@ class CoachmarkPresenterTest {
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Sexto titulo ", "Si vemos esto es porque scrolleo al fin y estamos al final del coachmark ;)", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Septimo titulo ", "Probando el circulo magico con flecha arriba a la izquierda", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.CIRCLE))
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Octavo titulo ", "Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Volvimos abajo", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Probando scroll hacia arriba", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Undecimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Probando scroll hacia arriba", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", viewReference, AndesWalkthroughCoachmarkStyle.RECTANGLE))
 
         coachmarkModel = AndesWalkthroughCoachmark(stepsNewCoachmark, scrollView) {
             println("Entro al despues de cerrar")
@@ -63,7 +62,6 @@ class CoachmarkPresenterTest {
     @Test
     fun `resolveScrollMode - Draw bottom WalkthroughMessage with space for draw WalkthroughMessage stephighlight full viewed`() {
 
-        val stepReferenceHitRect = Rect(48, 48, 418, 121)
         val stepReferenceGlobalRect = Rect(48, 288, 418, 361)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 404
@@ -76,7 +74,6 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[0],
             HEIGHT_SCREEN,
-            stepReferenceHitRect,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -92,7 +89,6 @@ class CoachmarkPresenterTest {
     @Test
     fun `resolveScrollMode - Draw Top WalkthroughMessage with space for draw WalkthroughMessage stephighlight full viewed`() {
 
-        val stepReferenceHitRect = Rect(48, 1082, 1032, 1226)
         val stepReferenceGlobalRect = Rect(48, 1322, 1032, 1466)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 233
@@ -102,9 +98,8 @@ class CoachmarkPresenterTest {
 
         val presenter = CoachmarkPresenter(view)
         presenter.resolveScrollMode(
-            coachmarkModel.steps[10],
+            coachmarkModel.steps[9],
             HEIGHT_SCREEN,
-            stepReferenceHitRect,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -113,14 +108,13 @@ class CoachmarkPresenterTest {
 
         verify(view).getToolbarSize()
         verify(view).getScrollViewPaddingFromDimen()
-        verify(view).animateScroll(true, 1130, coachmarkModel.steps[10])
+        verify(view).animateScroll(true, 1130, coachmarkModel.steps[9])
         verifyNoMoreInteractions(view)
     }
 
     @Test
     fun `resolveScrollMode - Draw Below WalkthroughMessage with stephighlight not viewed`() {
 
-        val stepReferenceHitRect = Rect(48, 48, 418, 121)
         val stepReferenceGlobalRect = Rect(48, -396, 418, -323)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 404
@@ -132,24 +126,23 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[2],
             HEIGHT_SCREEN,
-            stepReferenceHitRect,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
             WalkthroughMessagePosition.BELOW
         )
 
-        verify(view).getToolbarSize()
-        verify(view).getFooterHeigh()
         verify(view).getScrollViewPaddingFromDimen()
-        verify(view).animateScroll(false, -771, coachmarkModel.steps[2])
+        verify(view).getToolbarSize()
+        verify(view).getTooltipMargin()
+        verify(view).getFooterHeigh()
+        verify(view).animateScroll(false, -1215, coachmarkModel.steps[2])
         verifyNoMoreInteractions(view)
     }
 
     @Test
     fun `resolveScrollMode - Draw Above WalkthroughMessage with stephighlight not viewed`() {
 
-        val stepReferenceHitRect = Rect(48, 1316, 408, 1676)
         val stepReferenceGlobalRect = Rect(48, 1556, 408, 1916)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 680
@@ -162,7 +155,6 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[1],
             HEIGHT_SCREEN,
-            stepReferenceHitRect,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -171,9 +163,10 @@ class CoachmarkPresenterTest {
 
         verify(view).getToolbarSize()
         verify(view).getFooterHeigh()
+        verify(view).getTooltipMargin()
         verify(view).getScrollViewPaddingFromDimen()
         verify(view).setScrollViewPaddings(0, 0, 0, 336)
-        verify(view).animateScroll(false, 444, coachmarkModel.steps[1])
+        verify(view).animateScroll(false, 564, coachmarkModel.steps[1])
         verifyNoMoreInteractions(view)
     }
 

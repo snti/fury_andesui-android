@@ -48,9 +48,8 @@ class TestCoachMarkActivity : AppCompatActivity() {
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Sexto titulo ", "Si vemos esto es porque scrolleo al fin y estamos al final del coachmark ;)", "Siguiente", textoAbajo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Septimo titulo ", "Probando el circulo magico con flecha arriba a la izquierda", "Siguiente", circleAdd, AndesWalkthroughCoachmarkStyle.CIRCLE))
         stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Octavo titulo ", "Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha Probando el circulo magico con flecha arriba a la derecha", "Siguiente", circleRight, AndesWalkthroughCoachmarkStyle.CIRCLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Volvimos abajo", "Siguiente", textoAbajo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Probando scroll hacia arriba", "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
-        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Undecimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", actionButton, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Noveno titulo ", "Probando scroll hacia arriba", "Siguiente", textoLargo, AndesWalkthroughCoachmarkStyle.RECTANGLE))
+        stepsNewCoachmark.add(AndesWalkthroughCoachmarkStep("Decimo titulo ", "Esto sigue en prueba y esta bueno que funcione bien", "Siguiente", actionButton, AndesWalkthroughCoachmarkStyle.RECTANGLE))
 
 
         actionButton.setOnClickListener {

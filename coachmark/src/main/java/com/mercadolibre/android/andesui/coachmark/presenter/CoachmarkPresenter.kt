@@ -4,7 +4,6 @@ import android.graphics.Rect
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStep
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmarkStyle
 import com.mercadolibre.android.andesui.coachmark.model.WalkthroughMessagePosition
-import com.mercadolibre.android.andesui.coachmark.utils.ViewUtils
 
 internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
 
@@ -23,7 +22,6 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
     fun resolveScrollMode(
         stepReferenced: AndesWalkthroughCoachmarkStep,
         heightScreen: Int,
-        stepReferenceHitRect: Rect,
         stepReferenceGlobalRect: Rect,
         bodyGlobalRect: Rect,
         tooltipHeight: Int,
@@ -33,7 +31,7 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
         stepReferenced.view?.let {
             val isBodyMoreBottom = bodyGlobalRect.bottom < stepReferenceGlobalRect.bottom
             if (isBodyMoreBottom || !it.getLocalVisibleRect(bodyGlobalRect) || bodyGlobalRect.height() < it.height) {
-                resolvePartialOrNotViewedReferenceView(stepReferenced, heightScreen, stepReferenceHitRect, tooltipHeight, tooltipPosition)
+                resolvePartialOrNotViewedReferenceView(stepReferenced, heightScreen, stepReferenceGlobalRect, tooltipHeight, tooltipPosition)
             } else {
                 resolveCompleteReferenceView(stepReferenced, heightScreen, stepReferenceGlobalRect, tooltipHeight, tooltipPosition)
             }
@@ -53,16 +51,24 @@ internal class CoachmarkPresenter(private val view: CoachmarkViewInterface) {
 
         var scrollToY = 0
         var paddingScrollView = view.getScrollViewPaddingFromDimen()
+        val toolbarSize = view.getToolbarSize()
+        val tooltipPadding = view.getTooltipMargin()
 
         when {
             tooltipPosition == WalkthroughMessagePosition.ABOVE -> {
-                scrollToY = targetRect.top - view.getToolbarSize() - tooltipHeight
+
+                scrollToY = targetRect.top -
+                    toolbarSize -
+                    tooltipHeight -
+                    tooltipPadding -
+                    paddingScrollView
                 paddingScrollView += view.getFooterHeigh()
                 view.setScrollViewPaddings(0, 0, 0, paddingScrollView)
             }
             tooltipPosition == WalkthroughMessagePosition.BELOW -> {
+
                 scrollToY = targetRect.bottom -
-                    view.getToolbarSize() -
+                    toolbarSize -
                     heightScreen +
                     tooltipHeight +
                     view.getFooterHeigh()
