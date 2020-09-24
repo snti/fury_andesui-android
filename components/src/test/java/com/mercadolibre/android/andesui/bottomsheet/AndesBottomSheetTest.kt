@@ -4,13 +4,16 @@ import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.nhaarman.mockitokotlin2.anyOrNull
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.*
@@ -25,10 +28,13 @@ class AndesBottomSheetTest {
     private var context = RuntimeEnvironment.application
     private lateinit var andesBottomSheet: AndesBottomSheet
 
+    @Before
+    fun setUp() {
+        andesBottomSheet = AndesBottomSheet(context)
+    }
+
     @Test
     fun `only context constructor`() {
-        andesBottomSheet = AndesBottomSheet(context)
-
         assertEquals(andesBottomSheet.peekHeight, DEFAULT_PEEK_HEIGHT)
         assertEquals(andesBottomSheet.cornerRadius, DEFAULT_CORNER_RADIUS)
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
@@ -42,7 +48,6 @@ class AndesBottomSheetTest {
         val peekHeight = 250
         val cornerRadius = 25
         val title = "title"
-        val buttonText = "button"
 
         andesBottomSheet = AndesBottomSheet(
                 context,
@@ -64,7 +69,6 @@ class AndesBottomSheetTest {
         val mockFragment = mock(Fragment::class.java)
         val mockFragmentManager = mockFragmentManager()
 
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.setFragment(mockFragmentManager, mockFragment)
 
         verify(mockFragmentManager).beginTransaction()
@@ -74,7 +78,6 @@ class AndesBottomSheetTest {
     fun `set View should call addView on Frame Layout`() {
         val mockFrameLayout = mock(FrameLayout::class.java)
         val mockView = mock(View::class.java)
-        andesBottomSheet = AndesBottomSheet(context)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
 
         andesBottomSheet.setView(mockView)
@@ -85,7 +88,6 @@ class AndesBottomSheetTest {
     @Test
     fun `removeViews should not call removeAllViews on frameView if no views are attached`() {
         val mockFrameLayout = mock(FrameLayout::class.java)
-        andesBottomSheet = AndesBottomSheet(context)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
         `when`(mockFrameLayout.childCount).thenReturn(0)
 
@@ -97,7 +99,6 @@ class AndesBottomSheetTest {
     @Test
     fun `removeViews should call removeAllViews on frameView if views are attached`() {
         val mockFrameLayout = mock(FrameLayout::class.java)
-        andesBottomSheet = AndesBottomSheet(context)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
         `when`(mockFrameLayout.childCount).thenReturn(1)
 
@@ -108,7 +109,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `expand method should set state to expanded`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.COLLAPSED
 
         andesBottomSheet.expand()
@@ -118,7 +118,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `expand method should set state to expanded even if already expanded`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.EXPANDED
 
         andesBottomSheet.expand()
@@ -128,7 +127,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `collapse method should set state to collapsed`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.EXPANDED
 
         andesBottomSheet.collapse()
@@ -138,7 +136,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `collapse method should set state to collapsed even if already collapsed`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.COLLAPSED
 
         andesBottomSheet.collapse()
@@ -148,7 +145,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `listener should be notified on expand`() {
-        andesBottomSheet = AndesBottomSheet(context)
         val mockListener = mock(BottomSheetListener::class.java)
 
         andesBottomSheet.setBottomSheetListener(mockListener)
@@ -159,7 +155,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `listener should not be notified on expand if already expanded`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.EXPANDED
         val mockListener = mock(BottomSheetListener::class.java)
 
@@ -171,7 +166,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `listener should be notified on collapse`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.EXPANDED
         val mockListener = mock(BottomSheetListener::class.java)
 
@@ -183,7 +177,6 @@ class AndesBottomSheetTest {
 
     @Test
     fun `listener should not be notified on collapse if already collapsed`() {
-        andesBottomSheet = AndesBottomSheet(context)
         andesBottomSheet.state = AndesBottomSheetState.COLLAPSED
         val mockListener = mock(BottomSheetListener::class.java)
 
@@ -191,6 +184,56 @@ class AndesBottomSheetTest {
         andesBottomSheet.collapse()
 
         verify(mockListener, never()).onCollapsed()
+    }
+
+    @Test
+    fun `titleText is not null or empty should show title`() {
+        val mockTextView = mock(TextView::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
+        val text = "title"
+
+        andesBottomSheet.titleText = text
+
+        verify(mockTextView).setVisibility(View.VISIBLE)
+        verify(mockTextView).setText(text)
+    }
+
+    @Test
+    fun `titleText is null should not show title`() {
+        val mockTextView = mock(TextView::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
+        andesBottomSheet.titleText = null
+
+        verify(mockTextView).setVisibility(View.GONE)
+    }
+
+    @Test
+    fun `titleText is null or empty should not show title`() {
+        val mockTextView = mock(TextView::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
+        andesBottomSheet.titleText = ""
+
+        verify(mockTextView).setVisibility(View.GONE)
+    }
+
+    @Test
+    fun `title alignment center should show it centered`() {
+        val mockTextView = mock(TextView::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
+        andesBottomSheet.titleText = "title"
+        andesBottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.CENTERED
+
+        verify(mockTextView).setGravity(Gravity.CENTER)
+    }
+
+    @Test
+    fun `title alignment left should show it left`() {
+        val mockTextView = mock(TextView::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
+        andesBottomSheet.titleText = "title"
+        andesBottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.LEFT_ALIGN
+
+        verify(mockTextView).setGravity(Gravity.START)
     }
 
     private fun mockFragmentManager() : FragmentManager {
