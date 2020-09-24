@@ -34,8 +34,8 @@
          y debemos obtener los nuevos valores de los puntos derecho e izquierdo.
          Para esto vamos a utilizar la siguiente formula:
 
-         x' = x.cos(angulo) - y.sin(andulo)
-         y' = x.sin(angulo) + y.cos(andulo)
+         x' = x.cos(angulo) - y.sin(angulo)
+         y' = x.sin(angulo) + y.cos(angulo)
 
          Punto derecho
          x' = 5.cos(20) - 8.66.sin(20) = 1.74
