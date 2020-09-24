@@ -26,7 +26,7 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowY, 96F)
 
         assertEquals(arcArrow.endLeftX, 231.25998F)
-        assertEquals(arcArrow.endLeftY, 107.20999F)
+        assertEquals(arcArrow.endLeftY, 107.19998F)
         assertEquals(arcArrow.endRightX, 240.65997F)
         assertEquals(arcArrow.endRightY, 103.77002F)
 
@@ -61,7 +61,7 @@ class ArcArrowTest {
         assertEquals(arcArrow.endLeftX, 844.34F)
         assertEquals(arcArrow.endLeftY, 103.77002F)
         assertEquals(arcArrow.endRightX, 853.74F)
-        assertEquals(arcArrow.endRightY, 107.20999F)
+        assertEquals(arcArrow.endRightY, 107.19998F)
 
         assertEquals(arcArrow.linePosition[0], 564F)
         assertEquals(arcArrow.linePosition[1], 120F)
@@ -94,7 +94,7 @@ class ArcArrowTest {
         assertEquals(arcArrow.endLeftX, 844.34F)
         assertEquals(arcArrow.endLeftY, 40.22998F)
         assertEquals(arcArrow.endRightX, 853.74F)
-        assertEquals(arcArrow.endRightY, 36.79001F)
+        assertEquals(arcArrow.endRightY, 36.80002F)
 
         assertEquals(arcArrow.linePosition[0], 564F)
         assertEquals(arcArrow.linePosition[1], 24F)
@@ -125,7 +125,7 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowY, 48F)
 
         assertEquals(arcArrow.endLeftX, 226.25998F)
-        assertEquals(arcArrow.endLeftY, 36.79001F)
+        assertEquals(arcArrow.endLeftY, 36.80002F)
         assertEquals(arcArrow.endRightX, 235.65997F)
         assertEquals(arcArrow.endRightY, 40.22998F)
 
