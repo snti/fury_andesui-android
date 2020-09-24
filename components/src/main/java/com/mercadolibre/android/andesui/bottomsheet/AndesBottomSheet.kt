@@ -68,29 +68,33 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
     /**
-     * Getter and Setter for [bottomSheetTitleText]
+     * Getter and Setter for [bottomSheetTitleText], if this value is null or an empty string no title will be shown
      */
     var titleText: String?
         get() = andesBottomSheetAttrs.andesBottomSheetTitleText
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleText = value)
             createConfig().also {
-                resolveTitleView(it)
+                resolveTitleViewText(it)
             }
         }
 
     /**
-     * Getter and Setter for [bottomSheetTitleAlignment]
+     * Getter and Setter for [bottomSheetTitleAlignment], alternatives: centered and left_aligned
      */
     var titleAlignment: AndesBottomSheetTitleAlignment
         get() = andesBottomSheetAttrs.andesBottomSheetTitleAlignment
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleAlignment = value)
             createConfig().also {
-                resolveTitleView(it)
+                resolveTitleViewAlignment(it)
             }
     }
 
+    /**
+     * Getter and setter for [isBackgroundDimEnabled], this determines if a background filter is shown (with animation)
+     * when the bottomSheet is expanded
+     */
     var isBackgroundDimEnabled: Boolean
         get() = andesBottomSheetAttrs.andesBottomSheetBackgroundDim
         set(value) {
@@ -176,7 +180,8 @@ class AndesBottomSheet : CoordinatorLayout {
         resolveBottomSheetBackground(config)
         initBottomSheetBehavior()
         resolveBottomSheetState(config)
-        resolveTitleView(config)
+        resolveTitleViewText(config)
+        resolveTitleViewAlignment(config)
 
         updatePeekHeight()
     }
@@ -230,7 +235,7 @@ class AndesBottomSheet : CoordinatorLayout {
         }
     }
 
-    private fun resolveTitleView(config: AndesBottomSheetConfiguration) {
+    private fun resolveTitleViewText(config: AndesBottomSheetConfiguration) {
         if (config.titleText.isNullOrEmpty()) {
             titleTextView.visibility = View.GONE
             return
@@ -239,7 +244,9 @@ class AndesBottomSheet : CoordinatorLayout {
         titleTextView.visibility = View.VISIBLE
         titleTextView.text = config.titleText
         titleTextView.typeface = context.getFontOrDefault(R.font.andes_font_semibold)
+    }
 
+    private fun resolveTitleViewAlignment(config: AndesBottomSheetConfiguration) {
         when (config.titleAlignment) {
             AndesBottomSheetTitleAlignment.CENTERED -> titleTextView.gravity = Gravity.CENTER
             AndesBottomSheetTitleAlignment.LEFT_ALIGN -> titleTextView.gravity = Gravity.START
@@ -254,10 +261,9 @@ class AndesBottomSheet : CoordinatorLayout {
         if (!config.isBackgroundDimEnabled) return
         backgroundDimView.setOnClickListener { collapse() }
 
-        if (state == AndesBottomSheetState.EXPANDED) {
-            showBackgroundDim()
-        } else if (state == AndesBottomSheetState.COLLAPSED) {
-            hideBackgroundDim()
+        when(state) {
+            AndesBottomSheetState.EXPANDED -> showBackgroundDim()
+            AndesBottomSheetState.COLLAPSED -> hideBackgroundDim()
         }
     }
 
