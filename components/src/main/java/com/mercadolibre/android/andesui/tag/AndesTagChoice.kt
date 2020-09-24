@@ -39,7 +39,17 @@ class AndesTagChoice : ConstraintLayout {
         get() = andesTagAttrs.andesTagChoiceState
         set(value) {
             andesTagAttrs = andesTagAttrs.copy(andesTagChoiceState = value)
-            setupBackgroundComponents(createConfig())
+            setupComponents(createConfig())
+        }
+
+    /**
+     * Getter and setter for [state].
+     */
+    var type: AndesTagChoiceType
+        get() = andesTagAttrs.andesTagChoiceType
+        set(value) {
+            andesTagAttrs = andesTagAttrs.copy(andesTagChoiceType = value)
+            setupComponents(createConfig())
         }
 
     /**

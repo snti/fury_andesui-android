@@ -58,7 +58,7 @@ internal object AndesTagChoiceAttrsParser {
 
 
         return AndesTagChoiceAttrs(
-                andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
+                andesSimpleTagText = typedArray.getString(R.styleable.AndesTagChoice_tagChoiceText),
                 andesTagChoiceType = type,
                 andesTagChoiceState = state
         ).also { typedArray.recycle() }

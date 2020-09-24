@@ -10,14 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
@@ -84,8 +78,60 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val dinamicMessagesLayout = addDynamicTag(inflater)
             val staticMessagesLayout = addStaticTag(inflater)
+            val staticChoiceMessages = addChoiceStaticTag(inflater)
 
-            return listOf(dinamicMessagesLayout, staticMessagesLayout)
+            return listOf(dinamicMessagesLayout, staticMessagesLayout, staticChoiceMessages)
+        }
+
+        private fun addChoiceStaticTag(inflater: LayoutInflater): View {
+            val layoutTag = inflater.inflate(R.layout.andesui_tags_showcase, null, false) as ScrollView
+            layoutTag.findViewById<AndesButton>(R.id.andesui_demoapp_andes_tag_specs_button).setOnClickListener {
+                launchSpecs(it.context, AndesSpecs.TAG)
+            }
+            val viewTitle: TextView = layoutTag.findViewById(R.id.static_tag_title)
+            viewTitle.text = "Choice tag"
+
+            val firstColumn = layoutTag.findViewById<LinearLayout>(R.id.firstColumn)
+            val secondColumn = layoutTag.findViewById<LinearLayout>(R.id.secondColumn)
+            val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
+            val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(0, 0, 0, context.resources.getDimension(R.dimen.badge_margin_vertical).toInt())
+
+            val tagChoiceIcon = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice tag"
+            )
+            tagChoiceIcon.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconColor = "#8C8C8C"
+                    )
+            )
+            firstColumn.addView(tagChoiceIcon, params)
+
+            val tagChoice = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice tag"
+            )
+            firstColumn.addView(tagChoice, params)
+
+            val tagChoiceDropdown = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.DROPDOWN,
+                    AndesTagChoiceState.IDLE,
+                    "Dropdown"
+            )
+            secondColumn.addView(tagChoiceDropdown, params)
+
+            return layoutTag
         }
 
         @Suppress("LongMethod")
@@ -246,52 +292,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                 )
             )
             secondColumn.addView(tagSimpleIconDismissable, params)
-
-            val tagChoiceIcon = AndesTagChoice(
-                    context,
-                    AndesTagChoiceType.SIMPLE,
-                    AndesTagChoiceState.SELECTED,
-                    "Choice tag"
-            )
-            tagChoiceIcon.leftContent = LeftContent(
-                    icon = LeftContentIcon(
-                            backgroundColor = null,
-                            icon = drawable,
-                            iconColor = "#8C8C8C"
-                    )
-            )
-            secondColumn.addView(tagChoiceIcon, params)
-
-            val tagChoiceIconSelected = AndesTagChoice(
-                    context,
-                    AndesTagChoiceType.SIMPLE,
-                    AndesTagChoiceState.SELECTED,
-                    "Choice selected"
-            )
-            tagChoiceIconSelected.leftContent = LeftContent(
-                    icon = LeftContentIcon(
-                            backgroundColor = null,
-                            icon = drawable,
-                            iconColor = "#8C8C8C"
-                    )
-            )
-            secondColumn.addView(tagChoiceIconSelected, params)
-
-            val tagChoiceDropdown = AndesTagChoice(
-                    context,
-                    AndesTagChoiceType.DROPDOWN,
-                    AndesTagChoiceState.IDLE,
-                    "Dropdown"
-            )
-            secondColumn.addView(tagChoiceDropdown, params)
-
-            val tagChoiceDropdownSelected = AndesTagChoice(
-                    context,
-                    AndesTagChoiceType.DROPDOWN,
-                    AndesTagChoiceState.SELECTED,
-                    "Dropdown selected"
-            )
-            secondColumn.addView(tagChoiceDropdownSelected, params)
 
             Glide.with(context)
                     .load("https://imagenes.universia.net/gc/net/images/gente/f/fr/fra/frases_de_confianza.jpg")
