@@ -260,6 +260,8 @@ class ArcArrow @JvmOverloads constructor(
     }
 
     companion object {
+        const val STROKE = 1F
+
         const val NUMBER_ONE = 1
         const val NUMBER_TWO = 2
         const val NUMBER_THREE = 3

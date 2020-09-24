@@ -25,10 +25,10 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowX, 233F)
         assertEquals(arcArrow.startHeadArrowY, 96F)
 
-        assertEquals(arcArrow.endLeftX, 231.26F)
-        assertEquals(arcArrow.endLeftY, 107.21F)
-        assertEquals(arcArrow.endRightX, 240.66F)
-        assertEquals(arcArrow.endRightY, 103.77F)
+        assertEquals(arcArrow.endLeftX, 231.25998F)
+        assertEquals(arcArrow.endLeftY, 107.20999F)
+        assertEquals(arcArrow.endRightX, 240.65997F)
+        assertEquals(arcArrow.endRightY, 103.77002F)
 
         assertEquals(arcArrow.linePosition[0], 257F)
         assertEquals(arcArrow.linePosition[1], 120F)
@@ -59,9 +59,9 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowY, 96F)
 
         assertEquals(arcArrow.endLeftX, 844.34F)
-        assertEquals(arcArrow.endLeftY, 103.77F)
+        assertEquals(arcArrow.endLeftY, 103.77002F)
         assertEquals(arcArrow.endRightX, 853.74F)
-        assertEquals(arcArrow.endRightY, 107.21F)
+        assertEquals(arcArrow.endRightY, 107.20999F)
 
         assertEquals(arcArrow.linePosition[0], 564F)
         assertEquals(arcArrow.linePosition[1], 120F)
@@ -92,9 +92,9 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowY, 48F)
 
         assertEquals(arcArrow.endLeftX, 844.34F)
-        assertEquals(arcArrow.endLeftY, 40.23F)
+        assertEquals(arcArrow.endLeftY, 40.22998F)
         assertEquals(arcArrow.endRightX, 853.74F)
-        assertEquals(arcArrow.endRightY, 36.79F)
+        assertEquals(arcArrow.endRightY, 36.79001F)
 
         assertEquals(arcArrow.linePosition[0], 564F)
         assertEquals(arcArrow.linePosition[1], 24F)
@@ -124,10 +124,10 @@ class ArcArrowTest {
         assertEquals(arcArrow.startHeadArrowX, 228F)
         assertEquals(arcArrow.startHeadArrowY, 48F)
 
-        assertEquals(arcArrow.endLeftX, 226.26F)
-        assertEquals(arcArrow.endLeftY, 36.79F)
-        assertEquals(arcArrow.endRightX, 235.66F)
-        assertEquals(arcArrow.endRightY, 40.23F)
+        assertEquals(arcArrow.endLeftX, 226.25998F)
+        assertEquals(arcArrow.endLeftY, 36.79001F)
+        assertEquals(arcArrow.endRightX, 235.65997F)
+        assertEquals(arcArrow.endRightY, 40.22998F)
 
         assertEquals(arcArrow.linePosition[0], 252F)
         assertEquals(arcArrow.linePosition[1], 24F)
