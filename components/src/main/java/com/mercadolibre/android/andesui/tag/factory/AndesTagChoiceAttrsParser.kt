@@ -20,10 +20,24 @@ internal data class AndesTagChoiceAttrs(
         val andesTagChoiceType: AndesTagChoiceType,
         val andesTagChoiceState: AndesTagChoiceState,
         val leftContentData: LeftContent? = null,
-        val leftContent: AndesTagLeftContent? = null,
-        val rightContentData: RightContent? = null,
-        val rightContent: AndesTagRightContent? = null
-)
+        val leftContent: AndesTagLeftContent? = null
+
+) {
+    var rightContent: AndesTagRightContent? = null
+
+    init {
+        when(andesTagChoiceType) {
+            AndesTagChoiceType.SIMPLE -> {
+                if (andesTagChoiceState == AndesTagChoiceState.SELECTED) {
+                    rightContent = AndesTagRightContent.CHECK
+                }
+            }
+            AndesTagChoiceType.DROPDOWN -> {
+                rightContent = AndesTagRightContent.DROPDOWN
+            }
+        }
+    }
+}
 
 /**
  * This object parse the attribute set and return an instance of AndesSimpleTagAttrs to be used by AndesSimpleTag
@@ -41,22 +55,12 @@ internal object AndesTagChoiceAttrsParser {
 
         val type = parseType(typedArray)
         val state = parseState(typedArray)
-        val rightContent = parseRightContent(typedArray)
-
-        val rightContentData =
-                when (rightContent) {
-                    AndesTagRightContent.CHECK -> RightContent(RightContentDismiss())
-                    AndesTagRightContent.DROPDOWN -> RightContent(RightContentDismiss())
-                    else -> RightContent(null)
-                }
 
 
         return AndesTagChoiceAttrs(
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagSimple_tagSimpleText),
                 andesTagChoiceType = type,
-                andesTagChoiceState = state,
-                rightContentData = rightContentData,
-                rightContent = rightContent
+                andesTagChoiceState = state
         ).also { typedArray.recycle() }
     }
 
@@ -73,15 +77,6 @@ internal object AndesTagChoiceAttrsParser {
             ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceType.SIMPLE
             ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceType.DROPDOWN
             else -> AndesTagChoiceType.SIMPLE
-        }
-    }
-
-    private fun parseRightContent(typedArray: TypedArray): AndesTagRightContent? {
-        // TODO son 4 casos, variando type y state para el rightContent
-        return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceType)) {
-            ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagRightContent.CHECK
-            ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagRightContent.DROPDOWN
-            else -> AndesTagRightContent.NONE
         }
     }
 }

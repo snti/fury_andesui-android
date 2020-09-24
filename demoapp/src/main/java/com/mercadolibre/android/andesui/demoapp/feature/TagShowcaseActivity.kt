@@ -250,12 +250,12 @@ class TagShowcaseActivity : AppCompatActivity() {
             val tagChoiceIcon = AndesTagChoice(
                     context,
                     AndesTagChoiceType.SIMPLE,
-                    AndesTagChoiceState.IDLE,
+                    AndesTagChoiceState.SELECTED,
                     "Choice tag"
             )
             tagChoiceIcon.leftContent = LeftContent(
                     icon = LeftContentIcon(
-                            backgroundColor = "#E7E7E7",
+                            backgroundColor = null,
                             icon = drawable,
                             iconColor = "#8C8C8C"
                     )
@@ -270,7 +270,7 @@ class TagShowcaseActivity : AppCompatActivity() {
             )
             tagChoiceIconSelected.leftContent = LeftContent(
                     icon = LeftContentIcon(
-                            backgroundColor = "#E7E7E7",
+                            backgroundColor = null,
                             icon = drawable,
                             iconColor = "#8C8C8C"
                     )
@@ -281,7 +281,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     context,
                     AndesTagChoiceType.DROPDOWN,
                     AndesTagChoiceState.IDLE,
-                    "Choice dropdown"
+                    "Dropdown"
             )
             secondColumn.addView(tagChoiceDropdown, params)
 
@@ -289,7 +289,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     context,
                     AndesTagChoiceType.DROPDOWN,
                     AndesTagChoiceState.SELECTED,
-                    "Choice selected"
+                    "Dropdown selected"
             )
             secondColumn.addView(tagChoiceDropdownSelected, params)
 

@@ -90,10 +90,13 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
         }
 
         val imageView = ImageView(context)
-        val shape = GradientDrawable()
-        shape.cornerRadius = border(context)
-        shape.setColor(Color.parseColor(leftContent.icon!!.backgroundColor))
-        imageView.background = shape
+        val background = leftContent.icon!!.backgroundColor
+        if (background != null) {
+            val shape = GradientDrawable()
+            shape.cornerRadius = border(context)
+            shape.setColor(Color.parseColor(background))
+            imageView.background = shape
+        }
 
         val bitmapDrawable = if (!leftContent.icon!!.path.isNullOrEmpty()) {
             IconProvider(context).loadIcon(leftContent.icon!!.path!!) as BitmapDrawable

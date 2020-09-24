@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
 import com.mercadolibre.android.andesui.tag.factory.AndesChoiceTagConfigurationFactory
@@ -50,6 +51,8 @@ class AndesTagChoice : ConstraintLayout {
             andesTagAttrs = andesTagAttrs.copy(andesSimpleTagText = value)
             setupTitleComponent(createConfig())
         }
+
+    private var callback: AndesTagChoiceCallback? = null
 
     /**
      * Getter and setter for [leftContent].
@@ -110,12 +113,6 @@ class AndesTagChoice : ConstraintLayout {
             leftContentData: LeftContent? = null
     ) {
         andesTagAttrs = AndesTagChoiceAttrs(text, type, state, leftContentData, leftContent)
-        if (type == AndesTagChoiceType.DROPDOWN) {
-            andesTagAttrs = andesTagAttrs.copy(rightContent = AndesTagRightContent.DROPDOWN)
-        } else if (state == AndesTagChoiceState.SELECTED) {
-            andesTagAttrs = andesTagAttrs.copy(rightContent = AndesTagRightContent.CHECK)
-        }
-        // TODO manejar casos de check
         val config = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
         setupComponents(config)
     }
@@ -135,6 +132,24 @@ class AndesTagChoice : ConstraintLayout {
         setupTitleComponent(config)
         setupLeftContent(config)
         setupRightContent(config)
+
+        containerTag.setOnClickListener {
+            onTagClick()
+        }
+    }
+
+    private fun onTagClick() {
+        val result = callback?.shouldSelectTag(this) ?: true
+        if (result) {
+            state = if (state == AndesTagChoiceState.SELECTED) {
+                AndesTagChoiceState.IDLE
+            } else {
+                AndesTagChoiceState.SELECTED
+            }
+        }
+
+        andesTagAttrs = andesTagAttrs.copy(andesTagChoiceState = state)
+        setupComponents(createConfig())
     }
 
     /**
@@ -204,6 +219,7 @@ class AndesTagChoice : ConstraintLayout {
 
     private fun setupLeftContent(config: AndesTagChoiceConfiguration) {
         // TODO revisar colores. Si no mandan background o iconColor
+        // TODO revisar margenes
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
             leftContent.removeAllViews()
