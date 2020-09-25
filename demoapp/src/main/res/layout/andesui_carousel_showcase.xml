@@ -5,22 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+   <android.support.v7.widget.Toolbar
+       android:id="@+id/andesui_nav_bar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="?attr/colorPrimary"
+       app:layout_constraintTop_toTopOf="parent"
+       app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+       app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
    <com.mercadolibre.android.andesui.carousel.AndesCarousel
        android:id="@+id/carouselMain"
        android:layout_width="match_parent"
        android:layout_height="200dp"
+       android:layout_marginTop="24dp"
        app:andesCarouselCenter="true"
-       app:layout_constraintBottom_toTopOf="@id/carouselMain2"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
+       app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
 
-   <com.mercadolibre.android.andesui.carousel.AndesCarousel
-       android:id="@+id/carouselMain2"
-       android:layout_width="match_parent"
-       android:layout_height="200dp"
-       app:andesCarouselCenter="true"
-       app:layout_constraintTop_toBottomOf="@+id/carouselMain"
-       app:layout_constraintBottom_toBottomOf="parent"/>
+   <Spinner
+       android:id="@+id/centerSpinner"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="24dp"
+       android:layout_marginStart="24dp"
+       app:layout_constraintEnd_toStartOf="@id/paddingSpinner"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/carouselMain" />
+
+   <Spinner
+       android:id="@+id/paddingSpinner"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="24dp"
+       android:layout_marginEnd="24dp"
+       app:layout_constraintStart_toEndOf="@id/centerSpinner"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/carouselMain" />
+
+   <com.mercadolibre.android.andesui.button.AndesButton
+       android:id="@+id/updateButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="24dp"
+       app:andesButtonText="@string/andes_message_showcase_change"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/paddingSpinner" />
+
 
 </android.support.constraint.ConstraintLayout>

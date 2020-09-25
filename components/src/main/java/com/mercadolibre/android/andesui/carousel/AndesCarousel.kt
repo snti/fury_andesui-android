@@ -24,6 +24,8 @@ class AndesCarousel : ConstraintLayout {
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var andesCarouselDelegate: AndesCarouselDelegate
+    private lateinit var paddingItemDecoration: AndesCarouselPaddingItemDecoration
+    private lateinit var snapHelper: PagerSnapHelper
 
     /**
      * Getter and setter for [type].
@@ -33,6 +35,13 @@ class AndesCarousel : ConstraintLayout {
         set(value) {
             andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselPadding = value)
             setupPaddingRecyclerView(createConfig())
+        }
+
+    var center: Boolean
+        get() = andesCarouselAttrs.andesCarouselCenter
+        set(value) {
+            andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselCenter = value)
+            setupCenterRecyclerView(createConfig())
         }
 
     var delegate: AndesCarouselDelegate
@@ -91,6 +100,8 @@ class AndesCarousel : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_carousel, this)
         recyclerViewComponent = container.findViewById(R.id.andes_carousel_recyclerview)
+        paddingItemDecoration = AndesCarouselPaddingItemDecoration(createConfig().padding)
+        snapHelper = PagerSnapHelper()
     }
 
     private fun updateDynamicComponents(config: AndesCarouselConfiguration) {
@@ -98,24 +109,35 @@ class AndesCarousel : ConstraintLayout {
     }
 
     private fun updateComponentsAlignment(config: AndesCarouselConfiguration) {
+        setupCenterRecyclerView(config)
         setupPaddingRecyclerView(config)
     }
 
     private fun setupRecyclerViewComponent(config: AndesCarouselConfiguration) {
         viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewComponent.layoutManager = viewManager
-
-        if (config.center) {
-            PagerSnapHelper().attachToRecyclerView(recyclerViewComponent)
-        }
-
         recyclerViewComponent.overScrollMode = View.OVER_SCROLL_NEVER
         recyclerViewComponent.clipToPadding = false
-        recyclerViewComponent.setPadding(getPaddingRecyclerView(), 0, getPaddingRecyclerView(), 0)
+    }
+
+    private fun setupCenterRecyclerView(config: AndesCarouselConfiguration) {
+        if (config.center) {
+            snapHelper.attachToRecyclerView(recyclerViewComponent)
+        } else {
+            snapHelper.attachToRecyclerView(null)
+        }
     }
 
     private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
-        recyclerViewComponent.addItemDecoration(AndesCarouselPaddingItemDecoration(config.padding))
+        if (recyclerViewComponent.itemDecorationCount != 0) {
+            recyclerViewComponent.removeItemDecoration(paddingItemDecoration)
+        }
+
+        paddingItemDecoration = AndesCarouselPaddingItemDecoration(config.padding)
+        recyclerViewComponent.addItemDecoration(paddingItemDecoration)
+
+        val padding = getPaddingRecyclerView()
+        recyclerViewComponent.setPadding(padding, 0, padding, 0)
     }
 
     /**
@@ -129,9 +151,14 @@ class AndesCarousel : ConstraintLayout {
 
     private fun createConfig() = AndesCarouselConfigurationFactory.create(context, andesCarouselAttrs)
 
-    private fun getPaddingRecyclerView() = (context.resources.displayMetrics.widthPixels * PERCENTAGE).toInt()
+    private fun getPaddingRecyclerView() =
+        if (andesCarouselAttrs.andesCarouselPadding != AndesCarouselPadding.NONE)
+            (context.resources.displayMetrics.widthPixels * PERCENTAGE).toInt()
+        else
+           ZERO
 
     companion object {
         const val PERCENTAGE = 0.10
+        const val ZERO = 0
     }
 }

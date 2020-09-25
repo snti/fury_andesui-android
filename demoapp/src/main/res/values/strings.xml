@@ -75,6 +75,7 @@
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
+    <string name="andesui_demoapp_screen_carousel">Andes UI: Carousel</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
     <string name="andesui_demoapp_screen_radiobutton">Andes UI: RadioButton</string>
@@ -366,6 +367,18 @@
 
     <string-array name="thumbnail_type_spinner">
         <item>Icon</item>
+    </string-array>
+
+    <string-array name="carousel_padding_spinner">
+        <item>None</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="carousel_center_spinner">
+        <item>False</item>
+        <item>True</item>
     </string-array>
 
 </resources>
