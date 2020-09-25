@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.bottomsheet
 
 import android.os.Build
+import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
@@ -23,7 +24,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP] )
+@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesBottomSheetTest {
     private var context = RuntimeEnvironment.application
     private lateinit var andesBottomSheet: AndesBottomSheet
@@ -236,7 +237,42 @@ class AndesBottomSheetTest {
         verify(mockTextView).setGravity(Gravity.START)
     }
 
-    private fun mockFragmentManager() : FragmentManager {
+    @Test
+    fun `when background dim enabled and state expanded should show background dim`() {
+        val mockView = mock(View::class.java)
+        mockView.visibility = View.GONE
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("backgroundDimView"), mockView)
+        andesBottomSheet.isBackgroundDimEnabled = true
+
+        andesBottomSheet.expand()
+
+        verify(mockView).setVisibility(View.VISIBLE)
+    }
+
+    @Test
+    fun `when background dim disabled and state expanded should not show background dim`() {
+        val mockView = mock(View::class.java)
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("backgroundDimView"), mockView)
+        andesBottomSheet.isBackgroundDimEnabled = false
+
+        andesBottomSheet.expand()
+
+        verify(mockView, never()).setVisibility(View.VISIBLE)
+    }
+
+    @Test
+    fun `when set peek height then should update bottom sheet behavior peek height`() {
+        val mockBottomSheetBehavior = mock(BottomSheetBehavior::class.java)
+        val newPeekHeight = 300
+        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("bottomSheetBehavior"), mockBottomSheetBehavior)
+
+        andesBottomSheet.peekHeight = newPeekHeight
+
+        verify(mockBottomSheetBehavior).setPeekHeight(newPeekHeight)
+    }
+
+
+    private fun mockFragmentManager(): FragmentManager {
         val fragmentTransaction = mock(FragmentTransaction::class.java)
         `when`(fragmentTransaction.replace(anyOrNull(), any(Fragment::class.java))).thenReturn(fragmentTransaction)
         `when`(fragmentTransaction.commit()).thenReturn(0)

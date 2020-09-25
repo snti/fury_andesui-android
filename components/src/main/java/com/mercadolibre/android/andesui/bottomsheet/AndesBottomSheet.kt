@@ -39,7 +39,7 @@ class AndesBottomSheet : CoordinatorLayout {
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetPeekHeight = value)
             createConfig().also {
-                updatePeekHeight()
+                updatePeekHeight(it)
             }
         }
 
@@ -183,7 +183,7 @@ class AndesBottomSheet : CoordinatorLayout {
         resolveTitleViewText(config)
         resolveTitleViewAlignment(config)
 
-        updatePeekHeight()
+        updatePeekHeight(config)
     }
 
     /**
@@ -253,8 +253,8 @@ class AndesBottomSheet : CoordinatorLayout {
         }
     }
 
-    private fun updatePeekHeight() {
-        bottomSheetBehavior.peekHeight = peekHeight
+    private fun updatePeekHeight(config: AndesBottomSheetConfiguration) {
+        bottomSheetBehavior.peekHeight = config.peekHeight
     }
 
     private fun resolveBackgroundDim(config: AndesBottomSheetConfiguration) {
