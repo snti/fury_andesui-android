@@ -44,18 +44,6 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
     /**
-     * Getter and Setter for [cornerRadius] of the bottomSheet
-     */
-    var cornerRadius: Int
-        get() = andesBottomSheetAttrs.andesBottomSheetCornerRadius
-        set(value) {
-            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetCornerRadius = value)
-            createConfig().also {
-                resolveBottomSheetBackground(it)
-            }
-        }
-
-    /**
      * Getter and Setter for [state]
      */
     var state: AndesBottomSheetState
@@ -115,7 +103,6 @@ class AndesBottomSheet : CoordinatorLayout {
     constructor(context: Context) : super(context) {
         initAttrs(
                 DEFAULT_PEEK_HEIGHT,
-                DEFAULT_CORNER_RADIUS.pxToDp(context),
                 DEFAULT_BOTTOM_SHEET_STATE,
                 DEFAULT_TITLE,
                 DEFAULT_TITLE_ALIGNMENT,
@@ -127,13 +114,12 @@ class AndesBottomSheet : CoordinatorLayout {
     constructor(
         context: Context,
         peekHeight: Int,
-        cornerRadius: Int,
         state: AndesBottomSheetState,
         title: String,
         titleAlignment: AndesBottomSheetTitleAlignment,
         isBackgroundDimEnabled: Boolean
     ) : super(context) {
-        initAttrs(peekHeight, cornerRadius, state, title, titleAlignment, isBackgroundDimEnabled)
+        initAttrs(peekHeight, state, title, titleAlignment, isBackgroundDimEnabled)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -149,7 +135,6 @@ class AndesBottomSheet : CoordinatorLayout {
 
     private fun initAttrs(
         peekHeight: Int,
-        cornerRadius: Int,
         bottomSheetState: AndesBottomSheetState,
         titleText: String?,
         titleAlignment: AndesBottomSheetTitleAlignment,
@@ -158,7 +143,6 @@ class AndesBottomSheet : CoordinatorLayout {
         andesBottomSheetAttrs =
                 AndesBottomSheetAttrs(
                         peekHeight,
-                        cornerRadius,
                         bottomSheetState,
                         titleText,
                         titleAlignment,
@@ -177,11 +161,12 @@ class AndesBottomSheet : CoordinatorLayout {
         setupViewId()
 
         resolveBottomSheetParams()
-        resolveBottomSheetBackground(config)
+        resolveBottomSheetBackground()
         initBottomSheetBehavior()
         resolveBottomSheetState(config)
         resolveTitleViewText(config)
         resolveTitleViewAlignment(config)
+        resolveBackgroundDim(config)
 
         updatePeekHeight(config)
     }
@@ -212,8 +197,8 @@ class AndesBottomSheet : CoordinatorLayout {
         params.behavior = BottomSheetBehavior<FrameLayout>()
     }
 
-    private fun resolveBottomSheetBackground(config: AndesBottomSheetConfiguration) {
-        val cornerRadius = config.cornerRadius.toFloat()
+    private fun resolveBottomSheetBackground() {
+        val cornerRadius = DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
@@ -225,7 +210,6 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun initBottomSheetBehavior() {
         bottomSheetBehavior = BottomSheetBehavior.from(containerView)
         bottomSheetBehavior.setBottomSheetCallback(bottomSheetBehaviorCallback)
-        bottomSheetBehavior.onLayoutChild(this, containerView, View.LAYOUT_DIRECTION_LTR)
     }
 
     private fun resolveBottomSheetState(config: AndesBottomSheetConfiguration) {

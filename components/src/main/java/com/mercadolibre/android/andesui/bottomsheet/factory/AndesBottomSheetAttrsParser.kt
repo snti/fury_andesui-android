@@ -5,15 +5,12 @@ import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
-import com.mercadolibre.android.andesui.utils.pxToDp
 
-private const val DEFAULT_CORNER_RADIUS = 6
 private const val DEFAULT_PEEK_HEIGHT = 0f
 private const val DEFAULT_BACKGROUND_DIM = false
 
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
-    val andesBottomSheetCornerRadius: Int,
     val andesBottomSheetState: AndesBottomSheetState,
     val andesBottomSheetTitleText: String?,
     val andesBottomSheetTitleAlignment: AndesBottomSheetTitleAlignment,
@@ -47,9 +44,6 @@ internal object AndesBottomSheetAttrsParser {
                 andesBottomSheetPeekHeight =
                     typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetPeekHeight,
                             DEFAULT_PEEK_HEIGHT).toInt(),
-                andesBottomSheetCornerRadius =
-                    typedArray.getDimension(R.styleable.AndesBottomSheet_andesBottomSheetCornerRadius,
-                            DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()).toInt(),
                 andesBottomSheetState = state,
                 andesBottomSheetTitleText = typedArray.getString(R.styleable.AndesBottomSheet_andesBottomSheetTitleText),
                 andesBottomSheetTitleAlignment = titleAling,

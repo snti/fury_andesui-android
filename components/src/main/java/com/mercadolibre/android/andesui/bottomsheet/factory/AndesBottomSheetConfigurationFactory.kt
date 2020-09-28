@@ -5,7 +5,6 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 
 internal data class AndesBottomSheetConfiguration(
     val peekHeight: Int,
-    val cornerRadius: Int,
     val state: AndesBottomSheetState,
     val titleText: String?,
     val titleAlignment: AndesBottomSheetTitleAlignment,
@@ -17,7 +16,6 @@ internal object AndesBottomSheetConfigurationFactory {
     fun create(andesBottomSheetAttrs: AndesBottomSheetAttrs): AndesBottomSheetConfiguration {
         return AndesBottomSheetConfiguration(
                 peekHeight = andesBottomSheetAttrs.andesBottomSheetPeekHeight,
-                cornerRadius = andesBottomSheetAttrs.andesBottomSheetCornerRadius,
                 state = andesBottomSheetAttrs.andesBottomSheetState,
                 titleText = andesBottomSheetAttrs.andesBottomSheetTitleText,
                 titleAlignment = andesBottomSheetAttrs.andesBottomSheetTitleAlignment,

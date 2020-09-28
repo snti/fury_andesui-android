@@ -37,7 +37,6 @@ class AndesBottomSheetTest {
     @Test
     fun `only context constructor`() {
         assertEquals(andesBottomSheet.peekHeight, DEFAULT_PEEK_HEIGHT)
-        assertEquals(andesBottomSheet.cornerRadius, DEFAULT_CORNER_RADIUS)
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
         assertEquals(andesBottomSheet.titleText, null)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
@@ -47,13 +46,11 @@ class AndesBottomSheetTest {
     @Test
     fun `params constructor`() {
         val peekHeight = 250
-        val cornerRadius = 25
         val title = "title"
 
         andesBottomSheet = AndesBottomSheet(
                 context,
                 peekHeight,
-                cornerRadius,
                 AndesBottomSheetState.EXPANDED,
                 title,
                 AndesBottomSheetTitleAlignment.CENTERED,
@@ -61,8 +58,10 @@ class AndesBottomSheetTest {
         )
 
         assertEquals(andesBottomSheet.peekHeight, peekHeight)
-        assertEquals(andesBottomSheet.cornerRadius, cornerRadius)
         assertEquals(andesBottomSheet.state, AndesBottomSheetState.EXPANDED)
+        assertEquals(andesBottomSheet.titleText, title)
+        assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
+        assertEquals(andesBottomSheet.isBackgroundDimEnabled, true)
     }
 
     @Test
@@ -285,7 +284,6 @@ class AndesBottomSheetTest {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_CORNER_RADIUS = 6
         private val DEFAULT_BOTTOM_SHEET_STATE = AndesBottomSheetState.COLLAPSED
     }
 }
