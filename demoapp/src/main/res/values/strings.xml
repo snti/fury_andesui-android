@@ -165,7 +165,6 @@
 
     <string name="andesui_demoapp_tag_size">Size</string>
     <string name="andesui_demoapp_tag_type">Type</string>
-    <string name="andesui_demoapp_tag_choice_type">Choice Type</string>
     <string name="andesui_demoapp_tag_leftcontent">Left content</string>
     <string name="andesui_demoapp_tag_background_color">Background color</string>
     <string name="andesui_demoapp_tag_text_color">Text color</string>
