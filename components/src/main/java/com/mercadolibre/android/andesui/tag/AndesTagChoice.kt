@@ -13,8 +13,8 @@ import android.view.View
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
+import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
+import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
 import com.mercadolibre.android.andesui.tag.factory.AndesChoiceTagConfigurationFactory
 import com.mercadolibre.android.andesui.tag.factory.AndesTagChoiceAttrs
 import com.mercadolibre.android.andesui.tag.factory.AndesTagChoiceAttrsParser
@@ -42,12 +42,12 @@ class AndesTagChoice : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for [state].
+     * Getter and setter for [mode].
      */
-    var type: AndesTagChoiceType
-        get() = andesTagAttrs.andesTagChoiceType
+    var mode: AndesTagChoiceMode
+        get() = andesTagAttrs.andesTagChoiceMode
         set(value) {
-            andesTagAttrs = andesTagAttrs.copy(andesTagChoiceType = value)
+            andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = value)
             setupRightContent(createConfig())
         }
 
@@ -100,26 +100,19 @@ class AndesTagChoice : ConstraintLayout {
             setupTitleComponent(config)
         }
 
-    @Suppress("unused")
-    private constructor(context: Context) : super(context) {
-        throw IllegalStateException(
-                "Constructor without parameters in Andes Badge is not allowed. You must provide some attributes."
-        )
-    }
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
 
     @Suppress("unused")
     constructor(
-        context: Context,
-        type: AndesTagChoiceType = TYPE_DEFAULT,
-        size: AndesTagSize = SIZE_DEFAULT,
-        state: AndesTagChoiceState = STATE_DEFAULT,
-        text: String? = TEXT_DEFAULT
+            context: Context,
+            mode: AndesTagChoiceMode = TYPE_DEFAULT,
+            size: AndesTagSize = SIZE_DEFAULT,
+            state: AndesTagChoiceState = STATE_DEFAULT,
+            text: String? = TEXT_DEFAULT
     ) : super(context) {
-        initAttrs(type, size, state, text)
+        initAttrs(mode, size, state, text)
     }
 
     /**
@@ -133,14 +126,14 @@ class AndesTagChoice : ConstraintLayout {
     }
 
     private fun initAttrs(
-        type: AndesTagChoiceType,
-        size: AndesTagSize,
-        state: AndesTagChoiceState,
-        text: String?,
-        leftContent: AndesTagLeftContent? = null,
-        leftContentData: LeftContent? = null
+            mode: AndesTagChoiceMode,
+            size: AndesTagSize,
+            state: AndesTagChoiceState,
+            text: String?,
+            leftContent: AndesTagLeftContent? = null,
+            leftContentData: LeftContent? = null
     ) {
-        andesTagAttrs = AndesTagChoiceAttrs(text, type, size, state, leftContentData, leftContent)
+        andesTagAttrs = AndesTagChoiceAttrs(text, mode, size, state, leftContentData, leftContent)
         val config = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
         setupComponents(config)
     }
@@ -284,7 +277,7 @@ class AndesTagChoice : ConstraintLayout {
     private fun createConfig() = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
 
     companion object {
-        private val TYPE_DEFAULT = AndesTagChoiceType.SIMPLE
+        private val TYPE_DEFAULT = AndesTagChoiceMode.SIMPLE
         private val STATE_DEFAULT = AndesTagChoiceState.IDLE
         private val SIZE_DEFAULT = AndesTagSize.LARGE
         private val TEXT_DEFAULT = null

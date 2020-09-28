@@ -90,7 +90,7 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
         }
 
         val imageView = ImageView(context)
-        val background = leftContent.icon!!.backgroundColor
+        val background = leftContent.icon?.backgroundColor
         if (background != null) {
             val shape = GradientDrawable()
             shape.cornerRadius = border(context)

@@ -29,8 +29,8 @@ import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.tag.AndesTagChoice
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
+import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
+import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
@@ -109,7 +109,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val tagChoiceIcon = AndesTagChoice(
                     context,
-                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.SELECTED,
                     "Choice tag"
@@ -125,7 +125,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val tagChoice = AndesTagChoice(
                     context,
-                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.IDLE,
                     "Choice tag"
@@ -134,7 +134,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val tagChoiceSmall = AndesTagChoice(
                     context,
-                    AndesTagChoiceType.SIMPLE,
+                    AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.SMALL,
                     AndesTagChoiceState.SELECTED,
                     "Choice tag"
@@ -143,7 +143,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             val tagChoiceDropdown = AndesTagChoice(
                     context,
-                    AndesTagChoiceType.DROPDOWN,
+                    AndesTagChoiceMode.DROPDOWN,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.IDLE,
                     "Dropdown"

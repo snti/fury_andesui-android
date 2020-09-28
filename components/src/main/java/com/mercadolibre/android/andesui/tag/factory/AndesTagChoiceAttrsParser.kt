@@ -4,13 +4,11 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
-import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceType
+import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
+import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
-import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
-import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 
 /**
@@ -18,7 +16,7 @@ import com.mercadolibre.android.andesui.tag.size.AndesTagSize
  */
 internal data class AndesTagChoiceAttrs(
         val andesSimpleTagText: String?,
-        val andesTagChoiceType: AndesTagChoiceType,
+        val andesTagChoiceMode: AndesTagChoiceMode,
         val andesTagSize: AndesTagSize,
         val andesTagChoiceState: AndesTagChoiceState,
         val leftContentData: LeftContent? = null,
@@ -28,13 +26,13 @@ internal data class AndesTagChoiceAttrs(
     var rightContent: AndesTagRightContent? = null
 
     init {
-        when(andesTagChoiceType) {
-            AndesTagChoiceType.SIMPLE -> {
+        when(andesTagChoiceMode) {
+            AndesTagChoiceMode.SIMPLE -> {
                 if (andesTagChoiceState == AndesTagChoiceState.SELECTED) {
                     rightContent = AndesTagRightContent.CHECK
                 }
             }
-            AndesTagChoiceType.DROPDOWN -> {
+            AndesTagChoiceMode.DROPDOWN -> {
                 rightContent = AndesTagRightContent.DROPDOWN
             }
         }
@@ -64,7 +62,7 @@ internal object AndesTagChoiceAttrsParser {
 
         return AndesTagChoiceAttrs(
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagChoice_tagChoiceText),
-                andesTagChoiceType = type,
+                andesTagChoiceMode = type,
                 andesTagSize = size,
                 andesTagChoiceState = state
         ).also { typedArray.recycle() }
@@ -78,11 +76,11 @@ internal object AndesTagChoiceAttrsParser {
         }
     }
 
-    private fun parseType(typedArray: TypedArray): AndesTagChoiceType {
+    private fun parseType(typedArray: TypedArray): AndesTagChoiceMode {
         return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceType)) {
-            ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceType.SIMPLE
-            ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceType.DROPDOWN
-            else -> AndesTagChoiceType.SIMPLE
+            ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceMode.SIMPLE
+            ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceMode.DROPDOWN
+            else -> AndesTagChoiceMode.SIMPLE
         }
     }
 
