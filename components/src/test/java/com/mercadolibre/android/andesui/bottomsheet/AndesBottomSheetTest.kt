@@ -144,49 +144,6 @@ class AndesBottomSheetTest {
     }
 
     @Test
-    fun `listener should be notified on expand`() {
-        val mockListener = mock(BottomSheetListener::class.java)
-
-        andesBottomSheet.setBottomSheetListener(mockListener)
-        andesBottomSheet.expand()
-
-        verify(mockListener).onExpanded()
-    }
-
-    @Test
-    fun `listener should not be notified on expand if already expanded`() {
-        andesBottomSheet.state = AndesBottomSheetState.EXPANDED
-        val mockListener = mock(BottomSheetListener::class.java)
-
-        andesBottomSheet.setBottomSheetListener(mockListener)
-        andesBottomSheet.expand()
-
-        verify(mockListener, never()).onExpanded()
-    }
-
-    @Test
-    fun `listener should be notified on collapse`() {
-        andesBottomSheet.state = AndesBottomSheetState.EXPANDED
-        val mockListener = mock(BottomSheetListener::class.java)
-
-        andesBottomSheet.setBottomSheetListener(mockListener)
-        andesBottomSheet.collapse()
-
-        verify(mockListener).onCollapsed()
-    }
-
-    @Test
-    fun `listener should not be notified on collapse if already collapsed`() {
-        andesBottomSheet.state = AndesBottomSheetState.COLLAPSED
-        val mockListener = mock(BottomSheetListener::class.java)
-
-        andesBottomSheet.setBottomSheetListener(mockListener)
-        andesBottomSheet.collapse()
-
-        verify(mockListener, never()).onCollapsed()
-    }
-
-    @Test
     fun `titleText is not null or empty should show title`() {
         val mockTextView = mock(TextView::class.java)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("titleTextView"), mockTextView)
@@ -234,18 +191,6 @@ class AndesBottomSheetTest {
         andesBottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.LEFT_ALIGN
 
         verify(mockTextView).setGravity(Gravity.START)
-    }
-
-    @Test
-    fun `when background dim enabled and state expanded should show background dim`() {
-        val mockView = mock(View::class.java)
-        mockView.visibility = View.GONE
-        FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("backgroundDimView"), mockView)
-        andesBottomSheet.isBackgroundDimEnabled = true
-
-        andesBottomSheet.expand()
-
-        verify(mockView).setVisibility(View.VISIBLE)
     }
 
     @Test
