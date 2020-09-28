@@ -11,6 +11,7 @@ import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
+import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 
 /**
  * The data class that contains the public components of the tag.
@@ -18,6 +19,7 @@ import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
 internal data class AndesTagChoiceAttrs(
         val andesSimpleTagText: String?,
         val andesTagChoiceType: AndesTagChoiceType,
+        val andesTagSize: AndesTagSize,
         val andesTagChoiceState: AndesTagChoiceState,
         val leftContentData: LeftContent? = null,
         val leftContent: AndesTagLeftContent? = null
@@ -50,16 +52,20 @@ internal object AndesTagChoiceAttrsParser {
     private const val ANDES_CHOICE_TAG_STATE_IDLE = "6000"
     private const val ANDES_CHOICE_TAG_STATE_SELECTED = "6001"
 
+    private const val ANDES_TAG_SIZE_LARGE = "7000"
+    private const val ANDES_TAG_SIZE_SMALL = "7001"
+
     fun parse(context: Context, attr: AttributeSet?): AndesTagChoiceAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTagChoice)
 
         val type = parseType(typedArray)
+        val size = parseSize(typedArray)
         val state = parseState(typedArray)
-
 
         return AndesTagChoiceAttrs(
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagChoice_tagChoiceText),
                 andesTagChoiceType = type,
+                andesTagSize = size,
                 andesTagChoiceState = state
         ).also { typedArray.recycle() }
     }
@@ -77,6 +83,14 @@ internal object AndesTagChoiceAttrsParser {
             ANDES_CHOICE_TAG_TYPE_SIMPLE -> AndesTagChoiceType.SIMPLE
             ANDES_CHOICE_TAG_TYPE_DROPDOWN -> AndesTagChoiceType.DROPDOWN
             else -> AndesTagChoiceType.SIMPLE
+        }
+    }
+
+    private fun parseSize(typedArray: TypedArray): AndesTagSize {
+        return when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleSize)) {
+            ANDES_TAG_SIZE_LARGE -> AndesTagSize.LARGE
+            ANDES_TAG_SIZE_SMALL -> AndesTagSize.SMALL
+            else -> AndesTagSize.LARGE
         }
     }
 }

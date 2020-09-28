@@ -10,16 +10,23 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.LinearLayout
+import android.widget.Switch
+import android.widget.AdapterView
+import android.widget.ScrollView
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.Spinner
+import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
 import com.mercadolibre.android.andesui.button.AndesButton
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.tag.AndesTagChoice
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceState
@@ -103,6 +110,7 @@ class TagShowcaseActivity : AppCompatActivity() {
             val tagChoiceIcon = AndesTagChoice(
                     context,
                     AndesTagChoiceType.SIMPLE,
+                    AndesTagSize.LARGE,
                     AndesTagChoiceState.SELECTED,
                     "Choice tag"
             )
@@ -118,14 +126,25 @@ class TagShowcaseActivity : AppCompatActivity() {
             val tagChoice = AndesTagChoice(
                     context,
                     AndesTagChoiceType.SIMPLE,
-                    AndesTagChoiceState.SELECTED,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
                     "Choice tag"
             )
             firstColumn.addView(tagChoice, params)
 
+            val tagChoiceSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceType.SIMPLE,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice tag"
+            )
+            firstColumn.addView(tagChoiceSmall, params)
+
             val tagChoiceDropdown = AndesTagChoice(
                     context,
                     AndesTagChoiceType.DROPDOWN,
+                    AndesTagSize.LARGE,
                     AndesTagChoiceState.IDLE,
                     "Dropdown"
             )

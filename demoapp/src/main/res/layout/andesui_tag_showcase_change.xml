@@ -21,15 +21,6 @@
             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <Spinner
-            android:id="@+id/choice_type_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/choiceTypeTextView"
-            app:layout_constraintEnd_toEndOf="@+id/type_spinner"
-            app:layout_constraintStart_toEndOf="@+id/choiceTypeTextView"
-            app:layout_constraintTop_toTopOf="@+id/choiceTypeTextView" />
-
-        <Spinner
             android:id="@+id/left_content_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -94,17 +85,6 @@
             app:layout_constraintTop_toBottomOf="@+id/dismissable" />
 
         <TextView
-            android:id="@+id/choiceTypeTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/andesui_demoapp_tag_choice_type"
-            android:textColor="@color/andes_gray_800"
-            app:layout_constraintEnd_toStartOf="@+id/choice_type_spinner"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
             android:id="@+id/textView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -112,9 +92,10 @@
             android:text="@string/andesui_demoapp_tag_size"
             android:textColor="@color/andes_gray_800"
             app:layout_constraintEnd_toStartOf="@+id/size_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/choiceTypeTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView7"
