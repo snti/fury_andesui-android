@@ -113,11 +113,11 @@ class AndesTagChoice : ConstraintLayout {
 
     @Suppress("unused")
     constructor(
-            context: Context,
-            type: AndesTagChoiceType = TYPE_DEFAULT,
-            size: AndesTagSize = SIZE_DEFAULT,
-            state: AndesTagChoiceState = STATE_DEFAULT,
-            text: String? = TEXT_DEFAULT
+        context: Context,
+        type: AndesTagChoiceType = TYPE_DEFAULT,
+        size: AndesTagSize = SIZE_DEFAULT,
+        state: AndesTagChoiceState = STATE_DEFAULT,
+        text: String? = TEXT_DEFAULT
     ) : super(context) {
         initAttrs(type, size, state, text)
     }
@@ -133,12 +133,12 @@ class AndesTagChoice : ConstraintLayout {
     }
 
     private fun initAttrs(
-            type: AndesTagChoiceType,
-            size: AndesTagSize,
-            state: AndesTagChoiceState,
-            text: String?,
-            leftContent: AndesTagLeftContent? = null,
-            leftContentData: LeftContent? = null
+        type: AndesTagChoiceType,
+        size: AndesTagSize,
+        state: AndesTagChoiceState,
+        text: String?,
+        leftContent: AndesTagLeftContent? = null,
+        leftContentData: LeftContent? = null
     ) {
         andesTagAttrs = AndesTagChoiceAttrs(text, type, size, state, leftContentData, leftContent)
         val config = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
