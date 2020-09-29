@@ -1,6 +1,6 @@
 # v2.12.0
 ## 🚀 Features
-- Andes coachmark | Author: [@fdiassilva](https://github.com/marcospicco)
+- Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
 
 ## 🛠 Fixes
 - Minor UX improvements in the Andes App.
