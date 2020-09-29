@@ -1,95 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <android.support.v7.widget.Toolbar
-       android:id="@+id/andesui_nav_bar"
+   <android.support.constraint.ConstraintLayout
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="?attr/colorPrimary"
-       app:layout_constraintTop_toTopOf="parent"
-       app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-       app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+       android:layout_height="match_parent">
 
-   <com.mercadolibre.android.andesui.message.AndesMessage
-       android:id="@+id/andesMessage"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="16dp"
-       android:layout_marginTop="16dp"
-       android:layout_marginEnd="16dp"
-       app:andesMessageTitleText="@string/title_description"
-       app:andesMessageBodyText="@string/carousel_description"
-       app:andesMessageHierarchy="quiet"
-       app:andesMessageType="neutral"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/andesui_nav_bar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/colorPrimary"
+          app:layout_constraintTop_toTopOf="parent"
+          app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+          app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-   <com.mercadolibre.android.andesui.carousel.AndesCarousel
-       android:id="@+id/carouselMain"
-       android:layout_width="match_parent"
-       android:layout_height="200dp"
-       android:layout_marginTop="24dp"
-       app:andesCarouselCenter="true"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/andesMessage" />
+      <com.mercadolibre.android.andesui.message.AndesMessage
+          android:id="@+id/andesMessage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="16dp"
+          app:andesMessageTitleText="@string/title_description"
+          app:andesMessageBodyText="@string/carousel_description"
+          app:andesMessageHierarchy="quiet"
+          app:andesMessageType="neutral"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
 
-   <TextView
-       android:id="@+id/textPadding"
-       android:layout_width="0dp"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="24dp"
-       android:layout_marginStart="24dp"
-       android:text="@string/andes_carousel_padding"
-       app:layout_constraintEnd_toStartOf="@id/paddingSpinner"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/carouselMain"/>
+      <com.mercadolibre.android.andesui.carousel.AndesCarousel
+          android:id="@+id/carouselMain"
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:layout_marginTop="24dp"
+          app:andesCarouselCenter="true"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/andesMessage" />
 
-   <Spinner
-       android:id="@+id/paddingSpinner"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="24dp"
-       android:layout_marginEnd="24dp"
-       app:layout_constraintStart_toEndOf="@id/textPadding"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/carouselMain" />
+      <TextView
+          android:id="@+id/textPadding"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="24dp"
+          android:text="@string/andes_carousel_padding"
+          app:layout_constraintEnd_toStartOf="@id/paddingSpinner"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/carouselMain"/>
 
-   <TextView
-       android:id="@+id/textCenter"
-       android:layout_width="0dp"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="24dp"
-       android:layout_marginStart="24dp"
-       android:text="@string/andes_carousel_center"
-       app:layout_constraintEnd_toStartOf="@id/centerSpinner"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/textPadding"/>
+      <Spinner
+          android:id="@+id/paddingSpinner"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="24dp"
+          app:layout_constraintStart_toEndOf="@id/textPadding"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/carouselMain" />
 
-   <Spinner
-       android:id="@+id/centerSpinner"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="24dp"
-       android:layout_marginEnd="24dp"
-       app:layout_constraintStart_toEndOf="@id/textCenter"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/paddingSpinner" />
+      <TextView
+          android:id="@+id/textCenter"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="24dp"
+          android:text="@string/andes_carousel_center"
+          app:layout_constraintEnd_toStartOf="@id/centerSpinner"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textPadding"/>
 
-   <com.mercadolibre.android.andesui.button.AndesButton
-       android:id="@+id/updateButton"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="24dp"
-       app:andesButtonText="@string/andes_message_showcase_change"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/textCenter" />
+      <Spinner
+          android:id="@+id/centerSpinner"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="24dp"
+          app:layout_constraintStart_toEndOf="@id/textCenter"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/paddingSpinner" />
 
+      <com.mercadolibre.android.andesui.button.AndesButton
+          android:id="@+id/updateButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          app:andesButtonText="@string/andes_message_showcase_change"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/textCenter" />
+   </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
