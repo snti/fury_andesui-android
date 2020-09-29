@@ -13,6 +13,7 @@ internal data class AndesTagChoiceConfiguration(
         val borderColor: AndesColor,
         val textColor: AndesColor,
         val rightContentColor: AndesColor,
+        val leftContentColor: AndesColor,
         val leftContentData: LeftContent? = null,
         val leftContent: AndesTagLeftContent? = null,
         val rightContent: AndesTagRightContent? = null
@@ -28,6 +29,7 @@ internal object AndesChoiceTagConfigurationFactory {
                     borderColor = resolveBorderColor(andesTagChoiceState.state),
                     textColor = resolveTextColor(andesTagChoiceState.state),
                     rightContentColor = resolveRightContentColor(andesTagChoiceState.state),
+                    leftContentColor = resolveLeftContentColor(andesTagChoiceState.state),
                     leftContentData = andesTagSimpleAttrs.leftContentData,
                     leftContent = andesTagSimpleAttrs.leftContent,
                     rightContent = andesTagSimpleAttrs.rightContent
@@ -39,4 +41,5 @@ internal object AndesChoiceTagConfigurationFactory {
     private fun resolveBorderColor(state: AndesTagChoiceStateInterface) = state.borderColor()
     private fun resolveTextColor(state: AndesTagChoiceStateInterface) = state.textColor()
     private fun resolveRightContentColor(state: AndesTagChoiceStateInterface) = state.rightContentColor()
+    private fun resolveLeftContentColor(state: AndesTagChoiceStateInterface) = state.leftContentColor()
 }

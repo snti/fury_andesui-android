@@ -123,6 +123,22 @@ class TagShowcaseActivity : AppCompatActivity() {
             )
             firstColumn.addView(tagChoiceIcon, params)
 
+            val tagChoiceIconColored = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Choice tag"
+            )
+            tagChoiceIconColored.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconColor = null
+                    )
+            )
+            firstColumn.addView(tagChoiceIconColored, params)
+
             val tagChoice = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
@@ -563,11 +579,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                         )
                     }
                     "Icon" -> {
-                        if (iconBackgroundColor.text.isNullOrEmpty()) {
-                            iconBackgroundColor.state = AndesTextfieldState.ERROR
-                            iconBackgroundColor.helper = "Este capo es requerido"
-                            return@setOnClickListener
-                        } else if (!validateColor("#${iconBackgroundColor.text!!}")) {
+                        if (!iconBackgroundColor.text.isNullOrEmpty()
+                                && !validateColor("#${iconBackgroundColor.text!!}")) {
                             iconBackgroundColor.state = AndesTextfieldState.ERROR
                             iconBackgroundColor.helper = "Color inválido"
                             return@setOnClickListener
@@ -597,9 +610,13 @@ class TagShowcaseActivity : AppCompatActivity() {
                             "Info" -> "andes_ui_feedback_info_24"
                             else -> "andes_ui_close_24"
                         }
+                        var background: String? = null
+                        if (!iconBackgroundColor.text.isNullOrEmpty()) {
+                            background = "#${iconBackgroundColor.text!!}"
+                        }
                         leftContent = LeftContent(
                             icon = LeftContentIcon(
-                                backgroundColor = "#${iconBackgroundColor.text!!}",
+                                backgroundColor = background,
                                 path = path,
                                 iconColor = icon
                             )

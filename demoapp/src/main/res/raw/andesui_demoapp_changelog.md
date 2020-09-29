@@ -1,3 +1,7 @@
+# v2.12.0
+## 🚀 Features
+- Added TagChoice type
+
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.

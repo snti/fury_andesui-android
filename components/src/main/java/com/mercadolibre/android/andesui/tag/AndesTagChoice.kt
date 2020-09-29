@@ -245,6 +245,9 @@ class AndesTagChoice : ConstraintLayout {
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
         // TODO agregar margenes de la misma forma que sucede con el rightContent
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
+            if (config.leftContentData.icon != null) {
+                config.leftContentData.icon?.iconDefaultColor = config.leftContentColor
+            }
             leftContent.removeAllViews()
             leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
             leftContent.visibility = View.VISIBLE

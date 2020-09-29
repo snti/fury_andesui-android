@@ -25,9 +25,14 @@ interface AndesTagChoiceStateInterface {
     fun textColor(): AndesColor
 
     /**
-     * @return an [AndesColor] that contains the dismiss color data for the tag.
+     * @return an [AndesColor] that contains the right content color data for the tag.
      */
     fun rightContentColor(): AndesColor
+
+    /**
+     * @return an [AndesColor] that contains the left content color data for the tag.
+     */
+    fun leftContentColor(): AndesColor
 }
 
 internal class AndesChoiceIdleState : AndesTagChoiceStateInterface {
@@ -35,6 +40,7 @@ internal class AndesChoiceIdleState : AndesTagChoiceStateInterface {
     override fun borderColor() = R.color.andes_gray_250.toAndesColor()
     override fun textColor() = R.color.andes_gray_800_solid.toAndesColor()
     override fun rightContentColor() = R.color.andes_gray_450_solid.toAndesColor()
+    override fun leftContentColor() = R.color.andes_gray_450_solid.toAndesColor()
 }
 
 internal class AndesChoiceSelectedState : AndesTagChoiceStateInterface {
@@ -42,4 +48,5 @@ internal class AndesChoiceSelectedState : AndesTagChoiceStateInterface {
     override fun borderColor() = R.color.andes_blue_mp_600.toAndesColor()
     override fun textColor() = R.color.andes_blue_mp_600.toAndesColor()
     override fun rightContentColor() = R.color.andes_blue_mp_600.toAndesColor()
+    override fun leftContentColor() = R.color.andes_blue_mp_600.toAndesColor()
 }

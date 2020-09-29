@@ -105,16 +105,27 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
             imageView.setPadding(padding, padding, padding, padding)
             leftContent.icon!!.icon as BitmapDrawable
         }
-
-        if (leftContent.icon!!.iconColor.isNullOrEmpty()) {
-            leftContent.icon!!.iconColor = "#000000"
+        
+        var color: Int? = null
+        val leftIcon = leftContent.icon!!
+        color = when {
+            leftIcon.iconColor != null -> {
+                Color.parseColor(leftIcon.iconColor)
+            }
+            leftIcon.iconDefaultColor != null -> {
+                leftIcon.iconDefaultColor?.colorInt(context)
+            }
+            else -> {
+                Color.parseColor("#000000")
+            }
         }
+        
         val icon = buildColoredBitmapDrawable(
                 bitmapDrawable,
                 context,
                 dstWidth = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt(),
                 dstHeight = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt(),
-                color = Color.parseColor(leftContent.icon!!.iconColor)
+                color = color
         )
 
         imageView.setImageDrawable(icon)
