@@ -62,6 +62,15 @@ class AndesTagChoice : ConstraintLayout {
         }
 
     /**
+     * If tag states should be animated
+     */
+    fun shouldAnimateTag(shouldAnimate: Boolean) {
+        shouldAnimateTag = shouldAnimate
+    }
+
+    private var shouldAnimateTag: Boolean = false
+
+    /**
      * Getter and setter for [size].
      */
     var size: AndesTagSize
@@ -179,9 +188,11 @@ class AndesTagChoice : ConstraintLayout {
         containerTag = container.findViewById(R.id.andes_tag_container)
 
         // enable animations
-        val layoutTransition = LayoutTransition()
-        layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-        containerTag.layoutTransition = layoutTransition
+        if (shouldAnimateTag) {
+            val layoutTransition = LayoutTransition()
+            layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+            containerTag.layoutTransition = layoutTransition
+        }
     }
 
     private fun setupBackgroundComponents(config: AndesTagChoiceConfiguration) {
@@ -211,7 +222,6 @@ class AndesTagChoice : ConstraintLayout {
             simpleTagText.setTextSize(TypedValue.COMPLEX_UNIT_PX, size.size.textSize(context))
             simpleTagText.setTextColor(config.textColor.colorInt(context))
 
-            // TODO revisar margenes
             val constraintSet = ConstraintSet()
             constraintSet.clone(containerTag)
             if (leftContent == null) {
@@ -221,11 +231,21 @@ class AndesTagChoice : ConstraintLayout {
                         size.size.leftMargin(context)
                 )
             } else if (config.leftContent != null) {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.START,
-                        config.leftContent.content.rightMargin(context)
-                )
+                if (config.leftContentData?.icon != null
+                        && config.leftContentData.icon?.backgroundColor == null) {
+                    // TODO revisar este margen
+                    constraintSet.setMargin(
+                            R.id.simpleTagText,
+                            ConstraintSet.START,
+                            8
+                    )
+                } else {
+                    constraintSet.setMargin(
+                            R.id.simpleTagText,
+                            ConstraintSet.START,
+                            config.leftContent.content.rightMargin(context)
+                    )
+                }
             }
             if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, size.size.rightMargin(context))

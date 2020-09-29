@@ -157,6 +157,26 @@ class TagShowcaseActivity : AppCompatActivity() {
             )
             firstColumn.addView(tagChoiceSmall, params)
 
+            val tagAnimatedSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.SELECTED,
+                    "Animated"
+            )
+            tagAnimatedSmall.shouldAnimateTag(true)
+            firstColumn.addView(tagAnimatedSmall, params)
+
+            val tagAnimated = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Animated"
+            )
+            tagAnimated.shouldAnimateTag(true)
+            firstColumn.addView(tagAnimated, params)
+
             val tagChoiceDropdown = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.DROPDOWN,
