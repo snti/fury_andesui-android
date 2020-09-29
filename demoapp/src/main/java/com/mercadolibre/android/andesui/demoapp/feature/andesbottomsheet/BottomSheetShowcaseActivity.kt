@@ -3,10 +3,12 @@ package com.mercadolibre.android.andesui.demoapp.feature.andesbottomsheet
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
 import com.mercadolibre.android.andesui.bottomsheet.BottomSheetListener
@@ -20,7 +22,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private var showBackgroundDim = false
     private var showTitle = false
     private var leftAlignTitle = false
-    private var testView: View? = null
+    private var textView: TextView? = null
     private var testFragment = TestFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +43,21 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
     fun onAttachViewButtonClicked(view: View) {
         bottomSheet.removeViews()
-        if (testView == null) {
-            testView = View(applicationContext)
-            val params = ViewGroup.LayoutParams(MATCH_PARENT, FRAGMENT_HEIGHT)
-            testView?.layoutParams = params
+        if (textView == null) {
+            textView = TextView(applicationContext)
+            val params = ViewGroup.LayoutParams(MATCH_PARENT, VIEW_HEIGHT)
+            textView?.layoutParams = params
+            textView?.text = getString(R.string.andesui_demoapp_bottom_sheet_dummy_view)
+            textView?.gravity = Gravity.CENTER
         }
 
-        bottomSheet.setView(testView!!)
+        bottomSheet.setView(textView!!)
         bottomSheet.expand()
     }
 
     fun onAttachFragmentButtonClicked(view: View) {
+        bottomSheet.removeViews()
+
         bottomSheet.setFragment(supportFragmentManager, testFragment)
     }
 
@@ -99,6 +105,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     }
 
     companion object {
-        private const val FRAGMENT_HEIGHT = 800
+        private const val VIEW_HEIGHT = 800
     }
 }
