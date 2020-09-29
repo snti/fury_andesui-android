@@ -2,7 +2,8 @@
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
 
-## 🛠 Fixes
+## Developer Experience
+- Fixed crash when taping on "I want to contribute" in the Andes App.
 - Minor UX improvements in the Andes App.
 
 # v2.11.0
