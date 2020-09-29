@@ -24,6 +24,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCoreComponents() {
+        andesui_coachmark.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/coachmark"))
+        }
         andesui_card.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/card"))
         }

@@ -74,6 +74,7 @@ staticCodeAnalysis {
 
 dependencies {
     implementation project(':components')
+    implementation project(':coachmark')
 
     implementation prod.kotlinStdlib
     implementation prod.supportConstraintLayout
