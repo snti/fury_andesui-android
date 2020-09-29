@@ -1,3 +1,7 @@
+# v2.12.0
+## 🚀 Features
+- Auto enable Show Taps option when Android version is API 22 or below.
+
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
@@ -10,6 +14,9 @@
 - Apply many suggestions from Detekt to both components and showcase modules. Ignore others in favor of enable linters from now on.
 - Libraries upgraded from unit tests and showcase module.
 - Gradle files cleanup.
+
+## 🛠 Fixes
+- AndesThumbnail: Use internal ImageView content drawable to keep aspect ratio. | Author: [@mzangl-meli](https://github.com/mzangl-meli)
 
 # v2.10.1
 ## 🛠 Fixes

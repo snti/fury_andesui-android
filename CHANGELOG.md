@@ -1,3 +1,7 @@
+# v2.12.0
+## 🚀 Features
+- Auto enable Show Taps option when Android version is API 22 or below.
+
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
