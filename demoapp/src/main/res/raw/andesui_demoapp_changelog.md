@@ -1,15 +1,13 @@
 # v2.12.0
-## Features
+## 🚀 Features
 - Andes coachmark | Author: [@fdiassilva](https://github.com/marcospicco)
 
-## Changed
+## 🛠 Fixes
 - Minor UX improvements in the Andes App.
 
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
-## Added
-- Coachmark
 
 ## Developer Experience
 - Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
