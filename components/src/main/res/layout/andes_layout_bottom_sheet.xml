@@ -26,7 +26,6 @@
                 android:id="@+id/andes_bottom_sheet_drag_indicator"
                 android:layout_width="@dimen/andes_bottom_sheet_drag_indicator_width"
                 android:layout_height="@dimen/andes_bottom_sheet_drag_indicator_height"
-                android:background="@drawable/andes_bottom_sheet_drag_indicator_shape"
                 android:layout_marginTop="@dimen/andes_bottom_sheet_drag_indicator_top_margin"
                 app:layout_goneMarginBottom="@dimen/andes_bottom_sheet_drag_indicator_bottom_margin"
                 app:layout_constraintTop_toTopOf="parent"
