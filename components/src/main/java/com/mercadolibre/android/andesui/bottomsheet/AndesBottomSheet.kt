@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -25,7 +24,6 @@ import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConf
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
-import com.mercadolibre.android.andesui.utils.pxToDp
 
 @Suppress("TooManyFunctions")
 class AndesBottomSheet : CoordinatorLayout {
@@ -70,7 +68,7 @@ class AndesBottomSheet : CoordinatorLayout {
     /**
      * Getter and Setter for [bottomSheetTitleAlignment], alternatives: centered and left_aligned
      */
-    var titleAlignment: AndesBottomSheetTitleAlignment
+    var titleAlignment: AndesBottomSheetTitleAlignment?
         get() = andesBottomSheetAttrs.andesBottomSheetTitleAlignment
         set(value) {
             andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetTitleAlignment = value)
@@ -94,39 +92,28 @@ class AndesBottomSheet : CoordinatorLayout {
 
     private lateinit var andesBottomSheetAttrs: AndesBottomSheetAttrs
     private lateinit var containerView: FrameLayout
+    private lateinit var dragIndicator: View
     private lateinit var frameView: FrameLayout
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
     private lateinit var titleTextView: TextView
     private lateinit var backgroundDimView: View
     private var listener: BottomSheetListener? = null
 
-    constructor(context: Context) : super(context) {
-        initAttrs(
-                DEFAULT_PEEK_HEIGHT,
-                DEFAULT_BOTTOM_SHEET_STATE,
-                DEFAULT_TITLE,
-                DEFAULT_TITLE_ALIGNMENT,
-                DEFAULT_BACKGROUND_DIM
-        )
-    }
-
     @Suppress("LongParameterList")
     constructor(
-        context: Context,
-        peekHeight: Int,
-        state: AndesBottomSheetState,
-        title: String,
-        titleAlignment: AndesBottomSheetTitleAlignment,
-        isBackgroundDimEnabled: Boolean
+            context: Context,
+            peekHeight: Int = DEFAULT_PEEK_HEIGHT,
+            state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
+            title: String? = DEFAULT_TITLE,
+            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT,
+            backgroundDim: Boolean = DEFAULT_BACKGROUND_DIM
     ) : super(context) {
-        initAttrs(peekHeight, state, title, titleAlignment, isBackgroundDimEnabled)
+        initAttrs(peekHeight, state, title, titleAlignment, backgroundDim)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(context, attrs)
 
     private fun initAttrs(attrs: AttributeSet?) {
         andesBottomSheetAttrs = AndesBottomSheetAttrsParser.parse(context, attrs)
@@ -155,11 +142,11 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun createConfig() = AndesBottomSheetConfigurationFactory.create(andesBottomSheetAttrs)
 
     private fun setupComponents(config: AndesBottomSheetConfiguration) {
-
         initComponents()
 
         setupViewId()
 
+        resolveDragIndicator()
         resolveBottomSheetParams()
         resolveBottomSheetBackground()
         initBottomSheetBehavior()
@@ -177,6 +164,7 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun initComponents() {
         val layout = LayoutInflater.from(context).inflate(R.layout.andes_layout_bottom_sheet, this)
         containerView = layout.findViewById(R.id.andes_bottom_sheet_container)
+        dragIndicator = layout.findViewById(R.id.andes_bottom_sheet_drag_indicator)
         frameView = layout.findViewById(R.id.andes_bottom_sheet_frame_view)
         titleTextView = layout.findViewById(R.id.andes_bottom_sheet_title)
         backgroundDimView = layout.findViewById(R.id.andes_bottom_sheet_background_dim)
@@ -192,13 +180,24 @@ class AndesBottomSheet : CoordinatorLayout {
         }
     }
 
+
+    private fun resolveDragIndicator() {
+        val cornerRadius = context.resources.getDimension(R.dimen.andes_bottom_sheet_drag_indicator_corner_radius)
+        val shape = GradientDrawable()
+        shape.shape = GradientDrawable.RECTANGLE
+        shape.setColor(ResourcesCompat.getColor(resources, R.color.andes_gray_250, context.theme))
+        shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
+
+        dragIndicator.background = shape
+    }
+
     private fun resolveBottomSheetParams() {
         val params = containerView.layoutParams as LayoutParams
         params.behavior = BottomSheetBehavior<FrameLayout>()
     }
 
     private fun resolveBottomSheetBackground() {
-        val cornerRadius = DEFAULT_CORNER_RADIUS.pxToDp(context).toFloat()
+        val cornerRadius = context.resources.getDimension(R.dimen.andes_bottom_sheet_default_radius)
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
@@ -213,10 +212,7 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     private fun resolveBottomSheetState(config: AndesBottomSheetConfiguration) {
-        when (config.state) {
-            AndesBottomSheetState.EXPANDED -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            AndesBottomSheetState.COLLAPSED -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        }
+        bottomSheetBehavior.state = config.state.state.getState()
     }
 
     private fun resolveTitleViewText(config: AndesBottomSheetConfiguration) {
@@ -231,9 +227,8 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     private fun resolveTitleViewAlignment(config: AndesBottomSheetConfiguration) {
-        when (config.titleAlignment) {
-            AndesBottomSheetTitleAlignment.CENTERED -> titleTextView.gravity = Gravity.CENTER
-            AndesBottomSheetTitleAlignment.LEFT_ALIGN -> titleTextView.gravity = Gravity.START
+        if (config.titleAlignment != null) {
+            titleTextView.gravity = config.titleAlignment.alignment.getAlignment()
         }
     }
 
@@ -371,7 +366,6 @@ class AndesBottomSheet : CoordinatorLayout {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_CORNER_RADIUS = 6
         private const val DEFAULT_BACKGROUND_DIM = false
         private const val DIM_MAX_ALPHA = 1f
         private const val DIM_MIN_ALPHA = 0f
