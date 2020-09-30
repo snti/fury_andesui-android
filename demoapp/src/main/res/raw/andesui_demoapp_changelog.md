@@ -1,8 +1,14 @@
+# v2.12.0
+## 🚀 Features
+- Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
+
+## Developer Experience
+- Fixed crash when taping on "I want to contribute" in the Andes App.
+- Minor UX improvements in the Andes App.
+
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
-## Added
-- Coachmark
 
 ## Developer Experience
 - Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
