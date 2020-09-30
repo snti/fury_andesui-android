@@ -149,5 +149,6 @@
     <com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
         android:id="@+id/andes_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:andesBottomSheetState="collapsed"/>
 </android.support.constraint.ConstraintLayout>
