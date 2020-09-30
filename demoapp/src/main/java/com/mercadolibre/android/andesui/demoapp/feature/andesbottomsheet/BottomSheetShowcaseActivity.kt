@@ -16,7 +16,7 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 import com.mercadolibre.android.andesui.demoapp.R
 import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 
-
+@Suppress("TooManyFunctions")
 class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
     private var showBackgroundDim = false
