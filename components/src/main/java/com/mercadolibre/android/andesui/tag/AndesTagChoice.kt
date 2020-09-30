@@ -42,16 +42,6 @@ class AndesTagChoice : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for [mode].
-     */
-    var mode: AndesTagChoiceMode
-        get() = andesTagAttrs.andesTagChoiceMode
-        set(value) {
-            andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = value)
-            setupRightContent(createConfig())
-        }
-
-    /**
      * Getter and setter for [text].
      */
     var text: String?
@@ -134,15 +124,14 @@ class AndesTagChoice : ConstraintLayout {
         setupComponents(config)
     }
 
+    @Suppress("LongParameterList")
     private fun initAttrs(
-            mode: AndesTagChoiceMode,
-            size: AndesTagSize,
-            state: AndesTagChoiceState,
-            text: String?,
-            leftContent: AndesTagLeftContent? = null,
-            leftContentData: LeftContent? = null
+        mode: AndesTagChoiceMode,
+        size: AndesTagSize,
+        state: AndesTagChoiceState,
+        text: String?
     ) {
-        andesTagAttrs = AndesTagChoiceAttrs(text, mode, size, state, leftContentData, leftContent)
+        andesTagAttrs = AndesTagChoiceAttrs(text, mode, size, state, null, null)
         val config = AndesChoiceTagConfigurationFactory.create(andesTagAttrs)
         setupComponents(config)
     }
