@@ -1,3 +1,7 @@
+# V2.13.0
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
 # v2.12.0
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
