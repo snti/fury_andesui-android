@@ -51,6 +51,21 @@ class AndesTagChoice : ConstraintLayout {
             setupTitleComponent(createConfig())
         }
 
+    fun syncStateAndMode(mode: AndesTagChoiceMode, state: AndesTagChoiceState) {
+        andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = mode, andesTagChoiceState = state)
+        setupComponents(createConfig())
+    }
+
+    /**
+     * Getter and setter for [mode].
+     */
+    var mode: AndesTagChoiceMode
+        get() = andesTagAttrs.andesTagChoiceMode
+        set(value) {
+            andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = value)
+            setupComponents(createConfig())
+        }
+
     /**
      * If tag states should be animated
      */
@@ -71,7 +86,7 @@ class AndesTagChoice : ConstraintLayout {
             setupTitleComponent(createConfig())
         }
 
-    private var callback: AndesTagChoiceCallback? = null
+    var callback: AndesTagChoiceCallback? = null
 
     /**
      * Getter and setter for [leftContent].

@@ -96,8 +96,7 @@
     <string name="andesui_demoapp_textfield_prefix_text">Left component:</string>
     <string name="andesui_demoapp_textfield_suffix_text">Right component:</string>
     <string name="andesui_demoapp_counter_text">Counter:</string>
-    <string name="andesui_demoapp_mask_text">Mascara:</string>
-    <string name="andesui_demoapp_mask_hint">ejemplo: ##-###-######-#</string>
+    <string name="andesui_demoapp_mask_hint">Mascara: ##-###-######-#</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_card_showcase">Andes Card</string>
@@ -198,7 +197,7 @@
     <string name="andesui_demoapp_progress_medium">MEDIUM</string>
     <string name="andesui_demoapp_progress_small">SMALL</string>
 
-    <string name="andesui_demoapp_coachmark">Coachmark</string>
+    <string name="andesui_demoapp_coachmark">Andes Coachmark</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 

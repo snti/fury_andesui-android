@@ -1,12 +1,16 @@
 # v2.12.0
 ## 🚀 Features
-- Added TagChoice type
+- Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
+- Auto enable Show Taps option when Android version is API 22 or below.
+- Added TagChoice
+
+## Developer Experience
+- Fixed crash when taping on "I want to contribute" in the Andes App.
+- Minor UX improvements in the Andes App.
 
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
-## Added
-- Coachmark
 
 ## Developer Experience
 - Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.

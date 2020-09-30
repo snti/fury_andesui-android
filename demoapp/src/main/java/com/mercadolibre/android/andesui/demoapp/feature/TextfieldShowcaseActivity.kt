@@ -85,7 +85,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
-            val mask = layoutTextfield.findViewById<EditText>(R.id.mask)
+            val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
 
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = 50
@@ -154,11 +154,11 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                mask.text.takeIf { it.isNotEmpty() }?.apply {
+                mask.text.takeIf { !it.isNullOrEmpty() }?.apply {
                     textfield.setTextFieldMask(it.toString())
                 }
 
-                if (mask.text.isNotEmpty()) {
+                if (!mask.text.isNullOrEmpty()) {
                     textfield.setTextFieldMask(mask.text.toString())
                 }
 
@@ -175,7 +175,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.text = null
                 helper.text = null
                 counter.setText(COUNTER_DEFAULT)
-                mask.setText("")
+                mask.text = ""
                 stateSpinner.setSelection(0)
                 inputTypeSpinner.setSelection(0)
                 preffixSpinner.setSelection(0)
