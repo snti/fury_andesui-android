@@ -1,3 +1,7 @@
+# V2.13.0
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
 # v2.12.0
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
@@ -10,7 +14,6 @@
 # v2.11.0
 ## 🚀 Features
 - Changed target API level to 29.
-- Added AndesBottomSheet component
 
 ## Developer Experience
 - Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
