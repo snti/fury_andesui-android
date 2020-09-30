@@ -7,4 +7,13 @@ enum class AndesBottomSheetTitleAlignment {
     companion object {
         fun fromString(value: String): AndesBottomSheetTitleAlignment = valueOf(value.toUpperCase())
     }
+
+    internal val alignment get() = getAndesBottomSheetTitleAlignment()
+
+    private fun getAndesBottomSheetTitleAlignment(): AndesBottomSheetTitleAlignmentInterface {
+        return when (this) {
+            LEFT_ALIGN -> AndesBottomSheetTitleLeftAligned
+            CENTERED -> AndesBottomSheetTitleCenterAligned
+        }
+    }
 }
