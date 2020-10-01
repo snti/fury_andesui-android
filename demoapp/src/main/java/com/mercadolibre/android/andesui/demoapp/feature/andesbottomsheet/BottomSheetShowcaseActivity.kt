@@ -21,9 +21,8 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
     private var showBackgroundDim = false
     private var showTitle = false
-    private var leftAlignTitle = false
+    private var leftAlignTitle = true
     private var textView: TextView? = null
-    private var testFragment = TestFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     }
 
     fun onAttachViewButtonClicked(view: View) {
-        bottomSheet.removeViews()
+        bottomSheet.removeContent()
         if (textView == null) {
             textView = TextView(applicationContext)
             val params = ViewGroup.LayoutParams(MATCH_PARENT, VIEW_HEIGHT)
@@ -51,14 +50,14 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
             textView?.gravity = Gravity.CENTER
         }
 
-        bottomSheet.setView(textView!!)
+        bottomSheet.setBottomSheetContent(textView!!)
         bottomSheet.expand()
     }
 
     fun onAttachFragmentButtonClicked(view: View) {
-        bottomSheet.removeViews()
+        bottomSheet.removeContent()
 
-        bottomSheet.setFragment(supportFragmentManager, testFragment)
+        bottomSheet.setBottomSheetContent(supportFragmentManager, TestFragment())
     }
 
     fun onExpandButtonClicked(view: View) {
