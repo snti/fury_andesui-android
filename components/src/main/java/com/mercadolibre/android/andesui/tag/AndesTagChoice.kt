@@ -26,10 +26,12 @@ import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import kotlinx.android.synthetic.main.andes_layout_simple_tag.view.*
 
+@Suppress("TooManyFunctions")
 class AndesTagChoice : ConstraintLayout {
 
     private lateinit var andesTagAttrs: AndesTagChoiceAttrs
     private lateinit var containerTag: ConstraintLayout
+    private val constraintStart = 8
 
     /**
      * Getter and setter for [state].
@@ -139,7 +141,6 @@ class AndesTagChoice : ConstraintLayout {
         setupComponents(config)
     }
 
-    @Suppress("LongParameterList")
     private fun initAttrs(
         mode: AndesTagChoiceMode,
         size: AndesTagSize,
@@ -241,7 +242,7 @@ class AndesTagChoice : ConstraintLayout {
                     constraintSet.setMargin(
                             R.id.simpleTagText,
                             ConstraintSet.START,
-                            8
+                            constraintStart
                     )
                 } else {
                     constraintSet.setMargin(
