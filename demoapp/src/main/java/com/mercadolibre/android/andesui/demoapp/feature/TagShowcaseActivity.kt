@@ -130,11 +130,11 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceState.SELECTED,
                     "Choice tag"
             )
+            tagChoiceIconColored.shouldAnimateTag(true)
             tagChoiceIconColored.leftContent = LeftContent(
                     icon = LeftContentIcon(
                             backgroundColor = null,
-                            icon = drawable,
-                            iconColor = null
+                            icon = drawable
                     )
             )
             firstColumn.addView(tagChoiceIconColored, params)

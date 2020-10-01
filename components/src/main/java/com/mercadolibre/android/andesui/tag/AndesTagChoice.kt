@@ -53,11 +53,6 @@ class AndesTagChoice : ConstraintLayout {
             setupTitleComponent(createConfig())
         }
 
-    fun syncStateAndMode(mode: AndesTagChoiceMode, state: AndesTagChoiceState) {
-        andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = mode, andesTagChoiceState = state)
-        setupComponents(createConfig())
-    }
-
     /**
      * Getter and setter for [mode].
      */
@@ -67,13 +62,6 @@ class AndesTagChoice : ConstraintLayout {
             andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = value)
             setupComponents(createConfig())
         }
-
-    /**
-     * If tag states should be animated
-     */
-    fun shouldAnimateTag(shouldAnimate: Boolean) {
-        shouldAnimateTag = shouldAnimate
-    }
 
     private var shouldAnimateTag: Boolean = false
 
@@ -116,6 +104,18 @@ class AndesTagChoice : ConstraintLayout {
             setupTitleComponent(config)
         }
 
+    fun syncStateAndMode(mode: AndesTagChoiceMode, state: AndesTagChoiceState) {
+        andesTagAttrs = andesTagAttrs.copy(andesTagChoiceMode = mode, andesTagChoiceState = state)
+        setupComponents(createConfig())
+    }
+
+    /**
+     * If tag states should be animated
+     */
+    fun shouldAnimateTag(shouldAnimate: Boolean) {
+        shouldAnimateTag = shouldAnimate
+    }
+
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
@@ -153,7 +153,7 @@ class AndesTagChoice : ConstraintLayout {
     }
 
     /**
-     * Responsible for setting up all properties of each component that is part of this badge.
+     * Responsible for setting up all properties of each component that is part of this TagView.
      * Is like a choreographer ;)
      */
     private fun setupComponents(config: AndesTagChoiceConfiguration) {
@@ -185,7 +185,7 @@ class AndesTagChoice : ConstraintLayout {
     }
 
     /**
-     * Creates all the views that are part of this badge.
+     * Creates all the views that are part of this TagView.
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
