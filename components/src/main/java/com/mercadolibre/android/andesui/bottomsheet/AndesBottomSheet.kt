@@ -266,13 +266,13 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     /**
-     * Sets the desired fragment inside of the bottomSheet
+     * Sets the provided fragment inside of the bottomSheet
      *
      * @param supportFragmentManager the supportFragmentManager
      * @param fragment the fragment to be shown, should be
      * @param bundle the info bundle for the fragment
      */
-    fun <T> setFragment(fragmentManager: FragmentManager, fragment: T, bundle: Bundle? = null)
+    fun <T> setBottomSheetContent(fragmentManager: FragmentManager, fragment: T, bundle: Bundle? = null)
             where T : Fragment {
         if (bundle != null) {
             fragment.arguments = bundle
@@ -286,14 +286,14 @@ class AndesBottomSheet : CoordinatorLayout {
     /**
      * Sets a view inside the bottomSheet
      */
-    fun setView(view: View) {
+    fun setBottomSheetContent(view: View) {
         frameView.addView(view)
     }
 
     /**
      * Removes all views from FrameLayout inside of the bottomSheet
      */
-    fun removeViews() {
+    fun removeContent() {
         if (frameView.childCount > 0) {
             frameView.removeAllViews()
         }

@@ -69,7 +69,7 @@ class AndesBottomSheetTest {
         val mockFragment = mock(Fragment::class.java)
         val mockFragmentManager = mockFragmentManager()
 
-        andesBottomSheet.setFragment(mockFragmentManager, mockFragment)
+        andesBottomSheet.setBottomSheetContent(mockFragmentManager, mockFragment)
 
         verify(mockFragmentManager).beginTransaction()
     }
@@ -80,7 +80,7 @@ class AndesBottomSheetTest {
         val mockView = mock(View::class.java)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
 
-        andesBottomSheet.setView(mockView)
+        andesBottomSheet.setBottomSheetContent(mockView)
 
         verify(mockFrameLayout).addView(mockView)
     }
@@ -91,7 +91,7 @@ class AndesBottomSheetTest {
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
         `when`(mockFrameLayout.childCount).thenReturn(0)
 
-        andesBottomSheet.removeViews()
+        andesBottomSheet.removeContent()
 
         verify(mockFrameLayout, never()).removeAllViews()
     }
@@ -102,7 +102,7 @@ class AndesBottomSheetTest {
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
         `when`(mockFrameLayout.childCount).thenReturn(1)
 
-        andesBottomSheet.removeViews()
+        andesBottomSheet.removeContent()
 
         verify(mockFrameLayout).removeAllViews()
     }
