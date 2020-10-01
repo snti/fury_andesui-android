@@ -23,7 +23,7 @@
     </declare-styleable>
 
     <declare-styleable name="AndesTagChoice" tools:ignore="ResourceName">
-        <attr name="tagChoiceType">
+        <attr name="tagChoiceMode">
             <enum name="simple" value="5000" />
             <enum name="dropdown" value="5001" />
         </attr>
