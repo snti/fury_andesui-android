@@ -31,7 +31,6 @@ class AndesTagChoice : ConstraintLayout {
 
     private lateinit var andesTagAttrs: AndesTagChoiceAttrs
     private lateinit var containerTag: ConstraintLayout
-    private val constraintStart = 8
 
     /**
      * Getter and setter for [state].
@@ -236,21 +235,11 @@ class AndesTagChoice : ConstraintLayout {
                         size.size.leftMargin(context)
                 )
             } else if (config.leftContent != null) {
-                if (config.leftContentData?.icon != null
-                        && config.leftContentData.icon?.backgroundColor == null) {
-                    // TODO revisar este margen
-                    constraintSet.setMargin(
-                            R.id.simpleTagText,
-                            ConstraintSet.START,
-                            constraintStart
-                    )
-                } else {
-                    constraintSet.setMargin(
-                            R.id.simpleTagText,
-                            ConstraintSet.START,
-                            config.leftContent.content.rightMargin(context)
-                    )
-                }
+                constraintSet.setMargin(
+                        R.id.simpleTagText,
+                        ConstraintSet.START,
+                        config.leftContent.content.rightMargin(context)
+                )
             }
             if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
                 constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, size.size.rightMargin(context))
@@ -268,7 +257,6 @@ class AndesTagChoice : ConstraintLayout {
 
     private fun setupLeftContent(config: AndesTagChoiceConfiguration) {
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
-        // TODO agregar margenes de la misma forma que sucede con el rightContent
         if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
             if (config.leftContentData.icon != null) {
                 config.leftContentData.icon?.iconDefaultColor = config.leftContentColor
