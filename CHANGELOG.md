@@ -1,3 +1,7 @@
+# v2.13.0
+## Added
+- Added Andes icons (bill, cash, credit card, shipping, wallet)
+
 # v2.12.0
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
