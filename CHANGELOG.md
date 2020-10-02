@@ -1,3 +1,7 @@
+# v2.13.0
+## 🛠 Fixes
+- Refactor AndesTag
+
 # v2.12.0
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
