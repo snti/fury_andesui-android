@@ -186,7 +186,7 @@ class AndesBottomSheet : CoordinatorLayout {
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.setColor(ResourcesCompat.getColor(resources, R.color.andes_gray_250, context.theme))
-        shape.cornerRadii = floatArrayOf(cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0f, 0f, 0f, 0f)
+        shape.cornerRadius = cornerRadius
 
         dragIndicator.background = shape
     }
