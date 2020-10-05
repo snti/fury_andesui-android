@@ -13,6 +13,8 @@ import android.widget.Toast
 import com.mercadolibre.android.andesui.bottomsheet.AndesBottomSheet
 import com.mercadolibre.android.andesui.bottomsheet.BottomSheetListener
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
+import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.demoapp.R
 import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 
@@ -69,24 +71,36 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     }
 
     fun onToggleBackgroundDimButtonClicked(view: View) {
+        val andesButton = view as AndesButton
         showBackgroundDim = !showBackgroundDim
         bottomSheet.isBackgroundDimEnabled = showBackgroundDim
+        if (showBackgroundDim) {
+            andesButton.hierarchy = AndesButtonHierarchy.QUIET
+        } else {
+            andesButton.hierarchy = AndesButtonHierarchy.LOUD
+        }
     }
 
     fun onToggleTitleClicked(view: View) {
+        val andesButton = view as AndesButton
         showTitle = !showTitle
         if (showTitle) {
             bottomSheet.titleText = "Hello, I'm Title"
+            andesButton.hierarchy = AndesButtonHierarchy.QUIET
         } else {
             bottomSheet.titleText = null
+            andesButton.hierarchy = AndesButtonHierarchy.LOUD
         }
     }
     fun onToggleAlignButtonClicked(view: View) {
+        val andesButton = view as AndesButton
         leftAlignTitle = !leftAlignTitle
         if (leftAlignTitle) {
             bottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.LEFT_ALIGN
+            andesButton.hierarchy = AndesButtonHierarchy.LOUD
         } else {
             bottomSheet.titleAlignment = AndesBottomSheetTitleAlignment.CENTERED
+            andesButton.hierarchy = AndesButtonHierarchy.QUIET
         }
     }
 
