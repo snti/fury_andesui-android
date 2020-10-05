@@ -116,13 +116,6 @@ class AndesTagChoice : ConstraintLayout {
         setupComponents(createConfig())
     }
 
-    /**
-     * If tag states should be animated
-     */
-    fun shouldAnimateTag(shouldAnimate: Boolean) {
-        shouldAnimateTag = shouldAnimate
-    }
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }

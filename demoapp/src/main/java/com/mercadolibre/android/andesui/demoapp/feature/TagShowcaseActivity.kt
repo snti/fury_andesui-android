@@ -162,7 +162,6 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceState.SELECTED,
                     "Icon small colored"
             )
-            iconSmallTagColored.shouldAnimateTag(true)
             iconSmallTagColored.leftContent = LeftContent(
                     icon = LeftContentIcon(
                             backgroundColor = null,
@@ -188,7 +187,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceState.SELECTED,
                     "Small animated"
             )
-            tagAnimatedSmall.shouldAnimateTag(true)
+            tagAnimatedSmall.shouldAnimateTag = true
             firstColumn.addView(tagAnimatedSmall, params)
 
             val tagAnimatedLarge = AndesTagChoice(
@@ -198,7 +197,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceState.SELECTED,
                     "Large animated"
             )
-            tagAnimatedLarge.shouldAnimateTag(true)
+            tagAnimatedLarge.shouldAnimateTag = true
             firstColumn.addView(tagAnimatedLarge, params)
 
             val discounts = context.resources.getDrawable(R.drawable.andes_navegacion_ofertas_24)
@@ -209,7 +208,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceState.SELECTED,
                     "Descuentos"
             )
-            iconSmallAnimated.shouldAnimateTag(true)
+            iconSmallAnimated.shouldAnimateTag = true
             iconSmallAnimated.leftContent = LeftContent(
                     icon = LeftContentIcon(
                             backgroundColor = null,
@@ -217,7 +216,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                             iconSize = IconSize.SMALL
                     )
             )
-            iconSmallAnimated.shouldAnimateTag(true)
+            iconSmallAnimated.shouldAnimateTag = true
             firstColumn.addView(iconSmallAnimated, params)
 
             val tagChoiceDropdown = AndesTagChoice(
