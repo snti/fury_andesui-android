@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -284,13 +285,35 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             styleSpinner.adapter = styleAdapter
 
+            textfieldCode.setOnTextChangeListener(object : AndesTextfieldCode.OnTextChangeListener {
+                override fun onChange(text: String) {
+                    Log.i("ANDES", "TEXT CHANGE: $text")
+                }
+            })
+
+            textfieldCode.setOnCompleteListener(object : AndesTextfieldCode.OnCompletionListener {
+                override fun onComplete(isFull: Boolean) {
+                    if (isFull) {
+                        Log.i("ANDES", "TEXT COMPLETE: ${textfieldCode.text}")
+                    }
+                }
+            })
 
             updateButton.setOnClickListener {
+                val currentState = textfieldCode.state
+                val newState = AndesTextfieldCodeState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
+                if (currentState != newState) {
+                    textfieldCode.state = newState
+                }
+                val currentStyle = textfieldCode.style
+                val newStyle = AndesTextfieldCodeStyle.valueOf(styleSpinner.selectedItem.toString().toUpperCase())
+                if (currentStyle != newStyle) {
+                    textfieldCode.style = newStyle
+                }
+
                 textfieldCode.text = text.text
                 textfieldCode.label = label.text
                 textfieldCode.helper = helper.text
-                textfieldCode.state = AndesTextfieldCodeState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
-                textfieldCode.style = AndesTextfieldCodeStyle.valueOf(styleSpinner.selectedItem.toString().toUpperCase())
             }
 
             clearButton.setOnClickListener {

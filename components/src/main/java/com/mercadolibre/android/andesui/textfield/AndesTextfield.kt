@@ -12,7 +12,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
@@ -191,7 +190,7 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var labelComponent: TextView
     private lateinit var helperComponent: TextView
     private lateinit var counterComponent: TextView
-    private lateinit var textComponent: EditText
+    private lateinit var textComponent: AndesEditText
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var leftComponent: FrameLayout
     private lateinit var rightComponent: FrameLayout
@@ -324,7 +323,7 @@ class AndesTextfield : ConstraintLayout {
      */
     private fun setupInputType() {
         textComponent.inputType = inputType
-        textComponent.setSelection(textComponent.text.length)
+        textComponent.setSelection(textComponent.text?.length ?: 0)
     }
 
     /**
@@ -553,7 +552,7 @@ class AndesTextfield : ConstraintLayout {
             })
 
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-            clear.setOnClickListener { textComponent.text.clear() }
+            clear.setOnClickListener { textComponent.text?.clear() }
         }
     }
 
@@ -677,6 +676,38 @@ class AndesTextfield : ConstraintLayout {
      */
     internal fun setAndesTextAlignment(textAlignment: Int) {
         textComponent.textAlignment = textAlignment
+    }
+
+    /**
+     * Set selection for textComponent
+     * Only visible for internal development
+     */
+    internal fun setSelection(selection: Int) {
+        textComponent.setSelection(selection)
+    }
+
+    /**
+     * Set isFocusableInTouchMode for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesFocusableInTouchMode(isFocusableInTouchMode: Boolean) {
+        textComponent.isFocusableInTouchMode = isFocusableInTouchMode
+    }
+
+    /**
+     * Set onFocusChangeListener for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
+        textComponent.onFocusChangeListener = onFocusChangeListener
+    }
+    /**
+     * Set contextMenuItemListener for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesTextContextMenuItemListener(
+        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
+        textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)

@@ -1,5 +1,6 @@
 package com.mercadolibre.android.andesui.textfield
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.text.InputType
@@ -17,6 +18,11 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldCodeAttr
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldCodeConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldCodeState
 import com.mercadolibre.android.andesui.textfield.style.AndesTextfieldCodeStyle
+import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeFocusManagement
+import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxWatcher
+import com.mercadolibre.android.andesui.textfield.textwatcher.AndesCodeTextChangedHandler
+import com.mercadolibre.android.andesui.textfield.textwatcher.AndesTextfieldBoxWatcher.Companion.DIRTY_CHARACTER
+import kotlin.math.min
 
 class AndesTextfieldCode : ConstraintLayout {
 
@@ -70,7 +76,10 @@ class AndesTextfieldCode : ConstraintLayout {
         get() = andesTextfieldCodeAttrs.style
         set(value) {
             andesTextfieldCodeAttrs = andesTextfieldCodeAttrs.copy(style = value)
-            setupBoxStyleComponent(createConfig())
+            val config = createConfig()
+            setUpFocusManagement(config)
+            setUpAndesTextfieldCodeWatcher(config)
+            setupBoxStyleComponent(config)
         }
 
     private lateinit var andesTextfieldCodeAttrs: AndesTextfieldCodeAttrs
@@ -79,7 +88,11 @@ class AndesTextfieldCode : ConstraintLayout {
     private lateinit var labelComponent: TextView
     private lateinit var helperComponent: TextView
     private lateinit var iconComponent: SimpleDraweeView
+    private lateinit var textChangedHandler: AndesCodeTextChangedHandler
+    private lateinit var focusManagement: AndesCodeFocusManagement
     private var currentText: String? = null
+    private var onCompletionListener: OnCompletionListener? = null
+    private var onTextChangeListener: OnTextChangeListener? = null
 
     constructor(
         context: Context,
@@ -122,6 +135,8 @@ class AndesTextfieldCode : ConstraintLayout {
         setupViewAsClickable()
         setupLabelComponent(config)
         setupHelperComponent(config)
+        setUpFocusManagement(config)
+        setUpAndesTextfieldCodeWatcher(config)
         setupBoxStyleComponent(config)
         setupColorComponents(config)
     }
@@ -197,7 +212,40 @@ class AndesTextfieldCode : ConstraintLayout {
                 setupMarginBetweenBoxes(config, boxes == 0)
             }
         }
-        setupTextComponent(currentText)
+        currentText?.takeIf { it.isNotEmpty() }?.let { setupTextComponent(it) }
+    }
+
+    /**
+     * Gets data from the config and create an instance of AndesCodeTextChangedHandler
+     */
+    private fun setUpAndesTextfieldCodeWatcher(config: AndesTextfieldCodeConfiguration) {
+        textChangedHandler = AndesCodeTextChangedHandler(config.boxesPattern.sum(),
+            onChange = { text ->
+                text.takeIf { it != currentText }?.let {
+                    currentText = it
+                    onTextChangeListener?.onChange(it)
+                }
+            },
+            onComplete = { isFull -> onCompletionListener?.onComplete(isFull) })
+    }
+
+    /**
+     * Gets data from the config and create an instance of AndesCodeFocusManagement
+     */
+    private fun setUpFocusManagement(config: AndesTextfieldCodeConfiguration) {
+        focusManagement = AndesCodeFocusManagement(config.boxesPattern.sum() - 1) { nextFocus, previousFocus ->
+            getBoxAt(previousFocus)?.also {
+                it.setAndesFocusableInTouchMode(false)
+            }
+            getBoxAt(nextFocus)?.also {
+                it.setAndesFocusableInTouchMode(true)
+                it.requestFocusOnTextField()
+                if (nextFocus < previousFocus) {
+                    it.text = DIRTY_CHARACTER
+                    it.setSelection(DIRTY_CHARACTER.length)
+                }
+            }
+        }
     }
 
     /**
@@ -207,13 +255,22 @@ class AndesTextfieldCode : ConstraintLayout {
         val boxView = AndesTextfield(
             context = context,
             state = config.boxState,
-            counter = 1,
-            inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL).also {
+            counter = 2,
+            inputType = InputType.TYPE_CLASS_NUMBER).also {
             it.setAndesTextAlignment(View.TEXT_ALIGNMENT_CENTER)
             it.showCounter = false
         }
         textfieldBoxCodeContainer.addView(boxView)
         boxView.layoutParams = (boxView.layoutParams as LinearLayout.LayoutParams).also { it.width = config.boxWidth }
+
+        val indexOfBox = textfieldBoxCodeContainer.indexOfChild(boxView)
+
+        setOnFocusChangeListener(boxView)
+        setTextWatcher(boxView, indexOfBox)
+        setOnCreateContextMenuListenerTextField(boxView, indexOfBox)
+        if (indexOfBox > 0) {
+            boxView.setAndesFocusableInTouchMode(false)
+        }
     }
 
     /**
@@ -234,25 +291,65 @@ class AndesTextfieldCode : ConstraintLayout {
     /**
      * Sets each character of newText in the boxes.
      */
-    private fun setupTextComponent(newText: String?) {
-        var childCount = textfieldBoxCodeContainer.childCount
-        if (!newText.isNullOrEmpty()) {
-            val chars = newText.replace("\\D+".toRegex(), "").also {
-                if (it.length >= childCount) {
-                    it.substring(0, childCount)
-                }
-                currentText = it
-            }.toCharArray()
+    private fun setupTextComponent(newText: String?, startIndex: Int = 0) {
+        val cleanText = cleanText(newText)
+        if (cleanText != null) {
+            textChangedHandler.reset(startIndex)
+        }
+        when {
+            cleanText == null -> Unit
+            cleanText.isEmpty() -> cleanBoxes()
+            cleanText.isNotEmpty() -> setTextInBoxes(cleanText, startIndex)
+        }
+    }
 
-            foreachBox(chars.indices) { index, boxView ->
-                boxView.text = chars[index].toString()
+
+    private fun setTextInBoxes(cleanText: String, startIndex: Int = 0) {
+        val childCount = textfieldBoxCodeContainer.childCount
+        val textArray = Array(childCount) { DIRTY_CHARACTER }
+        IntRange(0, min(textArray.lastIndex, cleanText.lastIndex)).forEach { textArray[it] = "${cleanText[it]}" }
+
+        if (startIndex == 0) {
+            focusManagement.reset()
+        }
+        var charIndex = 0
+        var lastIsDirty = false
+        val emptyBoxes = childCount - startIndex
+        val endIndex = (startIndex + min(emptyBoxes - 1, textArray.lastIndex))
+        val indices = IntRange(startIndex, endIndex)
+
+        foreachBox(indices) { _, boxView ->
+            var boxText = textArray[charIndex++]
+            boxText = boxText.takeIf { it == DIRTY_CHARACTER } ?: "$DIRTY_CHARACTER$boxText"
+
+            if (boxText == DIRTY_CHARACTER) {
+                boxView.setAndesFocusableInTouchMode(!lastIsDirty)
+                lastIsDirty = true
             }
-        } else {
-            currentText = null
-            foreachBox(childCount--..0) { _, boxView ->
-                boxView.text = currentText
+
+            with(boxView) {
+                text = boxText
+                setSelection(boxText.length)
             }
         }
+    }
+
+    private fun cleanBoxes() {
+        var childCount = textfieldBoxCodeContainer.childCount
+        focusManagement.reset(childCount - 1)
+        for (index in --childCount downTo 0) {
+            getBoxAt(index)?.let { boxView ->
+                boxView.text = ""
+            }
+        }
+    }
+
+    private fun cleanText(newText: String?): String? {
+        if (newText.isNullOrEmpty()) {
+            return ""
+        }
+
+        return newText.replace("\\D+".toRegex(), "").takeIf { it.isNotEmpty() }
     }
 
     /**
@@ -283,6 +380,47 @@ class AndesTextfieldCode : ConstraintLayout {
         }
     }
 
+    private fun setOnCreateContextMenuListenerTextField(textfield: AndesTextfield, indexView: Int) {
+        textfield.setAndesTextContextMenuItemListener(object : AndesEditText.OnTextContextMenuItemListener {
+            override fun onPaste(): Boolean {
+                val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager?
+                val textToPaste = clipboard?.primaryClip?.getItemAt(0)?.text
+                textToPaste?.let { setupTextComponent("$it", indexView) }
+                return true
+            }
+        })
+    }
+
+    private fun setOnFocusChangeListener(textfield: AndesTextfield) {
+        textfield.setAndesFocusChangeListener(OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus && textfield.text.isNullOrEmpty()) {
+                with(textfield) {
+                    text = DIRTY_CHARACTER
+                    setSelection(DIRTY_CHARACTER.length)
+                }
+
+            }
+        })
+    }
+
+    private fun setTextWatcher(textfield: AndesTextfield, indexView: Int) {
+        textfield.textWatcher = AndesTextfieldBoxWatcher(textChangedHandler, focusManagement, indexView)
+    }
+
+    /**
+     * Set a handler to listen when the boxes are full.
+     */
+    fun setOnCompleteListener(handler: OnCompletionListener) {
+        onCompletionListener = handler
+    }
+
+    /**
+     * Set a handler to listen when there is a change of text in the boxes.
+     */
+    fun setOnTextChangeListener(handler: OnTextChangeListener) {
+        onTextChangeListener = handler
+    }
+
     private fun foreachBox(range: IntRange, action: (Int, AndesTextfield) -> Unit) {
         for (index in range) {
             getBoxAt(index)?.let {
@@ -296,6 +434,14 @@ class AndesTextfieldCode : ConstraintLayout {
     }
 
     private fun createConfig() = AndesTextfieldCodeConfigurationFactory.create(context, andesTextfieldCodeAttrs)
+
+    interface OnTextChangeListener {
+        fun onChange(text: String)
+    }
+
+    interface OnCompletionListener {
+        fun onComplete(isFull: Boolean)
+    }
 
     /**
      * Default values for AndesTextfieldCode basic properties
