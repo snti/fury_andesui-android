@@ -1,6 +1,8 @@
 # v2.13.0
 ## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)
+## 🛠 Fixes
+- Refactor AndesTag
 
 # v2.12.0
 ## 🚀 Features
