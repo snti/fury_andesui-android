@@ -88,6 +88,7 @@ class TagShowcaseActivity : AppCompatActivity() {
             return listOf(dinamicMessagesLayout, staticMessagesLayout, staticChoiceMessages)
         }
 
+        @Suppress("LongMethod")
         private fun addChoiceStaticTag(inflater: LayoutInflater): View {
             val layoutTag = inflater.inflate(R.layout.andesui_tags_showcase, null, false) as ScrollView
             layoutTag.findViewById<AndesButton>(R.id.andesui_demoapp_andes_tag_specs_button).setOnClickListener {
