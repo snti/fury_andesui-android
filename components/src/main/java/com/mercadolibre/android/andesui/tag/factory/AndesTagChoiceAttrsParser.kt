@@ -20,7 +20,8 @@ internal data class AndesTagChoiceAttrs(
         val andesTagSize: AndesTagSize,
         val andesTagChoiceState: AndesTagChoiceState,
         val leftContentData: LeftContent? = null,
-        val leftContent: AndesTagLeftContent? = null
+        val leftContent: AndesTagLeftContent? = null,
+        val shouldAnimateTag: Boolean = false
 
 ) {
     var rightContent: AndesTagRightContent? = null
@@ -53,19 +54,32 @@ internal object AndesTagChoiceAttrsParser {
     private const val ANDES_TAG_SIZE_LARGE = "7000"
     private const val ANDES_TAG_SIZE_SMALL = "7001"
 
+    private const val ANDES_TAG_SHOULD_ANIMATE_TRUE = "8000"
+    private const val ANDES_TAG_SHOULD_ANIMATE_FALSE = "8001"
+
     fun parse(context: Context, attr: AttributeSet?): AndesTagChoiceAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesTagChoice)
 
         val type = parseMode(typedArray)
         val size = parseSize(typedArray)
         val state = parseState(typedArray)
+        val shouldAnimateTag = parseShouldAnimateTag(typedArray)
 
         return AndesTagChoiceAttrs(
                 andesSimpleTagText = typedArray.getString(R.styleable.AndesTagChoice_tagChoiceText),
                 andesTagChoiceMode = type,
                 andesTagSize = size,
-                andesTagChoiceState = state
+                andesTagChoiceState = state,
+                shouldAnimateTag = shouldAnimateTag
         ).also { typedArray.recycle() }
+    }
+
+    private fun parseShouldAnimateTag(typedArray: TypedArray): Boolean {
+        return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceMode)) {
+            ANDES_TAG_SHOULD_ANIMATE_TRUE -> true
+            ANDES_TAG_SHOULD_ANIMATE_FALSE -> false
+            else -> false
+        }
     }
 
     private fun parseState(typedArray: TypedArray): AndesTagChoiceState {
@@ -85,7 +99,7 @@ internal object AndesTagChoiceAttrsParser {
     }
 
     private fun parseSize(typedArray: TypedArray): AndesTagSize {
-        return when (typedArray.getString(R.styleable.AndesTagSimple_tagSimpleSize)) {
+        return when (typedArray.getString(R.styleable.AndesTagChoice_tagChoiceSize)) {
             ANDES_TAG_SIZE_LARGE -> AndesTagSize.LARGE
             ANDES_TAG_SIZE_SMALL -> AndesTagSize.SMALL
             else -> AndesTagSize.LARGE

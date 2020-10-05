@@ -5,7 +5,6 @@ import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceStateInterface
 import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
-import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 
 internal data class AndesTagChoiceConfiguration(
         val text: String? = null,
@@ -16,13 +15,14 @@ internal data class AndesTagChoiceConfiguration(
         val leftContentColor: AndesColor,
         val leftContentData: LeftContent? = null,
         val leftContent: AndesTagLeftContent? = null,
-        val rightContent: AndesTagRightContent? = null
+        val rightContent: AndesTagRightContent? = null,
+        val shouldAnimateTag: Boolean
 )
 
 internal object AndesChoiceTagConfigurationFactory {
 
-    fun create(andesTagSimpleAttrs: AndesTagChoiceAttrs): AndesTagChoiceConfiguration {
-        return with(andesTagSimpleAttrs) {
+    fun create(andesTagChoiceAttrs: AndesTagChoiceAttrs): AndesTagChoiceConfiguration {
+        return with(andesTagChoiceAttrs) {
             AndesTagChoiceConfiguration(
                     text = andesSimpleTagText,
                     backgroundColor = resolveBackgroundColor(andesTagChoiceState.state),
@@ -30,9 +30,10 @@ internal object AndesChoiceTagConfigurationFactory {
                     textColor = resolveTextColor(andesTagChoiceState.state),
                     rightContentColor = resolveRightContentColor(andesTagChoiceState.state),
                     leftContentColor = resolveLeftContentColor(andesTagChoiceState.state),
-                    leftContentData = andesTagSimpleAttrs.leftContentData,
-                    leftContent = andesTagSimpleAttrs.leftContent,
-                    rightContent = andesTagSimpleAttrs.rightContent
+                    leftContentData = andesTagChoiceAttrs.leftContentData,
+                    leftContent = andesTagChoiceAttrs.leftContent,
+                    rightContent = andesTagChoiceAttrs.rightContent,
+                    shouldAnimateTag = andesTagChoiceAttrs.shouldAnimateTag
             )
         }
     }

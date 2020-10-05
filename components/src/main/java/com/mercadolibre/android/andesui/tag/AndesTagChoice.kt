@@ -62,7 +62,14 @@ class AndesTagChoice : ConstraintLayout {
             setupComponents(createConfig())
         }
 
-    private var shouldAnimateTag: Boolean = false
+    /**
+     * Getter and setter for [shouldAnimateTag].
+     */
+    var shouldAnimateTag: Boolean
+        get() = andesTagAttrs.shouldAnimateTag
+        set(value) {
+            andesTagAttrs = andesTagAttrs.copy(shouldAnimateTag = value)
+        }
 
     /**
      * Getter and setter for [size].

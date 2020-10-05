@@ -33,6 +33,16 @@
             <enum name="selected" value="6001" />
         </attr>
 
+        <attr name="tagChoiceSize">
+            <enum name="large" value="7000" />
+            <enum name="small" value="7001" />
+        </attr>
+
+        <attr name="shouldAnimateTag">
+            <enum name="True" value="8000" />
+            <enum name="False" value="8001" />
+        </attr>
+
         <attr name="tagChoiceText" format="reference" />
     </declare-styleable>
 </resources>
