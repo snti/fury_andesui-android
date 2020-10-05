@@ -8,5 +8,6 @@ class LeftContentIcon(
     val path: String? = null,
     val icon: Drawable? = null,
     var iconColor: String? = null,
-    var iconDefaultColor: AndesColor? = null
+    var iconDefaultColor: AndesColor? = null,
+    var iconSize: IconSize? = IconSize.LARGE
 )

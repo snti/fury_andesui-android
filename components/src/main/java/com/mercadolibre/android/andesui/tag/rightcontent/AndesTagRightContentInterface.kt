@@ -51,7 +51,7 @@ internal object AndesTagRightContentDismiss : AndesTagRightContentInterface() {
         }
     }
     override fun rightMarginText(context: Context, size: AndesTagSize) = 0
-    override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
+    override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
     override fun border(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, color: AndesColor, rightContent: RightContent?, callback: View.OnClickListener?): View {
 
@@ -83,7 +83,7 @@ internal object AndesTagRightContentDropDown : AndesTagRightContentInterface() {
         }
     }
     override fun rightMarginText(context: Context, size: AndesTagSize) = 0
-    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
+    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
     override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, color: AndesColor, rightContent: RightContent?, callback: View.OnClickListener?): View {
         val bitmapDrawable = buildColoredAndesBitmapDrawable(
@@ -111,7 +111,7 @@ internal object AndesTagRightContentCheck : AndesTagRightContentInterface() {
         }
     }
     override fun rightMarginText(context: Context, size: AndesTagSize) = 0
-    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
+    override fun size(context: Context): Int = context.resources.getDimension(R.dimen.andes_tag_icon_size_large).toInt()
     override fun border(context: Context): Float = context.resources.getDimension(R.dimen.andes_tag_icon_radius)
     override fun view(context: Context, color: AndesColor, rightContent: RightContent?, callback: View.OnClickListener?): View {
         val bitmapDrawable = buildColoredAndesBitmapDrawable(

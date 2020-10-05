@@ -32,10 +32,7 @@ import com.mercadolibre.android.andesui.tag.AndesTagSimple
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
 import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
-import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
-import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
-import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
-import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentImage
+import com.mercadolibre.android.andesui.tag.leftcontent.*
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -109,53 +106,78 @@ class TagShowcaseActivity : AppCompatActivity() {
             )
             params.setMargins(0, 0, 0, context.resources.getDimension(R.dimen.badge_margin_vertical).toInt())
 
-            val tagChoiceIcon = AndesTagChoice(
+            val iconLargeTag = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.SELECTED,
-                    "Choice tag"
+                    "Icon large"
             )
-            tagChoiceIcon.leftContent = LeftContent(
+            iconLargeTag.leftContent = LeftContent(
                     icon = LeftContentIcon(
                             backgroundColor = null,
                             icon = drawable,
                             iconColor = "#8C8C8C"
                     )
             )
-            firstColumn.addView(tagChoiceIcon, params)
+            firstColumn.addView(iconLargeTag, params)
 
-            val tagChoiceIconColored = AndesTagChoice(
+            val iconLargeColoredTag = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.SELECTED,
-                    "Choice tag"
+                    "Icon large colored"
             )
-            tagChoiceIconColored.shouldAnimateTag(true)
-            tagChoiceIconColored.leftContent = LeftContent(
+
+            iconLargeColoredTag.leftContent = LeftContent(
                     icon = LeftContentIcon(
                             backgroundColor = null,
                             icon = drawable
                     )
             )
-            firstColumn.addView(tagChoiceIconColored, params)
+            firstColumn.addView(iconLargeColoredTag, params)
 
-            val tagChoice = AndesTagChoice(
+            val iconSmallTag = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
-                    AndesTagChoiceState.IDLE,
-                    "Choice tag"
+                    AndesTagChoiceState.SELECTED,
+                    "Icon small"
             )
-            firstColumn.addView(tagChoice, params)
+            iconSmallTag.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconColor = "#8C8C8C",
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            firstColumn.addView(iconSmallTag, params)
+
+            val iconSmallTagColored = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Icon small colored"
+            )
+            iconSmallTagColored.shouldAnimateTag(true)
+            iconSmallTagColored.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = drawable,
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            firstColumn.addView(iconSmallTagColored, params)
 
             val tagChoiceSmall = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.SMALL,
                     AndesTagChoiceState.SELECTED,
-                    "Choice tag"
+                    "Small tag"
             )
             firstColumn.addView(tagChoiceSmall, params)
 
@@ -164,20 +186,39 @@ class TagShowcaseActivity : AppCompatActivity() {
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.SMALL,
                     AndesTagChoiceState.SELECTED,
-                    "Animated"
+                    "Small animated"
             )
             tagAnimatedSmall.shouldAnimateTag(true)
             firstColumn.addView(tagAnimatedSmall, params)
 
-            val tagAnimated = AndesTagChoice(
+            val tagAnimatedLarge = AndesTagChoice(
                     context,
                     AndesTagChoiceMode.SIMPLE,
                     AndesTagSize.LARGE,
                     AndesTagChoiceState.SELECTED,
-                    "Animated"
+                    "Large animated"
             )
-            tagAnimated.shouldAnimateTag(true)
-            firstColumn.addView(tagAnimated, params)
+            tagAnimatedLarge.shouldAnimateTag(true)
+            firstColumn.addView(tagAnimatedLarge, params)
+
+            val discounts = context.resources.getDrawable(R.drawable.andes_navegacion_ofertas_24)
+            val iconSmallAnimated = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.SIMPLE,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.SELECTED,
+                    "Descuentos"
+            )
+            iconSmallAnimated.shouldAnimateTag(true)
+            iconSmallAnimated.leftContent = LeftContent(
+                    icon = LeftContentIcon(
+                            backgroundColor = null,
+                            icon = discounts,
+                            iconSize = IconSize.SMALL
+                    )
+            )
+            iconSmallAnimated.shouldAnimateTag(true)
+            firstColumn.addView(iconSmallAnimated, params)
 
             val tagChoiceDropdown = AndesTagChoice(
                     context,

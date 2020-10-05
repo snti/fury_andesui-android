@@ -10,6 +10,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
@@ -248,6 +249,8 @@ class AndesTagChoice : ConstraintLayout {
                 config.leftContentData.icon?.iconDefaultColor = config.leftContentColor
             }
 
+            leftContent.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            leftContent.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             leftContent.removeAllViews()
             leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
             leftContent.visibility = View.VISIBLE
