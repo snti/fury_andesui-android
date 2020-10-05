@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
@@ -15,6 +16,7 @@ import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.utils.buildCircleBitmap
 import com.mercadolibre.android.andesui.utils.buildColoredBitmapDrawable
 import com.mercadolibre.android.andesui.utils.validateColor
+
 
 internal sealed class AndesTagLeftContentInterface {
     abstract fun leftMargin(context: Context): Int
@@ -88,7 +90,8 @@ internal object AndesTagLeftContentDot : AndesTagLeftContentInterface() {
 }
 
 internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
-    override fun leftMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+    var leftMargin = 0
+    override fun leftMargin(context: Context) = leftMargin
     override fun rightMargin(context: Context) = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
     override fun leftMarginText(context: Context, size: AndesTagSize) = 0
     override fun size(context: Context) = context.resources.getDimension(R.dimen.andes_tag_icon_size).toInt()
@@ -110,6 +113,9 @@ internal object AndesTagLeftContentIcon : AndesTagLeftContentInterface() {
             shape.cornerRadius = border(context)
             shape.setColor(Color.parseColor(background))
             imageView.background = shape
+            leftMargin = context.resources.getDimension(R.dimen.andes_tag_small_margin).toInt()
+        } else {
+            leftMargin = context.resources.getDimension(R.dimen.andes_tag_medium_margin).toInt()
         }
 
         val bitmapDrawable = if (!leftContent.icon!!.path.isNullOrEmpty()) {

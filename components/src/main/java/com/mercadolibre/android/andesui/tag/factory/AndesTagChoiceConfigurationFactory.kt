@@ -14,8 +14,8 @@ internal data class AndesTagChoiceConfiguration(
         val rightContentColor: AndesColor,
         val leftContentColor: AndesColor,
         val leftContentData: LeftContent? = null,
-        val leftContent: AndesTagLeftContent? = null,
-        val rightContent: AndesTagRightContent? = null,
+        val leftContent: AndesTagLeftContent = AndesTagLeftContent.NONE,
+        val rightContent: AndesTagRightContent = AndesTagRightContent.NONE,
         val shouldAnimateTag: Boolean
 )
 
@@ -31,8 +31,8 @@ internal object AndesChoiceTagConfigurationFactory {
                     rightContentColor = resolveRightContentColor(andesTagChoiceState.state),
                     leftContentColor = resolveLeftContentColor(andesTagChoiceState.state),
                     leftContentData = andesTagChoiceAttrs.leftContentData,
-                    leftContent = andesTagChoiceAttrs.leftContent,
-                    rightContent = andesTagChoiceAttrs.rightContent,
+                    leftContent = andesTagChoiceAttrs.leftContent ?: AndesTagLeftContent.NONE,
+                    rightContent = andesTagChoiceAttrs.rightContent ?: AndesTagRightContent.NONE,
                     shouldAnimateTag = andesTagChoiceAttrs.shouldAnimateTag
             )
         }

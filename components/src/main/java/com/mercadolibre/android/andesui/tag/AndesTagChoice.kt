@@ -235,42 +235,28 @@ class AndesTagChoice : ConstraintLayout {
 
             val constraintSet = ConstraintSet()
             constraintSet.clone(containerTag)
-            if (leftContent == null) {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.START,
-                        size.size.leftMargin(context)
-                )
-            } else if (config.leftContent != null) {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.START,
-                        config.leftContent.content.rightMargin(context)
-                )
-            }
-            if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
-                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, size.size.rightMargin(context))
-            } else {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.END,
-                        config.rightContent.content.rightMargin(context, size)
-                )
-            }
-
+            constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.START, config.leftContent.content.leftMarginText(context, size))
+            constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, config.rightContent.content.rightMarginText(context, size))
             constraintSet.applyTo(containerTag)
         }
     }
 
     private fun setupLeftContent(config: AndesTagChoiceConfiguration) {
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
-        if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
+        if (config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
             if (config.leftContentData.icon != null) {
                 config.leftContentData.icon?.iconDefaultColor = config.leftContentColor
             }
+
             leftContent.removeAllViews()
             leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
             leftContent.visibility = View.VISIBLE
+
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(containerTag)
+            constraintSet.setMargin(R.id.leftContent, ConstraintSet.START, config.leftContent.content.leftMargin(context))
+            constraintSet.setMargin(R.id.leftContent, ConstraintSet.END, config.leftContent.content.rightMargin(context))
+            constraintSet.applyTo(containerTag)
         } else {
             leftContent.visibility = View.GONE
         }
@@ -278,7 +264,7 @@ class AndesTagChoice : ConstraintLayout {
 
     private fun setupRightContent(config: AndesTagChoiceConfiguration) {
         val rightContent = findViewById<FrameLayout>(R.id.rightContent)
-        if (config.rightContent != null && config.rightContent != AndesTagRightContent.NONE) {
+        if (config.rightContent != AndesTagRightContent.NONE) {
             rightContent.removeAllViews()
             rightContent.addView(config.rightContent.content.view(
                     context,
@@ -287,9 +273,11 @@ class AndesTagChoice : ConstraintLayout {
                     null
             ))
 
-            val params = rightContent.layoutParams as MarginLayoutParams
-            params.marginEnd = config.rightContent.content.rightMargin(context, size)
-            rightContent.layoutParams = params
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(containerTag)
+            constraintSet.setMargin(R.id.rightContent, ConstraintSet.START, config.rightContent.content.leftMargin(context, size))
+            constraintSet.setMargin(R.id.rightContent, ConstraintSet.END, config.rightContent.content.rightMargin(context, size))
+            constraintSet.applyTo(containerTag)
 
             rightContent.visibility = View.VISIBLE
         } else {

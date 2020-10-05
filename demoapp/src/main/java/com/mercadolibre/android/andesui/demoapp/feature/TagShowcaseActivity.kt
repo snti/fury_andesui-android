@@ -29,6 +29,7 @@ import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.tag.AndesTagChoice
 import com.mercadolibre.android.andesui.tag.AndesTagSimple
+import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
 import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
 import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
@@ -98,9 +99,10 @@ class TagShowcaseActivity : AppCompatActivity() {
             val viewTitle: TextView = layoutTag.findViewById(R.id.static_tag_title)
             viewTitle.text = "Choice tag"
 
+            val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
             val firstColumn = layoutTag.findViewById<LinearLayout>(R.id.firstColumn)
             val secondColumn = layoutTag.findViewById<LinearLayout>(R.id.secondColumn)
-            val drawable = context.resources.getDrawable(R.drawable.andes_navegacion_ajustes)
+
             val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -185,6 +187,70 @@ class TagShowcaseActivity : AppCompatActivity() {
                     "Dropdown"
             )
             secondColumn.addView(tagChoiceDropdown, params)
+
+            val tagChoiceDropdownCallback = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
+                    "Callback false"
+            )
+            tagChoiceDropdownCallback.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallback, params)
+
+            val tagChoiceDropdownCallback2 = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.LARGE,
+                    AndesTagChoiceState.IDLE,
+                    "Callback true"
+            )
+            tagChoiceDropdownCallback2.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
+                    return true
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallback2, params)
+
+            val tagChoiceDropdownCallbackSmall = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.IDLE,
+                    "Callback false"
+            )
+            tagChoiceDropdownCallbackSmall.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return false", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallbackSmall, params)
+
+            val tagChoiceDropdownCallbackSmall2 = AndesTagChoice(
+                    context,
+                    AndesTagChoiceMode.DROPDOWN,
+                    AndesTagSize.SMALL,
+                    AndesTagChoiceState.IDLE,
+                    "Callback true"
+            )
+            tagChoiceDropdownCallbackSmall2.callback = object : AndesTagChoiceCallback {
+                override fun shouldSelectTag(andesTagChoice: AndesTagChoice): Boolean {
+                    Toast.makeText(context, "Dropdown clicked. Return true", Toast.LENGTH_LONG).show()
+                    return true
+                }
+
+            }
+            secondColumn.addView(tagChoiceDropdownCallbackSmall2, params)
 
             return layoutTag
         }
