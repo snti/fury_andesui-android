@@ -50,14 +50,14 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
             textView?.gravity = Gravity.CENTER
         }
 
-        bottomSheet.setBottomSheetContent(textView!!)
+        bottomSheet.setContent(textView!!)
         bottomSheet.expand()
     }
 
     fun onAttachFragmentButtonClicked(view: View) {
         bottomSheet.removeContent()
 
-        bottomSheet.setBottomSheetContent(supportFragmentManager, TestFragment())
+        bottomSheet.setContent(supportFragmentManager, TestFragment())
     }
 
     fun onExpandButtonClicked(view: View) {

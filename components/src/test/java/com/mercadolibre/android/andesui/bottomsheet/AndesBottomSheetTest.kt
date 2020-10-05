@@ -69,7 +69,7 @@ class AndesBottomSheetTest {
         val mockFragment = mock(Fragment::class.java)
         val mockFragmentManager = mockFragmentManager()
 
-        andesBottomSheet.setBottomSheetContent(mockFragmentManager, mockFragment)
+        andesBottomSheet.setContent(mockFragmentManager, mockFragment)
 
         verify(mockFragmentManager).beginTransaction()
     }
@@ -80,7 +80,7 @@ class AndesBottomSheetTest {
         val mockView = mock(View::class.java)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("frameView"), mockFrameLayout)
 
-        andesBottomSheet.setBottomSheetContent(mockView)
+        andesBottomSheet.setContent(mockView)
 
         verify(mockFrameLayout).addView(mockView)
     }
