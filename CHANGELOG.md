@@ -2,6 +2,9 @@
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
 
+## Added
+- Added Andes icons (bill, cash, credit card, shipping, wallet)
+
 # v2.12.0
 ## 🚀 Features
 - Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
