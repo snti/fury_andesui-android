@@ -83,6 +83,7 @@ dependencies {
 
     implementation showcase.glide
     implementation showcase.markwon
+    debugImplementation showcase.leakCanary
 }
 
 /**
