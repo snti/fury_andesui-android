@@ -1,4 +1,7 @@
-# v2.13.0
+# V2.13.0
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
 ## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)
 ## 🛠 Fixes
