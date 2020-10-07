@@ -198,6 +198,18 @@
 
     <string name="andesui_demoapp_coachmark">Andes Coachmark</string>
 
+    <string name="andesui_demoapp_bottom_sheet">Andes Bottom Sheet</string>
+    <string name="andesui_demoapp_bottom_sheet_attach_view_button">Attach View</string>
+    <string name="andesui_demoapp_bottom_sheet_attach_frag_butotn">Attach Fragment</string>
+    <string name="andesui_demoapp_bottom_sheet_expand_button">Expand</string>
+    <string name="andesui_demoapp_bottom_sheet_collapse_button">Collapse</string>
+    <string name="andesui_demoapp_bottom_sheet_toggle_title_button">Toggle Title</string>
+    <string name="andesui_demoapp_bottom_sheet_toggle_title_align_button">Toggle alignment</string>
+    <string name="andesui_demoapp_bottom_sheet_toggle_background_button">Toggle Background Dim</string>
+    <string name="andesui_demoapp_bottom_sheet_text_field">New peek height</string>
+    <string name="andesui_demoapp_bottom_sheet_set_button">Set</string>
+    <string name="andesui_demoapp_bottom_sheet_dummy_view">This is a dummy view</string>
+
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
     <string-array name="state_spinner">
