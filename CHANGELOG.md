@@ -1,4 +1,4 @@
-# V2.13.0
+# v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
 
