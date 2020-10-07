@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/simpleTypeTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_vertical_text_field"
@@ -77,11 +77,11 @@
             android:id="@+id/state_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleTypeTextView"
             app:layout_constraintEnd_toEndOf="@+id/textType_spinner"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/simpleTypeTextView"
+            app:layout_constraintTop_toTopOf="@+id/simpleTypeTextView" />
 
         <TextView
             android:id="@+id/textView3"
@@ -93,8 +93,8 @@
             app:layout_constraintEnd_toStartOf="@+id/prefix_spinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/simpleTypeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/simpleTypeTextView" />
 
         <Spinner
             android:id="@+id/prefix_spinner"

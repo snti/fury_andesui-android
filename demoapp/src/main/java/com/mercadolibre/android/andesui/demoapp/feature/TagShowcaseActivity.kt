@@ -511,16 +511,29 @@ class TagShowcaseActivity : AppCompatActivity() {
             ) as ScrollView
 
             val andesTagSimple: AndesTagSimple = layoutTag.findViewById(R.id.andesui_tag)
+            val simpleTypeTextView: TextView = layoutTag.findViewById(R.id.simpleTypeTextView)
+            val andesTagChoice: AndesTagChoice = layoutTag.findViewById(R.id.andesui_tag_choice)
 
-            val typeSpinner: Spinner = layoutTag.findViewById(R.id.type_spinner)
+            val typeSpinner: Spinner = layoutTag.findViewById(R.id.tag_type_spinner)
             ArrayAdapter.createFromResource(
-                context,
-                R.array.type_spinner,
-                android.R.layout.simple_spinner_item
+                    context,
+                    R.array.tag_type_spinner,
+                    android.R.layout.simple_spinner_item
             )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         typeSpinner.adapter = adapter
+                    }
+
+            val simpleTypeSpinner: Spinner = layoutTag.findViewById(R.id.simple_type_spinner)
+            ArrayAdapter.createFromResource(
+                context,
+                R.array.simple_type_spinner,
+                android.R.layout.simple_spinner_item
+            )
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        simpleTypeSpinner.adapter = adapter
                     }
 
             val groupDot: Group = layoutTag.findViewById(R.id.group_dot)
@@ -635,6 +648,7 @@ class TagShowcaseActivity : AppCompatActivity() {
                 andesTagSimple.visibility = View.VISIBLE
 
                 dismissable.isChecked = false
+                simpleTypeSpinner.setSelection(0)
                 typeSpinner.setSelection(0)
                 sizeSpinner.setSelection(0)
                 leftContentSpinner.setSelection(0)
@@ -650,11 +664,6 @@ class TagShowcaseActivity : AppCompatActivity() {
             }
 
             changeButton.setOnClickListener {
-
-                andesTagSimple.visibility = View.VISIBLE
-
-                val isDismissable = dismissable.isChecked
-                val type = AndesTagType.fromString(typeSpinner.selectedItem as String)
                 val size = AndesTagSize.fromString(sizeSpinner.selectedItem as String)
 
                 if (labelText.text.isNullOrEmpty()) {
@@ -776,11 +785,35 @@ class TagShowcaseActivity : AppCompatActivity() {
                     }
                 }
 
-                andesTagSimple.text = text
-                andesTagSimple.type = type
-                andesTagSimple.size = size
-                andesTagSimple.isDismissable = isDismissable
-                andesTagSimple.leftContent = leftContent
+                when (typeSpinner.selectedItem as String) {
+                    "Simple" -> {
+                        andesTagChoice.visibility = View.INVISIBLE
+                        andesTagSimple.visibility = View.VISIBLE
+                        simpleTypeSpinner.visibility = View.VISIBLE
+                        simpleTypeTextView.visibility = View.VISIBLE
+                        dismissable.visibility = View.VISIBLE
+
+                        val simpleType = AndesTagType.fromString(simpleTypeSpinner.selectedItem as String)
+                        val isDismissable = dismissable.isChecked
+
+                        andesTagSimple.text = text
+                        andesTagSimple.type = simpleType
+                        andesTagSimple.size = size
+                        andesTagSimple.isDismissable = isDismissable
+                        andesTagSimple.leftContent = leftContent
+                    }
+                    "Choice" -> {
+                        andesTagSimple.visibility = View.INVISIBLE
+                        andesTagChoice.visibility = View.VISIBLE
+                        simpleTypeSpinner.visibility = View.GONE
+                        simpleTypeTextView.visibility = View.GONE
+                        dismissable.visibility = View.GONE
+
+                        andesTagChoice.text = text
+                        andesTagChoice.size = size
+                        andesTagChoice.leftContent = leftContent
+                    }
+                }
             }
 
             return layoutTag
