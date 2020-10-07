@@ -4,8 +4,12 @@
 
 ## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)
+
 ## 🛠 Fixes
 - Refactor AndesTag
+
+## Developer Experience
+- Added LeakCanary v2.5 to debug builds to detect memory leaks in an early stage.
 
 # v2.12.0
 ## 🚀 Features
