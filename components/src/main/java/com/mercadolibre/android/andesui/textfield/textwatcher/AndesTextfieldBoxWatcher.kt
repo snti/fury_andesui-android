@@ -38,7 +38,7 @@ internal class AndesTextfieldBoxWatcher(
                 editable.isNotEmpty() -> {
                     focusManagement.goToNextFocus()
                 }
-                editable.isEmpty() && indexChild > 0 -> {
+                editable.isEmpty() -> {
                     focusManagement.goToPreviousFocus()
                 }
             }
