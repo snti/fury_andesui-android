@@ -10,5 +10,5 @@ class LeftContentIcon(
     val icon: Drawable? = null,
     var iconColor: String? = null,
     var iconDefaultColor: AndesColor? = null,
-    var iconSize: IconSize? = IconSize.LARGE
+    var iconSize: IconSize = IconSize.LARGE
 )

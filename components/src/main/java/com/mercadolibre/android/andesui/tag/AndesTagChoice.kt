@@ -244,8 +244,10 @@ class AndesTagChoice : ConstraintLayout {
                 config.leftContentData.icon?.iconDefaultColor = config.leftContentColor
             }
 
-            leftContent.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-            leftContent.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            val params = leftContent.layoutParams
+            params.height = context.resources.getDimension(config.leftContentHeight).toInt()
+            params.width = context.resources.getDimension(config.leftContentWidth).toInt()
+            leftContent.layoutParams = params
             leftContent.removeAllViews()
             leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
             leftContent.visibility = View.VISIBLE

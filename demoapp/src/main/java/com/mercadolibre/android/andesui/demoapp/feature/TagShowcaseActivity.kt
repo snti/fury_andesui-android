@@ -607,7 +607,7 @@ class TagShowcaseActivity : AppCompatActivity() {
 
             typeSpinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                    // Do nothing
                 }
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
