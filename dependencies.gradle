@@ -35,6 +35,7 @@ ext {
              * It let us show the What's New which is in markdown format.
              * https://github.com/noties/Markwon
              */
-            markwon: 'io.noties.markwon:core:4.5.1'
+            markwon: 'io.noties.markwon:core:4.5.1',
+            leakCanary: 'com.squareup.leakcanary:leakcanary-android:2.5'
     ]
 }

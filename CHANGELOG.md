@@ -1,10 +1,17 @@
 # v2.13.0
 
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
+
 ## Added
-- Added TagChoice
 - Added Andes icons (bill, cash, credit card, shipping, wallet)
+
 ## 🛠 Fixes
 - Refactor AndesTag
+
+## Developer Experience
+- Added LeakCanary v2.5 to debug builds to detect memory leaks in an early stage.
 
 # v2.12.0
 ## 🚀 Features
