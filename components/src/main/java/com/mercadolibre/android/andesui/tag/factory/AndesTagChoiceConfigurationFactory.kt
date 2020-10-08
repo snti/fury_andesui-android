@@ -16,8 +16,8 @@ internal data class AndesTagChoiceConfiguration(
         val rightContentColor: AndesColor,
         val leftContentColor: AndesColor,
         val leftContentData: LeftContent? = null,
-        val leftContentWidth: Int,
-        val leftContentHeight: Int,
+        val leftContentWidth: Int?,
+        val leftContentHeight: Int?,
         val leftContent: AndesTagLeftContent = AndesTagLeftContent.NONE,
         val rightContent: AndesTagRightContent = AndesTagRightContent.NONE,
         val shouldAnimateTag: Boolean
@@ -43,19 +43,19 @@ internal object AndesChoiceTagConfigurationFactory {
         }
     }
 
-    private fun resolveLeftContentHeight(iconSize: AndesIconSizeInterface?): Int {
+    private fun resolveLeftContentHeight(iconSize: AndesIconSizeInterface?): Int? {
         if (iconSize != null) {
             return iconSize.getHeight()
         }
 
-        return 0
+        return null
     }
-    private fun resolveLeftContentWidth(iconSize: AndesIconSizeInterface?): Int {
+    private fun resolveLeftContentWidth(iconSize: AndesIconSizeInterface?): Int? {
         if (iconSize != null) {
             return iconSize.getWidth()
         }
 
-        return 0
+        return null
     }
     private fun resolveBackgroundColor(state: AndesTagChoiceStateInterface) = state.backgroundColor()
     private fun resolveBorderColor(state: AndesTagChoiceStateInterface) = state.borderColor()
