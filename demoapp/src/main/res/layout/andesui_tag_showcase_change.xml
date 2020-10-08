@@ -77,7 +77,24 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/dismissable"
+            app:layout_constraintBottom_toTopOf="@+id/textView21"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/should_animate" />
+
+        <Switch
+            android:id="@+id/should_animate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/should_animate"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/dismissable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/andesui_tag" />
 
@@ -89,7 +106,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/andesui_demoapp_tag_type"
             android:textColor="@color/andes_gray_800"
+            app:layout_constraintBottom_toTopOf="@+id/simpleTypeTextView"
             app:layout_constraintEnd_toStartOf="@+id/tag_type_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dismissable"
             app:layout_goneMarginTop="16dp" />
@@ -102,7 +121,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/andesui_demoapp_tag_type_simple"
             android:textColor="@color/andes_gray_800"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toStartOf="@+id/simple_type_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView21"
@@ -116,7 +137,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/andesui_demoapp_tag_size"
             android:textColor="@color/andes_gray_800"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toStartOf="@+id/size_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/simpleTypeTextView"
@@ -130,11 +153,11 @@
             android:layout_marginTop="16dp"
             android:text="@string/andesui_demoapp_tag_leftcontent"
             android:textColor="@color/andes_gray_800"
-            app:layout_goneMarginTop="16dp"
             app:layout_constraintEnd_toStartOf="@+id/left_content_spinner"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_goneMarginTop="16dp" />
 
         <TextView
             android:id="@+id/textView8"
@@ -279,6 +302,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.mercadolibre.android.andesui.tag.AndesTagChoice
+            android:id="@+id/andesui_tag_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message"
+            app:tagChoiceText="@string/andes_choice_tag_showcase" />
+
         <com.mercadolibre.android.andesui.tag.AndesTagSimple
             android:id="@+id/andesui_tag"
             android:layout_width="wrap_content"
@@ -288,17 +322,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/message"
             app:tagSimpleText="@string/andes_simple_tag_showcase" />
-
-        <com.mercadolibre.android.andesui.tag.AndesTagChoice
-            android:id="@+id/andesui_tag_choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/message"
-            app:tagChoiceText="@string/andes_choice_tag_showcase"
-            android:visibility="gone"/>
 
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/left_content_text"

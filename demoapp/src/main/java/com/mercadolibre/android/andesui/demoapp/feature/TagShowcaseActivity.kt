@@ -603,6 +603,34 @@ class TagShowcaseActivity : AppCompatActivity() {
             labelText.placeholder = context.resources.getString(R.string.andes_textfield_label_text)
 
             val dismissable: Switch = layoutTag.findViewById(R.id.dismissable)
+            val shouldAnimate: Switch = layoutTag.findViewById(R.id.should_animate)
+
+            typeSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when(typeSpinner.getItemAtPosition(position)) {
+                        "Simple" -> {
+                            andesTagChoice.visibility = View.INVISIBLE
+                            andesTagSimple.visibility = View.VISIBLE
+                            simpleTypeSpinner.visibility = View.VISIBLE
+                            simpleTypeTextView.visibility = View.VISIBLE
+                            dismissable.visibility = View.VISIBLE
+                            shouldAnimate.visibility = View.GONE
+                        }
+                        "Choice" -> {
+                            andesTagSimple.visibility = View.INVISIBLE
+                            andesTagChoice.visibility = View.VISIBLE
+                            simpleTypeSpinner.visibility = View.GONE
+                            simpleTypeTextView.visibility = View.GONE
+                            dismissable.visibility = View.GONE
+                            shouldAnimate.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
 
             leftContentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
@@ -787,12 +815,6 @@ class TagShowcaseActivity : AppCompatActivity() {
 
                 when (typeSpinner.selectedItem as String) {
                     "Simple" -> {
-                        andesTagChoice.visibility = View.INVISIBLE
-                        andesTagSimple.visibility = View.VISIBLE
-                        simpleTypeSpinner.visibility = View.VISIBLE
-                        simpleTypeTextView.visibility = View.VISIBLE
-                        dismissable.visibility = View.VISIBLE
-
                         val simpleType = AndesTagType.fromString(simpleTypeSpinner.selectedItem as String)
                         val isDismissable = dismissable.isChecked
 
@@ -803,12 +825,8 @@ class TagShowcaseActivity : AppCompatActivity() {
                         andesTagSimple.leftContent = leftContent
                     }
                     "Choice" -> {
-                        andesTagSimple.visibility = View.INVISIBLE
-                        andesTagChoice.visibility = View.VISIBLE
-                        simpleTypeSpinner.visibility = View.GONE
-                        simpleTypeTextView.visibility = View.GONE
-                        dismissable.visibility = View.GONE
-
+                        val animation = shouldAnimate.isChecked
+                        andesTagChoice.shouldAnimateTag = animation
                         andesTagChoice.text = text
                         andesTagChoice.size = size
                         andesTagChoice.leftContent = leftContent

@@ -197,6 +197,8 @@ class AndesTagChoice : ConstraintLayout {
             val layoutTransition = LayoutTransition()
             layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
             containerTag.layoutTransition = layoutTransition
+        } else {
+            containerTag.layoutTransition = null
         }
     }
 
