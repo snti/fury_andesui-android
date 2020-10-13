@@ -219,6 +219,12 @@ class AndesTagChoice : ConstraintLayout {
      * Gets data from the config and sets to the title component of this tag.
      */
     private fun setupTitleComponent(config: AndesTagChoiceConfiguration) {
+        if (state == AndesTagChoiceState.SELECTED) {
+            containerTag.contentDescription = config.text + context.resources.getString(R.string.andes_tag_choice_selected)
+        } else {
+            containerTag.contentDescription = config.text
+        }
+
         if (config.text == null || config.text.isEmpty()) {
             containerTag.visibility = View.GONE
         } else {
