@@ -1,6 +1,12 @@
+# v2.14.0
+## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
+
 # v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
+## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)
 
 ## 🛠 Fixes
