@@ -1,6 +1,9 @@
 package com.mercadolibre.android.andesui.demoapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCoreComponents() {
+        andesui_coachmark.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/coachmark"))
+        }
         andesui_card.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/card"))
         }
@@ -57,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         andesui_progress.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/progress"))
         }
+        andesui_bottom_sheet.setOnClickListener {
+            startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
+        }
     }
 
     private fun setupExtras() {
@@ -70,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         andesui_demoapp_contribution.setOnClickListener {
-            startActivity(SafeIntent(this, "https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933"))
+            ContextCompat.startActivity(this, Intent(Intent.ACTION_VIEW, Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")), null)
         }
     }
 }
