@@ -56,7 +56,7 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
                 hierarchySpinner.adapter = adapter
             }
 
-        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
             this,
             R.array.thumbnail_type_spinner,
