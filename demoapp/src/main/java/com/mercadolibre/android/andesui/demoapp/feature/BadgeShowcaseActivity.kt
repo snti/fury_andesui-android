@@ -68,10 +68,10 @@ class BadgeShowcaseActivity : AppCompatActivity() {
                 hierarchySpinner.adapter = adapter
             }
 
-        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
             this,
-            R.array.type_spinner,
+            R.array.simple_type_spinner,
             android.R.layout.simple_spinner_item
         )
                 .also { adapter ->

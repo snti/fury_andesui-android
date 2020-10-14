@@ -5,6 +5,7 @@
 # v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 ## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)

@@ -48,6 +48,7 @@
     <string name="body_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
     <string name="title_text">Atention!</string>
     <string name="dismissable">Dismissable</string>
+    <string name="should_animate">Should animate</string>
     <string name="andes_message_showcase_change">Update</string>
     <string name="change_text">Title text</string>
     <string name="change_body">Body text</string>
@@ -105,6 +106,7 @@
     <string name="andes_radiobuttongroup_showcase">Andes RadioButtonGroup</string>
     <string name="andes_tag_showcase">Andes Tag</string>
     <string name="andes_simple_tag_showcase">Simple tag</string>
+    <string name="andes_choice_tag_showcase">Choice tag</string>
     <string name="andes_snackbar_showcase">Andes Snackbar</string>
     <string name="andes_badge_showcase">Andes Badge</string>
     <string name="andes_badges_pill">Pill</string>
@@ -165,6 +167,7 @@
 
     <string name="andesui_demoapp_tag_size">Size</string>
     <string name="andesui_demoapp_tag_type">Type</string>
+    <string name="andesui_demoapp_tag_type_simple">Simple Type</string>
     <string name="andesui_demoapp_tag_leftcontent">Left content</string>
     <string name="andesui_demoapp_tag_background_color">Background color</string>
     <string name="andesui_demoapp_tag_text_color">Text color</string>
@@ -264,12 +267,17 @@
         <item>Dot</item>
     </string-array>
 
-    <string-array name="type_spinner">
+    <string-array name="simple_type_spinner">
         <item>Neutral</item>
         <item>Highlight</item>
         <item>Success</item>
         <item>Warning</item>
         <item>Error</item>
+    </string-array>
+
+    <string-array name="tag_type_spinner">
+        <item>Simple</item>
+        <item>Choice</item>
     </string-array>
 
     <string-array name="size_spinner">
