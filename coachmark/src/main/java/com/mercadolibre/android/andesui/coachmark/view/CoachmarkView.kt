@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.graphics.Rect
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
@@ -32,6 +33,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private val scrollView: NestedScrollView
     private val walkthroughMessageView: WalkthroughMessageView
     private val coachmarkContainer: CoachmarkContainerView
+    private var previousOrientationScreen = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
     init {
         val coachmarkData = builder.coachmarkData
@@ -50,7 +52,8 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     }
 
     private fun initContainer() {
-
+        previousOrientationScreen = activity.requestedOrientation
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         baseContainer.setBackgroundColor(ContextCompat.getColor(activity, R.color.andes_transparent))
         baseContainer.isClickable = true
         baseContainer.visibility = View.GONE
@@ -86,7 +89,6 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
      *
      * @param coachmarkData es el que contiene todos los datos para darle al step anterior o siguiente
      * @param onTrackingListener listener para avisar sobre el trackeo cuando se hace click en los diferentes botones
-     * @param onAfterDismissListener listener para dar aviso que el coachmark fue quitado
      */
     private fun initListeners(
         coachmarkData: AndesWalkthroughCoachmark,
@@ -148,7 +150,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     private fun scroll(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val stepReferenceGlobalRect = Rect()
-        stepReferenced.view?.getGlobalVisibleRect(stepReferenceGlobalRect)
+        stepReferenced.view.getGlobalVisibleRect(stepReferenceGlobalRect)
 
         val overlayRect = Rect()
         coachmarkOverlayView.getGlobalVisibleRect(overlayRect)
@@ -162,6 +164,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 presenter.resolveScrollMode(
                     stepReferenced,
                     coachmarkOverlayView.height,
+                    stepReferenced.view.height,
                     stepReferenceGlobalRect,
                     overlayRect,
                     walkthroughMessageView.getChildAt(0).height,
@@ -215,7 +218,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
      */
     override fun addTarget(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
-        stepReferenced.view?.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+        stepReferenced.view.viewTreeObserver?.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 coachmarkOverlayView.clear()
                 presenter.addRect(stepReferenced)
@@ -225,7 +228,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
                 return false
             }
         })
-        stepReferenced.view?.postInvalidate()
+        stepReferenced.view.postInvalidate()
     }
 
     /**
@@ -236,7 +239,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addCircleRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.view?.getGlobalVisibleRect(rect)
+        stepReferenced.view.getGlobalVisibleRect(rect)
         val cx = rect.centerX()
         val cy = rect.centerY()
 
@@ -261,7 +264,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     override fun addRoundRect(stepReferenced: AndesWalkthroughCoachmarkStep) {
 
         val rect = Rect()
-        stepReferenced.view?.getGlobalVisibleRect(rect)
+        stepReferenced.view.getGlobalVisibleRect(rect)
         coachmarkOverlayView.addRect(
             rect.left,
             rect.top - activity.resources.getDimension(R.dimen.andes_coachmark_toolbar_status_bar).toInt(),
@@ -277,7 +280,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
 
                 val tooltipHeight = walkthroughMessageView.getChildAt(0).height
                 val targetRect = Rect()
-                stepReferenced.view?.getGlobalVisibleRect(targetRect)
+                stepReferenced.view.getGlobalVisibleRect(targetRect)
                 presenter.relocateTooltip(tooltipHeight, walkthroughMessageView.getPosition(), targetRect)
 
                 walkthroughMessageView.animate()
@@ -351,6 +354,7 @@ class CoachmarkView private constructor(builder: Builder) : CoachmarkViewInterfa
     fun dismiss(onAfterDismissListener: (() -> Unit)?) {
 
         walkthroughMessageView.visibility = View.GONE
+        activity.requestedOrientation = previousOrientationScreen
         presenter.restorePreviousValues()
         ViewCompat.animate(baseContainer)
             .alpha(0f)
