@@ -13,10 +13,10 @@ import android.widget.Spinner
 import android.widget.Switch
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.AndesColor
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
 import com.mercadolibre.android.andesui.thumbnail.hierarchy.AndesThumbnailHierarchy
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
@@ -43,18 +43,25 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
         bindAndesSpecsButton(adapter.views[1])
     }
 
+    @Suppress("ComplexMethod", "LongMethod")
     private fun addDynamicThumbnails(container: View) {
         val hierarchySpinner: Spinner = container.findViewById(R.id.hierarchy_spinner)
         ArrayAdapter.createFromResource(
-            this, R.array.thumbnail_hierarchy_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.thumbnail_hierarchy_spinner,
+            android.R.layout.simple_spinner_item
+        )
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 hierarchySpinner.adapter = adapter
             }
 
-        val typeSpinner: Spinner = container.findViewById(R.id.type_spinner)
+        val typeSpinner: Spinner = container.findViewById(R.id.simple_type_spinner)
         ArrayAdapter.createFromResource(
-            this, R.array.thumbnail_type_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.thumbnail_type_spinner,
+            android.R.layout.simple_spinner_item
+        )
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 typeSpinner.adapter = adapter
@@ -62,7 +69,10 @@ class ThumbnailShowcaseActivity : AppCompatActivity() {
 
         val sizeSpinner: Spinner = container.findViewById(R.id.size_spinner)
         ArrayAdapter.createFromResource(
-            this, R.array.thumbnail_size_spinner, android.R.layout.simple_spinner_item)
+            this,
+            R.array.thumbnail_size_spinner,
+            android.R.layout.simple_spinner_item
+        )
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sizeSpinner.adapter = adapter

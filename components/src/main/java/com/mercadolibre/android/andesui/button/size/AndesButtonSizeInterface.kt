@@ -15,6 +15,7 @@ import java.io.FileNotFoundException
  * Those properties change depending on the size of the button.
  *
  */
+@Suppress("TooManyFunctions")
 internal interface AndesButtonSizeInterface {
     /**
      * Returns a [Float] representing the text size to be used.
@@ -126,6 +127,7 @@ internal interface AndesButtonSizeInterface {
  * according to Andes specifications.
  *
  */
+@Suppress("TooManyFunctions")
 internal class AndesLargeButtonSize : AndesButtonSizeInterface {
 
     override fun textSize(context: Context) =
@@ -151,37 +153,48 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
         rightIcon: String?,
         context: Context
     ): IconConfig? {
-        if (leftIcon != null) { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
-            return try {
-                val leftBitmapDrawable = buildColoredAndesBitmapDrawable(
-                        IconProvider(context).loadIcon(leftIcon) as BitmapDrawable,
-                        context,
-                        context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),
-                        context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height),
-                        hierarchy.iconColor(context)
-                )
-                IconConfig(leftIcon = leftBitmapDrawable, rightIcon = null)
-            } catch (e: FileNotFoundException) {
-                IconConfig(leftIcon = null, rightIcon = null)
+
+        return when {
+            leftIcon != null -> { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
+                handleLeftIcon(context, leftIcon, hierarchy)
+            }
+            rightIcon != null -> {
+                handleRightIcon(context, rightIcon, hierarchy)
+            }
+            else -> {
+                null // No icon has been specified
             }
         }
+    }
 
-        if (rightIcon != null) {
-            return try {
-                val rightBitmapDrawable = buildColoredAndesBitmapDrawable(
-                        IconProvider(context).loadIcon(rightIcon) as BitmapDrawable,
-                        context,
-                        context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),
-                        context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height),
-                        hierarchy.iconColor(context)
-                )
-                IconConfig(leftIcon = null, rightIcon = rightBitmapDrawable)
-            } catch (e: FileNotFoundException) {
-                IconConfig(leftIcon = null, rightIcon = null)
-            }
+    private fun handleLeftIcon(context: Context, leftIcon: String, hierarchy: AndesButtonHierarchyInterface): IconConfig? {
+        return try {
+            val leftBitmapDrawable = buildColoredAndesBitmapDrawable(
+                IconProvider(context).loadIcon(leftIcon) as BitmapDrawable,
+                context,
+                context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),
+                context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height),
+                hierarchy.iconColor(context)
+            )
+            IconConfig(leftIcon = leftBitmapDrawable, rightIcon = null)
+        } catch (e: FileNotFoundException) {
+            IconConfig(leftIcon = null, rightIcon = null)
         }
+    }
 
-        return null // No icon has been specified
+    private fun handleRightIcon(context: Context, rightIcon: String, hierarchy: AndesButtonHierarchyInterface): IconConfig? {
+        return try {
+            val rightBitmapDrawable = buildColoredAndesBitmapDrawable(
+                IconProvider(context).loadIcon(rightIcon) as BitmapDrawable,
+                context,
+                context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_width),
+                context.resources.getDimensionPixelSize(R.dimen.andes_button_icon_height),
+                hierarchy.iconColor(context)
+            )
+            IconConfig(leftIcon = null, rightIcon = rightBitmapDrawable)
+        } catch (e: FileNotFoundException) {
+            IconConfig(leftIcon = null, rightIcon = null)
+        }
     }
 
     override fun canDisplayIcon() = true
@@ -193,6 +206,7 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
  * according to Andes specifications.
  *
  */
+@Suppress("TooManyFunctions")
 internal class AndesMediumButtonSize : AndesButtonSizeInterface {
     override fun textSize(context: Context) =
             context.resources.getDimension(R.dimen.andes_text_size_button_medium)
@@ -217,6 +231,7 @@ internal class AndesMediumButtonSize : AndesButtonSizeInterface {
  * according to Andes specifications.
  *
  */
+@Suppress("TooManyFunctions")
 internal class AndesSmallButtonSize : AndesButtonSizeInterface {
     override fun textSize(context: Context) =
             context.resources.getDimension(R.dimen.andes_text_size_button_small)

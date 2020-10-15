@@ -2,6 +2,8 @@ package com.mercadolibre.android.andesui.demoapp
 
 import android.app.Application
 import android.content.Context
+import android.os.Build
+import android.provider.Settings
 import android.support.multidex.MultiDex
 import com.facebook.common.logging.FLog
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -19,6 +21,10 @@ class MainApplication : Application() {
         // No need for productFlavors, as proguard will remove all multidex related code in non-debug builds.
         if (BuildConfig.BUILD_TYPE.contentEquals("debug")) {
             MultiDex.install(this)
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            Settings.System.putInt(base.contentResolver, "show_touches", 1)
         }
     }
 

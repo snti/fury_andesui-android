@@ -15,7 +15,7 @@ enum class Font {
      * @return the fontName
      */
     val fontName: String?
-        get() = font
+        get() = theFont
 
     /**
      * Getter for the path formed with the fontName
@@ -23,9 +23,9 @@ enum class Font {
      * @return the path of the font
      */
     val fontPath: String?
-        get() = font
+        get() = theFont
 
-    private val font: String?
+    private val theFont: String?
         get() {
             val fonts: EnumMap<Font, String>? = FontConfig.fonts
             return fonts?.get(this)

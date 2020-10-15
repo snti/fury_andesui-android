@@ -17,10 +17,10 @@ import com.mercadolibre.android.andesui.radiobutton.AndesRadioButton
 import com.mercadolibre.android.andesui.radiobutton.align.AndesRadioButtonAlign
 import com.mercadolibre.android.andesui.radiobutton.status.AndesRadioButtonStatus
 import com.mercadolibre.android.andesui.radiobutton.type.AndesRadioButtonType
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.radiobuttongroup.AndesRadioButtonGroup
 import com.mercadolibre.android.andesui.radiobuttongroup.RadioButtonItem
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
@@ -75,16 +75,22 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicRadioButtonLayout, staticRadioButtonLayout, dynamicRadioButtonGroupLayout)
         }
 
+        @Suppress("ComplexMethod", "LongMethod")
         private fun addDynamicRadioButton(inflater: LayoutInflater): View {
             val layoutRadioButton = inflater.inflate(
-                    R.layout.andesui_dynamic_radiobutton_showcase, null, false
+                R.layout.andesui_dynamic_radiobutton_showcase,
+                null,
+                false
             ) as ScrollView
 
             val radioButton: AndesRadioButton = layoutRadioButton.findViewById(R.id.andesRadioButton)
 
             val spinnerType: Spinner = layoutRadioButton.findViewById(R.id.spinnerType)
             ArrayAdapter.createFromResource(
-                    context, R.array.type_radiobutton_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.type_radiobutton_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerType.adapter = adapter
@@ -92,7 +98,10 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
 
             val spinnerAlign: Spinner = layoutRadioButton.findViewById(R.id.spinnerAlign)
             ArrayAdapter.createFromResource(
-                    context, R.array.align_radiobutton_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.align_radiobutton_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerAlign.adapter = adapter
@@ -100,7 +109,10 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
 
             val spinnerStatus: Spinner = layoutRadioButton.findViewById(R.id.spinnerStatus)
             ArrayAdapter.createFromResource(
-                    context, R.array.status_radiobutton_spinner, android.R.layout.simple_spinner_item)
+                context,
+                R.array.status_radiobutton_spinner,
+                android.R.layout.simple_spinner_item
+            )
                     .also { adapter ->
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerStatus.adapter = adapter
@@ -162,11 +174,13 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticRadioButton(inflater: LayoutInflater): View {
             val layoutRadioButton = inflater.inflate(
-                    R.layout.andesui_radiobutton_showcase, null, false
+                R.layout.andesui_radiobutton_showcase,
+                null,
+                false
             ) as ScrollView
 
             layoutRadioButton.findViewById<AndesButton>(
-                    R.id.andesui_demoapp_andes_radiobutton_specs_button
+                R.id.andesui_demoapp_andes_radiobutton_specs_button
             ).setOnClickListener {
                 launchSpecs(it.context, AndesSpecs.RADIOBUTTON)
             }
@@ -176,7 +190,9 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
 
         private fun adddynamicRadioButtonGroupLayout(inflater: LayoutInflater): View {
             val layoutRadioButton = inflater.inflate(
-                    R.layout.andesui_dynamic_radiobuttongroup_showcase, null, false
+                R.layout.andesui_dynamic_radiobuttongroup_showcase,
+                null,
+                false
             ) as ScrollView
 
             val radioButtons = arrayListOf<RadioButtonItem>()
@@ -189,20 +205,26 @@ class RadioButtonShowcaseActivity : AppCompatActivity() {
             val radioButtonGroup = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
             radioButtonGroup.selected = 1
             radioButtonGroup.radioButtons = radioButtons
-            radioButtonGroup.setupCallback(object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
-                override fun onRadioButtonCheckedChanged(index: Int) {
-                    Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
-                }
-            })
+            radioButtonGroup.setupCallback(
+                object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
+override fun onRadioButtonCheckedChanged(index: Int) {
+Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
+}
+}
+            )
 
-            val radioButtonGroupHorizontal = layoutRadioButton.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup2)
+            val radioButtonGroupHorizontal = layoutRadioButton.findViewById<AndesRadioButtonGroup>(
+                R.id.radioButtonGroup2
+            )
             radioButtonGroupHorizontal.selected = 1
             radioButtonGroupHorizontal.radioButtons = radioButtons
-            radioButtonGroupHorizontal.setupCallback(object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
-                override fun onRadioButtonCheckedChanged(index: Int) {
-                    Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
-                }
-            })
+            radioButtonGroupHorizontal.setupCallback(
+                object : AndesRadioButtonGroup.OnRadioButtonCheckedChanged {
+override fun onRadioButtonCheckedChanged(index: Int) {
+Toast.makeText(context, "Radiobutton clicked, index: $index", Toast.LENGTH_LONG).show()
+}
+}
+            )
 
             return layoutRadioButton
         }

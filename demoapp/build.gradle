@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.monits.staticCodeAnalysis'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply from: rootProject.file('jacoco.gradle')
+apply from: rootProject.file('detekt.gradle')
 
 buildscript {
     repositories {
@@ -31,31 +32,29 @@ android {
         versionName "$libraryVersion"
 
         multiDexEnabled true
-
-        resValue("string", "andesui_demoapp_app_name", "Andes UI v${libraryVersion}")
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
 
     buildTypes {
         debug {
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             applicationIdSuffix '.debug'
             minifyEnabled false
             aaptOptions {
                 cruncherEnabled false
             }
+
+            resValue("string", "andesui_demoapp_app_name", "Andes DEBUG v${libraryVersion}")
         }
         release {
             initWith(buildTypes.debug)
+
             // We need this in true to test after executing ProGuard to check our ProGuard custom rules.
             minifyEnabled true
             shrinkResources true
-        }
-    }
 
-    lintOptions {
-        // TODO: Delete this once play services is updated. Now we need it because play services brings support library 26
-        disable 'GradleCompatible'
-        disable 'UnusedResources'
+            applicationIdSuffix ''
+            resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
+        }
     }
 
     packagingOptions {
@@ -69,22 +68,22 @@ android {
 staticCodeAnalysis {
     // False is REQUIRED in order to make CI server fail the build on errors.
     ignoreErrors = false
+
+    androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-demoapp.xml"
 }
 
 dependencies {
     implementation project(':components')
-    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "com.facebook.fresco:fresco:$frescoVersion"
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation project(':coachmark')
 
-    /**
-     * It enables us to show the What's New which is in markdown format.
-     * https://github.com/noties/Markwon
-     */
-    implementation "io.noties.markwon:core:$markwonVersion"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation prod.kotlinStdlib
+    implementation prod.supportConstraintLayout
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.fresco
+
+    implementation showcase.glide
+    implementation showcase.markwon
+    debugImplementation showcase.leakCanary
 }
 
 /**

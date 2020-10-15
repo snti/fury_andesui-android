@@ -87,7 +87,7 @@ class AndesBadgePill : CardView {
         initAttrs(attrs)
     }
 
-    @Suppress("unused")
+    @Suppress("unused", "LongParameterList")
     constructor(
         context: Context,
         pillHierarchy: AndesBadgePillHierarchy = HIERARCHY_DEFAULT,

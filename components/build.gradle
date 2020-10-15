@@ -32,10 +32,6 @@ android {
         }
     }
 
-    lintOptions {
-        disable 'IconDuplicates'
-    }
-
     testOptions {
         unitTests {
             includeAndroidResources = true
@@ -49,7 +45,7 @@ android {
             res.srcDirs = ['src/main/res', 'src/main/res/button', 'src/main/res/message', 'src/main/res/textfield',
                            'src/main/res/badge', 'src/main/res/snackbar', 'src/main/res/tag', 'src/main/res/checkbox',
                            'src/main/res/radiobutton', 'src/main/res/radiobuttongroup', 'src/main/res/thumbnail',
-                           'src/main/res/card', 'src/main/res/progress', 'src/main/res/carousel']
+                           'src/main/res/card', 'src/main/res/progress', 'src/main/res/bottomsheet', 'src/main/res/carousel']
         }
     }
 }
@@ -57,20 +53,20 @@ android {
 staticCodeAnalysis {
     // False is REQUIRED in order to make CI server fail the build on errors and fit cross company standards.
     ignoreErrors = false
-    findbugs = false
+
+    androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-components.xml"
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
-    api "com.android.support:cardview-v7:$supportLibraryVersion"
-    api "com.facebook.fresco:fresco:$frescoVersion"
+    implementation prod.kotlinStdlib
+    implementation prod.supportLibraryAppCompatV7
+    implementation prod.supportLibraryDesign
+    api prod.supportConstraintLayout
+    api prod.supportCardView
+    api prod.fresco
 
-    // Unit testing dependencies
-    testImplementation "com.android.support.test:runner:$runnerVersion"
-    testImplementation "com.facebook.soloader:soloader:$soloaderVersion"
+    testImplementation test.runner
+    testImplementation test.soloader
     testImplementation test.junit4
     testImplementation test.mockitoKotlin
     testImplementation test.assertj

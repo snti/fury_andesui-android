@@ -1,13 +1,54 @@
+# v2.14.0
+
+## 🚀 Features
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
+
+# v2.13.0
+
+## 🚀 Features
+- Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
+
+## Added
+- Added Andes icons (bill, cash, credit card, shipping, wallet)
+
+## 🛠 Fixes
+- Refactor AndesTag
+
+## Developer Experience
+- Added LeakCanary v2.5 to debug builds to detect memory leaks in an early stage.
+
+# v2.12.0
+## 🚀 Features
+- Andes coachmark | Author: [@Marcos Picco](https://github.com/marcospicco)
+- Auto enable Show Taps option when Android version is API 22 or below.
+
+## Developer Experience
+- Fixed crash when taping on "I want to contribute" in the Andes App.
+- Minor UX improvements in the Andes App.
+
 # v2.11.0
 ## 🚀 Features
-- Changed target API level to 29
+- Changed target API level to 29.
 
-## Showcase App
-- Add `.debug` suffix to `debug` build type to be able to have parallel installs per device. | Author: [@barriosnahuel](https://github.com/barriosnahuel)
+## Developer Experience
+- Linters upgraded to latest versions, and Findbugs replaced with Spotbugs.
+- Added custom Android Lint config in favor of performance, accessibility and usability overrides.
+- Let devs install both debug and mds showcase apps at the same time by adding `.debug` suffix to debug builds.
+- Fix Detekt setup for components module as well as showcase app.
+- Apply many suggestions from Detekt to both components and showcase modules. Ignore others in favor of enable linters from now on.
+- Libraries upgraded from unit tests and showcase module.
+- Gradle files cleanup.
+
+## 🛠 Fixes
+- AndesThumbnail: Use internal ImageView content drawable to keep aspect ratio. | Author: [@mzangl-meli](https://github.com/mzangl-meli)
 
 # v2.10.1
 ## 🛠 Fixes
 - AndesProgressIndicatorIndeterminate: Leak in progress animation | Author: [@orelvismeli](https://github.com/orelvismeli)
+
+# v2.11.0
+## 🚀 Features
+- AndesTextField: Expose textFilter and textDigits @nesmarsollie
 
 # v2.10.0
 ## 🚀 Features

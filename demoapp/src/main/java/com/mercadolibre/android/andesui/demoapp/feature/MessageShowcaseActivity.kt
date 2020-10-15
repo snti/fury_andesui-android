@@ -8,14 +8,17 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.ScrollView
+import android.widget.Spinner
+import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
-import com.mercadolibre.android.andesui.demoapp.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.PageIndicator
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
-import com.mercadolibre.android.andesui.demoapp.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
@@ -72,27 +75,29 @@ class MessageShowcaseActivity : AppCompatActivity() {
             return listOf(dynamicMessageLayout, staticMessagesLayout)
         }
 
-        @Suppress("MagicNumber")
+        @Suppress("MagicNumber", "LongMethod")
         private fun addDynamicMessage(inflater: LayoutInflater): View {
             val layoutMessagesChange = inflater.inflate(
-                    R.layout.andesui_message_showcase_change, null, false
+                R.layout.andesui_message_showcase_change,
+                null,
+                false
             ) as ScrollView
 
             val hierarchySpinner: Spinner = layoutMessagesChange.findViewById(R.id.hierarchy_spinner)
             ArrayAdapter.createFromResource(
-                    context,
-                    R.array.hierarchy_spinner,
-                    android.R.layout.simple_spinner_item
+                context,
+                R.array.hierarchy_spinner,
+                android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 hierarchySpinner.adapter = adapter
             }
 
-            val typeSpinner: Spinner = layoutMessagesChange.findViewById(R.id.type_spinner)
+            val typeSpinner: Spinner = layoutMessagesChange.findViewById(R.id.simple_type_spinner)
             ArrayAdapter.createFromResource(
-                    context,
-                    R.array.state_spinner,
-                    android.R.layout.simple_spinner_item
+                context,
+                R.array.state_spinner,
+                android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 typeSpinner.adapter = adapter
@@ -114,15 +119,18 @@ class MessageShowcaseActivity : AppCompatActivity() {
             val changeMessage = layoutMessagesChange.findViewById<AndesMessage>(R.id.message)
 
             val links = listOf(
-                    AndesBodyLink(4, 11),
-                    AndesBodyLink(60, 66),
-                    AndesBodyLink(79, 122),
-                    AndesBodyLink(50, 40)
+                AndesBodyLink(4, 11),
+                AndesBodyLink(60, 66),
+                AndesBodyLink(79, 122),
+                AndesBodyLink(50, 40)
             )
 
-            changeMessage.bodyLinks = (AndesBodyLinks(links, listener = {
-                Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
-            }))
+            changeMessage.bodyLinks = (AndesBodyLinks(
+                links,
+                listener = {
+                    Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
+                }
+            ))
 
             changeButton.setOnClickListener {
                 if (bodyText.text.toString().isEmpty()) {
@@ -143,34 +151,40 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 changeMessage.bodyLinks = null
 
                 if (primaryActionText.text.toString().isNotEmpty()) {
-                    changeMessage.setupPrimaryAction(primaryActionText.text.toString(), View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    })
+                    changeMessage.setupPrimaryAction(
+                        primaryActionText.text.toString(),
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
                     changeMessage.hideLinkAction()
                 } else {
                     changeMessage.hidePrimaryAction()
                 }
 
                 if (dismissableCheckbox.status == AndesCheckboxStatus.SELECTED) {
-                    changeMessage.setupDismissableCallback(View.OnClickListener {
-                        Toast.makeText(context, "Dismiss onClick", Toast.LENGTH_LONG).show()
-                    })
+                    changeMessage.setupDismissableCallback(
+                        View.OnClickListener {
+                            Toast.makeText(context, "Dismiss onClick", Toast.LENGTH_LONG).show()
+                        }
+                    )
                 }
 
                 if (secondaryActionText.text.toString().isNotEmpty()) {
                     when {
                         primaryActionText.text.toString() != "" -> {
                             changeMessage.setupSecondaryAction(
-                                    secondaryActionText.text.toString(), View.OnClickListener {
-                                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                                    }
+                                secondaryActionText.text.toString(),
+                                View.OnClickListener {
+                                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                                        }
                             )
                         }
                         else -> {
                             Toast.makeText(
-                                    context,
-                                    "Cannot set a secondary action without a primary one",
-                                    Toast.LENGTH_SHORT
+                                context,
+                                "Cannot set a secondary action without a primary one",
+                                Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
@@ -181,15 +195,18 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 if (linkActionText.text.toString().isNotEmpty()) {
                     when {
                         primaryActionText.text.toString() == "" -> {
-                            changeMessage.setupLinkAction(linkActionText.text.toString(), View.OnClickListener {
-                                Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
-                            })
+                            changeMessage.setupLinkAction(
+                                linkActionText.text.toString(),
+                                View.OnClickListener {
+                                    Toast.makeText(context, "link onClick", Toast.LENGTH_SHORT).show()
+                                }
+                            )
                         }
                         else -> {
                             Toast.makeText(
-                                    context,
-                                    "Cannot set a link action with a primary one",
-                                    Toast.LENGTH_SHORT
+                                context,
+                                "Cannot set a link action with a primary one",
+                                Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
@@ -205,7 +222,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
 
         private fun addStaticMessages(inflater: LayoutInflater): View {
             val layoutMessages = inflater.inflate(
-                    R.layout.andesui_message_showcase, null, false
+                R.layout.andesui_message_showcase,
+                null,
+                false
             ) as ScrollView
 
             layoutMessages.findViewById<AndesButton>(R.id.andesui_demoapp_andes_specs_message).setOnClickListener {
@@ -213,48 +232,63 @@ class MessageShowcaseActivity : AppCompatActivity() {
             }
 
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAction)
-                    .setupPrimaryAction("Primary", View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
 
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                    .setupPrimaryAction("Primary", View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                    .setupSecondaryAction("Secondary", View.OnClickListener {
-                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupSecondaryAction(
+                        "Secondary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
 
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                    .setupPrimaryAction("Primary", View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                    .setupSecondaryAction("Secondary", View.OnClickListener {
-                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupSecondaryAction(
+                        "Secondary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
 
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkLoud)
-                    .setupLinkAction("Link", View.OnClickListener {
-                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupLinkAction(
+                        "Link",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkQuiet)
-                    .setupLinkAction("Link", View.OnClickListener {
-                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                    }
-            )
+                    .setupLinkAction(
+                        "Link",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             val links = listOf(
-                    AndesBodyLink(6, 11),
-                    AndesBodyLink(64, 71)
+                AndesBodyLink(6, 11),
+                AndesBodyLink(64, 71)
             )
-            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(links,
+            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(
+                links,
                 listener = {
                     Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
                 }

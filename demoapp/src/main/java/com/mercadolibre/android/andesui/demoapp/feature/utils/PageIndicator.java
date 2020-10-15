@@ -1,15 +1,18 @@
-package com.mercadolibre.android.andesui.demoapp;
+package com.mercadolibre.android.andesui.demoapp.feature.utils;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.mercadolibre.android.andesui.demoapp.R;
 
 import static android.graphics.Color.parseColor;
 
@@ -57,9 +60,14 @@ public class PageIndicator extends LinearLayout implements ViewPager.OnPageChang
      */
     public void attach(@NonNull final ViewPager viewPager) {
         viewPager.addOnPageChangeListener(this);
-        mViews = new ImageView[viewPager.getAdapter().getCount()];
 
-        for (int i = 0; i < viewPager.getAdapter().getCount(); i++) {
+        PagerAdapter pagerAdapter = viewPager.getAdapter();
+        if (pagerAdapter == null) {
+            return;
+        }
+
+        mViews = new ImageView[pagerAdapter.getCount()];
+        for (int i = 0; i < pagerAdapter.getCount(); i++) {
 
             final ImageView view = (ImageView) LayoutInflater.from(getContext())
                     .inflate(R.layout.andesui_widget_page_circle_indicator, this, false);

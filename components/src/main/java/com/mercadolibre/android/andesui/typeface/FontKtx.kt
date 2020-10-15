@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.typeface
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Typeface
 import android.support.annotation.FontRes
 import android.support.v4.content.res.ResourcesCompat
@@ -17,7 +18,7 @@ import android.util.Log
 fun Context.getFontOrDefault(@FontRes desiredTypeface: Int, defaultTypeface: Typeface = Typeface.DEFAULT): Typeface {
     return try {
         ResourcesCompat.getFont(this, desiredTypeface) ?: defaultTypeface
-    } catch (error: Exception) {
+    } catch (error: Resources.NotFoundException) {
         Log.e("FontKtx", "Error solving typeface", error)
         defaultTypeface
     }

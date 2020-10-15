@@ -9,13 +9,15 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.FrameLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.tag.factory.AndesSimpleTagConfigurationFactory
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrs
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleAttrsParser
 import com.mercadolibre.android.andesui.tag.factory.AndesTagSimpleConfiguration
-import com.mercadolibre.android.andesui.tag.leftcontent.*
+import com.mercadolibre.android.andesui.tag.leftcontent.AndesTagLeftContent
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
 import com.mercadolibre.android.andesui.tag.rightcontent.AndesTagRightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContent
 import com.mercadolibre.android.andesui.tag.rightcontent.RightContentDismiss
@@ -111,13 +113,6 @@ class AndesTagSimple : ConstraintLayout {
     private lateinit var andesTagAttrs: AndesTagSimpleAttrs
     private lateinit var containerTag: ConstraintLayout
 
-    @Suppress("unused")
-    private constructor(context: Context) : super(context) {
-        throw IllegalStateException(
-                "Constructor without parameters in Andes Badge is not allowed. You must provide some attributes."
-        )
-    }
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
@@ -160,7 +155,10 @@ class AndesTagSimple : ConstraintLayout {
      */
     private fun setupComponents(config: AndesTagSimpleConfiguration) {
         initComponents()
-        setupViewId()
+
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
 
         setupBackgroundComponents(config)
         setupTitleComponent(config)
@@ -175,15 +173,6 @@ class AndesTagSimple : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_simple_tag, this)
         containerTag = container.findViewById(R.id.andes_tag_container)
-    }
-
-    /**
-     * Sets a view id to this badge.
-     */
-    private fun setupViewId() {
-        if (id == NO_ID) { // If this view has no id
-            id = View.generateViewId()
-        }
     }
 
     private fun setupBackgroundComponents(config: AndesTagSimpleConfiguration) {
@@ -215,38 +204,24 @@ class AndesTagSimple : ConstraintLayout {
 
             val constraintSet = ConstraintSet()
             constraintSet.clone(containerTag)
-            if (leftContent == null) {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.START,
-                        size.size.leftMargin(context)
-                )
-            } else if (config.leftContent != null) {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.START,
-                        config.leftContent.content.rightMargin(context)
-                )
-            }
-            if (config.rightContent == null || config.rightContent == AndesTagRightContent.NONE) {
-                constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, size.size.rightMargin(context))
-            } else {
-                constraintSet.setMargin(
-                        R.id.simpleTagText,
-                        ConstraintSet.END,
-                        config.rightContent.content.leftMargin(context, size)
-                )
-            }
+            constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.START, config.leftContent.content.leftMarginText(context, size))
+            constraintSet.setMargin(R.id.simpleTagText, ConstraintSet.END, config.rightContent.content.rightMarginText(context, size))
             constraintSet.applyTo(containerTag)
         }
     }
 
     private fun setupLeftContent(config: AndesTagSimpleConfiguration) {
         val leftContent = findViewById<FrameLayout>(R.id.leftContent)
-        if (config.leftContent != null && config.leftContentData != null && config.leftContent != AndesTagLeftContent.NONE) {
+        if (config.leftContent != AndesTagLeftContent.NONE && config.leftContentData != null) {
             leftContent.removeAllViews()
             leftContent.addView(config.leftContent.content.view(context, config.leftContentData))
             leftContent.visibility = View.VISIBLE
+
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(containerTag)
+            constraintSet.setMargin(R.id.leftContent, ConstraintSet.START, config.leftContent.content.leftMargin(context))
+            constraintSet.setMargin(R.id.leftContent, ConstraintSet.END, config.leftContent.content.rightMargin(context))
+            constraintSet.applyTo(containerTag)
         } else {
             leftContent.visibility = View.GONE
         }
@@ -254,7 +229,7 @@ class AndesTagSimple : ConstraintLayout {
 
     private fun setupRightContent(config: AndesTagSimpleConfiguration) {
         val rightContent = findViewById<FrameLayout>(R.id.rightContent)
-        if (config.rightContent != null && config.rightContent != AndesTagRightContent.NONE) {
+        if (config.rightContent != AndesTagRightContent.NONE) {
             rightContent.removeAllViews()
             rightContent.addView(config.rightContent.content.view(
                     context,
@@ -268,9 +243,11 @@ class AndesTagSimple : ConstraintLayout {
                     }
             ))
 
-            val params = rightContent.layoutParams as MarginLayoutParams
-            params.marginEnd = config.rightContent.content.rightMargin(context, size)
-            rightContent.layoutParams = params
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(containerTag)
+            constraintSet.setMargin(R.id.rightContent, ConstraintSet.START, config.rightContent.content.leftMargin(context, size))
+            constraintSet.setMargin(R.id.rightContent, ConstraintSet.END, config.rightContent.content.rightMargin(context, size))
+            constraintSet.applyTo(containerTag)
 
             rightContent.visibility = View.VISIBLE
         } else {
