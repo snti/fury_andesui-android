@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
+/**
+ * AndesCarouselPaddingItemDecoration: override the itemDecoration to recyclerview which uses in AndesCarousel
+ */
 class AndesCarouselPaddingItemDecoration(private val padding: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(

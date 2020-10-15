@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
 
+/**
+ * AndesCarouselAdapter: custom adapter to define the items of AndesCarousel
+ */
 class AndesCarouselAdapter(
     private val andesCarouselView: AndesCarousel,
     private val delegate: AndesCarouselDelegate

@@ -3,6 +3,9 @@ package com.mercadolibre.android.andesui.carousel.utils
 import android.view.View
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
 
+/**
+ * AndesCarouselDelegate: interface to define the delegate of AndesCarousel
+ */
 interface AndesCarouselDelegate {
 
     fun bind(andesCarouselView: AndesCarousel, view: View, position: Int)

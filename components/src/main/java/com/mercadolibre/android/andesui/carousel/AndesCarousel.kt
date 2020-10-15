@@ -28,7 +28,7 @@ class AndesCarousel : ConstraintLayout {
     private lateinit var snapHelper: PagerSnapHelper
 
     /**
-     * Getter and setter for [type].
+     * Getter and setter for [padding].
      */
     var padding: AndesCarouselPadding
         get() = andesCarouselAttrs.andesCarouselPadding
@@ -37,6 +37,9 @@ class AndesCarousel : ConstraintLayout {
             setupPaddingRecyclerView(createConfig())
         }
 
+    /**
+     * Getter and setter for [center].
+     */
     var center: Boolean
         get() = andesCarouselAttrs.andesCarouselCenter
         set(value) {
@@ -44,6 +47,9 @@ class AndesCarousel : ConstraintLayout {
             setupCenterRecyclerView(createConfig())
         }
 
+    /**
+     * Getter and setter for [delegate].
+     */
     var delegate: AndesCarouselDelegate
         get() = andesCarouselDelegate
         set(value) {
@@ -89,7 +95,7 @@ class AndesCarousel : ConstraintLayout {
     private fun setupComponents(config: AndesCarouselConfiguration) {
         initComponents()
         setupViewId()
-        updateDynamicComponents(config)
+        updateDynamicComponents()
         updateComponentsAlignment(config)
     }
 
@@ -104,22 +110,34 @@ class AndesCarousel : ConstraintLayout {
         snapHelper = PagerSnapHelper()
     }
 
-    private fun updateDynamicComponents(config: AndesCarouselConfiguration) {
-        setupRecyclerViewComponent(config)
+    /**
+     * Update recyclerview
+     */
+    private fun updateDynamicComponents() {
+        setupRecyclerViewComponent()
     }
 
+    /**
+     * Update attributes of recyclerview
+     */
     private fun updateComponentsAlignment(config: AndesCarouselConfiguration) {
         setupCenterRecyclerView(config)
         setupPaddingRecyclerView(config)
     }
 
-    private fun setupRecyclerViewComponent(config: AndesCarouselConfiguration) {
+    /**
+     * Set recyclerview
+     */
+    private fun setupRecyclerViewComponent() {
         viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewComponent.layoutManager = viewManager
         recyclerViewComponent.overScrollMode = View.OVER_SCROLL_NEVER
         recyclerViewComponent.clipToPadding = false
     }
 
+    /**
+     * Gets data from the config and sets to center of this carousel.
+     */
     private fun setupCenterRecyclerView(config: AndesCarouselConfiguration) {
         if (config.center) {
             snapHelper.attachToRecyclerView(recyclerViewComponent)
@@ -128,6 +146,9 @@ class AndesCarousel : ConstraintLayout {
         }
     }
 
+    /**
+     * Gets data from the config and sets to the padding of this carousel.
+     */
     private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
         if (recyclerViewComponent.itemDecorationCount != 0) {
             recyclerViewComponent.removeItemDecoration(paddingItemDecoration)
@@ -151,6 +172,9 @@ class AndesCarousel : ConstraintLayout {
 
     private fun createConfig() = AndesCarouselConfigurationFactory.create(context, andesCarouselAttrs)
 
+    /**
+     * Define percentage of padding
+     */
     private fun getPaddingRecyclerView() =
         if (andesCarouselAttrs.andesCarouselPadding != AndesCarouselPadding.NONE)
             (context.resources.displayMetrics.widthPixels * PERCENTAGE).toInt()
