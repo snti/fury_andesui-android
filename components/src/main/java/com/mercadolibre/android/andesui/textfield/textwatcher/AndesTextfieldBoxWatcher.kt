@@ -19,11 +19,17 @@ internal class AndesTextfieldBoxWatcher(
     }
 
     override fun onTextChanged(charSequence: CharSequence, start: Int, before: Int, count: Int) {
-        if (!wasDirty || !isDeleting) {
-            val textToChange = charSequence.takeIf { it.isEmpty() || !charSequence.contains(DIRTY_CHARACTER) }
-                ?: charSequence.filter { it != DIRTY_CHARACTER[0] }.takeIf { it.isNotEmpty() || !wasDirty }
-            textToChange?.let { andesCodeTextChangedHandler.onTextChanged(it, indexChild) }
+        var textToChange: CharSequence? = charSequence
+
+        if (wasDirty && isDeleting) {
+            return
         }
+
+        if (charSequence.isNotEmpty() && charSequence.contains(DIRTY_CHARACTER)) {
+            textToChange = charSequence.filter { it != DIRTY_CHARACTER[0] }.takeIf { it.isNotEmpty() || !wasDirty }
+        }
+
+        textToChange?.let { andesCodeTextChangedHandler.onTextChanged(it, indexChild) }
     }
 
     override fun afterTextChanged(editable: Editable) {
@@ -33,17 +39,18 @@ internal class AndesTextfieldBoxWatcher(
 
         isRunning = true
 
-        if (!editable.contains(DIRTY_CHARACTER)) {
-            when {
-                editable.isNotEmpty() -> {
+        when {
+            !editable.contains(DIRTY_CHARACTER) -> {
+                if (editable.isNotEmpty()) {
                     focusManagement.goToNextFocus()
-                }
-                editable.isEmpty() -> {
+                } else if (editable.isEmpty()) {
                     focusManagement.goToPreviousFocus()
                 }
             }
-        } else if (editable.length > 1) {
-            focusManagement.goToNextFocus()
+
+            editable.length > 1 -> {
+                focusManagement.goToNextFocus()
+            }
         }
 
         isRunning = false
