@@ -1,10 +1,14 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.view.PagerAdapter
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
@@ -24,6 +28,8 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_carousel)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         carouselMain.delegate = this
+
+        initViewPager()
 
         ArrayAdapter.createFromResource(
     this,
@@ -59,6 +65,10 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
     }
 
+    private fun initViewPager() {
+        viewPagerCarousel.adapter = CustomPagerAdapter(this)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {
         val model = getDataSet()[position]
@@ -88,6 +98,32 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         Model(Color.RED, "Button Nº4", R.drawable.andes_navegacion_ventas_24),
         Model(Color.GREEN, "Button Nº5", R.drawable.andes_navegacion_carrito_idle_24),
         Model(Color.CYAN, "Button Nº6", R.drawable.andes_navegacion_inicio_24)
+    )
+}
+
+class CustomPagerAdapter(val context: Context) : PagerAdapter() {
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val layout = LayoutInflater.from(context).inflate(R.layout.andesui_carousel_item, container, false)
+        container.addView(layout)
+        return layout
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
+        container.removeView(view as View?)
+    }
+
+    override fun getCount() = getDataSet().size
+
+    override fun isViewFromObject(p0: View, p1: Any) = p0 == p1
+
+    private fun getDataSet() = listOf(
+            Model(Color.RED, "Button Nº1", R.drawable.andes_navegacion_ventas_24),
+            Model(Color.GREEN, "Button Nº2", R.drawable.andes_navegacion_carrito_idle_24),
+            Model(Color.CYAN, "Button Nº3", R.drawable.andes_navegacion_inicio_24),
+            Model(Color.RED, "Button Nº4", R.drawable.andes_navegacion_ventas_24),
+            Model(Color.GREEN, "Button Nº5", R.drawable.andes_navegacion_carrito_idle_24),
+            Model(Color.CYAN, "Button Nº6", R.drawable.andes_navegacion_inicio_24)
     )
 }
 

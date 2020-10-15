@@ -231,21 +231,21 @@
                     android:host="andes"
                     android:path="/coachmark"
                     android:scheme="meli" />
+            </intent-filter>
+        </activity>
 
-            <activity android:name=".feature.CarouselShowcaseActivity"
-                android:parentActivityName=".MainActivity">
-                <intent-filter>
-                    <action android:name="android.intent.action.VIEW" />
+        <activity android:name=".feature.CarouselShowcaseActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-                    <category android:name="android.intent.category.DEFAULT" />
-                    <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                    <data
-                        android:host="andes"
-                        android:path="/carousel"
-                        android:scheme="meli" />
-                </intent-filter>
-            </activity>
+                <data
+                    android:host="andes"
+                    android:path="/carousel"
+                    android:scheme="meli" />
             </intent-filter>
         </activity>
     </application>
