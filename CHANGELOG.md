@@ -1,10 +1,8 @@
 # v2.14.0
-
 ## 🚀 Features
 - Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 # v2.13.0
-
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
 
