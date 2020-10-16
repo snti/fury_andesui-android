@@ -37,26 +37,37 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         setContentView(R.layout.andesui_showcase_main)
 
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
-        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_textfield)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
+        val adapter = AndesShowcasePagerAdapter(this)
+        viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(position: Int) = Unit
+            override fun onPageScrolled(position: Int, p1: Float, p2: Int) = Unit
+            override fun onPageSelected(position: Int) {
+                supportActionBar?.title = getString(adapter.getTitleResource(position))
+            }
+        })
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
     }
 
+    data class TextFieldPage(
+        val page: View,
+        val titleResource: Int = R.string.andesui_demoapp_screen_textfield)
+
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
 
-        var views: List<View>
+        private val views: List<TextFieldPage>
 
         init {
             views = initViews()
         }
 
         override fun instantiateItem(container: ViewGroup, position: Int): View {
-            container.addView(views[position])
-            return views[position]
+            container.addView(views[position].page)
+            return views[position].page
         }
 
         override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
@@ -69,7 +80,9 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
         override fun getCount(): Int = views.size
 
-        private fun initViews(): List<View> {
+        fun getTitleResource(position: Int) = views[position].titleResource
+
+        private fun initViews(): List<TextFieldPage> {
             val inflater = LayoutInflater.from(context)
 
             val dynamicTextfieldLayout = addDynamicTextfieldLayout(inflater)
@@ -81,7 +94,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         }
 
         @Suppress("LongMethod")
-        private fun addDynamicTextfieldLayout(inflater: LayoutInflater): View {
+        private fun addDynamicTextfieldLayout(inflater: LayoutInflater): TextFieldPage {
             val layoutTextfield = inflater.inflate(R.layout.andesui_textfield_showcase_change, null, false)
             val textfield = layoutTextfield.findViewById<AndesTextfield>(R.id.andesui_textfield)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
@@ -199,10 +212,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.clearMask()
             }
 
-            return layoutTextfield
+            return TextFieldPage(layoutTextfield)
         }
 
-        private fun addDynamicTextareaLayout(inflater: LayoutInflater): View {
+        private fun addDynamicTextareaLayout(inflater: LayoutInflater): TextFieldPage {
             val layoutTextfield = inflater.inflate(R.layout.andesui_textarea_showcase_change, null, false)
             val textarea = layoutTextfield.findViewById<AndesTextarea>(R.id.andesui_tag)
             val button = layoutTextfield.findViewById<AndesButton>(R.id.change_button)
@@ -250,10 +263,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textarea.state = AndesTextfieldState.IDLE
             }
 
-            return layoutTextfield
+            return TextFieldPage(layoutTextfield)
         }
 
-        private fun addDynamicTextfieldCodeLayout(inflater: LayoutInflater): View {
+        private fun addDynamicTextfieldCodeLayout(inflater: LayoutInflater): TextFieldPage {
             val layoutTextfieldCode = inflater.inflate(
                 R.layout.andesui_textfield_code_showcase,
                 null,
@@ -333,10 +346,10 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             }
 
 
-            return layoutTextfieldCode
+            return TextFieldPage(layoutTextfieldCode, R.string.andesui_demoapp_screen_textfield_code)
         }
 
-        private fun addStaticTextfieldLayout(inflater: LayoutInflater): View {
+        private fun addStaticTextfieldLayout(inflater: LayoutInflater): TextFieldPage {
             val layoutTextfield = inflater.inflate(
                 R.layout.andesui_textfield_showcase,
                 null,
@@ -384,7 +397,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
             ContextCompat.getDrawable(context, com.mercadolibre.android.andesui.R.drawable.andes_navegacion_ajustes)
 
-            return layoutTextfield
+            return TextFieldPage(layoutTextfield)
         }
 
         @Suppress("LongMethod")
