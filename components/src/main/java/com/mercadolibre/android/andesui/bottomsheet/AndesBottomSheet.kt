@@ -238,18 +238,10 @@ class AndesBottomSheet : CoordinatorLayout {
     private fun resolveBackgroundDim(config: AndesBottomSheetConfiguration) {
         if (!config.isBackgroundDimEnabled) return
         backgroundDimView.setOnClickListener { collapse() }
-
         if (state == AndesBottomSheetState.EXPANDED) {
-            showBackgroundDim()
+            backgroundDimView.visibility = View.VISIBLE
+            backgroundDimView.alpha = DIM_MAX_ALPHA
         }
-    }
-
-    private fun showBackgroundDim() {
-        backgroundDimView.visibility = View.VISIBLE
-        backgroundDimView.animate()
-                ?.alpha(DIM_MAX_ALPHA)
-                ?.setDuration(DIM_ANIMATION_TIME.toLong())
-                ?.setListener(null)
     }
 
     /**
@@ -359,10 +351,9 @@ class AndesBottomSheet : CoordinatorLayout {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_BACKGROUND_DIM = false
+        private const val DEFAULT_BACKGROUND_DIM = true
         private const val DIM_MAX_ALPHA = 1f
         private const val FLOAT_ZERO = 0f
-        private const val DIM_ANIMATION_TIME = 150
         private const val ONE_HUNDRED = 100
         private const val TWO = 2
         private const val ZERO = 0
