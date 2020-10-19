@@ -8,7 +8,7 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 import kotlin.IllegalArgumentException
 
 private const val DEFAULT_PEEK_HEIGHT = 0f
-private const val DEFAULT_BACKGROUND_DIM = false
+private const val DEFAULT_BACKGROUND_DIM = true
 
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
