@@ -1,3 +1,7 @@
+# v2.13.1
+## Added
+- Improved AndesBottomSheet background dim animation
+
 # v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
