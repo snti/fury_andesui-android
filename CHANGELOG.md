@@ -1,4 +1,7 @@
-# v2.13.1
+# v2.14.0
+## 🚀 Features
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
+
 ## Added
 - Improved AndesBottomSheet background dim animation
 

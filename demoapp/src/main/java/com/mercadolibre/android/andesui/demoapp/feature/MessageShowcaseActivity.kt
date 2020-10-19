@@ -93,7 +93,7 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 hierarchySpinner.adapter = adapter
             }
 
-            val typeSpinner: Spinner = layoutMessagesChange.findViewById(R.id.type_spinner)
+            val typeSpinner: Spinner = layoutMessagesChange.findViewById(R.id.simple_type_spinner)
             ArrayAdapter.createFromResource(
                 context,
                 R.array.state_spinner,
