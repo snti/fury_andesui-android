@@ -40,7 +40,7 @@ class AndesBottomSheetTest {
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
         assertEquals(andesBottomSheet.titleText, null)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
-        assertEquals(andesBottomSheet.isBackgroundDimEnabled, false)
+        assertEquals(andesBottomSheet.isBackgroundDimEnabled, true)
     }
 
     @Test
