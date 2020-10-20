@@ -76,19 +76,6 @@ class AndesBottomSheet : CoordinatorLayout {
             }
     }
 
-    /**
-     * Getter and setter for [isBackgroundDimEnabled], this determines if a background filter is shown (with animation)
-     * when the bottomSheet is expanded
-     */
-    var isBackgroundDimEnabled: Boolean
-        get() = andesBottomSheetAttrs.andesBottomSheetBackgroundDim
-        set(value) {
-            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetBackgroundDim = value)
-            createConfig().also{
-                resolveBackgroundDim(it)
-            }
-        }
-
     private lateinit var andesBottomSheetAttrs: AndesBottomSheetAttrs
     private lateinit var containerView: FrameLayout
     private lateinit var dragIndicator: View
@@ -104,10 +91,9 @@ class AndesBottomSheet : CoordinatorLayout {
             peekHeight: Int = DEFAULT_PEEK_HEIGHT,
             state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
             title: String? = DEFAULT_TITLE,
-            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT,
-            backgroundDim: Boolean = DEFAULT_BACKGROUND_DIM
+            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
     ) : super(context) {
-        initAttrs(peekHeight, state, title, titleAlignment, backgroundDim)
+        initAttrs(peekHeight, state, title, titleAlignment)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -123,16 +109,14 @@ class AndesBottomSheet : CoordinatorLayout {
         peekHeight: Int,
         bottomSheetState: AndesBottomSheetState,
         titleText: String?,
-        titleAlignment: AndesBottomSheetTitleAlignment,
-        isBackgroundDimEnabled: Boolean
+        titleAlignment: AndesBottomSheetTitleAlignment
     ) {
         andesBottomSheetAttrs =
                 AndesBottomSheetAttrs(
                         peekHeight,
                         bottomSheetState,
                         titleText,
-                        titleAlignment,
-                        isBackgroundDimEnabled
+                        titleAlignment
                 )
 
         setupComponents(createConfig())
@@ -236,7 +220,6 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     private fun resolveBackgroundDim(config: AndesBottomSheetConfiguration) {
-        if (!config.isBackgroundDimEnabled) return
         backgroundDimView.setOnClickListener { collapse() }
         if (state == AndesBottomSheetState.EXPANDED) {
             backgroundDimView.visibility = View.VISIBLE
@@ -330,7 +313,6 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            if (!isBackgroundDimEnabled) return
             if (backgroundDimView.visibility == View.GONE && slideOffset > MIN_OFFSET_CHANGE) {
                 backgroundDimView.visibility = View.VISIBLE
             } else if (slideOffset == FLOAT_ZERO) {
@@ -351,7 +333,6 @@ class AndesBottomSheet : CoordinatorLayout {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_BACKGROUND_DIM = true
         private const val DIM_MAX_ALPHA = 1f
         private const val FLOAT_ZERO = 0f
         private const val ONE_HUNDRED = 100

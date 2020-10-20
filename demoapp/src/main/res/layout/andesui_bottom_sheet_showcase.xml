@@ -103,26 +103,6 @@
         android:layout_margin="@dimen/andes_button_margin_large"
         app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_toggle_title_align_button"/>
 
-    <com.mercadolibre.android.andesui.button.AndesButton
-        android:id="@+id/andes_bottom_sheet_toggle_background_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/andes_button_margin_large"
-        android:onClick="onToggleBackgroundDimButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_toggle_background_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_3" />
-
-    <View
-        android:id="@+id/andes_bottom_sheet_separator_4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/andes_gray_450"
-        android:layout_margin="@dimen/andes_button_margin_large"
-        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_toggle_background_button"/>
-
     <com.mercadolibre.android.andesui.textfield.AndesTextfield
         android:id="@+id/andes_bottom_sheet_peek_height_text_field"
         android:layout_width="250dp"
@@ -132,7 +112,7 @@
         app:andesTextfieldPlaceholder="@string/andesui_demoapp_bottom_sheet_text_field"
         app:layout_constraintEnd_toStartOf="@+id/andes_bottom_sheet_set_peek_height_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_4" />
+        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_3" />
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andes_bottom_sheet_set_peek_height_button"

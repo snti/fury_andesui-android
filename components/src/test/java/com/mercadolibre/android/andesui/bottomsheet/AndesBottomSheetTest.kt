@@ -40,7 +40,6 @@ class AndesBottomSheetTest {
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
         assertEquals(andesBottomSheet.titleText, null)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
-        assertEquals(andesBottomSheet.isBackgroundDimEnabled, true)
     }
 
     @Test
@@ -53,15 +52,13 @@ class AndesBottomSheetTest {
                 peekHeight,
                 AndesBottomSheetState.EXPANDED,
                 title,
-                AndesBottomSheetTitleAlignment.CENTERED,
-                true
+                AndesBottomSheetTitleAlignment.CENTERED
         )
 
         assertEquals(andesBottomSheet.peekHeight, peekHeight)
         assertEquals(andesBottomSheet.state, AndesBottomSheetState.EXPANDED)
         assertEquals(andesBottomSheet.titleText, title)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
-        assertEquals(andesBottomSheet.isBackgroundDimEnabled, true)
     }
 
     @Test
@@ -194,10 +191,9 @@ class AndesBottomSheetTest {
     }
 
     @Test
-    fun `when background dim disabled and state expanded should not show background dim`() {
+    fun `when  state expanded should show background dim`() {
         val mockView = mock(View::class.java)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("backgroundDimView"), mockView)
-        andesBottomSheet.isBackgroundDimEnabled = false
 
         andesBottomSheet.expand()
 

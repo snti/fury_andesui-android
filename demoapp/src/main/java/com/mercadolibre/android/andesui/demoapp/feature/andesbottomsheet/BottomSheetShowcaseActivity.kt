@@ -70,17 +70,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.collapse()
     }
 
-    fun onToggleBackgroundDimButtonClicked(view: View) {
-        val andesButton = view as AndesButton
-        showBackgroundDim = !showBackgroundDim
-        bottomSheet.isBackgroundDimEnabled = showBackgroundDim
-        if (showBackgroundDim) {
-            andesButton.hierarchy = AndesButtonHierarchy.QUIET
-        } else {
-            andesButton.hierarchy = AndesButtonHierarchy.LOUD
-        }
-    }
-
     fun onToggleTitleClicked(view: View) {
         val andesButton = view as AndesButton
         showTitle = !showTitle
