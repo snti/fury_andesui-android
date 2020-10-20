@@ -8,6 +8,10 @@ import com.mercadolibre.android.andesui.R
  * Each implementation define pattern of the boxes and gap between groups.
  * We takes as constants box width and gap between them.
  */
+private const val THREE_SOME = 3
+private const val FOUR_SOME = 4
+private const val DEFAULT_GROUP_MARGIN = 0
+
 internal sealed class AndesTextfieldCodeStyleInterface {
     abstract fun pattern(): IntArray
     abstract fun groupMargin(context: Context): Int
@@ -20,17 +24,17 @@ internal sealed class AndesTextfieldCodeStyleInterface {
 }
 
 internal object AndesTextfieldCodeThreesomeStyleInterface : AndesTextfieldCodeStyleInterface() {
-    override fun pattern(): IntArray = intArrayOf(3)
-    override fun groupMargin(context: Context): Int = 0
+    override fun pattern(): IntArray = intArrayOf(THREE_SOME)
+    override fun groupMargin(context: Context): Int = DEFAULT_GROUP_MARGIN
 }
 
 internal object AndesTextfieldCodeFoursomeStyleInterface : AndesTextfieldCodeStyleInterface() {
-    override fun pattern(): IntArray = intArrayOf(4)
-    override fun groupMargin(context: Context): Int = 0
+    override fun pattern(): IntArray = intArrayOf(FOUR_SOME)
+    override fun groupMargin(context: Context): Int = DEFAULT_GROUP_MARGIN
 }
 
 internal object AndesTextfieldCodeThreeByThreeStyleInterface : AndesTextfieldCodeStyleInterface() {
-    override fun pattern(): IntArray = intArrayOf(3, 3)
+    override fun pattern(): IntArray = intArrayOf(THREE_SOME, THREE_SOME)
     override fun groupMargin(context: Context): Int = context
         .resources
         .getDimension(R.dimen.andes_textfield_box_group_margin).toInt()

@@ -45,5 +45,4 @@ internal class AndesEditText : AppCompatEditText {
         fun onPaste(): Boolean = false
         fun onCopy(): Boolean = false
     }
-
 }
