@@ -7,6 +7,15 @@
     android:background="@color/andes_bg_color_primary"
     tools:context=".feature.andesbottomsheet.BottomSheetShowcaseActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/andesui_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andes_bottom_sheet_attach_view_button"
         android:layout_width="wrap_content"
@@ -17,7 +26,7 @@
         app:layout_constraintEnd_toStartOf="@+id/andes_attach_fragment_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andes_bottom_sheet_attach_fragment_button"
@@ -29,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/andes_bottom_sheet_attach_view_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/andesui_nav_bar" />
 
     <View
         android:id="@+id/andes_bottom_sheet_separator_1"

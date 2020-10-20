@@ -66,6 +66,7 @@
     <string name="checkbox_description">They allow multiple selections from a list of options, unlike radio buttons that only allow you to choose a single option.</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
+    <string name="andesui_demoapp_screen_bottom_sheet">Andes UI: Bottom Sheet</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>

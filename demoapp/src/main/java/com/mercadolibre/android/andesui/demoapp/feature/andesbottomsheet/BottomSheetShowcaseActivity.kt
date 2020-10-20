@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 @Suppress("TooManyFunctions")
 class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
-    private var showBackgroundDim = false
     private var showTitle = false
     private var leftAlignTitle = true
     private var textView: TextView? = null
@@ -29,6 +28,10 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_bottom_sheet_showcase)
+
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_bottom_sheet)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         bottomSheet = findViewById(R.id.andes_bottom_sheet)
         bottomSheet.setBottomSheetListener(this)
