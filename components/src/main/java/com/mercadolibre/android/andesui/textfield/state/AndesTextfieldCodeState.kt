@@ -1,5 +1,7 @@
 package com.mercadolibre.android.andesui.textfield.state
 
+import java.util.*
+
 /**
  * Utility class that does two things: Defines the possible states an [AndesTextfieldCode] can take.
  * But as a bonus it gives you the proper implementation so you don't have to make any mapping.
@@ -24,6 +26,6 @@ enum class AndesTextfieldCodeState {
     }
 
     companion object {
-        fun fromString(value: String): AndesTextfieldCodeState = valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesTextfieldCodeState = valueOf(value.toUpperCase(Locale.getDefault()))
     }
 }

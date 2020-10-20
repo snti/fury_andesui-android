@@ -39,18 +39,14 @@ internal class AndesTextfieldBoxWatcher(
 
         isRunning = true
 
-        when {
-            !editable.contains(DIRTY_CHARACTER) -> {
-                if (editable.isNotEmpty()) {
-                    focusManagement.goToNextFocus()
-                } else if (editable.isEmpty()) {
-                    focusManagement.goToPreviousFocus()
-                }
-            }
-
-            editable.length > 1 -> {
+        if (editable.contains(DIRTY_CHARACTER)) {
+            if (editable.length > 1) {
                 focusManagement.goToNextFocus()
             }
+        } else if (editable.isNotEmpty()) {
+            focusManagement.goToNextFocus()
+        } else if (editable.isEmpty()) {
+            focusManagement.goToPreviousFocus()
         }
 
         isRunning = false

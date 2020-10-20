@@ -29,6 +29,8 @@ import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightCon
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldCodeState
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
 import com.mercadolibre.android.andesui.textfield.style.AndesTextfieldCodeStyle
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TextfieldShowcaseActivity : AppCompatActivity() {
 
@@ -282,44 +284,18 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val label = layoutTextfieldCode.findViewById<AndesTextfield>(R.id.label_text)
             val helper = layoutTextfieldCode.findViewById<AndesTextfield>(R.id.helper_text)
 
-            val stateAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.textfield_code_state_spinner)
-            )
-            stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            stateSpinner.adapter = stateAdapter
-
-            val styleAdapter = ArrayAdapter(
-                context,
-                android.R.layout.simple_spinner_item,
-                context.resources.getStringArray(R.array.textfield_code_style_spinner)
-            )
-            stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            styleSpinner.adapter = styleAdapter
-
-            textfieldCode.setOnTextChangeListener(object : AndesTextfieldCode.OnTextChangeListener {
-                override fun onChange(text: String) {
-                    Log.i("ANDES", "TEXT CHANGE: $text")
-                }
-            })
-
-            textfieldCode.setOnCompleteListener(object : AndesTextfieldCode.OnCompletionListener {
-                override fun onComplete(isFull: Boolean) {
-                    if (isFull) {
-                        Log.i("ANDES", "TEXT COMPLETE: ${textfieldCode.text}")
-                    }
-                }
-            })
+            configureStateAdapter(stateSpinner)
+            configureStyleAdapter(styleSpinner)
+            addAndesTextfieldCodeListener(textfieldCode)
 
             updateButton.setOnClickListener {
                 val currentState = textfieldCode.state
-                val newState = AndesTextfieldCodeState.valueOf(stateSpinner.selectedItem.toString().toUpperCase())
+                val newState = AndesTextfieldCodeState.valueOf(stateSpinner.selectedItem.toString().toUpperCase(Locale.getDefault()))
                 if (currentState != newState) {
                     textfieldCode.state = newState
                 }
                 val currentStyle = textfieldCode.style
-                val newStyle = AndesTextfieldCodeStyle.valueOf(styleSpinner.selectedItem.toString().toUpperCase())
+                val newStyle = AndesTextfieldCodeStyle.valueOf(styleSpinner.selectedItem.toString().toUpperCase(Locale.getDefault()))
                 if (currentStyle != newStyle) {
                     textfieldCode.style = newStyle
                 }
@@ -347,6 +323,42 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
 
             return TextFieldPage(layoutTextfieldCode, R.string.andesui_demoapp_screen_textfield_code)
+        }
+
+        private fun configureStateAdapter(stateSpinner: Spinner) {
+            val stateAdapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item,
+                context.resources.getStringArray(R.array.textfield_code_state_spinner)
+            )
+            stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            stateSpinner.adapter = stateAdapter
+        }
+
+        private fun configureStyleAdapter(styleSpinner: Spinner) {
+            val styleAdapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item,
+                context.resources.getStringArray(R.array.textfield_code_style_spinner)
+            )
+            styleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            styleSpinner.adapter = styleAdapter
+        }
+
+        private fun addAndesTextfieldCodeListener(textfieldCode: AndesTextfieldCode) {
+            textfieldCode.setOnTextChangeListener(object : AndesTextfieldCode.OnTextChangeListener {
+                override fun onChange(text: String) {
+                    Log.i("ANDES", "TEXT CHANGE: $text")
+                }
+            })
+
+            textfieldCode.setOnCompleteListener(object : AndesTextfieldCode.OnCompletionListener {
+                override fun onComplete(isFull: Boolean) {
+                    if (isFull) {
+                        Log.i("ANDES", "TEXT COMPLETE: ${textfieldCode.text}")
+                    }
+                }
+            })
         }
 
         private fun addStaticTextfieldLayout(inflater: LayoutInflater): TextFieldPage {
