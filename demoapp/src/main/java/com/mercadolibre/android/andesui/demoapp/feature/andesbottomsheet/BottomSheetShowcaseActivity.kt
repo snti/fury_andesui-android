@@ -69,10 +69,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.expand()
     }
 
-    fun onCollapseButtonClicked(view: View) {
-        bottomSheet.collapse()
-    }
-
     fun onToggleTitleClicked(view: View) {
         val andesButton = view as AndesButton
         showTitle = !showTitle

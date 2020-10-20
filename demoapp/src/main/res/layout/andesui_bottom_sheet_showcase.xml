@@ -23,7 +23,7 @@
         android:layout_margin="@dimen/andes_button_margin_large"
         android:onClick="onAttachViewButtonClicked"
         app:andesButtonText="@string/andesui_demoapp_bottom_sheet_attach_view_button"
-        app:layout_constraintEnd_toStartOf="@+id/andes_attach_fragment_button"
+        app:layout_constraintEnd_toStartOf="@+id/andes_bottom_sheet_attach_fragment_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
@@ -50,26 +50,15 @@
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andes_bottom_sheet_expand_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/andes_button_margin_large"
+        android:layout_marginHorizontal="@dimen/andes_bottom_sheet_default_margin"
+        android:layout_marginVertical="@dimen/andes_button_margin_large"
         android:onClick="onExpandButtonClicked"
         app:andesButtonText="@string/andesui_demoapp_bottom_sheet_expand_button"
-        app:layout_constraintEnd_toStartOf="@+id/andes_attach_fragment_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_1" />
-
-    <com.mercadolibre.android.andesui.button.AndesButton
-        android:id="@+id/andes_attach_fragment_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/andes_button_margin_large"
-        android:onClick="onCollapseButtonClicked"
-        app:andesButtonText="@string/andesui_demoapp_bottom_sheet_collapse_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/andes_bottom_sheet_expand_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_separator_1" />
 
     <View
@@ -78,7 +67,7 @@
         android:layout_height="1dp"
         android:background="@color/andes_gray_450"
         android:layout_margin="@dimen/andes_button_margin_large"
-        app:layout_constraintTop_toBottomOf="@+id/andes_attach_fragment_button"/>
+        app:layout_constraintTop_toBottomOf="@+id/andes_bottom_sheet_expand_button"/>
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/andes_bottom_sheet_toggle_title_button"
@@ -139,5 +128,7 @@
         android:id="@+id/andes_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:andesBottomSheetState="collapsed"/>
+        app:andesBottomSheetState="collapsed"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 </android.support.constraint.ConstraintLayout>
