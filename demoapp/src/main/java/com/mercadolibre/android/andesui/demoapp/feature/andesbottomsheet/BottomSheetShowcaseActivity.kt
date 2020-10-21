@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.demoapp.feature.andesbottomsheet
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
@@ -63,10 +64,10 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.removeContent()
 
         bottomSheet.setContent(supportFragmentManager, TestFragment())
-    }
 
-    fun onExpandButtonClicked(view: View) {
-        bottomSheet.expand()
+        Handler().postDelayed(  {
+            bottomSheet.expand()
+        }, ONE_HUNDRED_MS)
     }
 
     fun onToggleTitleClicked(view: View) {
@@ -107,5 +108,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
     companion object {
         private const val VIEW_HEIGHT = 800
+        private const val ONE_HUNDRED_MS = 100.toLong()
     }
 }
