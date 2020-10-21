@@ -66,6 +66,7 @@
     <string name="checkbox_description">They allow multiple selections from a list of options, unlike radio buttons that only allow you to choose a single option.</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
+    <string name="andesui_demoapp_screen_bottom_sheet">Andes UI: Bottom Sheet</string>
     <string name="andesui_demoapp_screen_message">Andes UI: Message</string>
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
     <string name="andesui_demoapp_screen_textfield_code">Andes UI: TextfieldCode</string>
@@ -206,11 +207,8 @@
     <string name="andesui_demoapp_bottom_sheet">Andes Bottom Sheet</string>
     <string name="andesui_demoapp_bottom_sheet_attach_view_button">Attach View</string>
     <string name="andesui_demoapp_bottom_sheet_attach_frag_butotn">Attach Fragment</string>
-    <string name="andesui_demoapp_bottom_sheet_expand_button">Expand</string>
-    <string name="andesui_demoapp_bottom_sheet_collapse_button">Collapse</string>
     <string name="andesui_demoapp_bottom_sheet_toggle_title_button">Toggle Title</string>
     <string name="andesui_demoapp_bottom_sheet_toggle_title_align_button">Toggle alignment</string>
-    <string name="andesui_demoapp_bottom_sheet_toggle_background_button">Toggle Background Dim</string>
     <string name="andesui_demoapp_bottom_sheet_text_field">New peek height</string>
     <string name="andesui_demoapp_bottom_sheet_set_button">Set</string>
     <string name="andesui_demoapp_bottom_sheet_dummy_view">This is a dummy view</string>

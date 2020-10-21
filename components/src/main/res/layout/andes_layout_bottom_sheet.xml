@@ -42,6 +42,7 @@
                 android:ellipsize="end"
                 android:textSize="@dimen/andes_bottom_sheet_title_size"
                 android:textColor="@color/andes_gray_800"
+                android:includeFontPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/andes_bottom_sheet_drag_indicator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -3,6 +3,9 @@
 - AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
 - Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
+## Added
+- Improved AndesBottomSheet background dim animation
+
 # v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
