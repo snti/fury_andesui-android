@@ -59,6 +59,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
         val page: View,
         val titleResource: Int = R.string.andesui_demoapp_screen_textfield)
 
+    @Suppress("TooManyFunctions")
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
 
         private val views: List<TextFieldPage>
@@ -107,8 +108,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
             val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
 
-            counter.setText(COUNTER_DEFAULT)
-            textfield.counter = 50
+            counter.setText(COUNTER_DEFAULT_TEXT)
+            textfield.counter = COUNTER_DEFAULT
 
             val inputTypeSpinner: Spinner = layoutTextfield.findViewById(R.id.textType_spinner)
             val typeAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, getInputTypesArray())
@@ -194,7 +195,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.placeholder = context.resources.getString(R.string.andes_textfield_placeholder_text)
                 placeholder.text = null
                 helper.text = null
-                counter.setText(COUNTER_DEFAULT)
+                counter.setText(COUNTER_DEFAULT_TEXT)
                 mask.text = ""
                 stateSpinner.setSelection(0)
                 inputTypeSpinner.setSelection(0)
@@ -206,7 +207,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textfield.label = null
                 textfield.placeholder = null
                 textfield.helper = null
-                textfield.counter = 50
+                textfield.counter = COUNTER_DEFAULT
                 textfield.state = AndesTextfieldState.IDLE
                 textfield.inputType = InputType.TYPE_CLASS_DATETIME
                 textfield.leftContent = null
@@ -226,8 +227,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val helper = layoutTextfield.findViewById<AndesTextfield>(R.id.helper_text)
             val placeholder = layoutTextfield.findViewById<AndesTextfield>(R.id.placeholder_text)
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
-            counter.setText(COUNTER_DEFAULT)
-            textarea.counter = 50
+            counter.setText(COUNTER_DEFAULT_TEXT)
+            textarea.counter = COUNTER_DEFAULT
 
             val stateSpinner: Spinner = layoutTextfield.findViewById(R.id.state_spinner)
             val stateAdapter = ArrayAdapter(
@@ -253,7 +254,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 placeholder.placeholder = context.resources.getString(R.string.andes_textfield_placeholder_text)
                 placeholder.text = null
                 helper.text = null
-                counter.setText(COUNTER_DEFAULT)
+                counter.setText(COUNTER_DEFAULT_TEXT)
                 stateSpinner.setSelection(0)
 
                 // reset AndesTextfield's properties.
@@ -261,7 +262,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textarea.label = null
                 textarea.placeholder = null
                 textarea.helper = null
-                textarea.counter = 50
+                textarea.counter = COUNTER_DEFAULT
                 textarea.state = AndesTextfieldState.IDLE
             }
 
@@ -525,6 +526,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
 
     companion object {
         const val NONE = "NONE"
-        const val COUNTER_DEFAULT = "50"
+        const val COUNTER_DEFAULT_TEXT = "50"
+        private const val COUNTER_DEFAULT = 50
     }
 }
