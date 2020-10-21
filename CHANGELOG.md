@@ -1,5 +1,6 @@
 # v2.14.0
 ## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
 - Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 ## Added
