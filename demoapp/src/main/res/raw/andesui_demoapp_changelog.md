@@ -1,3 +1,7 @@
+# v2.15.0
+## 🛠 Fixes
+- Andes Coachmark: force only portrait mode and fix scroll up
+
 # v2.14.0
 ## 🚀 Features
 - AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)

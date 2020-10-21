@@ -65,7 +65,7 @@ class CoachmarkPresenterTest {
         val stepReferenceGlobalRect = Rect(48, 288, 418, 361)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 404
-
+        val stepReferencedpHeigh = 73
 
         Mockito.`when`(viewReference.height).thenReturn(73)
         Mockito.`when`(viewReference.getLocalVisibleRect(bodyGlobalRect)).thenReturn(true)
@@ -74,6 +74,7 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[0],
             HEIGHT_SCREEN,
+            stepReferencedpHeigh,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -92,6 +93,7 @@ class CoachmarkPresenterTest {
         val stepReferenceGlobalRect = Rect(48, 1322, 1032, 1466)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 233
+        val stepReferencedpHeigh = 144
 
         Mockito.`when`(viewReference.height).thenReturn(144)
         Mockito.`when`(viewReference.getLocalVisibleRect(bodyGlobalRect)).thenReturn(true)
@@ -100,6 +102,7 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[9],
             HEIGHT_SCREEN,
+            stepReferencedpHeigh,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -118,6 +121,7 @@ class CoachmarkPresenterTest {
         val stepReferenceGlobalRect = Rect(48, -396, 418, -323)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 404
+        val stepReferencedpHeigh = 73
 
         Mockito.`when`(viewReference.height).thenReturn(73)
         Mockito.`when`(viewReference.getLocalVisibleRect(bodyGlobalRect)).thenReturn(false)
@@ -126,6 +130,7 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[2],
             HEIGHT_SCREEN,
+            stepReferencedpHeigh,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
@@ -146,7 +151,7 @@ class CoachmarkPresenterTest {
         val stepReferenceGlobalRect = Rect(48, 1556, 408, 1916)
         val bodyGlobalRect = Rect(0, 240, 1080, 1632)
         val tooltipHeigh = 680
-
+        val stepReferencedpHeigh = 360
 
         Mockito.`when`(viewReference.height).thenReturn(360)
         Mockito.`when`(viewReference.getLocalVisibleRect(bodyGlobalRect)).thenReturn(true)
@@ -155,6 +160,7 @@ class CoachmarkPresenterTest {
         presenter.resolveScrollMode(
             coachmarkModel.steps[1],
             HEIGHT_SCREEN,
+            stepReferencedpHeigh,
             stepReferenceGlobalRect,
             bodyGlobalRect,
             tooltipHeigh,
