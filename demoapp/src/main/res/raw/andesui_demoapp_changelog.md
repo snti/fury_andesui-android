@@ -1,12 +1,18 @@
-# v2.14.0
+# v2.15.0
 ## 🛠 Fixes
 - Andes Coachmark: force only portrait mode and fix scroll up
 
-# v2.13.0
+# v2.14.0
+## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
+- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
+## Added
+- Improved AndesBottomSheet background dim animation
+
+# v2.13.0
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
-- Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 ## Added
 - Added Andes icons (bill, cash, credit card, shipping, wallet)

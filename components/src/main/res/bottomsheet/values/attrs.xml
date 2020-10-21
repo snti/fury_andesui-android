@@ -12,7 +12,5 @@
             <enum name="centered" value="2000"/>
             <enum name="left_aligned" value="2001"/>
         </attr>
-
-        <attr name="andesBottomSheetBackgroundDim" format="boolean"/>
     </declare-styleable>
 </resources>
