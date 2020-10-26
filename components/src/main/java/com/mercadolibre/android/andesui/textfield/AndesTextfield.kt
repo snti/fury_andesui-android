@@ -12,7 +12,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
@@ -21,7 +20,6 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.color.AndesColor
 import com.mercadolibre.android.andesui.color.toAndesColor
 import com.mercadolibre.android.andesui.icons.IconProvider
-import com.mercadolibre.android.andesui.progress.LoadingSpinner
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldLeftContent
 import com.mercadolibre.android.andesui.textfield.content.AndesTextfieldRightContent
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldAttrs
@@ -30,9 +28,6 @@ import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigur
 import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfigurationFactory
 import com.mercadolibre.android.andesui.textfield.maskTextField.TextFieldMaskWatcher
 import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.DISABLED
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.IDLE
-import com.mercadolibre.android.andesui.textfield.state.AndesTextfieldState.READONLY
 import com.mercadolibre.android.andesui.utils.buildColoredAndesBitmapDrawable
 
 @Suppress("TooManyFunctions")
@@ -195,7 +190,7 @@ class AndesTextfield : ConstraintLayout {
     private lateinit var labelComponent: TextView
     private lateinit var helperComponent: TextView
     private lateinit var counterComponent: TextView
-    private lateinit var textComponent: EditText
+    private lateinit var textComponent: AndesEditText
     private lateinit var iconComponent: SimpleDraweeView
     private lateinit var leftComponent: FrameLayout
     private lateinit var rightComponent: FrameLayout
@@ -328,7 +323,7 @@ class AndesTextfield : ConstraintLayout {
      */
     private fun setupInputType() {
         textComponent.inputType = inputType
-        textComponent.setSelection(textComponent.text.length)
+        textComponent.setSelection(textComponent.text?.length ?: 0)
     }
 
     /**
@@ -361,9 +356,7 @@ class AndesTextfield : ConstraintLayout {
 
         iconComponent.setImageDrawable(config.icon)
         if (config.icon != null && state != AndesTextfieldState.READONLY) {
-            if (!config.helperText.isNullOrEmpty()) {
-                iconComponent.visibility = View.VISIBLE
-            }
+            iconComponent.visibility = if (!config.helperText.isNullOrEmpty()) View.VISIBLE else View.GONE
         } else {
             iconComponent.visibility = View.GONE
         }
@@ -559,7 +552,7 @@ class AndesTextfield : ConstraintLayout {
             })
 
             val clear: SimpleDraweeView = rightComponent.getChildAt(0) as SimpleDraweeView
-            clear.setOnClickListener { textComponent.text.clear() }
+            clear.setOnClickListener { textComponent.text?.clear() }
         }
     }
 
@@ -675,6 +668,54 @@ class AndesTextfield : ConstraintLayout {
 
     fun requestFocusOnTextField() {
         textComponent.requestFocus()
+    }
+
+    /**
+     * Set alignment for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesTextAlignment(textAlignment: Int) {
+        textComponent.textAlignment = textAlignment
+    }
+
+    /**
+     * Set selection for textComponent
+     * Only visible for internal development
+     */
+    internal fun setSelection(selection: Int) {
+        textComponent.setSelection(selection)
+    }
+
+    /**
+     * Set isFocusableInTouchMode for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesFocusableInTouchMode(isFocusableInTouchMode: Boolean) {
+        textComponent.isFocusableInTouchMode = isFocusableInTouchMode
+    }
+
+    /**
+     * Set isLongClickable for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesIsLongClickable(isClickable: Boolean) {
+        textComponent.isLongClickable = isClickable
+    }
+
+    /**
+     * Set onFocusChangeListener for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
+        textComponent.onFocusChangeListener = onFocusChangeListener
+    }
+    /**
+     * Set contextMenuItemListener for textComponent
+     * Only visible for internal development
+     */
+    internal fun setAndesTextContextMenuItemListener(
+        contextMenuItemListener: AndesEditText.OnTextContextMenuItemListener) {
+        textComponent.setOnTextContextMenuItemListener(contextMenuItemListener)
     }
 
     private fun createConfig() = AndesTextfieldConfigurationFactory.create(context, andesTextfieldAttrs)

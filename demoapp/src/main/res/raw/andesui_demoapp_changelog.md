@@ -1,10 +1,16 @@
-# v2.14.0
+# v2.15.0
+## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
 
+## 🛠 Fixes
+- Andes Coachmark: force only portrait mode and fix scroll up
+- Improved AndesBottomSheet background dim animation
+
+# v2.14.0
 ## 🚀 Features
 - Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 # v2.13.0
-
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
 
