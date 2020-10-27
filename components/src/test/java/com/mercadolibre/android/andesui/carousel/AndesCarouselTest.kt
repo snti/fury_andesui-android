@@ -31,7 +31,7 @@ class AndesCarouselTest {
             AndesCarouselMargin.NONE
         )
         val config = configFactory.create(context, attrs)
-        Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_none).toInt())
+        Assert.assertEquals(config.margin, context.resources.getDimension(R.dimen.andes_carousel_padding_none).toInt())
     }
 
     @Test
@@ -41,7 +41,7 @@ class AndesCarouselTest {
                 AndesCarouselMargin.SMALL
         )
         val config = configFactory.create(context, attrs)
-        Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_small).toInt())
+        Assert.assertEquals(config.margin, context.resources.getDimension(R.dimen.andes_carousel_padding_small).toInt())
     }
 
     @Test
@@ -51,7 +51,7 @@ class AndesCarouselTest {
                 AndesCarouselMargin.MEDIUM
         )
         val config = configFactory.create(context, attrs)
-        Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_medium).toInt())
+        Assert.assertEquals(config.margin, context.resources.getDimension(R.dimen.andes_carousel_padding_medium).toInt())
     }
 
     @Test
@@ -61,7 +61,7 @@ class AndesCarouselTest {
                 AndesCarouselMargin.LARGE
         )
         val config = configFactory.create(context, attrs)
-        Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_large).toInt())
+        Assert.assertEquals(config.margin, context.resources.getDimension(R.dimen.andes_carousel_padding_large).toInt())
     }
 
     @Test
