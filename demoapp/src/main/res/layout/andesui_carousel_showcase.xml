@@ -21,7 +21,7 @@
       <com.mercadolibre.android.andesui.message.AndesMessage
           android:id="@+id/andesMessage"
           android:layout_width="match_parent"
-          android:layout_height="500dp"
+          android:layout_height="wrap_content"
           android:layout_marginStart="16dp"
           android:layout_marginTop="16dp"
           android:layout_marginEnd="16dp"
@@ -33,14 +33,6 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/andesui_nav_bar" />
 
-      <android.support.v4.view.ViewPager
-          android:id="@+id/viewPagerCarousel"
-          android:layout_width="match_parent"
-          android:layout_height="200dp"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/andesMessage"
-          android:layout_marginTop="16dp" />
-
       <com.mercadolibre.android.andesui.carousel.AndesCarousel
           android:id="@+id/carouselMain"
           android:layout_width="match_parent"
@@ -49,7 +41,7 @@
           app:andesCarouselCenter="true"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/viewPagerCarousel" />
+          app:layout_constraintTop_toBottomOf="@+id/andesMessage" />
 
       <TextView
           android:id="@+id/textPadding"
@@ -57,7 +49,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="24dp"
           android:layout_marginStart="24dp"
-          android:text="@string/andes_carousel_padding"
+          android:text="@string/andes_carousel_margin"
           app:layout_constraintEnd_toStartOf="@id/paddingSpinner"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/carouselMain"/>
@@ -98,7 +90,9 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="24dp"
+          android:layout_marginBottom="24dp"
           app:andesButtonText="@string/andes_message_showcase_change"
+          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/textCenter" />

@@ -144,7 +144,7 @@
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
 
-    <string name="andes_carousel_padding">Padding</string>
+    <string name="andes_carousel_margin">Margin</string>
     <string name="andes_carousel_center">Center</string>
 
     <string name="andes_radiobutton_text">Andes radiobutton</string>

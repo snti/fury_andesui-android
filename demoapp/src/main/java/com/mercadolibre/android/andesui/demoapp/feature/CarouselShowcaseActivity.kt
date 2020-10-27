@@ -29,8 +29,6 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         carouselMain.delegate = this
 
-        initViewPager()
-
         ArrayAdapter.createFromResource(
     this,
             R.array.carousel_padding_spinner,
@@ -65,9 +63,9 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
     }
 
-    private fun initViewPager() {
+    /*private fun initViewPager() {
         viewPagerCarousel.adapter = CustomPagerAdapter(this)
-    }
+    }*/
 
     @SuppressLint("SetTextI18n")
     override fun bind(andesCarouselView: AndesCarousel, view: View, position: Int) {
