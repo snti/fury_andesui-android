@@ -31,11 +31,11 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
 
         ArrayAdapter.createFromResource(
     this,
-            R.array.carousel_padding_spinner,
+            R.array.carousel_margin_spinner,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            paddingSpinner.adapter = adapter
+            marginSpinner.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -48,11 +48,9 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            val padding: AndesCarouselMargin = when(paddingSpinner.selectedItem.toString()) {
+            val padding: AndesCarouselMargin = when(marginSpinner.selectedItem.toString()) {
                 "None" -> AndesCarouselMargin.NONE
-                "Small" -> AndesCarouselMargin.SMALL
-                "Medium" -> AndesCarouselMargin.MEDIUM
-                else -> AndesCarouselMargin.LARGE
+                else -> AndesCarouselMargin.DEFAULT
             }
             val center = when(centerSpinner.selectedItem.toString()) {
                 "False" -> false

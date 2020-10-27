@@ -65,7 +65,7 @@ class AndesCarousel : ConstraintLayout {
     constructor(
         context: Context,
         center: Boolean = false,
-        padding: AndesCarouselMargin = AndesCarouselMargin.SMALL
+        padding: AndesCarouselMargin = AndesCarouselMargin.DEFAULT
     ) : super(context) {
         initAttrs(center, padding)
     }

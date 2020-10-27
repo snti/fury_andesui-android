@@ -50,12 +50,12 @@
           android:layout_marginTop="24dp"
           android:layout_marginStart="24dp"
           android:text="@string/andes_carousel_margin"
-          app:layout_constraintEnd_toStartOf="@id/paddingSpinner"
+          app:layout_constraintEnd_toStartOf="@id/marginSpinner"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/carouselMain"/>
 
       <Spinner
-          android:id="@+id/paddingSpinner"
+          android:id="@+id/marginSpinner"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="24dp"
@@ -83,7 +83,7 @@
           android:layout_marginEnd="24dp"
           app:layout_constraintStart_toEndOf="@id/textCenter"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/paddingSpinner" />
+          app:layout_constraintTop_toBottomOf="@+id/marginSpinner" />
 
       <com.mercadolibre.android.andesui.button.AndesButton
           android:id="@+id/updateButton"

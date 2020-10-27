@@ -18,14 +18,6 @@ internal object AndesCarouselMarginNone : AndesCarouselMarginInterface {
     override fun getMargin(context: Context) = context.resources.getDimension(R.dimen.andes_carousel_padding_none).toInt()
 }
 
-internal object AndesCarouselMarginSmall : AndesCarouselMarginInterface {
+internal object AndesCarouselMarginDefault : AndesCarouselMarginInterface {
     override fun getMargin(context: Context) = context.resources.getDimension(R.dimen.andes_carousel_padding_small).toInt()
-}
-
-internal object AndesCarouselMarginMedium : AndesCarouselMarginInterface {
-    override fun getMargin(context: Context) = context.resources.getDimension(R.dimen.andes_carousel_padding_medium).toInt()
-}
-
-internal object AndesCarouselMarginLarge : AndesCarouselMarginInterface {
-    override fun getMargin(context: Context) = context.resources.getDimension(R.dimen.andes_carousel_padding_large).toInt()
 }

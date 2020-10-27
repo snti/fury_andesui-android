@@ -4,9 +4,7 @@
         <attr name="andesCarouselCenter" format="boolean"/>
         <attr name="andesCarouselMargin">
             <enum name="none" value="100" />
-            <enum name="small" value="101" />
-            <enum name="medium" value="102" />
-            <enum name="large" value="103" />
+            <enum name="defaultMargin" value="101" />
         </attr>
     </declare-styleable>
 </resources>

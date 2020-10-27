@@ -16,21 +16,17 @@ internal data class AndesCarouselAttrs(
  */
 internal object AndesCarouselAttrParser {
 
-    private const val ANDES_CAROUSEL_PADDING_NONE = "100"
-    private const val ANDES_CAROUSEL_PADDING_SMALL = "101"
-    private const val ANDES_CAROUSEL_PADDING_MEDIUM = "102"
-    private const val ANDES_CAROUSEL_PADDING_LARGE = "103"
+    private const val ANDES_CAROUSEL_MARGIN_NONE = "100"
+    private const val ANDES_CAROUSEL_MARGIN_DEFAULT = "101"
 
     fun parse(context: Context, attr: AttributeSet?): AndesCarouselAttrs {
 
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesCarousel)
 
         val margin = when (typedArray.getString(R.styleable.AndesCarousel_andesCarouselMargin)) {
-            ANDES_CAROUSEL_PADDING_NONE -> AndesCarouselMargin.NONE
-            ANDES_CAROUSEL_PADDING_SMALL -> AndesCarouselMargin.SMALL
-            ANDES_CAROUSEL_PADDING_MEDIUM -> AndesCarouselMargin.MEDIUM
-            ANDES_CAROUSEL_PADDING_LARGE -> AndesCarouselMargin.LARGE
-            else -> AndesCarouselMargin.SMALL
+            ANDES_CAROUSEL_MARGIN_NONE -> AndesCarouselMargin.NONE
+            ANDES_CAROUSEL_MARGIN_DEFAULT -> AndesCarouselMargin.DEFAULT
+            else -> AndesCarouselMargin.DEFAULT
         }
 
         val center = typedArray.getBoolean(R.styleable.AndesCarousel_andesCarouselCenter, false)
