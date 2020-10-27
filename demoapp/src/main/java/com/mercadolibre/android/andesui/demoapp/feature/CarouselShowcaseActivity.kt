@@ -14,7 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
-import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.demoapp.R
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*
@@ -50,17 +50,17 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            val padding: AndesCarouselPadding = when(paddingSpinner.selectedItem.toString()) {
-                "None" -> AndesCarouselPadding.NONE
-                "Small" -> AndesCarouselPadding.SMALL
-                "Medium" -> AndesCarouselPadding.MEDIUM
-                else -> AndesCarouselPadding.LARGE
+            val padding: AndesCarouselMargin = when(paddingSpinner.selectedItem.toString()) {
+                "None" -> AndesCarouselMargin.NONE
+                "Small" -> AndesCarouselMargin.SMALL
+                "Medium" -> AndesCarouselMargin.MEDIUM
+                else -> AndesCarouselMargin.LARGE
             }
             val center = when(centerSpinner.selectedItem.toString()) {
                 "False" -> false
                 else -> true
             }
-            carouselMain.padding = padding
+            carouselMain.margin = padding
             carouselMain.center = center
         }
     }
