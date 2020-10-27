@@ -1,22 +1,22 @@
 package com.mercadolibre.android.andesui.carousel.factory
 
 import android.content.Context
-import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPaddingInterface
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMarginInterface
 
 internal data class AndesCarouselConfiguration(
-    val padding: Int,
+    val margin: Int,
     val center: Boolean
 )
 
 internal object AndesCarouselConfigurationFactory {
 
     fun create(context: Context, andesCarouselAttrs: AndesCarouselAttrs): AndesCarouselConfiguration {
-        val padding = andesCarouselAttrs.andesCarouselPadding.padding
+        val padding = andesCarouselAttrs.andesCarouselMargin.margin
         return AndesCarouselConfiguration(
-            padding = resolveItemPadding(padding, context),
+            margin = resolveItemPadding(padding, context),
             center = andesCarouselAttrs.andesCarouselCenter
         )
     }
 
-    private fun resolveItemPadding(padding: AndesCarouselPaddingInterface, context: Context) = padding.getPadding(context)
+    private fun resolveItemPadding(padding: AndesCarouselMarginInterface, context: Context) = padding.getMargin(context)
 }

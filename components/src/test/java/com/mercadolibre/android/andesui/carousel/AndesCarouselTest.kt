@@ -6,7 +6,7 @@ import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfigurationFactory
-import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import org.junit.Assert
 import org.junit.Test
@@ -28,7 +28,7 @@ class AndesCarouselTest {
     fun `test padding none` () {
         attrs = AndesCarouselAttrs(
             CENTER,
-            AndesCarouselPadding.NONE
+            AndesCarouselMargin.NONE
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_none).toInt())
@@ -38,7 +38,7 @@ class AndesCarouselTest {
     fun `test padding small` () {
         attrs = AndesCarouselAttrs(
                 CENTER,
-                AndesCarouselPadding.SMALL
+                AndesCarouselMargin.SMALL
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_small).toInt())
@@ -48,7 +48,7 @@ class AndesCarouselTest {
     fun `test padding medium` () {
         attrs = AndesCarouselAttrs(
                 CENTER,
-                AndesCarouselPadding.MEDIUM
+                AndesCarouselMargin.MEDIUM
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_medium).toInt())
@@ -58,7 +58,7 @@ class AndesCarouselTest {
     fun `test padding large` () {
         attrs = AndesCarouselAttrs(
                 CENTER,
-                AndesCarouselPadding.LARGE
+                AndesCarouselMargin.LARGE
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.padding, context.resources.getDimension(R.dimen.andes_carousel_padding_large).toInt())
@@ -68,7 +68,7 @@ class AndesCarouselTest {
     fun `test center true` () {
         attrs = AndesCarouselAttrs(
                 CENTER,
-                AndesCarouselPadding.NONE
+                AndesCarouselMargin.NONE
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.center, true)
@@ -78,7 +78,7 @@ class AndesCarouselTest {
     fun `test center false` () {
         attrs = AndesCarouselAttrs(
                 FREE,
-                AndesCarouselPadding.NONE
+                AndesCarouselMargin.NONE
         )
         val config = configFactory.create(context, attrs)
         Assert.assertEquals(config.center, false)
@@ -96,7 +96,7 @@ class AndesCarouselTest {
             override fun getLayoutItem(andesCarouselView: AndesCarousel) = LAYOUT
 
         }
-        val carousel = AndesCarousel(context, true, AndesCarouselPadding.NONE)
+        val carousel = AndesCarousel(context, true, AndesCarouselMargin.NONE)
         carousel.delegate = andesCarouselDelegate
         Assert.assertNotNull(carousel.delegate)
 
@@ -106,17 +106,17 @@ class AndesCarouselTest {
 
     @Test
     fun `test carousel with different padding` () {
-        var carousel = AndesCarousel(context, true, AndesCarouselPadding.NONE)
-        Assert.assertEquals(carousel.padding, AndesCarouselPadding.NONE)
+        var carousel = AndesCarousel(context, true, AndesCarouselMargin.NONE)
+        Assert.assertEquals(carousel.margin, AndesCarouselMargin.NONE)
 
-        carousel = AndesCarousel(context, true, AndesCarouselPadding.SMALL)
-        Assert.assertEquals(carousel.padding, AndesCarouselPadding.SMALL)
+        carousel = AndesCarousel(context, true, AndesCarouselMargin.SMALL)
+        Assert.assertEquals(carousel.margin, AndesCarouselMargin.SMALL)
 
-        carousel = AndesCarousel(context, true, AndesCarouselPadding.MEDIUM)
-        Assert.assertEquals(carousel.padding, AndesCarouselPadding.MEDIUM)
+        carousel = AndesCarousel(context, true, AndesCarouselMargin.MEDIUM)
+        Assert.assertEquals(carousel.margin, AndesCarouselMargin.MEDIUM)
 
-        carousel = AndesCarousel(context, true, AndesCarouselPadding.LARGE)
-        Assert.assertEquals(carousel.padding, AndesCarouselPadding.LARGE)
+        carousel = AndesCarousel(context, true, AndesCarouselMargin.LARGE)
+        Assert.assertEquals(carousel.margin, AndesCarouselMargin.LARGE)
     }
 
     companion object {

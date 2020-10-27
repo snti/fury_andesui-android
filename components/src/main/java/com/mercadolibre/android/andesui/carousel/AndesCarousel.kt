@@ -13,10 +13,10 @@ import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrParser
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselAttrs
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfiguration
 import com.mercadolibre.android.andesui.carousel.factory.AndesCarouselConfigurationFactory
-import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselAdapter
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
-import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselPaddingItemDecoration
+import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselMarginItemDecoration
 
 class AndesCarousel : ConstraintLayout {
 
@@ -24,16 +24,16 @@ class AndesCarousel : ConstraintLayout {
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var andesCarouselDelegate: AndesCarouselDelegate
-    private lateinit var paddingItemDecoration: AndesCarouselPaddingItemDecoration
+    private lateinit var marginItemDecoration: AndesCarouselMarginItemDecoration
     private lateinit var snapHelper: PagerSnapHelper
 
     /**
-     * Getter and setter for [padding].
+     * Getter and setter for [margin].
      */
-    var padding: AndesCarouselPadding
-        get() = andesCarouselAttrs.andesCarouselPadding
+    var margin: AndesCarouselMargin
+        get() = andesCarouselAttrs.andesCarouselMargin
         set(value) {
-            andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselPadding = value)
+            andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselMargin = value)
             setupPaddingRecyclerView(createConfig())
         }
 
@@ -65,7 +65,7 @@ class AndesCarousel : ConstraintLayout {
     constructor(
         context: Context,
         center: Boolean = false,
-        padding: AndesCarouselPadding = AndesCarouselPadding.SMALL
+        padding: AndesCarouselMargin = AndesCarouselMargin.SMALL
     ) : super(context) {
         initAttrs(center, padding)
     }
@@ -82,7 +82,7 @@ class AndesCarousel : ConstraintLayout {
 
     private fun initAttrs(
         center: Boolean,
-        padding: AndesCarouselPadding
+        padding: AndesCarouselMargin
     ) {
         andesCarouselAttrs = AndesCarouselAttrs(center, padding)
         setupComponents(createConfig())
@@ -106,7 +106,7 @@ class AndesCarousel : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_carousel, this)
         recyclerViewComponent = container.findViewById(R.id.andes_carousel_recyclerview)
-        paddingItemDecoration = AndesCarouselPaddingItemDecoration(createConfig().padding)
+        marginItemDecoration = AndesCarouselMarginItemDecoration(createConfig().margin)
         snapHelper = PagerSnapHelper()
     }
 
@@ -151,11 +151,11 @@ class AndesCarousel : ConstraintLayout {
      */
     private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
         if (recyclerViewComponent.itemDecorationCount != 0) {
-            recyclerViewComponent.removeItemDecoration(paddingItemDecoration)
+            recyclerViewComponent.removeItemDecoration(marginItemDecoration)
         }
 
-        paddingItemDecoration = AndesCarouselPaddingItemDecoration(config.padding)
-        recyclerViewComponent.addItemDecoration(paddingItemDecoration)
+        marginItemDecoration = AndesCarouselMarginItemDecoration(config.margin)
+        recyclerViewComponent.addItemDecoration(marginItemDecoration)
 
         val padding = getPaddingRecyclerView()
         recyclerViewComponent.setPadding(padding, 0, padding, 0)
@@ -176,7 +176,7 @@ class AndesCarousel : ConstraintLayout {
      * Define percentage of padding
      */
     private fun getPaddingRecyclerView() =
-        if (andesCarouselAttrs.andesCarouselPadding != AndesCarouselPadding.NONE)
+        if (andesCarouselAttrs.andesCarouselMargin != AndesCarouselMargin.NONE)
             (context.resources.displayMetrics.widthPixels * PERCENTAGE).toInt()
         else
            ZERO

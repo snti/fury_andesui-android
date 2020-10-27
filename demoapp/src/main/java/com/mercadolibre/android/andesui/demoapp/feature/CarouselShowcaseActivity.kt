@@ -14,7 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
-import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselPadding
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.demoapp.R
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*

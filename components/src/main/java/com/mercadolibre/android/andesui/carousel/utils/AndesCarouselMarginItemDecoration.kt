@@ -7,7 +7,7 @@ import android.view.View
 /**
  * AndesCarouselPaddingItemDecoration: override the itemDecoration to recyclerview which uses in AndesCarousel
  */
-class AndesCarouselPaddingItemDecoration(private val padding: Int) : RecyclerView.ItemDecoration() {
+class AndesCarouselMarginItemDecoration(private val margin: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -22,11 +22,11 @@ class AndesCarouselPaddingItemDecoration(private val padding: Int) : RecyclerVie
 
         with(outRect) {
             when (parent.getChildAdapterPosition(view)) {
-                FIRST_POSITION -> right = padding
-                lastPosition -> left = padding
+                FIRST_POSITION -> right = margin
+                lastPosition -> left = margin
                 else -> {
-                    left = padding
-                    right = padding
+                    left = margin
+                    right = margin
                 }
             }
         }

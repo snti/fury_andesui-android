@@ -3,11 +3,11 @@ package com.mercadolibre.android.andesui.carousel.factory
 import com.mercadolibre.android.andesui.R
 import android.content.Context
 import android.util.AttributeSet
-import com.mercadolibre.android.andesui.carousel.padding.AndesCarouselPadding
+import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 
 internal data class AndesCarouselAttrs(
     val andesCarouselCenter: Boolean,
-    val andesCarouselPadding: AndesCarouselPadding
+    val andesCarouselMargin: AndesCarouselMargin
 )
 
 /**
@@ -25,19 +25,19 @@ internal object AndesCarouselAttrParser {
 
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesCarousel)
 
-        val padding = when (typedArray.getString(R.styleable.AndesCarousel_andesCarouselPadding)) {
-            ANDES_CAROUSEL_PADDING_NONE -> AndesCarouselPadding.NONE
-            ANDES_CAROUSEL_PADDING_SMALL -> AndesCarouselPadding.SMALL
-            ANDES_CAROUSEL_PADDING_MEDIUM -> AndesCarouselPadding.MEDIUM
-            ANDES_CAROUSEL_PADDING_LARGE -> AndesCarouselPadding.LARGE
-            else -> AndesCarouselPadding.SMALL
+        val margin = when (typedArray.getString(R.styleable.AndesCarousel_andesCarouselMargin)) {
+            ANDES_CAROUSEL_PADDING_NONE -> AndesCarouselMargin.NONE
+            ANDES_CAROUSEL_PADDING_SMALL -> AndesCarouselMargin.SMALL
+            ANDES_CAROUSEL_PADDING_MEDIUM -> AndesCarouselMargin.MEDIUM
+            ANDES_CAROUSEL_PADDING_LARGE -> AndesCarouselMargin.LARGE
+            else -> AndesCarouselMargin.SMALL
         }
 
         val center = typedArray.getBoolean(R.styleable.AndesCarousel_andesCarouselCenter, false)
 
         return AndesCarouselAttrs(
                 andesCarouselCenter = center,
-                andesCarouselPadding = padding
+                andesCarouselMargin = margin
         ).also { typedArray.recycle() }
     }
 }
