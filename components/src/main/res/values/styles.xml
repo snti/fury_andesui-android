@@ -50,5 +50,13 @@
     <style name="Andes.LinkInverted">
 
     </style>
+    <style name="Andes.Calendar">
+        <item name="colorControlActivated">@color/andes_text_color_link</item>
+        <item name="colorControlHighlight">@color/andes_blue_ml_400</item>
+        <!-- calendar week color -->
+        <item name="android:textColorPrimary">@color/andes_gray_800</item>
+        <!-- calendar day color -->
+        <item name="android:textColorSecondary">@color/andes_gray_450</item>
+    </style>
 
 </resources>

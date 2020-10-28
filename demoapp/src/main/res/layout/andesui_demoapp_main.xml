@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -89,6 +90,8 @@
             app:andesButtonSize="large"
             app:andesButtonText="@string/andes_card_showcase"
             app:layout_constraintTop_toBottomOf="@id/andesui_buttons" />
+
+
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/andesui_checkbox"
@@ -198,6 +201,20 @@
             app:andesButtonText="@string/andesui_demoapp_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/andesui_textfield" />
 
+        <com.mercadolibre.android.andesui.button.AndesButton
+            android:id="@+id/andesui_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:andesButtonHierarchy="loud"
+            app:andesButtonSize="large"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            app:andesButtonText="@string/andesui_demoapp_datepicker"
+            app:layout_constraintEnd_toEndOf="@+id/andesui_thumbnail"
+            app:layout_constraintStart_toStartOf="@+id/andesui_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/andesui_thumbnail" />
+
         <TextView
             android:id="@+id/andesui_demoapp_label_more"
             android:layout_width="wrap_content"
@@ -207,7 +224,7 @@
             android:layout_marginRight="@dimen/button_margin_vertical"
             android:text="@string/andesui_demoapp_label_more"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/andesui_thumbnail" />
+            app:layout_constraintTop_toBottomOf="@id/andesui_date_picker" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/andesui_demoapp_contribution"
