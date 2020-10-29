@@ -109,11 +109,21 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
 
     private fun getDataSet() = listOf(
             Model(Color.RED, "Button Nº4", "Neutral", "Quiet"),
-            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Neutral", "Loud"),
+            Model(Color.RED, "Lorem ipsum dolor sit amet, " +
+                    "consectetur adipiscing elit, " +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                    "", "Neutral", "Loud"),
             Model(Color.RED, "Button Nº4", "Success", "Loud"),
-            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Success", "Quiet"),
-            Model(Color.RED, "Button Nº4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Warning", "Quiet"),
-            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Warning", "Loud")
+            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Success", "Quiet"),
+            Model(Color.RED, "Button Nº4 Lorem ipsum dolor sit amet, " +
+                    "consectetur adipiscing elit, " +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Warning", "Quiet"),
+            Model(Color.RED, "Lorem ipsum dolor sit amet, " +
+                    "consectetur adipiscing elit, " +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Warning", "Loud")
     )
 }
 
