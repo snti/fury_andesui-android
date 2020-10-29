@@ -32,9 +32,6 @@ class ProgressShowcaseActivity : AppCompatActivity() {
         viewPager.adapter = AndesShowcasePagerAdapter(this)
         val indicator = findViewById<PageIndicator>(R.id.page_indicator)
         indicator.attach(viewPager)
-
-        val adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        // addProgress(adapter.views[0])
     }
 
     private fun addProgress(container: View) {
