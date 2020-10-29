@@ -24,7 +24,7 @@ interface AndesCarouselDelegate {
     fun getDataSetSize(andesCarouselView: AndesCarousel): Int
 
     /**
-     * View that will use to render item of carousel
+     * Layout that will use to render item view
      */
     fun getLayoutItem(andesCarouselView: AndesCarousel): Int
 }
