@@ -58,12 +58,6 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="AndesDatePicker" tools:ignore="ResourceName">
-
-        <attr name="andesDatePickerLabel" format="reference" />
-
-    </declare-styleable>
-
     <declare-styleable name="AndesTextfieldCode" tools:ignore="ResourceName">
 
         <attr name="andesTextfieldCodeLabel" format="reference" />

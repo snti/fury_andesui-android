@@ -17,8 +17,24 @@ class AndesDatePicker : ConstraintLayout {
     private lateinit var containerDatepicker: ConstraintLayout
     private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
 
-    var label: String? = ""
+    var label: String?
         get() = andesDatePickerAttrs.label
+        set(value) {
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(label = value)
+            setupComponents(createConfig())
+        }
+    var minDate: String?
+        get() = andesDatePickerAttrs.minDate
+        set(value) {
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(minDate = value)
+            setupComponents(createConfig())
+        }
+    var maxDate: String?
+        get() = andesDatePickerAttrs.maxDate
+        set(value) {
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(maxDate = value)
+            setupComponents(createConfig())
+        }
 
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -29,6 +45,7 @@ class AndesDatePicker : ConstraintLayout {
         andesDatePickerAttrs = AndesDatePickerAttrsParser.parse(context, attrs)
         val config = AndesDatePickerConfigurationFactory.create(context, andesDatePickerAttrs)
         setupComponents(config)
+
     }
 
     private fun setupComponents(config: AndesDatePickerConfiguration) {
@@ -49,10 +66,11 @@ class AndesDatePicker : ConstraintLayout {
         }
         andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
-
         }
 
     }
+    private fun createConfig() = AndesDatePickerConfigurationFactory.create(context, andesDatePickerAttrs)
+
     interface ApplyDatePickerClickListener {
         fun onDateApply(date: Calendar)
     }

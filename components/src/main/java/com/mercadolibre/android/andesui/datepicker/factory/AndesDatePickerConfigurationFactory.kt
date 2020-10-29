@@ -1,10 +1,12 @@
 package com.mercadolibre.android.andesui.datepicker.factory
 
 import android.content.Context
-import com.mercadolibre.android.andesui.textfield.factory.AndesTextareaAttrs
 
 internal data class AndesDatePickerConfiguration(
-        val labelText: String? = null
+        val labelText: String? = null,
+        val minDate: String? = null,
+        val maxDate: String? = null
+
 )
 
 internal object AndesDatePickerConfigurationFactory {
@@ -13,16 +15,9 @@ internal object AndesDatePickerConfigurationFactory {
         return with(andesDatePickerAttrs) {
 
             AndesDatePickerConfiguration(
-                    labelText = label
-            )
-        }
-    }
-
-    fun create(context: Context, andesTextareaAttrs: AndesTextareaAttrs): AndesDatePickerConfiguration {
-        return with(andesTextareaAttrs) {
-
-            AndesDatePickerConfiguration(
-                    labelText = label
+                    labelText = label,
+                    minDate = minDate,
+                    maxDate = maxDate
             )
         }
     }
