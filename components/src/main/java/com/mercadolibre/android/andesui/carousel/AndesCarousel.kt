@@ -34,7 +34,7 @@ class AndesCarousel : ConstraintLayout {
         get() = andesCarouselAttrs.andesCarouselMargin
         set(value) {
             andesCarouselAttrs = andesCarouselAttrs.copy(andesCarouselMargin = value)
-            setupPaddingRecyclerView(createConfig())
+            setupMarginRecyclerView(createConfig())
         }
 
     /**
@@ -65,9 +65,9 @@ class AndesCarousel : ConstraintLayout {
     constructor(
         context: Context,
         center: Boolean = false,
-        padding: AndesCarouselMargin = AndesCarouselMargin.DEFAULT
+        margin: AndesCarouselMargin = AndesCarouselMargin.DEFAULT
     ) : super(context) {
-        initAttrs(center, padding)
+        initAttrs(center, margin)
     }
 
     /**
@@ -82,9 +82,9 @@ class AndesCarousel : ConstraintLayout {
 
     private fun initAttrs(
         center: Boolean,
-        padding: AndesCarouselMargin
+        margin: AndesCarouselMargin
     ) {
-        andesCarouselAttrs = AndesCarouselAttrs(center, padding)
+        andesCarouselAttrs = AndesCarouselAttrs(center, margin)
         setupComponents(createConfig())
     }
 
@@ -122,7 +122,7 @@ class AndesCarousel : ConstraintLayout {
      */
     private fun updateComponentsAlignment(config: AndesCarouselConfiguration) {
         setupCenterRecyclerView(config)
-        setupPaddingRecyclerView(config)
+        setupMarginRecyclerView(config)
     }
 
     /**
@@ -149,7 +149,7 @@ class AndesCarousel : ConstraintLayout {
     /**
      * Gets data from the config and sets to the padding of this carousel.
      */
-    private fun setupPaddingRecyclerView(config: AndesCarouselConfiguration) {
+    private fun setupMarginRecyclerView(config: AndesCarouselConfiguration) {
         if (recyclerViewComponent.itemDecorationCount != 0) {
             recyclerViewComponent.removeItemDecoration(marginItemDecoration)
         }
