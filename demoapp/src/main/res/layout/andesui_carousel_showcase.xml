@@ -92,10 +92,21 @@
           android:layout_marginTop="24dp"
           android:layout_marginBottom="24dp"
           app:andesButtonText="@string/andes_message_showcase_change"
-          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/textCenter" />
+
+      <LinearLayout
+          android:id="@+id/mainContainer"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_marginTop="24dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/updateButton" />
+
    </android.support.constraint.ConstraintLayout>
 
 </android.support.v4.widget.NestedScrollView>

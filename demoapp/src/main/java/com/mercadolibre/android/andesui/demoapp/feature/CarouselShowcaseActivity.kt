@@ -58,6 +58,11 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
             carouselMain.margin = padding
             carouselMain.center = center
         }
+
+        val newCarousel = AndesCarousel(this, false, AndesCarouselMargin.NONE)
+        newCarousel.delegate = this
+
+        mainContainer.addView(newCarousel)
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,29 +75,27 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         )
         textView1.setTextColor(applicationContext.resources.getColor(R.color.andes_gray_800))
         textView1.text = model.label
-        if (andesCarouselView == carouselMain) {
-            view.findViewById<AndesMessage>(R.id.messageCarousel).apply {
-                if (position % 2 == 0) {
-                    setupPrimaryAction(
-                            "Primary",
-                            View.OnClickListener {
-                                Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                            }
-                    )
-                } else {
-                    setupLinkAction(
-                            "Link",
-                            View.OnClickListener {
-                                Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                            }
-                    )
-                }
-
-                title = "Andes Message"
-                body = model.label
-                type = AndesMessageType.fromString(model.type)
-                hierarchy = AndesMessageHierarchy.fromString(model.hierarchy)
+        view.findViewById<AndesMessage>(R.id.messageCarousel).apply {
+            if (position % 2 == 0) {
+                setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                )
+            } else {
+                setupLinkAction(
+                        "Link",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                        }
+                )
             }
+
+            title = "Andes Message"
+            body = model.label
+            type = AndesMessageType.fromString(model.type)
+            hierarchy = AndesMessageHierarchy.fromString(model.hierarchy)
         }
     }
 
