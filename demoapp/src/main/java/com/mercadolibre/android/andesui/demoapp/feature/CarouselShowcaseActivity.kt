@@ -1,21 +1,21 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.*
-import com.mercadolibre.android.andesui.card.AndesCard
+import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import com.mercadolibre.android.andesui.carousel.AndesCarousel
 import com.mercadolibre.android.andesui.carousel.margin.AndesCarouselMargin
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.message.AndesMessage
+import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
+import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import kotlinx.android.synthetic.main.andesui_carousel_showcase.*
 
 class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
@@ -71,16 +71,27 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
         textView1.setTextColor(applicationContext.resources.getColor(R.color.andes_gray_800))
         textView1.text = model.label
         if (andesCarouselView == carouselMain) {
-            view.findViewById<AndesCard>(R.id.cardCarousel).apply {
-                title = "Andes Card"
-                if (position != 2)
-                    setLinkAction(
-                            "Action",
+            view.findViewById<AndesMessage>(R.id.messageCarousel).apply {
+                if (position % 2 == 0) {
+                    setupPrimaryAction(
+                            "Primary",
                             View.OnClickListener {
-                                Toast.makeText(context, "Action clicked!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
                             }
                     )
-                cardView = textView1
+                } else {
+                    setupLinkAction(
+                            "Link",
+                            View.OnClickListener {
+                                Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                            }
+                    )
+                }
+
+                title = "Andes Message"
+                body = model.label
+                type = AndesMessageType.fromString(model.type)
+                hierarchy = AndesMessageHierarchy.fromString(model.hierarchy)
             }
         }
     }
@@ -94,12 +105,13 @@ class CarouselShowcaseActivity : AndesCarouselDelegate, AppCompatActivity() {
     override fun getDataSetSize(andesCarouselView: AndesCarousel) = getDataSet().size
 
     private fun getDataSet() = listOf(
-            Model(Color.RED, "Button Nº4", R.drawable.andes_navegacion_ventas_24),
-            Model(Color.RED, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", R.drawable.andes_navegacion_ventas_24),
-        Model(Color.GREEN, "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", R.drawable.andes_navegacion_carrito_idle_24),
-            Model(Color.CYAN, "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.", R.drawable.andes_navegacion_inicio_24)
-            )
+            Model(Color.RED, "Button Nº4", "Neutral", "Quiet"),
+            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Neutral", "Loud"),
+            Model(Color.RED, "Button Nº4", "Success", "Loud"),
+            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Success", "Quiet"),
+            Model(Color.RED, "Button Nº4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Warning", "Quiet"),
+            Model(Color.RED, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", "Warning", "Loud")
+    )
 }
 
-data class Model(val backgroundColor: Int, val label: String, val image: Int)
-
+data class Model(val backgroundColor: Int, val label: String, val type: String, val hierarchy: String)
