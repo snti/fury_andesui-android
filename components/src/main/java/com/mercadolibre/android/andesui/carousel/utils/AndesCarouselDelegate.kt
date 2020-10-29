@@ -9,12 +9,12 @@ import com.mercadolibre.android.andesui.carousel.AndesCarousel
 interface AndesCarouselDelegate {
 
     /**
-     * Bind view that will executes in adapter of carousel
+     * Bind view that will execute to render the item
      */
     fun bind(andesCarouselView: AndesCarousel, view: View, position: Int)
 
     /**
-     * Listener that will executes when user clicks the item
+     * Listener that will execute when user clicks the item
      */
     fun onClickItem (andesCarouselView: AndesCarousel, position: Int)
 
@@ -24,7 +24,7 @@ interface AndesCarouselDelegate {
     fun getDataSetSize(andesCarouselView: AndesCarousel): Int
 
     /**
-     * Layout that will use to render item view
+     * Layout of item in carousel
      */
     fun getLayoutItem(andesCarouselView: AndesCarousel): Int
 }
