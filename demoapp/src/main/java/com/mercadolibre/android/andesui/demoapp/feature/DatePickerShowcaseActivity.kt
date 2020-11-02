@@ -75,8 +75,7 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             datepicker.setupMinDate("11/06/2020", "MM/dd/yyyy")
             datepicker.setupMaxDate("2020-11-15", "yyyy-MM-dd")
-
-
+            datepicker.setupButtonText("Aplicar")
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {
                 override fun onDateApply(date: Calendar) {
                     val dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT)

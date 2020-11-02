@@ -1,12 +1,11 @@
 package com.mercadolibre.android.andesui.datepicker
 
-import android.view.View
 import android.content.Context
+import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import com.mercadolibre.android.andesui.R
-import android.support.constraint.ConstraintLayout
-import android.widget.CalendarView
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
@@ -14,8 +13,6 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfig
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AndesDatePicker : ConstraintLayout {
@@ -94,8 +91,7 @@ class AndesDatePicker : ConstraintLayout {
         setupViewId()
         config.minDate?.toLong()?.let { setupMinDate(it) }
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
-
-
+        config.text.let{setupButtonText(it)}
         //TODO AndesDatePicker: Update UI
     }
 
@@ -127,9 +123,11 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMinDate(minDate : Long){
         calendarView.minDate = minDate
     }
+
     fun setupMinDate(minDate : Date){
         calendarView.minDate = minDate.time
     }
+
     fun setupMinDate(minDate : String, format:String){
         calendarView.minDate = convertStringToDate(minDate, format).time
     }
@@ -137,18 +135,18 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMaxDate(maxDate: Long) {
         calendarView.maxDate = maxDate
     }
+
     fun setupMaxDate(maxDate: Date) {
         calendarView.maxDate = maxDate.time
     }
+
     fun setupMaxDate(maxDate : String, format:String){
         calendarView.maxDate = convertStringToDate(maxDate, format).time
     }
+    fun setupButtonText(text: String?){
+        andesBtnSelectDate.text = text
+    }
 
-
-
-
-    //TODO AndesDatePicker: I can't do anything else for you 😢
-    //TODO AndesDatePicker: PD: Now it's your turn 😉
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
 
