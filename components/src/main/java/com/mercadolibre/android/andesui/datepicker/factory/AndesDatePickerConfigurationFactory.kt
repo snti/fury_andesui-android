@@ -1,24 +1,21 @@
 package com.mercadolibre.android.andesui.datepicker.factory
 
-import android.content.Context
-
 internal data class AndesDatePickerConfiguration(
-        val labelText: String? = null,
-        val minDate: String? = null,
-        val maxDate: String? = null
-
+        val text: String?,
+        val minDate: String?,
+        val maxDate: String?
 )
 
 internal object AndesDatePickerConfigurationFactory {
 
-    fun create(context: Context, andesDatePickerAttrs: AndesDatePickerAttrs): AndesDatePickerConfiguration {
+    fun create(andesDatePickerAttrs: AndesDatePickerAttrs): AndesDatePickerConfiguration {
         return with(andesDatePickerAttrs) {
-
             AndesDatePickerConfiguration(
-                    labelText = label,
-                    minDate = minDate,
-                    maxDate = maxDate
+                    text = andesDatePickerAttrs.andesDatePickerText,
+                    minDate = andesDatePickerAttrs.andesDatePickerMinDate,
+                    maxDate = andesDatePickerAttrs.andesDatePickerMaxDate
             )
         }
     }
+
 }

@@ -5,21 +5,28 @@ import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 
 internal data class AndesDatePickerAttrs(
-        val label: String?,
-        val minDate: String?,
-        val maxDate: String?
+        val andesDatePickerText: String?,
+        val andesDatePickerMinDate: String?,
+        val andesDatePickerMaxDate: String?
 )
-internal object AndesDatePickerAttrsParser {
+
+/**
+ * This object parse the attribute set and return an instance of AndesDatePickerAttrs
+ * to be used by AndesDatePicker
+ */
+internal object AndesDatePickerAttrParser {
 
     fun parse(context: Context, attr: AttributeSet?): AndesDatePickerAttrs {
+        //TODO AndesDatePicker: Add into build.gradle 'src/main/res/datepicker'
 
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesDatePicker)
 
         return AndesDatePickerAttrs(
-                label = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerLabel),
-                minDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMinDate),
-                maxDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate)
-                ).also { typedArray.recycle() }
-    }
-}
 
+                andesDatePickerText = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerText),
+                andesDatePickerMinDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate),
+                andesDatePickerMaxDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate)
+        ).also { typedArray.recycle() }
+    }
+
+}

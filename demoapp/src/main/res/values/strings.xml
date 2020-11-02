@@ -95,7 +95,6 @@
     <string name="andesui_demoapp_label_andes_button_specs">Andes Button Specs 📘</string>
     <string name="andesui_demoapp_label_andes_thumbnail_specs">Andes Thumbnail Specs 📘</string>
     <string name="andesui_demoapp_clear_button">Clear</string>
-    <string name="andesui_demoapp_datepicker">Andes Datepicker</string>
     <string name="andesui_demoapp_textfield">Andes Textfield</string>
     <string name="andesui_demoapp_textfield_state_text">State:</string>
     <string name="andesui_demoapp_textfield_style_text">Style:</string>
@@ -214,6 +213,11 @@
     <string name="andesui_demoapp_bottom_sheet_text_field">New peek height</string>
     <string name="andesui_demoapp_bottom_sheet_set_button">Set</string>
     <string name="andesui_demoapp_bottom_sheet_dummy_view">This is a dummy view</string>
+
+    <string name="andesui_demoapp_datepicker_minDate">1604199600000</string>
+    <string name="andesui_demoapp_datepicker_maxDate">1604458800000</string>
+    <string name="andesui_demoapp_datepicker_text">text</string>
+    <string name="andesui_demoapp_datepicker_button">Andes DatePicker</string>
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 

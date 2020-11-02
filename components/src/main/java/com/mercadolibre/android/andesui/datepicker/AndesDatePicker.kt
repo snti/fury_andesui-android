@@ -1,63 +1,154 @@
 package com.mercadolibre.android.andesui.datepicker
 
+import android.view.View
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.mercadolibre.android.andesui.R
+import android.support.constraint.ConstraintLayout
+import android.widget.CalendarView
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
-import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrsParser
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfiguration
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AndesDatePicker : ConstraintLayout {
-    private lateinit var containerDatepicker: ConstraintLayout
-    private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
 
-    var label: String?
-        get() = andesDatePickerAttrs.label
+    /**
+     * Getter and setter for [text].
+     */
+    var text: String?
+        get() = andesDatePickerAttrs.andesDatePickerText
         set(value) {
-            andesDatePickerAttrs = andesDatePickerAttrs.copy(label = value)
-            setupComponents(createConfig())
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerText = value)
+            val config = createConfig()
+            //TODO AndesDatePicker: Update UI
         }
+    /**
+     * Getter and setter for [minDate].
+     */
     var minDate: String?
-        get() = andesDatePickerAttrs.minDate
+        get() = andesDatePickerAttrs.andesDatePickerMinDate
         set(value) {
-            andesDatePickerAttrs = andesDatePickerAttrs.copy(minDate = value)
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerMinDate = value)
             setupComponents(createConfig())
         }
+    /**
+     * Getter and setter for [maxDate].
+     */
     var maxDate: String?
-        get() = andesDatePickerAttrs.maxDate
+        get() = andesDatePickerAttrs.andesDatePickerMaxDate
         set(value) {
-            andesDatePickerAttrs = andesDatePickerAttrs.copy(maxDate = value)
+            andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerMaxDate = value)
             setupComponents(createConfig())
         }
 
+    private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
 
-    private fun initAttrs(attrs: AttributeSet?) {
-        andesDatePickerAttrs = AndesDatePickerAttrsParser.parse(context, attrs)
-        val config = AndesDatePickerConfigurationFactory.create(context, andesDatePickerAttrs)
-        setupComponents(config)
-
+    constructor(
+            context: Context,
+            text: String? = TEXT_DEFAULT,
+            minDate: String? = TEXT_DEFAULT,
+            maxDate: String? = TEXT_DEFAULT
+    ) : super(context) {
+        initAttrs(text, minDate, maxDate)
     }
 
+    /**
+     * Sets the proper [config] for this component based on the [attrs] received via XML.
+     *
+     * @param attrs attributes from the XML.
+     */
+    private fun initAttrs(attrs: AttributeSet?) {
+        andesDatePickerAttrs = AndesDatePickerAttrParser.parse(context, attrs)
+        val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
+        setupComponents(config)
+    }
+
+    private fun initAttrs(
+            text: String?,
+            minDate: String?,
+            maxDate: String?
+    ) {
+        andesDatePickerAttrs = AndesDatePickerAttrs(text,minDate,maxDate)
+        val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
+        setupComponents(config)
+    }
+
+    /**
+     * Responsible for setting up all properties of each component that is part of this andesDatePicker.
+     * Is like a choreographer 😉
+     */
     private fun setupComponents(config: AndesDatePickerConfiguration) {
         initComponents()
+        setupViewId()
+        config.minDate?.toLong()?.let { setupMinDate(it) }
+        config.maxDate?.toLong()?.let { setupMaxDate(it) }
+
+
+        //TODO AndesDatePicker: Update UI
     }
 
+    /**
+     * Creates all the views that are part of this andesDatePicker.
+     * After a view is created then a view id is added to it.
+     */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this, true)
-        containerDatepicker = container.findViewById(R.id.andes_datepicker_container)
+        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
     }
 
+    /**
+     * Sets a view id to this andesDatePicker.
+     */
+    private fun setupViewId() {
+        if (id == NO_ID) { // If this view has no id
+            id = View.generateViewId()
+        }
+    }
+
+    private fun convertStringToDate(time: String, format:String) : Date{
+        val format = SimpleDateFormat(format)
+        val date = format.parse(time)
+
+        return date
+    }
+
+    fun setupMinDate(minDate : Long){
+        calendarView.minDate = minDate
+    }
+    fun setupMinDate(minDate : Date){
+        calendarView.minDate = minDate.time
+    }
+    fun setupMinDate(minDate : String, format:String){
+        calendarView.minDate = convertStringToDate(minDate, format).time
+    }
+
+    fun setupMaxDate(maxDate: Long) {
+        calendarView.maxDate = maxDate
+    }
+    fun setupMaxDate(maxDate: Date) {
+        calendarView.maxDate = maxDate.time
+    }
+    fun setupMaxDate(maxDate : String, format:String){
+        calendarView.maxDate = convertStringToDate(maxDate, format).time
+    }
+
+
+
+
+    //TODO AndesDatePicker: I can't do anything else for you 😢
+    //TODO AndesDatePicker: PD: Now it's your turn 😉
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
 
@@ -69,7 +160,8 @@ class AndesDatePicker : ConstraintLayout {
         }
 
     }
-    private fun createConfig() = AndesDatePickerConfigurationFactory.create(context, andesDatePickerAttrs)
+
+    private fun createConfig() = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
 
     interface ApplyDatePickerClickListener {
         fun onDateApply(date: Calendar)
@@ -80,4 +172,8 @@ class AndesDatePicker : ConstraintLayout {
             this.listener = listener
         }
     }
+    companion object {
+        private val TEXT_DEFAULT = null
+    }
+
 }

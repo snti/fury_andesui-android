@@ -8,14 +8,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import android.widget.ScrollView
 import android.widget.Toast
-import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.datepicker.AndesDatePicker
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
-import shark.GcRoot
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DatePickerShowcaseActivity : AppCompatActivity() {
@@ -72,9 +72,14 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
             ) as ScrollView
 
             val datepicker: AndesDatePicker = layoutDatePicker.findViewById(R.id.andesDatePicker)
+
+            datepicker.setupMinDate("11/06/2020", "MM/dd/yyyy")
+            datepicker.setupMaxDate("2020-11-15", "yyyy-MM-dd")
+
+
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {
                 override fun onDateApply(date: Calendar) {
-                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+                    val dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT)
                     val formattedDate = dateFormatter.format(date.time)
                     Toast.makeText(context, formattedDate, Toast.LENGTH_SHORT).show()
                 }})
