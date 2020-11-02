@@ -1,3 +1,7 @@
+# v2.16.0
+## 🚀 Features
+- Added AndesCarousel | Author: [@Constanza Morillo](https://github.com/constanzamorillomeli)
+
 # v2.15.0
 ## 🚀 Features
 - AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
