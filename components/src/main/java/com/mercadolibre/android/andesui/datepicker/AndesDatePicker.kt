@@ -46,6 +46,10 @@ class AndesDatePicker : ConstraintLayout {
             setupComponents(createConfig())
         }
 
+    var btnVisibility: Boolean? = null
+        get() = andesDatePickerAttrs.andesBtnVisibility
+
+
     private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -56,9 +60,10 @@ class AndesDatePicker : ConstraintLayout {
             context: Context,
             text: String? = TEXT_DEFAULT,
             minDate: String? = TEXT_DEFAULT,
-            maxDate: String? = TEXT_DEFAULT
+            maxDate: String? = TEXT_DEFAULT,
+            btnVisibility: Boolean? = null
     ) : super(context) {
-        initAttrs(text, minDate, maxDate)
+        initAttrs(text, minDate, maxDate, btnVisibility)
     }
 
     /**
@@ -75,9 +80,10 @@ class AndesDatePicker : ConstraintLayout {
     private fun initAttrs(
             text: String?,
             minDate: String?,
-            maxDate: String?
+            maxDate: String?,
+            btnVisibility: Boolean?
     ) {
-        andesDatePickerAttrs = AndesDatePickerAttrs(text,minDate,maxDate)
+        andesDatePickerAttrs = AndesDatePickerAttrs(text,minDate,maxDate, btnVisibility)
         val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
         setupComponents(config)
     }
@@ -92,6 +98,7 @@ class AndesDatePicker : ConstraintLayout {
         config.minDate?.toLong()?.let { setupMinDate(it) }
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
         config.text.let{setupButtonText(it)}
+        config.btnVisibility.let { setupBtnVisibility(it) }
         //TODO AndesDatePicker: Update UI
     }
 
@@ -143,8 +150,17 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMaxDate(maxDate : String, format:String){
         calendarView.maxDate = convertStringToDate(maxDate, format).time
     }
+
     fun setupButtonText(text: String?){
         andesBtnSelectDate.text = text
+    }
+
+    fun setupBtnVisibility(btnVisibility: Boolean?) {
+        if (btnVisibility == true){
+            andesBtnSelectDate.visibility = View.VISIBLE
+        }else{
+            andesBtnSelectDate.visibility = View.GONE
+        }
     }
 
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
@@ -152,11 +168,13 @@ class AndesDatePicker : ConstraintLayout {
 
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
+            if(andesBtnSelectDate.visibility == View.GONE){
+                listener?.onDateApply(calendar)
+            }
         }
-        andesBtnSelectDate.setOnClickListener {
+       andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
         }
-
     }
 
     private fun createConfig() = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)

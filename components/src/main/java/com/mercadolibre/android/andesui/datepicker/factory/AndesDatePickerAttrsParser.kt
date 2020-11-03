@@ -7,7 +7,8 @@ import com.mercadolibre.android.andesui.R
 internal data class AndesDatePickerAttrs(
         val andesDatePickerText: String?,
         val andesDatePickerMinDate: String?,
-        val andesDatePickerMaxDate: String?
+        val andesDatePickerMaxDate: String?,
+        val andesBtnVisibility : Boolean?
 )
 
 /**
@@ -22,11 +23,15 @@ internal object AndesDatePickerAttrParser {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesDatePicker)
 
         return AndesDatePickerAttrs(
-
                 andesDatePickerText = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerText),
                 andesDatePickerMinDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate),
-                andesDatePickerMaxDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate)
+                andesDatePickerMaxDate = typedArray.getString(R.styleable.AndesDatePicker_andesDatePickerMaxDate),
+                andesBtnVisibility = null
         ).also { typedArray.recycle() }
     }
 
 }
+
+
+
+

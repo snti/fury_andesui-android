@@ -3,7 +3,8 @@ package com.mercadolibre.android.andesui.datepicker.factory
 internal data class AndesDatePickerConfiguration(
         val text: String?,
         val minDate: String?,
-        val maxDate: String?
+        val maxDate: String?,
+        val btnVisibility : Boolean?
 )
 
 internal object AndesDatePickerConfigurationFactory {
@@ -13,7 +14,8 @@ internal object AndesDatePickerConfigurationFactory {
             AndesDatePickerConfiguration(
                     text = andesDatePickerAttrs.andesDatePickerText,
                     minDate = andesDatePickerAttrs.andesDatePickerMinDate,
-                    maxDate = andesDatePickerAttrs.andesDatePickerMaxDate
+                    maxDate = andesDatePickerAttrs.andesDatePickerMaxDate,
+                    btnVisibility = andesDatePickerAttrs.andesBtnVisibility
             )
         }
     }
