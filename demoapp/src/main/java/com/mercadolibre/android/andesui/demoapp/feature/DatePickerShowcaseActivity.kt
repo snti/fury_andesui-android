@@ -73,13 +73,13 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             val datepicker: AndesDatePicker = layoutDatePicker.findViewById(R.id.andesDatePicker)
 
-            datepicker.setupMinDate("11/03/2020", "MM/dd/yyyy")
+            datepicker.setupMinDate("04/11/2020", "dd/MM/yyyy")
 
             datepicker.setupMaxDate("2020-11-15", "yyyy-MM-dd")
 
             datepicker.setupButtonText("Aplicar")
 
-            datepicker.setupBtnVisibility(true)
+            datepicker.setupBtnVisibility(false)
 
 
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {

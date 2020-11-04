@@ -46,6 +46,10 @@ class AndesDatePicker : ConstraintLayout {
             setupComponents(createConfig())
         }
 
+    /**
+     * Getter and setter for [btnVisibility].
+     */
+
     var btnVisibility: Boolean? = null
         get() = andesDatePickerAttrs.andesBtnVisibility
 
