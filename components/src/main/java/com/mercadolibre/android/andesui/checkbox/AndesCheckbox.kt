@@ -130,12 +130,11 @@ class AndesCheckbox : ConstraintLayout {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_checkbox, this)
         containerCheckbox = container.findViewById(R.id.andes_checkbox_container)
-        onCheckedChangeListener(containerLeftCheckbox)
-        onCheckedChangeListener(containerRightCheckbox)
+        onCheckedChangeListener(containerCheckbox)
     }
 
-    private fun onCheckedChangeListener(checkbox: FrameLayout) {
-        checkbox.setOnClickListener {
+    private fun onCheckedChangeListener(view: View) {
+        view.setOnClickListener {
             when (type) {
                 AndesCheckboxType.ERROR -> {
                     type = AndesCheckboxType.IDLE
