@@ -24,7 +24,7 @@ class AndesDatePicker : ConstraintLayout {
         get() = andesDatePickerAttrs.andesDatePickerText
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerText = value)
-            val config = createConfig()
+
             //TODO AndesDatePicker: Update UI
         }
     /**
@@ -124,10 +124,11 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     private fun convertStringToDate(time: String, format:String) : Date{
+        @Suppress("NAME_SHADOWING")
         val format = SimpleDateFormat(format)
         val date = format.parse(time)
-
         return date
     }
 
@@ -169,7 +170,6 @@ class AndesDatePicker : ConstraintLayout {
 
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
-
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
             if(andesBtnSelectDate.visibility == View.GONE){
@@ -188,9 +188,7 @@ class AndesDatePicker : ConstraintLayout {
     }
     var listener: ApplyDatePickerClickListener? = null
     fun setDateListener (listener: ApplyDatePickerClickListener){
-        if (listener != null ){
-            this.listener = listener
-        }
+        this.listener = listener
     }
     companion object {
         private val TEXT_DEFAULT = null
