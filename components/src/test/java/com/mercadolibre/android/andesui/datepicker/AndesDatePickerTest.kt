@@ -32,5 +32,20 @@ class AndesDatePickerTest{
         config.btnVisibility?.let { Assert.assertTrue(it) }
     }
 
+    @Test
+    fun `attr btn disabled`(){
+        attrs = AndesDatePickerAttrs(
+                andesDatePickerText = "aplicar",
+                andesDatePickerMinDate = "01/01/2020",
+                andesDatePickerMaxDate = "31/12/2020",
+                andesBtnVisibility = false
+        )
+        val config = configFactory.create(attrs)
+        Assert.assertEquals(config.text, "aplicar")
+        Assert.assertEquals(config.minDate, "01/01/2020")
+        Assert.assertEquals(config.maxDate, "31/12/2020")
+        Assert.assertFalse(config.btnVisibility!!)
+    }
+
 
 }
