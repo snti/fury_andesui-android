@@ -64,6 +64,7 @@
     <string name="tag_description">Tags are compact components that represent complex information in a summarized way. Allowing users to make selections, enter information, or filter content.</string>
     <string name="snackbar_description">They communicate quickly and concisely the status of an event. For more complex or extensive communications, consider the use of tooltip or message.</string>
     <string name="checkbox_description">They allow multiple selections from a list of options, unlike radio buttons that only allow you to choose a single option.</string>
+    <string name="carousel_description">Groups and allows you to manipulate a horizontal sequence of content.</string>
 
     <string name="andesui_demoapp_screen_button">Andes UI: Button</string>
     <string name="andesui_demoapp_screen_bottom_sheet">Andes UI: Bottom Sheet</string>
@@ -73,6 +74,7 @@
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
+    <string name="andesui_demoapp_screen_carousel">Andes UI: Carousel</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
     <string name="andesui_demoapp_screen_coachmark">Andes UI: Coachmark</string>
@@ -103,6 +105,7 @@
     <string name="andesui_demoapp_counter_text">Counter:</string>
     <string name="andesui_demoapp_mask_hint">Mascara: ##-###-######-#</string>
     <string name="andesui_demoapp_textfield_input_type">Input Type:</string>
+    <string name="andes_carousel_showcase">Andes Carousel</string>
     <string name="andes_checkbox_showcase">Andes Checkbox</string>
     <string name="andes_card_showcase">Andes Card</string>
     <string name="andes_radiobutton_showcase">Andes RadioButton</string>
@@ -141,6 +144,9 @@
     <string name="andes_card_hierarchy">Hierarchy</string>
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
+
+    <string name="andes_carousel_margin">Margin</string>
+    <string name="andes_carousel_center">Center</string>
 
     <string name="andes_radiobutton_text">Andes radiobutton</string>
     <string name="andes_radiobutton_type">Type</string>
@@ -393,6 +399,16 @@
 
     <string-array name="thumbnail_type_spinner">
         <item>Icon</item>
+    </string-array>
+
+    <string-array name="carousel_margin_spinner">
+        <item>None</item>
+        <item>Default</item>
+    </string-array>
+
+    <string-array name="carousel_center_spinner">
+        <item>False</item>
+        <item>True</item>
     </string-array>
 
 </resources>
