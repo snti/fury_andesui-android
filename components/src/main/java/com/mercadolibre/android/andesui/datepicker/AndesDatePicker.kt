@@ -111,7 +111,7 @@ class AndesDatePicker : ConstraintLayout {
      * After a view is created then a view id is added to it.
      */
     private fun initComponents() {
-        val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
+        LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
     }
 
@@ -170,7 +170,7 @@ class AndesDatePicker : ConstraintLayout {
 
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
-        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+        calendarView.setOnDateChangeListener { view,year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
             if(andesBtnSelectDate.visibility == View.GONE){
                 listener?.onDateApply(calendar)

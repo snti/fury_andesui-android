@@ -79,7 +79,7 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             datepicker.setupButtonText("Aplicar")
 
-            datepicker.setupBtnVisibility(false)
+            datepicker.setupBtnVisibility(true)
 
 
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {
