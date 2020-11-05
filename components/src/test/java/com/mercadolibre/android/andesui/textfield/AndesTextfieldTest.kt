@@ -61,6 +61,18 @@ class AndesTextfieldTest {
     }
 
     @Test
+    fun `textfield with textComponentFocusChangedListener`() {
+        val focusListener = View.OnFocusChangeListener { _, _ -> }
+        textfield.onFocusChangeListener = focusListener
+        assertNotNull(textfield.textComponentFocusChangedListener)
+    }
+
+    @Test
+    fun `textfield without textComponentFocusChangedListener`() {
+        assertNull(textfield.textComponentFocusChangedListener)
+    }
+
+    @Test
     fun `set prefix`() {
         textfield.setPrefix("prefix")
         assertEquals(textfield.leftContent, AndesTextfieldLeftContent.PREFIX)
