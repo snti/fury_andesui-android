@@ -170,7 +170,7 @@ class AndesDatePicker : ConstraintLayout {
 
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
-        calendarView.setOnDateChangeListener { view,year, month, dayOfMonth ->
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
             if(andesBtnSelectDate.visibility == View.GONE){
                 listener?.onDateApply(calendar)
