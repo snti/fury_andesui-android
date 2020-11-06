@@ -17,6 +17,11 @@ import java.util.*
 
 class AndesDatePicker : ConstraintLayout {
 
+    interface ApplyDatePickerClickListener {
+        fun onDateApply(date: Calendar)
+    }
+    var listener: ApplyDatePickerClickListener? = null
+
     /**
      * Getter and setter for [text].
      */
@@ -183,10 +188,6 @@ class AndesDatePicker : ConstraintLayout {
 
     private fun createConfig() = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
 
-    interface ApplyDatePickerClickListener {
-        fun onDateApply(date: Calendar)
-    }
-    var listener: ApplyDatePickerClickListener? = null
     fun setDateListener (listener: ApplyDatePickerClickListener){
         this.listener = listener
     }
