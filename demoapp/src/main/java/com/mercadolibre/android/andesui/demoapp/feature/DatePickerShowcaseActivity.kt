@@ -16,6 +16,7 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class DatePickerShowcaseActivity : AppCompatActivity() {
@@ -72,10 +73,8 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
             ) as ScrollView
 
             val datepicker: AndesDatePicker = layoutDatePicker.findViewById(R.id.andesDatePicker)
-
-            datepicker.setupMinDate("04/11/2020", "dd/MM/yyyy")
-
-            datepicker.setupMaxDate("2020-11-15", "yyyy-MM-dd")
+            datepicker.setupMinDate("06/11/2020", "dd/MM/yyyy")
+            datepicker.setupMaxDate("10/11/2020", "dd/MM/yyyy")
 
             datepicker.setupButtonText("Aplicar")
 

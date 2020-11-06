@@ -1,10 +1,14 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.content.Context
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.CalendarView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
@@ -13,7 +17,12 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfig
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
+import kotlin.math.log
+import kotlin.math.max
+import kotlin.math.min
 
 class AndesDatePicker : ConstraintLayout {
 
@@ -118,6 +127,14 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
+    private fun validateDateToCurrentDate(date: Date): Int {
+        return getNow().compareTo(date)
+    }
+
+    private fun getNow():Date{
+        return convertStringToDate(SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().time),"dd/MM/yyyy" )
+    }
+
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     private fun convertStringToDate(time: String, format:String) : Date{
         @Suppress("NAME_SHADOWING")
@@ -126,28 +143,65 @@ class AndesDatePicker : ConstraintLayout {
         return date
     }
 
-    fun setupMinDate(minDate : Long){
-        calendarView.minDate = minDate
+    private fun _setMinDate(minDate: Long){
+        val minDateDate :Date = Date(minDate)
+        val dateDiference = validateDateToCurrentDate(minDateDate)
+        var cumple :Boolean = true
+        if (calendarView.maxDate!=null){
+            cumple = minDateDate.time < calendarView.maxDate
+        }
+        if (validateDateToCurrentDate(minDateDate) == 0){
+            calendarView.minDate = minDate
+        }else{
+            println("diferencia" + dateDiference)
+            if (dateDiference < 0 && cumple){
+                calendarView.minDate = minDate
+            }else{
+                Log.i("app","la fecha minima tiene que ser minima a la fecha maxima")
+            }
+        }
     }
 
-    fun setupMinDate(minDate : Date){
-        calendarView.minDate = minDate.time
+    private fun _setMaxDate(maxDate: Long){
+        val maxDateDate :Date = Date(maxDate)
+        val dateDiference = validateDateToCurrentDate(maxDateDate)
+        var cumple :Boolean = true
+        if (calendarView.minDate!=null){
+            cumple = maxDateDate.time > calendarView.minDate
+        }
+        if (validateDateToCurrentDate(maxDateDate) == 0){
+            calendarView.maxDate = maxDate
+        }else{
+            if (dateDiference < 0 && cumple){
+                calendarView.maxDate = maxDate
+            }else{
+                Log.i("app","la fecha maxima tiene que ser mayor a la fecha minima y mayor a la fecha actual")
+            }
+        }
+    }
+
+    fun setupMinDate(minDate: Long) {
+        _setMinDate(minDate)
+    }
+
+    fun setupMinDate(minDate: Date) {
+        _setMinDate(minDate.time)
     }
 
     fun setupMinDate(minDate : String, format:String){
-        calendarView.minDate = convertStringToDate(minDate, format).time
+        _setMinDate(convertStringToDate(minDate, format).time)
     }
 
     fun setupMaxDate(maxDate: Long) {
-        calendarView.maxDate = maxDate
+        _setMaxDate(maxDate)
     }
 
     fun setupMaxDate(maxDate: Date) {
-        calendarView.maxDate = maxDate.time
+        _setMaxDate(maxDate.time)
     }
 
     fun setupMaxDate(maxDate : String, format:String){
-        calendarView.maxDate = convertStringToDate(maxDate, format).time
+        _setMaxDate(convertStringToDate(maxDate, format).time)
     }
 
     fun setupButtonText(text: String?){
