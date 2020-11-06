@@ -25,7 +25,7 @@ class AndesDatePicker : ConstraintLayout {
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerText = value)
 
-            //TODO AndesDatePicker: Update UI
+
         }
     /**
      * Getter and setter for [minDate].
@@ -103,7 +103,7 @@ class AndesDatePicker : ConstraintLayout {
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
         config.text.let{setupButtonText(it)}
         config.btnVisibility.let { setupBtnVisibility(it) }
-        //TODO AndesDatePicker: Update UI
+
     }
 
     /**
