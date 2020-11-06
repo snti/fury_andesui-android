@@ -1,3 +1,8 @@
+# v2.17.0
+## 🚀 Features
+- AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+
+
 # v2.15.0
 ## 🚀 Features
 - AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
