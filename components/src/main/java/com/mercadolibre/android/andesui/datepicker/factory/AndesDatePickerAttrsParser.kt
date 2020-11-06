@@ -18,7 +18,6 @@ internal data class AndesDatePickerAttrs(
 internal object AndesDatePickerAttrParser {
 
     fun parse(context: Context, attr: AttributeSet?): AndesDatePickerAttrs {
-        //TODO AndesDatePicker: Add into build.gradle 'src/main/res/datepicker'
 
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesDatePicker)
 
