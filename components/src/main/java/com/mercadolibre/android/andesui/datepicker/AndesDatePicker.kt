@@ -21,16 +21,13 @@ class AndesDatePicker : ConstraintLayout {
         fun onDateApply(date: Calendar)
     }
     var listener: ApplyDatePickerClickListener? = null
-
     /**
      * Getter and setter for [text].
-     */
+     **/
     var text: String?
         get() = andesDatePickerAttrs.andesDatePickerText
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerText = value)
-
-
         }
     /**
      * Getter and setter for [minDate].
@@ -50,21 +47,15 @@ class AndesDatePicker : ConstraintLayout {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerMaxDate = value)
             setupComponents(createConfig())
         }
-
     /**
      * Getter and setter for [btnVisibility].
      */
-
     var btnVisibility: Boolean? = null
         get() = andesDatePickerAttrs.andesBtnVisibility
-
-
     private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
-
     constructor(
             context: Context,
             text: String? = TEXT_DEFAULT,
@@ -74,7 +65,6 @@ class AndesDatePicker : ConstraintLayout {
     ) : super(context) {
         initAttrs(text, minDate, maxDate, btnVisibility)
     }
-
     /**
      * Sets the proper [config] for this component based on the [attrs] received via XML.
      *
@@ -108,7 +98,6 @@ class AndesDatePicker : ConstraintLayout {
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
         config.text.let{setupButtonText(it)}
         config.btnVisibility.let { setupBtnVisibility(it) }
-
     }
 
     /**
@@ -187,12 +176,10 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun createConfig() = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
-
     fun setDateListener (listener: ApplyDatePickerClickListener){
         this.listener = listener
     }
     companion object {
         private val TEXT_DEFAULT = null
     }
-
 }
