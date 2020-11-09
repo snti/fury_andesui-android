@@ -153,7 +153,6 @@ class AndesDatePicker : ConstraintLayout {
         if (validateDateToCurrentDate(minDateDate) == 0){
             calendarView.minDate = minDate
         }else{
-            println("diferencia" + dateDiference)
             if (dateDiference < 0 && cumple){
                 calendarView.minDate = minDate
             }else{

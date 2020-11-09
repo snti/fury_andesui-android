@@ -223,6 +223,17 @@
 
     <string name="andesui_demoapp_datepicker_text">Aplicar</string>
     <string name="andesui_demoapp_datepicker_button">Andes DatePicker</string>
+    <string name="andesui_demoapp_datepicker_mindate_label">Setup min date</string>
+    <string name="andesui_demoapp_datepicker_maxdate_label">Setup max date</string>
+    <string name="andesui_demoapp_datepicker_placeholder">dd/MM/yyyy</string>
+    <string name="andesui_demoapp_datepicker_btn_send">Set MIN MAX Date</string>
+    <string name="andesui_demoapp_datepicker_btn_reset">Reset</string>
+
+
+
+
+
+
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
