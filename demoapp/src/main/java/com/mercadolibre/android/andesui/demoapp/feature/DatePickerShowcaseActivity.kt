@@ -8,15 +8,15 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ScrollView
 import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.AndesDatePicker
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
-import com.mercadolibre.android.andesui.textfield.AndesTextfield
-import java.lang.Exception
 import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -76,29 +76,24 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             val datepicker: AndesDatePicker = layoutDatePicker.findViewById(R.id.andesDatePicker)
             val btnSend:AndesButton = layoutDatePicker.findViewById(R.id.btnSendMinMaxDate)
-            val btnReset:AndesButton = layoutDatePicker.findViewById(R.id.btnReset)
-            val inputMinDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMinDate)
-            val inputMaxDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMaxDate)
+            val inputMinDate: EditText = layoutDatePicker.findViewById(R.id.andesTextfieldMinDate)
+            val inputMaxDate: EditText = layoutDatePicker.findViewById(R.id.andesTextfieldMaxDate)
             datepicker.setupBtnVisibility(false)
             datepicker.setupButtonText("Aplicar")
 
-
-
             btnSend.setOnClickListener(){
-                var setterMin: String? = inputMinDate.text?.trim()
-                var setterMax: String? = inputMaxDate.text?.trim()
-                if (setterMax != null) {
+                var setterMax: String? = inputMaxDate.text?.toString()
+                var setterMin: String? = inputMinDate.text?.toString()
+                if (setterMax != null && isValid(setterMax,"dd/MM/yyyy") && !setterMax.isEmpty()) {
                     datepicker.setupMaxDate(setterMax, "dd/MM/yyyy" )
+                }else   {
+                    Toast.makeText(context, "la fecha maxima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
-                if (setterMin != null) {
-                    datepicker.setupMinDate(setterMin,"dd/MM/yyyy" )
+                if (setterMin != null && isValid(setterMin, "dd/MM/yyyy") && !setterMin.isEmpty()) {
+                    datepicker.setupMinDate(setterMin.toString(),"dd/MM/yyyy" )
+                }else{
+                    Toast.makeText(context, "la fecha minima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
-            }
-
-            btnReset.setOnClickListener(){
-                datepicker.setupMinDate("", "dd/MM/yyyy")
-                datepicker.setupMaxDate("", "dd/MM/yyyy")
-
             }
 
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {
@@ -110,6 +105,16 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             return layoutDatePicker
 
+        }
+        fun isValid(time:String, format:String): Boolean {
+            val df = SimpleDateFormat(format)
+            df.isLenient = false
+            try {
+                df.parse(time)
+                return true
+            } catch (e: ParseException){
+                return false
+            }
         }
 
     }
