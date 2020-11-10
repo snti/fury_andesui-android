@@ -15,6 +15,7 @@ import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.AndesDatePicker
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
+import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -76,14 +77,14 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
 
             val datepicker: AndesDatePicker = layoutDatePicker.findViewById(R.id.andesDatePicker)
             val btnSend:AndesButton = layoutDatePicker.findViewById(R.id.btnSendMinMaxDate)
-            val inputMinDate: EditText = layoutDatePicker.findViewById(R.id.andesTextfieldMinDate)
-            val inputMaxDate: EditText = layoutDatePicker.findViewById(R.id.andesTextfieldMaxDate)
-            datepicker.setupBtnVisibility(false)
+            val inputMinDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMinDate)
+            val inputMaxDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMaxDate)
+            datepicker.setupBtnVisibility(true)
             datepicker.setupButtonText("Aplicar")
 
             btnSend.setOnClickListener(){
-                var setterMax: String? = inputMaxDate.text?.toString()
-                var setterMin: String? = inputMinDate.text?.toString()
+                var setterMax: String? = inputMaxDate.text?.trim()
+                var setterMin: String? = inputMinDate.text?.trim()
                 if (setterMax != null && isValid(setterMax,"dd/MM/yyyy") && !setterMax.isEmpty()) {
                     datepicker.setupMaxDate(setterMax, "dd/MM/yyyy" )
                 }else   {

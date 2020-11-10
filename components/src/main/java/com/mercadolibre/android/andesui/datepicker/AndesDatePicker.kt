@@ -156,7 +156,7 @@ class AndesDatePicker : ConstraintLayout {
             if (dateDiference < 0 && cumple){
                 calendarView.minDate = minDate
             }else{
-                Log.i("app","la fecha minima tiene que ser minima a la fecha maxima")
+                Log.i("app","la fecha minima tiene que ser mayor o igual a la fecha actual")
             }
         }
     }
@@ -166,7 +166,6 @@ class AndesDatePicker : ConstraintLayout {
         val dateDiference = validateDateToCurrentDate(maxDateDate)
         var cumple :Boolean = true
         if (calendarView.minDate!=null){
-            println(Date(calendarView.minDate))
             cumple = maxDateDate.time > calendarView.minDate
         }
         if (validateDateToCurrentDate(maxDateDate) == 0){
