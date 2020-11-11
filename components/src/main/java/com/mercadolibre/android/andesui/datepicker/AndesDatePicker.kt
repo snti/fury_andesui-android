@@ -175,8 +175,8 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     fun clearMinMaxDate(){
-        calendarView.minDate = -2208973392000
-        calendarView.maxDate = 4133905200000
+        calendarView.minDate = DEFAULT_MIN_DATE
+        calendarView.maxDate = DEFAULT_MAX_DATE
     }
 
     fun setupMinDate(minDate: Long) {
@@ -236,5 +236,7 @@ class AndesDatePicker : ConstraintLayout {
     }
     companion object {
         private val TEXT_DEFAULT = null
+        private const val DEFAULT_MIN_DATE = -2208973392000
+        private const val DEFAULT_MAX_DATE = 4133905200000
     }
 }
