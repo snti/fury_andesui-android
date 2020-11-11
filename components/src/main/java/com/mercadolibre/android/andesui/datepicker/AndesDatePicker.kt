@@ -1,14 +1,11 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.content.Context
-import android.os.Build
-import android.support.annotation.RequiresApi
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.CalendarView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
@@ -17,12 +14,7 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfig
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
-import kotlin.math.log
-import kotlin.math.max
-import kotlin.math.min
 
 class AndesDatePicker : ConstraintLayout {
 
@@ -173,10 +165,18 @@ class AndesDatePicker : ConstraintLayout {
         }else{
             if (dateDiference < 0 && cumple){
                 calendarView.maxDate = maxDate
+                if (calendarView.minDate < 0) {
+                    calendarView.minDate = 0
+                }
             }else{
                 Log.i("app","la fecha maxima tiene que ser mayor a la fecha minima y mayor a la fecha actual")
             }
         }
+    }
+
+    fun clearMinMaxDate(){
+        calendarView.minDate = -2208973392000
+        calendarView.maxDate = 4133905200000
     }
 
     fun setupMinDate(minDate: Long) {
@@ -223,8 +223,10 @@ class AndesDatePicker : ConstraintLayout {
                 listener?.onDateApply(calendar)
             }
         }
+
        andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
+
         }
     }
 
