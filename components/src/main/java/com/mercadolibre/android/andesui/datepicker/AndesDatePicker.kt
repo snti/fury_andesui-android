@@ -135,7 +135,7 @@ class AndesDatePicker : ConstraintLayout {
         return date
     }
 
-    private fun _setMinDate(minDate: Long){
+    private fun setMinDate(minDate: Long){
         val minDateDate :Date = Date(minDate)
         val dateDiference = validateDateToCurrentDate(minDateDate)
         var cumple :Boolean = true
@@ -153,7 +153,7 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
-    private fun _setMaxDate(maxDate: Long){
+    private fun setMaxDate(maxDate: Long){
         val maxDateDate :Date = Date(maxDate)
         val dateDiference = validateDateToCurrentDate(maxDateDate)
         var cumple :Boolean = true
@@ -180,27 +180,27 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     fun setupMinDate(minDate: Long) {
-        _setMinDate(minDate)
+        setMinDate(minDate)
     }
 
     fun setupMinDate(minDate: Date) {
-        _setMinDate(minDate.time)
+        setMinDate(minDate.time)
     }
 
     fun setupMinDate(minDate : String, format:String){
-        _setMinDate(convertStringToDate(minDate, format).time)
+        setMinDate(convertStringToDate(minDate, format).time)
     }
 
     fun setupMaxDate(maxDate: Long) {
-        _setMaxDate(maxDate)
+        setMaxDate(maxDate)
     }
 
     fun setupMaxDate(maxDate: Date) {
-        _setMaxDate(maxDate.time)
+        setMaxDate(maxDate.time)
     }
 
     fun setupMaxDate(maxDate : String, format:String){
-        _setMaxDate(convertStringToDate(maxDate, format).time)
+        setMaxDate(convertStringToDate(maxDate, format).time)
     }
 
     fun setupButtonText(text: String?){
