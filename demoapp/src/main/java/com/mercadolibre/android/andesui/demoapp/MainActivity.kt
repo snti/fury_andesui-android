@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         andesui_thumbnail.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/thumbnail"))
         }
+        andesui_list.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/list"))
+        }
         andesui_progress.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/progress"))
         }

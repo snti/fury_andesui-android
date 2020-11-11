@@ -70,6 +70,7 @@
     <string name="andesui_demoapp_screen_textfield">Andes UI: Textfield</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
+    <string name="andesui_demoapp_screen_list">Andes UI: List</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
     <string name="andesui_demoapp_screen_snackbar">Andes UI: Snackbar</string>
@@ -179,6 +180,8 @@
     <string name="andesui_demoapp_snackbar_action">Action</string>
     <string name="andesui_demoapp_snackbar_duration">Duration</string>
     <string name="andesui_demoapp_snackbar_text_action">Text action</string>
+
+    <string name="andesui_demoapp_list">Andes List</string>
 
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
     <string name="andesui_demoapp_thumbnail_state">State</string>
