@@ -134,23 +134,23 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
-    private fun validateDateToCurrentDate(date: Date): Int {
+    private fun validateDateToCurrentDate(date: Date) : Int {
         return getNow().compareTo(date)
     }
 
-    private fun getNow():Date{
+    private fun getNow() : Date{
         return convertStringToDate(SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().time),DATE_FORMAT )
     }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    private fun convertStringToDate(time: String, format:String) : Date{
+    private fun convertStringToDate(time : String, format : String) : Date{
         @Suppress("NAME_SHADOWING")
         val format = SimpleDateFormat(format)
         val date = format.parse(time)
         return date
     }
 
-    private fun setMinDate(minDate: Long){
+    private fun setMinDate(minDate : Long){
         val minDateDate :Date = Date(minDate)
         val dateDiference = validateDateToCurrentDate(minDateDate)
         var cumple :Boolean = true
@@ -168,7 +168,7 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
-    private fun setMaxDate(maxDate: Long){
+    private fun setMaxDate(maxDate : Long){
         val maxDateDate :Date = Date(maxDate)
         val dateDiference = validateDateToCurrentDate(maxDateDate)
         var cumple :Boolean = true
@@ -194,7 +194,7 @@ class AndesDatePicker : ConstraintLayout {
         calendarView.maxDate = DEFAULT_MAX_DATE
     }
 
-    fun setupMinDate(minDate: Long) {
+    fun setupMinDate(minDate : Long) {
         setMinDate(minDate)
     }
 
@@ -202,27 +202,27 @@ class AndesDatePicker : ConstraintLayout {
         setMinDate(minDate.time)
     }
 
-    fun setupMinDate(minDate : String, format:String){
+    fun setupMinDate(minDate : String, format : String){
         setMinDate(convertStringToDate(minDate, format).time)
     }
 
-    fun setupMaxDate(maxDate: Long) {
+    fun setupMaxDate(maxDate : Long) {
         setMaxDate(maxDate)
     }
 
-    fun setupMaxDate(maxDate: Date) {
+    fun setupMaxDate(maxDate : Date) {
         setMaxDate(maxDate.time)
     }
 
-    fun setupMaxDate(maxDate : String, format:String){
+    fun setupMaxDate(maxDate : String, format : String){
         setMaxDate(convertStringToDate(maxDate, format).time)
     }
 
-    fun setupButtonText(text: String?){
+    fun setupButtonText(text : String?){
         andesBtnSelectDate.text = text
     }
 
-    fun setupBtnVisibility(btnVisibility: Boolean?) {
+    fun setupBtnVisibility(btnVisibility : Boolean?) {
         if (btnVisibility == true){
             andesBtnSelectDate.visibility = View.VISIBLE
         }else{
@@ -230,7 +230,7 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
-    private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
+    private fun onCheckedChangeListener(andesBtnSelectDate : AndesButton) {
         val calendar = Calendar.getInstance()
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
@@ -246,7 +246,7 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun createConfig() = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
-    fun setDateListener (listener: ApplyDatePickerClickListener){
+    fun setDateListener (listener : ApplyDatePickerClickListener){
         this.listener = listener
     }
 
