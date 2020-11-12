@@ -198,6 +198,8 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMinDate(minDate : String, format : String){
         if (isValid(minDate,format)){
             setMinDate(convertStringToDate(minDate, format).time)
+        }else {
+            Log.i("app","la fecha ingresada no es valida")
         }
     }
 
@@ -212,6 +214,8 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMaxDate(maxDate : String, format : String){
         if (isValid(maxDate,format)){
             setMaxDate(convertStringToDate(maxDate, format).time)
+        }else {
+            Log.i("app","la fecha ingresada no es valida")
         }
     }
 
