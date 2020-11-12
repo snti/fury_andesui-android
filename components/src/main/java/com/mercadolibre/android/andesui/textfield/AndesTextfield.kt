@@ -149,6 +149,14 @@ class AndesTextfield : ConstraintLayout {
             andesTextfieldAttrs = andesTextfieldAttrs.copy(inputType = value)
             setupInputType()
         }
+    /**
+     * Getter and setter for the textComponent onFocusChangeListener.
+     */
+    var textComponentFocusChangedListener: OnFocusChangeListener?
+        get() = textComponent.onFocusChangeListener
+        set(value) {
+            textComponent.onFocusChangeListener = value
+        }
 
     /**
      * Getter and setter for the [textWatcher].
@@ -668,6 +676,16 @@ class AndesTextfield : ConstraintLayout {
 
     fun requestFocusOnTextField() {
         textComponent.requestFocus()
+    }
+
+    /**.___
+     * Register a callback to be invoked when focus of this view changed.
+     *
+     * @param listener The callback that will run.
+    __.*/
+    override fun setOnFocusChangeListener(listener: OnFocusChangeListener?) {
+        super.setOnFocusChangeListener(listener)
+        textComponentFocusChangedListener = listener
     }
 
     /**
