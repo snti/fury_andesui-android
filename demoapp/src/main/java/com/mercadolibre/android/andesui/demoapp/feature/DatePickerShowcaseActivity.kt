@@ -86,12 +86,12 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
                 datepicker.clearMinMaxDate()
                 var setterMax: String? = inputMaxDate.text?.trim()
                 var setterMin: String? = inputMinDate.text?.trim()
-                if (setterMax != null && datepicker.isValid(setterMax,"dd/MM/yyyy") && !setterMax.isEmpty()) {
+                if (setterMax != null && !setterMax.isEmpty()) {
                     datepicker.setupMaxDate(setterMax, "dd/MM/yyyy" )
                 }else {
                     Toast.makeText(context, "la fecha maxima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
-                if (setterMin != null && datepicker.isValid(setterMin, "dd/MM/yyyy") && !setterMin.isEmpty()) {
+                if (setterMin != null && !setterMin.isEmpty()) {
                     datepicker.setupMinDate(setterMin.toString(),"dd/MM/yyyy" )
                 }else {
                     Toast.makeText(context, "la fecha minima no es una fecha valida", Toast.LENGTH_SHORT).show()

@@ -144,6 +144,7 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun setMinDate(minDate : Long){
+        clearMinDate()
         val minDateDate :Date = Date(minDate)
         val dateDiference = validateDateToCurrentDate(minDateDate)
         var cumple :Boolean = true
@@ -162,6 +163,7 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun setMaxDate(maxDate : Long){
+        clearMaxDate()
         val maxDateDate :Date = Date(maxDate)
         val dateDiference = validateDateToCurrentDate(maxDateDate)
         var cumple :Boolean = true
@@ -182,9 +184,17 @@ class AndesDatePicker : ConstraintLayout {
         }
     }
 
-    fun clearMinMaxDate(){
+    fun clearMinDate(){
         calendarView.minDate = DEFAULT_MIN_DATE
+    }
+
+    fun clearMaxDate() {
         calendarView.maxDate = DEFAULT_MAX_DATE
+    }
+
+    fun clearMinMaxDate(){
+        clearMinDate()
+        clearMaxDate()
     }
 
     fun setupMinDate(minDate : Long) {
