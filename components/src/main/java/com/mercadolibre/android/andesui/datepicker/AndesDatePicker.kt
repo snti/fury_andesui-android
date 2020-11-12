@@ -13,6 +13,7 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfiguration
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -195,7 +196,9 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     fun setupMinDate(minDate : String, format : String){
-        setMinDate(convertStringToDate(minDate, format).time)
+        if (isValid(minDate,format)){
+            setMinDate(convertStringToDate(minDate, format).time)
+        }
     }
 
     fun setupMaxDate(maxDate : Long) {
@@ -207,7 +210,9 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     fun setupMaxDate(maxDate : String, format : String){
-        setMaxDate(convertStringToDate(maxDate, format).time)
+        if (isValid(maxDate,format)){
+            setMaxDate(convertStringToDate(maxDate, format).time)
+        }
     }
 
     fun setupButtonText(text : String?){
@@ -234,6 +239,17 @@ class AndesDatePicker : ConstraintLayout {
        andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
 
+        }
+    }
+
+    fun isValid(time:String, format:String): Boolean {
+        val df = SimpleDateFormat(format)
+        df.isLenient = false
+        try {
+            df.parse(time)
+            return true
+        } catch (e: ParseException){
+            return false
         }
     }
 
