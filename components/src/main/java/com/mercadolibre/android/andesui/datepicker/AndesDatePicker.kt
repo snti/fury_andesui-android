@@ -27,7 +27,6 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Getter and setter for [text].
      **/
-
     var text: String?
         get() = andesDatePickerAttrs.andesDatePickerText
         set(value) {
@@ -37,7 +36,6 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Getter and setter for [minDate].
      */
-
     var minDate: String?
         get() = andesDatePickerAttrs.andesDatePickerMinDate
         set(value) {
@@ -48,7 +46,6 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Getter and setter for [maxDate].
      */
-
     var maxDate: String?
         get() = andesDatePickerAttrs.andesDatePickerMaxDate
         set(value) {
@@ -59,7 +56,6 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Getter and setter for [btnVisibility].
      */
-
     var btnVisibility: Boolean? = null
         get() = andesDatePickerAttrs.andesBtnVisibility
     private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
@@ -82,7 +78,6 @@ class AndesDatePicker : ConstraintLayout {
      *
      * @param attrs attributes from the XML.
      */
-
     private fun initAttrs(attrs: AttributeSet?) {
         andesDatePickerAttrs = AndesDatePickerAttrParser.parse(context, attrs)
         val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
@@ -104,7 +99,6 @@ class AndesDatePicker : ConstraintLayout {
      * Responsible for setting up all properties of each component that is part of this andesDatePicker.
      * Is like a choreographer 😉
      */
-
     private fun setupComponents(config: AndesDatePickerConfiguration) {
         initComponents()
         setupViewId()
@@ -118,7 +112,6 @@ class AndesDatePicker : ConstraintLayout {
      * Creates all the views that are part of this andesDatePicker.
      * After a view is created then a view id is added to it.
      */
-
     private fun initComponents() {
         LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
@@ -127,7 +120,6 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Sets a view id to this andesDatePicker.
      */
-
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
