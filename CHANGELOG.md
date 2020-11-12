@@ -2,6 +2,12 @@
 ## 🚀 Features
 - AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
 
+## 🚀 Fixes
+- Added Focus listener correctly on EditText of AndesTextField.
+
+# v2.16.0
+## 🚀 Features
+- Added AndesCarousel | Author: [@Constanza Morillo](https://github.com/constanzamorillomeli)
 
 # v2.15.0
 ## 🚀 Features
