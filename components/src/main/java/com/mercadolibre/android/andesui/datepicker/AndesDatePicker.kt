@@ -19,44 +19,54 @@ import java.util.*
 class AndesDatePicker : ConstraintLayout {
 
     interface ApplyDatePickerClickListener {
+
         fun onDateApply(date: Calendar)
     }
     var listener: ApplyDatePickerClickListener? = null
+
     /**
      * Getter and setter for [text].
      **/
+
     var text: String?
         get() = andesDatePickerAttrs.andesDatePickerText
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerText = value)
         }
+
     /**
      * Getter and setter for [minDate].
      */
+
     var minDate: String?
         get() = andesDatePickerAttrs.andesDatePickerMinDate
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerMinDate = value)
             setupComponents(createConfig())
         }
+
     /**
      * Getter and setter for [maxDate].
      */
+
     var maxDate: String?
         get() = andesDatePickerAttrs.andesDatePickerMaxDate
         set(value) {
             andesDatePickerAttrs = andesDatePickerAttrs.copy(andesDatePickerMaxDate = value)
             setupComponents(createConfig())
         }
+
     /**
      * Getter and setter for [btnVisibility].
      */
+
     var btnVisibility: Boolean? = null
         get() = andesDatePickerAttrs.andesBtnVisibility
     private lateinit var andesDatePickerAttrs: AndesDatePickerAttrs
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }
+
     constructor(
             context: Context,
             text: String? = TEXT_DEFAULT,
@@ -66,11 +76,13 @@ class AndesDatePicker : ConstraintLayout {
     ) : super(context) {
         initAttrs(text, minDate, maxDate, btnVisibility)
     }
+
     /**
      * Sets the proper [config] for this component based on the [attrs] received via XML.
      *
      * @param attrs attributes from the XML.
      */
+
     private fun initAttrs(attrs: AttributeSet?) {
         andesDatePickerAttrs = AndesDatePickerAttrParser.parse(context, attrs)
         val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
@@ -92,6 +104,7 @@ class AndesDatePicker : ConstraintLayout {
      * Responsible for setting up all properties of each component that is part of this andesDatePicker.
      * Is like a choreographer 😉
      */
+
     private fun setupComponents(config: AndesDatePickerConfiguration) {
         initComponents()
         setupViewId()
@@ -105,6 +118,7 @@ class AndesDatePicker : ConstraintLayout {
      * Creates all the views that are part of this andesDatePicker.
      * After a view is created then a view id is added to it.
      */
+
     private fun initComponents() {
         LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
@@ -113,6 +127,7 @@ class AndesDatePicker : ConstraintLayout {
     /**
      * Sets a view id to this andesDatePicker.
      */
+
     private fun setupViewId() {
         if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
@@ -124,7 +139,7 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     private fun getNow():Date{
-        return convertStringToDate(SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().time),"dd/MM/yyyy" )
+        return convertStringToDate(SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().time),DATE_FORMAT )
     }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -234,9 +249,11 @@ class AndesDatePicker : ConstraintLayout {
     fun setDateListener (listener: ApplyDatePickerClickListener){
         this.listener = listener
     }
+
     companion object {
         private val TEXT_DEFAULT = null
         private const val DEFAULT_MIN_DATE = -2208973392000
         private const val DEFAULT_MAX_DATE = 4133905200000
+        private const val DATE_FORMAT = "dd/MM/yyyy"
     }
 }
