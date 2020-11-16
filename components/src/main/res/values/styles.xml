@@ -50,13 +50,23 @@
     <style name="Andes.LinkInverted">
 
     </style>
-    <style name="Andes.Calendar">
+    <!-- Calendar -->
+
+    <style name="Andes.customCalendar" parent="android:Widget.CalendarView">
         <item name="colorControlActivated">@color/andes_text_color_link</item>
-        <item name="colorControlHighlight">@color/andes_blue_ml_400</item>
-        <!-- calendar week color -->
+        <item name="colorControlHighlight">@color/andes_blue_ml_100</item>
         <item name="android:textColorPrimary">@color/andes_gray_800</item>
-        <!-- calendar day color -->
-        <item name="android:textColorSecondary">@color/andes_gray_450</item>
+        <item name="android:textColorPrimaryInverse">@color/andes_white</item>
+        <item name="android:textColorSecondary">@color/andes_gray_800</item>
     </style>
+    <style name="Andes.CalendarDate" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="fontWeight">@dimen/andes_body_font_weight</item>
+    </style>
+    <style name="Andes.CalendarDateWeek" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="fontWeight">@dimen/andes_title_font_weight</item>
+    </style>
+
 
 </resources>

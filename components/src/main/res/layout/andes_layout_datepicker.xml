@@ -9,7 +9,8 @@
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/Andes.Calendar"
+        android:theme="@style/Andes.customCalendar"
+        android:dateTextAppearance="@style/Andes.CalendarDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
