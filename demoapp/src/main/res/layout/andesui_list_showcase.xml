@@ -8,7 +8,8 @@
         android:id="@+id/andesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:andesListViewItemSize="medium"
+        app:andesListItemSize="medium"
+        app:andesListType="simple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

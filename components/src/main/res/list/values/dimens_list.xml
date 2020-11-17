@@ -29,6 +29,6 @@
     <dimen name="andes_list_item_padding_bottom_medium">19dp</dimen>
     <dimen name="andes_list_item_padding_bottom_large">29dp</dimen>
 
-    <dimen name="andes_list_item_sub_title_margin_top_medium">12dp</dimen>
-    <dimen name="andes_list_item_sub_title_margin_top_large">16dp</dimen>
+    <dimen name="andes_list_item_space_between_title_subtitle_medium">12dp</dimen>
+    <dimen name="andes_list_item_space_between_title_subtitle_large">16dp</dimen>
 </resources>

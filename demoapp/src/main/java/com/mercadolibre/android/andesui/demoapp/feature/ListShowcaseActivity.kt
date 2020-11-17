@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
+import com.mercadolibre.android.andesui.list.AndesListViewItem
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
-import com.mercadolibre.android.andesui.list.AndesListRow
+import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
+import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import kotlinx.android.synthetic.main.andesui_list_showcase.view.*
 
 class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
@@ -32,6 +34,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
         val adapter = viewPager.adapter as AndesShowcasePagerAdapter
         adapter.views[0].andesList.delegate = this
+        adapter.views[0].andesList.size = AndesListViewItemSize.LARGE
     }
 
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
@@ -70,16 +73,19 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     }
 
-    override fun onClickItem(position: Int) {
+    override fun onItemClick(position: Int) {
         Toast.makeText(this, getDataSet()[position].title, Toast.LENGTH_SHORT).show()
     }
 
-    override fun bind(view: View, position: Int): AndesListRow {
-        val row = AndesListRow.Builder(getDataSet()[position].title)
-//                .description(getDataSet()[position].description)
-//                .isSelectable(getDataSet()[position].selectable)
-//                .actionableComponent(ActionableComponent.AddButton(AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.TRANSPARENT)))
-                .build()
+    override fun bind(view: View, position: Int): AndesListViewItem {
+        val row = AndesListViewItemSimple(this,getDataSet()[position].title, getDataSet()[position].subtitle, AndesListViewItemSize.MEDIUM)
+//        val row = AndesListViewItemChevron(this,getDataSet()[position].title, getDataSet()[position].subTitle, AndesListViewItemSize.MEDIUM)
+
+//        val row = AndesListRow.Builder(getDataSet()[position].title)
+////                .description(getDataSet()[position].description)
+////                .isSelectable(getDataSet()[position].selectable)
+////                .actionableComponent(ActionableComponent.AddButton(AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.TRANSPARENT)))
+//                .build()
 
         return row
     }
@@ -92,5 +98,5 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
             Model("title 2", "Desc 2", true),
             Model("title 3", "Desc 3", false))
 
-    class Model(val title: String, val description: String, val selectable: Boolean)
+    class Model(val title: String, val subtitle: String, val selectable: Boolean)
 }

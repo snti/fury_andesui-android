@@ -1,11 +1,7 @@
-package com.mercadolibre.android.andesui.list.row.size
+package com.mercadolibre.android.andesui.list.size
 
 /**
- * Utility class that does two things: Defines the possible styles an [AndesListViewItem] can take
- * because it's an enum, as you can see.
- * But as a bonus it gives you the proper implementation so you don't have to make any mapping.
- *
- * @property size Possible styles that an [AndesListViewItem] may take.
+*
  */
 enum class AndesListViewItemSize {
     SMALL,

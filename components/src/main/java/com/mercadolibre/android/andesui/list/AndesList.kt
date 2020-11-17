@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.list
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -12,15 +13,16 @@ import com.mercadolibre.android.andesui.list.factory.AndesListAttrParser
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrs
 import com.mercadolibre.android.andesui.list.factory.AndesListConfiguration
 import com.mercadolibre.android.andesui.list.factory.AndesListConfigurationFactory
-import com.mercadolibre.android.andesui.list.row.size.AndesListViewItemSize
+import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
+import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 
 class AndesList : ConstraintLayout {
 
     private lateinit var andesListDelegate: AndesListDelegate
-    private lateinit var andesListViewItemSize: AndesListViewItemSize
     private lateinit var recyclerViewComponent: RecyclerView
+    private lateinit var listAdapter: AndesListAdapter
 
     /**
      * Getter and setter for [delegate].
@@ -29,17 +31,30 @@ class AndesList : ConstraintLayout {
         get() = andesListDelegate
         set(value) {
             andesListDelegate = value
+            val config = createConfig()
+            listAdapter = AndesListAdapter(andesListDelegate, config.type)
+            recyclerViewComponent.adapter = listAdapter
         }
 
     /**
      * Getter and setter for [size].
      */
     var size: AndesListViewItemSize
-        get() = andesListAttrs.andesListViewItemSize
+        get() = andesListAttrs.andesListItemSize
         set(value) {
-            andesListAttrs = andesListAttrs.copy(andesListViewItemSize = value)
+            andesListAttrs = andesListAttrs.copy(andesListItemSize = value)
             val config = createConfig()
-            andesListViewItemSize = config.size
+//            setupListViewItemHeight(config)
+        }
+
+    /**
+     * Getter and setter for [padding].
+     */
+    var type: AndesListType
+        get() = andesListAttrs.andesListType
+        set(value) {
+            andesListAttrs = andesListAttrs.copy(andesListType = value)
+            val config = createConfig()
         }
 
     private lateinit var andesListAttrs: AndesListAttrs
@@ -50,9 +65,10 @@ class AndesList : ConstraintLayout {
 
     constructor(
             context: Context,
-            size: AndesListViewItemSize = SIZE_DEFAULT
+            size: AndesListViewItemSize = SIZE_DEFAULT,
+            type: AndesListType = TYPE_DEFAULT
     ) : super(context) {
-        initAttrs(size)
+        initAttrs(size, type)
     }
 
     /**
@@ -66,8 +82,8 @@ class AndesList : ConstraintLayout {
         setupComponents(config)
     }
 
-    private fun initAttrs(size: AndesListViewItemSize) {
-        andesListAttrs = AndesListAttrs(size)
+    private fun initAttrs(size: AndesListViewItemSize, type: AndesListType) {
+        andesListAttrs = AndesListAttrs(size, type)
         val config = AndesListConfigurationFactory.create(andesListAttrs)
         setupComponents(config)
     }
@@ -86,9 +102,9 @@ class AndesList : ConstraintLayout {
      * Set recyclerview
      */
     private fun setupRecyclerViewComponent() {
+        val itemDecor = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        recyclerViewComponent.addItemDecoration(itemDecor)
         recyclerViewComponent.layoutManager = LinearLayoutManager(context)
-        val listAdapter = AndesListAdapter(andesListDelegate, andesListViewItemSize.size.lisViewItemSize(context).toInt())
-        recyclerViewComponent.adapter = listAdapter
     }
 
     /**
@@ -113,6 +129,7 @@ class AndesList : ConstraintLayout {
 
     companion object {
         private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
+        private val TYPE_DEFAULT = AndesListType.SIMPLE
     }
 
 }

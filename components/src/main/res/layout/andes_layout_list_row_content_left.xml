@@ -2,9 +2,9 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/andes_list_row_container"
+    android:id="@+id/andes_list_item_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/andes_list_view_item_size_medium">
+    android:layout_height="@dimen/andes_list_item_size_medium">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
