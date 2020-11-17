@@ -47,5 +47,4 @@ class AndesDatePickerTest{
         Assert.assertFalse(config.btnVisibility!!)
     }
 
-
 }
