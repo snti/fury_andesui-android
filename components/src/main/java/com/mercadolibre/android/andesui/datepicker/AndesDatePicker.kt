@@ -18,6 +18,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Suppress("TooManyFunctions")
 class AndesDatePicker : ConstraintLayout {
 
     interface ApplyDatePickerClickListener {
