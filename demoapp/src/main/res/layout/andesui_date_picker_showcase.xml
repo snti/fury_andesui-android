@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             app:andesTextfieldCounter="10"
-            android:layout_marginTop="@dimen/andes_textfield_helper_marginTop"
+            android:layout_marginTop="@dimen/andes_textfield_margin"
             app:andesTextfieldLabel="@string/andesui_demoapp_datepicker_mindate_label"
             app:andesTextfieldPlaceholder="@string/andesui_demoapp_datepicker_placeholder"
             app:layout_constraintEnd_toEndOf="@+id/andesDatePicker"

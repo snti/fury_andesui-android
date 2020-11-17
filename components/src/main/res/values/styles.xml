@@ -61,7 +61,7 @@
         <item name="android:textColor">@drawable/andes_selector</item>
     </style>
     <style name="Andes.CalendarDateWeek">
-        <item name="android:textSize">@dimen/andes_body_font_size_s</item>
+        <item name="android:textSize">@dimen/andes_body_font_size_xxs</item>
         <item name="fontWeight">@dimen/andes_title_font_weight</item>
     </style>
 
