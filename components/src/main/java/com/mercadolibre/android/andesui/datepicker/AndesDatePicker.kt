@@ -146,6 +146,10 @@ class AndesDatePicker : ConstraintLayout {
         return date
     }
 
+    fun setDateAppearance(appearance: Int){
+        calendarView.dateTextAppearance = appearance
+    }
+
     private fun setMinDate(minDate : Long){
         clearMinDate()
         val minDateDate :Date = Date(minDate)
