@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
@@ -159,7 +160,7 @@ class AndesDatePicker : ConstraintLayout {
             if (dateDiference < 0 && cumple){
                 calendarView.minDate = minDate
             }else{
-                Log.i("app","la fecha minima tiene que ser mayor o igual a la fecha actual")
+                Toast.makeText(context, "la fecha minima tiene que ser mayor o igual a la fecha actual", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -181,7 +182,7 @@ class AndesDatePicker : ConstraintLayout {
                     calendarView.minDate = 0
                 }
             }else{
-                Log.i("app","la fecha maxima tiene que ser mayor a la fecha minima y mayor a la fecha actual")
+                Toast.makeText(context, "la fecha maxima tiene que ser mayor a la fecha minima y mayor a la fecha actual", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -211,7 +212,7 @@ class AndesDatePicker : ConstraintLayout {
         if (isValid(minDate,format)){
             setMinDate(convertStringToDate(minDate, format).time)
         }else {
-            Log.i("app","la fecha ingresada no es valida")
+            Toast.makeText(context, "la fecha ingresada no es valida", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -227,7 +228,7 @@ class AndesDatePicker : ConstraintLayout {
         if (isValid(maxDate,format)){
             setMaxDate(convertStringToDate(maxDate, format).time)
         }else {
-            Log.i("app","la fecha ingresada no es valida")
+            Toast.makeText(context, "la fecha ingresada no es valida", Toast.LENGTH_SHORT).show()
         }
     }
 
