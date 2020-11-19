@@ -14,6 +14,7 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrPa
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfiguration
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
