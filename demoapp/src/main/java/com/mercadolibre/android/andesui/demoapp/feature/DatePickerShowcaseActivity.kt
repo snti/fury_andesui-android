@@ -16,7 +16,9 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import java.text.DateFormat
-import java.util.Calendar
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DatePickerShowcaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,17 +81,34 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
             datepicker.setupBtnVisibility(true)
             datepicker.setupButtonText("Aplicar")
 
+            fun convertStringToDate(time: String, format: String): Date {
+                val format = SimpleDateFormat(format)
+                val date = format.parse(time)
+                return date
+            }
+
+            fun isValid(time: String, format: String): Boolean {
+                val df = SimpleDateFormat(format)
+                df.isLenient = false
+                try {
+                    df.parse(time)
+                    return true
+                } catch (e: ParseException) {
+                    return false
+                }
+            }
+
             btnSend.setOnClickListener(){
                 datepicker.clearMinMaxDate()
                 var setterMax: String? = inputMaxDate.text?.trim()
                 var setterMin: String? = inputMinDate.text?.trim()
-                if (setterMax != null && !setterMax.isEmpty()) {
-                    datepicker.setupMaxDate(setterMax, "dd/MM/yyyy" )
+                if (setterMax != null && !setterMax.isEmpty() && isValid(setterMax, "dd/MM/yyyy")) {
+                    datepicker.setupMaxDate(convertStringToDate(setterMax,"dd/MM/yyyy").time)
                 }else {
                     Toast.makeText(context, "la fecha maxima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }
-                if (setterMin != null && !setterMin.isEmpty()) {
-                    datepicker.setupMinDate(setterMin.toString(),"dd/MM/yyyy" )
+                if (setterMin != null && !setterMin.isEmpty() && isValid(setterMin, "dd/MM/yyyy")) {
+                    datepicker.setupMinDate(convertStringToDate(setterMin,"dd/MM/yyyy").time )
                 }else {
                     Toast.makeText(context, "la fecha minima no es una fecha valida", Toast.LENGTH_SHORT).show()
                 }

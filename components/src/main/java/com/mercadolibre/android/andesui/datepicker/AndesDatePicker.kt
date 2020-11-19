@@ -140,9 +140,7 @@ class AndesDatePicker : ConstraintLayout {
         return convertStringToDate(SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().time), DATE_FORMAT)
     }
 
-    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     private fun convertStringToDate(time: String, format: String): Date {
-        @Suppress("NAME_SHADOWING")
         val format = SimpleDateFormat(format)
         val date = format.parse(time)
         return date
@@ -206,20 +204,8 @@ class AndesDatePicker : ConstraintLayout {
         setMinDate(minDate)
     }
 
-    fun setupMinDate(minDate: String, format: String) {
-        if (isValid(minDate, format)) {
-            setMinDate(convertStringToDate(minDate, format).time)
-        }
-    }
-
     fun setupMaxDate(maxDate: Long) {
         setMaxDate(maxDate)
-    }
-
-    fun setupMaxDate(maxDate: String, format: String) {
-        if (isValid(maxDate, format)) {
-            setMaxDate(convertStringToDate(maxDate, format).time)
-        }
     }
 
     fun setupButtonText(text: String?) {
@@ -246,17 +232,6 @@ class AndesDatePicker : ConstraintLayout {
         andesBtnSelectDate.setOnClickListener {
             listener?.onDateApply(calendar)
 
-        }
-    }
-
-    fun isValid(time: String, format: String): Boolean {
-        val df = SimpleDateFormat(format)
-        df.isLenient = false
-        try {
-            df.parse(time)
-            return true
-        } catch (e: ParseException) {
-            return false
         }
     }
 
