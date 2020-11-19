@@ -18,7 +18,7 @@ import java.util.Calendar
 import java.util.Date
 
 
-
+@SuppressWarnings("TooManyFunctions")
 class AndesDatePicker : ConstraintLayout {
 
     interface ApplyDatePickerClickListener {
