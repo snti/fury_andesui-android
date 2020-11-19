@@ -51,7 +51,6 @@
 
     </style>
     <!-- Calendar -->
-
     <style name="Andes.customCalendar" parent="android:Widget.CalendarView">
         <item name="colorControlActivated">@color/andes_blue_ml_500</item>
         <item name="colorControlHighlight">@color/andes_blue_ml_300</item>
@@ -64,5 +63,4 @@
         <item name="android:textSize">@dimen/andes_datepicker_week_font_size</item>
         <item name="fontWeight">@dimen/andes_title_font_weight</item>
     </style>
-
 </resources>

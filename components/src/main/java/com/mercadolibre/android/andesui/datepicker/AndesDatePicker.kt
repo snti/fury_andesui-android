@@ -148,6 +148,7 @@ class AndesDatePicker : ConstraintLayout {
     fun setDateAppearance(appearance: Int) {
         calendarView.dateTextAppearance = appearance
     }
+
     fun setWeekDayAppearance(weekAppearance: Int) {
         calendarView.weekDayTextAppearance = weekAppearance
     }
