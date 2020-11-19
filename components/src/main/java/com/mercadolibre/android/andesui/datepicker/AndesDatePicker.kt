@@ -1,10 +1,8 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.content.Context
-import android.graphics.Color
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -14,13 +12,14 @@ import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrPa
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfiguration
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
-import com.mercadolibre.android.andesui.typeface.getFontOrDefault
-import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
+import kotlinx.android.synthetic.main.andes_layout_datepicker.view.calendarView
+import kotlinx.android.synthetic.main.andes_layout_datepicker.view.andesBtnSelectDate
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
-@Suppress("TooManyFunctions")
+
 class AndesDatePicker : ConstraintLayout {
 
     interface ApplyDatePickerClickListener {
@@ -209,10 +208,6 @@ class AndesDatePicker : ConstraintLayout {
         setMinDate(minDate)
     }
 
-    fun setupMinDate(minDate: Date) {
-        setMinDate(minDate.time)
-    }
-
     fun setupMinDate(minDate : String, format : String){
         if (isValid(minDate,format)){
             setMinDate(convertStringToDate(minDate, format).time)
@@ -223,10 +218,6 @@ class AndesDatePicker : ConstraintLayout {
 
     fun setupMaxDate(maxDate : Long) {
         setMaxDate(maxDate)
-    }
-
-    fun setupMaxDate(maxDate : Date) {
-        setMaxDate(maxDate.time)
     }
 
     fun setupMaxDate(maxDate : String, format : String){
