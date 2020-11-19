@@ -5,19 +5,15 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrParser
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfiguration
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
-import kotlinx.android.synthetic.main.andes_layout_datepicker.view.calendarView
-import kotlinx.android.synthetic.main.andes_layout_datepicker.view.andesBtnSelectDate
-import java.text.ParseException
+import kotlinx.android.synthetic.main.andes_layout_datepicker.view.*
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
+import java.util.*
 
 
 class AndesDatePicker : ConstraintLayout {
@@ -148,6 +144,9 @@ class AndesDatePicker : ConstraintLayout {
 
     fun setDateAppearance(appearance: Int) {
         calendarView.dateTextAppearance = appearance
+    }
+    fun setWeekDayAppearance(weekAppearance: Int) {
+        calendarView.weekDayTextAppearance = weekAppearance
     }
 
     private fun setMinDate(minDate: Long) {

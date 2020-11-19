@@ -117,7 +117,10 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
             btnReset.setOnClickListener(){
                 datepicker.clearMinMaxDate()
             }
+
             datepicker.setDateAppearance(R.style.Andes_CalendarDateDemo)
+            datepicker.setWeekDayAppearance(R.style.Andes_CalendarDateWeekDemo)
+
             datepicker.setDateListener(object : AndesDatePicker.ApplyDatePickerClickListener {
                 override fun onDateApply(date: Calendar) {
                     val dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT)
