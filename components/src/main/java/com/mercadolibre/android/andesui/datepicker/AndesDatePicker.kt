@@ -165,8 +165,6 @@ class AndesDatePicker : ConstraintLayout {
         } else {
             if (dateDiference < 0 && cumple) {
                 calendarView.minDate = minDate
-            } else {
-                Toast.makeText(context, "la fecha minima tiene que ser mayor o igual a la fecha actual", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -187,8 +185,6 @@ class AndesDatePicker : ConstraintLayout {
                 if (calendarView.minDate < 0) {
                     calendarView.minDate = 0
                 }
-            } else {
-                Toast.makeText(context, "la fecha maxima tiene que ser mayor a la fecha minima y mayor a la fecha actual", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -213,8 +209,6 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMinDate(minDate: String, format: String) {
         if (isValid(minDate, format)) {
             setMinDate(convertStringToDate(minDate, format).time)
-        } else {
-            Toast.makeText(context, "la fecha ingresada no es valida", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -225,8 +219,6 @@ class AndesDatePicker : ConstraintLayout {
     fun setupMaxDate(maxDate: String, format: String) {
         if (isValid(maxDate, format)) {
             setMaxDate(convertStringToDate(maxDate, format).time)
-        } else {
-            Toast.makeText(context, "la fecha ingresada no es valida", Toast.LENGTH_SHORT).show()
         }
     }
 
