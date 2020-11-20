@@ -160,14 +160,14 @@ class AndesDatePicker : ConstraintLayout {
         calendarView.minDate = DEFAULT_MIN_DATE
         val minDateDate: Date = Date(minDate)
         val dateDiference = validateDateToCurrentDate(minDateDate)
-        var cumple: Boolean = true
+        var isMaxDateAfterMinDate: Boolean = true
         if (calendarView.maxDate != null) {
-            cumple = minDateDate.time < calendarView.maxDate
+            isMaxDateAfterMinDate = minDateDate.time < calendarView.maxDate
         }
         if (validateDateToCurrentDate(minDateDate) == 0) {
             calendarView.minDate = minDate
         } else {
-            if (dateDiference < 0 && cumple) {
+            if (dateDiference < 0 && isMaxDateAfterMinDate) {
                 calendarView.minDate = minDate
             }
         }
