@@ -70,9 +70,9 @@ class AndesDatePicker : ConstraintLayout {
 
     constructor(
             context: Context,
-            text: String? = TEXT_DEFAULT,
-            minDate: String? = TEXT_DEFAULT,
-            maxDate: String? = TEXT_DEFAULT,
+            text: String? = null,
+            minDate: String? = null,
+            maxDate: String? = null,
             btnVisibility: Boolean? = null
     ) : super(context) {
         initAttrs(text, minDate, maxDate, btnVisibility)
@@ -236,7 +236,6 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     companion object {
-        private val TEXT_DEFAULT = null
         private const val DEFAULT_MIN_DATE = -2208973392000
         private const val DEFAULT_MAX_DATE = 4133905200000
         private const val DATE_FORMAT = "dd/MM/yyyy"
