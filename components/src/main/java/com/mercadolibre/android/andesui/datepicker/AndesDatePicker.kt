@@ -17,6 +17,10 @@ import java.util.Calendar
 import java.util.Date
 
 
+/**
+ * Warning TooManyFunctions suppressed because of...
+ * no se pudo reducir el total de funciones a 11, ya que son todas necesarias para el seteo y validacion del componente
+ */
 @SuppressWarnings("TooManyFunctions")
 class AndesDatePicker : ConstraintLayout {
 
