@@ -12,7 +12,11 @@
         <attr name="andesListType" format="enum">
             <enum name="simple" value="11000" />
             <enum name="chevron" value="11001" />
+            <enum name="check_box" value="11002" />
+            <enum name="radio_button" value="11003" />
         </attr>
+
+        <attr name="andesListDividerEnabled" format="boolean" />
 
     </declare-styleable>
 

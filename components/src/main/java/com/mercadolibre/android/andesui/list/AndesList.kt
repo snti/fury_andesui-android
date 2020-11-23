@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.button.factory.AndesButtonConfiguration
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrParser
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrs
 import com.mercadolibre.android.andesui.list.factory.AndesListConfiguration
@@ -57,6 +58,18 @@ class AndesList : ConstraintLayout {
             val config = createConfig()
         }
 
+    /**
+     * Getter and setter for [dividerEnabled].
+     */
+    var dividerEnabled: Boolean
+        get() = andesListAttrs.andesListDividerEnabled
+        set(value) {
+            andesListAttrs = andesListAttrs.copy(andesListDividerEnabled = value)
+            createConfig().also {
+                updateDynamicComponents(it)
+            }
+        }
+
     private lateinit var andesListAttrs: AndesListAttrs
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -82,6 +95,14 @@ class AndesList : ConstraintLayout {
         setupComponents(config)
     }
 
+    /**
+     * Responsible for update all properties related to components that can change dynamically
+     *
+     */
+    private fun updateDynamicComponents(config: AndesListConfiguration) {
+        setupDividerEnabled(config.dividerEnabled)
+    }
+
     private fun initAttrs(size: AndesListViewItemSize, type: AndesListType) {
         andesListAttrs = AndesListAttrs(size, type)
         val config = AndesListConfigurationFactory.create(andesListAttrs)
@@ -95,16 +116,22 @@ class AndesList : ConstraintLayout {
     private fun setupComponents(config: AndesListConfiguration) {
         initComponents()
         setupViewId()
-        setupRecyclerViewComponent()
+        setupRecyclerViewComponent(config)
     }
 
     /**
      * Set recyclerview
      */
-    private fun setupRecyclerViewComponent() {
-        val itemDecor = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        recyclerViewComponent.addItemDecoration(itemDecor)
+    private fun setupRecyclerViewComponent(config: AndesListConfiguration) {
+        setupDividerEnabled(config.dividerEnabled)
         recyclerViewComponent.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun setupDividerEnabled(enabled: Boolean) {
+        if (enabled) {
+            val itemDecor = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            recyclerViewComponent.addItemDecoration(itemDecor)
+        }
     }
 
     /**

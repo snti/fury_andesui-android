@@ -42,7 +42,7 @@ internal object AndesListViewItemConfigurationFactory {
                 subTitleColor = resolveSubTitleColor(context),
                 subTitleTypeface = resolveSubTitleTypeFace(context),
                 titleMaxLines = resolveTitleMaxLines(context, size),
-                spaceTitleSubtitle = resolveSubTitleMarginTop(context, size)
+                spaceTitleSubtitle = resolveTitleSubtitleSpace(context, size)
         )
     }
 
@@ -73,5 +73,5 @@ internal object AndesListViewItemConfigurationFactory {
 
     private fun resolveSubTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
 
-    private fun resolveSubTitleMarginTop(context: Context, size: AndesListViewItemSizeInterface) = size.titleMaxLines(context)
+    private fun resolveTitleSubtitleSpace(context: Context, size: AndesListViewItemSizeInterface) = size.spaceBetweenTitleAndSubtitle(context)
 }

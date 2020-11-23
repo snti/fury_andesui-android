@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.list.AndesListViewItem
+import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
@@ -66,11 +67,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
             return listOf<View>(layout)
         }
 
-
-//        val row = Row(
-//                context,
-//                AndesRowSize.LARGE, )
-
     }
 
     override fun onItemClick(position: Int) {
@@ -79,7 +75,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     override fun bind(view: View, position: Int): AndesListViewItem {
         val row = AndesListViewItemSimple(this,getDataSet()[position].title, getDataSet()[position].subtitle, AndesListViewItemSize.MEDIUM)
-//        val row = AndesListViewItemChevron(this,getDataSet()[position].title, getDataSet()[position].subTitle, AndesListViewItemSize.MEDIUM)
+//        val row = AndesListViewItemChevron(this,getDataSet()[position].title, AndesListViewItemSize.MEDIUM)
 
 //        val row = AndesListRow.Builder(getDataSet()[position].title)
 ////                .description(getDataSet()[position].description)

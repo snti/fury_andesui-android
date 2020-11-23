@@ -5,7 +5,8 @@ import com.mercadolibre.android.andesui.list.type.AndesListType
 
 internal data class AndesListConfiguration(
         val size: AndesListViewItemSize,
-        val type: AndesListType
+        val type: AndesListType,
+        val dividerEnabled: Boolean = false
 )
 
 internal object AndesListConfigurationFactory {
@@ -14,7 +15,8 @@ internal object AndesListConfigurationFactory {
         return with(andesListAttrs) {
             AndesListConfiguration(
                     size = andesListAttrs.andesListItemSize,
-                    type = andesListAttrs.andesListType
+                    type = andesListAttrs.andesListType,
+                    dividerEnabled = andesListAttrs.andesListDividerEnabled
             )
         }
     }

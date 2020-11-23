@@ -8,7 +8,8 @@ import com.mercadolibre.android.andesui.list.type.AndesListType
 
 internal data class AndesListAttrs(
         val andesListItemSize: AndesListViewItemSize,
-        val andesListType: AndesListType
+        val andesListType: AndesListType,
+        val andesListDividerEnabled: Boolean = false
 )
 
 /**
@@ -23,6 +24,8 @@ internal object AndesListAttrParser {
 
     private const val ANDES_LIST_TYPE_SIMPLE = "11000"
     private const val ANDES_LIST_TYPE_CHEVRON = "11001"
+    private const val ANDES_LIST_TYPE_CHECK_BOX = "11002"
+    private const val ANDES_LIST_TYPE_RADIO_BUTTON = "11003"
 
     fun parse(context: Context, attr: AttributeSet?): AndesListAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesList)
@@ -37,12 +40,15 @@ internal object AndesListAttrParser {
         val listType = when (typedArray.getString(R.styleable.AndesList_andesListType)) {
             ANDES_LIST_TYPE_SIMPLE -> AndesListType.SIMPLE
             ANDES_LIST_TYPE_CHEVRON -> AndesListType.CHEVRON
+            ANDES_LIST_TYPE_CHECK_BOX -> AndesListType.CHECK_BOX
+            ANDES_LIST_TYPE_RADIO_BUTTON -> AndesListType.RADIO_BUTTON
             else -> AndesListType.SIMPLE
         }
 
         return AndesListAttrs(
                 andesListItemSize = size,
-                andesListType = listType
+                andesListType = listType,
+                andesListDividerEnabled = typedArray.getBoolean(R.styleable.AndesList_andesListDividerEnabled, false)
         ).also { typedArray.recycle() }
     }
 

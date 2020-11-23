@@ -20,3 +20,11 @@ internal object AndesListTypeSimple : AndesListTypeInterface {
 internal object AndesListTypeChevron : AndesListTypeInterface {
     override fun getType(context: Context) = AndesListType.CHEVRON
 }
+
+internal object AndesListTypeCheckBox : AndesListTypeInterface {
+    override fun getType(context: Context) = AndesListType.CHECK_BOX
+}
+
+internal object AndesListTypeRadioButton : AndesListTypeInterface {
+    override fun getType(context: Context) = AndesListType.RADIO_BUTTON
+}
