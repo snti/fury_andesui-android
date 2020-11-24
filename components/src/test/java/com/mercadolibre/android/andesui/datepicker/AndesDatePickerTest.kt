@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.os.Build
-import com.mercadolibre.android.andesui.BuildConfig
+import com.facebook.drawee.BuildConfig
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerAttrs
 import com.mercadolibre.android.andesui.datepicker.factory.AndesDatePickerConfigurationFactory
 import org.junit.Assert
