@@ -29,7 +29,7 @@ class AndesDatePickerTest{
         Assert.assertEquals(config.text, "aplicar")
         Assert.assertEquals(config.minDate, "01/01/2020")
         Assert.assertEquals(config.maxDate, "31/12/2020")
-        config.btnVisibility?.let { Assert.assertTrue(it) }
+        config.applyButtonVisibility?.let { Assert.assertTrue(it) }
     }
 
     @Test
@@ -44,7 +44,7 @@ class AndesDatePickerTest{
         Assert.assertEquals(config.text, "aplicar")
         Assert.assertEquals(config.minDate, "01/01/2020")
         Assert.assertEquals(config.maxDate, "31/12/2020")
-        Assert.assertFalse(config.btnVisibility!!)
+        Assert.assertFalse(config.applyButtonVisibility!!)
     }
 
 }
