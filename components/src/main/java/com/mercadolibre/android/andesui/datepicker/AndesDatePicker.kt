@@ -21,8 +21,7 @@ import java.util.Date
  * Warning TooManyFunctions suppressed because of...
  * It was not possible to reduce the total of functions to 11, since they are all necessary for the setting and validation of the component
  */
-@Suppress("NAME_SHADOWING")
-@SuppressWarnings("TooManyFunctions")
+@Suppress("TooManyFunctions")
 class AndesDatePicker : ConstraintLayout {
 
     interface ApplyDatePickerClickListener {
