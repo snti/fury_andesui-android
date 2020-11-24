@@ -76,9 +76,9 @@ class AndesDatePicker : ConstraintLayout {
             text: String? = null,
             minDate: String? = null,
             maxDate: String? = null,
-            btnVisibility: Boolean? = null
+            applyButtonVisibility: Boolean? = null
     ) : super(context) {
-        initAttrs(text, minDate, maxDate, btnVisibility)
+        initAttrs(text, minDate, maxDate, applyButtonVisibility)
     }
 
     /**
@@ -96,9 +96,9 @@ class AndesDatePicker : ConstraintLayout {
             text: String?,
             minDate: String?,
             maxDate: String?,
-            btnVisibility: Boolean?
+            applyButtonVisibility: Boolean?
     ) {
-        andesDatePickerAttrs = AndesDatePickerAttrs(text, minDate, maxDate, btnVisibility)
+        andesDatePickerAttrs = AndesDatePickerAttrs(text, minDate, maxDate, applyButtonVisibility)
         val config = AndesDatePickerConfigurationFactory.create(andesDatePickerAttrs)
         setupComponents(config)
     }
@@ -113,7 +113,7 @@ class AndesDatePicker : ConstraintLayout {
         config.minDate?.toLong()?.let { setupMinDate(it) }
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
         config.text.let { setupButtonText(it) }
-        config.btnVisibility.let { setupBtnVisibility(it) }
+        config.applyButtonVisibility.let { setupBtnVisibility(it) }
     }
 
     /**
@@ -210,8 +210,8 @@ class AndesDatePicker : ConstraintLayout {
         andesBtnSelectDate.text = text
     }
 
-    fun setupBtnVisibility(btnVisibility: Boolean?) {
-        if (btnVisibility == true) {
+    fun setupBtnVisibility(applyButtonVisibility: Boolean?) {
+        if (applyButtonVisibility == true) {
             andesBtnSelectDate.visibility = View.VISIBLE
         } else {
             andesBtnSelectDate.visibility = View.GONE

@@ -4,7 +4,7 @@ internal data class AndesDatePickerConfiguration(
         val text: String?,
         val minDate: String?,
         val maxDate: String?,
-        val btnVisibility : Boolean?
+        val applyButtonVisibility : Boolean?
 )
 
 internal object AndesDatePickerConfigurationFactory {
@@ -15,7 +15,7 @@ internal object AndesDatePickerConfigurationFactory {
                     text = andesDatePickerAttrs.andesDatePickerText,
                     minDate = andesDatePickerAttrs.andesDatePickerMinDate,
                     maxDate = andesDatePickerAttrs.andesDatePickerMaxDate,
-                    btnVisibility = andesDatePickerAttrs.andesBtnVisibility
+                    applyButtonVisibility = andesDatePickerAttrs.andesBtnVisibility
             )
         }
     }
