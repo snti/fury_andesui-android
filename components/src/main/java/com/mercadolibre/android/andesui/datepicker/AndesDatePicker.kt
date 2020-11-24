@@ -73,10 +73,10 @@ class AndesDatePicker : ConstraintLayout {
 
     constructor(
             context: Context,
-            text: String? = null,
-            minDate: String? = null,
-            maxDate: String? = null,
-            applyButtonVisibility: Boolean? = null
+            text: String? = DEFAULT_TEXT,
+            minDate: String? = DEFAULT_MIN_DATE.toString(),
+            maxDate: String? = DEFAULT_MAX_DATE.toString(),
+            applyButtonVisibility: Boolean? = false
     ) : super(context) {
         initAttrs(text, minDate, maxDate, applyButtonVisibility)
     }
@@ -113,7 +113,7 @@ class AndesDatePicker : ConstraintLayout {
         config.minDate?.toLong()?.let { setupMinDate(it) }
         config.maxDate?.toLong()?.let { setupMaxDate(it) }
         config.text.let { setupButtonText(it) }
-        config.applyButtonVisibility.let { setupBtnVisibility(it) }
+        config.applyButtonVisibility.let { setupButtonVisibility(it) }
     }
 
     /**
@@ -156,6 +156,10 @@ class AndesDatePicker : ConstraintLayout {
         calendarView.weekDayTextAppearance = weekAppearance
     }
 
+    /**
+     * Responsible for set the minimal date available.
+     */
+
     private fun setMinDate(minDate: Long) {
         calendarView.minDate = DEFAULT_MIN_DATE
         val minDateDate: Date = Date(minDate)
@@ -172,6 +176,10 @@ class AndesDatePicker : ConstraintLayout {
             }
         }
     }
+
+    /**
+     * Responsible for set the maximal date available.
+     */
 
     private fun setMaxDate(maxDate: Long) {
         calendarView.maxDate = DEFAULT_MAX_DATE
@@ -210,13 +218,17 @@ class AndesDatePicker : ConstraintLayout {
         andesBtnSelectDate.text = text
     }
 
-    fun setupBtnVisibility(applyButtonVisibility: Boolean?) {
+    fun setupButtonVisibility(applyButtonVisibility: Boolean?) {
         if (applyButtonVisibility == true) {
             andesBtnSelectDate.visibility = View.VISIBLE
         } else {
             andesBtnSelectDate.visibility = View.GONE
         }
     }
+
+    /**
+     * Responsible for recive the selected date
+     */
 
     private fun onCheckedChangeListener(andesBtnSelectDate: AndesButton) {
         val calendar = Calendar.getInstance()
@@ -239,6 +251,7 @@ class AndesDatePicker : ConstraintLayout {
     }
 
     companion object {
+        private const val DEFAULT_TEXT= "Aplicar"
         private const val DEFAULT_MIN_DATE = -2208973392000
         private const val DEFAULT_MAX_DATE = 4133905200000
         private const val DATE_FORMAT = "dd/MM/yyyy"

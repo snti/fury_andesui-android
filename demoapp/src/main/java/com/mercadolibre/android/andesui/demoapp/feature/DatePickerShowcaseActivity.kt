@@ -80,7 +80,7 @@ class DatePickerShowcaseActivity : AppCompatActivity() {
             val btnReset: AndesButton = layoutDatePicker.findViewById(R.id.btnReset)
             val inputMinDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMinDate)
             val inputMaxDate: AndesTextfield = layoutDatePicker.findViewById(R.id.andesTextfieldMaxDate)
-            datepicker.setupBtnVisibility(false)
+            datepicker.setupButtonVisibility(false)
             datepicker.setupButtonText("Aplicar")
 
             fun convertStringToDate(time: String, format: String): Date {

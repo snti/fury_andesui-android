@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="@+id/calendarView"
         app:layout_constraintStart_toStartOf="@+id/calendarView"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="@dimen/andes_title_font_size_m"/>
 
 
 </android.support.constraint.ConstraintLayout>
