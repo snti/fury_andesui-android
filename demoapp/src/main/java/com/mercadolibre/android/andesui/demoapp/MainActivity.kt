@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity() {
         andesui_bottom_sheet.setOnClickListener {
             startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
         }
+        andesui_date_picker.setOnClickListener {
+            startActivity(SafeIntent(this,"meli://andes/datepicker"))
+        }
     }
 
     private fun setupExtras() {
