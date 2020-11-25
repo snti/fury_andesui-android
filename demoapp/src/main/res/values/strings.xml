@@ -131,6 +131,11 @@
     <string name="andes_checkbox_type">Type</string>
     <string name="andes_checkbox_status">Status</string>
     <string name="andes_checkbox_align">Align</string>
+    <string name="andes_checkbox_text_list_simple">Simple</string>
+    <string name="andes_checkbox_text_list_icon">Icon</string>
+    <string name="andes_checkbox_text_list_chevron">Chevron</string>
+    <string name="andes_checkbox_text_list_thumbnail">Thumbnail</string>
+
 
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
@@ -292,6 +297,12 @@
         <item>Idle</item>
         <item>Error</item>
         <item>Disabled</item>
+    </string-array>
+
+    <string-array name="type_list_spinner">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
     </string-array>
 
     <string-array name="status_checkbox_spinner">

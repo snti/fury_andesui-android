@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
@@ -64,6 +66,18 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         private fun initViews(): List<View> {
             val inflater = LayoutInflater.from(context)
             val layout = inflater.inflate(R.layout.andesui_list_showcase, null, false)
+
+            val spinnerType: Spinner = layout.findViewById(R.id.spinner)
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.type_list_spinner,
+                    android.R.layout.simple_spinner_item
+            )
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        spinnerType.adapter = adapter
+                    }
+
             return listOf<View>(layout)
         }
 
