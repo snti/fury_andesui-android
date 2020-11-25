@@ -40,7 +40,7 @@ internal class AndesChoiceIdleState : AndesTagChoiceStateInterface {
     override fun borderColor() = R.color.andes_gray_250.toAndesColor()
     override fun textColor() = R.color.andes_gray_800_solid.toAndesColor()
     override fun rightContentColor() = R.color.andes_gray_450_solid.toAndesColor()
-    override fun leftContentColor() = R.color.andes_gray_450_solid.toAndesColor()
+    override fun leftContentColor() = R.color.andes_gray_800.toAndesColor()
 }
 
 internal class AndesChoiceSelectedState : AndesTagChoiceStateInterface {

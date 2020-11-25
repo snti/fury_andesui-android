@@ -4,6 +4,7 @@
 
 ## 🚀 Fixes
 - Added Focus listener correctly on EditText of AndesTextField.
+- AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
 
 # v2.16.0
 ## 🚀 Features
