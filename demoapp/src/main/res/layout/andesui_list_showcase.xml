@@ -1,16 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_simple"
+        app:layout_constraintEnd_toEndOf="@+id/andesChevron"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/andesChevron"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/buttonClear"
+        android:layout_width="@dimen/button_clear_width"
+        android:layout_height="328dp"
+        android:layout_marginStart="20dp"
+        app:andesButtonText="@string/andesui_demoapp_clear_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andesChevron" />
+
     <com.mercadolibre.android.andesui.list.AndesList
         android:id="@+id/andesList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:andesListItemSize="medium"
         app:andesListType="simple"
+        app:andesTextfieldPlaceholder="@string/andes_radiobutton_placeholder_text"
+        app:andesTextfieldRightContent="clear"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/buttonClear"
+        app:layout_constraintTop_toBottomOf="@+id/buttonClear" />
+
+    <com.mercadolibre.android.andesui.button.AndesButton
+        android:id="@+id/buttonUpdate"
+        android:layout_width="@dimen/button_clear_width"
+        android:layout_height="328dp"
+        android:layout_marginEnd="16dp"
+        app:andesButtonText="@string/andes_message_showcase_change"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonClear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonClear" />
+
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesChevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_chevron"
+        app:layout_constraintStart_toStartOf="@+id/buttonClear"
+        app:layout_constraintTop_toBottomOf="@+id/andesCheckbox" />
+
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_icon"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+        app:layout_constraintStart_toStartOf="@+id/buttonUpdate" />
+
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesCheckbox5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_thumbnail"
+        app:layout_constraintBottom_toTopOf="@+id/andesIcon"
+        app:layout_constraintEnd_toEndOf="@+id/buttonUpdate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/andesIcon"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Subtitle cell default"
+        app:layout_constraintStart_toStartOf="@+id/buttonClear"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Title cell default"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Number of lines"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>
