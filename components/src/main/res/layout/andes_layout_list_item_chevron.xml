@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<!--    <View-->
-<!--        android:id="@+id/view_row_selected"-->
-<!--        android:layout_width="2dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="2dp"-->
-<!--        android:layout_marginTop="2dp"-->
-<!--        android:layout_marginBottom="2dp"-->
-<!--        android:background="@drawable/andes_rectangle_rounded"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <View
+        android:id="@+id/view_item_selected"
+        android:layout_width="@dimen/andes_list_item_selection_bar_width"
+        android:layout_height="0dp"
+        android:background="@drawable/andes_rectangle_rounded"
+        android:layout_marginStart="@dimen/andes_list_item_selection_bar_margin_start"
+        android:layout_marginTop="@dimen/andes_list_item_selection_bar_margin_top"
+        android:layout_marginBottom="@dimen/andes_list_item_selection_bar_margin_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/andes_list_item_container"
@@ -61,15 +61,11 @@
             app:layout_constraintTop_toBottomOf="@+id/view_space_title_subtitle"
             tools:text="Row text description" />
 
-        <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/andes_thumbnail_chevron"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:andesThumbnailAccentColor="@color/andes_red_800"
-            app:andesThumbnailHierarchy="AndesDefault"
-            app:andesThumbnailImage="@drawable/andes_ui_chevron_right_24"
-            app:andesThumbnailSize="size_24"
-            app:andesThumbnailType="icon"
+            android:layout_width="@dimen/andes_thumbnail_size_24"
+            android:layout_height="@dimen/andes_thumbnail_size_24"
+            android:src="@drawable/andes_ui_chevron_right_24"
             app:layout_constraintBottom_toBottomOf="@+id/text_view_item_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/text_view_item_title" />

@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -12,7 +13,6 @@ import android.widget.Toast
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.list.AndesListViewItem
-import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
@@ -74,8 +74,14 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     }
 
     override fun bind(view: View, position: Int): AndesListViewItem {
-        val row = AndesListViewItemSimple(this,getDataSet()[position].title, getDataSet()[position].subtitle, AndesListViewItemSize.MEDIUM)
-//        val row = AndesListViewItemChevron(this,getDataSet()[position].title, AndesListViewItemSize.MEDIUM)
+        val row: AndesListViewItemSimple?
+//        val row = AndesListViewItemSimple(this,getDataSet()[position].title, getDataSet()[position].subtitle, AndesListViewItemSize.MEDIUM)
+        if (position == 1) {
+           val drawable = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+            row = AndesListViewItemSimple(this, getDataSet()[position].title, itemSelected = getDataSet()[position].selected, avatar =  drawable)
+        } else {
+            row = AndesListViewItemSimple(this, getDataSet()[position].title, getDataSet()[position].subtitle, itemSelected = getDataSet()[position].selected)
+        }
 
 //        val row = AndesListRow.Builder(getDataSet()[position].title)
 ////                .description(getDataSet()[position].description)
@@ -88,11 +94,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     override fun getDataSetSize(): Int = getDataSet().size
 
-
     private fun getDataSet() = listOf(
             Model("title 1", "Desc 1", false),
-            Model("title 2", "Desc 2", true),
-            Model("title 3", "Desc 3", false))
+            Model("title 2 largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "Desc 2", true),
+            Model("title 3", "Descripcion largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false))
 
-    class Model(val title: String, val subtitle: String, val selectable: Boolean)
+    class Model(val title: String, val subtitle: String, val selected: Boolean)
 }

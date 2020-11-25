@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import com.mercadolibre.android.andesui.R
-import com.mercadolibre.android.andesui.button.factory.AndesButtonConfiguration
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrParser
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrs
 import com.mercadolibre.android.andesui.list.factory.AndesListConfiguration
@@ -59,9 +58,9 @@ class AndesList : ConstraintLayout {
         }
 
     /**
-     * Getter and setter for [dividerEnabled].
+     * Getter and setter for [dividerItemEnabled].
      */
-    var dividerEnabled: Boolean
+    var dividerItemEnabled: Boolean
         get() = andesListAttrs.andesListDividerEnabled
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListDividerEnabled = value)

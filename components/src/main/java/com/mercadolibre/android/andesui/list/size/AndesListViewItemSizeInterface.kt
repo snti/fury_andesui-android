@@ -2,6 +2,7 @@ package com.mercadolibre.android.andesui.list.size
 
 import android.content.Context
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 
 /**
  * Defines all size related properties that an [AndesListViewItem] needs to be drawn properly.
@@ -17,6 +18,8 @@ internal interface AndesListViewItemSizeInterface {
     fun height(context: Context): Float
     fun titleMaxLines(context: Context): Int
     fun spaceBetweenTitleAndSubtitle(context: Context): Int
+    fun separatorThumbnailWidth(context: Context): Int
+    fun AvatarSize(context: Context): AndesThumbnailSize
 }
 
 internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
@@ -37,6 +40,10 @@ internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
     override fun titleMaxLines(context: Context) = 1
 
     override fun spaceBetweenTitleAndSubtitle(context: Context) = 0
+
+    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_small).toInt()
+
+    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_32
 }
 
 internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
@@ -57,6 +64,11 @@ internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
     override fun titleMaxLines(context: Context) = 3
 
     override fun spaceBetweenTitleAndSubtitle(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_medium).toInt()
+
+    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_medium).toInt()
+
+    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_40
+
 }
 
 internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
@@ -77,4 +89,9 @@ internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
     override fun titleMaxLines(context: Context) = 3
 
     override fun spaceBetweenTitleAndSubtitle(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_large).toInt()
+
+    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_large).toInt()
+
+    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_56
+
 }

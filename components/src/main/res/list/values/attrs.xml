@@ -16,7 +16,7 @@
             <enum name="radio_button" value="11003" />
         </attr>
 
-        <attr name="andesListDividerEnabled" format="boolean" />
+        <attr name="andesListDividerItemEnabled" format="boolean" />
 
     </declare-styleable>
 
