@@ -1,3 +1,7 @@
+# v3.0.0
+## 🚀 Features
+- Migration AndroidX
+
 # v2.18.0
 ## 🚀 Features
 - AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
