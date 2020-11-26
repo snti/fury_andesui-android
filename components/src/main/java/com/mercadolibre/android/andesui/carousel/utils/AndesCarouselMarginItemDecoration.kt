@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.carousel.utils
 
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 
 /**
@@ -10,10 +10,10 @@ import android.view.View
 class AndesCarouselMarginItemDecoration(private val margin: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
     ) {
 
         val lastPosition = parent.adapter?.let {

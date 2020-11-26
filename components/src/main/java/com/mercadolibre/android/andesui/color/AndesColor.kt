@@ -2,9 +2,9 @@ package com.mercadolibre.android.andesui.color
 
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.v4.graphics.ColorUtils
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.core.graphics.ColorUtils
 
 data class AndesColor(
     @ColorRes val colorRes: Int,

@@ -1,10 +1,10 @@
 package com.mercadolibre.android.andesui.bottomsheet
 
 import android.os.Build
-import android.support.design.widget.BottomSheetBehavior
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -24,7 +24,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesBottomSheetTest {
     private var context = RuntimeEnvironment.application
     private lateinit var andesBottomSheet: AndesBottomSheet

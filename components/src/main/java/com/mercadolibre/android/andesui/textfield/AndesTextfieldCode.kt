@@ -3,7 +3,7 @@ package com.mercadolibre.android.andesui.textfield
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Parcelable
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.text.InputType
 import android.util.AttributeSet
 import android.util.SparseArray

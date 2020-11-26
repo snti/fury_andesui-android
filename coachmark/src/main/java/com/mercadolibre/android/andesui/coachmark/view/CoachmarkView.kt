@@ -7,10 +7,10 @@ import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.graphics.Rect
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPropertyAnimatorListenerAdapter
-import android.support.v4.widget.NestedScrollView
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewPropertyAnimatorListenerAdapter
+import androidx.core.widget.NestedScrollView
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
