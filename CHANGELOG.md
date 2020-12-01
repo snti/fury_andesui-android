@@ -3,8 +3,11 @@
 - AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
 
 ## 🚀 Fixes
-- Added Focus listener correctly on EditText of AndesTextField.
 - AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
+
+# v2.17.0
+## 🚀 Fixes
+- Added Focus listener correctly on EditText of AndesTextField.
 
 # v2.16.0
 ## 🚀 Features
