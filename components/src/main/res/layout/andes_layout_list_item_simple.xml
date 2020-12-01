@@ -23,38 +23,41 @@
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/andes_list_item_padding_left_right_small"
         android:paddingEnd="@dimen/andes_list_item_padding_left_right_small"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
-            android:id="@+id/andes_list_item_asset"
-            android:layout_width="@dimen/andes_list_item_thumbnail_size_medium"
-            android:layout_height="@dimen/andes_list_item_thumbnail_size_medium"
-            app:andesThumbnailHierarchy="AndesDefault"
-            app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
-            app:andesThumbnailSize="size_40"
-            app:andesThumbnailState="enabled"
-            app:andesThumbnailType="icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/image_view_list_icon"
+        <LinearLayout
+            android:id="@+id/layout_asset_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/view_space_title_subtitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_view_item_title" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+            <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
+                android:id="@+id/andes_list_item_asset"
+                android:layout_width="@dimen/andes_list_item_thumbnail_size_medium"
+                android:layout_height="@dimen/andes_list_item_thumbnail_size_medium"
+                app:andesThumbnailHierarchy="AndesDefault"
+                app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
+                app:andesThumbnailSize="size_40"
+                app:andesThumbnailState="enabled"
+                app:andesThumbnailType="icon" />
+
+            <ImageView
+                android:id="@+id/image_view_list_item_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <View
             android:id="@+id/andesViewThumbnailSeparator"
             android:layout_width="@dimen/andes_list_item_separator_thumbnail_width_small"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/andes_list_item_asset"
+            app:layout_constraintStart_toEndOf="@+id/layout_asset_container"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -86,6 +89,8 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:textSize="@dimen/andes_list_item_title_font_size_small"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_view_item_title"

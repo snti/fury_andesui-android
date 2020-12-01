@@ -2,11 +2,14 @@ package com.mercadolibre.android.andesui.list.utils
 
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.view.ViewTreeObserver
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.list.AndesListViewItem
@@ -18,7 +21,7 @@ import com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
 
 class AndesListAdapter(
         private val delegate: AndesListDelegate,
-        private val listType: AndesListType
+        private var listType: AndesListType
 ) : RecyclerView.Adapter<AndesListAdapter.ViewHolder>() {
 
     override fun getItemCount() = delegate.getDataSetSize()
@@ -28,16 +31,42 @@ class AndesListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val layout = when (listType) {
-            AndesListType.SIMPLE -> R.layout.andes_layout_list_item_simple
-            AndesListType.CHEVRON -> R.layout.andes_layout_list_item_chevron
-            AndesListType.CHECK_BOX -> R.layout.andes_layout_list_item_check_box
-            AndesListType.RADIO_BUTTON -> R.layout.andes_layout_list_item_radio_button
+        val layout = when (viewType) {
+            0 -> R.layout.andes_layout_list_item_simple
+            1 -> R.layout.andes_layout_list_item_chevron
+            2 -> R.layout.andes_layout_list_item_check_box
+            3 -> R.layout.andes_layout_list_item_radio_button
+            else -> R.layout.andes_layout_list_item_simple
         }
 
+/*
+       val layout = when (listType) {
+           AndesListType.SIMPLE -> R.layout.andes_layout_list_item_simple
+           AndesListType.CHEVRON -> R.layout.andes_layout_list_item_chevron
+           AndesListType.CHECK_BOX -> R.layout.andes_layout_list_item_check_box
+           AndesListType.RADIO_BUTTON -> R.layout.andes_layout_list_item_radio_button
+       }
+*/
         return ViewHolder(LayoutInflater
                 .from(parent.context)
                 .inflate(layout, parent, false))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+
+        val layout = when (listType) {
+            AndesListType.SIMPLE -> 0
+            AndesListType.CHEVRON -> 1
+            AndesListType.CHECK_BOX -> 2
+            AndesListType.RADIO_BUTTON -> 3
+        }
+
+
+        return layout
+    }
+
+    internal fun changeAndesListType(listType: AndesListType) {
+        this.listType = listType
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,7 +75,8 @@ class AndesListAdapter(
         private lateinit var spaceTitleSubtitleView: View
         private lateinit var andesListItemContainer: View
         private lateinit var andesListItemSelectionView: View
-        private lateinit var andesListItemAsset: AndesThumbnail
+        private lateinit var andesListItemAvatar: AndesThumbnail
+        private lateinit var andesListItemIcon: ImageView
         private lateinit var andesViewThumbnailSeparator: View
 
         fun bind(delegate: AndesListDelegate, position: Int) {
@@ -58,15 +88,17 @@ class AndesListAdapter(
             spaceTitleSubtitleView = itemView.findViewById<View>(R.id.view_space_title_subtitle)
             andesListItemContainer = itemView.findViewById<View>(R.id.andes_list_item_container)
             andesListItemSelectionView = itemView.findViewById<View>(R.id.view_item_selected)
-            andesListItemAsset = itemView.findViewById(R.id.andes_list_item_asset) // TODO esta en todos los items?
+            andesListItemAvatar = itemView.findViewById(R.id.andes_list_item_asset) // TODO esta en todos los items?
             andesViewThumbnailSeparator = itemView.findViewById(R.id.andesViewThumbnailSeparator) // TODO esta en todos los items?
+            andesListItemIcon = itemView.findViewById(R.id.image_view_list_item_icon) // TODO esta en todos los items?
 
             // Default visibility state
             subtitleTextView.visibility = View.GONE
             spaceTitleSubtitleView.visibility = View.GONE
             andesListItemSelectionView.visibility = View.GONE
             andesViewThumbnailSeparator.visibility = View.GONE
-            andesListItemAsset.visibility = View.GONE
+            andesListItemAvatar.visibility = View.GONE
+            andesListItemIcon.visibility = View.GONE
 
             itemView.setOnClickListener { delegate.onItemClick(position) }
 
@@ -80,18 +112,54 @@ class AndesListAdapter(
 
         private fun bindSimpleItem(andesListItemConfig: AndesListViewItemSimple) {
             bindItemCommons(andesListItemConfig)
-            andesListItemConfig.avatar?.let {
-                andesListItemAsset.visibility = View.VISIBLE
-                andesListItemAsset.size = andesListItemConfig.thumbnailSize
-                andesListItemAsset.image = it
+        }
+
+        private fun bindChevronItem(andesListItemConfig: AndesListViewItemChevron) {
+            bindItemCommons(andesListItemConfig)
+        }
+
+        private fun bindItemCommons(andesListItemConfig: AndesListViewItem) {
+            andesListItemConfig.icon?.let {
+                andesListItemIcon.visibility = View.VISIBLE
+                andesListItemIcon.layoutParams.width = andesListItemConfig.iconSize
+                andesListItemIcon.layoutParams.height = andesListItemConfig.iconSize
+                andesListItemIcon.setImageDrawable(it)
 
                 showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
 
-                titleTextView.viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        titleTextView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
 
-                        val lp = andesListItemAsset.layoutParams as ConstraintLayout.LayoutParams
+                        val lp = andesListItemIcon.layoutParams as LinearLayout.LayoutParams
+
+                        lp.setMargins(
+                                0,
+                                calculateIconTopMargin(),
+                                0,
+                                0
+                        )
+
+                        andesListItemIcon.layoutParams = lp
+
+                        return true
+                    }
+
+                })
+            }
+
+            andesListItemConfig.avatar?.let {
+                andesListItemAvatar.visibility = View.VISIBLE
+                andesListItemAvatar.size = andesListItemConfig.thumbnailSize
+                andesListItemAvatar.image = it
+
+                showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
+
+                titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
+
+                        val lp = andesListItemAvatar.layoutParams as LinearLayout.LayoutParams
 
                         lp.setMargins(
                                 0,
@@ -100,17 +168,14 @@ class AndesListAdapter(
                                 0
                         )
 
-                        andesListItemAsset.layoutParams = lp
+                        andesListItemAvatar.layoutParams = lp
+
+                        return true
                     }
+
                 })
             }
-        }
 
-        private fun bindChevronItem(item: AndesListViewItemChevron) {
-            bindItemCommons(item)
-        }
-
-        private fun bindItemCommons(andesListItemConfig: AndesListViewItem) {
             andesListItemContainer.setPadding(
                     andesListItemConfig.paddingLeft,
                     0,
@@ -161,33 +226,37 @@ class AndesListAdapter(
             }
 
 
+        }
 
+        private fun calculateIconTopMargin(): Int {
+            val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
+            val assetHalfHeight = andesListItemIcon.height / 2
+            val textViewTitleHeight = titleTextView.measuredHeight
+            val numberOfLines = titleTextView.lineCount
 
-
+            return  (textViewTitleHeight / numberOfLines) / 2 + layoutParams.topMargin - assetHalfHeight
         }
 
         private fun calculateAssetTopMargin(): Int {
             var topMargin = 0
 
-            if (titleTextView.lineCount <= 2) {
+            val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
+            val assetHalfHeight = andesListItemAvatar.height / 2
+
+            if (titleTextView.lineCount == 1 && subtitleTextView.text.isNotEmpty()) {
+                topMargin = itemView.measuredHeight / 2 - assetHalfHeight
+
+            } else if (titleTextView.lineCount == 1 && subtitleTextView.text.isEmpty() || titleTextView.lineCount == 2) {
+                val textViewTitleHeight = titleTextView.measuredHeight
+
+                topMargin = (textViewTitleHeight / 2) + layoutParams.topMargin - assetHalfHeight
+
+            } else if (titleTextView.lineCount > 2) {
+                val textViewTitleHeight = titleTextView.measuredHeight
                 val numberOfLines = titleTextView.lineCount
 
-
-                titleTextView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-                val height = titleTextView.measuredHeight
-
-                val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
-
-                topMargin = (height * numberOfLines / 2) + layoutParams.topMargin - (andesListItemAsset.height / 2)
+                topMargin = (2 * textViewTitleHeight / numberOfLines) / 2 + layoutParams.topMargin - assetHalfHeight
             }
-
-
-//            title == 1  titleTextView.height / 2 + layoutParams.topMargin
-//            title == 2 titleTextView.height / 2 + layoutParams.topMargin
-//            title > 2, (2 * height / cantidad de lineas) /2
-            // title == 1 && subtitle == 1 (title height + space height + subtitle height) / 2 o centrado verticalmente
-//            n description. ?
-
 
             return topMargin
         }

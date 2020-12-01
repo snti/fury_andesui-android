@@ -55,6 +55,7 @@ class AndesList : ConstraintLayout {
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListType = value)
             val config = createConfig()
+            listAdapter.changeAndesListType(type)
         }
 
     /**
@@ -149,6 +150,10 @@ class AndesList : ConstraintLayout {
         if (id == NO_ID) { // If this view has no id
             id = View.generateViewId()
         }
+    }
+
+    fun refreshListAdapter(){
+        listAdapter.notifyDataSetChanged()
     }
 
     private fun createConfig() = AndesListConfigurationFactory.create(andesListAttrs)

@@ -24,7 +24,9 @@ internal data class AndesListViewItemConfiguration(
         val titleMaxLines: Int,
         val spaceTitleSubtitle: Int,
         val separatorThumbnailWidth: Int,
-        val avatarSize: AndesThumbnailSize
+        val avatarSize: AndesThumbnailSize,
+        val iconSize: Int
+
 )
 
 internal object AndesListViewItemConfigurationFactory {
@@ -47,7 +49,8 @@ internal object AndesListViewItemConfigurationFactory {
                 titleMaxLines = resolveTitleMaxLines(context, size),
                 spaceTitleSubtitle = resolveTitleSubtitleSpace(context, size),
                 separatorThumbnailWidth = resolveSeparatorThumbnailWidth(context, size),
-                avatarSize = resolveAvatarSize(context, size)
+                avatarSize = resolveAvatarSize(context, size),
+                iconSize = resolveIconSize(context, size)
         )
     }
 
@@ -82,5 +85,7 @@ internal object AndesListViewItemConfigurationFactory {
 
     private fun resolveSeparatorThumbnailWidth(context: Context, size: AndesListViewItemSizeInterface) = size.separatorThumbnailWidth(context)
 
-    private fun resolveAvatarSize(context: Context, size: AndesListViewItemSizeInterface) = size.AvatarSize(context)
+    private fun resolveAvatarSize(context: Context, size: AndesListViewItemSizeInterface) = size.avatarSize(context)
+
+    private fun resolveIconSize(context: Context, size: AndesListViewItemSizeInterface) = size.iconSize(context)
 }

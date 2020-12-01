@@ -19,7 +19,8 @@ internal interface AndesListViewItemSizeInterface {
     fun titleMaxLines(context: Context): Int
     fun spaceBetweenTitleAndSubtitle(context: Context): Int
     fun separatorThumbnailWidth(context: Context): Int
-    fun AvatarSize(context: Context): AndesThumbnailSize
+    fun avatarSize(context: Context): AndesThumbnailSize
+    fun iconSize(context: Context): Int
 }
 
 internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
@@ -43,7 +44,9 @@ internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
 
     override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_small).toInt()
 
-    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_32
+    override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_32
+
+    override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_small).toInt()
 }
 
 internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
@@ -67,8 +70,9 @@ internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
 
     override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_medium).toInt()
 
-    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_40
+    override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_40
 
+    override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_medium).toInt()
 }
 
 internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
@@ -92,6 +96,7 @@ internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
 
     override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_large).toInt()
 
-    override fun AvatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_56
+    override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_56
 
+    override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_large).toInt()
 }
