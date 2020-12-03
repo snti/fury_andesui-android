@@ -1,6 +1,7 @@
 # v3.0.0
 ## 🚀 Features
 - Migration AndroidX
+- Fix constraint Radio Button
 
 # v2.18.0
 ## 🚀 Features
