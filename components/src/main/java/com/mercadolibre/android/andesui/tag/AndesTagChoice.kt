@@ -3,8 +3,8 @@ package com.mercadolibre.android.andesui.tag
 import android.animation.LayoutTransition
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue

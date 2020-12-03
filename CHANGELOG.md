@@ -1,7 +1,15 @@
+# v3.0.0
+## 🚀 Features
+- Migration AndroidX
+
 # v2.18.0
 ## 🚀 Features
 - AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
 
+## 🚀 Fixes
+- AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
+
+# v2.17.0
 ## 🚀 Fixes
 - Added Focus listener correctly on EditText of AndesTextField.
 

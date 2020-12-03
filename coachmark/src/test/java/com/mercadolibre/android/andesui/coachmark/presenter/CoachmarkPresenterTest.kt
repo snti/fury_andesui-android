@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.coachmark.presenter
 
 import android.graphics.Rect
 import android.os.Build
-import android.support.v4.widget.NestedScrollView
+import androidx.core.widget.NestedScrollView
 import android.view.View
 import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.coachmark.model.AndesWalkthroughCoachmark
@@ -21,7 +21,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class CoachmarkPresenterTest {
 
     @Mock

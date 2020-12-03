@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.coachmark.view
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.coachmark.R
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault

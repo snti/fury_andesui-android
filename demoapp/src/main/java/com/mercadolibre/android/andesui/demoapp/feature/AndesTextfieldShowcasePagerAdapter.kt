@@ -1,6 +1,6 @@
 package com.mercadolibre.android.andesui.demoapp.feature
 
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import com.mercadolibre.android.andesui.demoapp.R
