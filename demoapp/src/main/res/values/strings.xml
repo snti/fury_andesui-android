@@ -131,11 +131,8 @@
     <string name="andes_checkbox_type">Type</string>
     <string name="andes_checkbox_status">Status</string>
     <string name="andes_checkbox_align">Align</string>
-    <string name="andes_checkbox_text_list_simple">Simple</string>
-    <string name="andes_checkbox_text_list_icon">Icon</string>
-    <string name="andes_checkbox_text_list_chevron">Chevron</string>
-    <string name="andes_checkbox_text_list_thumbnail">Thumbnail</string>
-
+    <string name="andes_checkbox_text_list_divider">Divider</string>
+    <string name="andes_checkbox_text_list_selection">Selection</string>
 
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
@@ -144,6 +141,10 @@
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
 
+    <string name="andes_radiobutton_text_list_simple">Simple</string>
+    <string name="andes_radiobutton_text_list_icon">Icon</string>
+    <string name="andes_radiobutton_text_list_chevron">Chevron</string>
+    <string name="andes_radiobutton_text_list_thumbnail">Thumbnail</string>
     <string name="andes_radiobutton_text">Andes radiobutton</string>
     <string name="andes_radiobutton_type">Type</string>
     <string name="andes_radiobutton_status">Status</string>

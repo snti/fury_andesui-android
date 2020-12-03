@@ -2,7 +2,6 @@ package com.mercadolibre.android.andesui.list.utils
 
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +23,13 @@ class AndesListAdapter(
         private var listType: AndesListType
 ) : RecyclerView.Adapter<AndesListAdapter.ViewHolder>() {
 
+    private enum class LayoutType(val value: Int) {
+        SIMPLE(0),
+        CHEVRON(1),
+        CHECK_BOX(2),
+        RADIO_BUTTON(3)
+    }
+
     override fun getItemCount() = delegate.getDataSetSize()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
@@ -32,37 +38,25 @@ class AndesListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val layout = when (viewType) {
-            0 -> R.layout.andes_layout_list_item_simple
-            1 -> R.layout.andes_layout_list_item_chevron
-            2 -> R.layout.andes_layout_list_item_check_box
-            3 -> R.layout.andes_layout_list_item_radio_button
+            LayoutType.SIMPLE.value -> R.layout.andes_layout_list_item_simple
+            LayoutType.CHEVRON.value -> R.layout.andes_layout_list_item_chevron
+            LayoutType.CHECK_BOX.value -> R.layout.andes_layout_list_item_check_box
+            LayoutType.RADIO_BUTTON.value -> R.layout.andes_layout_list_item_radio_button
             else -> R.layout.andes_layout_list_item_simple
         }
 
-/*
-       val layout = when (listType) {
-           AndesListType.SIMPLE -> R.layout.andes_layout_list_item_simple
-           AndesListType.CHEVRON -> R.layout.andes_layout_list_item_chevron
-           AndesListType.CHECK_BOX -> R.layout.andes_layout_list_item_check_box
-           AndesListType.RADIO_BUTTON -> R.layout.andes_layout_list_item_radio_button
-       }
-*/
         return ViewHolder(LayoutInflater
                 .from(parent.context)
                 .inflate(layout, parent, false))
     }
 
     override fun getItemViewType(position: Int): Int {
-
-        val layout = when (listType) {
-            AndesListType.SIMPLE -> 0
-            AndesListType.CHEVRON -> 1
-            AndesListType.CHECK_BOX -> 2
-            AndesListType.RADIO_BUTTON -> 3
+        return when (listType) {
+            AndesListType.SIMPLE -> LayoutType.SIMPLE.value
+            AndesListType.CHEVRON -> LayoutType.CHEVRON.value
+            AndesListType.CHECK_BOX -> LayoutType.CHECK_BOX.value
+            AndesListType.RADIO_BUTTON -> LayoutType.RADIO_BUTTON.value
         }
-
-
-        return layout
     }
 
     internal fun changeAndesListType(listType: AndesListType) {
@@ -118,71 +112,30 @@ class AndesListAdapter(
             bindItemCommons(andesListItemConfig)
         }
 
+        private fun setAssetItemPosition(functionToCalculateTopMargin: () -> Int) {
+            titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
+
+                    val layoutParams = andesListItemIcon.layoutParams as LinearLayout.LayoutParams
+                    val topMargin = functionToCalculateTopMargin()
+
+                    layoutParams.setMargins(
+                            0,
+                            topMargin,
+                            0,
+                            0
+                    )
+
+                    andesListItemIcon.layoutParams = layoutParams
+
+                    return true
+                }
+
+            })
+        }
+
         private fun bindItemCommons(andesListItemConfig: AndesListViewItem) {
-            andesListItemConfig.icon?.let {
-                andesListItemIcon.visibility = View.VISIBLE
-                andesListItemIcon.layoutParams.width = andesListItemConfig.iconSize
-                andesListItemIcon.layoutParams.height = andesListItemConfig.iconSize
-                andesListItemIcon.setImageDrawable(it)
-
-                showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
-
-                titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                    override fun onPreDraw(): Boolean {
-                        titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
-
-                        val lp = andesListItemIcon.layoutParams as LinearLayout.LayoutParams
-
-                        lp.setMargins(
-                                0,
-                                calculateIconTopMargin(),
-                                0,
-                                0
-                        )
-
-                        andesListItemIcon.layoutParams = lp
-
-                        return true
-                    }
-
-                })
-            }
-
-            andesListItemConfig.avatar?.let {
-                andesListItemAvatar.visibility = View.VISIBLE
-                andesListItemAvatar.size = andesListItemConfig.thumbnailSize
-                andesListItemAvatar.image = it
-
-                showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
-
-                titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                    override fun onPreDraw(): Boolean {
-                        titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
-
-                        val lp = andesListItemAvatar.layoutParams as LinearLayout.LayoutParams
-
-                        lp.setMargins(
-                                0,
-                                calculateAssetTopMargin(),
-                                0,
-                                0
-                        )
-
-                        andesListItemAvatar.layoutParams = lp
-
-                        return true
-                    }
-
-                })
-            }
-
-            andesListItemContainer.setPadding(
-                    andesListItemConfig.paddingLeft,
-                    0,
-                    andesListItemConfig.paddingRight,
-                    0
-            )
-
             titleTextView.text = andesListItemConfig.title
             titleTextView.maxLines = andesListItemConfig.titleMaxLines
             titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.titleFontSize)
@@ -197,34 +150,65 @@ class AndesListAdapter(
                 subtitleTextView.setTextColor(andesListItemConfig.subtitleColor)
                 subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.subtitleFontSize)
 
-                val lpSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
+                val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
 
-                lpSubtitle.setMargins(
+                layoutParamSubtitle.setMargins(
                         0,
                         0,
                         0,
                         andesListItemConfig.paddingBottom
                 )
 
-                subtitleTextView.layoutParams = lpSubtitle
+                subtitleTextView.layoutParams = layoutParamSubtitle
             }
 
-            val lpTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
+            val layoutParamsTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
             val titleMarginBottom = if (andesListItemConfig.subtitle.isEmpty()) andesListItemConfig.paddingBottom else 0
 
-            lpTitle.setMargins(
+            layoutParamsTitle.setMargins(
                     0,
                     andesListItemConfig.paddingTop,
                     0,
                     titleMarginBottom
             )
 
-            titleTextView.layoutParams = lpTitle
+            titleTextView.layoutParams = layoutParamsTitle
 
-            if (andesListItemConfig.itemSelected) {
-                andesListItemSelectionView.visibility = View.VISIBLE
+            andesListItemConfig.itemSelected?.let {
+                if (it) {
+                    andesListItemSelectionView.visibility = View.VISIBLE
+                }
             }
 
+            andesListItemConfig.icon?.let {
+                andesListItemIcon.visibility = View.VISIBLE
+                andesListItemIcon.layoutParams.width = andesListItemConfig.iconSize
+                andesListItemIcon.layoutParams.height = andesListItemConfig.iconSize
+                andesListItemIcon.setImageDrawable(it)
+
+                showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
+                setAssetItemPosition {
+                    calculateIconTopMargin()
+                }
+            }
+
+            andesListItemConfig.avatar?.let {
+                andesListItemAvatar.visibility = View.VISIBLE
+                andesListItemAvatar.size = andesListItemConfig.thumbnailSize
+                andesListItemAvatar.image = it
+
+                showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
+                setAssetItemPosition {
+                  calculateAvatarTopMargin()
+                }
+            }
+
+            andesListItemContainer.setPadding(
+                    andesListItemConfig.paddingLeft,
+                    0,
+                    andesListItemConfig.paddingRight,
+                    0
+            )
 
         }
 
@@ -234,10 +218,11 @@ class AndesListAdapter(
             val textViewTitleHeight = titleTextView.measuredHeight
             val numberOfLines = titleTextView.lineCount
 
-            return  (textViewTitleHeight / numberOfLines) / 2 + layoutParams.topMargin - assetHalfHeight
+            return (textViewTitleHeight / numberOfLines) / 2 + layoutParams.topMargin - assetHalfHeight
         }
 
-        private fun calculateAssetTopMargin(): Int {
+        //TODO documentar
+        private fun calculateAvatarTopMargin(): Int {
             var topMargin = 0
 
             val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams

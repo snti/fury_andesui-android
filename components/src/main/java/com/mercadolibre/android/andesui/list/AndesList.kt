@@ -100,7 +100,7 @@ class AndesList : ConstraintLayout {
      *
      */
     private fun updateDynamicComponents(config: AndesListConfiguration) {
-        setupDividerEnabled(config.dividerEnabled)
+        setupDivider(config.dividerEnabled)
     }
 
     private fun initAttrs(size: AndesListViewItemSize, type: AndesListType) {
@@ -123,14 +123,20 @@ class AndesList : ConstraintLayout {
      * Set recyclerview
      */
     private fun setupRecyclerViewComponent(config: AndesListConfiguration) {
-        setupDividerEnabled(config.dividerEnabled)
+        setupDivider(config.dividerEnabled)
         recyclerViewComponent.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun setupDividerEnabled(enabled: Boolean) {
+    private fun setupDivider(enabled: Boolean) {
         if (enabled) {
-            val itemDecor = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-            recyclerViewComponent.addItemDecoration(itemDecor)
+            if (recyclerViewComponent.itemDecorationCount < 1) {
+                val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+                recyclerViewComponent.addItemDecoration(itemDecorator)
+            }
+        } else {
+            while (recyclerViewComponent.itemDecorationCount > 0) {
+                recyclerViewComponent.removeItemDecorationAt(0);
+            }
         }
     }
 
@@ -152,7 +158,7 @@ class AndesList : ConstraintLayout {
         }
     }
 
-    fun refreshListAdapter(){
+    fun refreshListAdapter() {
         listAdapter.notifyDataSetChanged()
     }
 

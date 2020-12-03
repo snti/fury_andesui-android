@@ -24,14 +24,14 @@ open class AndesListViewItem {
     var subtitleTypeFace: Typeface = Typeface.DEFAULT
     var titleMaxLines: Int = 50
     var spaceTitleSubtitle = 0
-    var itemSelected = false
+    var itemSelected: Boolean? = false
     var thumbnailSize: AndesThumbnailSize = AndesThumbnailSize.SIZE_32
     var separatorThumbnailWidth: Int = 0
     var iconSize: Int = 0
     var icon: Drawable? = null
     var avatar: Drawable? = null
 
-    internal fun andesListViewItemConfig(title: String, subtitle: String, config: AndesListViewItemConfiguration, itemSelected: Boolean = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    internal fun andesListViewItemConfig(title: String, subtitle: String, config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         this.title = title
         this.subtitle = subtitle
         this.paddingBottom = config.paddingBottom
@@ -57,45 +57,48 @@ open class AndesListViewItem {
     }
 }
 
-class AndesListViewItemSimple : AndesListViewItem {
+class AndesListViewItemSimple(
+        context: Context,
+        title: String,
+        subtitle: String,
+        itemSelected: Boolean = false,
+        size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
+        icon: Drawable? = null,
+        avatar: Drawable? = null,
+        titleMaxLines: Int = 50
 
-    constructor(context: Context, title: String, itemSelected: Boolean = false, size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM, icon: Drawable? = null, avatar: Drawable? = null) {
-        val config = AndesListViewItemConfigurationFactory.create(context, size, false)
-        this.andesListViewItemSimpleConfig(title = title, config = config, itemSelected = itemSelected, avatar = avatar)
-    }
+) : AndesListViewItem() {
 
-    constructor(context: Context, title: String, itemSelected: Boolean = false, size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM, icon: Drawable? = null) {
-        val config = AndesListViewItemConfigurationFactory.create(context, size, false)
-        this.andesListViewItemSimpleConfig(title = title, config = config, itemSelected = itemSelected)
-    }
-
-    constructor(context: Context, title: String, subtitle: String, itemSelected: Boolean = false, size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    init {
         val config = AndesListViewItemConfigurationFactory.create(context, size, subtitle.isNotEmpty())
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewItemSimpleConfig(title: String, subtitle: String = "", config: AndesListViewItemConfiguration, itemSelected: Boolean = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    private fun andesListViewItemSimpleConfig(title: String, subtitle: String = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
 }
 
+class AndesListViewItemChevron(
+        context: Context,
+        title: String,
+        subtitle: String,
+        itemSelected: Boolean = false,
+        size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
+        icon: Drawable? = null,
+        avatar: Drawable? = null,
+        titleMaxLines: Int = 50
 
-class AndesListViewItemChevron : AndesListViewItem {
+) : AndesListViewItem() {
 
-    constructor(context: Context, title: String, itemSelected: Boolean = false, size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM, icon: Drawable? = null, avatar: Drawable? = null) {
-        val config = AndesListViewItemConfigurationFactory.create(context, size, false)
-        this.andesListViewChevronItemConfig(title, itemSelected = itemSelected, config = config, icon = icon, avatar = avatar)
-    }
-
-    constructor(context: Context, title: String, subtitle: String, itemSelected: Boolean = false, size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    init {
         val config = AndesListViewItemConfigurationFactory.create(context, size, subtitle.isNotEmpty())
-        this.andesListViewChevronItemConfig(title, subtitle, itemSelected, config, icon, avatar, titleMaxLines)
+        this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewChevronItemConfig(title: String, subtitle: String = "", itemSelected: Boolean = false, config: AndesListViewItemConfiguration, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    private fun andesListViewItemSimpleConfig(title: String, subtitle: String = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
-
     }
 
 }
