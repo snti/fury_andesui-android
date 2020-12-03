@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.badge
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
-import android.support.v7.widget.CardView
+import androidx.cardview.widget.CardView
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity

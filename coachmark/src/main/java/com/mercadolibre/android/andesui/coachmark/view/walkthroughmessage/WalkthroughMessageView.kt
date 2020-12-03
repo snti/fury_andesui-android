@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.coachmark.view.walkthroughmessage
 
 import android.content.Context
 import android.graphics.Rect
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
 import com.mercadolibre.android.andesui.coachmark.R

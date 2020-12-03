@@ -16,7 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
 
 @RunWith(MockitoJUnitRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesCodeFocusManagementTest {
 
     @Mock private lateinit var onNextFocus: NextFocus

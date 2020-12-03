@@ -3,7 +3,7 @@ package com.mercadolibre.android.andesui.demoapp.feature
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.TypedValue
 import android.view.View
 import android.widget.ArrayAdapter

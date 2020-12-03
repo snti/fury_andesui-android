@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.textfield
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType

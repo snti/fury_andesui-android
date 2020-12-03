@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP] )
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP] )
 class AndesBottomSheetConfigurationFactoryTest {
 
     private val configFactory = Mockito.spy(AndesBottomSheetConfigurationFactory)
