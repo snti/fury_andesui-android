@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.list.type
 
 /**
- *
+ *This class Handles the AndesListTypes based on {SIMPLE,CHEVRON,CHECK_BOX,RADIO_BUTTON} values
  */
 enum class AndesListType {
     SIMPLE,

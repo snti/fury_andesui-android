@@ -137,6 +137,11 @@ class AndesListAdapter(
             })
         }
 
+        /**
+         * Build Andes List item based on AndesListViewItem configuration
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
         private fun bindItemCommons(andesListItemConfig: AndesListViewItem) {
             titleTextView.text = andesListItemConfig.title
             titleTextView.maxLines = andesListItemConfig.titleMaxLines
@@ -145,23 +150,7 @@ class AndesListAdapter(
             titleTextView.setTextColor(andesListItemConfig.titleColor)
 
             if (!andesListItemConfig.subtitle.isNullOrEmpty()) {
-                showSpaceBetweenTitleAndSubtitle(andesListItemConfig.spaceTitleSubtitle)
-
-                subtitleTextView.visibility = View.VISIBLE
-                subtitleTextView.text = andesListItemConfig.subtitle
-                subtitleTextView.setTextColor(andesListItemConfig.subtitleColor)
-                subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.subtitleFontSize)
-
-                val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
-
-                layoutParamSubtitle.setMargins(
-                        0,
-                        0,
-                        0,
-                        andesListItemConfig.paddingBottom
-                )
-
-                subtitleTextView.layoutParams = layoutParamSubtitle
+                setAndesListSubtitleConfiguration(andesListItemConfig)
             }
 
             val layoutParamsTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
@@ -182,6 +171,50 @@ class AndesListAdapter(
                 }
             }
 
+            setAndesListIconConfiguration(andesListItemConfig)
+
+            setAndesListAvatarConfiguration(andesListItemConfig)
+
+            andesListItemContainer.setPadding(
+                    andesListItemConfig.paddingLeft,
+                    0,
+                    andesListItemConfig.paddingRight,
+                    0
+            )
+
+        }
+
+        /**
+         * Set AndesList subtitle configuration based on AndesListViewItem data
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListSubtitleConfiguration(andesListItemConfig: AndesListViewItem) {
+            showSpaceBetweenTitleAndSubtitle(andesListItemConfig.spaceTitleSubtitle)
+
+            subtitleTextView.visibility = View.VISIBLE
+            subtitleTextView.text = andesListItemConfig.subtitle
+            subtitleTextView.setTextColor(andesListItemConfig.subtitleColor)
+            subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.subtitleFontSize)
+
+            val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
+
+            layoutParamSubtitle.setMargins(
+                    0,
+                    0,
+                    0,
+                    andesListItemConfig.paddingBottom
+            )
+
+            subtitleTextView.layoutParams = layoutParamSubtitle
+        }
+
+        /**
+         * Set AndesList icon configuration based on AndesListViewItem config
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListIconConfiguration(andesListItemConfig: AndesListViewItem) {
             andesListItemConfig.icon?.let {
                 andesListItemIcon.visibility = View.VISIBLE
                 andesListItemIcon.layoutParams.width = andesListItemConfig.iconSize
@@ -194,7 +227,14 @@ class AndesListAdapter(
                     calculateIconTopMargin()
                 }
             }
+        }
 
+        /**
+         * Set AndesList Avatar configuration based on AndesListViewItem config
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListAvatarConfiguration(andesListItemConfig: AndesListViewItem) {
             andesListItemConfig.avatar?.let {
                 andesListItemAvatar.visibility = View.VISIBLE
                 andesListItemAvatar.size = andesListItemConfig.thumbnailSize
@@ -206,16 +246,11 @@ class AndesListAdapter(
                     calculateAvatarTopMargin()
                 }
             }
-
-            andesListItemContainer.setPadding(
-                    andesListItemConfig.paddingLeft,
-                    0,
-                    andesListItemConfig.paddingRight,
-                    0
-            )
-
         }
 
+        /**
+         * Calculate margin top of Andes icon based on title position
+         */
         private fun calculateIconTopMargin(): Int {
             val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
             val assetHalfHeight = andesListItemIcon.height / 2
@@ -225,7 +260,9 @@ class AndesListAdapter(
             return (textViewTitleHeight / numberOfLines) / 2 + layoutParams.topMargin - assetHalfHeight
         }
 
-        //TODO documentar
+        /**
+         * Calculate Andes Avatar top margin to draw it correctly based on title and subtitle position
+         */
         private fun calculateAvatarTopMargin(): Int {
             var topMargin = 0
 

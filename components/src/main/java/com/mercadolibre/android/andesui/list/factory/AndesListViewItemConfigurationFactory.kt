@@ -54,9 +54,6 @@ internal object AndesListViewItemConfigurationFactory {
         )
     }
 
-    /**
-     *
-     */
     private fun resolveTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_800)
 
     private fun resolveSubTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_450)
