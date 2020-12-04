@@ -2,10 +2,12 @@ package com.mercadolibre.android.andesui.list
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.DividerItemDecoration
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.ItemDecoration
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import com.mercadolibre.android.andesui.R
@@ -17,6 +19,8 @@ import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
+import com.mercadolibre.android.andesui.list.utils.AndesListDividerItemDecoration
+
 
 class AndesList : ConstraintLayout {
 
@@ -32,7 +36,7 @@ class AndesList : ConstraintLayout {
         set(value) {
             andesListDelegate = value
             val config = createConfig()
-            listAdapter = AndesListAdapter(andesListDelegate, config.type)
+            listAdapter = AndesListAdapter(this, andesListDelegate, config.type)
             recyclerViewComponent.adapter = listAdapter
         }
 
@@ -130,13 +134,26 @@ class AndesList : ConstraintLayout {
     private fun setupDivider(enabled: Boolean) {
         if (enabled) {
             if (recyclerViewComponent.itemDecorationCount < 1) {
-                val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                recyclerViewComponent.addItemDecoration(itemDecorator)
+                addDivider()
             }
         } else {
-            while (recyclerViewComponent.itemDecorationCount > 0) {
-                recyclerViewComponent.removeItemDecorationAt(0);
-            }
+            removeDivider()
+        }
+    }
+
+    private fun addDivider() {
+        val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.andes_list_item_divider)
+        if (dividerDrawable != null) {
+            val dividerItemDecoration: ItemDecoration = AndesListDividerItemDecoration(dividerDrawable)
+            recyclerViewComponent.addItemDecoration(dividerItemDecoration)
+        } else {
+            Log.d("AndesList", "Error adding list divider")
+        }
+    }
+
+    private fun removeDivider() {
+        while (recyclerViewComponent.itemDecorationCount > 0) {
+            recyclerViewComponent.removeItemDecorationAt(0);
         }
     }
 

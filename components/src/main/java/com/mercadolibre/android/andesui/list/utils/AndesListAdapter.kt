@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.list.AndesList
 import com.mercadolibre.android.andesui.list.AndesListViewItem
 import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
@@ -19,6 +20,7 @@ import com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
 
 
 class AndesListAdapter(
+        private val andesList: AndesList,
         private val delegate: AndesListDelegate,
         private var listType: AndesListType
 ) : RecyclerView.Adapter<AndesListAdapter.ViewHolder>() {
@@ -33,7 +35,7 @@ class AndesListAdapter(
     override fun getItemCount() = delegate.getDataSetSize()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(delegate, position)
+            holder.bind(andesList, delegate, position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -73,18 +75,18 @@ class AndesListAdapter(
         private lateinit var andesListItemIcon: ImageView
         private lateinit var andesViewThumbnailSeparator: View
 
-        fun bind(delegate: AndesListDelegate, position: Int) {
+        fun bind(andesList: AndesList, delegate: AndesListDelegate, position: Int) {
 
-            val andesListItemConfig = delegate.bind(itemView, position)
+            val andesListItemConfig = delegate.bind(andesList, itemView, position)
 
             titleTextView = itemView.findViewById(R.id.text_view_item_title)
             subtitleTextView = itemView.findViewById(R.id.text_view_item_sub_title)
             spaceTitleSubtitleView = itemView.findViewById<View>(R.id.view_space_title_subtitle)
             andesListItemContainer = itemView.findViewById<View>(R.id.andes_list_item_container)
             andesListItemSelectionView = itemView.findViewById<View>(R.id.view_item_selected)
-            andesListItemAvatar = itemView.findViewById(R.id.andes_list_item_asset) // TODO esta en todos los items?
-            andesViewThumbnailSeparator = itemView.findViewById(R.id.andesViewThumbnailSeparator) // TODO esta en todos los items?
-            andesListItemIcon = itemView.findViewById(R.id.image_view_list_item_icon) // TODO esta en todos los items?
+            andesListItemAvatar = itemView.findViewById(R.id.andes_list_item_asset)
+            andesViewThumbnailSeparator = itemView.findViewById(R.id.andesViewThumbnailSeparator)
+            andesListItemIcon = itemView.findViewById(R.id.image_view_list_item_icon)
 
             // Default visibility state
             subtitleTextView.visibility = View.GONE
@@ -112,12 +114,12 @@ class AndesListAdapter(
             bindItemCommons(andesListItemConfig)
         }
 
-        private fun setAssetItemPosition(functionToCalculateTopMargin: () -> Int) {
+        private fun setAssetItemPosition(asset: View, functionToCalculateTopMargin: () -> Int) {
             titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
 
-                    val layoutParams = andesListItemIcon.layoutParams as LinearLayout.LayoutParams
+                    val layoutParams = asset.layoutParams as LinearLayout.LayoutParams
                     val topMargin = functionToCalculateTopMargin()
 
                     layoutParams.setMargins(
@@ -127,7 +129,7 @@ class AndesListAdapter(
                             0
                     )
 
-                    andesListItemIcon.layoutParams = layoutParams
+                    asset.layoutParams = layoutParams
 
                     return true
                 }
@@ -187,7 +189,8 @@ class AndesListAdapter(
                 andesListItemIcon.setImageDrawable(it)
 
                 showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
-                setAssetItemPosition {
+
+                setAssetItemPosition(andesListItemIcon) {
                     calculateIconTopMargin()
                 }
             }
@@ -198,8 +201,9 @@ class AndesListAdapter(
                 andesListItemAvatar.image = it
 
                 showSpaceBetweenAssetAndTitle(andesListItemConfig.separatorThumbnailWidth)
-                setAssetItemPosition {
-                  calculateAvatarTopMargin()
+
+                setAssetItemPosition(andesListItemAvatar) {
+                    calculateAvatarTopMargin()
                 }
             }
 

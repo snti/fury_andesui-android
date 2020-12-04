@@ -31,7 +31,7 @@ internal data class AndesListViewItemConfiguration(
 
 internal object AndesListViewItemConfigurationFactory {
 
-    fun create(context: Context, andesListViewItemSize: AndesListViewItemSize, hasSubTitle: Boolean): AndesListViewItemConfiguration {
+    fun create(context: Context, andesListViewItemSize: AndesListViewItemSize): AndesListViewItemConfiguration {
         val size = andesListViewItemSize.size
 
         return AndesListViewItemConfiguration(

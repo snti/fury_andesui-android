@@ -45,6 +45,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     private lateinit var andesListDivider: AndesCheckbox
     private lateinit var andesListSelection: AndesCheckbox
 
+    companion object {
+        const val LIST_SIZE = 100
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
@@ -62,7 +66,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         andesList = adapter.views[0].andesList
         andesList.dividerItemEnabled = true
         andesList.delegate = this
-        //  andesList.size = AndesListViewItemSize.LARGE
 
         handleListeners(adapter.views[0])
     }
@@ -161,6 +164,8 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
         sizeSpinner.setSelection(1)
 
+        //TODO clear radio buttons and check boxes
+
         avatar = null
         icon = null
 
@@ -248,14 +253,18 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         }
     }
 
+    override fun getDataSetSize(): Int = LIST_SIZE
+
     override fun onItemClick(position: Int) {
-        Toast.makeText(this, getDataSet()[position].title, Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(this, "Position of item selected $position", Toast.LENGTH_SHORT).show()
+
         itemSelectedPosition = position
 
         andesList.refreshListAdapter()
     }
 
-    override fun bind(view: View, position: Int): AndesListViewItem {
+    override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
         val row: AndesListViewItem?
 
         val showItemSelected = showItemSelections && itemSelectedPosition == position
@@ -271,7 +280,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     titleMaxLines = titleNumberOfLines,
                     itemSelected = showItemSelected
             )
-
         } else {
             row = AndesListViewItemChevron(
                     this,
@@ -283,30 +291,9 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     titleMaxLines = titleNumberOfLines,
                     itemSelected = showItemSelected
             )
-
         }
-
-//        if (position == 1) {
-//            val drawable = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-//            row = AndesListViewItemSimple(this, getDataSet()[position].title, itemSelected = (position == itemSelectedPosition), avatar = drawable, size = andesList.size)
-//        } else {
-//            row = AndesListViewItemSimple(this, getDataSet()[position].title, getDataSet()[position].subtitle, itemSelected = (position == itemSelectedPosition), size = andesList.size)
-//        }
 
         return row
     }
 
-    override fun getDataSetSize(): Int = getDataSet().size
-
-    private fun getDataSet() = listOf(
-            Model("title 1", "Desc 1", false),
-            Model("title 2 largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "Desc 2", true),
-            Model("title 3", "Descripcion largaaaaaaaaaaaaaa", false),
-            Model("title 4", "Descripcion", false),
-            Model("title 5", "Descripcion", false),
-            Model("title 6", "Descripcion", false),
-            Model("title 7", "Descripcion", false),
-            Model("title 8", "Descripcion", false))
-
-    class Model(val title: String, val subtitle: String, val selected: Boolean)
 }

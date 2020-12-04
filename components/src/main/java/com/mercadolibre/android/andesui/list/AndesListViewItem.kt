@@ -10,7 +10,7 @@ import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 
 open class AndesListViewItem {
     var title: String = ""
-    var subtitle: String = ""
+    var subtitle: String? = ""
     var paddingLeft: Int = 0
     var paddingRight: Int = 0
     var paddingTop: Int = 0
@@ -31,7 +31,7 @@ open class AndesListViewItem {
     var icon: Drawable? = null
     var avatar: Drawable? = null
 
-    internal fun andesListViewItemConfig(title: String, subtitle: String, config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    internal fun andesListViewItemConfig(title: String, subtitle: String?, config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         this.title = title
         this.subtitle = subtitle
         this.paddingBottom = config.paddingBottom
@@ -60,7 +60,7 @@ open class AndesListViewItem {
 class AndesListViewItemSimple(
         context: Context,
         title: String,
-        subtitle: String,
+        subtitle: String?,
         itemSelected: Boolean = false,
         size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
         icon: Drawable? = null,
@@ -70,11 +70,11 @@ class AndesListViewItemSimple(
 ) : AndesListViewItem() {
 
     init {
-        val config = AndesListViewItemConfigurationFactory.create(context, size, subtitle.isNotEmpty())
+        val config = AndesListViewItemConfigurationFactory.create(context, size)
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewItemSimpleConfig(title: String, subtitle: String = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
+    private fun andesListViewItemSimpleConfig(title: String, subtitle: String? = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
@@ -93,7 +93,7 @@ class AndesListViewItemChevron(
 ) : AndesListViewItem() {
 
     init {
-        val config = AndesListViewItemConfigurationFactory.create(context, size, subtitle.isNotEmpty())
+        val config = AndesListViewItemConfigurationFactory.create(context, size)
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
