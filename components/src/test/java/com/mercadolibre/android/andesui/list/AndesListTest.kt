@@ -36,26 +36,26 @@ class AndesListTest {
     private var context = RuntimeEnvironment.application
 
     companion object {
-        private const val SIZE = 0
+        private const val SIZE = 10
     }
 
-//    @Test
-//    fun `test delegate`() {
-//        val andesListDelegate = object : AndesListDelegate {
-//            override fun onItemClick(position: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
-//                return AndesListViewItemSimple(
-//                        context,
-//                        "test")
-//            }
-//
-//            override fun getDataSetSize(): Int = SIZE
-//
-//        }
-//    }
+    @Test
+    fun `test delegate`() {
+        val andesListDelegate = object : AndesListDelegate {
+            override fun onItemClick(position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
+                return AndesListViewItemSimple(
+                        context,
+                        "test")
+            }
+
+            override fun getDataSetSize(): Int = SIZE
+
+        }
+    }
 
     @Test
     fun `test list with different sizes`() {

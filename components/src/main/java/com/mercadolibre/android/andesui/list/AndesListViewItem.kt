@@ -10,7 +10,7 @@ import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 
 open class AndesListViewItem {
     var title: String = ""
-    var subtitle: String = ""
+    var subtitle: String? = ""
     var paddingLeft: Int = 0
     var paddingRight: Int = 0
     var paddingTop: Int = 0
@@ -60,7 +60,7 @@ open class AndesListViewItem {
 class AndesListViewItemSimple(
         context: Context,
         title: String,
-        subtitle: String?,
+        subtitle: String? = null,
         itemSelected: Boolean = false,
         size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
         icon: Drawable? = null,
