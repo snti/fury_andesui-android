@@ -144,7 +144,7 @@ class AndesListAdapter(
             titleTextView.typeface = andesListItemConfig.titleTypeFace
             titleTextView.setTextColor(andesListItemConfig.titleColor)
 
-            if (andesListItemConfig.subtitle.isNotEmpty()) {
+            if (!andesListItemConfig.subtitle.isNullOrEmpty()) {
                 showSpaceBetweenTitleAndSubtitle(andesListItemConfig.spaceTitleSubtitle)
 
                 subtitleTextView.visibility = View.VISIBLE
@@ -165,7 +165,7 @@ class AndesListAdapter(
             }
 
             val layoutParamsTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
-            val titleMarginBottom = if (andesListItemConfig.subtitle.isEmpty()) andesListItemConfig.paddingBottom else 0
+            val titleMarginBottom = if (!andesListItemConfig.subtitle.isNullOrEmpty()) andesListItemConfig.paddingBottom else 0
 
             layoutParamsTitle.setMargins(
                     0,
