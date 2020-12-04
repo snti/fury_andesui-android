@@ -21,6 +21,8 @@ internal interface AndesListViewItemSizeInterface {
     fun separatorThumbnailWidth(context: Context): Int
     fun avatarSize(context: Context): AndesThumbnailSize
     fun iconSize(context: Context): Int
+    fun chevronSize(context: Context): Int
+    fun showSubtitle(context: Context): Boolean
 }
 
 internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
@@ -47,6 +49,10 @@ internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_32
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_small).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_small).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = false
 }
 
 internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
@@ -73,6 +79,10 @@ internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_40
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_medium).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_medium).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = true
 }
 
 internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
@@ -99,4 +109,8 @@ internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_56
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_large).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_large).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = true
 }

@@ -25,8 +25,9 @@ internal data class AndesListViewItemConfiguration(
         val spaceTitleSubtitle: Int,
         val separatorThumbnailWidth: Int,
         val avatarSize: AndesThumbnailSize,
-        val iconSize: Int
-
+        val iconSize: Int,
+        val chevronSize: Int,
+        val showSubtitle : Boolean
 )
 
 internal object AndesListViewItemConfigurationFactory {
@@ -50,13 +51,12 @@ internal object AndesListViewItemConfigurationFactory {
                 spaceTitleSubtitle = resolveTitleSubtitleSpace(context, size),
                 separatorThumbnailWidth = resolveSeparatorThumbnailWidth(context, size),
                 avatarSize = resolveAvatarSize(context, size),
-                iconSize = resolveIconSize(context, size)
+                iconSize = resolveIconSize(context, size),
+                chevronSize = resolveChevronSize(context, size),
+                showSubtitle = resolveShowSubtitle(context, size)
         )
     }
 
-    /**
-     *
-     */
     private fun resolveTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_800)
 
     private fun resolveSubTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_450)
@@ -88,4 +88,8 @@ internal object AndesListViewItemConfigurationFactory {
     private fun resolveAvatarSize(context: Context, size: AndesListViewItemSizeInterface) = size.avatarSize(context)
 
     private fun resolveIconSize(context: Context, size: AndesListViewItemSizeInterface) = size.iconSize(context)
+
+    private fun resolveChevronSize(context: Context, size: AndesListViewItemSizeInterface) = size.chevronSize(context)
+
+    private fun resolveShowSubtitle(context: Context, size: AndesListViewItemSizeInterface) = size.showSubtitle(context)
 }
