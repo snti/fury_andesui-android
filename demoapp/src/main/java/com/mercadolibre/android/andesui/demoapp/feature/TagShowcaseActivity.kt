@@ -32,7 +32,11 @@ import com.mercadolibre.android.andesui.tag.AndesTagSimple
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
 import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
-import com.mercadolibre.android.andesui.tag.leftcontent.*
+import com.mercadolibre.android.andesui.tag.leftcontent.IconSize
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentImage
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield

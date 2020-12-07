@@ -43,6 +43,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
     }
 
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
+        private val textAreaCounter = 50
 
         var views: List<View>
 
@@ -241,7 +242,7 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
                 textarea.label = null
                 textarea.placeholder = null
                 textarea.helper = null
-                textarea.counter = 50
+                textarea.counter = textAreaCounter
                 textarea.state = AndesTextfieldState.IDLE
             }
 
