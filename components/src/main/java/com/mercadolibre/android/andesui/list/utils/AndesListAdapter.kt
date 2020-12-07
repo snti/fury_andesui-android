@@ -134,7 +134,6 @@ class AndesListAdapter(
             layoutParamsChevron.height = andesListItemConfig.chevronSize
             layoutParamsChevron.width = andesListItemConfig.chevronSize
 
-
             setChevronPosition(andesListItemChevron) {
                 calculateChevronTopMargin(andesListItemConfig, andesListItemChevron)
             }
@@ -208,23 +207,7 @@ class AndesListAdapter(
             titleTextView.setTextColor(itemConfig.titleColor)
 
             if (itemConfig.showSubtitle && !itemConfig.subtitle.isNullOrEmpty()) {
-                showSpaceBetweenTitleAndSubtitle(itemConfig.spaceTitleSubtitle)
-
-                subtitleTextView.visibility = View.VISIBLE
-                subtitleTextView.text = itemConfig.subtitle
-                subtitleTextView.setTextColor(itemConfig.subtitleColor)
-                subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.subtitleFontSize)
-
-                val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
-
-                layoutParamSubtitle.setMargins(
-                        0,
-                        0,
-                        0,
-                        itemConfig.paddingBottom
-                )
-
-                subtitleTextView.layoutParams = layoutParamSubtitle
+                setAndesListSubtitleConfiguration(itemConfig)
             }
 
             val layoutParamsTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
@@ -254,14 +237,14 @@ class AndesListAdapter(
             }
 
 
-            setAndesListIconConfiguration(andesListItemConfig)
+            setAndesListIconConfiguration(itemConfig)
 
-            setAndesListAvatarConfiguration(andesListItemConfig)
+            setAndesListAvatarConfiguration(itemConfig)
 
             andesListItemContainer.setPadding(
-                    andesListItemConfig.paddingLeft,
+                    itemConfig.paddingLeft,
                     0,
-                    andesListItemConfig.paddingRight,
+                    itemConfig.paddingRight,
                     0
             )
 
@@ -270,15 +253,15 @@ class AndesListAdapter(
         /**
          * Set AndesList subtitle configuration based on AndesListViewItem data
          *
-         * @param andesListItemConfig current AndesListViewItem config
+         * @param itemConfig current AndesListViewItem config
          */
-        private fun setAndesListSubtitleConfiguration(andesListItemConfig: AndesListViewItem) {
-            showSpaceBetweenTitleAndSubtitle(andesListItemConfig.spaceTitleSubtitle)
+        private fun setAndesListSubtitleConfiguration(itemConfig: AndesListViewItem) {
+            showSpaceBetweenTitleAndSubtitle(itemConfig.spaceTitleSubtitle)
 
             subtitleTextView.visibility = View.VISIBLE
-            subtitleTextView.text = andesListItemConfig.subtitle
-            subtitleTextView.setTextColor(andesListItemConfig.subtitleColor)
-            subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.subtitleFontSize)
+            subtitleTextView.text = itemConfig.subtitle
+            subtitleTextView.setTextColor(itemConfig.subtitleColor)
+            subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.subtitleFontSize)
 
             val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
 
@@ -286,7 +269,7 @@ class AndesListAdapter(
                     0,
                     0,
                     0,
-                    andesListItemConfig.paddingBottom
+                    itemConfig.paddingBottom
             )
 
             subtitleTextView.layoutParams = layoutParamSubtitle
@@ -295,9 +278,9 @@ class AndesListAdapter(
         /**
          * Set AndesList icon configuration based on AndesListViewItem config
          *
-         * @param andesListItemConfig current AndesListViewItem config
+         * @param itemConfig current AndesListViewItem config
          */
-        private fun setAndesListIconConfiguration(andesListItemConfig: AndesListViewItem) {
+        private fun setAndesListIconConfiguration(itemConfig: AndesListViewItem) {
             itemConfig.icon?.let {
                 andesListItemIcon.visibility = View.VISIBLE
                 andesListItemIcon.layoutParams.width = itemConfig.iconSize
@@ -315,9 +298,9 @@ class AndesListAdapter(
         /**
          * Set AndesList Avatar configuration based on AndesListViewItem config
          *
-         * @param andesListItemConfig current AndesListViewItem config
+         * @param itemConfig current AndesListViewItem config
          */
-        private fun setAndesListAvatarConfiguration(andesListItemConfig: AndesListViewItem) {
+        private fun setAndesListAvatarConfiguration(itemConfig: AndesListViewItem) {
             itemConfig.avatar?.let {
                 andesListItemAvatar.visibility = View.VISIBLE
                 andesListItemAvatar.size = itemConfig.thumbnailSize
