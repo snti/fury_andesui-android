@@ -18,20 +18,6 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
-class AndesListSmallSizeTest {
-    private var andesListSize = Mockito.spy(AndesListViewItemSmallSize())
-    private var context = RuntimeEnvironment.application
-
-}
-
-@RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
-class AndesListLargeSizeTest {
-
-}
-
-@RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesListTest {
     private var context = RuntimeEnvironment.application
 
@@ -41,20 +27,26 @@ class AndesListTest {
 
     @Test
     fun `test delegate`() {
+        val item = AndesListViewItemSimple(context, "test")
+        val view = View(context)
+        val list = AndesList(context)
+
         val andesListDelegate = object : AndesListDelegate {
             override fun onItemClick(position: Int) {
-                TODO("Not yet implemented")
+                Assert.assertEquals(0, position)
             }
 
             override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
-                return AndesListViewItemSimple(
-                        context,
-                        "test")
+                return item
             }
 
             override fun getDataSetSize(): Int = SIZE
 
         }
+
+        andesListDelegate.onItemClick(0)
+        Assert.assertEquals(SIZE, andesListDelegate.getDataSetSize())
+        Assert.assertEquals(item, andesListDelegate.bind(list, view, 0))
     }
 
     @Test
@@ -83,4 +75,36 @@ class AndesListTest {
         list = AndesList(context, AndesListViewItemSize.MEDIUM, AndesListType.RADIO_BUTTON)
         Assert.assertEquals(list.type, AndesListType.RADIO_BUTTON)
     }
+
+
+    @Test
+    fun `test list item selection`() {
+
+        val list = AndesList(context, AndesListViewItemSize.MEDIUM, AndesListType.SIMPLE)
+        val item = AndesListViewItemSimple(context, "test")
+        val listItems = ArrayList<AndesListViewItem>()
+
+        for (i in 1..SIZE) {
+            listItems.add(item)
+        }
+
+        listItems[5].itemSelected = true
+
+        val andesListDelegate = object : AndesListDelegate {
+            override fun onItemClick(position: Int) {
+                Assert.assertEquals(true, listItems[position].itemSelected)
+            }
+
+            override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
+                return item
+            }
+
+            override fun getDataSetSize(): Int = SIZE
+
+        }
+
+        list.delegate = andesListDelegate
+        andesListDelegate.onItemClick(5)
+    }
+
 }

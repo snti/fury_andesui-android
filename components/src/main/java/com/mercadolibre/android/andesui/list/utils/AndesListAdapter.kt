@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.list.utils
 
 import android.support.constraint.ConstraintLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
+import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
 
 class AndesListAdapter(
@@ -97,6 +99,18 @@ class AndesListAdapter(
             andesListItemAvatar.visibility = View.GONE
             andesListItemIcon.visibility = View.GONE
 
+            // Default Title and Subtitle color
+            titleTextView.setTextColor(ContextCompat.getColor(itemView.context, R.color.andes_gray_800))
+            subtitleTextView.setTextColor(ContextCompat.getColor(itemView.context, R.color.andes_gray_450))
+
+            // Title and Subtitle TypeFace
+            titleTextView.typeface = itemView.context.getFontOrDefault(R.font.andes_font_regular)
+            subtitleTextView.typeface = itemView.context.getFontOrDefault(R.font.andes_font_regular)
+
+            // Icon and Avatar accessibility for TalkBack
+            andesListItemAvatar.contentDescription = itemView.context.resources.getString(R.string.andes_list_item_image)
+            andesListItemIcon.contentDescription = itemView.context.resources.getString(R.string.andes_list_item_icon)
+
             itemView.setOnClickListener { delegate.onItemClick(position) }
 
             when (andesListItemConfig) {
@@ -115,7 +129,6 @@ class AndesListAdapter(
             bindItemCommons(andesListItemConfig)
 
             val andesListItemChevron: ImageView = itemView.findViewById(R.id.andes_thumbnail_chevron)
-
             val layoutParamsChevron = andesListItemChevron.layoutParams as ConstraintLayout.LayoutParams
 
             layoutParamsChevron.height = andesListItemConfig.chevronSize
@@ -228,6 +241,10 @@ class AndesListAdapter(
             itemConfig.itemSelected?.let {
                 if (it) {
                     andesListItemSelectionView.visibility = View.VISIBLE
+                    titleTextView.setTextColor(ContextCompat.getColor(
+                            itemView.context,
+                            R.color.andes_blue_ml_500
+                    ))
                 }
             }
 
