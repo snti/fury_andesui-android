@@ -102,6 +102,7 @@ class AndesList : ConstraintLayout {
     /**
      * Responsible for update all properties related to components that can change dynamically
      *
+     * @param config current AndesListConfiguration
      */
     private fun updateDynamicComponents(config: AndesListConfiguration) {
         setupDivider(config.dividerEnabled)
@@ -116,6 +117,8 @@ class AndesList : ConstraintLayout {
     /**
      * Responsible for setting up all properties of each component that is part of this andesList.
      * Is like a choreographer 😉
+     *
+     * @param config current AndesListConfiguration
      */
     private fun setupComponents(config: AndesListConfiguration) {
         initComponents()
@@ -124,13 +127,20 @@ class AndesList : ConstraintLayout {
     }
 
     /**
-     * Set recyclerview
+     * Set recyclerview to handle AndesList
+     *
+     * @param config current AndesListConfiguration
      */
     private fun setupRecyclerViewComponent(config: AndesListConfiguration) {
         setupDivider(config.dividerEnabled)
         recyclerViewComponent.layoutManager = LinearLayoutManager(context)
     }
 
+    /**
+     * Setup the divider to AndesList based on a boolean value
+     *
+     * @param enabled true / false
+     */
     private fun setupDivider(enabled: Boolean) {
         if (enabled) {
             if (recyclerViewComponent.itemDecorationCount < 1) {
@@ -141,6 +151,9 @@ class AndesList : ConstraintLayout {
         }
     }
 
+    /**
+     * Add current divider to AndesList
+     */
     private fun addDivider() {
         val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.andes_list_item_divider)
         if (dividerDrawable != null) {
@@ -151,6 +164,9 @@ class AndesList : ConstraintLayout {
         }
     }
 
+    /**
+     * Remove current divider from AndesList
+     */
     private fun removeDivider() {
         while (recyclerViewComponent.itemDecorationCount > 0) {
             recyclerViewComponent.removeItemDecorationAt(0);

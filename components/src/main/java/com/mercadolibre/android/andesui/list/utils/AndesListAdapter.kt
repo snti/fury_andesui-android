@@ -195,6 +195,11 @@ class AndesListAdapter(
             })
         }
 
+        /**
+         * Build Andes List item based on AndesListViewItem configuration
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
         private fun bindItemCommons(itemConfig: AndesListViewItem) {
             titleTextView.text = itemConfig.title
             titleTextView.maxLines = itemConfig.titleMaxLines
@@ -248,6 +253,51 @@ class AndesListAdapter(
                 }
             }
 
+
+            setAndesListIconConfiguration(andesListItemConfig)
+
+            setAndesListAvatarConfiguration(andesListItemConfig)
+
+            andesListItemContainer.setPadding(
+                    andesListItemConfig.paddingLeft,
+                    0,
+                    andesListItemConfig.paddingRight,
+                    0
+            )
+
+        }
+
+        /**
+         * Set AndesList subtitle configuration based on AndesListViewItem data
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListSubtitleConfiguration(andesListItemConfig: AndesListViewItem) {
+            showSpaceBetweenTitleAndSubtitle(andesListItemConfig.spaceTitleSubtitle)
+
+            subtitleTextView.visibility = View.VISIBLE
+            subtitleTextView.text = andesListItemConfig.subtitle
+            subtitleTextView.setTextColor(andesListItemConfig.subtitleColor)
+            subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, andesListItemConfig.subtitleFontSize)
+
+            val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
+
+            layoutParamSubtitle.setMargins(
+                    0,
+                    0,
+                    0,
+                    andesListItemConfig.paddingBottom
+            )
+
+            subtitleTextView.layoutParams = layoutParamSubtitle
+        }
+
+        /**
+         * Set AndesList icon configuration based on AndesListViewItem config
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListIconConfiguration(andesListItemConfig: AndesListViewItem) {
             itemConfig.icon?.let {
                 andesListItemIcon.visibility = View.VISIBLE
                 andesListItemIcon.layoutParams.width = itemConfig.iconSize
@@ -260,7 +310,14 @@ class AndesListAdapter(
                     calculateIconTopMargin()
                 }
             }
+        }
 
+        /**
+         * Set AndesList Avatar configuration based on AndesListViewItem config
+         *
+         * @param andesListItemConfig current AndesListViewItem config
+         */
+        private fun setAndesListAvatarConfiguration(andesListItemConfig: AndesListViewItem) {
             itemConfig.avatar?.let {
                 andesListItemAvatar.visibility = View.VISIBLE
                 andesListItemAvatar.size = itemConfig.thumbnailSize
@@ -272,14 +329,6 @@ class AndesListAdapter(
                     calculateAvatarTopMargin()
                 }
             }
-
-            andesListItemContainer.setPadding(
-                    itemConfig.paddingLeft,
-                    0,
-                    itemConfig.paddingRight,
-                    0
-            )
-
         }
 
         private fun getChevronTopMarginBasedInAvatar(andesListItemChevron: View): Int {
@@ -296,6 +345,9 @@ class AndesListAdapter(
             return getTitleHeightInTheFirstLine() / 2 + layoutParams.topMargin - chevronHalfHeight
         }
 
+        /**
+         * Calculate margin top of Andes icon based on title position
+         */
         private fun calculateIconTopMargin(): Int {
             val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
             val assetHalfHeight = andesListItemIcon.height / 2
@@ -310,7 +362,9 @@ class AndesListAdapter(
             return (textViewTitleHeight / numberOfLines)
         }
 
-        //TODO documentar
+        /**
+         * Calculate Andes Avatar top margin to draw it correctly based on title and subtitle position
+         */
         private fun calculateAvatarTopMargin(): Int {
             var topMargin = 0
 
