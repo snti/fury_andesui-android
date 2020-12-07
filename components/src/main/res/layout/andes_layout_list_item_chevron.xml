@@ -99,12 +99,11 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/andes_thumbnail_chevron"
-            android:layout_width="@dimen/andes_list_chevron_medium"
-            android:layout_height="@dimen/andes_list_chevron_medium"
+            android:layout_width="@dimen/andes_list_chevron_size_medium"
+            android:layout_height="@dimen/andes_list_chevron_size_medium"
             android:src="@drawable/andes_ui_chevron_right_24"
-            app:layout_constraintBottom_toBottomOf="@+id/text_view_item_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_view_item_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

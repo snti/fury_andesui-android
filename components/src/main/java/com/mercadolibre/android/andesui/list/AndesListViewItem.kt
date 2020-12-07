@@ -30,6 +30,7 @@ open class AndesListViewItem {
     var iconSize: Int = 0
     var icon: Drawable? = null
     var avatar: Drawable? = null
+    var showSubtitle: Boolean = true
 
     internal fun andesListViewItemConfig(title: String, subtitle: String? = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         this.title = title
@@ -54,6 +55,7 @@ open class AndesListViewItem {
         this.icon = icon
         this.avatar = avatar
         this.titleMaxLines = titleMaxLines
+        this.showSubtitle = config.showSubtitle
     }
 }
 
@@ -91,6 +93,7 @@ class AndesListViewItemChevron(
         titleMaxLines: Int = 50
 
 ) : AndesListViewItem() {
+    internal var chevronSize: Int = 0
 
     init {
         val config = AndesListViewItemConfigurationFactory.create(context, size)
@@ -99,6 +102,7 @@ class AndesListViewItemChevron(
 
     private fun andesListViewItemSimpleConfig(title: String, subtitle: String = "", config: AndesListViewItemConfiguration, itemSelected: Boolean? = false, icon: Drawable? = null, avatar: Drawable? = null, titleMaxLines: Int = 50) {
         super.andesListViewItemConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
+        this.chevronSize = config.chevronSize
     }
 
 }

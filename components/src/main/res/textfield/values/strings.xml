@@ -7,4 +7,7 @@
     <string name="andes_suffix_hint">Suffix</string>
     <string name="andes_prefix_hint">Prefix</string>
     <string name="andes_tag_choice_selected">Seleccionado</string>
+
+    <string name="andes_list_item_image">Imagen del item</string>
+    <string name="andes_list_item_icon">Icono del item</string>
 </resources>
