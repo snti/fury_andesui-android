@@ -65,15 +65,17 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
-
+        setAdapterLogic()
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+    }
+
+    private fun setAdapterLogic(){
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         viewPager.adapter = AndesShowcasePagerAdapter(this)
-        val indicator = findViewById<PageIndicator>(R.id.page_indicator)
-        indicator.attach(viewPager)
 
         adapter = viewPager.adapter as AndesShowcasePagerAdapter
         andesList = adapter.views[0].andesList
@@ -180,15 +182,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         sizeSpinner.setSelection(1)
 
         AndesShowcasePagerAdapter(this).clear()
-        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
-        viewPager.adapter = AndesShowcasePagerAdapter(this)
-
-        adapter = viewPager.adapter as AndesShowcasePagerAdapter
-        andesList = adapter.views[0].andesList
-        andesList.dividerItemEnabled = true
-        andesList.delegate = this
-
-        handleListeners(adapter.views[0])
+        setAdapterLogic()
 
         avatar = null
         icon = null
