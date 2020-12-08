@@ -40,7 +40,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     private var andesListItemSubtitle = "Subtitle"
     private var avatar: Drawable? = null
     private var icon: Drawable? = null
-    private var titleNumberOfLines: Int = 50
+    private var titleNumberOfLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
     private var showItemSelections: Boolean = false
 
     private lateinit var buttonClear: AndesButton
@@ -54,6 +54,12 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     companion object {
         const val LIST_SIZE = 100
+        const val DEFAULT_TITLE_NUMBER_OF_LINES = 50
+
+        const val SIMPLE = 0
+        const val CHEVRON = 1
+        const val CHECK_BOX = 2
+        const val RADIO_BUTTON = 3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,10 +134,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     private fun getItemTypeSelected(): AndesListType {
         return when (adapter.andesListItemTypeSelected) {
-            0 -> AndesListType.SIMPLE
-            1 -> AndesListType.CHEVRON
-            2 -> AndesListType.CHECK_BOX
-            3 -> AndesListType.RADIO_BUTTON
+            SIMPLE -> AndesListType.SIMPLE
+            CHEVRON -> AndesListType.CHEVRON
+            CHECK_BOX -> AndesListType.CHECK_BOX
+            RADIO_BUTTON -> AndesListType.RADIO_BUTTON
             else -> AndesListType.SIMPLE
         }
     }
@@ -162,6 +168,8 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     }
 
     private fun clear() {
+        titleNumberOfLines = DEFAULT_TITLE_NUMBER_OF_LINES
+
         andesListItemTitle = "Title"
         andesListItemSubtitle = "Subtitle"
 
