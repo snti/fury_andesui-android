@@ -197,34 +197,14 @@ class AndesListAdapter(
         /**
          * Build Andes List item based on AndesListViewItem configuration
          *
-         * @param andesListItemConfig current AndesListViewItem config
+         * @param itemConfig current AndesListViewItem config
          */
         private fun bindItemCommons(itemConfig: AndesListViewItem) {
-            titleTextView.text = itemConfig.title
-            titleTextView.maxLines = itemConfig.titleMaxLines
-            titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.titleFontSize)
-            titleTextView.typeface = itemConfig.titleTypeFace
-            titleTextView.setTextColor(itemConfig.titleColor)
+            setAndesListTitleConfiguration(itemConfig)
 
             if (itemConfig.showSubtitle && !itemConfig.subtitle.isNullOrEmpty()) {
                 setAndesListSubtitleConfiguration(itemConfig)
             }
-
-            val layoutParamsTitle = titleTextView.layoutParams as ConstraintLayout.LayoutParams
-            val titleMarginBottom = if (itemConfig.showSubtitle && itemConfig.subtitle.isNullOrEmpty()) {
-                itemConfig.paddingBottom
-            } else {
-                0
-            }
-
-            layoutParamsTitle.setMargins(
-                    0,
-                    itemConfig.paddingTop,
-                    0,
-                    titleMarginBottom
-            )
-
-            titleTextView.layoutParams = layoutParamsTitle
 
             itemConfig.itemSelected?.let {
                 if (it) {
@@ -236,18 +216,30 @@ class AndesListAdapter(
                 }
             }
 
-
             setAndesListIconConfiguration(itemConfig)
 
             setAndesListAvatarConfiguration(itemConfig)
 
             andesListItemContainer.setPadding(
                     itemConfig.paddingLeft,
-                    0,
+                    itemConfig.paddingTop,
                     itemConfig.paddingRight,
-                    0
+                    itemConfig.paddingBottom
             )
 
+        }
+
+        /**
+         * Set AndesList title configuration based on AndesListViewItem data
+         *
+         * @param itemConfig current AndesListViewItem config
+         */
+        private fun setAndesListTitleConfiguration(itemConfig: AndesListViewItem) {
+            titleTextView.text = itemConfig.title
+            titleTextView.maxLines = itemConfig.titleMaxLines
+            titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.titleFontSize)
+            titleTextView.typeface = itemConfig.titleTypeFace
+            titleTextView.setTextColor(itemConfig.titleColor)
         }
 
         /**
@@ -262,17 +254,6 @@ class AndesListAdapter(
             subtitleTextView.text = itemConfig.subtitle
             subtitleTextView.setTextColor(itemConfig.subtitleColor)
             subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.subtitleFontSize)
-
-            val layoutParamSubtitle = subtitleTextView.layoutParams as ConstraintLayout.LayoutParams
-
-            layoutParamSubtitle.setMargins(
-                    0,
-                    0,
-                    0,
-                    itemConfig.paddingBottom
-            )
-
-            subtitleTextView.layoutParams = layoutParamSubtitle
         }
 
         /**
@@ -318,6 +299,7 @@ class AndesListAdapter(
             val chevronHalfHeight = andesListItemChevron.height / 2
             val assetHalfHeight = andesListItemAvatar.height / 2
             val layoutParams = andesListItemAvatar.layoutParams as LinearLayout.LayoutParams
+
             return assetHalfHeight + layoutParams.topMargin - chevronHalfHeight
         }
 
@@ -354,15 +336,7 @@ class AndesListAdapter(
             val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
             val assetHalfHeight = andesListItemAvatar.height / 2
 
-            if (titleTextView.lineCount == 1 && subtitleTextView.text.isNotEmpty()) {
-                topMargin = itemView.measuredHeight / 2 - assetHalfHeight
-
-            } else if (titleTextView.lineCount == 1 && subtitleTextView.text.isEmpty() || titleTextView.lineCount == 2) {
-                val textViewTitleHeight = titleTextView.measuredHeight
-
-                topMargin = (textViewTitleHeight / 2) + layoutParams.topMargin - assetHalfHeight
-
-            } else if (titleTextView.lineCount > 2) {
+            if (titleTextView.lineCount > 2) {
                 val textViewTitleHeight = titleTextView.measuredHeight
                 val numberOfLines = titleTextView.lineCount
 
