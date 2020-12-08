@@ -10,13 +10,20 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.Toast
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
-import com.mercadolibre.android.andesui.list.*
+import com.mercadolibre.android.andesui.list.AndesList
+import com.mercadolibre.android.andesui.list.AndesListViewItem
+import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
+import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
@@ -295,5 +302,4 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
         return row
     }
-
 }

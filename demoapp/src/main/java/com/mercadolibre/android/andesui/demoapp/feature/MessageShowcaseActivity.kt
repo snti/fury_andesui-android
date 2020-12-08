@@ -283,8 +283,9 @@ class MessageShowcaseActivity : AppCompatActivity() {
                             Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
                         }
                     )
+            val bodyLink = 11
             val links = listOf(
-                AndesBodyLink(6, 11),
+                AndesBodyLink(6, bodyLink),
                 AndesBodyLink(64, 71)
             )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(

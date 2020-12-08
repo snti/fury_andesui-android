@@ -201,5 +201,4 @@ class AndesList : ConstraintLayout {
         private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
         private val TYPE_DEFAULT = AndesListType.SIMPLE
     }
-
 }
