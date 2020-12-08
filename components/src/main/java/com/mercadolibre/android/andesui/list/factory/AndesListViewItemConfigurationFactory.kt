@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.list.factory
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSizeInterface
@@ -27,9 +27,10 @@ internal data class AndesListViewItemConfiguration(
         val avatarSize: AndesThumbnailSize,
         val iconSize: Int,
         val chevronSize: Int,
-        val showSubtitle : Boolean
+        val showSubtitle: Boolean
 )
 
+@Suppress("TooManyFunctions")
 internal object AndesListViewItemConfigurationFactory {
 
     fun create(context: Context, andesListViewItemSize: AndesListViewItemSize): AndesListViewItemConfiguration {

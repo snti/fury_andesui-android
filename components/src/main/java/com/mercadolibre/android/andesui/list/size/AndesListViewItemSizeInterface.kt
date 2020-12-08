@@ -8,6 +8,7 @@ import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
  * Defines all size related properties that an [AndesListViewItem] needs to be drawn properly.
  * Those properties change depending on the size of the tag.
  */
+@Suppress("TooManyFunctions")
 internal interface AndesListViewItemSizeInterface {
     fun paddingLeft(context: Context): Int
     fun paddingRight(context: Context): Int
@@ -25,6 +26,7 @@ internal interface AndesListViewItemSizeInterface {
     fun showSubtitle(context: Context): Boolean
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_small).toInt()
 
@@ -56,6 +58,7 @@ internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
     override fun showSubtitle(context: Context): Boolean = false
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_small).toInt()
 
@@ -88,6 +91,7 @@ internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
     override fun showSubtitle(context: Context): Boolean = true
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_medium).toInt()
 

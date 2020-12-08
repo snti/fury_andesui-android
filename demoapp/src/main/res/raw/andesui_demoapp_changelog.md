@@ -1,10 +1,38 @@
-# v2.14.0
+# v3.0.0
+## 🚀 Features
+- Migration AndroidX
 
+## 🛠 Fixes
+- Fix constraint Radio Button
+
+# v2.18.0
+## 🚀 Features
+- AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+
+## 🛠 Fixes
+- AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
+
+# v2.17.0
+## 🛠 Fixes
+- Added Focus listener correctly on EditText of AndesTextField.
+
+# v2.16.0
+## 🚀 Features
+- Added AndesCarousel | Author: [@Constanza Morillo](https://github.com/constanzamorillomeli)
+
+# v2.15.0
+## 🚀 Features
+- AndesTextFieldCode | Author: [@Jorge Gonzalez](https://github.com/jorGonzalez291292)
+
+## 🛠 Fixes
+- Andes Coachmark: force only portrait mode and fix scroll up
+- Improved AndesBottomSheet background dim animation
+
+# v2.14.0
 ## 🚀 Features
 - Added TagChoice | Author: [@tianmrn](https://github.com/tianmrn)
 
 # v2.13.0
-
 ## 🚀 Features
 - Andes BottomSheet | Author: [@fcano](https://github.com/fdcano)
 

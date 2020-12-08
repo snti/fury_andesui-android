@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/walkthroughContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +73,6 @@
             app:layout_constraintTop_toBottomOf="@id/walkthroughDescription"
             tools:visibility="visible" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 

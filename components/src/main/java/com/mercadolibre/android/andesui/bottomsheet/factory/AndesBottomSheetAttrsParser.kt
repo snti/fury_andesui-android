@@ -8,14 +8,12 @@ import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleA
 import kotlin.IllegalArgumentException
 
 private const val DEFAULT_PEEK_HEIGHT = 0f
-private const val DEFAULT_BACKGROUND_DIM = false
 
 internal data class AndesBottomSheetAttrs(
     val andesBottomSheetPeekHeight: Int,
     val andesBottomSheetState: AndesBottomSheetState,
     val andesBottomSheetTitleText: String?,
-    val andesBottomSheetTitleAlignment: AndesBottomSheetTitleAlignment?,
-    val andesBottomSheetBackgroundDim: Boolean
+    val andesBottomSheetTitleAlignment: AndesBottomSheetTitleAlignment?
 )
 
 internal object AndesBottomSheetAttrsParser {
@@ -51,10 +49,7 @@ internal object AndesBottomSheetAttrsParser {
                             DEFAULT_PEEK_HEIGHT).toInt(),
                 andesBottomSheetState = state,
                 andesBottomSheetTitleText = title,
-                andesBottomSheetTitleAlignment = titleAlignment,
-                andesBottomSheetBackgroundDim =
-                    typedArray.getBoolean(R.styleable.AndesBottomSheet_andesBottomSheetBackgroundDim,
-                            DEFAULT_BACKGROUND_DIM)
+                andesBottomSheetTitleAlignment = titleAlignment
         ).also { typedArray.recycle() }
     }
 }

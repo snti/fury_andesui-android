@@ -2,7 +2,8 @@ package com.mercadolibre.android.andesui.demoapp.feature.andesbottomsheet
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.andesui_bottom_sheet_showcase.*
 @Suppress("TooManyFunctions")
 class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     private lateinit var bottomSheet: AndesBottomSheet
-    private var showBackgroundDim = false
     private var showTitle = false
     private var leftAlignTitle = true
     private var textView: TextView? = null
@@ -29,6 +29,10 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_bottom_sheet_showcase)
+
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_bottom_sheet)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         bottomSheet = findViewById(R.id.andes_bottom_sheet)
         bottomSheet.setBottomSheetListener(this)
@@ -60,25 +64,10 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.removeContent()
 
         bottomSheet.setContent(supportFragmentManager, TestFragment())
-    }
 
-    fun onExpandButtonClicked(view: View) {
-        bottomSheet.expand()
-    }
-
-    fun onCollapseButtonClicked(view: View) {
-        bottomSheet.collapse()
-    }
-
-    fun onToggleBackgroundDimButtonClicked(view: View) {
-        val andesButton = view as AndesButton
-        showBackgroundDim = !showBackgroundDim
-        bottomSheet.isBackgroundDimEnabled = showBackgroundDim
-        if (showBackgroundDim) {
-            andesButton.hierarchy = AndesButtonHierarchy.QUIET
-        } else {
-            andesButton.hierarchy = AndesButtonHierarchy.LOUD
-        }
+        Handler().postDelayed(  {
+            bottomSheet.expand()
+        }, ONE_HUNDRED_MS)
     }
 
     fun onToggleTitleClicked(view: View) {
@@ -119,5 +108,6 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
 
     companion object {
         private const val VIEW_HEIGHT = 800
+        private const val ONE_HUNDRED_MS = 100.toLong()
     }
 }

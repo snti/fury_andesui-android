@@ -3,8 +3,8 @@ package com.mercadolibre.android.andesui.demoapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCoreComponents() {
+        andesui_carousel.setOnClickListener {
+            startActivity(SafeIntent(this, "meli://andes/carousel"))
+        }
+
         andesui_coachmark.setOnClickListener {
             startActivity(SafeIntent(this, "meli://andes/coachmark"))
         }
@@ -68,6 +72,9 @@ class MainActivity : AppCompatActivity() {
         }
         andesui_bottom_sheet.setOnClickListener {
             startActivity(SafeIntent(this,"meli://andes/bottom_sheet"))
+        }
+        andesui_date_picker.setOnClickListener {
+            startActivity(SafeIntent(this,"meli://andes/datepicker"))
         }
     }
 

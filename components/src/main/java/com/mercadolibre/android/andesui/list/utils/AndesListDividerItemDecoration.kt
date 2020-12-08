@@ -2,10 +2,10 @@ package com.mercadolibre.android.andesui.list.utils
 
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
-class AndesListDividerItemDecoration(private val divider : Drawable) : RecyclerView.ItemDecoration() {
+class AndesListDividerItemDecoration(private val divider: Drawable) : RecyclerView.ItemDecoration() {
 
     override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         val childCount = parent.childCount

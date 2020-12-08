@@ -1,10 +1,10 @@
 package com.mercadolibre.android.andesui.bottomsheet
 
 import android.os.Build
-import android.support.design.widget.BottomSheetBehavior
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -24,7 +24,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
 class AndesBottomSheetTest {
     private var context = RuntimeEnvironment.application
     private lateinit var andesBottomSheet: AndesBottomSheet
@@ -40,7 +40,6 @@ class AndesBottomSheetTest {
         assertEquals(andesBottomSheet.state, DEFAULT_BOTTOM_SHEET_STATE)
         assertEquals(andesBottomSheet.titleText, null)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
-        assertEquals(andesBottomSheet.isBackgroundDimEnabled, false)
     }
 
     @Test
@@ -53,15 +52,13 @@ class AndesBottomSheetTest {
                 peekHeight,
                 AndesBottomSheetState.EXPANDED,
                 title,
-                AndesBottomSheetTitleAlignment.CENTERED,
-                true
+                AndesBottomSheetTitleAlignment.CENTERED
         )
 
         assertEquals(andesBottomSheet.peekHeight, peekHeight)
         assertEquals(andesBottomSheet.state, AndesBottomSheetState.EXPANDED)
         assertEquals(andesBottomSheet.titleText, title)
         assertEquals(andesBottomSheet.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
-        assertEquals(andesBottomSheet.isBackgroundDimEnabled, true)
     }
 
     @Test
@@ -194,10 +191,9 @@ class AndesBottomSheetTest {
     }
 
     @Test
-    fun `when background dim disabled and state expanded should not show background dim`() {
+    fun `when  state expanded should show background dim`() {
         val mockView = mock(View::class.java)
         FieldSetter.setField(andesBottomSheet, andesBottomSheet::class.java.getDeclaredField("backgroundDimView"), mockView)
-        andesBottomSheet.isBackgroundDimEnabled = false
 
         andesBottomSheet.expand()
 

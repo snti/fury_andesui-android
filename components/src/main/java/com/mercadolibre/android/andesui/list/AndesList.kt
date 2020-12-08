@@ -1,15 +1,14 @@
 package com.mercadolibre.android.andesui.list
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.ItemDecoration
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrParser
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrs
@@ -21,7 +20,7 @@ import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.list.utils.AndesListDividerItemDecoration
 
-
+@Suppress("TooManyFunctions")
 class AndesList : ConstraintLayout {
 
     private lateinit var andesListDelegate: AndesListDelegate
@@ -157,7 +156,7 @@ class AndesList : ConstraintLayout {
     private fun addDivider() {
         val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.andes_list_item_divider)
         if (dividerDrawable != null) {
-            val dividerItemDecoration: ItemDecoration = AndesListDividerItemDecoration(dividerDrawable)
+            val dividerItemDecoration: RecyclerView.ItemDecoration = AndesListDividerItemDecoration(dividerDrawable)
             recyclerViewComponent.addItemDecoration(dividerItemDecoration)
         } else {
             Log.d("AndesList", "Error adding list divider")
