@@ -22,7 +22,7 @@ open class AndesListViewItem {
     var subtitleColor: Int = 0
     var subtitleFontSize: Float = 0.0f
     var subtitleTypeFace: Typeface = Typeface.DEFAULT
-    var titleMaxLines: Int = 50
+    var titleMaxLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
     var spaceTitleSubtitle = 0
     var itemSelected: Boolean? = false
     var thumbnailSize: AndesThumbnailSize = AndesThumbnailSize.SIZE_32
@@ -31,6 +31,10 @@ open class AndesListViewItem {
     var icon: Drawable? = null
     var avatar: Drawable? = null
     var showSubtitle: Boolean = true
+
+    companion object {
+        const val DEFAULT_TITLE_NUMBER_OF_LINES = 50
+    }
 
     internal fun andesListViewItemConfig(title: String,
                                          subtitle: String? = "",

@@ -27,11 +27,11 @@ class AndesListAdapter(
         private var listType: AndesListType
 ) : RecyclerView.Adapter<AndesListAdapter.ViewHolder>() {
 
-    private enum class LayoutType(val value: Int) {
-        SIMPLE(0),
-        CHEVRON(1),
-        CHECK_BOX(2),
-        RADIO_BUTTON(3)
+    companion object {
+        const val SIMPLE = 0
+        const val CHEVRON = 1
+        const val CHECK_BOX = 2
+        const val RADIO_BUTTON = 3
     }
 
     override fun getItemCount() = delegate.getDataSetSize()
@@ -42,10 +42,10 @@ class AndesListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val layout = when (viewType) {
-            LayoutType.SIMPLE.value -> R.layout.andes_layout_list_item_simple
-            LayoutType.CHEVRON.value -> R.layout.andes_layout_list_item_chevron
-            LayoutType.CHECK_BOX.value -> R.layout.andes_layout_list_item_check_box
-            LayoutType.RADIO_BUTTON.value -> R.layout.andes_layout_list_item_radio_button
+            SIMPLE -> R.layout.andes_layout_list_item_simple
+            CHEVRON -> R.layout.andes_layout_list_item_chevron
+            CHECK_BOX -> R.layout.andes_layout_list_item_check_box
+            RADIO_BUTTON -> R.layout.andes_layout_list_item_radio_button
             else -> R.layout.andes_layout_list_item_simple
         }
 
@@ -56,10 +56,10 @@ class AndesListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (listType) {
-            AndesListType.SIMPLE -> LayoutType.SIMPLE.value
-            AndesListType.CHEVRON -> LayoutType.CHEVRON.value
-            AndesListType.CHECK_BOX -> LayoutType.CHECK_BOX.value
-            AndesListType.RADIO_BUTTON -> LayoutType.RADIO_BUTTON.value
+            AndesListType.SIMPLE -> SIMPLE
+            AndesListType.CHEVRON -> CHEVRON
+            AndesListType.CHECK_BOX -> CHECK_BOX
+            AndesListType.RADIO_BUTTON -> RADIO_BUTTON
         }
     }
 
