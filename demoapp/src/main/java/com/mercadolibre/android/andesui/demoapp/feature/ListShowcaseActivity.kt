@@ -171,7 +171,16 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
         sizeSpinner.setSelection(1)
 
-        //TODO clear radio buttons and check boxes
+        AndesShowcasePagerAdapter(this).clear()
+        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
+        viewPager.adapter = AndesShowcasePagerAdapter(this)
+
+        adapter = viewPager.adapter as AndesShowcasePagerAdapter
+        andesList = adapter.views[0].andesList
+        andesList.dividerItemEnabled = true
+        andesList.delegate = this
+
+        handleListeners(adapter.views[0])
 
         avatar = null
         icon = null
@@ -182,6 +191,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
         var andesListItemTypeSelected = 0
         var assetTypeSelected = 0
+        var radioButtons = arrayListOf<RadioButtonItem>()
+        var radioButtons2 = arrayListOf<RadioButtonItem>()
+        lateinit var radioButtonGroup: AndesRadioButtonGroup
+        lateinit var radioButtonGroup2: AndesRadioButtonGroup
 
         var views: List<View>
 
@@ -190,6 +203,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         }
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            container.removeAllViews()
             container.addView(views[position])
             return views[position]
         }
@@ -224,17 +238,19 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
             return listOf<View>(layout, dynamicRadioButtonGroupLayout)
         }
 
-        private fun addDynamicRadioButtonGroupLayout(layout: View): View {
+        fun clear() {
+            views = initViews()
+        }
 
-            val radioButtons = arrayListOf<RadioButtonItem>()
+        private fun addDynamicRadioButtonGroupLayout(layout: View): View {
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_simple), AndesRadioButtonType.IDLE))
             radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_chevron), AndesRadioButtonType.IDLE))
 
-            val radioButtons2 = arrayListOf<RadioButtonItem>()
+
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_icon), AndesRadioButtonType.IDLE))
             radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_thumbnail), AndesRadioButtonType.IDLE))
 
-            val radioButtonGroup = layout.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
+            radioButtonGroup = layout.findViewById(R.id.radioButtonGroup1)
             radioButtonGroup.selected = 0
             radioButtonGroup.radioButtons = radioButtons
             radioButtonGroup.setupCallback(
@@ -245,7 +261,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     }
             )
 
-            val radioButtonGroup2 = layout.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup2)
+            radioButtonGroup2 = layout.findViewById(R.id.radioButtonGroup2)
             radioButtonGroup2.radioButtons = radioButtons2
             radioButtonGroup.selected = 0
             radioButtonGroup2.setupCallback(
