@@ -23,5 +23,4 @@ enum class AndesListType {
             RADIO_BUTTON -> AndesListTypeRadioButton
         }
     }
-
 }

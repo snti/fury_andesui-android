@@ -82,7 +82,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         andesui_demoapp_contribution.setOnClickListener {
-            ContextCompat.startActivity(this, Intent(Intent.ACTION_VIEW, Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")), null)
+            ContextCompat.startActivity(this,
+                    Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://meli.workplace.com/notes/andes-ui/c%C3%B3mo-contribuir-en-andes-ui/2559399620854933")),
+                    null)
         }
     }
 }
