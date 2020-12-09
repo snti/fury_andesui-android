@@ -1,6 +1,6 @@
 package com.mercadolibre.android.andesui.bottomsheet.state
 
-import android.support.design.widget.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 internal interface AndesBottomSheetStateInterface {
     fun getState(): Int

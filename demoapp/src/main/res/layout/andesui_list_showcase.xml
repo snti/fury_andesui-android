@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="@+id/buttonClear"
         app:layout_constraintTop_toBottomOf="@+id/editTextListItemTitle" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineStatusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,13 +80,30 @@
         app:layout_constraintStart_toStartOf="@+id/buttonUpdate"
         app:layout_constraintTop_toBottomOf="@+id/editTextListItemSubtitle" />
 
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesListShowCaseDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxStatus="selected"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonGroup1" />
+
+    <com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+        android:id="@+id/andesListShowCaseSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:andesCheckboxText="@string/andes_checkbox_text_list_selection"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+        app:layout_constraintStart_toStartOf="@+id/guideLineStatusBar" />
+
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/buttonClear"
         android:layout_width="@dimen/button_clear_width"
         android:layout_height="wrap_content"
         app:andesButtonText="@string/andesui_demoapp_clear_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButtonGroup1" />
+        app:layout_constraintTop_toBottomOf="@+id/andesListShowCaseDivider" />
 
     <com.mercadolibre.android.andesui.button.AndesButton
         android:id="@+id/buttonUpdate"
@@ -119,4 +136,4 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonClear" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

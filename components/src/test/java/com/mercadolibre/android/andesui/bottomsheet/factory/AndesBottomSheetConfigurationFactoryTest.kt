@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP] )
+@Config(sdk = [Build.VERSION_CODES.LOLLIPOP] )
 class AndesBottomSheetConfigurationFactoryTest {
 
     private val configFactory = Mockito.spy(AndesBottomSheetConfigurationFactory)
@@ -25,7 +25,6 @@ class AndesBottomSheetConfigurationFactoryTest {
         attrs = AndesBottomSheetAttrs(
                 andesBottomSheetPeekHeight = peekHeight,
                 andesBottomSheetState = AndesBottomSheetState.EXPANDED,
-                andesBottomSheetBackgroundDim = false,
                 andesBottomSheetTitleAlignment = AndesBottomSheetTitleAlignment.CENTERED,
                 andesBottomSheetTitleText = testText
         )
@@ -34,7 +33,6 @@ class AndesBottomSheetConfigurationFactoryTest {
 
         assertEquals(config.peekHeight, peekHeight)
         assertEquals(config.state, AndesBottomSheetState.EXPANDED)
-        assertEquals(config.isBackgroundDimEnabled, false)
         assertEquals(config.titleAlignment, AndesBottomSheetTitleAlignment.CENTERED)
         assertEquals(config.titleText, testText)
     }

@@ -1,13 +1,14 @@
 package com.mercadolibre.android.andesui.list
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrParser
 import com.mercadolibre.android.andesui.list.factory.AndesListAttrs
@@ -17,12 +18,19 @@ import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
+import com.mercadolibre.android.andesui.list.utils.AndesListDividerItemDecoration
 
+@Suppress("TooManyFunctions")
 class AndesList : ConstraintLayout {
 
     private lateinit var andesListDelegate: AndesListDelegate
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var listAdapter: AndesListAdapter
+
+    companion object {
+        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
+        private val TYPE_DEFAULT = AndesListType.SIMPLE
+    }
 
     /**
      * Getter and setter for [delegate].
@@ -32,7 +40,7 @@ class AndesList : ConstraintLayout {
         set(value) {
             andesListDelegate = value
             val config = createConfig()
-            listAdapter = AndesListAdapter(andesListDelegate, config.type)
+            listAdapter = AndesListAdapter(this, andesListDelegate, config.type)
             recyclerViewComponent.adapter = listAdapter
         }
 
@@ -44,7 +52,6 @@ class AndesList : ConstraintLayout {
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListItemSize = value)
             val config = createConfig()
-//            setupListViewItemHeight(config)
         }
 
     /**
@@ -98,9 +105,10 @@ class AndesList : ConstraintLayout {
     /**
      * Responsible for update all properties related to components that can change dynamically
      *
+     * @param config current AndesListConfiguration
      */
     private fun updateDynamicComponents(config: AndesListConfiguration) {
-        setupDividerEnabled(config.dividerEnabled)
+        setupDivider(config.dividerEnabled)
     }
 
     private fun initAttrs(size: AndesListViewItemSize, type: AndesListType) {
@@ -112,6 +120,8 @@ class AndesList : ConstraintLayout {
     /**
      * Responsible for setting up all properties of each component that is part of this andesList.
      * Is like a choreographer 😉
+     *
+     * @param config current AndesListConfiguration
      */
     private fun setupComponents(config: AndesListConfiguration) {
         initComponents()
@@ -120,17 +130,47 @@ class AndesList : ConstraintLayout {
     }
 
     /**
-     * Set recyclerview
+     * Set recyclerview to handle AndesList
+     *
+     * @param config current AndesListConfiguration
      */
     private fun setupRecyclerViewComponent(config: AndesListConfiguration) {
-        setupDividerEnabled(config.dividerEnabled)
+        setupDivider(config.dividerEnabled)
         recyclerViewComponent.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun setupDividerEnabled(enabled: Boolean) {
-        if (enabled) {
-            val itemDecor = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-            recyclerViewComponent.addItemDecoration(itemDecor)
+    /**
+     * Setup the divider to AndesList based on a boolean value
+     *
+     * @param enabled true / false
+     */
+    private fun setupDivider(enabled: Boolean) {
+        if (enabled && recyclerViewComponent.itemDecorationCount < 1) {
+            addDivider()
+        } else if (!enabled) {
+            removeDivider()
+        }
+    }
+
+    /**
+     * Add current divider to AndesList
+     */
+    private fun addDivider() {
+        val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.andes_list_item_divider)
+        if (dividerDrawable != null) {
+            val dividerItemDecoration: RecyclerView.ItemDecoration = AndesListDividerItemDecoration(dividerDrawable)
+            recyclerViewComponent.addItemDecoration(dividerItemDecoration)
+        } else {
+            Log.d("AndesList", "Error adding list divider")
+        }
+    }
+
+    /**
+     * Remove current divider from AndesList
+     */
+    private fun removeDivider() {
+        while (recyclerViewComponent.itemDecorationCount > 0) {
+            recyclerViewComponent.removeItemDecorationAt(0);
         }
     }
 
@@ -152,15 +192,10 @@ class AndesList : ConstraintLayout {
         }
     }
 
-    fun refreshListAdapter(){
+    fun refreshListAdapter() {
         listAdapter.notifyDataSetChanged()
     }
 
     private fun createConfig() = AndesListConfigurationFactory.create(andesListAttrs)
-
-    companion object {
-        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
-        private val TYPE_DEFAULT = AndesListType.SIMPLE
-    }
 
 }

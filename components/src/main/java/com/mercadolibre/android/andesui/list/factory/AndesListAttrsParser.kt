@@ -51,5 +51,4 @@ internal object AndesListAttrParser {
                 andesListDividerEnabled = typedArray.getBoolean(R.styleable.AndesList_andesListDividerItemEnabled, false)
         ).also { typedArray.recycle() }
     }
-
 }

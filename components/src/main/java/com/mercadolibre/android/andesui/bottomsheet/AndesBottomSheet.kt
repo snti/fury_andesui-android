@@ -1,16 +1,14 @@
 package com.mercadolibre.android.andesui.bottomsheet
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.content.res.ResourcesCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.core.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +22,7 @@ import com.mercadolibre.android.andesui.bottomsheet.factory.AndesBottomSheetConf
 import com.mercadolibre.android.andesui.bottomsheet.state.AndesBottomSheetState
 import com.mercadolibre.android.andesui.bottomsheet.title.AndesBottomSheetTitleAlignment
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
+import kotlin.math.roundToInt
 
 @Suppress("TooManyFunctions")
 class AndesBottomSheet : CoordinatorLayout {
@@ -77,19 +76,6 @@ class AndesBottomSheet : CoordinatorLayout {
             }
     }
 
-    /**
-     * Getter and setter for [isBackgroundDimEnabled], this determines if a background filter is shown (with animation)
-     * when the bottomSheet is expanded
-     */
-    var isBackgroundDimEnabled: Boolean
-        get() = andesBottomSheetAttrs.andesBottomSheetBackgroundDim
-        set(value) {
-            andesBottomSheetAttrs = andesBottomSheetAttrs.copy(andesBottomSheetBackgroundDim = value)
-            createConfig().also{
-                resolveBackgroundDim(it)
-            }
-        }
-
     private lateinit var andesBottomSheetAttrs: AndesBottomSheetAttrs
     private lateinit var containerView: FrameLayout
     private lateinit var dragIndicator: View
@@ -105,10 +91,9 @@ class AndesBottomSheet : CoordinatorLayout {
             peekHeight: Int = DEFAULT_PEEK_HEIGHT,
             state: AndesBottomSheetState = DEFAULT_BOTTOM_SHEET_STATE,
             title: String? = DEFAULT_TITLE,
-            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT,
-            backgroundDim: Boolean = DEFAULT_BACKGROUND_DIM
+            titleAlignment: AndesBottomSheetTitleAlignment = DEFAULT_TITLE_ALIGNMENT
     ) : super(context) {
-        initAttrs(peekHeight, state, title, titleAlignment, backgroundDim)
+        initAttrs(peekHeight, state, title, titleAlignment)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -124,16 +109,14 @@ class AndesBottomSheet : CoordinatorLayout {
         peekHeight: Int,
         bottomSheetState: AndesBottomSheetState,
         titleText: String?,
-        titleAlignment: AndesBottomSheetTitleAlignment,
-        isBackgroundDimEnabled: Boolean
+        titleAlignment: AndesBottomSheetTitleAlignment
     ) {
         andesBottomSheetAttrs =
                 AndesBottomSheetAttrs(
                         peekHeight,
                         bottomSheetState,
                         titleText,
-                        titleAlignment,
-                        isBackgroundDimEnabled
+                        titleAlignment
                 )
 
         setupComponents(createConfig())
@@ -237,32 +220,11 @@ class AndesBottomSheet : CoordinatorLayout {
     }
 
     private fun resolveBackgroundDim(config: AndesBottomSheetConfiguration) {
-        if (!config.isBackgroundDimEnabled) return
         backgroundDimView.setOnClickListener { collapse() }
-
-        when(state) {
-            AndesBottomSheetState.EXPANDED -> showBackgroundDim()
-            AndesBottomSheetState.COLLAPSED -> hideBackgroundDim()
+        if (state == AndesBottomSheetState.EXPANDED) {
+            backgroundDimView.visibility = View.VISIBLE
+            backgroundDimView.alpha = DIM_MAX_ALPHA
         }
-    }
-
-    private fun showBackgroundDim() {
-        backgroundDimView.visibility = View.VISIBLE
-        backgroundDimView.animate()
-                ?.alpha(DIM_MAX_ALPHA)
-                ?.setDuration(DIM_ANIMATION_TIME.toLong())
-                ?.setListener(null)
-    }
-
-    private fun hideBackgroundDim() {
-        backgroundDimView.animate()
-                ?.alpha(DIM_MIN_ALPHA)
-                ?.setDuration(DIM_ANIMATION_TIME.toLong())
-                ?.setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        backgroundDimView.visibility = View.GONE
-                    }
-                })
     }
 
     /**
@@ -331,13 +293,11 @@ class AndesBottomSheet : CoordinatorLayout {
                 BottomSheetBehavior.STATE_EXPANDED -> {
                     listener?.onExpanded().also {
                         updateStateFromBehavior(newState)
-                        resolveBackgroundDim(createConfig())
                     }
                 }
                 BottomSheetBehavior.STATE_COLLAPSED -> {
                     listener?.onCollapsed().also {
                         updateStateFromBehavior(newState)
-                        resolveBackgroundDim(createConfig())
                     }
                 }
                 BottomSheetBehavior.STATE_DRAGGING -> {
@@ -353,7 +313,14 @@ class AndesBottomSheet : CoordinatorLayout {
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            // not used
+            if (backgroundDimView.visibility == View.GONE && slideOffset > MIN_OFFSET_CHANGE) {
+                backgroundDimView.visibility = View.VISIBLE
+            } else if (slideOffset == FLOAT_ZERO) {
+                backgroundDimView.visibility = View.GONE
+            }
+            if (((slideOffset * ONE_HUNDRED).roundToInt() % TWO) == ZERO) {
+                backgroundDimView.alpha = slideOffset
+            }
         }
 
         private fun updateStateFromBehavior(bottomSheetBehaviorState: Int) {
@@ -366,10 +333,12 @@ class AndesBottomSheet : CoordinatorLayout {
 
     companion object {
         private const val DEFAULT_PEEK_HEIGHT = 0
-        private const val DEFAULT_BACKGROUND_DIM = false
         private const val DIM_MAX_ALPHA = 1f
-        private const val DIM_MIN_ALPHA = 0f
-        private const val DIM_ANIMATION_TIME = 150
+        private const val FLOAT_ZERO = 0f
+        private const val ONE_HUNDRED = 100
+        private const val TWO = 2
+        private const val ZERO = 0
+        private const val MIN_OFFSET_CHANGE = 0.01f
         private val DEFAULT_BOTTOM_SHEET_STATE = AndesBottomSheetState.COLLAPSED
         private val DEFAULT_TITLE = null // no title
         private val DEFAULT_TITLE_ALIGNMENT = AndesBottomSheetTitleAlignment.CENTERED

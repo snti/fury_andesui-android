@@ -3,21 +3,27 @@ package com.mercadolibre.android.andesui.demoapp.feature
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.Toast
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
+import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
 import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.list.AndesList
 import com.mercadolibre.android.andesui.list.AndesListViewItem
-import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
+import com.mercadolibre.android.andesui.list.AndesListViewItemChevron
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.type.AndesListType
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
@@ -34,7 +40,8 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     private var andesListItemSubtitle = "Subtitle"
     private var avatar: Drawable? = null
     private var icon: Drawable? = null
-    private var titleNumberOfLines: Int = 50
+    private var titleNumberOfLines: Int = DEFAULT_TITLE_NUMBER_OF_LINES
+    private var showItemSelections: Boolean = false
 
     private lateinit var buttonClear: AndesButton
     private lateinit var buttonUpdate: AndesButton
@@ -42,25 +49,38 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     private lateinit var itemTitle: EditText
     private lateinit var itemSubtitle: EditText
     private lateinit var itemTitleNumberOfLines: EditText
+    private lateinit var andesListDivider: AndesCheckbox
+    private lateinit var andesListSelection: AndesCheckbox
+
+    companion object {
+        const val LIST_SIZE = 100
+        const val DEFAULT_TITLE_NUMBER_OF_LINES = 50
+
+        const val SIMPLE = 0
+        const val CHEVRON = 1
+        const val CHECK_BOX = 2
+        const val RADIO_BUTTON = 3
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.andesui_showcase_main)
-
+        setAdapterLogic()
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+    }
+
+    private fun setAdapterLogic(){
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         viewPager.adapter = AndesShowcasePagerAdapter(this)
-        val indicator = findViewById<PageIndicator>(R.id.page_indicator)
-        indicator.attach(viewPager)
 
         adapter = viewPager.adapter as AndesShowcasePagerAdapter
         andesList = adapter.views[0].andesList
         andesList.dividerItemEnabled = true
         andesList.delegate = this
-      //  andesList.size = AndesListViewItemSize.LARGE
 
         handleListeners(adapter.views[0])
     }
@@ -72,6 +92,8 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         itemTitle = container.findViewById(R.id.editTextListItemTitle)
         itemSubtitle = container.findViewById(R.id.editTextListItemSubtitle)
         itemTitleNumberOfLines = container.findViewById(R.id.editTextNumberOfLines)
+        andesListDivider = container.findViewById(R.id.andesListShowCaseDivider)
+        andesListSelection = container.findViewById(R.id.andesListShowCaseSelection)
 
         sizeSpinner.setSelection(1) // medium value
 
@@ -95,7 +117,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     else -> AndesListViewItemSize.MEDIUM
                 }
 
-                andesList.refreshListAdapter()
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -115,10 +136,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
 
     private fun getItemTypeSelected(): AndesListType {
         return when (adapter.andesListItemTypeSelected) {
-            0 -> AndesListType.SIMPLE
-            1 -> AndesListType.CHEVRON
-            2 -> AndesListType.CHECK_BOX
-            3 -> AndesListType.RADIO_BUTTON
+            SIMPLE -> AndesListType.SIMPLE
+            CHEVRON -> AndesListType.CHEVRON
+            CHECK_BOX -> AndesListType.CHECK_BOX
+            RADIO_BUTTON -> AndesListType.RADIO_BUTTON
             else -> AndesListType.SIMPLE
         }
     }
@@ -127,6 +148,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         andesListItemTitle = itemTitle.text.toString()
         andesListItemSubtitle = itemSubtitle.text.toString()
         andesList.type = getItemTypeSelected()
+
+        showItemSelections = andesListSelection.status == AndesCheckboxStatus.SELECTED
+
+        andesList.dividerItemEnabled = andesListDivider.status == AndesCheckboxStatus.SELECTED
 
         if (itemTitleNumberOfLines.text.toString().isNotEmpty()) {
             titleNumberOfLines = itemTitleNumberOfLines.text.toString().toInt()
@@ -145,6 +170,8 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     }
 
     private fun clear() {
+        titleNumberOfLines = DEFAULT_TITLE_NUMBER_OF_LINES
+
         andesListItemTitle = "Title"
         andesListItemSubtitle = "Subtitle"
 
@@ -153,6 +180,9 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         itemTitleNumberOfLines.setText("")
 
         sizeSpinner.setSelection(1)
+
+        AndesShowcasePagerAdapter(this).clear()
+        setAdapterLogic()
 
         avatar = null
         icon = null
@@ -163,6 +193,10 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
         var andesListItemTypeSelected = 0
         var assetTypeSelected = 0
+        var radioButtons = arrayListOf<RadioButtonItem>()
+        var radioButtons2 = arrayListOf<RadioButtonItem>()
+        lateinit var radioButtonGroup: AndesRadioButtonGroup
+        lateinit var radioButtonGroup2: AndesRadioButtonGroup
 
         var views: List<View>
 
@@ -171,6 +205,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         }
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            container.removeAllViews()
             container.addView(views[position])
             return views[position]
         }
@@ -205,17 +240,19 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
             return listOf<View>(layout, dynamicRadioButtonGroupLayout)
         }
 
+        fun clear() {
+            views = initViews()
+        }
+
         private fun addDynamicRadioButtonGroupLayout(layout: View): View {
+            radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_simple), AndesRadioButtonType.IDLE))
+            radioButtons.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_chevron), AndesRadioButtonType.IDLE))
 
-            val radioButtons = arrayListOf<RadioButtonItem>()
-            radioButtons.add(RadioButtonItem(context.getString(R.string.andes_checkbox_text_list_simple), AndesRadioButtonType.IDLE))
-            radioButtons.add(RadioButtonItem(context.getString(R.string.andes_checkbox_text_list_chevron), AndesRadioButtonType.IDLE))
 
-            val radioButtons2 = arrayListOf<RadioButtonItem>()
-            radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_checkbox_text_list_icon), AndesRadioButtonType.IDLE))
-            radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_checkbox_text_list_thumbnail), AndesRadioButtonType.IDLE))
+            radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_icon), AndesRadioButtonType.IDLE))
+            radioButtons2.add(RadioButtonItem(context.getString(R.string.andes_radiobutton_text_list_thumbnail), AndesRadioButtonType.IDLE))
 
-            val radioButtonGroup = layout.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup1)
+            radioButtonGroup = layout.findViewById(R.id.radioButtonGroup1)
             radioButtonGroup.selected = 0
             radioButtonGroup.radioButtons = radioButtons
             radioButtonGroup.setupCallback(
@@ -226,7 +263,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
                     }
             )
 
-            val radioButtonGroup2 = layout.findViewById<AndesRadioButtonGroup>(R.id.radioButtonGroup2)
+            radioButtonGroup2 = layout.findViewById(R.id.radioButtonGroup2)
             radioButtonGroup2.radioButtons = radioButtons2
             radioButtonGroup.selected = 0
             radioButtonGroup2.setupCallback(
@@ -241,49 +278,46 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         }
     }
 
+    override fun getDataSetSize(): Int = LIST_SIZE
+
     override fun onItemClick(position: Int) {
-        Toast.makeText(this, getDataSet()[position].title, Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(this, "Position of item selected $position", Toast.LENGTH_SHORT).show()
+
         itemSelectedPosition = position
 
         andesList.refreshListAdapter()
     }
 
-    override fun bind(view: View, position: Int): AndesListViewItem {
+    override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
         val row: AndesListViewItem?
 
+        val showItemSelected = showItemSelections && itemSelectedPosition == position
+
         if (andesList.type == AndesListType.SIMPLE) {
-            row = AndesListViewItemSimple(this, andesListItemTitle, subtitle = andesListItemSubtitle, size = andesList.size, icon = icon, avatar = avatar, titleMaxLines = titleNumberOfLines)
+            row = AndesListViewItemSimple(
+                    this,
+                    andesListItemTitle,
+                    subtitle = andesListItemSubtitle,
+                    size = andesList.size,
+                    icon = icon,
+                    avatar = avatar,
+                    titleMaxLines = titleNumberOfLines,
+                    itemSelected = showItemSelected
+            )
         } else {
-            row = AndesListViewItemChevron(this, title = andesListItemTitle, subtitle = andesListItemSubtitle, size = andesList.size, icon = icon, avatar = avatar, titleMaxLines = titleNumberOfLines)
+            row = AndesListViewItemChevron(
+                    this,
+                    title = andesListItemTitle,
+                    subtitle = andesListItemSubtitle,
+                    size = andesList.size,
+                    icon = icon,
+                    avatar = avatar,
+                    titleMaxLines = titleNumberOfLines,
+                    itemSelected = showItemSelected
+            )
         }
-
-//        if (position == 1) {
-//            val drawable = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-//            row = AndesListViewItemSimple(this, getDataSet()[position].title, itemSelected = (position == itemSelectedPosition), avatar = drawable, size = andesList.size)
-//        } else {
-//            row = AndesListViewItemSimple(this, getDataSet()[position].title, getDataSet()[position].subtitle, itemSelected = (position == itemSelectedPosition), size = andesList.size)
-//        }
-
-//        val row = AndesListRow.Builder(getDataSet()[position].title)
-////                .description(getDataSet()[position].description)
-////                .isSelectable(getDataSet()[position].selectable)
-////                .actionableComponent(ActionableComponent.AddButton(AndesButton(this, AndesButtonSize.MEDIUM, AndesButtonHierarchy.TRANSPARENT)))
-//                .build()
 
         return row
     }
-
-    override fun getDataSetSize(): Int = getDataSet().size
-
-    private fun getDataSet() = listOf(
-            Model("title 1", "Desc 1", false),
-            Model("title 2 largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "Desc 2", true),
-            Model("title 3", "Descripcion largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false),
-            Model("title 4", "Descripcion", false),
-            Model("title 5", "Descripcion", false),
-            Model("title 6", "Descripcion", false),
-            Model("title 7", "Descripcion", false),
-            Model("title 8", "Descripcion", false))
-
-    class Model(val title: String, val subtitle: String, val selected: Boolean)
 }

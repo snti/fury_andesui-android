@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.list.size
 
 /**
-*
+ * This class handle the AndesList item size, based on {SMALL, MEDIUM, LARGE} values
  */
 enum class AndesListViewItemSize {
     SMALL,
@@ -21,5 +21,4 @@ enum class AndesListViewItemSize {
             LARGE -> AndesListViewItemLargeSize()
         }
     }
-
 }

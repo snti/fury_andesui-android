@@ -4,8 +4,8 @@
     <solid android:color="@color/andes_blue_ml_500"/>
 
     <corners
-        android:topLeftRadius="45dp"
-        android:topRightRadius="45dp"
-        android:bottomLeftRadius="45dp"
-        android:bottomRightRadius="45dp"/>
+        android:topLeftRadius="@dimen/andes_rectangle_radius"
+        android:topRightRadius="@dimen/andes_rectangle_radius"
+        android:bottomLeftRadius="@dimen/andes_rectangle_radius"
+        android:bottomRightRadius="@dimen/andes_rectangle_radius"/>
 </shape>

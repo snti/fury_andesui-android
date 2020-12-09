@@ -2,7 +2,7 @@ package com.mercadolibre.android.andesui.list.factory
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSizeInterface
@@ -25,13 +25,15 @@ internal data class AndesListViewItemConfiguration(
         val spaceTitleSubtitle: Int,
         val separatorThumbnailWidth: Int,
         val avatarSize: AndesThumbnailSize,
-        val iconSize: Int
-
+        val iconSize: Int,
+        val chevronSize: Int,
+        val showSubtitle: Boolean
 )
 
+@Suppress("TooManyFunctions")
 internal object AndesListViewItemConfigurationFactory {
 
-    fun create(context: Context, andesListViewItemSize: AndesListViewItemSize, hasSubTitle: Boolean): AndesListViewItemConfiguration {
+    fun create(context: Context, andesListViewItemSize: AndesListViewItemSize): AndesListViewItemConfiguration {
         val size = andesListViewItemSize.size
 
         return AndesListViewItemConfiguration(
@@ -50,13 +52,12 @@ internal object AndesListViewItemConfigurationFactory {
                 spaceTitleSubtitle = resolveTitleSubtitleSpace(context, size),
                 separatorThumbnailWidth = resolveSeparatorThumbnailWidth(context, size),
                 avatarSize = resolveAvatarSize(context, size),
-                iconSize = resolveIconSize(context, size)
+                iconSize = resolveIconSize(context, size),
+                chevronSize = resolveChevronSize(context, size),
+                showSubtitle = resolveShowSubtitle(context, size)
         )
     }
 
-    /**
-     *
-     */
     private fun resolveTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_800)
 
     private fun resolveSubTitleColor(context: Context) = ContextCompat.getColor(context, R.color.andes_gray_450)
@@ -77,9 +78,9 @@ internal object AndesListViewItemConfigurationFactory {
 
     private fun resolveTitleMaxLines(context: Context, size: AndesListViewItemSizeInterface) = size.titleMaxLines(context)
 
-    private fun resolveTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    private fun resolveTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
 
-    private fun resolveSubTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    private fun resolveSubTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
 
     private fun resolveTitleSubtitleSpace(context: Context, size: AndesListViewItemSizeInterface) = size.spaceBetweenTitleAndSubtitle(context)
 
@@ -88,4 +89,8 @@ internal object AndesListViewItemConfigurationFactory {
     private fun resolveAvatarSize(context: Context, size: AndesListViewItemSizeInterface) = size.avatarSize(context)
 
     private fun resolveIconSize(context: Context, size: AndesListViewItemSizeInterface) = size.iconSize(context)
+
+    private fun resolveChevronSize(context: Context, size: AndesListViewItemSizeInterface) = size.chevronSize(context)
+
+    private fun resolveShowSubtitle(context: Context, size: AndesListViewItemSizeInterface) = size.showSubtitle(context)
 }

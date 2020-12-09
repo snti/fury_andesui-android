@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/andes_list_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +40,7 @@
                 android:id="@+id/andes_list_item_asset"
                 android:layout_width="@dimen/andes_list_item_thumbnail_size_medium"
                 android:layout_height="@dimen/andes_list_item_thumbnail_size_medium"
+                android:contentDescription="@string/andes_list_item_image"
                 app:andesThumbnailHierarchy="AndesDefault"
                 app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
                 app:andesThumbnailSize="size_40"
@@ -49,7 +50,8 @@
             <ImageView
                 android:id="@+id/image_view_list_item_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/andes_list_item_icon" />
         </LinearLayout>
 
         <View
@@ -97,18 +99,17 @@
             app:layout_constraintTop_toBottomOf="@+id/view_space_title_subtitle"
             tools:text="Row text description" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/andes_thumbnail_chevron"
-            android:layout_width="@dimen/andes_list_chevron_medium"
-            android:layout_height="@dimen/andes_list_chevron_medium"
+            android:layout_width="@dimen/andes_list_chevron_size_medium"
+            android:layout_height="@dimen/andes_list_chevron_size_medium"
             android:src="@drawable/andes_ui_chevron_right_24"
-            app:layout_constraintBottom_toBottomOf="@+id/text_view_item_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_view_item_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

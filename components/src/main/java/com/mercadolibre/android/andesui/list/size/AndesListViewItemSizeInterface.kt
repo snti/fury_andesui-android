@@ -8,6 +8,7 @@ import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
  * Defines all size related properties that an [AndesListViewItem] needs to be drawn properly.
  * Those properties change depending on the size of the tag.
  */
+@Suppress("TooManyFunctions")
 internal interface AndesListViewItemSizeInterface {
     fun paddingLeft(context: Context): Int
     fun paddingRight(context: Context): Int
@@ -21,8 +22,11 @@ internal interface AndesListViewItemSizeInterface {
     fun separatorThumbnailWidth(context: Context): Int
     fun avatarSize(context: Context): AndesThumbnailSize
     fun iconSize(context: Context): Int
+    fun chevronSize(context: Context): Int
+    fun showSubtitle(context: Context): Boolean
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_small).toInt()
 
@@ -42,13 +46,19 @@ internal class AndesListViewItemSmallSize : AndesListViewItemSizeInterface {
 
     override fun spaceBetweenTitleAndSubtitle(context: Context) = 0
 
-    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_small).toInt()
+    override fun separatorThumbnailWidth(context: Context):
+            Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_small).toInt()
 
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_32
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_small).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_small).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = false
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_small).toInt()
 
@@ -66,15 +76,22 @@ internal class AndesListViewItemMediumSize : AndesListViewItemSizeInterface {
 
     override fun titleMaxLines(context: Context) = 3
 
-    override fun spaceBetweenTitleAndSubtitle(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_medium).toInt()
+    override fun spaceBetweenTitleAndSubtitle(context: Context): Int =
+            context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_medium).toInt()
 
-    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_medium).toInt()
+    override fun separatorThumbnailWidth(context: Context):
+            Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_medium).toInt()
 
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_40
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_medium).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_medium).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = true
 }
 
+@Suppress("TooManyFunctions")
 internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
     override fun paddingLeft(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_padding_left_right_medium).toInt()
 
@@ -88,15 +105,22 @@ internal class AndesListViewItemLargeSize : AndesListViewItemSizeInterface {
 
     override fun titleFontSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_list_item_title_font_size_large)
 
-    override fun height(context: Context): Float = context.resources.getDimension(R.dimen.andes_list_item_size_large)
+    override fun height(context: Context):
+            Float = context.resources.getDimension(R.dimen.andes_list_item_size_large)
 
     override fun titleMaxLines(context: Context) = 3
 
-    override fun spaceBetweenTitleAndSubtitle(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_large).toInt()
+    override fun spaceBetweenTitleAndSubtitle(context: Context):
+            Int = context.resources.getDimension(R.dimen.andes_list_item_space_between_title_subtitle_large).toInt()
 
-    override fun separatorThumbnailWidth(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_large).toInt()
+    override fun separatorThumbnailWidth(context: Context):
+            Int = context.resources.getDimension(R.dimen.andes_list_item_separator_thumbnail_width_large).toInt()
 
     override fun avatarSize(context: Context): AndesThumbnailSize = AndesThumbnailSize.SIZE_56
 
     override fun iconSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_item_icon_size_large).toInt()
+
+    override fun chevronSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_list_chevron_size_large).toInt()
+
+    override fun showSubtitle(context: Context): Boolean = true
 }

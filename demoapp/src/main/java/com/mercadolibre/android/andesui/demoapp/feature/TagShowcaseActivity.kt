@@ -3,10 +3,10 @@ package com.mercadolibre.android.andesui.demoapp.feature
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.constraint.Group
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +32,11 @@ import com.mercadolibre.android.andesui.tag.AndesTagSimple
 import com.mercadolibre.android.andesui.tag.choice.AndesTagChoiceCallback
 import com.mercadolibre.android.andesui.tag.choice.state.AndesTagChoiceState
 import com.mercadolibre.android.andesui.tag.choice.mode.AndesTagChoiceMode
-import com.mercadolibre.android.andesui.tag.leftcontent.*
+import com.mercadolibre.android.andesui.tag.leftcontent.IconSize
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContent
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentDot
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentIcon
+import com.mercadolibre.android.andesui.tag.leftcontent.LeftContentImage
 import com.mercadolibre.android.andesui.tag.size.AndesTagSize
 import com.mercadolibre.android.andesui.tag.type.AndesTagType
 import com.mercadolibre.android.andesui.textfield.AndesTextfield

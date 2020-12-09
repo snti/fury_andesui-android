@@ -6,13 +6,15 @@
     <dimen name="andes_list_text_small">12dp</dimen>
     <dimen name="andes_list_text_large">24dp</dimen>
 
+    <dimen name="andes_rectangle_radius">45dp</dimen>
+
     <dimen name="andes_list_item_size_small">40dp</dimen>
     <dimen name="andes_list_item_size_medium">48dp</dimen>
     <dimen name="andes_list_item_size_large">68dp</dimen>
 
     <dimen name="andes_list_chevron_size_small">12dp</dimen>
-    <dimen name="andes_list_chevron_medium">16dp</dimen>
-    <dimen name="andes_list_chevron_large">24dp</dimen>
+    <dimen name="andes_list_chevron_size_medium">16dp</dimen>
+    <dimen name="andes_list_chevron_size_large">24dp</dimen>
 
     <dimen name="andes_list_item_selection_bar_width">2dp</dimen>
     <dimen name="andes_list_item_selection_bar_margin_start">3dp</dimen>
@@ -40,7 +42,7 @@
 
     <dimen name="andes_list_item_separator_thumbnail_width_small">12dp</dimen>
     <dimen name="andes_list_item_separator_thumbnail_width_medium">16dp</dimen>
-    <dimen name="andes_list_item_separator_thumbnail_width_large">24dp</dimen>
+    <dimen name="andes_list_item_separator_thumbnail_width_large">16dp</dimen>
 
     <dimen name="andes_list_item_icon_size_small">16dp</dimen>
     <dimen name="andes_list_item_icon_size_medium">20dp</dimen>
