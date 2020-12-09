@@ -78,10 +78,49 @@ class AndesListAdapter(
         private lateinit var andesViewThumbnailSeparator: View
 
         fun bind(andesList: AndesList, delegate: AndesListDelegate, position: Int) {
-
             val andesListItemConfig = delegate.bind(andesList, itemView, position)
 
-            // Common view
+            itemView.setOnClickListener { delegate.onItemClick(position) }
+
+            findCommonViewsById()
+            setDefaultCommonViewValues()
+
+            when (andesListItemConfig) {
+                is AndesListViewItemSimple -> bindSimpleItem(andesListItemConfig)
+                is AndesListViewItemChevron -> bindChevronItem(andesListItemConfig)
+            }
+        }
+
+        /**
+         * Build Andes List item based on AndesListViewItem configuration for type SIMPLE
+         *
+         * @param itemConfig current AndesListViewItem config
+         */
+        private fun bindSimpleItem(itemConfig: AndesListViewItemSimple) {
+            bindItemCommons(itemConfig)
+        }
+
+        /**
+         * Build Andes List item based on AndesListViewItem configuration for type CHEVRON
+         *
+         * @param itemConfig current AndesListViewItem config
+         */
+        private fun bindChevronItem(itemConfig: AndesListViewItemChevron) {
+            bindItemCommons(itemConfig)
+
+            val andesListItemChevron: ImageView = itemView.findViewById(R.id.andes_thumbnail_chevron)
+            val layoutParamsChevron = andesListItemChevron.layoutParams as ConstraintLayout.LayoutParams
+
+            layoutParamsChevron.height = itemConfig.chevronSize
+            layoutParamsChevron.width = itemConfig.chevronSize
+
+            setChevronPosition(andesListItemChevron) {
+                calculateChevronTopMargin(itemConfig, andesListItemChevron)
+            }
+
+        }
+
+        private fun findCommonViewsById() {
             titleTextView = itemView.findViewById(R.id.text_view_item_title)
             subtitleTextView = itemView.findViewById(R.id.text_view_item_sub_title)
             spaceTitleSubtitleView = itemView.findViewById<View>(R.id.view_space_title_subtitle)
@@ -90,8 +129,10 @@ class AndesListAdapter(
             andesListItemAvatar = itemView.findViewById(R.id.andes_list_item_asset)
             andesViewThumbnailSeparator = itemView.findViewById(R.id.andesViewThumbnailSeparator)
             andesListItemIcon = itemView.findViewById(R.id.image_view_list_item_icon)
+        }
 
-            // Default common view visibility state
+        private fun setDefaultCommonViewValues() {
+            // Default view states
             subtitleTextView.visibility = View.GONE
             spaceTitleSubtitleView.visibility = View.GONE
             andesListItemSelectionView.visibility = View.GONE
@@ -106,40 +147,11 @@ class AndesListAdapter(
             // Title and Subtitle TypeFace
             titleTextView.typeface = itemView.context.getFontOrDefault(R.font.andes_font_regular)
             subtitleTextView.typeface = itemView.context.getFontOrDefault(R.font.andes_font_regular)
-
-            // Icon and Avatar accessibility for TalkBack
-            andesListItemAvatar.contentDescription = itemView.context.resources.getString(R.string.andes_list_item_image)
-            andesListItemIcon.contentDescription = itemView.context.resources.getString(R.string.andes_list_item_icon)
-
-            itemView.setOnClickListener { delegate.onItemClick(position) }
-
-            when (andesListItemConfig) {
-                is AndesListViewItemSimple -> bindSimpleItem(andesListItemConfig)
-
-                is AndesListViewItemChevron -> bindChevronItem(andesListItemConfig)
-            }
-
         }
 
-        private fun bindSimpleItem(andesListItemConfig: AndesListViewItemSimple) {
-            bindItemCommons(andesListItemConfig)
-        }
-
-        private fun bindChevronItem(andesListItemConfig: AndesListViewItemChevron) {
-            bindItemCommons(andesListItemConfig)
-
-            val andesListItemChevron: ImageView = itemView.findViewById(R.id.andes_thumbnail_chevron)
-            val layoutParamsChevron = andesListItemChevron.layoutParams as ConstraintLayout.LayoutParams
-
-            layoutParamsChevron.height = andesListItemConfig.chevronSize
-            layoutParamsChevron.width = andesListItemConfig.chevronSize
-
-            setChevronPosition(andesListItemChevron) {
-                calculateChevronTopMargin(andesListItemConfig, andesListItemChevron)
-            }
-
-        }
-
+        /**
+         * Calculate margin top of Andes chevron
+         */
         private fun calculateChevronTopMargin(andesListItemConfig: AndesListViewItemChevron, andesListItemChevron: View): Int {
             return if (andesListItemConfig.avatar != null) {
                 getChevronTopMarginBasedInAvatar(andesListItemChevron)
@@ -171,12 +183,19 @@ class AndesListAdapter(
             })
         }
 
-        private fun setAssetItemPosition(asset: View, functionToCalculateTopMargin: () -> Int) {
+        /**
+         * Set view position vertically based on @param functionToCalculateTopMargin
+         *
+         * @param view current view to position vertically
+         * @param functionToCalculateTopMargin function that returns the top margin that is applied
+         * to the view
+         */
+        private fun setViewItemPosition(view: View, functionToCalculateTopMargin: () -> Int) {
             titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
 
-                    val layoutParams = asset.layoutParams as LinearLayout.LayoutParams
+                    val layoutParams = view.layoutParams as LinearLayout.LayoutParams
                     val topMargin = functionToCalculateTopMargin()
 
                     layoutParams.setMargins(
@@ -186,7 +205,7 @@ class AndesListAdapter(
                             0
                     )
 
-                    asset.layoutParams = layoutParams
+                    view.layoutParams = layoutParams
 
                     return true
                 }
@@ -252,6 +271,7 @@ class AndesListAdapter(
 
             subtitleTextView.visibility = View.VISIBLE
             subtitleTextView.text = itemConfig.subtitle
+            titleTextView.typeface = itemConfig.subtitleTypeFace
             subtitleTextView.setTextColor(itemConfig.subtitleColor)
             subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemConfig.subtitleFontSize)
         }
@@ -270,7 +290,7 @@ class AndesListAdapter(
 
                 showSpaceBetweenAssetAndTitle(itemConfig.separatorThumbnailWidth)
 
-                setAssetItemPosition(andesListItemIcon) {
+                setViewItemPosition(andesListItemIcon) {
                     calculateIconTopMargin()
                 }
             }
@@ -289,12 +309,17 @@ class AndesListAdapter(
 
                 showSpaceBetweenAssetAndTitle(itemConfig.separatorThumbnailWidth)
 
-                setAssetItemPosition(andesListItemAvatar) {
+                setViewItemPosition(andesListItemAvatar) {
                     calculateAvatarTopMargin()
                 }
             }
         }
 
+        /**
+         * Get the top margin to be applied to the chevron based on avatar position.
+         *
+         * @param andesListItemChevron the view that contains the chevron image.
+         */
         private fun getChevronTopMarginBasedInAvatar(andesListItemChevron: View): Int {
             val chevronHalfHeight = andesListItemChevron.height / 2
             val assetHalfHeight = andesListItemAvatar.height / 2
@@ -303,6 +328,11 @@ class AndesListAdapter(
             return assetHalfHeight + layoutParams.topMargin - chevronHalfHeight
         }
 
+        /**
+         * Get the top margin to be applied to the chevron based on the first line of the title.
+         *
+         * @param andesListItemChevron the view that contains the chevron image.
+         */
         private fun getChevronTopMarginBasedInTitleFirstLine(andesListItemChevron: View): Int {
             val layoutParams = titleTextView.layoutParams as ConstraintLayout.LayoutParams
             val chevronHalfHeight = andesListItemChevron.height / 2
@@ -320,6 +350,10 @@ class AndesListAdapter(
             return getTitleHeightInTheFirstLine() / 2 + layoutParams.topMargin - assetHalfHeight
         }
 
+        /**
+         * Get the height of the first line of the title.
+         *
+         */
         private fun getTitleHeightInTheFirstLine(): Int {
             val textViewTitleHeight = titleTextView.measuredHeight
             val numberOfLines = titleTextView.lineCount

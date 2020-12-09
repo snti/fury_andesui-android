@@ -6,6 +6,8 @@
     <dimen name="andes_list_text_small">12dp</dimen>
     <dimen name="andes_list_text_large">24dp</dimen>
 
+    <dimen name="andes_rectangle_radius">45dp</dimen>
+
     <dimen name="andes_list_item_size_small">40dp</dimen>
     <dimen name="andes_list_item_size_medium">48dp</dimen>
     <dimen name="andes_list_item_size_large">68dp</dimen>

@@ -27,6 +27,11 @@ class AndesList : ConstraintLayout {
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var listAdapter: AndesListAdapter
 
+    companion object {
+        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
+        private val TYPE_DEFAULT = AndesListType.SIMPLE
+    }
+
     /**
      * Getter and setter for [delegate].
      */
@@ -47,7 +52,6 @@ class AndesList : ConstraintLayout {
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListItemSize = value)
             val config = createConfig()
-//            setupListViewItemHeight(config)
         }
 
     /**
@@ -141,11 +145,9 @@ class AndesList : ConstraintLayout {
      * @param enabled true / false
      */
     private fun setupDivider(enabled: Boolean) {
-        if (enabled) {
-            if (recyclerViewComponent.itemDecorationCount < 1) {
-                addDivider()
-            }
-        } else {
+        if (enabled && recyclerViewComponent.itemDecorationCount < 1) {
+            addDivider()
+        } else if (!enabled) {
             removeDivider()
         }
     }
@@ -196,8 +198,4 @@ class AndesList : ConstraintLayout {
 
     private fun createConfig() = AndesListConfigurationFactory.create(andesListAttrs)
 
-    companion object {
-        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
-        private val TYPE_DEFAULT = AndesListType.SIMPLE
-    }
 }

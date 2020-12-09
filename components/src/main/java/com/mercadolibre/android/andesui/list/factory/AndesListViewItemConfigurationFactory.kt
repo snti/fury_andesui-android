@@ -78,9 +78,9 @@ internal object AndesListViewItemConfigurationFactory {
 
     private fun resolveTitleMaxLines(context: Context, size: AndesListViewItemSizeInterface) = size.titleMaxLines(context)
 
-    private fun resolveTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    private fun resolveTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
 
-    private fun resolveSubTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_semibold)
+    private fun resolveSubTitleTypeFace(context: Context) = context.getFontOrDefault(R.font.andes_font_regular)
 
     private fun resolveTitleSubtitleSpace(context: Context, size: AndesListViewItemSizeInterface) = size.spaceBetweenTitleAndSubtitle(context)
 
