@@ -13,6 +13,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.factory.AndesCardAttrParser
 import com.mercadolibre.android.andesui.card.factory.AndesCardAttrs
 import com.mercadolibre.android.andesui.card.factory.AndesCardConfiguration
@@ -50,6 +51,16 @@ class AndesCard : CardView {
             setupTitleComponent(config)
             setupCardViewComponent()
             setupLinkComponent(config)
+        }
+
+    /**
+     * Getter and setter for [bodyPadding].
+     */
+    var bodyPadding: AndesCardBodyPadding
+        get() = andesCardAttrs.andesCardBodyPadding
+        set(value) {
+            andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = value)
+            setupCardViewComponent()
         }
 
     /**
@@ -150,11 +161,12 @@ class AndesCard : CardView {
         view: View,
         type: AndesCardType = TYPE_DEFAULT,
         padding: AndesCardPadding = PADDING_DEFAULT,
+        bodyPadding: AndesCardBodyPadding = BODY_PADDING_DEFAULT,
         title: String? = TITLE_DEFAULT,
         style: AndesCardStyle = STYLE_DEFAULT,
         hierarchy: AndesCardHierarchy = HIERARCHY_DEFAULT
     ) : super(context) {
-        initAttrs(view, type, padding, style, title, hierarchy)
+        initAttrs(view, type, padding, bodyPadding, style, title, hierarchy)
     }
 
     /**
@@ -173,11 +185,12 @@ class AndesCard : CardView {
         cardView: View,
         type: AndesCardType,
         padding: AndesCardPadding,
+        bodyPadding: AndesCardBodyPadding,
         style: AndesCardStyle,
         title: String?,
         hierarchy: AndesCardHierarchy
     ) {
-        andesCardAttrs = AndesCardAttrs(cardView, type, padding, style, title, hierarchy)
+        andesCardAttrs = AndesCardAttrs(cardView, type, padding, bodyPadding, style, title, hierarchy)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
     }
@@ -254,15 +267,25 @@ class AndesCard : CardView {
 
     /**
      * Gets data from the config and sets to the cardView of this card.
+     * If bodyPadding has default value, the component sets values as Padding
      */
     private fun setupCardViewComponent() {
         val params = andesCardView.layoutParams as MarginLayoutParams
-        params.setMargins(
-                andesCardAttrs.andesCardPadding.padding.paddingSize(context),
-                andesCardAttrs.andesCardPadding.padding.paddingSize(context),
-                andesCardAttrs.andesCardPadding.padding.paddingSize(context),
-                andesCardAttrs.andesCardPadding.padding.paddingSize(context)
-        )
+        if (bodyPadding == BODY_PADDING_DEFAULT) {
+            params.setMargins(
+                    andesCardAttrs.andesCardPadding.padding.paddingSize(context),
+                    andesCardAttrs.andesCardPadding.padding.paddingSize(context),
+                    andesCardAttrs.andesCardPadding.padding.paddingSize(context),
+                    andesCardAttrs.andesCardPadding.padding.paddingSize(context)
+            )
+        } else {
+            params.setMargins(
+                    andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
+                    andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
+                    andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
+                    andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context)
+            )
+        }
         andesCardView.layoutParams = params
         andesCardView.removeAllViews()
         if (cardView != null) {
@@ -330,6 +353,7 @@ class AndesCard : CardView {
         private val STYLE_DEFAULT = AndesCardStyle.ELEVATED
         private val TYPE_DEFAULT = AndesCardType.NONE
         private val PADDING_DEFAULT = AndesCardPadding.NONE
+        private val BODY_PADDING_DEFAULT = AndesCardBodyPadding.UNSET
         private val TITLE_DEFAULT = null
         private val HIERARCHY_DEFAULT = AndesCardHierarchy.PRIMARY
     }
