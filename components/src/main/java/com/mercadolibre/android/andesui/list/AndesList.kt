@@ -1,12 +1,12 @@
 package com.mercadolibre.android.andesui.list
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mercadolibre.android.andesui.R
@@ -20,17 +20,13 @@ import com.mercadolibre.android.andesui.list.utils.AndesListAdapter
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.list.utils.AndesListDividerItemDecoration
 
+
 @Suppress("TooManyFunctions")
 class AndesList : ConstraintLayout {
 
     private lateinit var andesListDelegate: AndesListDelegate
     private lateinit var recyclerViewComponent: RecyclerView
     private lateinit var listAdapter: AndesListAdapter
-
-    companion object {
-        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
-        private val TYPE_DEFAULT = AndesListType.SIMPLE
-    }
 
     /**
      * Getter and setter for [delegate].
@@ -51,7 +47,6 @@ class AndesList : ConstraintLayout {
         get() = andesListAttrs.andesListItemSize
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListItemSize = value)
-            val config = createConfig()
         }
 
     /**
@@ -61,8 +56,7 @@ class AndesList : ConstraintLayout {
         get() = andesListAttrs.andesListType
         set(value) {
             andesListAttrs = andesListAttrs.copy(andesListType = value)
-            val config = createConfig()
-            listAdapter.changeAndesListType(type)
+            listAdapter.changeAndesListType(andesListAttrs.andesListType)
         }
 
     /**
@@ -156,13 +150,15 @@ class AndesList : ConstraintLayout {
      * Add current divider to AndesList
      */
     private fun addDivider() {
-        val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.andes_list_item_divider)
-        if (dividerDrawable != null) {
-            val dividerItemDecoration: RecyclerView.ItemDecoration = AndesListDividerItemDecoration(dividerDrawable)
-            recyclerViewComponent.addItemDecoration(dividerItemDecoration)
-        } else {
-            Log.d("AndesList", "Error adding list divider")
-        }
+        val dividerSize = resources.getDimension(R.dimen.andes_list_item_divider).toInt()
+
+        val shape = GradientDrawable()
+        shape.shape = GradientDrawable.RECTANGLE
+        shape.setSize(dividerSize, dividerSize)
+        shape.setColor(ResourcesCompat.getColor(resources, R.color.andes_gray_010, context.theme))
+
+        val dividerItemDecoration: RecyclerView.ItemDecoration = AndesListDividerItemDecoration(shape)
+        recyclerViewComponent.addItemDecoration(dividerItemDecoration)
     }
 
     /**
@@ -198,4 +194,8 @@ class AndesList : ConstraintLayout {
 
     private fun createConfig() = AndesListConfigurationFactory.create(andesListAttrs)
 
+    companion object {
+        private val SIZE_DEFAULT = AndesListViewItemSize.MEDIUM
+        private val TYPE_DEFAULT = AndesListType.SIMPLE
+    }
 }

@@ -3,6 +3,8 @@
 
     <dimen name="andes_list_margin">8dp</dimen>
 
+    <dimen name="andes_list_item_divider">1dp</dimen>
+
     <dimen name="andes_list_text_small">12dp</dimen>
     <dimen name="andes_list_text_large">24dp</dimen>
 
@@ -25,7 +27,6 @@
     <dimen name="andes_list_item_title_font_size_medium">16sp</dimen>
     <dimen name="andes_list_item_title_font_size_large">18sp</dimen>
 
-<!--    <dimen name="andes_list_item_sub_title_font_size_small">14sp</dimen>-->
     <dimen name="andes_list_item_sub_title_font_size_medium">14sp</dimen>
     <dimen name="andes_list_item_sub_title_font_size_large">16sp</dimen>
 
