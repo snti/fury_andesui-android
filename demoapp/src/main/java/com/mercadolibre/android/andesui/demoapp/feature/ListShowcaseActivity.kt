@@ -69,8 +69,6 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
         supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
     }
 
     private fun setAdapterLogic(){

@@ -114,7 +114,7 @@ class AndesListAdapter(
             layoutParamsChevron.height = itemConfig.chevronSize
             layoutParamsChevron.width = itemConfig.chevronSize
 
-            setChevronPosition(andesListItemChevron) {
+            setViewItemPosition(andesListItemChevron) {
                 calculateChevronTopMargin(itemConfig, andesListItemChevron)
             }
 
@@ -160,29 +160,6 @@ class AndesListAdapter(
             }
         }
 
-        private fun setChevronPosition(asset: View, functionToCalculateTopMargin: () -> Int) {
-            titleTextView.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
-
-                    val layoutParams = asset.layoutParams as ConstraintLayout.LayoutParams
-                    val topMargin = functionToCalculateTopMargin()
-
-                    layoutParams.setMargins(
-                            0,
-                            topMargin,
-                            0,
-                            0
-                    )
-
-                    asset.layoutParams = layoutParams
-
-                    return true
-                }
-
-            })
-        }
-
         /**
          * Set view position vertically based on @param functionToCalculateTopMargin
          *
@@ -195,7 +172,7 @@ class AndesListAdapter(
                 override fun onPreDraw(): Boolean {
                     titleTextView.viewTreeObserver.removeOnPreDrawListener(this)
 
-                    val layoutParams = view.layoutParams as LinearLayout.LayoutParams
+                    val layoutParams = view.layoutParams as ConstraintLayout.LayoutParams
                     val topMargin = functionToCalculateTopMargin()
 
                     layoutParams.setMargins(
@@ -323,7 +300,7 @@ class AndesListAdapter(
         private fun getChevronTopMarginBasedInAvatar(andesListItemChevron: View): Int {
             val chevronHalfHeight = andesListItemChevron.height / 2
             val assetHalfHeight = andesListItemAvatar.height / 2
-            val layoutParams = andesListItemAvatar.layoutParams as LinearLayout.LayoutParams
+            val layoutParams = andesListItemAvatar.layoutParams as ConstraintLayout.LayoutParams
 
             return assetHalfHeight + layoutParams.topMargin - chevronHalfHeight
         }

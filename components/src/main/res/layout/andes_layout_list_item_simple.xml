@@ -28,38 +28,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/layout_asset_container"
+        <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
+            android:id="@+id/andes_list_item_asset"
+            android:layout_width="@dimen/andes_list_item_thumbnail_size_medium"
+            android:layout_height="@dimen/andes_list_item_thumbnail_size_medium"
+            android:contentDescription="@string/andes_list_item_image"
+            app:andesThumbnailHierarchy="AndesDefault"
+            app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
+            app:andesThumbnailSize="size_40"
+            app:andesThumbnailState="enabled"
+            app:andesThumbnailType="icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_list_item_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:contentDescription="@string/andes_list_item_icon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.mercadolibre.android.andesui.thumbnail.AndesThumbnail
-                android:id="@+id/andes_list_item_asset"
-                android:layout_width="@dimen/andes_list_item_thumbnail_size_medium"
-                android:layout_height="@dimen/andes_list_item_thumbnail_size_medium"
-                android:contentDescription="@string/andes_list_item_image"
-                app:andesThumbnailHierarchy="AndesDefault"
-                app:andesThumbnailImage="@drawable/andes_otros_almanaque_20"
-                app:andesThumbnailSize="size_40"
-                app:andesThumbnailState="enabled"
-                app:andesThumbnailType="icon" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/andesThumbnailBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="andes_list_item_asset,image_view_list_item_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/image_view_list_item_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/andes_list_item_icon" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.Barrier>
 
         <View
             android:id="@+id/andesViewThumbnailSeparator"
             android:layout_width="@dimen/andes_list_item_separator_thumbnail_width_small"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/layout_asset_container"
+            app:layout_constraintStart_toEndOf="@+id/andesThumbnailBarrier"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
