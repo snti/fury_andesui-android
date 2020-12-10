@@ -34,7 +34,7 @@ class AndesListAdapter(
         const val RADIO_BUTTON = 3
     }
 
-    override fun getItemCount() = delegate.getDataSetSize()
+    override fun getItemCount() = delegate.getDataSetSize(andesList)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
             holder.bind(andesList, delegate, position)
@@ -80,7 +80,7 @@ class AndesListAdapter(
         fun bind(andesList: AndesList, delegate: AndesListDelegate, position: Int) {
             val andesListItemConfig = delegate.bind(andesList, itemView, position)
 
-            itemView.setOnClickListener { delegate.onItemClick(position) }
+            itemView.setOnClickListener { delegate.onItemClick(andesList, position) }
 
             findCommonViewsById()
             setDefaultCommonViewValues()
