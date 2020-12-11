@@ -18,6 +18,7 @@ import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselAdapter
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselDelegate
 import com.mercadolibre.android.andesui.carousel.utils.AndesCarouselMarginItemDecoration
 
+@Suppress("TooManyFunctions")
 class AndesCarousel : ConstraintLayout {
 
     private lateinit var andesCarouselAttrs: AndesCarouselAttrs

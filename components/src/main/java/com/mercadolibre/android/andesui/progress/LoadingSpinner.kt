@@ -26,7 +26,7 @@ class LoadingSpinner @JvmOverloads constructor(
     private lateinit var primaryColor: Paint
     private var sweepAngle = 0
     private var startAngle = 0
-    private var strokeSize = 5
+    private var strokeSize = STROKE_SIZE
     private lateinit var viewBounds: RectF
     private lateinit var currentColor: Paint
     private lateinit var sweepAnim: ValueAnimator
@@ -196,6 +196,7 @@ class LoadingSpinner @JvmOverloads constructor(
     }
 
     companion object {
+        const val STROKE_SIZE = 5
         const val FULL_CIRCLE = 360
         const val QUARTER_CIRCLE = 90
         const val DURATION = 2000L

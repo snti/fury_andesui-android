@@ -1,3 +1,7 @@
+# v3.1.0
+## 🚀 Features
+- AndesList | Author: [@snti](https://github.com/snti)
+
 # v3.0.0
 ## 🚀 Features
 - Migration AndroidX
