@@ -177,6 +177,9 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         itemSubtitle.setText("Subtitle")
         itemTitleNumberOfLines.setText("")
 
+        andesList.dividerItemEnabled = true
+        showItemSelections = false
+
         sizeSpinner.setSelection(1)
 
         AndesShowcasePagerAdapter(this).clear()
