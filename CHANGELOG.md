@@ -1,3 +1,7 @@
+# v3.1.1
+## 🚀 Fixes
+- Fix the size of the right and left componente of text
+
 # v3.1.0
 ## 🚀 Features
 - AndesList | Author: [@snti](https://github.com/snti)
