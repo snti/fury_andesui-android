@@ -74,6 +74,7 @@ staticCodeAnalysis {
 configurations.all {
     resolutionStrategy {
         force "androidx.constraintlayout:constraintlayout:2.0.4"
+        force 'androidx.appcompat:appcompat:1.0.2'
     }
 }
 
