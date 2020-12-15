@@ -1,6 +1,8 @@
 # v3.1.1
 ## 🚀 Fixes
 - Fix the size of the right and left componente of text
+## 🚀 Features
+- Migración Constraint layout v2
 
 # v3.1.0
 ## 🚀 Features

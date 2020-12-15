@@ -71,6 +71,11 @@ staticCodeAnalysis {
 
     androidLintConfig = "$project.rootProject.projectDir/config/android/android-lint-demoapp.xml"
 }
+configurations.all {
+    resolutionStrategy {
+        force "androidx.appcompat:appcompat:$appCompatVersion"
+    }
+}
 
 dependencies {
     implementation project(':components')
