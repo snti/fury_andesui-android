@@ -1,3 +1,7 @@
+# v3.2.0
+## 🚀 Features
+- Migración Constraint layout v2 | Author: [@rodri](https://github.com/RodriP)
+
 # v3.1.0
 ## 🚀 Features
 - AndesList | Author: [@snti](https://github.com/snti)
