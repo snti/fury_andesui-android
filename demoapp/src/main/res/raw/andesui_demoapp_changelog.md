@@ -1,4 +1,4 @@
-# v3.1.1
+# v3.2.0
 ## 🚀 Fixes
 - Fix the size of the right and left componente of text
 ## 🚀 Features
