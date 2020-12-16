@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.datepicker
 
 import android.content.Context
+import android.os.Build
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -123,6 +124,11 @@ class AndesDatePicker : ConstraintLayout {
     private fun initComponents() {
         LayoutInflater.from(context).inflate(R.layout.andes_layout_datepicker, this)
         onCheckedChangeListener(andesBtnSelectDate)
+        val version: Int = Build.VERSION.SDK_INT
+        if (version <= 21){
+            calendarView.layoutParams.width = 900
+            calendarView.layoutParams.height = 900
+        }
     }
 
     /**
