@@ -63,9 +63,9 @@ deploy-release-job: &deployReleaseJob
     # Checkout to our repo and add the ssh keys for doing git stuff
     - checkout
     - add_ssh_keys
-#    - run:
-#        name: Run Deploy
-#        command: ./gradlew assemble bintrayUpload --no-build-cache --rerun-tasks
+    - run:
+        name: Run Deploy
+        command: ./gradlew assemble bintrayUpload --no-build-cache --rerun-tasks
     - run:
         name: Run MDS demoapp
         command: ./scripts/run_mds.sh
