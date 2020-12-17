@@ -47,7 +47,7 @@ class AndesCard : CardView {
         set(value) {
             andesCardAttrs = andesCardAttrs.copy(andesCardPadding = value)
             val config = createConfig()
-            bodyPadding = AndesCardBodyPadding.valueOf(value.toString())
+            bodyPadding = AndesCardBodyPadding.fromString(value.toString())
             setupBackgroundComponent(config)
             setupTitleComponent(config)
             setupCardViewComponent()
@@ -158,16 +158,15 @@ class AndesCard : CardView {
 
     @Suppress("LongParameterList")
     constructor(
-        context: Context,
-        view: View,
-        type: AndesCardType = TYPE_DEFAULT,
-        padding: AndesCardPadding = PADDING_DEFAULT,
-        bodyPadding: AndesCardBodyPadding = BODY_PADDING_DEFAULT,
-        title: String? = TITLE_DEFAULT,
-        style: AndesCardStyle = STYLE_DEFAULT,
-        hierarchy: AndesCardHierarchy = HIERARCHY_DEFAULT
+            context: Context,
+            view: View,
+            type: AndesCardType = TYPE_DEFAULT,
+            padding: AndesCardPadding = PADDING_DEFAULT,
+            title: String? = TITLE_DEFAULT,
+            style: AndesCardStyle = STYLE_DEFAULT,
+            hierarchy: AndesCardHierarchy = HIERARCHY_DEFAULT
     ) : super(context) {
-        initAttrs(view, type, padding, bodyPadding, style, title, hierarchy)
+        initAttrs(view, type, padding, style, title, hierarchy)
     }
 
     /**
@@ -179,6 +178,7 @@ class AndesCard : CardView {
         andesCardAttrs = AndesCardAttrParser.parse(context, attrs)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
+        bodyPadding = AndesCardBodyPadding.fromString(andesCardAttrs.andesCardPadding.toString())
     }
 
     @Suppress("LongParameterList")
@@ -186,7 +186,6 @@ class AndesCard : CardView {
         cardView: View,
         type: AndesCardType,
         padding: AndesCardPadding,
-        bodyPadding: AndesCardBodyPadding,
         style: AndesCardStyle,
         title: String?,
         hierarchy: AndesCardHierarchy
@@ -268,7 +267,6 @@ class AndesCard : CardView {
 
     /**
      * Gets data from the config and sets to the cardView of this card.
-     * If bodyPadding has default value, the component sets values as Padding
      */
     private fun setupCardViewComponent() {
         val params = andesCardView.layoutParams as MarginLayoutParams
@@ -345,7 +343,6 @@ class AndesCard : CardView {
         private val STYLE_DEFAULT = AndesCardStyle.ELEVATED
         private val TYPE_DEFAULT = AndesCardType.NONE
         private val PADDING_DEFAULT = AndesCardPadding.NONE
-        private val BODY_PADDING_DEFAULT = AndesCardBodyPadding.NONE
         private val TITLE_DEFAULT = null
         private val HIERARCHY_DEFAULT = AndesCardHierarchy.PRIMARY
     }

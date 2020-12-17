@@ -19,7 +19,6 @@ internal data class AndesCardConfiguration(
     val titleColor: AndesColor,
     val titleHeight: Int,
     val titlePadding: Int,
-    val bodyPadding: Int,
     val elevation: Float,
     val pipeColor: AndesColor,
     val linkColor: AndesColor
@@ -35,7 +34,6 @@ internal object AndesCardConfigurationFactory {
                     titleColor = resolveTitleColor(),
                     titleHeight = resolveTitleHeight(context, andesCardAttrs.andesCardPadding.padding),
                     titlePadding = resolveLateralMargin(context, andesCardAttrs.andesCardPadding),
-                    bodyPadding = resolveLateralBodyMargin(context, andesCardAttrs.andesCardBodyPadding),
                     elevation = resolveElevation(
                             context, andesCardAttrs.andesCardHierarchy, andesCardAttrs.andesCardStyle.style
                     ),
@@ -54,13 +52,6 @@ internal object AndesCardConfigurationFactory {
             AndesCardPadding.SMALL.padding.paddingSize(context)
         } else {
             padding.padding.paddingSize(context)
-        }
-    }
-    private fun resolveLateralBodyMargin(context: Context, bodyPadding: AndesCardBodyPadding): Int {
-        return if (bodyPadding == AndesCardBodyPadding.NONE) {
-            AndesCardBodyPadding.SMALL.bodyPadding.bodyPaddingSize(context)
-        } else {
-            bodyPadding.bodyPadding.bodyPaddingSize(context)
         }
     }
 

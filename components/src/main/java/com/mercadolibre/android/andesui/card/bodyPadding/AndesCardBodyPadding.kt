@@ -19,7 +19,6 @@ enum class AndesCardBodyPadding {
     }
 
     internal val bodyPadding get() = getAndesCardBodyPadding()
-    internal val padding get() = getAndesCardPadding()
 
     private fun getAndesCardBodyPadding(): AndesCardBodyPaddingInterface {
         return when (this) {
@@ -28,16 +27,6 @@ enum class AndesCardBodyPadding {
             MEDIUM -> AndesCardBodyPaddingMedium
             LARGE -> AndesCardBodyPaddingLarge
             XLARGE -> AndesCardBodyPaddingXLarge
-        }
-    }
-
-    private fun getAndesCardPadding(): AndesCardPaddingInterface {
-        return when(this) {
-            NONE -> AndesCardPaddingNone
-            SMALL -> AndesCardPaddingSmall
-            MEDIUM -> AndesCardPaddingMedium
-            LARGE -> AndesCardPaddingLarge
-            XLARGE -> AndesCardPaddingXLarge
         }
     }
 }
