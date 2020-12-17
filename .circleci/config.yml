@@ -66,6 +66,9 @@ deploy-release-job: &deployReleaseJob
     - run:
         name: Run Deploy
         command: ./gradlew assemble bintrayUpload --no-build-cache --rerun-tasks
+    - run:
+        name: Run MDS demoapp
+        command: ./scripts/run_mds.sh
 ##
 # We define our default workflow
 # This workflow will be used by our default builds
