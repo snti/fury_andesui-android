@@ -22,6 +22,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.spy
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -37,6 +39,7 @@ class AndesCardTest {
     private var context = RuntimeEnvironment.application
     private val configFactory = spy(AndesCardConfigurationFactory)
     private lateinit var attrs: AndesCardAttrs
+    private lateinit var attributeSet:AttributeSet
 
     @Before
     fun setup() {
@@ -199,7 +202,7 @@ class AndesCardTest {
     /*************************/
     @Test
     fun `Body none then body padding small`() {
-        val andesCard = AndesCard(context,view,AndesCardType.NONE,AndesCardPadding.NONE,"title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.NONE, "title", AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         assertEquals(AndesCardBodyPadding.NONE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.NONE, andesCard.padding)
         andesCard.bodyPadding = AndesCardBodyPadding.SMALL
@@ -209,7 +212,7 @@ class AndesCardTest {
 
     @Test
     fun `Body xlarge then body padding none`() {
-        val andesCard = AndesCard(context,view,AndesCardType.NONE,AndesCardPadding.XLARGE,"title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context, view,AndesCardType.NONE, AndesCardPadding.XLARGE, "title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         assertEquals(AndesCardBodyPadding.XLARGE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.XLARGE, andesCard.padding)
         andesCard.bodyPadding = AndesCardBodyPadding.NONE
@@ -219,13 +222,22 @@ class AndesCardTest {
 
     @Test
     fun `Body medium then body padding xlarge`() {
-        val andesCard = AndesCard(context,view,AndesCardType.NONE,AndesCardPadding.MEDIUM,"title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
+        val andesCard = AndesCard(context,view, AndesCardType.NONE, AndesCardPadding.MEDIUM,  "title",AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
         assertEquals(AndesCardBodyPadding.MEDIUM, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.MEDIUM, andesCard.padding)
         andesCard.bodyPadding = AndesCardBodyPadding.XLARGE
         assertEquals(AndesCardBodyPadding.XLARGE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.MEDIUM, andesCard.padding)
     }
+
+    @Test
+    fun `Body medium then body padding xlarge from attrs`() {
+        attributeSet = Mockito.mock(AttributeSet::class.java)
+        // when(attributeSet.getAttributeValue(0))
+
+        val andesCard = AndesCard(context, attributeSet)
+    }
+
 
     @Test
     fun `Type none`() {

@@ -1,12 +1,5 @@
 package com.mercadolibre.android.andesui.card.bodyPadding
 
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingXLarge
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingInterface
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingLarge
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingMedium
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingNone
-import com.mercadolibre.android.andesui.card.padding.AndesCardPaddingSmall
-
 enum class AndesCardBodyPadding {
     NONE,
     SMALL,
