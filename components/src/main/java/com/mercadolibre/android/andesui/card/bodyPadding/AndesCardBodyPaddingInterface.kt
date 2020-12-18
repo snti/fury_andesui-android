@@ -26,7 +26,3 @@ internal object AndesCardBodyPaddingLarge: AndesCardBodyPaddingInterface {
 internal object AndesCardBodyPaddingXLarge: AndesCardBodyPaddingInterface {
     override fun bodyPaddingSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_card_padding_xlarge).toInt()
 }
-
-internal object AndesCardBodyPaddingUnset: AndesCardBodyPaddingInterface {
-    override fun bodyPaddingSize(context: Context): Int = context.resources.getDimension(R.dimen.andes_card_padding_none).toInt()
-}

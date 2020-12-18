@@ -190,9 +190,10 @@ class AndesCard : CardView {
         title: String?,
         hierarchy: AndesCardHierarchy
     ) {
-        andesCardAttrs = AndesCardAttrs(cardView, type, padding, bodyPadding, style, title, hierarchy)
+        andesCardAttrs = AndesCardAttrs(cardView, type, padding, BODY_PADDING_DEFAULT, style, title, hierarchy)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
+        bodyPadding = AndesCardBodyPadding.valueOf(padding.toString())
     }
 
     /**
@@ -343,6 +344,7 @@ class AndesCard : CardView {
         private val STYLE_DEFAULT = AndesCardStyle.ELEVATED
         private val TYPE_DEFAULT = AndesCardType.NONE
         private val PADDING_DEFAULT = AndesCardPadding.NONE
+        private val BODY_PADDING_DEFAULT = AndesCardBodyPadding.NONE
         private val TITLE_DEFAULT = null
         private val HIERARCHY_DEFAULT = AndesCardHierarchy.PRIMARY
     }
