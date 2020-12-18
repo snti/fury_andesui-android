@@ -3,10 +3,15 @@ package com.mercadolibre.android.andesui.dropdown.factory
 import android.content.Context
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
+import com.mercadolibre.android.andesui.dropdown.type.AndesDropdownMenuType
 
 internal data class AndesDropdownAttrs(
-        val andesDropdownTriggerType: AndesDropdownTriggerType,
-        val andesDropdownMenuType : AndesDropdownMenuType
+        val andesDropdownMenuType: AndesDropdownMenuType,
+        val andesDropdownLabel: String?,
+        val andesDropdownHelper: String?,
+        val andesDropdownPlaceHolder: String?,
+        val andesDropdownSize: AndesDropdownSize = AndesDropdownSize.MEDIUM
 )
 
 
@@ -16,8 +21,12 @@ internal data class AndesDropdownAttrs(
  */
 internal object AndesDropdownAttrParser {
 
-    private const val ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN = "9000"
-    private const val ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE = "9001"
+    private const val ANDES_DROPDOWN_SIZE_SMALL = "10000"
+    private const val ANDES_DROPDOWN_SIZE_MEDIUM = "10001"
+    private const val ANDES_DROPDOWN_SIZE_LARGE = "10002"
+//
+//    private const val ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN = "9000"
+//    private const val ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE = "9001"
 
     private const val ANDES_DROPDOWN_MENU_TYPE_BOTTOMSHEET = "9002"
     private const val ANDES_DROPDOWN_MENU_TYPE_FLOATINGMENU = "9003"
@@ -25,11 +34,11 @@ internal object AndesDropdownAttrParser {
     fun parse(context: Context, attr: AttributeSet?): AndesDropdownAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesList)
 
-        val andesDropdownTriggerType = when (typedArray.getString(R.styleable.AndesDropdown_AndesDropdownTriggerType)) {
-            ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN -> AndesDropdownTriggerType.FORMDROPDOWN
-            ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE -> AndesDropdownTriggerType.STANDALONE
-            else -> AndesDropdownTriggerType.FORMDROPDOWN
-        }
+//        val andesDropdownTriggerType = when (typedArray.getString(R.styleable.AndesDropdown_AndesDropdownTriggerType)) {
+//            ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN -> AndesDropdownTriggerType.FORMDROPDOWN
+//            ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE -> AndesDropdownTriggerType.STANDALONE
+//            else -> AndesDropdownTriggerType.FORMDROPDOWN
+//        }
 
         val andesDropdownMenuType = when (typedArray.getString(R.styleable.AndesDropdown_AndesDropdownMenuType)) {
             ANDES_DROPDOWN_MENU_TYPE_BOTTOMSHEET -> AndesDropdownMenuType.BOTTOMSHEET
@@ -37,9 +46,23 @@ internal object AndesDropdownAttrParser {
             else -> AndesDropdownMenuType.BOTTOMSHEET
         }
 
+        val andesDropdownSize = when (typedArray.getString(R.styleable.AndesDropdown_andesDropdownSize)) {
+            ANDES_DROPDOWN_SIZE_SMALL -> AndesDropdownSize.SMALL
+            ANDES_DROPDOWN_SIZE_MEDIUM -> AndesDropdownSize.MEDIUM
+            ANDES_DROPDOWN_SIZE_LARGE -> AndesDropdownSize.LARGE
+            else -> AndesDropdownSize.MEDIUM
+        }
+
+        val andesDropdownLabel = typedArray.getString(R.styleable.AndesDropdown_andesDropdownLabel)
+        val andesDropdownHelper = typedArray.getString(R.styleable.AndesDropdown_andesDropdownHelper)
+        val andesDropdownPlaceHolder = typedArray.getString(R.styleable.AndesDropdown_andesDropdownPlaceHolder)
+
         return AndesDropdownAttrs(
-                andesDropdownTriggerType = andesDropdownTriggerType,
-                andesDropdownMenuType = andesDropdownMenuType
+                andesDropdownMenuType = andesDropdownMenuType,
+                andesDropdownLabel = andesDropdownLabel,
+                andesDropdownHelper = andesDropdownHelper,
+                andesDropdownPlaceHolder = andesDropdownPlaceHolder,
+                andesDropdownSize = andesDropdownSize
         ).also { typedArray.recycle() }
     }
 

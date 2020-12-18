@@ -1,4 +1,4 @@
-package com.mercadolibre.android.andesui.dropdown.factory
+package com.mercadolibre.android.andesui.dropdown.type
 
 enum class AndesDropdownMenuType {
     BOTTOMSHEET,

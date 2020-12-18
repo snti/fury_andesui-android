@@ -1,0 +1,224 @@
+package com.mercadolibre.android.andesui.demoapp.feature
+
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.mercadolibre.android.andesui.button.AndesButton
+import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
+import com.mercadolibre.android.andesui.dropdown.AndesDropDownForm
+import com.mercadolibre.android.andesui.dropdown.AndesDropDownItem
+import com.mercadolibre.android.andesui.dropdown.AndesDropDownStandalone
+import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
+import com.mercadolibre.android.andesui.dropdown.utils.AndesDropdownDelegate
+import kotlinx.android.synthetic.main.andesui_dropdown_form_showcase.view.*
+import kotlinx.android.synthetic.main.andesui_dropdown_standalone_showcase.view.*
+
+class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
+    private var andesDropDownLabel = "Titulo"
+    private var andesDropDownPlaceHolder = "Place holder"
+
+    private lateinit var adapter: AndesShowcasePagerAdapter
+    private lateinit var andesDropDownForm: AndesDropDownForm
+    private lateinit var andesDropDownStandalone: AndesDropDownStandalone
+    private lateinit var buttonClear: AndesButton
+    private lateinit var buttonUpdate: AndesButton
+    private lateinit var editTextTitle: EditText
+    private lateinit var editTextPlaceHolder: EditText
+    private lateinit var sizeSpinner: Spinner
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.andesui_showcase_main)
+        setAdapterLogic()
+        setSupportActionBar(findViewById(R.id.andesui_nav_bar))
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun setAdapterLogic() {
+        val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
+        viewPager.adapter = AndesShowcasePagerAdapter(this)
+
+        val indicator = findViewById<PageIndicator>(R.id.page_indicator)
+        indicator.attach(viewPager)
+
+        adapter = viewPager.adapter as AndesShowcasePagerAdapter
+
+        setupDropdownFormShowCase(adapter.views[0])
+        setupDropdownStandaloneShowCase(adapter.views[1])
+    }
+
+    override fun onItemSelected(andesDropDownForm: AndesDropDownForm, position: Int) {
+        Toast.makeText(this, "item selected position: $position", Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun setupDropdownStandaloneShowCase(container: View) {
+
+        andesDropDownStandalone = container.andesDropdownStandalone
+        andesDropDownStandalone.listItems.addAll(getFakeList())
+        andesDropDownStandalone.label = andesDropDownLabel
+        andesDropDownStandalone.delegate = this
+
+        sizeSpinner = container.findViewById(R.id.andes_dropdown_standalone_show_case_spinner)
+        sizeSpinner.setSelection(1) // medium value
+
+        sizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                    parentView: AdapterView<*>?,
+                    selectedItemView: View,
+                    position: Int,
+                    id: Long
+            ) {
+                andesDropDownStandalone.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
+                    "small" -> {
+                        AndesDropdownSize.SMALL
+                    }
+                    "medium" -> {
+                        AndesDropdownSize.MEDIUM
+                    }
+                    "large" -> {
+                        AndesDropdownSize.LARGE
+                    }
+                    else -> AndesDropdownSize.MEDIUM
+                }
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // Do nothing.
+            }
+        }
+
+    }
+
+    private fun setupDropdownFormShowCase(container: View) {
+        buttonClear = container.findViewById(R.id.buttonClear)
+        buttonUpdate = container.findViewById(R.id.buttonUpdate)
+
+        andesDropDownForm = container.andesDropdown
+
+//        andesList.dividerItemEnabled = true
+        andesDropDownForm.delegate = this
+        andesDropDownForm.label = andesDropDownLabel
+        andesDropDownForm.placeholder = andesDropDownPlaceHolder
+        andesDropDownForm.helper = "Helper text"
+
+        andesDropDownForm.listItems.addAll(getFakeList())
+
+        editTextTitle = container.findViewById(R.id.editTextDropdownLabel)
+        editTextPlaceHolder = container.findViewById(R.id.editTextDropdownPlaceHolder)
+
+        buttonClear.setOnClickListener {
+            clear()
+        }
+
+        buttonUpdate.setOnClickListener {
+            update()
+        }
+    }
+
+    private fun clear() {
+        andesDropDownLabel = "Titulo"
+        andesDropDownPlaceHolder = "Place holder"
+
+        editTextTitle.setText(andesDropDownLabel)
+        editTextPlaceHolder.setText(andesDropDownPlaceHolder)
+    }
+
+    private fun update() {
+        andesDropDownForm.label = editTextTitle.text.toString()
+        andesDropDownForm.placeholder = editTextPlaceHolder.text.toString()
+        andesDropDownForm.helper = "Helper text"
+    }
+
+    class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
+        var views: List<View>
+
+        init {
+            views = initViews()
+        }
+
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            container.addView(views[position])
+            return views[position]
+        }
+
+        override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
+            container.removeView(view as View?)
+        }
+
+        override fun isViewFromObject(view: View, other: Any): Boolean {
+            return view == other
+        }
+
+        override fun getCount(): Int = views.size
+
+        private fun initViews(): List<View> {
+            val inflater = LayoutInflater.from(context)
+            val layoutDropDownForm = inflater.inflate(R.layout.andesui_dropdown_form_showcase, null, false)
+            val layoutDropDownStandalone = inflater.inflate(R.layout.andesui_dropdown_standalone_showcase, null, false)
+
+            val spinnerType: Spinner = layoutDropDownStandalone.findViewById(R.id.andes_dropdown_standalone_show_case_spinner)
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.type_list_spinner,
+                    android.R.layout.simple_spinner_item
+            )
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        spinnerType.adapter = adapter
+                    }
+
+            return listOf<View>(layoutDropDownForm, layoutDropDownStandalone)
+        }
+
+    }
+
+    private fun getFakeList(): List<AndesDropDownItem> {
+        val listItems: MutableList<AndesDropDownItem> = mutableListOf()
+
+        val item = AndesDropDownItem()
+        val item2 = AndesDropDownItem()
+        val item3 = AndesDropDownItem()
+        val item4 = AndesDropDownItem()
+        val item5 = AndesDropDownItem()
+        val item6 = AndesDropDownItem()
+        val item7 = AndesDropDownItem()
+
+        item.title = "test1"
+        item2.title = "test2"
+        item3.title = "test3"
+        item4.title = "test4"
+        item5.title = "test5"
+        item6.title = "test6"
+        item7.title = "test7"
+
+        item.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item2.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item3.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item4.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item5.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item6.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+        item7.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
+
+        listItems.add(item)
+        listItems.add(item2)
+        listItems.add(item3)
+        listItems.add(item4)
+        listItems.add(item5)
+        listItems.add(item6)
+        listItems.add(item7)
+
+        return listItems
+    }
+
+}

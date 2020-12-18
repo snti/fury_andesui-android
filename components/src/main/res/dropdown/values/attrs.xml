@@ -3,17 +3,25 @@
 
     <declare-styleable name="AndesDropdown" tools:ignore="ResourceName">
 
-        <attr name="AndesDropdownTriggerType" format="enum">
-            <enum name="formDropdown" value="9000" />
-            <enum name="standalone" value="9001" />
-        </attr>
+        <attr name="andesDropdownLabel" format="reference" />
+        <attr name="andesDropdownHelper" format="reference" />
+        <attr name="andesDropdownPlaceHolder" format="reference" />
+
+<!--        <attr name="AndesDropdownTriggerType" format="enum">-->
+<!--            <enum name="formDropdown" value="9000" />-->
+<!--            <enum name="standalone" value="9001" />-->
+<!--        </attr>-->
 
         <attr name="AndesDropdownMenuType" format="enum">
             <enum name="bottomsheet" value="9002" />
             <enum name="floatingmenu" value="9003" />
         </attr>
 
-        <attr name="andesListDividerItemEnabled" format="boolean" />
+        <attr name="andesDropdownSize" format="enum">
+            <enum name="small" value="10000" />
+            <enum name="medium" value="10001" />
+            <enum name="large" value="10002" />
+        </attr>
 
     </declare-styleable>
 

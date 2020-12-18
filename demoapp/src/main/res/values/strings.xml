@@ -199,6 +199,8 @@
 
     <string name="andesui_demoapp_list">Andes List</string>
 
+    <string name="andesui_demoapp_dropdown">Andes Dropdown</string>
+
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
     <string name="andesui_demoapp_thumbnail_state">State</string>
     <string name="andesui_demoapp_thumbnail_description_24">Hierarchy: Quiet, Size: 24, State: Disabled, Type: Icon</string>
