@@ -60,7 +60,7 @@ class BottomSheetShowcaseActivity : AppCompatActivity(), BottomSheetListener {
         bottomSheet.expand()
     }
 
-    fun onAttachFragmentButtonClicked(view: View) {
+    fun onAttachFragmentButtonClicked(weview: View) {
         bottomSheet.removeContent()
 
         bottomSheet.setContent(supportFragmentManager, TestFragment())
