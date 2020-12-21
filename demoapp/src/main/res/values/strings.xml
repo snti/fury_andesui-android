@@ -73,6 +73,7 @@
     <string name="andesui_demoapp_screen_textfield_code">Andes UI: TextfieldCode</string>
     <string name="andesui_demoapp_screen_badge">Andes UI: Badge</string>
     <string name="andesui_demoapp_screen_tag">Andes UI: Tag</string>
+    <string name="andesui_demoapp_screen_list">Andes UI: List</string>
     <string name="andesui_demoapp_screen_checkbox">Andes UI: Checkbox</string>
     <string name="andesui_demoapp_screen_carousel">Andes UI: Carousel</string>
     <string name="andesui_demoapp_screen_card">Andes UI: Card</string>
@@ -137,6 +138,8 @@
     <string name="andes_checkbox_type">Type</string>
     <string name="andes_checkbox_status">Status</string>
     <string name="andes_checkbox_align">Align</string>
+    <string name="andes_checkbox_text_list_divider">Divider</string>
+    <string name="andes_checkbox_text_list_selection">Selection</string>
 
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
@@ -146,6 +149,10 @@
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
 
+    <string name="andes_radiobutton_text_list_simple">Simple</string>
+    <string name="andes_radiobutton_text_list_icon">Icon</string>
+    <string name="andes_radiobutton_text_list_chevron">Chevron</string>
+    <string name="andes_radiobutton_text_list_thumbnail">Thumbnail</string>
     <string name="andes_carousel_margin">Margin</string>
     <string name="andes_carousel_center">Center</string>
 
@@ -190,6 +197,8 @@
     <string name="andesui_demoapp_snackbar_action">Action</string>
     <string name="andesui_demoapp_snackbar_duration">Duration</string>
     <string name="andesui_demoapp_snackbar_text_action">Text action</string>
+
+    <string name="andesui_demoapp_list">Andes List</string>
 
     <string name="andesui_demoapp_thumbnail">Andes Thumbnail</string>
     <string name="andesui_demoapp_thumbnail_state">State</string>
@@ -317,6 +326,12 @@
         <item>Idle</item>
         <item>Error</item>
         <item>Disabled</item>
+    </string-array>
+
+    <string-array name="type_list_spinner">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
     </string-array>
 
     <string-array name="status_checkbox_spinner">

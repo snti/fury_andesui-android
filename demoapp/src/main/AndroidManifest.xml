@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.mercadolibre.android.andesui.demoapp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mercadolibre.android.andesui.demoapp">
 
     <application
         android:name=".MainApplication"
@@ -11,12 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".feature.DatePickerShowcaseActivity"
+        <activity
+            android:name=".feature.DatePickerShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="andes"
                     android:path="/datepicker"
@@ -241,8 +244,23 @@
                     android:scheme="meli" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.ListShowcaseActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-        <activity android:name=".feature.CarouselShowcaseActivity"
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="andes"
+                    android:path="/list"
+                    android:scheme="meli" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".feature.CarouselShowcaseActivity"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -257,6 +275,7 @@
             </intent-filter>
         </activity>
     </application>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission

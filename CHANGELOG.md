@@ -1,3 +1,13 @@
+# v3.2.0
+## 🚀 Fixes
+- Fix the size of the right and left componente of text
+## 🚀 Features
+- Migración Constraint layout v2
+
+# v3.1.0
+## 🚀 Features
+- AndesList | Author: [@snti](https://github.com/snti)
+
 # v3.0.0
 ## 🚀 Features
 - Migration AndroidX

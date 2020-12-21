@@ -1,12 +1,29 @@
+# v3.2.0
+## 🚀 Fixes
+- Fix the size of the right and left componente of text
+## 🚀 Features
+- Migración Constraint layout v2
+
+# v3.1.0
+## 🚀 Features
+- AndesList | Author: [@snti](https://github.com/snti)
+
 # v3.0.0
 ## 🚀 Features
 - Migration AndroidX
+
+## 🛠 Fixes
+- Fix constraint Radio Button
 
 # v2.18.0
 ## 🚀 Features
 - AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
 
-## 🚀 Fixes
+## 🛠 Fixes
+- AndesTagChoice left content default color change. | Authors: [@ArnaldoIbanez](https://github.com/ArnaldoIbanez)
+
+# v2.17.0
+## 🛠 Fixes
 - Added Focus listener correctly on EditText of AndesTextField.
 
 # v2.16.0
