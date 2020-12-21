@@ -158,13 +158,13 @@ class AndesCard : CardView {
 
     @Suppress("LongParameterList")
     constructor(
-            context: Context,
-            view: View,
-            type: AndesCardType = TYPE_DEFAULT,
-            padding: AndesCardPadding = PADDING_DEFAULT,
-            title: String? = TITLE_DEFAULT,
-            style: AndesCardStyle = STYLE_DEFAULT,
-            hierarchy: AndesCardHierarchy = HIERARCHY_DEFAULT
+        context: Context,
+        view: View,
+        type: AndesCardType = TYPE_DEFAULT,
+        padding: AndesCardPadding = PADDING_DEFAULT,
+        title: String? = TITLE_DEFAULT,
+        style: AndesCardStyle = STYLE_DEFAULT,
+        hierarchy: AndesCardHierarchy = HIERARCHY_DEFAULT
     ) : super(context) {
         initAttrs(view, type, padding, style, title, hierarchy)
     }

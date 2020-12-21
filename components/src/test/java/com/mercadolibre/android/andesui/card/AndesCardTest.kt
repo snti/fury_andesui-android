@@ -3,10 +3,7 @@ package com.mercadolibre.android.andesui.card
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.test.platform.app.InstrumentationRegistry
-import com.mercadolibre.android.andesui.BuildConfig
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.factory.AndesCardAttrParser
@@ -17,18 +14,16 @@ import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
 import com.mercadolibre.android.andesui.card.type.AndesCardType
 import com.mercadolibre.android.andesui.color.toAndesColor
-import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.spy
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
-import org.w3c.dom.Attr
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.LOLLIPOP])
@@ -199,7 +194,7 @@ class AndesCardTest {
         val config = configFactory.create(context, attrs)
         assertEquals(config.titlePadding, context.resources.getDimension(R.dimen.andes_card_padding_xlarge).toInt())
     }
-    /*************************/
+
     @Test
     fun `Body none then body padding small`() {
         val andesCard = AndesCard(context, view, AndesCardType.NONE, AndesCardPadding.NONE, "title", AndesCardStyle.ELEVATED, AndesCardHierarchy.PRIMARY)
@@ -229,15 +224,6 @@ class AndesCardTest {
         assertEquals(AndesCardBodyPadding.XLARGE, andesCard.bodyPadding)
         assertEquals(AndesCardPadding.MEDIUM, andesCard.padding)
     }
-
-    @Test
-    fun `Body medium then body padding xlarge from attrs`() {
-        attributeSet = Mockito.mock(AttributeSet::class.java)
-        // when(attributeSet.getAttributeValue(0))
-
-        val andesCard = AndesCard(context, attributeSet)
-    }
-
 
     @Test
     fun `Type none`() {
