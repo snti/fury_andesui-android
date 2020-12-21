@@ -1,12 +1,10 @@
 package com.mercadolibre.android.andesui.card
 
 import android.os.Build
-import android.util.AttributeSet
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
-import com.mercadolibre.android.andesui.card.factory.AndesCardAttrParser
 import com.mercadolibre.android.andesui.card.factory.AndesCardAttrs
 import com.mercadolibre.android.andesui.card.factory.AndesCardConfigurationFactory
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
@@ -18,8 +16,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.spy
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -30,11 +26,9 @@ import org.robolectric.annotation.Config
 class AndesCardTest {
     lateinit var view: View
 
-
     private var context = RuntimeEnvironment.application
     private val configFactory = spy(AndesCardConfigurationFactory)
     private lateinit var attrs: AndesCardAttrs
-    private lateinit var attributeSet:AttributeSet
 
     @Before
     fun setup() {
