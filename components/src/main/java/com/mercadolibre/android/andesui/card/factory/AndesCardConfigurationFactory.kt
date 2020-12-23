@@ -35,7 +35,7 @@ internal object AndesCardConfigurationFactory {
                     titleColor = resolveTitleColor(),
                     titleHeight = resolveTitleHeight(context, andesCardAttrs.andesCardPadding.padding),
                     titlePadding = resolveLateralMargin(context, andesCardAttrs.andesCardPadding),
-                    bodyPadding = resolveBodyPadding(andesCardAttrs.andesCardPadding),
+                    bodyPadding = andesCardAttrs.andesCardBodyPadding,
                     elevation = resolveElevation(
                             context, andesCardAttrs.andesCardHierarchy, andesCardAttrs.andesCardStyle.style
                     ),
@@ -54,16 +54,6 @@ internal object AndesCardConfigurationFactory {
             AndesCardPadding.SMALL.padding.paddingSize(context)
         } else {
             padding.padding.paddingSize(context)
-        }
-    }
-    // Mantiene retrocompatibildiad de estilo para padding NONE -> body SMALL
-    private fun resolveBodyPadding(padding: AndesCardPadding): AndesCardBodyPadding {
-        return when(padding) {
-            AndesCardPadding.NONE -> AndesCardBodyPadding.SMALL
-            AndesCardPadding.SMALL -> AndesCardBodyPadding.SMALL
-            AndesCardPadding.MEDIUM -> AndesCardBodyPadding.MEDIUM
-            AndesCardPadding.LARGE -> AndesCardBodyPadding.LARGE
-            AndesCardPadding.XLARGE -> AndesCardBodyPadding.XLARGE
         }
     }
     private fun resolveElevation(

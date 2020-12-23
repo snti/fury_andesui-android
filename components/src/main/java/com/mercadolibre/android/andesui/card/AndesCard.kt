@@ -25,8 +25,6 @@ import com.mercadolibre.android.andesui.card.type.AndesCardType
 
 @Suppress("TooManyFunctions")
 class AndesCard : CardView {
-
-    private var isBodyPaddingSet = false
     /**
      * Getter and setter for [hierarchy].
      */
@@ -60,7 +58,6 @@ class AndesCard : CardView {
     var bodyPadding: AndesCardBodyPadding
         get() = andesCardAttrs.andesCardBodyPadding
         set(value) {
-            isBodyPaddingSet = true
             andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = value)
             val config = createConfig()
             setupCardViewComponent(config)
@@ -179,6 +176,7 @@ class AndesCard : CardView {
      */
     private fun initAttrs(attrs: AttributeSet?) {
         andesCardAttrs = AndesCardAttrParser.parse(context, attrs)
+        andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = viewComponentWithoutBodyPadding(andesCardAttrs.andesCardPadding))
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
     }
@@ -192,7 +190,7 @@ class AndesCard : CardView {
         title: String?,
         hierarchy: AndesCardHierarchy
     ) {
-        andesCardAttrs = AndesCardAttrs(cardView, type, padding, BODY_PADDING_DEFAULT, style, title, hierarchy)
+        andesCardAttrs = AndesCardAttrs(cardView, type, padding, viewComponentWithoutBodyPadding(padding), style, title, hierarchy)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
     }
@@ -273,13 +271,11 @@ class AndesCard : CardView {
      */
     private fun setupCardViewComponent(config: AndesCardConfiguration) {
         val params = andesCardView.layoutParams as MarginLayoutParams
-        var bPadding = config.bodyPadding.bodyPadding.bodyPaddingSize(context)
-        if (isBodyPaddingSet) bPadding = andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context)
         params.setMargins(
-                bPadding,
-                bPadding,
-                bPadding,
-                bPadding
+                config.bodyPadding.bodyPadding.bodyPaddingSize(context),
+                config.bodyPadding.bodyPadding.bodyPaddingSize(context),
+                config.bodyPadding.bodyPadding.bodyPaddingSize(context),
+                config.bodyPadding.bodyPadding.bodyPaddingSize(context)
         )
         andesCardView.layoutParams = params
         andesCardView.removeAllViews()
@@ -342,13 +338,26 @@ class AndesCard : CardView {
         }
     }
 
+    /**
+     * Keeps in SMALL bodyPadding when padding property is set at NONE.
+     * Emulates the behavior for develops that do not support or do not set bodyPadding property.
+     */
+    private fun viewComponentWithoutBodyPadding(padding: AndesCardPadding): AndesCardBodyPadding {
+        return when(padding) {
+            AndesCardPadding.NONE -> AndesCardBodyPadding.SMALL
+            AndesCardPadding.SMALL -> AndesCardBodyPadding.SMALL
+            AndesCardPadding.MEDIUM -> AndesCardBodyPadding.MEDIUM
+            AndesCardPadding.LARGE -> AndesCardBodyPadding.LARGE
+            AndesCardPadding.XLARGE -> AndesCardBodyPadding.XLARGE
+        }
+    }
+
     private fun createConfig() = AndesCardConfigurationFactory.create(context, andesCardAttrs)
 
     companion object {
         private val STYLE_DEFAULT = AndesCardStyle.ELEVATED
         private val TYPE_DEFAULT = AndesCardType.NONE
         private val PADDING_DEFAULT = AndesCardPadding.NONE
-        private val BODY_PADDING_DEFAULT = AndesCardBodyPadding.NONE
         private val TITLE_DEFAULT = null
         private val HIERARCHY_DEFAULT = AndesCardHierarchy.PRIMARY
     }
