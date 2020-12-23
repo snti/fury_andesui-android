@@ -26,6 +26,7 @@ import com.mercadolibre.android.andesui.card.type.AndesCardType
 @Suppress("TooManyFunctions")
 class AndesCard : CardView {
 
+    private var isBodyPaddingSet = false
     /**
      * Getter and setter for [hierarchy].
      */
@@ -47,10 +48,9 @@ class AndesCard : CardView {
         set(value) {
             andesCardAttrs = andesCardAttrs.copy(andesCardPadding = value)
             val config = createConfig()
-            bodyPadding = AndesCardBodyPadding.fromString(value.toString())
             setupBackgroundComponent(config)
             setupTitleComponent(config)
-            setupCardViewComponent()
+            setupCardViewComponent(config)
             setupLinkComponent(config)
         }
 
@@ -60,8 +60,10 @@ class AndesCard : CardView {
     var bodyPadding: AndesCardBodyPadding
         get() = andesCardAttrs.andesCardBodyPadding
         set(value) {
+            isBodyPaddingSet = true
             andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = value)
-            setupCardViewComponent()
+            val config = createConfig()
+            setupCardViewComponent(config)
         }
 
     /**
@@ -82,7 +84,8 @@ class AndesCard : CardView {
         get() = andesCardAttrs.andesCardView
         set(value) {
             andesCardAttrs = andesCardAttrs.copy(andesCardView = value)
-            setupCardViewComponent()
+            val config = createConfig()
+            setupCardViewComponent(config)
         }
 
     /**
@@ -178,7 +181,6 @@ class AndesCard : CardView {
         andesCardAttrs = AndesCardAttrParser.parse(context, attrs)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
-        bodyPadding = AndesCardBodyPadding.fromString(andesCardAttrs.andesCardPadding.toString())
     }
 
     @Suppress("LongParameterList")
@@ -193,7 +195,6 @@ class AndesCard : CardView {
         andesCardAttrs = AndesCardAttrs(cardView, type, padding, BODY_PADDING_DEFAULT, style, title, hierarchy)
         val config = AndesCardConfigurationFactory.create(context, andesCardAttrs)
         setupComponents(config)
-        bodyPadding = AndesCardBodyPadding.valueOf(padding.toString())
     }
 
     /**
@@ -207,6 +208,7 @@ class AndesCard : CardView {
         setupBackgroundComponent(config)
         setupPipeComponent(config)
         setupTitleComponent(config)
+        setupCardViewComponent(config)
     }
 
     /**
@@ -269,13 +271,15 @@ class AndesCard : CardView {
     /**
      * Gets data from the config and sets to the cardView of this card.
      */
-    private fun setupCardViewComponent() {
+    private fun setupCardViewComponent(config: AndesCardConfiguration) {
         val params = andesCardView.layoutParams as MarginLayoutParams
+        var bPadding = config.bodyPadding.bodyPadding.bodyPaddingSize(context)
+        if (isBodyPaddingSet) bPadding = andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context)
         params.setMargins(
-                andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
-                andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
-                andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context),
-                andesCardAttrs.andesCardBodyPadding.bodyPadding.bodyPaddingSize(context)
+                bPadding,
+                bPadding,
+                bPadding,
+                bPadding
         )
         andesCardView.layoutParams = params
         andesCardView.removeAllViews()
