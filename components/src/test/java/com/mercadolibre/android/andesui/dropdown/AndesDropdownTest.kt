@@ -24,7 +24,6 @@ class AndesDropdownTest {
 
     }
 
-
     @Test
     fun `test dropdown standalone with different sizes`() {
         var dropdown = AndesDropDownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL, "test")

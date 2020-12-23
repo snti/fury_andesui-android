@@ -60,7 +60,6 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         Toast.makeText(this, "item selected position: $position", Toast.LENGTH_SHORT).show()
     }
 
-
     private fun setupDropdownStandaloneShowCase(container: View) {
 
         andesDropDownStandalone = container.andesDropdownStandalone
@@ -107,12 +106,13 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         andesDropDownForm = container.andesDropdown
 
 //        andesList.dividerItemEnabled = true
-        andesDropDownForm.delegate = this
         andesDropDownForm.label = andesDropDownLabel
         andesDropDownForm.placeholder = andesDropDownPlaceHolder
         andesDropDownForm.helper = "Helper text"
 
         andesDropDownForm.listItems.addAll(getFakeList())
+
+        andesDropDownForm.delegate = this
 
         editTextTitle = container.findViewById(R.id.editTextDropdownLabel)
         editTextPlaceHolder = container.findViewById(R.id.editTextDropdownPlaceHolder)
@@ -186,37 +186,14 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private fun getFakeList(): List<AndesDropDownItem> {
         val listItems: MutableList<AndesDropDownItem> = mutableListOf()
 
-        val item = AndesDropDownItem()
-        val item2 = AndesDropDownItem()
-        val item3 = AndesDropDownItem()
-        val item4 = AndesDropDownItem()
-        val item5 = AndesDropDownItem()
-        val item6 = AndesDropDownItem()
-        val item7 = AndesDropDownItem()
+        var item: AndesDropDownItem?
+        for (i in 1..10) {
+            item = AndesDropDownItem()
+            item.title = "test$i"
+            item.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
 
-        item.title = "test1"
-        item2.title = "test2"
-        item3.title = "test3"
-        item4.title = "test4"
-        item5.title = "test5"
-        item6.title = "test6"
-        item7.title = "test7"
-
-        item.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item2.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item3.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item4.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item5.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item6.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-        item7.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)
-
-        listItems.add(item)
-        listItems.add(item2)
-        listItems.add(item3)
-        listItems.add(item4)
-        listItems.add(item5)
-        listItems.add(item6)
-        listItems.add(item7)
+            listItems.add(item)
+        }
 
         return listItems
     }

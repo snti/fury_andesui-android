@@ -65,4 +65,14 @@
         <item name="fontWeight">@dimen/andes_title_font_weight</item>
         <item name="fontFamily">"@font/andes_font_regular"</item>
     </style>
+
+    <!-- Dropdown -->
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

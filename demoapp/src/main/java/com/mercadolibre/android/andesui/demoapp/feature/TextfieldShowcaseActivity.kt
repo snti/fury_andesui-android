@@ -92,6 +92,8 @@ class TextfieldShowcaseActivity : AppCompatActivity() {
             val counter = layoutTextfield.findViewById<EditText>(R.id.counter)
             val mask = layoutTextfield.findViewById<AndesTextfield>(R.id.mask)
 
+            textfield.contentDescription = ""
+
             counter.setText(COUNTER_DEFAULT)
             textfield.counter = COUNTER_DEFAULT
 

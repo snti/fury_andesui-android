@@ -1,7 +1,7 @@
 package com.mercadolibre.android.andesui.dropdown
 
 import android.content.Context
-import android.os.Bundle
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.dropdown.factory.AndesDropdownAttrParser
 import com.mercadolibre.android.andesui.dropdown.factory.AndesDropdownAttrs
@@ -24,16 +23,19 @@ import com.mercadolibre.android.andesui.dropdown.utils.DropdownBottomSheetDialog
 import com.mercadolibre.android.andesui.list.AndesList
 import com.mercadolibre.android.andesui.list.AndesListViewItem
 import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
-import com.mercadolibre.android.andesui.list.factory.AndesListConfiguration
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
-import com.mercadolibre.android.andesui.textfield.factory.AndesTextfieldConfiguration
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
+
 
 class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
     private lateinit var andesDropdownDelegate: AndesDropdownDelegate
     private lateinit var andesDropdownAttrs: AndesDropdownAttrs
     private lateinit var andesDropDownStandaloneChevron: ImageView
     private lateinit var andesDropDownStandaloneContent: TextView
+    private val chevronUpIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_up_12)
+    private val chevronDownIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_down_12)
+    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog)
+
     var listItems: MutableList<AndesDropDownItem> = mutableListOf()
 
     /**
@@ -45,7 +47,6 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
             andesDropdownAttrs = andesDropdownAttrs.copy(andesDropdownLabel = value)
             setupLabelComponent(createConfig())
         }
-
 
     /**
      * Getter and setter for [size].
@@ -110,7 +111,9 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
     private fun setupComponents(config: AndesDropdownConfiguration) {
         initComponents()
         setupViewId()
+        setupBottomSheet()
 
+        // TODO ubiar en un mejor lugar.
         this.setOnClickListener {
             openBottomSheet()
         }
@@ -135,40 +138,33 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
         setupLabelComponent(config)
     }
 
-    val dialog = BottomSheetDialog(context)
+    private fun setupBottomSheet() {
+        val layout: View = (context as AppCompatActivity).layoutInflater.inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
+        val andesList = layout.findViewById<AndesList>(R.id.andesListDropdown)
+
+        andesList?.delegate = this
+
+        bottomSheetDialog.setContentView(layout)
+
+        bottomSheetDialog.setOnShowListener {
+            andesList?.refreshListAdapter()
+
+            andesDropDownStandaloneChevron.setImageDrawable(
+                    chevronUpIcon
+            )
+        }
+
+        bottomSheetDialog.setOnDismissListener {
+            andesDropDownStandaloneChevron.setImageDrawable(
+                    chevronDownIcon
+            )
+        }
+
+    }
 
     private fun openBottomSheet() {
-        val dialogView: View = (context as AppCompatActivity).layoutInflater.inflate(R.layout.andes_layout_test_bs, null)
-        val andesList = dialogView.findViewById<AndesList>(R.id.andesListDropdown)
-        andesList.delegate = this
-
-        dialog.setContentView(dialogView)
-
-        dialog.setOnShowListener {
-
-            andesDropDownStandaloneChevron.setImageDrawable(
-                    ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_up_12)
-            )
-
-//                    R.color.andes_blue_ml_500)
-        }
-
-        dialog.setOnDismissListener {
-            andesDropDownStandaloneChevron.setImageDrawable(
-                    ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_down_12)
-            )
-
-//                    R.color.andes_blue_ml_500)
-        }
-
-        dialog.show()
+        bottomSheetDialog.show()
     }
-//
-//    private fun setupAndesTextFieldComponent(config: AndesDropdownConfiguration) {
-//        this.setOnClickListener {
-//            openBottomSheet()
-//        }
-//    }
 
     /**
      * Creates all the views that are part of this Dropdown.
@@ -203,7 +199,7 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
 
 //        delegate.onItemSelected(this, position)
 
-        dialog.dismiss()
+        bottomSheetDialog.dismiss()
     }
 
     override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
@@ -226,4 +222,5 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
     override fun getDataSetSize(): Int = listItems.size
 
     private fun createConfig() = AndesDropdownConfigurationFactory.create(andesDropdownAttrs)
+
 }
