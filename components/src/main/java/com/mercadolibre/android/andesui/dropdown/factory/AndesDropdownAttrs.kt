@@ -24,21 +24,12 @@ internal object AndesDropdownAttrParser {
     private const val ANDES_DROPDOWN_SIZE_SMALL = "10000"
     private const val ANDES_DROPDOWN_SIZE_MEDIUM = "10001"
     private const val ANDES_DROPDOWN_SIZE_LARGE = "10002"
-//
-//    private const val ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN = "9000"
-//    private const val ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE = "9001"
 
     private const val ANDES_DROPDOWN_MENU_TYPE_BOTTOMSHEET = "9002"
     private const val ANDES_DROPDOWN_MENU_TYPE_FLOATINGMENU = "9003"
 
     fun parse(context: Context, attr: AttributeSet?): AndesDropdownAttrs {
         val typedArray = context.obtainStyledAttributes(attr, R.styleable.AndesList)
-
-//        val andesDropdownTriggerType = when (typedArray.getString(R.styleable.AndesDropdown_AndesDropdownTriggerType)) {
-//            ANDES_DROPDOWN_TRIGGER_TYPE_FORMDROPDOWN -> AndesDropdownTriggerType.FORMDROPDOWN
-//            ANDES_DROPDOWN_TRIGGER_TYPE_STANDALONE -> AndesDropdownTriggerType.STANDALONE
-//            else -> AndesDropdownTriggerType.FORMDROPDOWN
-//        }
 
         val andesDropdownMenuType = when (typedArray.getString(R.styleable.AndesDropdown_AndesDropdownMenuType)) {
             ANDES_DROPDOWN_MENU_TYPE_BOTTOMSHEET -> AndesDropdownMenuType.BOTTOMSHEET

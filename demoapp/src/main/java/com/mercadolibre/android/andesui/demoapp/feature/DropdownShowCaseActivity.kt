@@ -114,7 +114,6 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
         andesDropDownForm = container.andesDropdown
 
-//        andesList.dividerItemEnabled = true
         andesDropDownForm.label = andesDropDownLabel
         andesDropDownForm.placeholder = andesDropDownPlaceHolder
         andesDropDownForm.helper = "Helper text"

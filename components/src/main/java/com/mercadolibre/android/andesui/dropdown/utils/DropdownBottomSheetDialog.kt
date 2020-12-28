@@ -19,7 +19,7 @@ import com.mercadolibre.android.andesui.utils.ScreenUtils
 class DropdownBottomSheetDialog(
         context: Context,
         theme: Int,
-        val andesListDelegate: AndesListDelegate
+        private val andesListDelegate: AndesListDelegate
 ) : BottomSheetDialog(context, theme) {
     private var containerView: LinearLayout? = null
     private var dragIndicator: View? = null
@@ -67,7 +67,7 @@ class DropdownBottomSheetDialog(
     private fun initBottomSheetBehavior() {
         val bottomSheet = findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheet)
-        behavior.peekHeight = ScreenUtils.getScreenHeight() / 2 // TODO mejorar
+        behavior.peekHeight = ScreenUtils.getScreenHeight() / 2
     }
 
 }

@@ -9,32 +9,16 @@ import com.mercadolibre.android.andesui.R
  */
 internal interface AndesDropdownSizeInterface {
     fun titleFontSize(context: Context): Float
-    fun chevronSize(context: Context): Int
 }
 
 internal class AndesDropdownSmallSize : AndesDropdownSizeInterface {
     override fun titleFontSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_dropdown_title_font_size_small)
-    override fun chevronSize(context: Context): Int {
-        TODO("Not yet implemented")
-    }
-
 }
 
 internal class AndesDropdownMediumSize : AndesDropdownSizeInterface {
     override fun titleFontSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_dropdown_title_font_size_medium)
-
-    override fun chevronSize(context: Context): Int {
-        TODO("Not yet implemented")
-    }
-
 }
 
 internal class AndesDropdownLargeSize : AndesDropdownSizeInterface {
     override fun titleFontSize(context: Context): Float = context.resources.getDimension(R.dimen.andes_dropdown_title_font_size_large)
-
-
-    override fun chevronSize(context: Context): Int {
-        TODO("Not yet implemented")
-    }
-
 }

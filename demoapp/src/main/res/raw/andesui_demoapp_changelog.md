@@ -1,3 +1,7 @@
+# v3.3.0
+## 🚀 Features
+- Dropdown | Author: [@snti](https://github.com/snti)
+
 # v3.2.0
 ## 🚀 Fixes
 - Fix the size of the right and left componente of text

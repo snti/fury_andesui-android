@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/andes_ui_chevron_down_12"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="@dimen/andes_dropdown_chevron_margin_start"
         android:tint="@color/andes_gray_450"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_view_andes_dropdown_trigger_content"
