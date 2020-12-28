@@ -8,9 +8,9 @@ import com.mercadolibre.android.andesui.list.AndesListViewItem
  * AndesListDelegate: interface to define the delegate of AndesList
  */
 interface AndesListDelegate {
-    fun onItemClick(position: Int)
+    fun onItemClick(andesList: AndesList, position: Int)
 
     fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem
 
-    fun getDataSetSize(): Int
+    fun getDataSetSize(andesList: AndesList): Int
 }

@@ -32,7 +32,7 @@ class AndesListTest {
         val list = AndesList(context)
 
         val andesListDelegate = object : AndesListDelegate {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(andesList: AndesList, position: Int) {
                 Assert.assertEquals(0, position)
             }
 
@@ -40,12 +40,12 @@ class AndesListTest {
                 return item
             }
 
-            override fun getDataSetSize(): Int = SIZE
+            override fun getDataSetSize(andesList: AndesList): Int = SIZE
 
         }
 
-        andesListDelegate.onItemClick(0)
-        Assert.assertEquals(SIZE, andesListDelegate.getDataSetSize())
+        andesListDelegate.onItemClick(list, 0)
+        Assert.assertEquals(SIZE, andesListDelegate.getDataSetSize(list))
         Assert.assertEquals(item, andesListDelegate.bind(list, view, 0))
     }
 
@@ -91,7 +91,7 @@ class AndesListTest {
         listItems[5].itemSelected = true
 
         val andesListDelegate = object : AndesListDelegate {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(andesList: AndesList, position: Int) {
                 Assert.assertEquals(true, listItems[position].itemSelected)
             }
 
@@ -99,12 +99,12 @@ class AndesListTest {
                 return item
             }
 
-            override fun getDataSetSize(): Int = SIZE
+            override fun getDataSetSize(andesList: AndesList): Int = SIZE
 
         }
 
         list.delegate = andesListDelegate
-        andesListDelegate.onItemClick(5)
+        andesListDelegate.onItemClick(list, 5)
     }
 
 }

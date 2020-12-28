@@ -71,7 +71,7 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun setAdapterLogic(){
+    private fun setAdapterLogic() {
         val viewPager = findViewById<ViewPager>(R.id.andesui_viewpager)
         viewPager.adapter = AndesShowcasePagerAdapter(this)
 
@@ -177,6 +177,9 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         itemSubtitle.setText("Subtitle")
         itemTitleNumberOfLines.setText("")
 
+        andesList.dividerItemEnabled = true
+        showItemSelections = false
+
         sizeSpinner.setSelection(1)
 
         AndesShowcasePagerAdapter(this).clear()
@@ -276,9 +279,9 @@ class ListShowcaseActivity : AppCompatActivity(), AndesListDelegate {
         }
     }
 
-    override fun getDataSetSize(): Int = LIST_SIZE
+    override fun getDataSetSize(andesList: AndesList): Int = LIST_SIZE
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(andesList: AndesList, position: Int) {
 
         Toast.makeText(this, "Position of item selected $position", Toast.LENGTH_SHORT).show()
 
