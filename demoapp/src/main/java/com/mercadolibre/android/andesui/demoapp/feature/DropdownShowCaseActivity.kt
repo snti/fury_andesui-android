@@ -19,7 +19,7 @@ import com.mercadolibre.android.andesui.demoapp.R
 import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.dropdown.AndesDropDownForm
 import com.mercadolibre.android.andesui.dropdown.AndesDropDownItem
-import com.mercadolibre.android.andesui.dropdown.AndesDropDownStandalone
+import com.mercadolibre.android.andesui.dropdown.AndesDropdownStandalone
 import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
 import com.mercadolibre.android.andesui.dropdown.utils.AndesDropdownDelegate
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
@@ -32,7 +32,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
     private lateinit var adapter: AndesShowcasePagerAdapter
     private lateinit var andesDropDownForm: AndesDropDownForm
-    private lateinit var andesDropDownStandalone: AndesDropDownStandalone
+    private lateinit var andesDropdownStandalone: AndesDropdownStandalone
     private lateinit var buttonClear: AndesButton
     private lateinit var buttonUpdate: AndesButton
     private lateinit var editTextTitle: EditText
@@ -71,10 +71,10 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
     private fun setupDropdownStandaloneShowCase(container: View) {
 
-        andesDropDownStandalone = container.andesDropdownStandalone
-        andesDropDownStandalone.listItems.addAll(getFakeList())
-        andesDropDownStandalone.label = andesDropDownLabel
-        andesDropDownStandalone.delegate = this
+        andesDropdownStandalone = container.andesDropdownStandalone
+        andesDropdownStandalone.listItems.addAll(getFakeList())
+        andesDropdownStandalone.label = andesDropDownLabel
+        andesDropdownStandalone.delegate = this
 
         sizeSpinner = container.findViewById(R.id.andes_dropdown_standalone_show_case_spinner)
         sizeSpinner.setSelection(1) // medium value
@@ -86,7 +86,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
                     position: Int,
                     id: Long
             ) {
-                andesDropDownStandalone.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
+                andesDropdownStandalone.size = when (sizeSpinner.getItemAtPosition(position).toString().toLowerCase()) {
                     "small" -> {
                         AndesDropdownSize.SMALL
                     }

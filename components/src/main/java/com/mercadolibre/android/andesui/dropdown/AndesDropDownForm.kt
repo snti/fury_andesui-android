@@ -21,9 +21,9 @@ import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.textfield.AndesTextfield
 
-
+@SuppressWarnings("TooManyFunctions")
 class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
-    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog, this)
+    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.Andes_BottomSheetDialog, this)
     private lateinit var andesDropdownDelegate: AndesDropdownDelegate
     private lateinit var andesDropdownAttrs: AndesDropdownAttrs
     private lateinit var andesTextfield: AndesTextfield
@@ -203,7 +203,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         andesTextfield.inputType = InputType.TYPE_NULL
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(andesList: AndesList, position: Int) {
         val itemSelected = listItems[position]
 
         listItems.forEach {
@@ -228,14 +228,13 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
                 item.title,
                 size = andesList.size,
                 avatar = item.avatar,
-                itemSelected = item.isSelected,
-                titleMaxLines = 50
+                itemSelected = item.isSelected
         )
 
         return row
     }
 
-    override fun getDataSetSize(): Int = listItems.size
+    override fun getDataSetSize(andesList: AndesList): Int = listItems.size
 
     private fun createConfig() = AndesDropdownConfigurationFactory.create(andesDropdownAttrs)
 
@@ -243,4 +242,5 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         private const val ICON_CHEVRON_DOWN: String = "andes_ui_chevron_down_24"
         private const val ICON_CHEVRON_UP: String = "andes_ui_chevron_up_24"
     }
+
 }

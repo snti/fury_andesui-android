@@ -4,34 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/andes_bottom_sheet_container"
+    <LinearLayout
+        android:id="@+id/andes_dropdown_bottom_sheet_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <View
+            android:id="@+id/andes_bottom_sheet_drag_indicator"
+            android:layout_width="@dimen/andes_bottom_sheet_drag_indicator_width"
+            android:layout_height="@dimen/andes_bottom_sheet_drag_indicator_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/andes_bottom_sheet_drag_indicator_top_margin"
+            app:layout_goneMarginBottom="@dimen/andes_bottom_sheet_drag_indicator_bottom_margin" />
+
+        <com.mercadolibre.android.andesui.list.AndesList
+            android:id="@+id/andesListDropdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:andesListItemSize="medium"
+            app:andesListType="simple" />
 
-            <View
-                android:id="@+id/andes_bottom_sheet_drag_indicator"
-                android:layout_width="@dimen/andes_bottom_sheet_drag_indicator_width"
-                android:layout_height="@dimen/andes_bottom_sheet_drag_indicator_height"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/andes_bottom_sheet_drag_indicator_top_margin"
-                app:layout_goneMarginBottom="@dimen/andes_bottom_sheet_drag_indicator_bottom_margin" />
-
-            <com.mercadolibre.android.andesui.list.AndesList
-                android:id="@+id/andesListDropdown"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:andesListItemSize="medium"
-                app:andesListType="simple" />
-
-        </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

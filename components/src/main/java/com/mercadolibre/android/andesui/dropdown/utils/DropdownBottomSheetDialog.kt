@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -20,7 +21,7 @@ class DropdownBottomSheetDialog(
         theme: Int,
         val andesListDelegate: AndesListDelegate
 ) : BottomSheetDialog(context, theme) {
-    private var containerView: FrameLayout? = null
+    private var containerView: LinearLayout? = null
     private var dragIndicator: View? = null
     internal var andesList: AndesList? = null
 
@@ -32,7 +33,7 @@ class DropdownBottomSheetDialog(
 
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
-        containerView = findViewById(R.id.andes_bottom_sheet_container)
+        containerView = findViewById(R.id.andes_dropdown_bottom_sheet_container)
         dragIndicator = findViewById(R.id.andes_bottom_sheet_drag_indicator)
         andesList = findViewById(R.id.andesListDropdown)
 

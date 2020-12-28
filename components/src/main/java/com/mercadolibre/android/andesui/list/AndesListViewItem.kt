@@ -8,6 +8,7 @@ import com.mercadolibre.android.andesui.list.factory.AndesListViewItemConfigurat
 import com.mercadolibre.android.andesui.list.size.AndesListViewItemSize
 import com.mercadolibre.android.andesui.thumbnail.size.AndesThumbnailSize
 
+@Suppress("LongParameterList")
 open class AndesListViewItem {
   internal var title: String = ""
   internal var subtitle: String? = ""
@@ -69,6 +70,7 @@ open class AndesListViewItem {
     }
 }
 
+@Suppress("LongParameterList")
 class AndesListViewItemSimple(
         context: Context,
         title: String,
@@ -99,6 +101,7 @@ class AndesListViewItemSimple(
 
 }
 
+@Suppress("LongParameterList")
 class AndesListViewItemChevron(
         context: Context,
         title: String,

@@ -26,16 +26,16 @@ class AndesDropdownTest {
 
     @Test
     fun `test dropdown standalone with different sizes`() {
-        var dropdown = AndesDropDownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL, "test")
+        var dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL, "test")
         Assert.assertEquals(dropdown.size, AndesDropdownSize.SMALL)
 
-        dropdown = AndesDropDownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.MEDIUM, "test")
+        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.MEDIUM, "test")
         Assert.assertEquals(dropdown.size, AndesDropdownSize.MEDIUM)
 
-        dropdown = AndesDropDownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.LARGE, "test")
+        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.LARGE, "test")
         Assert.assertEquals(dropdown.size, AndesDropdownSize.LARGE)
     }
-
+/*
     @Test
     fun `test dropdown form`() {
         var label = "label"
@@ -56,5 +56,5 @@ class AndesDropdownTest {
         Assert.assertEquals(dropdown.helper, helper)
         Assert.assertEquals(dropdown.placeholder, placeHolder)*/
     }
-
+*/
 }

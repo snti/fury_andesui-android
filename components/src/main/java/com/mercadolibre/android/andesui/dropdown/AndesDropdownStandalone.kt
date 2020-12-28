@@ -25,15 +25,15 @@ import com.mercadolibre.android.andesui.list.AndesListViewItemSimple
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
 
-
-class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
+@SuppressWarnings("TooManyFunctions")
+class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     private lateinit var andesDropdownDelegate: AndesDropdownDelegate
     private lateinit var andesDropdownAttrs: AndesDropdownAttrs
     private lateinit var andesDropDownStandaloneChevron: ImageView
     private lateinit var andesDropDownStandaloneContent: TextView
     private val chevronUpIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_up_12)
     private val chevronDownIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_down_12)
-    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog, this)
+    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.Andes_BottomSheetDialog, this)
 
     var listItems: MutableList<AndesDropDownItem> = mutableListOf()
 
@@ -175,7 +175,7 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
         }
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(andesList: AndesList, position: Int) {
         val itemSelected = listItems[position]
 
         listItems.forEach {
@@ -199,14 +199,13 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
                 item.title,
                 size = andesList.size,
                 avatar = item.avatar,
-                itemSelected = item.isSelected,
-                titleMaxLines = 50
+                itemSelected = item.isSelected
         )
 
         return row
     }
 
-    override fun getDataSetSize(): Int = listItems.size
+    override fun getDataSetSize(andesList: AndesList): Int = listItems.size
 
     private fun createConfig() = AndesDropdownConfigurationFactory.create(andesDropdownAttrs)
 
