@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.mercadolibre.android.andesui.R
@@ -34,7 +33,7 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
     private lateinit var andesDropDownStandaloneContent: TextView
     private val chevronUpIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_up_12)
     private val chevronDownIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_down_12)
-    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog)
+    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog, this)
 
     var listItems: MutableList<AndesDropDownItem> = mutableListOf()
 
@@ -113,11 +112,10 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
         setupViewId()
         setupBottomSheet()
 
-        // TODO ubiar en un mejor lugar.
+        // Set listeners
         this.setOnClickListener {
             openBottomSheet()
         }
-
     }
 
     /**
@@ -139,15 +137,8 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
     }
 
     private fun setupBottomSheet() {
-        val layout: View = (context as AppCompatActivity).layoutInflater.inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
-        val andesList = layout.findViewById<AndesList>(R.id.andesListDropdown)
-
-        andesList?.delegate = this
-
-        bottomSheetDialog.setContentView(layout)
-
         bottomSheetDialog.setOnShowListener {
-            andesList?.refreshListAdapter()
+            bottomSheetDialog.andesList?.refreshListAdapter()
 
             andesDropDownStandaloneChevron.setImageDrawable(
                     chevronUpIcon
@@ -159,7 +150,6 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
                     chevronDownIcon
             )
         }
-
     }
 
     private fun openBottomSheet() {
@@ -174,9 +164,6 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_standalone, this)
         andesDropDownStandaloneContent = container.findViewById(R.id.text_view_andes_dropdown_trigger_content)
         andesDropDownStandaloneChevron = container.findViewById(R.id.image_view_andes_dropdown_trigger_chevron)
-//
-//        //TODO esto va en el menu type standalone
-//        dropdownBottomSheetDialog = DropdownBottomSheetDialog.newInstance(Bundle())
     }
 
     /**
@@ -197,7 +184,7 @@ class AndesDropDownStandalone : ConstraintLayout, AndesListDelegate {
 
         andesDropDownStandaloneContent.text = itemSelected.title
 
-//        delegate.onItemSelected(this, position)
+        delegate.onItemSelected(this, position)
 
         bottomSheetDialog.dismiss()
     }

@@ -5,7 +5,7 @@ enum class AndesDropdownMenuType {
     FLOATINGMENU;
 
     companion object {
-        fun fromString(value: String): AndesDropdownMenuType = AndesDropdownMenuType.valueOf(value.toUpperCase())
+        fun fromString(value: String): AndesDropdownMenuType = valueOf(value.toUpperCase())
     }
 
     internal val type get() = getAndesDropdownMenuType()

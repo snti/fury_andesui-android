@@ -10,6 +10,9 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:text="AndesDropdown - Trigger type: Form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideLineStatusBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDropdownLabel"
-        tools:text="Place holder" />
+        android:text="Place holder" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineStatusBar"

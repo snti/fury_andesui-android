@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import android.widget.ArrayAdapter
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
@@ -18,11 +22,12 @@ import com.mercadolibre.android.andesui.dropdown.AndesDropDownItem
 import com.mercadolibre.android.andesui.dropdown.AndesDropDownStandalone
 import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
 import com.mercadolibre.android.andesui.dropdown.utils.AndesDropdownDelegate
+import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import kotlinx.android.synthetic.main.andesui_dropdown_form_showcase.view.*
 import kotlinx.android.synthetic.main.andesui_dropdown_standalone_showcase.view.*
 
 class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
-    private var andesDropDownLabel = "Titulo"
+    private var andesDropDownLabel = "Title"
     private var andesDropDownPlaceHolder = "Place holder"
 
     private lateinit var adapter: AndesShowcasePagerAdapter
@@ -33,6 +38,10 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private lateinit var editTextTitle: EditText
     private lateinit var editTextPlaceHolder: EditText
     private lateinit var sizeSpinner: Spinner
+
+    companion object {
+        private const val DROP_DOWN_ITEMS_COUNT = 10
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +65,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         setupDropdownStandaloneShowCase(adapter.views[1])
     }
 
-    override fun onItemSelected(andesDropDownForm: AndesDropDownForm, position: Int) {
+    override fun onItemSelected(andesDropDown: AndesListDelegate, position: Int) {
         Toast.makeText(this, "item selected position: $position", Toast.LENGTH_SHORT).show()
     }
 
@@ -187,7 +196,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         val listItems: MutableList<AndesDropDownItem> = mutableListOf()
 
         var item: AndesDropDownItem?
-        for (i in 1..10) {
+        for (i in 1..DROP_DOWN_ITEMS_COUNT) {
             item = AndesDropDownItem()
             item.title = "test$i"
             item.avatar = ContextCompat.getDrawable(this, R.drawable.andes_otros_almanaque_20)

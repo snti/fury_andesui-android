@@ -3,25 +3,40 @@ package com.mercadolibre.android.andesui.dropdown.utils
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mercadolibre.android.andesui.R
+import com.mercadolibre.android.andesui.list.AndesList
+import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
 import com.mercadolibre.android.andesui.utils.ScreenUtils
 
 class DropdownBottomSheetDialog(
         context: Context,
-        theme: Int
+        theme: Int,
+        val andesListDelegate: AndesListDelegate
 ) : BottomSheetDialog(context, theme) {
     private var containerView: FrameLayout? = null
     private var dragIndicator: View? = null
+    internal var andesList: AndesList? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val layout = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
+        setContentView(layout)
+
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+
         containerView = findViewById(R.id.andes_bottom_sheet_container)
         dragIndicator = findViewById(R.id.andes_bottom_sheet_drag_indicator)
+        andesList = findViewById(R.id.andesListDropdown)
+
+        andesList?.delegate = andesListDelegate
 
         initBottomSheetBehavior()
         resolveDragIndicator()

@@ -1,21 +1,12 @@
 package com.mercadolibre.android.andesui.dropdown
 
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.dropdown.factory.AndesDropdownAttrParser
 import com.mercadolibre.android.andesui.dropdown.factory.AndesDropdownAttrs
@@ -32,8 +23,7 @@ import com.mercadolibre.android.andesui.textfield.AndesTextfield
 
 
 class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
-    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog)
-
+    private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.BottomSheetDialog, this)
     private lateinit var andesDropdownDelegate: AndesDropdownDelegate
     private lateinit var andesDropdownAttrs: AndesDropdownAttrs
     private lateinit var andesTextfield: AndesTextfield
@@ -152,20 +142,12 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_form, this)
         andesTextfield = container.findViewById(R.id.andesTextfield)
-
-        //TODO esto va en el menu type standalone
-//        dropdownBottomSheetDialog = DropdownBottomSheetDialog.newInstance(Bundle())
     }
 
     private fun setupBottomSheet() {
-        val dialogView: View = (context as AppCompatActivity).layoutInflater.inflate(R.layout.andes_layout_dropdown_bottom_sheet, null)
-        val andesList = dialogView.findViewById<AndesList>(R.id.andesListDropdown)
-
-        andesList.delegate = this
-
-        bottomSheetDialog.setContentView(dialogView)
-
         bottomSheetDialog.setOnShowListener {
+            bottomSheetDialog.andesList?.refreshListAdapter()
+
             setChevronIcon(ICON_CHEVRON_UP)
         }
 
@@ -219,9 +201,6 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         andesTextfield.onFocusChangeListener = onFocusChange
         andesTextfield.isEnabled = false
         andesTextfield.inputType = InputType.TYPE_NULL
-
-
-        //TODO definir standalone form
     }
 
     override fun onItemClick(position: Int) {
