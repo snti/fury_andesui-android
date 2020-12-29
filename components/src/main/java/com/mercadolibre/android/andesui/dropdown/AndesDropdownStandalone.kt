@@ -66,6 +66,15 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
             andesDropdownDelegate = value
         }
 
+    /**
+     * Getter and setter for [menuType].
+     */
+    var menuType: AndesDropdownMenuType
+        get() = andesDropdownAttrs.andesDropdownMenuType
+        set(value) {
+            andesDropdownAttrs = andesDropdownAttrs.copy(andesDropdownMenuType = value)
+        }
+
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(attrs)
     }

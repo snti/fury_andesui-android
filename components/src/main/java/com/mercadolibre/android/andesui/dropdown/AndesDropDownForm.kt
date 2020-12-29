@@ -105,13 +105,13 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
             menuType: AndesDropdownMenuType,
             label: String,
             helper: String,
-            placerHolder: String
+            placeHolder: String
     ) {
         andesDropdownAttrs = AndesDropdownAttrs(
                 andesDropdownMenuType = menuType,
                 andesDropdownLabel = label,
                 andesDropdownHelper = helper,
-                andesDropdownPlaceHolder = placerHolder)
+                andesDropdownPlaceHolder = placeHolder)
         setupComponents(createConfig())
     }
 
@@ -141,7 +141,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
      */
     private fun initComponents() {
         val container = LayoutInflater.from(context).inflate(R.layout.andes_layout_dropdown_form, this)
-        andesTextfield = container.findViewById(R.id.andesTextfield)
+        andesTextfield = container.findViewById(R.id.andes_text_field_dropdown_form)
     }
 
     private fun setupBottomSheet() {
