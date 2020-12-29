@@ -1,3 +1,7 @@
+# v3.3.0
+## 🛠 Fixes
+- Fix the size of the calendar api level < 21
+
 # v3.2.0
 ## 🚀 Fixes
 - Fix the size of the right and left componente of text
