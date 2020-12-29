@@ -144,6 +144,7 @@
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
     <string name="andes_card_padding">Padding</string>
+    <string name="andes_card_body_padding">BodyPadding</string>
     <string name="andes_card_hierarchy">Hierarchy</string>
     <string name="andes_card_title">Title</string>
     <string name="andes_card_link">Link</string>
@@ -405,6 +406,14 @@
     </string-array>
 
     <string-array name="card_padding_spinner">
+        <item>None</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>XLarge</item>
+    </string-array>
+
+    <string-array name="card_body_padding_spinner">
         <item>None</item>
         <item>Small</item>
         <item>Medium</item>

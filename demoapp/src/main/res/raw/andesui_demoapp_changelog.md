@@ -1,6 +1,7 @@
 # v3.3.0
 ## 🚀 Features
 - Dropdown | Author: [@snti](https://github.com/snti)
+- Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
 # v3.2.0
 ## 🚀 Fixes
