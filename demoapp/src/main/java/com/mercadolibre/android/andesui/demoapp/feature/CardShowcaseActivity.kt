@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.card.AndesCard
+import com.mercadolibre.android.andesui.card.bodyPadding.AndesCardBodyPadding
 import com.mercadolibre.android.andesui.card.hierarchy.AndesCardHierarchy
 import com.mercadolibre.android.andesui.card.padding.AndesCardPadding
 import com.mercadolibre.android.andesui.card.style.AndesCardStyle
@@ -157,6 +158,18 @@ class CardShowcaseActivity : AppCompatActivity() {
                     }
             spinnerPadding.setSelection(1)
 
+            val spinnerBodyPadding: Spinner = layoutCard.findViewById(R.id.spinnerBodyPadding)
+            ArrayAdapter.createFromResource(
+                    context,
+                    R.array.card_body_padding_spinner,
+                    android.R.layout.simple_spinner_item
+            )
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        spinnerBodyPadding.adapter = adapter
+                    }
+            spinnerBodyPadding.setSelection(1)
+
             val spinnerHierarchy: Spinner = layoutCard.findViewById(R.id.spinnerHierarchy)
             ArrayAdapter.createFromResource(
                 context,
@@ -190,6 +203,14 @@ class CardShowcaseActivity : AppCompatActivity() {
                     "XLarge" -> AndesCardPadding.XLARGE
                     else -> AndesCardPadding.NONE
                 }
+                val bodyPadding = when (spinnerBodyPadding.selectedItem) {
+                    "None" -> AndesCardBodyPadding.NONE
+                    "Small" -> AndesCardBodyPadding.SMALL
+                    "Medium" -> AndesCardBodyPadding.MEDIUM
+                    "Large" -> AndesCardBodyPadding.LARGE
+                    "XLarge" -> AndesCardBodyPadding.XLARGE
+                    else -> AndesCardBodyPadding.NONE
+                }
                 val hierarchy = when (spinnerHierarchy.selectedItem) {
                     "Primary" -> AndesCardHierarchy.PRIMARY
                     "Secondary" -> AndesCardHierarchy.SECONDARY
@@ -200,6 +221,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 andesCard.type = type
                 andesCard.style = style
                 andesCard.padding = padding
+                andesCard.bodyPadding = bodyPadding
                 andesCard.hierarchy = hierarchy
                 andesCard.title = andesCardTitle.text
                 if (!andesCardLink.text.isNullOrEmpty()) {
@@ -220,6 +242,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 andesCard.cardView = textView
                 andesCard.title = title
                 andesCard.padding = AndesCardPadding.SMALL
+                andesCard.bodyPadding = AndesCardBodyPadding.SMALL
                 andesCard.type = AndesCardType.HIGHLIGHT
                 andesCard.style = AndesCardStyle.ELEVATED
                 andesCard.setCardAction(
@@ -236,6 +259,7 @@ class CardShowcaseActivity : AppCompatActivity() {
                 spinnerType.setSelection(1)
                 spinnerStyle.setSelection(0)
                 spinnerPadding.setSelection(1)
+                spinnerBodyPadding.setSelection(1)
                 spinnerHierarchy.setSelection(0)
             }
 
