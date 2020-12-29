@@ -1,6 +1,7 @@
 # v3.3.0
 ## 🚀 Features
 - Added keystores inside the demoapp module so each build will use that instead of the particular keystore located in every machine.
+- Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
 # v3.2.0
 ## 🚀 Fixes

@@ -73,6 +73,22 @@ android {
             resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
             signingConfig signingConfigs.release
         }
+        mds {
+            initWith(buildTypes.debug)
+
+            // We need this in true to test after executing ProGuard to check our ProGuard custom rules.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            if (project.hasProperty('mdsAppIdSuffix')) {
+                applicationIdSuffix "${project.mdsAppIdSuffix}"
+            }
+            if (project.hasProperty('mdsVersionNameSuffix')) {
+                versionNameSuffix "${project.mdsVersionNameSuffix}"
+            }
+            resValue("string", "andesui_demoapp_app_name", "Andes v${libraryVersion}")
+        }
     }
 
     packagingOptions {
