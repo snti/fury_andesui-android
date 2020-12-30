@@ -12,9 +12,9 @@ enum class AndesDropdownSize {
         fun fromString(value: String): AndesDropdownSize = valueOf(value.toUpperCase())
     }
 
-    internal val size get() = getAndesListRowSize()
+    internal val size get() = getDropDownSize()
 
-    private fun getAndesListRowSize(): AndesDropdownSizeInterface {
+    private fun getDropDownSize(): AndesDropdownSizeInterface {
         return when (this) {
             SMALL -> AndesDropdownSmallSize()
             MEDIUM -> AndesDropdownMediumSize()

@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.dropdown
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -75,6 +76,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         get() = andesDropdownAttrs.andesDropdownMenuType
         set(value) {
             andesDropdownAttrs = andesDropdownAttrs.copy(andesDropdownMenuType = value)
+            setupMenuType(createConfig())
         }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -89,6 +91,14 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
             placeHolder: String
     ) : super(context) {
         initAttrs(menuType, label, helper, placeHolder)
+    }
+
+    private fun setupMenuType(config: AndesDropdownConfiguration) {
+        if (config.menuType == AndesDropdownMenuType.BOTTOMSHEET) {
+            setupBottomSheet()
+        } else {
+            Log.d("AndesDropDownForm", "Menu selected is no developed yet")
+        }
     }
 
     /**
@@ -123,7 +133,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         initComponents()
         setupViewId()
         setupAndesTextFieldComponent(config)
-        setupBottomSheet()
+        setupMenuType(config)
     }
 
     /**
@@ -155,6 +165,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
             setChevronIcon(ICON_CHEVRON_DOWN)
             andesTextfield.clearFocus()
         }
+
     }
 
     private val onFocusChange = OnFocusChangeListener { v, hasFocus ->
@@ -218,9 +229,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     }
 
     override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
-
         val item = listItems[position]
-
         val row: AndesListViewItem?
 
         row = AndesListViewItemSimple(

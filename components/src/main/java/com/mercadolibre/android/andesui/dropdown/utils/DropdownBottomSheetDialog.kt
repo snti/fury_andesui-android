@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -21,7 +22,7 @@ class DropdownBottomSheetDialog(
         theme: Int,
         private val andesListDelegate: AndesListDelegate
 ) : BottomSheetDialog(context, theme) {
-    private var containerView: LinearLayout? = null
+    private var containerView: ConstraintLayout? = null
     private var dragIndicator: View? = null
     internal var andesList: AndesList? = null
 

@@ -1,7 +1,10 @@
 # v3.3.0
+## 🛠 Fixes
+- Fix the size of the calendar api level < 21
+- AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
 ## 🚀 Features
-- Dropdown | Author: [@snti](https://github.com/snti)
 - Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
+- Dropdown | Author: [@snti](https://github.com/snti)
 
 # v3.2.0
 ## 🚀 Fixes

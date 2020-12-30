@@ -3,6 +3,7 @@ package com.mercadolibre.android.andesui.dropdown
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +74,7 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
         get() = andesDropdownAttrs.andesDropdownMenuType
         set(value) {
             andesDropdownAttrs = andesDropdownAttrs.copy(andesDropdownMenuType = value)
+            setupMenuType(createConfig())
         }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -119,11 +121,19 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     private fun setupComponents(config: AndesDropdownConfiguration) {
         initComponents()
         setupViewId()
-        setupBottomSheet()
+        setupMenuType(config)
 
         // Set listeners
         this.setOnClickListener {
             openBottomSheet()
+        }
+    }
+
+    private fun setupMenuType(config: AndesDropdownConfiguration) {
+        if (config.menuType == AndesDropdownMenuType.BOTTOMSHEET) {
+            setupBottomSheet()
+        } else {
+            Log.d("AndesDropdownStandalone", "Menu selected is no developed yet")
         }
     }
 
@@ -159,6 +169,7 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
                     chevronDownIcon
             )
         }
+
     }
 
     private fun openBottomSheet() {
@@ -200,7 +211,6 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
 
     override fun bind(andesList: AndesList, view: View, position: Int): AndesListViewItem {
         val item = listItems[position]
-
         val row: AndesListViewItem?
 
         row = AndesListViewItemSimple(

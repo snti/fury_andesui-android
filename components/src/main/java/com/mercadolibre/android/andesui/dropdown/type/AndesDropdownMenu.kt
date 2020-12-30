@@ -1,16 +1,14 @@
 package com.mercadolibre.android.andesui.dropdown.type
 
-import android.content.Context
-
 internal interface AndesDropdownMenu {
-    fun getType(context: Context): AndesDropdownMenuType
+    fun getType(): AndesDropdownMenuType
 }
 
 internal object AndesDropdownMenuTypeBottomSheet : AndesDropdownMenu {
-    override fun getType(context: Context) = AndesDropdownMenuType.BOTTOMSHEET
+    override fun getType() = AndesDropdownMenuType.BOTTOMSHEET
 }
 
 internal object AndesDropdownMenuTypeFloatingMenu : AndesDropdownMenu {
-    override fun getType(context: Context) = AndesDropdownMenuType.FLOATINGMENU
+    override fun getType() = AndesDropdownMenuType.FLOATINGMENU
 }
 

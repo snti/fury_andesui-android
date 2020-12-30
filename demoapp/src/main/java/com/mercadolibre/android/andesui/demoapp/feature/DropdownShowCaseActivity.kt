@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.andesui_dropdown_standalone_showcase.view.
 class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private var andesDropDownLabel = "Title"
     private var andesDropDownPlaceHolder = "Place holder"
+    private var andesDropDownHelper = "Helper"
 
     private lateinit var adapter: AndesShowcasePagerAdapter
     private lateinit var andesDropDownForm: AndesDropDownForm
@@ -37,6 +38,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private lateinit var buttonUpdate: AndesButton
     private lateinit var editTextTitle: EditText
     private lateinit var editTextPlaceHolder: EditText
+    private lateinit var editTextHelper: EditText
     private lateinit var sizeSpinner: Spinner
 
     companion object {
@@ -48,7 +50,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         setContentView(R.layout.andesui_showcase_main)
         setAdapterLogic()
         setSupportActionBar(findViewById(R.id.andesui_nav_bar))
-        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_list)
+        supportActionBar?.title = resources.getString(R.string.andesui_demoapp_screen_dropdown)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -116,7 +118,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
         andesDropDownForm.label = andesDropDownLabel
         andesDropDownForm.placeholder = andesDropDownPlaceHolder
-        andesDropDownForm.helper = "Helper text"
+        andesDropDownForm.helper = andesDropDownHelper
 
         andesDropDownForm.listItems.addAll(getFakeList())
 
@@ -124,6 +126,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
 
         editTextTitle = container.findViewById(R.id.editTextDropdownLabel)
         editTextPlaceHolder = container.findViewById(R.id.editTextDropdownPlaceHolder)
+        editTextHelper = container.findViewById(R.id.editTextDropdownHelper)
 
         buttonClear.setOnClickListener {
             clear()
@@ -137,15 +140,17 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private fun clear() {
         andesDropDownLabel = "Titulo"
         andesDropDownPlaceHolder = "Place holder"
+        andesDropDownHelper = "Helper"
 
         editTextTitle.setText(andesDropDownLabel)
         editTextPlaceHolder.setText(andesDropDownPlaceHolder)
+        editTextHelper.setText(andesDropDownHelper)
     }
 
     private fun update() {
         andesDropDownForm.label = editTextTitle.text.toString()
         andesDropDownForm.placeholder = editTextPlaceHolder.text.toString()
-        andesDropDownForm.helper = "Helper text"
+        andesDropDownForm.helper = editTextHelper.text.toString()
     }
 
     class AndesShowcasePagerAdapter(private val context: Context) : PagerAdapter() {
