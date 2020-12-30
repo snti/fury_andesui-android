@@ -147,6 +147,10 @@
     <string name="andes_checkbox_text_list_divider">Divider</string>
     <string name="andes_checkbox_text_list_selection">Selection</string>
 
+    <string name="andes_dropdown_title">Titulo</string>
+    <string name="andes_dropdown_place_holder">Place Holder</string>
+    <string name="andes_dropdown_helper">Helper</string>
+
     <string name="andes_card_type">Type</string>
     <string name="andes_card_style">Style</string>
     <string name="andes_card_padding">Padding</string>

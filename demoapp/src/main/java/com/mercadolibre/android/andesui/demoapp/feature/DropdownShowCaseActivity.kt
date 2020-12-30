@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import android.widget.ArrayAdapter
-import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
@@ -23,6 +22,7 @@ import com.mercadolibre.android.andesui.dropdown.AndesDropdownStandalone
 import com.mercadolibre.android.andesui.dropdown.size.AndesDropdownSize
 import com.mercadolibre.android.andesui.dropdown.utils.AndesDropdownDelegate
 import com.mercadolibre.android.andesui.list.utils.AndesListDelegate
+import com.mercadolibre.android.andesui.textfield.AndesTextfield
 import kotlinx.android.synthetic.main.andesui_dropdown_form_showcase.view.*
 import kotlinx.android.synthetic.main.andesui_dropdown_standalone_showcase.view.*
 
@@ -36,9 +36,9 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private lateinit var andesDropdownStandalone: AndesDropdownStandalone
     private lateinit var buttonClear: AndesButton
     private lateinit var buttonUpdate: AndesButton
-    private lateinit var editTextTitle: EditText
-    private lateinit var editTextPlaceHolder: EditText
-    private lateinit var editTextHelper: EditText
+    private lateinit var editTextTitle: AndesTextfield
+    private lateinit var editTextPlaceHolder: AndesTextfield
+    private lateinit var editTextHelper: AndesTextfield
     private lateinit var sizeSpinner: Spinner
 
     companion object {
@@ -142,9 +142,9 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         andesDropDownPlaceHolder = "Place holder"
         andesDropDownHelper = "Helper"
 
-        editTextTitle.setText(andesDropDownLabel)
-        editTextPlaceHolder.setText(andesDropDownPlaceHolder)
-        editTextHelper.setText(andesDropDownHelper)
+        editTextTitle.text = andesDropDownLabel
+        editTextPlaceHolder.text = andesDropDownPlaceHolder
+        editTextHelper.text = andesDropDownHelper
     }
 
     private fun update() {

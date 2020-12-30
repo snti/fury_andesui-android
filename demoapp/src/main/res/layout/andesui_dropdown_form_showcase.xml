@@ -30,42 +30,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/message" />
 
-    <com.mercadolibre.android.andesui.textfield.AndesEditText
+    <com.mercadolibre.android.andesui.textfield.AndesTextfield
         android:id="@+id/editTextDropdownLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:inputType="textPersonName"
-        android:text="Title"
+        android:inputType="text"
         android:textSize="@dimen/andes_body_font_size_m"
+        app:andesTextfieldLabel="@string/andes_dropdown_title"
         app:layout_constraintEnd_toStartOf="@+id/guideLineStatusBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andesDropdown" />
 
-    <com.mercadolibre.android.andesui.textfield.AndesEditText
+    <com.mercadolibre.android.andesui.textfield.AndesTextfield
         android:id="@+id/editTextDropdownPlaceHolder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:inputType="textPersonName"
-        android:text="Place holder"
+        android:inputType="text"
         android:textSize="@dimen/andes_body_font_size_m"
+        app:andesTextfieldLabel="@string/andes_dropdown_place_holder"
         app:layout_constraintEnd_toStartOf="@+id/guideLineStatusBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDropdownLabel" />
 
-    <com.mercadolibre.android.andesui.textfield.AndesEditText
+    <com.mercadolibre.android.andesui.textfield.AndesTextfield
         android:id="@+id/editTextDropdownHelper"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
-        android:inputType="textPersonName"
-        android:text="Helper"
+        android:inputType="text"
         android:textSize="@dimen/andes_body_font_size_m"
+        app:andesTextfieldLabel="@string/andes_dropdown_helper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideLineStatusBar"
         app:layout_constraintTop_toTopOf="@+id/editTextDropdownLabel" />
