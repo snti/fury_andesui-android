@@ -76,6 +76,25 @@
             app:layout_constraintEnd_toEndOf="@+id/spinnerStyle"
             app:layout_constraintTop_toBottomOf="@+id/spinnerStyle" />
 
+        <TextView
+            android:id="@+id/textBodyPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/andes_card_body_padding"
+            app:layout_constraintBottom_toBottomOf="@+id/spinnerBodyPadding"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="@+id/spinnerBodyPadding"
+            app:layout_constraintVertical_bias="1.0"/>
+
+        <Spinner
+            android:id="@+id/spinnerBodyPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerPadding"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPadding" />
+
         <com.mercadolibre.android.andesui.textfield.AndesTextfield
             android:id="@+id/andesTitle"
             android:layout_width="0dp"
@@ -115,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/andes_card_hierarchy"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintStart_toStartOf="@+id/textBodyPadding"
             app:layout_constraintTop_toTopOf="@+id/spinnerHierarchy" />
 
         <Spinner
@@ -124,8 +143,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="end"
-            app:layout_constraintEnd_toEndOf="@+id/spinnerPadding"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPadding" />
+            app:layout_constraintEnd_toEndOf="@+id/spinnerBodyPadding"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerBodyPadding" />
 
         <com.mercadolibre.android.andesui.button.AndesButton
             android:id="@+id/buttonUpdate"
