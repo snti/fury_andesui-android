@@ -1,4 +1,9 @@
 # v3.3.0
+## 🛠 Fixes
+- Fix the size of the calendar api level < 21
+- Fix color
+- AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+
 ## 🚀 Features
 - Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 

@@ -1,3 +1,7 @@
+# Pending definition
+## 🚀 Features
+- Added new icons for "Online Payments" and "QR"
+
 # v3.3.0
 ## 🛠 Fixes
 - Fix the size of the calendar api level < 21
