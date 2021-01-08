@@ -45,6 +45,7 @@ class AndesCard : CardView {
         get() = andesCardAttrs.andesCardPadding
         set(value) {
             andesCardAttrs = andesCardAttrs.copy(andesCardPadding = value)
+            andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = viewComponentWithoutBodyPadding(value))
             val config = createConfig()
             setupBackgroundComponent(config)
             setupTitleComponent(config)
@@ -344,7 +345,7 @@ class AndesCard : CardView {
      */
     private fun viewComponentWithoutBodyPadding(padding: AndesCardPadding): AndesCardBodyPadding {
         return when(padding) {
-            AndesCardPadding.NONE -> AndesCardBodyPadding.SMALL
+            AndesCardPadding.NONE -> AndesCardBodyPadding.NONE
             AndesCardPadding.SMALL -> AndesCardBodyPadding.SMALL
             AndesCardPadding.MEDIUM -> AndesCardBodyPadding.MEDIUM
             AndesCardPadding.LARGE -> AndesCardBodyPadding.LARGE
