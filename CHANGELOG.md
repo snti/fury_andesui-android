@@ -1,10 +1,9 @@
 # Pending definition
-## 🚀 Features
-- Added new icons for "Online Payments" and "QR"
-
-# v3.3.1
 ## 🛠 Fixes
 - Fix bodyPadding on CardComponent when padding is none from XML | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
+
+## 🚀 Features
+- Added new icons for "Online Payments" and "QR"
 
 # v3.3.0
 ## 🛠 Fixes
