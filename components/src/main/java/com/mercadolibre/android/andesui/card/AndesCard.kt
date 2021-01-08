@@ -340,7 +340,6 @@ class AndesCard : CardView {
     }
 
     /**
-     * Keeps in SMALL bodyPadding when padding property is set at NONE.
      * Emulates the behavior for develops that do not support or do not set bodyPadding property.
      */
     private fun viewComponentWithoutBodyPadding(padding: AndesCardPadding): AndesCardBodyPadding {
