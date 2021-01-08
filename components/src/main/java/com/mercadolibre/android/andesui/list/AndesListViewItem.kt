@@ -105,7 +105,7 @@ class AndesListViewItemSimple(
 class AndesListViewItemChevron(
         context: Context,
         title: String,
-        subtitle: String,
+        subtitle: String? = null,
         itemSelected: Boolean = false,
         size: AndesListViewItemSize = AndesListViewItemSize.MEDIUM,
         icon: Drawable? = null,
@@ -120,7 +120,7 @@ class AndesListViewItemChevron(
         this.andesListViewItemSimpleConfig(title, subtitle, config, itemSelected, icon, avatar, titleMaxLines)
     }
 
-    private fun andesListViewItemSimpleConfig(title: String, subtitle: String,
+    private fun andesListViewItemSimpleConfig(title: String, subtitle: String?,
                                               config: AndesListViewItemConfiguration,
                                               itemSelected: Boolean?,
                                               icon: Drawable?,
