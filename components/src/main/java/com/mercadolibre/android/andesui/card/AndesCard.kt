@@ -44,8 +44,7 @@ class AndesCard : CardView {
     var padding: AndesCardPadding
         get() = andesCardAttrs.andesCardPadding
         set(value) {
-            andesCardAttrs = andesCardAttrs.copy(andesCardPadding = value)
-            andesCardAttrs = andesCardAttrs.copy(andesCardBodyPadding = viewComponentWithoutBodyPadding(value))
+            andesCardAttrs = andesCardAttrs.copy(andesCardPadding = value, andesCardBodyPadding = viewComponentWithoutBodyPadding(value))
             val config = createConfig()
             setupBackgroundComponent(config)
             setupTitleComponent(config)
