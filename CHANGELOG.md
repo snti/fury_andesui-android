@@ -1,4 +1,4 @@
-# Pending definition
+# v3.3.1
 ## 🛠 Fixes
 - Fix bodyPadding on CardComponent when padding is none from XML | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
