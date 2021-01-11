@@ -3,9 +3,6 @@
 - Dropdown | Author: [@snti](https://github.com/snti)
 
 # v3.3.1
-## 🛠 Fixes
-- Fix bodyPadding on CardComponent when padding is none from XML | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
-
 ## 🚀 Features
 - Added new icons for "Online Payments" and "QR"
 
@@ -22,7 +19,7 @@
 - Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
 # v3.2.0
-## 🚀 Fixes
+## 🛠 Fixes
 - Fix the size of the right and left componente of text
 ## 🚀 Features
 - Migración Constraint layout v2
