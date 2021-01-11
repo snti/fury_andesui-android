@@ -148,7 +148,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.MEDIUM,
             AndesButtonHierarchy.TRANSPARENT,
-            null
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.RIGHT)
         )
         andesButtonMedium.text = getString(R.string.transparent_medium_button_programmatic)
 
@@ -163,7 +163,7 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             this,
             AndesButtonSize.LARGE,
             AndesButtonHierarchy.TRANSPARENT,
-            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.LEFT)
+            AndesButtonIcon("andesui_icon_dynamic", AndesButtonIconOrientation.RIGHT)
         )
         andesButtonLargeInt.text = getString(R.string.transparent_large_button_programmatic_int)
 
