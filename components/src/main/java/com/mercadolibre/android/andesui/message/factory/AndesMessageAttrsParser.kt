@@ -1,6 +1,7 @@
 package com.mercadolibre.android.andesui.message.factory
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.mercadolibre.android.andesui.R
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
@@ -16,7 +17,8 @@ internal data class AndesMessageAttrs(
     val body: String?,
     val title: String?,
     val isDismissable: Boolean,
-    val bodyLinks: AndesBodyLinks?
+    val bodyLinks: AndesBodyLinks?,
+    val thumbnail: Drawable?
 )
 
 /**
@@ -49,13 +51,16 @@ internal object AndesMessageAttrsParser {
             else -> AndesMessageType.NEUTRAL
         }
 
+
+
         return AndesMessageAttrs(
                 andesMessageHierarchy = hierarchy,
                 andesMessageType = type,
                 body = typedArray.getString(R.styleable.AndesMessage_andesMessageBodyText),
                 title = typedArray.getString(R.styleable.AndesMessage_andesMessageTitleText),
                 isDismissable = typedArray.getBoolean(R.styleable.AndesMessage_andesMessageDismissable, false),
-                bodyLinks = null
+                bodyLinks = null,
+                thumbnail = typedArray.getDrawable(R.styleable.AndesMessage_andesMessageThumbnail)
         ).also { typedArray.recycle() }
     }
 }
