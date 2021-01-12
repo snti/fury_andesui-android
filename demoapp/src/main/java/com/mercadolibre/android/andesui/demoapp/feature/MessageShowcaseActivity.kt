@@ -2,9 +2,6 @@ package com.mercadolibre.android.andesui.demoapp.feature
 
 import android.content.Context
 import android.os.Bundle
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +9,17 @@ import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.checkbox.AndesCheckbox
 import com.mercadolibre.android.andesui.checkbox.status.AndesCheckboxStatus
-import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
-import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.demoapp.R
+import com.mercadolibre.android.andesui.demoapp.feature.specs.AndesSpecs
 import com.mercadolibre.android.andesui.demoapp.feature.specs.launchSpecs
+import com.mercadolibre.android.andesui.demoapp.feature.utils.PageIndicator
 import com.mercadolibre.android.andesui.message.AndesMessage
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLink
 import com.mercadolibre.android.andesui.message.bodylinks.AndesBodyLinks
@@ -103,6 +104,16 @@ class MessageShowcaseActivity : AppCompatActivity() {
                 typeSpinner.adapter = adapter
             }
 
+            val thumbnailSpinner: Spinner = layoutMessagesChange.findViewById(R.id.thumbnail_spinner)
+            ArrayAdapter.createFromResource(
+                context,
+                R.array.thumbnail_spinner,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                thumbnailSpinner.adapter = adapter
+            }
+
             val dismissableCheckbox = layoutMessagesChange.findViewById<AndesCheckbox>(R.id.dismissable_checkbox)
 
             val bodyText = layoutMessagesChange.findViewById<AndesTextarea>(R.id.body_text)
@@ -176,8 +187,8 @@ class MessageShowcaseActivity : AppCompatActivity() {
                             changeMessage.setupSecondaryAction(
                                 secondaryActionText.text.toString(),
                                 View.OnClickListener {
-                                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                                        }
+                                    Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                                }
                             )
                         }
                         else -> {
@@ -214,6 +225,10 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.hideLinkAction()
                 }
 
+                val thumbnailDrawable = if(thumbnailSpinner.selectedItem.toString() == "With Thumbnail")
+                    ResourcesCompat.getDrawable(context.resources, R.mipmap.andesui_demoapp_ic_launcher, null) else null
+                changeMessage.setupThumbnail(thumbnailDrawable)
+
                 changeMessage.visibility = View.VISIBLE
             }
 
@@ -232,63 +247,95 @@ class MessageShowcaseActivity : AppCompatActivity() {
             }
 
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAction)
-                    .setupPrimaryAction(
-                        "Primary",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
-
+                .setupPrimaryAction(
+                    "Primary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryActionWithThumbnail)
+                .setupPrimaryAction(
+                    "Primary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                    .setupPrimaryAction(
-                        "Primary",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                .setupPrimaryAction(
+                    "Primary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                    .setupSecondaryAction(
-                        "Secondary",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
-
+                .setupSecondaryAction(
+                    "Secondary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuietWithThumbnail)
+                .setupPrimaryAction(
+                    "Primary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuietWithThumbnail)
+                .setupSecondaryAction(
+                    "Secondary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                    .setupPrimaryAction(
-                        "Primary",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                .setupPrimaryAction(
+                    "Primary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                    .setupSecondaryAction(
-                        "Secondary",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                .setupSecondaryAction(
+                    "Secondary",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
 
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkLoud)
-                    .setupLinkAction(
-                        "Link",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                .setupLinkAction(
+                    "Link",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkQuiet)
-                    .setupLinkAction(
-                        "Link",
-                        View.OnClickListener {
-                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                .setupLinkAction(
+                    "Link",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkQuietWithThumbnail)
+                .setupLinkAction(
+                    "Link",
+                    View.OnClickListener {
+                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                    }
+                )
             val bodyLink = 11
             val links = listOf(
                 AndesBodyLink(6, bodyLink),
                 AndesBodyLink(64, 71)
             )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBody).bodyLinks = (AndesBodyLinks(
+                links,
+                listener = {
+                    Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()
+                }
+            ))
+            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkBodyWithThumbnail).bodyLinks = (AndesBodyLinks(
                 links,
                 listener = {
                     Toast.makeText(context, "Click at body link: $it", Toast.LENGTH_SHORT).show()

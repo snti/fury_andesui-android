@@ -390,7 +390,9 @@ class AndesMessage : CardView {
         thumbnailImage?.also {
             thumbnail.visibility = View.VISIBLE
             thumbnail.setImageBitmap(it.drawableToBitmap()?.convertToCircle())
+            return
         }
+        thumbnail.visibility = View.GONE
     }
 
 
