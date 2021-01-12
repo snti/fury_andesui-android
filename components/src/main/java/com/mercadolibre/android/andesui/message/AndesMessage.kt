@@ -395,8 +395,6 @@ class AndesMessage : CardView {
         thumbnail.visibility = View.GONE
     }
 
-
-
     fun hidePrimaryAction() {
         primaryAction.visibility = View.GONE
         secondaryAction.visibility = View.GONE
