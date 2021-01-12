@@ -20,7 +20,7 @@
 
         <attr name="andesMessageDismissable" format="boolean" />
 
-        <attr name="andesMessageThumbnail" format="integer" />
+        <attr name="andesMessageThumbnail" format="reference" />
     </declare-styleable>
 
 </resources>

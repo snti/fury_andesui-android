@@ -63,7 +63,6 @@
             app:layout_constraintEnd_toStartOf="@+id/andes_dismissableright_guideline"
             app:layout_constraintTop_toTopOf="@+id/andes_top_guideline" />
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/andes_righticon_guideline"
             android:layout_width="wrap_content"

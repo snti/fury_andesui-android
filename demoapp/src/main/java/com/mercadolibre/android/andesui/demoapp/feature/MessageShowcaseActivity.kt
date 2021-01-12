@@ -187,8 +187,8 @@ class MessageShowcaseActivity : AppCompatActivity() {
                             changeMessage.setupSecondaryAction(
                                 secondaryActionText.text.toString(),
                                 View.OnClickListener {
-                                    Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                                }
+                                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                                        }
                             )
                         }
                         else -> {
@@ -247,83 +247,57 @@ class MessageShowcaseActivity : AppCompatActivity() {
             }
 
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAction)
-                .setupPrimaryAction(
-                    "Primary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
-            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryActionWithThumbnail)
-                .setupPrimaryAction(
-                    "Primary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                .setupPrimaryAction(
-                    "Primary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuiet)
-                .setupSecondaryAction(
-                    "Secondary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
-            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuietWithThumbnail)
-                .setupPrimaryAction(
-                    "Primary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
-            layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionQuietWithThumbnail)
-                .setupSecondaryAction(
-                    "Secondary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupSecondaryAction(
+                        "Secondary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                .setupPrimaryAction(
-                    "Primary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupPrimaryAction(
+                        "Primary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Primary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messagePrimaryAndSecondaryActionLoud)
-                .setupSecondaryAction(
-                    "Secondary",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupSecondaryAction(
+                        "Secondary",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Secondary onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
 
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkLoud)
-                .setupLinkAction(
-                    "Link",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupLinkAction(
+                        "Link",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             layoutMessages.findViewById<AndesMessage>(R.id.messageLinkQuiet)
-                .setupLinkAction(
-                    "Link",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
-            layoutMessages.findViewById<AndesMessage>(R.id.messageLinkQuietWithThumbnail)
-                .setupLinkAction(
-                    "Link",
-                    View.OnClickListener {
-                        Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                    .setupLinkAction(
+                        "Link",
+                        View.OnClickListener {
+                            Toast.makeText(context, "Link onClick", Toast.LENGTH_SHORT).show()
+                        }
+                    )
             val bodyLink = 11
             val links = listOf(
                 AndesBodyLink(6, bodyLink),

@@ -2,7 +2,12 @@ package com.mercadolibre.android.andesui.utils
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -43,16 +48,16 @@ fun buildColoredAndesBitmapDrawable(
     }
 
     return BitmapDrawable(context.resources, scaledBitmap)
-        .apply {
-            colors?.let {
-                if (isLollipopOrNewer()) {
-                    setTintMode(PorterDuff.Mode.SRC_IN)
-                    setTintList(it)
-                } else {
-                    setColorFilter(it.getColorForState(intArrayOf(android.R.attr.state_enabled), 0), PorterDuff.Mode.SRC_IN)
+            .apply {
+                colors?.let {
+                    if (isLollipopOrNewer()) {
+                        setTintMode(PorterDuff.Mode.SRC_IN)
+                        setTintList(it)
+                    } else {
+                        setColorFilter(it.getColorForState(intArrayOf(android.R.attr.state_enabled), 0), PorterDuff.Mode.SRC_IN)
+                    }
                 }
             }
-        }
 }
 
 fun buildColoredBitmapDrawable(
@@ -64,16 +69,16 @@ fun buildColoredBitmapDrawable(
 ): BitmapDrawable {
     val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
-            image.bitmap,
-            dstWidth,
-            dstHeight,
-            true)
+                image.bitmap,
+                dstWidth,
+                dstHeight,
+                true)
         else -> image.bitmap
     }
     return BitmapDrawable(context.resources, scaledBitmap)
-        .apply {
-            color?.let { setColorFilter(color, PorterDuff.Mode.SRC_IN) }
-        }
+            .apply {
+                color?.let { setColorFilter(color, PorterDuff.Mode.SRC_IN) }
+            }
 }
 
 fun buildColoredAndesBitmapDrawable(
@@ -85,16 +90,16 @@ fun buildColoredAndesBitmapDrawable(
 ): BitmapDrawable {
     val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
-            image.bitmap,
-            dstWidth,
-            dstHeight,
-            true)
+                image.bitmap,
+                dstWidth,
+                dstHeight,
+                true)
         else -> image.bitmap
     }
     return BitmapDrawable(context.resources, scaledBitmap)
-        .apply {
-            color?.let { setColorFilter(it.colorInt(context), PorterDuff.Mode.SRC_IN) }
-        }
+            .apply {
+                color?.let { setColorFilter(it.colorInt(context), PorterDuff.Mode.SRC_IN) }
+            }
 }
 
 fun buildCircleBitmap(
@@ -104,10 +109,10 @@ fun buildCircleBitmap(
 ): Bitmap? {
     val scaledBitmap: Bitmap = when {
         dstHeight != null && dstWidth != null -> Bitmap.createScaledBitmap(
-            image,
-            dstWidth,
-            dstHeight,
-            true)
+                image,
+                dstWidth,
+                dstHeight,
+                true)
         else -> image
     }
     return getCircledBitmap(scaledBitmap)
