@@ -154,23 +154,7 @@ fun buildColoredCircularShapeWithIconDrawable(
 
 private fun isLollipopOrNewer() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
-fun Bitmap.convertToCircle(): Bitmap? {
-    var size = if (width > height) height else width
-    val output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(output)
-    val color = -0xbdbdbe
-    val paint = Paint()
-    val rect = Rect(0, 0, width, height)
-    paint.isAntiAlias = true
-    canvas.drawARGB(0, 0, 0, 0)
-    paint.color = color
-    canvas.drawCircle(size.toFloat() / 2, size.toFloat() / 2, size.toFloat() / 2, paint)
-    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-    canvas.drawBitmap(this, rect, rect, paint)
-    return output
-}
-
-fun Drawable.drawableToBitmap(): Bitmap? {
+fun Drawable.toBitmap(): Bitmap? {
     var bitmap: Bitmap? = null
     if (this is BitmapDrawable) {
         val bitmapDrawable = this

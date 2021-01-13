@@ -28,8 +28,8 @@ import com.mercadolibre.android.andesui.message.factory.AndesMessageConfiguratio
 import com.mercadolibre.android.andesui.message.hierarchy.AndesMessageHierarchy
 import com.mercadolibre.android.andesui.message.type.AndesMessageType
 import com.mercadolibre.android.andesui.typeface.getFontOrDefault
-import com.mercadolibre.android.andesui.utils.convertToCircle
-import com.mercadolibre.android.andesui.utils.drawableToBitmap
+import com.mercadolibre.android.andesui.utils.toBitmap
+import com.mercadolibre.android.andesui.utils.getCircledBitmap
 
 
 @Suppress("TooManyFunctions")
@@ -387,9 +387,11 @@ class AndesMessage : CardView {
     }
 
     fun setupThumbnail(thumbnailImage: Drawable?) {
-        thumbnailImage?.also {
-            thumbnail.visibility = View.VISIBLE
-            thumbnail.setImageBitmap(it.drawableToBitmap()?.convertToCircle())
+        thumbnailImage?.also { drawable ->
+            drawable.toBitmap()?.also { bitmap ->
+                thumbnail.visibility = View.VISIBLE
+                thumbnail.setImageBitmap(getCircledBitmap(bitmap))
+            }
             return
         }
         thumbnail.visibility = View.GONE
