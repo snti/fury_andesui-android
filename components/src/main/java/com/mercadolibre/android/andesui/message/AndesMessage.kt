@@ -386,6 +386,10 @@ class AndesMessage : CardView {
         }
     }
 
+    /**
+     * This method allows the user to add programmatically a drawable
+     *
+     */
     fun setupThumbnail(thumbnailImage: Drawable?) {
         thumbnailImage?.also { drawable ->
             drawable.toBitmap()?.also { bitmap ->
