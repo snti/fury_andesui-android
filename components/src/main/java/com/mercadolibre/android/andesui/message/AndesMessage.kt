@@ -123,7 +123,7 @@ class AndesMessage : CardView {
     private lateinit var primaryAction: AndesButton
     private lateinit var secondaryAction: AndesButton
     private lateinit var linkAction: AndesButton
-    private lateinit var thumbnail: SimpleDraweeView
+    lateinit var thumbnail: SimpleDraweeView
 
     @Suppress("unused")
     private constructor(context: Context) : super(context) {
