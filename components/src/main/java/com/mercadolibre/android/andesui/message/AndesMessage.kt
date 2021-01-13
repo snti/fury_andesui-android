@@ -391,14 +391,14 @@ class AndesMessage : CardView {
      *
      */
     fun setupThumbnail(thumbnailImage: Drawable?) {
-        thumbnailImage?.also { drawable ->
-            drawable.toBitmap()?.also { bitmap ->
-                thumbnail.visibility = View.VISIBLE
-                thumbnail.setImageBitmap(getCircledBitmap(bitmap))
+        thumbnailImage?.toBitmap()?.let { bitmap ->
+            with(thumbnail) {
+                visibility = View.VISIBLE
+                setImageBitmap(getCircledBitmap(bitmap))
             }
-            return
+        } ?: with(thumbnail) {
+            visibility = View.GONE
         }
-        thumbnail.visibility = View.GONE
     }
 
     fun hidePrimaryAction() {
