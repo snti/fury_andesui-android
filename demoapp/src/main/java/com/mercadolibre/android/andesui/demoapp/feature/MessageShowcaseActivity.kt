@@ -225,8 +225,12 @@ class MessageShowcaseActivity : AppCompatActivity() {
                     changeMessage.hideLinkAction()
                 }
 
-                val thumbnailDrawable = if(thumbnailSpinner.selectedItem.toString() == "With Thumbnail")
-                    ResourcesCompat.getDrawable(context.resources, R.mipmap.andesui_demoapp_ic_launcher, null) else null
+                val thumbnailDrawable = if(thumbnailSpinner.selectedItem.toString() == "With Thumbnail") {
+                    ResourcesCompat.getDrawable(context.resources, R.mipmap.andesui_demoapp_ic_launcher, null)
+                } else {
+                    null
+                }
+
                 changeMessage.setupThumbnail(thumbnailDrawable)
 
                 changeMessage.visibility = View.VISIBLE

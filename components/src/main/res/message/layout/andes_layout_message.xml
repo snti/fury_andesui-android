@@ -41,7 +41,7 @@
             android:layout_height="@dimen/andes_message_thumbnail_diameter"
             android:maxHeight="@dimen/andes_message_thumbnail_diameter"
             android:minHeight="@dimen/andes_message_thumbnail_diameter"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:visibility="gone"
             tools:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/andes_lefticon_guideline"
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toStartOf="@+id/andes_message_barrier_vertical"
             app:layout_constraintBottom_toBottomOf="@id/andes_message_barrier_bottom"/>
 
-        <com.facebook.drawee.view.SimpleDraweeView
+            <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/andes_dismissable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="32dp" />
+            app:layout_constraintGuide_begin="@dimen/andes_message_righticon_guideline_bottom_margin" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/andes_dismissableleft_guideline"

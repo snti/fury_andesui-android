@@ -568,6 +568,8 @@ class AndesMessageConfigurationLoudTest {
         assertEquals(config.linkActionTextColor, R.color.andes_white.toAndesColor())
     }
 
+
+
     @Test
     fun `Loud, Error link action text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body",
@@ -585,11 +587,21 @@ class AndesMessageConfigurationLoudTest {
     }
 
     @Test
-    fun `Loud, Warning without thumbnail`() {
-        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body",
-            "Title", true, null, null)
+    fun `Loud, Success with Thumbnail`() {
+        val thumbnail = Mockito.mock(Drawable::class.java)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.SUCCESS, "Body",
+            "Title", true, null, thumbnail)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.linkActionTextColor, R.color.andes_white.toAndesColor())
+        assertEquals(config.thumbnail, thumbnail)
+    }
+
+    @Test
+    fun `Loud, Error with Thumbnail`() {
+        val thumbnail = Mockito.mock(Drawable::class.java)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.ERROR, "Body",
+            "Title", true, null, thumbnail)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.thumbnail, thumbnail)
     }
 
     @Test
@@ -598,7 +610,6 @@ class AndesMessageConfigurationLoudTest {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.LOUD, AndesMessageType.WARNING, "Body",
             "Title", true, null, thumbnail)
         val config = configFactory.create(context, attrs)
-        assertEquals(config.linkActionTextColor, R.color.andes_white.toAndesColor())
         assertEquals(config.thumbnail, thumbnail)
     }
 }

@@ -453,9 +453,18 @@ class AndesMessageConfigurationQuiet {
     @Test
     fun `Quiet, Neutral link action text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.NEUTRAL, "Body",
-                "Title", true, null, null)
+            "Title", true, null, null)
         val config = configFactory.create(context, attrs)
         assertEquals(config.linkActionTextColor, R.color.andes_accent_color_500.toAndesColor())
+    }
+
+    @Test
+    fun `Quiet, Neutral with Thumbnail`() {
+        val thumbnail = Mockito.mock(Drawable::class.java)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.NEUTRAL, "Body",
+            "Title", true, null, thumbnail)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.thumbnail, thumbnail)
     }
 
     @Test
@@ -469,10 +478,11 @@ class AndesMessageConfigurationQuiet {
     @Test
     fun `Quiet, Error link action text color`() {
         attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.ERROR, "Body",
-                "Title", true, null, null)
+            "Title", true, null, null)
         val config = configFactory.create(context, attrs)
         assertEquals(config.linkActionTextColor, R.color.andes_accent_color_500.toAndesColor())
     }
+
 
     @Test
     fun `Quiet, Warning link action text color`() {
@@ -480,6 +490,24 @@ class AndesMessageConfigurationQuiet {
                 "Title", true, null, null)
         val config = configFactory.create(context, attrs)
         assertEquals(config.linkActionTextColor, R.color.andes_accent_color_500.toAndesColor())
+    }
+
+    @Test
+    fun `Quiet, Success with thumbnail`() {
+        val thumbnail = Mockito.mock(Drawable::class.java)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.SUCCESS, "Body",
+            "Title", true, null, thumbnail)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.thumbnail, thumbnail)
+    }
+
+    @Test
+    fun `Quiet, Error with thumbnnail`() {
+        val thumbnail = Mockito.mock(Drawable::class.java)
+        attrs = AndesMessageAttrs(AndesMessageHierarchy.QUIET, AndesMessageType.ERROR, "Body",
+            "Title", true, null, thumbnail)
+        val config = configFactory.create(context, attrs)
+        assertEquals(config.thumbnail, thumbnail)
     }
 
     @Test
