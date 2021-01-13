@@ -51,8 +51,6 @@ internal object AndesMessageAttrsParser {
             else -> AndesMessageType.NEUTRAL
         }
 
-
-
         return AndesMessageAttrs(
                 andesMessageHierarchy = hierarchy,
                 andesMessageType = type,
