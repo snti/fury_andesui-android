@@ -1,3 +1,7 @@
+# Unpublished
+### ⚙️ Other
+- Disable bot for issues | Authors [joalonspint](https://github.com/joalonsopint)
+
 # v3.4.0
 ## 🚀 Features
 - Dropdown | Author: [@snti](https://github.com/snti)
