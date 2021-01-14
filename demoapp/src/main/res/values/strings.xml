@@ -252,6 +252,11 @@
 
     <string name="andesui_demoapp_loading_title">Click the button to show the spinner</string>
 
+    <string-array name="thumbnail_spinner">
+        <item>With Thumbnail</item>
+        <item>Without Thumbnail</item>
+    </string-array>
+
     <string-array name="state_spinner">
         <item>Neutral</item>
         <item>Success</item>
