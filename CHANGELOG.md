@@ -2,7 +2,6 @@
 ### 🚀 Feature
 - AndesMessage With Thumbnnail | Authors [a0zamora](https://github.com/a0zamora)
 
-# Unpublished
 ### ⚙️ Other
 - Disable bot for issues | Authors [joalonspint](https://github.com/joalonsopint)
 
