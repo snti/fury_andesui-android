@@ -128,8 +128,6 @@
         android:layout_marginTop="10dp"
         app:andesListItemSize="medium"
         app:andesListType="simple"
-        app:andesTextfieldPlaceholder="@string/andes_radiobutton_placeholder_text"
-        app:andesTextfieldRightContent="clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/buttonClear"

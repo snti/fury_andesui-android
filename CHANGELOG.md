@@ -6,8 +6,24 @@
 ## ⚙️ Other
 - Disable bot for issues | Authors [joalonspint](https://github.com/joalonsopint)
 
-## 🚀 Fixes
+## 🛠 Fixes
 - Datepicker accent color
+
+# v3.3.1
+## 🚀 Features
+- Added new icons for "Online Payments" and "QR"
+
+## 🛠 Fixes
+- Fix bodyPadding on CardComponent when padding is none from XML | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
+
+# v3.3.0
+## 🛠 Fixes
+### AndesDatePicker | Author: [@Adrian De Seta](https://github.com/adriandeseta1985)
+- Fix the size of the calendar api level < 21
+- Fix color
+
+## 🚀 Features
+- Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
 # v3.2.0
 ## 🚀 Fixes
