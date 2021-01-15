@@ -1,3 +1,14 @@
+# v3.4.0
+## 🚀 Features
+- Dropdown | Author: [@snti](https://github.com/snti)
+- AndesMessage With Thumbnnail | Authors [a0zamora](https://github.com/a0zamora)
+
+## ⚙️ Other
+- Disable bot for issues | Authors [joalonspint](https://github.com/joalonsopint)
+
+## 🚀 Fixes
+- Datepicker accent color
+
 # v3.2.0
 ## 🚀 Fixes
 - Fix the size of the right and left componente of text
