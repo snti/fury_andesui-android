@@ -26,7 +26,7 @@
 - Add bodyPadding property to AndesCard | Author: [@ariel-ramirez](https://github.com/ariel-ramirez)
 
 # v3.2.0
-## 🚀 Fixes
+## 🛠 Fixes
 - Fix the size of the right and left componente of text
 ## 🚀 Features
 - Migración Constraint layout v2
