@@ -4,6 +4,9 @@
 ## 🚀 Features
 - Migración Constraint layout v2
 
+## 🛠 Fixes
+- Fix color datepicker
+
 # v3.1.0
 ## 🚀 Features
 - AndesList | Author: [@snti](https://github.com/snti)
