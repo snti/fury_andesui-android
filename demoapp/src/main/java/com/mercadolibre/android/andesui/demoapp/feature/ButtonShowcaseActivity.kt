@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.res.ResourcesCompat
 import com.mercadolibre.android.andesui.button.AndesButton
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonHierarchy
 import com.mercadolibre.android.andesui.button.hierarchy.AndesButtonIcon
@@ -70,6 +71,30 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             andesButtonLarge.size = AndesButtonSize.SMALL
         }
 
+        val andesButtonWithLeftDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.LOUD
+        )
+        andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
+        andesButtonWithLeftDrawable.setOnClickListener{
+            andesButtonWithLeftDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.LEFT)
+        }
+
+        val andesButtonWithRightDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.QUIET
+        )
+        andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
+        andesButtonWithRightDrawable.setOnClickListener{
+            andesButtonWithRightDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.RIGHT)
+        }
+
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -79,11 +104,15 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonLarge.layoutParams = params
         andesButtonMedium.layoutParams = params
         andesButtonSmall.layoutParams = params
+        andesButtonWithLeftDrawable.layoutParams = params
+        andesButtonWithRightDrawable.layoutParams = params
 
         val linearLoud = container.findViewById<LinearLayout>(R.id.andes_loud_container)
         linearLoud.addView(andesButtonLarge, linearLoud.childCount - 1)
         linearLoud.addView(andesButtonMedium, linearLoud.childCount - 1)
         linearLoud.addView(andesButtonSmall, linearLoud.childCount - 1)
+        linearLoud.addView(andesButtonWithLeftDrawable, linearLoud.childCount - 1)
+        linearLoud.addView(andesButtonWithRightDrawable, linearLoud.childCount - 1)
 
         bindAndesSpecsButton(container)
     }
@@ -117,6 +146,31 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             andesButtonLarge.text = getString(R.string.quiet_large_button_hierarchy_updated)
         }
 
+        val andesButtonWithLeftDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.QUIET
+        )
+        andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
+        andesButtonWithLeftDrawable.setOnClickListener{
+            andesButtonWithLeftDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.LEFT)
+        }
+
+
+        val andesButtonWithRightDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.QUIET
+        )
+        andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
+        andesButtonWithRightDrawable.setOnClickListener{
+            andesButtonWithRightDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.RIGHT)
+        }
+
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -126,11 +180,15 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonLarge.layoutParams = params
         andesButtonMedium.layoutParams = params
         andesButtonSmall.layoutParams = params
+        andesButtonWithLeftDrawable.layoutParams = params
+        andesButtonWithRightDrawable.layoutParams = params
 
         val linearQuiet = container.findViewById<LinearLayout>(R.id.andes_quiet_container)
         linearQuiet.addView(andesButtonLarge, linearQuiet.childCount - 1)
         linearQuiet.addView(andesButtonMedium, linearQuiet.childCount - 1)
         linearQuiet.addView(andesButtonSmall, linearQuiet.childCount - 1)
+        linearQuiet.addView(andesButtonWithLeftDrawable, linearQuiet.childCount - 1)
+        linearQuiet.addView(andesButtonWithRightDrawable, linearQuiet.childCount - 1)
 
         bindAndesSpecsButton(container)
     }
@@ -167,6 +225,30 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         )
         andesButtonLargeInt.text = getString(R.string.transparent_large_button_programmatic_int)
 
+        val andesButtonWithLeftDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.TRANSPARENT
+        )
+        andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
+        andesButtonWithLeftDrawable.setOnClickListener{
+            andesButtonWithLeftDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.LEFT)
+        }
+
+        val andesButtonWithRightDrawable = AndesButton(
+            this,
+            AndesButtonSize.LARGE,
+            AndesButtonHierarchy.TRANSPARENT
+        )
+        andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
+        andesButtonWithRightDrawable.setOnClickListener{
+            andesButtonWithRightDrawable.setIconDrawable(
+                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+                AndesButtonIconOrientation.RIGHT)
+        }
+
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -176,12 +258,16 @@ class ButtonShowcaseActivity : AppCompatActivity() {
         andesButtonLarge.layoutParams = params
         andesButtonMedium.layoutParams = params
         andesButtonSmall.layoutParams = params
+        andesButtonWithLeftDrawable.layoutParams = params
+        andesButtonWithRightDrawable.layoutParams = params
 
         val linearTransparent = container.findViewById<LinearLayout>(R.id.andes_transparent_container)
         linearTransparent.addView(andesButtonLargeInt, linearTransparent.childCount - 1)
         linearTransparent.addView(andesButtonLarge, linearTransparent.childCount - 1)
         linearTransparent.addView(andesButtonMedium, linearTransparent.childCount - 1)
         linearTransparent.addView(andesButtonSmall, linearTransparent.childCount - 1)
+        linearTransparent.addView(andesButtonWithLeftDrawable, linearTransparent.childCount - 1)
+        linearTransparent.addView(andesButtonWithRightDrawable, linearTransparent.childCount - 1)
 
         bindAndesSpecsButton(container)
     }
