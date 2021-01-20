@@ -175,10 +175,10 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
             rightIcon != null -> {
                 handlePathIcon(context, rightIcon, hierarchy, AndesButtonIconOrientation.RIGHT)
             }
-            leftDrawable != null -> { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
+            leftDrawable != null -> {
                 handleIcon(context, leftDrawable, hierarchy, AndesButtonIconOrientation.LEFT)
             }
-            rightDrawable != null -> { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
+            rightDrawable != null -> {
                 handleIcon(context, rightDrawable, hierarchy, AndesButtonIconOrientation.RIGHT)
             }
             else -> {

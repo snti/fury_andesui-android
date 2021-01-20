@@ -523,6 +523,11 @@ class AndesButton : ConstraintLayout {
         }
     }
 
+    /**
+     * sets an icon to right or left, depending on the orientation
+     * @param drawable the drawable that is going to be shown
+     * @param orientation AndesButtonIconOrientation LEFT|RIGHT
+     */
     fun setIconDrawable(drawable: Drawable, orientation: AndesButtonIconOrientation) {
         andesButtonAttrs = when (orientation) {
             AndesButtonIconOrientation.LEFT -> andesButtonAttrs.copy(andesButtonLeftDrawable = drawable)

@@ -1,17 +1,13 @@
 # v3.6.0
-### 🚀 Feature
+## 🚀 Feature
 - AndesButton With Drawable support | Authors [a0zamora](https://github.com/a0zamora)
 
-# v3.5.1
 ## 🛠 Fixes
 - Datepicker accent color
 
 # v3.5.0
-### 🚀 Feature
+## 🚀 Feature
 - AndesMessage With Thumbnnail | Authors [a0zamora](https://github.com/a0zamora)
-
-### ⚙️ Other
-- Disable bot for issues | Authors [joalonspint](https://github.com/joalonsopint)
 
 # v3.4.0
 ## 🚀 Features
