@@ -1,3 +1,7 @@
+# v3.6.0
+### 🚀 Feature
+- AndesButton With Drawable support | Authors [a0zamora](https://github.com/a0zamora)
+
 # v3.5.1
 ## 🛠 Fixes
 - Datepicker accent color
