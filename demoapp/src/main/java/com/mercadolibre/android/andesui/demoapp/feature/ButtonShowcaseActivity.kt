@@ -77,11 +77,9 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.LOUD
         )
         andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
-        andesButtonWithLeftDrawable.setOnClickListener{
-            andesButtonWithLeftDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.LEFT)
-        }
+        andesButtonWithLeftDrawable.setIconDrawable(
+            ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
+            AndesButtonIconOrientation.LEFT)
 
         val andesButtonWithRightDrawable = AndesButton(
             this,
@@ -89,10 +87,8 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.QUIET
         )
         andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
-        andesButtonWithRightDrawable.setOnClickListener{
-            andesButtonWithRightDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.RIGHT)
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+            andesButtonWithRightDrawable.setIconDrawable(it, AndesButtonIconOrientation.RIGHT)
         }
 
         val params = LinearLayout.LayoutParams(
@@ -152,10 +148,8 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.QUIET
         )
         andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
-        andesButtonWithLeftDrawable.setOnClickListener{
-            andesButtonWithLeftDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.LEFT)
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+            andesButtonWithLeftDrawable.setIconDrawable(it, AndesButtonIconOrientation.LEFT)
         }
 
 
@@ -165,11 +159,10 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.QUIET
         )
         andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
-        andesButtonWithRightDrawable.setOnClickListener{
-            andesButtonWithRightDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.RIGHT)
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+            andesButtonWithRightDrawable.setIconDrawable(it, AndesButtonIconOrientation.RIGHT)
         }
+
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -231,10 +224,8 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.TRANSPARENT
         )
         andesButtonWithLeftDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_left)
-        andesButtonWithLeftDrawable.setOnClickListener{
-            andesButtonWithLeftDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.LEFT)
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+            andesButtonWithLeftDrawable.setIconDrawable(it,AndesButtonIconOrientation.LEFT)
         }
 
         val andesButtonWithRightDrawable = AndesButton(
@@ -243,10 +234,8 @@ class ButtonShowcaseActivity : AppCompatActivity() {
             AndesButtonHierarchy.TRANSPARENT
         )
         andesButtonWithRightDrawable.text = getString(R.string.loud_with_drawable_button_programmatic_right)
-        andesButtonWithRightDrawable.setOnClickListener{
-            andesButtonWithRightDrawable.setIconDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)!!,
-                AndesButtonIconOrientation.RIGHT)
+        ResourcesCompat.getDrawable(resources, R.drawable.andesui_icon_dynamic, null)?.also {
+            andesButtonWithRightDrawable.setIconDrawable(it, AndesButtonIconOrientation.RIGHT)
         }
 
         val params = LinearLayout.LayoutParams(

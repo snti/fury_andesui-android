@@ -170,10 +170,10 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
 
         return when {
             leftIcon != null -> { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
-                handleStringIcon(context, leftIcon, hierarchy, AndesButtonIconOrientation.LEFT)
+                handlePathIcon(context, leftIcon, hierarchy, AndesButtonIconOrientation.LEFT)
             }
             rightIcon != null -> {
-                handleStringIcon(context, rightIcon, hierarchy, AndesButtonIconOrientation.RIGHT)
+                handlePathIcon(context, rightIcon, hierarchy, AndesButtonIconOrientation.RIGHT)
             }
             leftDrawable != null -> { // Ignoring if rightIcon is also non null: Left icon has higher precedence than right
                 handleIcon(context, leftDrawable, hierarchy, AndesButtonIconOrientation.LEFT)
@@ -207,7 +207,7 @@ internal class AndesLargeButtonSize : AndesButtonSizeInterface {
         }
     }
 
-    private fun handleStringIcon(context: Context, leftIcon: String,
+    private fun handlePathIcon(context: Context, leftIcon: String,
         hierarchy: AndesButtonHierarchyInterface, orientation: AndesButtonIconOrientation): IconConfig? {
         val icon = IconProvider(context)
             .loadIcon(leftIcon)
