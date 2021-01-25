@@ -1,3 +1,7 @@
+# Pending definition
+## 🚀 Feature
+- Added new icons for "To Agree" and "Info" (with outer circle)
+
 # v3.6.0
 ## 🚀 Feature
 - AndesButton With Drawable support | Authors [a0zamora](https://github.com/a0zamora)
