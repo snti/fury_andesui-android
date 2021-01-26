@@ -1,4 +1,4 @@
-# Pending definition
+# v3.7.0
 ## 🚀 Feature
 - Added new icons for "To Agree" and "Info" (with outer circle)
 
