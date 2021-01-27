@@ -31,7 +31,7 @@ class AndesDropdownTest {
 
     @Test
     fun `test delegate`() {
-        val dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL, "label")
+        val dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL)
         val list = AndesList(context, AndesListViewItemSize.MEDIUM, AndesListType.SIMPLE)
 
         val listItems = ArrayList<AndesDropDownItem>()
@@ -49,20 +49,20 @@ class AndesDropdownTest {
             }
         }
 
-        dropdown.listItems = listItems
+        dropdown.setItems(listItems)
         dropdown.delegate = andesDropdownDelegate
         dropdown.onItemClick(list, 5)
     }
 
     @Test
     fun `test dropdown standalone with different sizes`() {
-        var dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL, "test")
+        var dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.SMALL)
         Assert.assertEquals(dropdown.size, AndesDropdownSize.SMALL)
 
-        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.MEDIUM, "test")
+        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.MEDIUM)
         Assert.assertEquals(dropdown.size, AndesDropdownSize.MEDIUM)
 
-        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.LARGE, "test")
+        dropdown = AndesDropdownStandalone(context, AndesDropdownMenuType.BOTTOMSHEET, AndesDropdownSize.LARGE)
         Assert.assertEquals(dropdown.size, AndesDropdownSize.LARGE)
     }
 
