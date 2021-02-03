@@ -1,9 +1,24 @@
+# v3.7.0
+## 🚀 Feature
+- Added new icons for "To Agree" and "Info" (with outer circle)
+
+## 🛠 Fixes
+- Demoapp thumbnail showcase with same resource id as component fixed
+
+# v3.6.1
+## 🛠 Fixes
+- Bump fix from version 3.5.1
+
 # v3.6.0
 ## 🚀 Feature
 - AndesButton With Drawable support | Authors [a0zamora](https://github.com/a0zamora)
 
 ## 🛠 Fixes
 - Datepicker accent color
+
+# v3.5.1
+## 🛠 Fixes
+- AndesMessage contructor overload for java classes compatibility | Authors [eportasML](https://github.com/eportasML)
 
 # v3.5.0
 ## 🚀 Feature
