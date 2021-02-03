@@ -35,17 +35,7 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
     private val chevronUpIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_up_12)
     private val chevronDownIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.andes_ui_chevron_down_12)
     private val bottomSheetDialog = DropdownBottomSheetDialog(context, R.style.Andes_BottomSheetDialog, this)
-
-    /**
-     * Sets the list of item that the Dropdown will draw
-     */
-    var listItems: List<AndesDropDownItem> = listOf()
-        set(value) {
-            field = value
-            if (field.isNotEmpty()){
-                selectItem(0)
-            }
-        }
+    private var listItems: List<AndesDropDownItem> = listOf()
 
     /**
      * Getter and setter for [size].
@@ -166,6 +156,17 @@ class AndesDropdownStandalone : ConstraintLayout, AndesListDelegate {
             )
         }
 
+    }
+
+    /**
+     * Sets the list of item that the Dropdown will draw
+     */
+    fun setItems(listItems: List<AndesDropDownItem>){
+        this.listItems = listItems
+
+        if (this.listItems.isNotEmpty()){
+            selectItem(0)
+        }
     }
 
     private fun openBottomSheet() {
