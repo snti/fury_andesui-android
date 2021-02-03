@@ -28,7 +28,7 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
     private lateinit var andesDropdownDelegate: AndesDropdownDelegate
     private lateinit var andesDropdownAttrs: AndesDropdownAttrs
     private lateinit var andesTextfield: AndesTextfield
-    private var listItems: List<AndesDropDownItem> = listOf()
+    var listItems: List<AndesDropDownItem> = listOf()
 
     /**
      * Getter and setter for [label].
@@ -172,13 +172,6 @@ class AndesDropDownForm : ConstraintLayout, AndesListDelegate {
         if (hasFocus) {
             openBottomSheet()
         }
-    }
-
-    /**
-     * Sets the list of item that the Dropdown will draw
-     */
-    fun setItems(listItems: List<AndesDropDownItem>){
-        this.listItems = listItems
     }
 
     private fun openBottomSheet() {

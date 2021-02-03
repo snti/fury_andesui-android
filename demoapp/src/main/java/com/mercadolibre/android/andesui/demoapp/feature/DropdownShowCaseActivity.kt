@@ -74,7 +74,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
     private fun setupDropdownStandaloneShowCase(container: View) {
         andesDropdownStandalone = container.andesDropdownStandalone
 
-        andesDropdownStandalone.setItems(getFakeList())
+        andesDropdownStandalone.listItems = getFakeList()
 
         andesDropdownStandalone.delegate = this
 
@@ -120,7 +120,7 @@ class DropdownShowCaseActivity : AppCompatActivity(), AndesDropdownDelegate {
         andesDropDownForm.placeholder = andesDropDownPlaceHolder
         andesDropDownForm.helper = andesDropDownHelper
 
-        andesDropDownForm.setItems(getFakeList())
+        andesDropDownForm.listItems = getFakeList()
 
         andesDropDownForm.delegate = this
 
